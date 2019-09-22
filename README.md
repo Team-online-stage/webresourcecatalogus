@@ -1,4 +1,4 @@
-# About this application
+# About this component
 
 Het "Resources" component is ontwikkeld voor de gemeente Utrecht en heeft als doel het gebruik van multimedia bestanden te faciliteren. Het stelt je in staat om multimedia bestanden (waaronder plaatjes en filmpjes) en documenten, te gebruiken met bijvoorbeeld componenten, websites of andere apps. Ook stelt dit component je instaat om gebruik te maken van sjablonen voor pagina's en berichten.
 
