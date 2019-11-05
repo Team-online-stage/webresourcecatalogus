@@ -7,11 +7,6 @@ What do you need for this tutorial?
 * docker account
 * docker for desktop
 
-* Browser
-* Github account
-* Git client
-* Docker account
-* Docker for desktop
 
 
 ## Setting up your enviroment

@@ -65,21 +65,21 @@ $ helm dependency update ./api/helm
 
 If you want to create a new instance
 ```CLI
-$ helm install ./api/helm --name wrc-dev --kubeconfig="api/helm/kubeconfig.yaml --set settings.env=dev, settings.debug=1"
-$ helm install ./api/helm --name wrc-stag --kubeconfig="api/helm/kubeconfig.yaml --set settings.env=stag, settings.debug=0"
-$ helm install ./api/helm --name wrc-prod --kubeconfig="api/helm/kubeconfig.yaml --set settings.env=prod, settings.debug=0"
+$ helm install --name wrc-dev  ./api/helm  --kubeconfig="api/helm/kubeconfig.yaml" --namespace=dev  --set settings.env=dev,settings.debug=1
+$ helm install --name wrc-stag  ./api/helm --kubeconfig="api/helm/kubeconfig.yaml" --namespace=stag --set settings.env=stag,settings.debug=0
+$ helm install --name wrc-prod  ./api/helm --kubeconfig="api/helm/kubeconfig.yaml" --namespace=prod --set settings.env=prod,settings.debug=0 
 ```
 
 Or update if you want to update an existing one
 ```CLI
-$ helm upgrade wrc-dev  ./api/helm --kubeconfig="api/helm/kubeconfig.yaml --set settings.env=dev, settings.debug=1" 
-$ helm upgrade wrc-stag  ./api/helm --kubeconfig="api/helm/kubeconfig.yaml -set settings.env=stag, settings.debug=0" 
-$ helm upgrade wrc-prod  ./api/helm --kubeconfig="api/helm/kubeconfig.yaml --set settings.env=prod, settings.debug=0" 
+$ helm upgrade wrc-dev   ./api/helm --kubeconfig="api/helm/kubeconfig.yaml --set settings.env=dev  --val settings.debug=1" 
+$ helm upgrade wrc-stag  ./api/helm --kubeconfig="api/helm/kubeconfig.yaml -set settings.env=stag  --val settings.debug=0" 
+$ helm upgrade wrc-prod  ./api/helm --kubeconfig="api/helm/kubeconfig.yaml --set settings.env=prod --val settings.debug=0" 
 ```
 
 Or del if you want to delete an existing  one
 ```CLI
-$ helm del wrc-dev  --purge --kubeconfig="api/helm/kubeconfig.yaml" 
+$ helm del wrc-dev   --purge --kubeconfig="api/helm/kubeconfig.yaml" 
 $ helm del wrc-stag  --purge --kubeconfig="api/helm/kubeconfig.yaml" 
 $ helm del wrc-prod  --purge --kubeconfig="api/helm/kubeconfig.yaml" 
 ```
