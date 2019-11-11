@@ -1,11 +1,11 @@
 openapi: 3.0.2
 info:
-  title: 'Proto Component'
+  title: 'Web Resource Component'
   version: V.0.1
   description: |
     API Details
-    - Component: Proto Component
-    - Reference: pc
+    - Component: Web Resource Component
+    - Reference: wrc
     - Enviroment: dev
     - Version: V.0.1
     - Repository: []() / [zip](/archive/master.zip)
@@ -611,6 +611,9 @@ paths:
             schema:
               $ref: '#/components/schemas/ExampleEntity-write'
         description: 'The updated ExampleEntity resource'
+security:
+  -
+    apiKey: []
 components:
   schemas:
     ExampleEntity-read:
@@ -640,6 +643,12 @@ components:
         description:
           description: 'The description of this example property'
           type: string
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      in: header
+      description: 'Value for the Authorization header'
+      name: Authorization
 host: irc.zaakonline.nl
 servers:
   -
