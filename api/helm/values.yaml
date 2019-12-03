@@ -4,6 +4,7 @@
 
 settings:
   registryBase: docker.io/conduction
+  version: dev
   projectName: wrc
   env: dev
   debug: 1
