@@ -19,8 +19,13 @@ metadata:
 spec:
   tls: 
   - hosts:
-    - {{ .Values.settings.domain }}
-    secretName: {{ include "name" . }}-tls-cert
+    #  {{- range .Values.settings.domains }}
+    #    - {{ .domain | quote }}
+    #  {{- end }}  
+    {{- with .Values.settings.domains }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
+    secretName: {{ include "name" . }}-{{ .Values.settings.env }}-cert
   rules:
 #    - host: {{ .Values.settings.name }}.{{ .Values.settings.env }}.{{ .Values.settings.domain }}
 #      http:
