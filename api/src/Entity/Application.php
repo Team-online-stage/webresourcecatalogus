@@ -7,12 +7,13 @@ use ApiPlatform\Core\Annotation\ApiResource;
 use App\Filter\LikeFilter;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * This is an example entity.
- * 
+ * Application is your base of a website.
+ *
  * @ApiResource(
  *     normalizationContext={"groups"={"read"}, "enable_max_depth"=true},
  *     denormalizationContext={"groups"={"write"}, "enable_max_depth"=true},
@@ -23,7 +24,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Application
 {
 	/**
-	 * @var \Ramsey\Uuid\UuidInterface
+	 * @var UuidInterface
 	 *
 	 * @example e2984465-190a-4562-829e-a8cca81aa35d
 	 *
@@ -35,7 +36,7 @@ class Application
 	 * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
 	 */
 	private $id;
-	
+
 	/**
 	 * @var string The name of this example property
 	 *
@@ -50,7 +51,7 @@ class Application
 	 * @ORM\Column(type="string", length=255)
 	 */
 	private $name;
-	
+
 	/**
 	 * @var string The description of this example property
 	 *
@@ -90,7 +91,7 @@ class Application
         $this->pages = new ArrayCollection();
     }
 
-    public function getId(): ?int
+    public function getId(): ?string
     {
         return $this->id;
     }
@@ -106,16 +107,16 @@ class Application
 
         return $this;
     }
-    
+
     public function getDescription(): ?string
     {
     	return $this->description;
     }
-    
+
     public function setDescription(?string $description): self
     {
     	$this->description = $description;
-    	
+
     	return $this;
     }
 

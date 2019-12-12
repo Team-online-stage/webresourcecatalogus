@@ -7,12 +7,13 @@ use ApiPlatform\Core\Annotation\ApiResource;
 use App\Filter\LikeFilter;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * This is an example entity.
- * 
+ * Footer can hold a logo and menu or other links.
+ *
  * @ApiResource(
  *     normalizationContext={"groups"={"read"}, "enable_max_depth"=true},
  *     denormalizationContext={"groups"={"write"}, "enable_max_depth"=true},
@@ -23,7 +24,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Footer
 {
 	/**
-	 * @var \Ramsey\Uuid\UuidInterface
+	 * @var UuidInterface
 	 *
 	 * @example e2984465-190a-4562-829e-a8cca81aa35d
 	 *
@@ -57,7 +58,7 @@ class Footer
         $this->image = new ArrayCollection();
     }
 
-    public function getId(): ?int
+    public function getId(): ?string
     {
         return $this->id;
     }
