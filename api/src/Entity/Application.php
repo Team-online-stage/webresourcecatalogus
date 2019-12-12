@@ -25,8 +25,7 @@ use Symfony\Component\Serializer\Annotation\MaxDepth;
 class Application
 {
 	/**
-	 * @var UuidInterface
-	 *
+	 * @var UuidInterface The UUID identifier of this resource
 	 * @example e2984465-190a-4562-829e-a8cca81aa35d
 	 *
 	 * @Assert\Uuid
@@ -39,9 +38,8 @@ class Application
 	private $id;
 
 	/**
-	 * @var string The name of this example property
-	 *
-	 * @example My Group
+	 * @var string The name of this application.
+	 * @example Webshop
 	 *
 	 * @Assert\NotNull
 	 * @Assert\Length(
@@ -54,10 +52,10 @@ class Application
 	private $name;
 
 	/**
-	 * @var string The description of this example property
-	 *
-	 * @example Is the best group ever
-	 *
+	 * @var string The description of this application.
+	 * @example Is the best site ever
+     *
+	 * @Assert\NotNull
 	 * @Assert\Length(
 	 *      max = 2555
 	 * )
@@ -68,25 +66,36 @@ class Application
 	private $description;
 
     /**
+     * @var string The domain of this application.
+     * @example https://www.webshop.nl
+     *
+     * @Assert\NotNull
+     * @Assert\Length(
+     *      max = 255
+     * )
+     * @Groups({"read","write"})
      * @ORM\Column(type="string", length=255)
      */
     private $domain;
 
     /**
+     * @Groups({"read","write"})
      * @ORM\OneToMany(targetEntity="App\Entity\Page", mappedBy="application")
-     * MaxDepth(1)
+     * @MaxDepth(1)
      */
     private $pages;
 
     /**
+     * @Groups({"read","write"})
      * @ORM\OneToOne(targetEntity="App\Entity\Header", cascade={"persist", "remove"})
-     * MaxDepth(1)
+     * @MaxDepth(1)
      */
     private $header;
 
     /**
+     * @Groups({"read","write"})
      * @ORM\OneToOne(targetEntity="App\Entity\Footer", cascade={"persist", "remove"})
-     * MaxDepth(1)
+     * @MaxDepth(1)
      */
     private $footer;
 

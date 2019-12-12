@@ -25,8 +25,7 @@ use Symfony\Component\Serializer\Annotation\MaxDepth;
 class MenuItem
 {
 	/**
-	 * @var UuidInterface
-	 *
+	 * @var UuidInterface The UUID identifier of this resource
 	 * @example e2984465-190a-4562-829e-a8cca81aa35d
 	 *
 	 * @Assert\Uuid
@@ -39,9 +38,8 @@ class MenuItem
 	private $id;
 
 	/**
-	 * @var string The name of this example property
-	 *
-	 * @example My Group
+	 * @var string The name of this MenuItem
+	 * @example about-menu-link
 	 *
 	 * @Assert\NotNull
 	 * @Assert\Length(
@@ -54,9 +52,8 @@ class MenuItem
 	private $name;
 
 	/**
-	 * @var string The description of this example property
-	 *
-	 * @example Is the best group ever
+	 * @var string The description of this MenuItem
+	 * @example This MenuItem links to the about page
 	 *
 	 * @Assert\Length(
 	 *      max = 2555
@@ -68,10 +65,10 @@ class MenuItem
 	private $description;
 
     /**
-     * @var string An url
+     * @var string The href of this MenuItem that links to another page
+	 * @example app_home_about
 	 *
-	 * @example http
-	 *
+     * @Assert\NotNull
 	 * @Assert\Length(
 	 *      max = 2555
 	 * )
@@ -82,9 +79,10 @@ class MenuItem
     private $href;
 
     /**
+     * @Groups({"read","write"})
      * @ORM\ManyToOne(targetEntity="App\Entity\Menu", inversedBy="menuItem")
      * @ORM\JoinColumn(nullable=false)
-     * MaxDepth(1)
+     * @MaxDepth(1)
      */
     private $menu;
 

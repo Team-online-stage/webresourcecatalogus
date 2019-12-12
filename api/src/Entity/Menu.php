@@ -25,8 +25,7 @@ use Symfony\Component\Serializer\Annotation\MaxDepth;
 class Menu
 {
 	/**
-	 * @var UuidInterface
-	 *
+	 * @var UuidInterface The UUID identifier of this resource
 	 * @example e2984465-190a-4562-829e-a8cca81aa35d
 	 *
 	 * @Assert\Uuid
@@ -39,8 +38,8 @@ class Menu
 	private $id;
 
     /**
-     * @var string The id of this Menu
-     * @example abc
+     * @var string The name of this menu
+     * @example webshop menu
      *
      * @Assert\NotNull
      * @Assert\Length(
@@ -52,16 +51,11 @@ class Menu
     private $name;
 
     /**
+     * @Groups({"read","write"})
      * @ORM\OneToMany(targetEntity="App\Entity\MenuItem", mappedBy="menu")
-     * MaxDepth(1)
+     * @MaxDepth(1)
      */
     private $menuItem;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Header", inversedBy="menu")
-     * MaxDepth(1)
-     */
-    private $header;
 
     public function __construct()
     {
@@ -112,18 +106,6 @@ class Menu
                 $menuItem->setMenu(null);
             }
         }
-
-        return $this;
-    }
-
-    public function getHeader(): ?Header
-    {
-        return $this->header;
-    }
-
-    public function setHeader(?Header $header): self
-    {
-        $this->header = $header;
 
         return $this;
     }

@@ -13,7 +13,6 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Serializer\Annotation\MaxDepth;
 
 /**
- *
  * Image speaks for itself.
  *
  * @ApiResource(
@@ -26,8 +25,7 @@ use Symfony\Component\Serializer\Annotation\MaxDepth;
 class Image
 {
 	/**
-	 * @var UuidInterface
-	 *
+	 * @var UuidInterface The UUID identifier of this resource
 	 * @example e2984465-190a-4562-829e-a8cca81aa35d
 	 *
 	 * @Assert\Uuid
@@ -40,17 +38,40 @@ class Image
 	private $id;
 
     /**
+     * @var string The name of this image
+     * @example flowers
+     *
+     * @Assert\NotNull
+     * @Assert\Length(
+     *     max = 255
+     * )
 	 * @Groups({"read","write"})
      * @ORM\Column(type="string", length=255)
      */
     private $name;
 
     /**
+     * @var string The alt of of this image for people with poor eyesight
+     * @example flowers
+     *
+     * @Assert\NotNull
+     * @Assert\Length(
+     *     max = 255
+     * )
+     * @Groups({"read","write"})
      * @ORM\Column(type="string", length=255)
      */
     private $alt;
 
     /**
+     * @var string The href of this image
+     * @example app_img_flowers
+     *
+     * @Assert\NotNull
+     * @Assert\Length(
+     *     max = 255
+     * )
+     * @Groups({"read","write"})
      * @ORM\Column(type="string", length=255)
      */
     private $href;

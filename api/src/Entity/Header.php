@@ -25,8 +25,7 @@ use Symfony\Component\Serializer\Annotation\MaxDepth;
 class Header
 {
 	/**
-	 * @var UuidInterface
-	 *
+	 * @var UuidInterface The UUID identifier of this resource
 	 * @example e2984465-190a-4562-829e-a8cca81aa35d
 	 *
 	 * @Assert\Uuid
@@ -39,20 +38,23 @@ class Header
 	private $id;
 
     /**
+     * @Groups({"read","write"})
      * @ORM\OneToOne(targetEntity="App\Entity\Image", cascade={"persist", "remove"})
-     * MaxDepth(1)
+     * @MaxDepth(1)
      */
     private $logo;
 
     /**
+     * @Groups({"read","write"})
      * @ORM\OneToOne(targetEntity="App\Entity\Menu", cascade={"persist", "remove"})
-     * MaxDepth(1)
+     * @MaxDepth(1)
      */
     private $menu;
 
     /**
+     * @Groups({"read","write"})
      * @ORM\ManyToMany(targetEntity="App\Entity\Image")
-     * MaxDepth(1)
+     * @MaxDepth(1)
      */
     private $image;
 

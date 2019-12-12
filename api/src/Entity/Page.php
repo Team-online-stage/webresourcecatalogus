@@ -25,8 +25,7 @@ use Symfony\Component\Serializer\Annotation\MaxDepth;
 class Page
 {
 	/**
-	 * @var UuidInterface
-	 *
+	 * @var UuidInterface The UUID identifier of this resource
 	 * @example e2984465-190a-4562-829e-a8cca81aa35d
 	 *
 	 * @Assert\Uuid
@@ -39,31 +38,56 @@ class Page
 	private $id;
 
     /**
+     * @var string The title of this page.
+     * @example About
+     *
+     * @Assert\NotNull
+     * @Assert\Length(
+     *     max = 255
+     * )
 	 * @Groups({"read","write"})
      * @ORM\Column(type="string", length=255)
      */
     private $title;
 
     /**
+     * @var string The description of this page.
+     * @example This page holds info about this application
+     *
+     * @Assert\NotNull
+     * @Assert\Length(
+     *     max = 255
+     * )
+     * @Groups({"read","write"})
      * @ORM\Column(type="string", length=255)
      */
     private $description;
 
     /**
+     * @Groups({"read","write"})
      * @ORM\ManyToMany(targetEntity="App\Entity\Content")
-     * MaxDepth(1)
+     * @MaxDepth(1)
      */
     private $content;
 
     /**
+     * @var string The template engine of this page.
+     * @example Twig
+     *
+     * @Assert\NotNull
+     * @Assert\Length(
+     *     max = 255
+     * )
+     * @Groups({"read","write"})
      * @ORM\Column(type="string", length=255)
      */
     private $templateEngine;
 
     /**
+     * @Groups({"read","write"})
      * @ORM\ManyToOne(targetEntity="App\Entity\Application", inversedBy="pages")
      * @ORM\JoinColumn(nullable=false)
-     * MaxDepth(1)
+     * @MaxDepth(1)
      */
     private $application;
 

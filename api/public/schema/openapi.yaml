@@ -1201,511 +1201,6 @@ paths:
             schema:
               $ref: '#/components/schemas/Content-write'
         description: 'The updated Content resource'
-  /example_entities:
-    get:
-      tags:
-        - ExampleEntity
-      operationId: getExampleEntityCollection
-      summary: 'Retrieves the collection of ExampleEntity resources.'
-      responses:
-        200:
-          description: 'ExampleEntity collection response'
-          content:
-            application/hal+json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ExampleEntity-read'
-            application/ld+json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ExampleEntity-read'
-            application/vnd.api+json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ExampleEntity-read'
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ExampleEntity-read'
-            application/xml:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ExampleEntity-read'
-            application/x-yaml:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ExampleEntity-read'
-            text/csv:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ExampleEntity-read'
-            text/html:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ExampleEntity-read'
-      parameters:
-        -
-          name: like_name
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: like_description
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: page
-          in: query
-          required: false
-          description: 'The collection page number'
-          schema:
-            type: integer
-        -
-          name: Authorization
-          description: 'The JWT of the entity performing the request'
-          in: header
-        -
-          name: API-Version
-          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
-          example: 1.0.1
-          in: header
-        -
-          name: X-NLX-Logrecord-ID
-          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
-          in: header
-        -
-          name: X-NLX-Request-Process-Id
-          description: 'A process id for purpose registration (doelbinding)'
-          in: header
-        -
-          name: X-NLX-Request-Data-Elements
-          description: 'A list of requested data elements'
-          in: header
-        -
-          name: X-NLX-Request-Data-Subject
-          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
-          in: header
-        -
-          name: X-NLX-Audit-Clarification
-          description: 'A clarification as to why a request has been made  (doelbinding)'
-          in: header
-        -
-          name: Link
-          description: 'A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel="hub"'
-          in: header
-        -
-          name: 'extend[]'
-          required: false
-          description: 'An array of nested objects to include in the return object'
-          in: query
-          schema:
-            type: array
-        -
-          name: 'fields[]'
-          required: false
-          description: 'An array of fields to return in output, wil return all fields is not supplied'
-          in: query
-          schema:
-            type: array
-        -
-          name: validOn
-          required: false
-          description: 'Returns object as valid on a given date time'
-          schema:
-            type: string
-            format: date-time
-          in: query
-        -
-          name: validFrom
-          required: false
-          description: 'Returns objects valid from a given date time'
-          schema:
-            type: string
-            format: date-time
-          in: query
-        -
-          name: validUntil
-          required: false
-          description: 'Returns objects valid until a given date time'
-          schema:
-            type: string
-            format: date-time
-          in: query
-      produces:
-        - application/health+json
-    post:
-      tags:
-        - ExampleEntity
-      operationId: postExampleEntityCollection
-      summary: 'Creates a ExampleEntity resource.'
-      responses:
-        201:
-          description: 'ExampleEntity resource created'
-          content:
-            application/hal+json:
-              schema:
-                $ref: '#/components/schemas/ExampleEntity-read'
-            application/ld+json:
-              schema:
-                $ref: '#/components/schemas/ExampleEntity-read'
-            application/vnd.api+json:
-              schema:
-                $ref: '#/components/schemas/ExampleEntity-read'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ExampleEntity-read'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/ExampleEntity-read'
-            application/x-yaml:
-              schema:
-                $ref: '#/components/schemas/ExampleEntity-read'
-            text/csv:
-              schema:
-                $ref: '#/components/schemas/ExampleEntity-read'
-            text/html:
-              schema:
-                $ref: '#/components/schemas/ExampleEntity-read'
-          links:
-            GetExampleEntityItem:
-              parameters:
-                id: '$response.body#/id'
-              operationId: getExampleEntityItem
-              description: 'The `id` value returned in the response can be used as the `id` parameter in `GET /example_entities/{id}`.'
-        400:
-          description: 'Invalid input'
-        404:
-          description: 'Resource not found'
-      requestBody:
-        content:
-          application/hal+json:
-            schema:
-              $ref: '#/components/schemas/ExampleEntity-write'
-          application/ld+json:
-            schema:
-              $ref: '#/components/schemas/ExampleEntity-write'
-          application/vnd.api+json:
-            schema:
-              $ref: '#/components/schemas/ExampleEntity-write'
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ExampleEntity-write'
-          application/xml:
-            schema:
-              $ref: '#/components/schemas/ExampleEntity-write'
-          application/x-yaml:
-            schema:
-              $ref: '#/components/schemas/ExampleEntity-write'
-          text/csv:
-            schema:
-              $ref: '#/components/schemas/ExampleEntity-write'
-          text/html:
-            schema:
-              $ref: '#/components/schemas/ExampleEntity-write'
-        description: 'The new ExampleEntity resource'
-      parameters:
-        -
-          name: Authorization
-          description: 'The JWT of the entity performing the request'
-          in: header
-        -
-          name: API-Version
-          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
-          example: 1.0.1
-          in: header
-        -
-          name: X-NLX-Logrecord-ID
-          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
-          in: header
-        -
-          name: X-NLX-Request-Process-Id
-          description: 'A process id for purpose registration (doelbinding)'
-          in: header
-        -
-          name: X-NLX-Request-Data-Elements
-          description: 'A list of requested data elements'
-          in: header
-        -
-          name: X-NLX-Request-Data-Subject
-          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
-          in: header
-        -
-          name: X-NLX-Audit-Clarification
-          description: 'A clarification as to why a request has been made  (doelbinding)'
-          in: header
-  '/example_entities/{id}':
-    get:
-      tags:
-        - ExampleEntity
-      operationId: audittrailExampleEntityItem
-      summary: 'Retrieves a ExampleEntity resource.'
-      parameters:
-        -
-          name: id
-          in: path
-          required: true
-          schema:
-            type: string
-        -
-          name: Authorization
-          description: 'The JWT of the entity performing the request'
-          in: header
-        -
-          name: API-Version
-          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
-          example: 1.0.1
-          in: header
-        -
-          name: X-NLX-Logrecord-ID
-          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
-          in: header
-        -
-          name: X-NLX-Request-Process-Id
-          description: 'A process id for purpose registration (doelbinding)'
-          in: header
-        -
-          name: X-NLX-Request-Data-Elements
-          description: 'A list of requested data elements'
-          in: header
-        -
-          name: X-NLX-Request-Data-Subject
-          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
-          in: header
-        -
-          name: X-NLX-Audit-Clarification
-          description: 'A clarification as to why a request has been made  (doelbinding)'
-          in: header
-        -
-          name: Link
-          description: 'A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel="hub"'
-          in: header
-        -
-          name: 'extend[]'
-          required: false
-          description: 'An array of nested objects to include in the return object'
-          in: query
-          schema:
-            type: array
-        -
-          name: 'fields[]'
-          required: false
-          description: 'An array of fields to return in output, wil return all fields is not supplied'
-          in: query
-          schema:
-            type: array
-        -
-          name: validOn
-          required: false
-          description: 'Returns object as valid on a given date time'
-          schema:
-            type: string
-            format: date-time
-          in: query
-        -
-          name: validFrom
-          required: false
-          description: 'Returns objects valid from a given date time'
-          schema:
-            type: string
-            format: date-time
-          in: query
-        -
-          name: validUntil
-          required: false
-          description: 'Returns objects valid until a given date time'
-          schema:
-            type: string
-            format: date-time
-          in: query
-      responses:
-        200:
-          description: 'ExampleEntity resource response'
-          content:
-            application/hal+json:
-              schema:
-                $ref: '#/components/schemas/ExampleEntity-read'
-            application/ld+json:
-              schema:
-                $ref: '#/components/schemas/ExampleEntity-read'
-            application/vnd.api+json:
-              schema:
-                $ref: '#/components/schemas/ExampleEntity-read'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ExampleEntity-read'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/ExampleEntity-read'
-            application/x-yaml:
-              schema:
-                $ref: '#/components/schemas/ExampleEntity-read'
-            text/csv:
-              schema:
-                $ref: '#/components/schemas/ExampleEntity-read'
-            text/html:
-              schema:
-                $ref: '#/components/schemas/ExampleEntity-read'
-        404:
-          description: 'Resource not found'
-      produces:
-        - application/health+json
-    put:
-      tags:
-        - ExampleEntity
-      operationId: putExampleEntityItem
-      summary: 'Replaces the ExampleEntity resource.'
-      parameters:
-        -
-          name: id
-          in: path
-          required: true
-          schema:
-            type: string
-        -
-          name: Authorization
-          description: 'The JWT of the entity performing the request'
-          in: header
-        -
-          name: API-Version
-          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
-          example: 1.0.1
-          in: header
-        -
-          name: X-NLX-Logrecord-ID
-          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
-          in: header
-        -
-          name: X-NLX-Request-Process-Id
-          description: 'A process id for purpose registration (doelbinding)'
-          in: header
-        -
-          name: X-NLX-Request-Data-Elements
-          description: 'A list of requested data elements'
-          in: header
-        -
-          name: X-NLX-Request-Data-Subject
-          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
-          in: header
-        -
-          name: X-NLX-Audit-Clarification
-          description: 'A clarification as to why a request has been made  (doelbinding)'
-          in: header
-      responses:
-        200:
-          description: 'ExampleEntity resource updated'
-          content:
-            application/hal+json:
-              schema:
-                $ref: '#/components/schemas/ExampleEntity-read'
-            application/ld+json:
-              schema:
-                $ref: '#/components/schemas/ExampleEntity-read'
-            application/vnd.api+json:
-              schema:
-                $ref: '#/components/schemas/ExampleEntity-read'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ExampleEntity-read'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/ExampleEntity-read'
-            application/x-yaml:
-              schema:
-                $ref: '#/components/schemas/ExampleEntity-read'
-            text/csv:
-              schema:
-                $ref: '#/components/schemas/ExampleEntity-read'
-            text/html:
-              schema:
-                $ref: '#/components/schemas/ExampleEntity-read'
-        400:
-          description: 'Invalid input'
-        404:
-          description: 'Resource not found'
-      requestBody:
-        content:
-          application/hal+json:
-            schema:
-              $ref: '#/components/schemas/ExampleEntity-write'
-          application/ld+json:
-            schema:
-              $ref: '#/components/schemas/ExampleEntity-write'
-          application/vnd.api+json:
-            schema:
-              $ref: '#/components/schemas/ExampleEntity-write'
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ExampleEntity-write'
-          application/xml:
-            schema:
-              $ref: '#/components/schemas/ExampleEntity-write'
-          application/x-yaml:
-            schema:
-              $ref: '#/components/schemas/ExampleEntity-write'
-          text/csv:
-            schema:
-              $ref: '#/components/schemas/ExampleEntity-write'
-          text/html:
-            schema:
-              $ref: '#/components/schemas/ExampleEntity-write'
-        description: 'The updated ExampleEntity resource'
-    delete:
-      tags:
-        - ExampleEntity
-      operationId: deleteExampleEntityItem
-      summary: 'Removes the ExampleEntity resource.'
-      responses:
-        204:
-          description: 'ExampleEntity resource deleted'
-        404:
-          description: 'Resource not found'
-      parameters:
-        -
-          name: id
-          in: path
-          required: true
-          schema:
-            type: string
-        -
-          name: Authorization
-          description: 'The JWT of the entity performing the request'
-          in: header
-        -
-          name: API-Version
-          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
-          example: 1.0.1
-          in: header
-        -
-          name: X-NLX-Logrecord-ID
-          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
-          in: header
-        -
-          name: X-NLX-Request-Process-Id
-          description: 'A process id for purpose registration (doelbinding)'
-          in: header
-        -
-          name: X-NLX-Request-Data-Elements
-          description: 'A list of requested data elements'
-          in: header
-        -
-          name: X-NLX-Request-Data-Subject
-          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
-          in: header
-        -
-          name: X-NLX-Audit-Clarification
-          description: 'A clarification as to why a request has been made  (doelbinding)'
-          in: header
   /footers:
     get:
       tags:
@@ -5864,138 +5359,190 @@ components:
   schemas:
     Application-read:
       type: object
-      description: 'This is an example entity.'
+      description: 'Application is your base of a website.'
       properties:
         id:
           readOnly: true
           type: string
+        name:
+          description: 'The name of this application.'
+          type: string
+        description:
+          description: 'The description of this application.'
+          type: string
+      required:
+        - name
+        - description
     Application-write:
       type: object
-      description: 'This is an example entity.'
+      description: 'Application is your base of a website.'
+      required:
+        - name
+        - description
+      properties:
+        name:
+          description: 'The name of this application.'
+          type: string
+        description:
+          description: 'The description of this application.'
+          type: string
     Content-read:
       type: object
-      description: 'This is an example entity.'
+      description: 'Content holds information and photos you want to show on your pages.'
       properties:
         id:
           readOnly: true
           type: string
+        data:
+          description: 'The data of this content.'
+          type: string
+      required:
+        - data
     Content-write:
       type: object
-      description: 'This is an example entity.'
-    ExampleEntity-read:
-      type: object
-      description: 'This is an example entity.'
-      properties:
-        id:
-          readOnly: true
-          type: string
-        name:
-          description: 'The name of this example property'
-          type: string
-        description:
-          description: 'The description of this example property'
-          type: string
-        camelCase:
-          description: 'Proof that we camel case our api'
-          type: string
+      description: 'Content holds information and photos you want to show on your pages.'
       required:
-        - name
-    ExampleEntity-write:
-      type: object
-      description: 'This is an example entity.'
-      required:
-        - name
+        - data
       properties:
-        name:
-          description: 'The name of this example property'
-          type: string
-        description:
-          description: 'The description of this example property'
-          type: string
-        camelCase:
-          description: 'Proof that we camel case our api'
+        data:
+          description: 'The data of this content.'
           type: string
     Footer-read:
       type: object
-      description: 'This is an example entity.'
+      description: 'Footer can hold a logo and menu or other links.'
       properties:
         id:
           readOnly: true
           type: string
+        logo:
+          $ref: '#/components/schemas/Image-read'
     Footer-write:
       type: object
-      description: 'This is an example entity.'
+      description: 'Footer can hold a logo and menu or other links.'
+      properties:
+        logo:
+          $ref: '#/components/schemas/Image-write'
     Header-read:
       type: object
-      description: 'This is an example entity.'
+      description: 'A header holds your logo and menu in your application.'
       properties:
         id:
           readOnly: true
           type: string
     Header-write:
       type: object
-      description: 'This is an example entity.'
+      description: 'A header holds your logo and menu in your application.'
     Image-read:
       type: object
-      description: 'This is an example entity.'
-      properties:
-        id:
-          readOnly: true
-          type: string
-    Image-write:
-      type: object
-      description: 'This is an example entity.'
-    Menu-read:
-      type: object
-      description: 'This is an example entity.'
+      description: 'Image speaks for itself.'
       properties:
         id:
           readOnly: true
           type: string
         name:
-          description: 'The id of this Menu'
+          type: string
+    Image-write:
+      type: object
+      description: 'Image speaks for itself.'
+      properties:
+        name:
+          type: string
+    Menu-read:
+      type: object
+      description: 'Menu is your way of navigation inside your application.'
+      properties:
+        id:
+          readOnly: true
+          type: string
+        name:
+          description: 'The name of this menu'
           type: string
       required:
         - name
     Menu-write:
       type: object
-      description: 'This is an example entity.'
+      description: 'Menu is your way of navigation inside your application.'
       required:
         - name
       properties:
         name:
-          description: 'The id of this Menu'
+          description: 'The name of this menu'
           type: string
     MenuItem-read:
       type: object
-      description: 'This is an example entity.'
+      description: 'MenuItem is a part of a menu and can be a link or submenu.'
       properties:
         id:
           readOnly: true
           type: string
+        name:
+          description: 'The name of this example property'
+          type: string
+        description:
+          description: 'The description of this example property'
+          type: string
+        href:
+          description: 'An url'
+          type: string
+      required:
+        - name
     MenuItem-write:
       type: object
-      description: 'This is an example entity.'
+      description: 'MenuItem is a part of a menu and can be a link or submenu.'
+      required:
+        - name
+      properties:
+        name:
+          description: 'The name of this example property'
+          type: string
+        description:
+          description: 'The description of this example property'
+          type: string
+        href:
+          description: 'An url'
+          type: string
     Page-read:
       type: object
-      description: 'This is an example entity.'
+      description: 'A page holds your content in your application.'
       properties:
         id:
           readOnly: true
           type: string
+        title:
+          description: 'The title of this page.'
+          type: string
+      required:
+        - title
     Page-write:
       type: object
-      description: 'This is an example entity.'
+      description: 'A page holds your content in your application.'
+      required:
+        - title
+      properties:
+        title:
+          description: 'The title of this page.'
+          type: string
     Slug-read:
       type: object
-      description: 'This is an example entity.'
+      description: 'Your slug connects your application with your pages.'
       properties:
         id:
           readOnly: true
           type: string
+        slug:
+          description: 'The actual slug of this slug.'
+          type: string
+      required:
+        - slug
     Slug-write:
       type: object
-      description: 'This is an example entity.'
+      description: 'Your slug connects your application with your pages.'
+      required:
+        - slug
+      properties:
+        slug:
+          description: 'The actual slug of this slug.'
+          type: string
   securitySchemes:
     apiKey:
       type: apiKey
@@ -6008,47 +5555,53 @@ definitions:
       id:
         example: e2984465-190a-4562-829e-a8cca81aa35d
         format: uuid
-    required: []
+      name:
+        example: Webshop
+        maxLength: 255
+      description:
+        example: 'Is the best site ever'
+        maxLength: 2555
+    required:
+      - name
+      - description
+  Application-write:
+    properties:
+      name:
+        example: Webshop
+        maxLength: 255
+      description:
+        example: 'Is the best site ever'
+        maxLength: 2555
+    required:
+      - name
+      - description
   Content-read:
     properties:
       id:
         example: e2984465-190a-4562-829e-a8cca81aa35d
         format: uuid
-    required: []
-  ExampleEntity-read:
-    properties:
-      id:
-        example: e2984465-190a-4562-829e-a8cca81aa35d
-        format: uuid
-      name:
-        example: 'My Group'
-        maxLength: 255
-      description:
-        example: 'Is the best group ever'
+      data:
+        example: 'A lot of random info over any topic'
         maxLength: 2555
-      camelCase:
-        example: 'Best api ever'
-        maxLength: 255
     required:
-      - name
-  ExampleEntity-write:
+      - data
+  Content-write:
     properties:
-      name:
-        example: 'My Group'
-        maxLength: 255
-      description:
-        example: 'Is the best group ever'
+      data:
+        example: 'A lot of random info over any topic'
         maxLength: 2555
-      camelCase:
-        example: 'Best api ever'
-        maxLength: 255
     required:
-      - name
+      - data
   Footer-read:
     properties:
       id:
         example: e2984465-190a-4562-829e-a8cca81aa35d
         format: uuid
+      logo: []
+    required: []
+  Footer-write:
+    properties:
+      logo: []
     required: []
   Header-read:
     properties:
@@ -6061,6 +5614,11 @@ definitions:
       id:
         example: e2984465-190a-4562-829e-a8cca81aa35d
         format: uuid
+      name: []
+    required: []
+  Image-write:
+    properties:
+      name: []
     required: []
   Menu-read:
     properties:
@@ -6068,14 +5626,14 @@ definitions:
         example: e2984465-190a-4562-829e-a8cca81aa35d
         format: uuid
       name:
-        example: abc
+        example: 'webshop menu'
         maxLength: 255
     required:
       - name
   Menu-write:
     properties:
       name:
-        example: abc
+        example: 'webshop menu'
         maxLength: 255
     required:
       - name
@@ -6084,78 +5642,117 @@ definitions:
       id:
         example: e2984465-190a-4562-829e-a8cca81aa35d
         format: uuid
-    required: []
+      name:
+        example: 'My Group'
+        maxLength: 255
+      description:
+        example: 'Is the best group ever'
+        maxLength: 2555
+      href:
+        example: http
+        maxLength: 2555
+    required:
+      - name
+  MenuItem-write:
+    properties:
+      name:
+        example: 'My Group'
+        maxLength: 255
+      description:
+        example: 'Is the best group ever'
+        maxLength: 2555
+      href:
+        example: http
+        maxLength: 2555
+    required:
+      - name
   Page-read:
     properties:
       id:
         example: e2984465-190a-4562-829e-a8cca81aa35d
         format: uuid
-    required: []
+      title:
+        example: About
+        maxLength: 255
+    required:
+      - title
+  Page-write:
+    properties:
+      title:
+        example: About
+        maxLength: 255
+    required:
+      - title
   Slug-read:
     properties:
       id:
         example: e2984465-190a-4562-829e-a8cca81aa35d
         format: uuid
-    required: []
+      slug:
+        example: /about
+        maxLength: 255
+    required:
+      - slug
+  Slug-write:
+    properties:
+      slug:
+        example: /about
+        maxLength: 255
+    required:
+      - slug
 tags:
   -
     name: Application
     description: |
-      This is an example entity.
+      Application is your base of a website.
       
       
   -
     name: Content
     description: |
-      This is an example entity.
+      Content holds information and photos you want to show on your pages.
       
       
-  -
-    name: ExampleEntity
-    description: |
-      This is an example entity.
-      
-      With an adtional description, all in all its pritty nice [url](www.google.nl)
   -
     name: Footer
     description: |
-      This is an example entity.
+      Footer can hold a logo and menu or other links.
       
       
   -
     name: Header
     description: |
-      This is an example entity.
+      A header holds your logo and menu in your application.
       
       
   -
     name: Image
     description: |
-      This is an example entity.
+      Image speaks for itself.
       
       
   -
     name: Menu
     description: |
-      This is an example entity.
+      Menu is your way of navigation inside your application.
       
       
   -
     name: MenuItem
     description: |
-      This is an example entity.
+      MenuItem is a part of a menu and can be a link or submenu.
       
       
   -
     name: Page
     description: |
-      This is an example entity.
+      A page holds your content in your application.
       
       
   -
     name: Slug
     description: |
-      This is an example entity.
+      Your slug connects your application with your pages.
       
       
 securityDefinitions:
@@ -6165,14 +5762,14 @@ securityDefinitions:
     flow: implicit
     scopes:
       read: 'read right to the Slug resource'
-      write: 'write right to the Menu resource'
+      write: 'write right to the Slug resource'
   JWT-Token:
     type: apiKey
     in: header
     name: Authorization
     scopes:
       read: 'read right to the Slug resource'
-      write: 'write right to the Menu resource'
+      write: 'write right to the Slug resource'
 host: irc.zaakonline.nl
 servers:
   -

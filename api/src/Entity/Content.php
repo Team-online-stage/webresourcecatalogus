@@ -25,8 +25,7 @@ use Symfony\Component\Serializer\Annotation\MaxDepth;
 class Content
 {
 	/**
-	 * @var UuidInterface
-	 *
+	 * @var UuidInterface The UUID identifier of this resource
 	 * @example e2984465-190a-4562-829e-a8cca81aa35d
 	 *
 	 * @Assert\Uuid
@@ -39,14 +38,22 @@ class Content
 	private $id;
 
     /**
+     * @var string The data of this content.
+     * @example A lot of random info over any topic
+     *
+     * @Assert\NotNull
+     * @Assert\Length(
+     *      max = 2555
+     * )
 	 * @Groups({"read","write"})
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=2555)
      */
     private $data;
 
     /**
+     * @Groups({"read","write"})
      * @ORM\ManyToMany(targetEntity="App\Entity\Image")
-     * MaxDepth(1)
+     * @MaxDepth(1)
      */
     private $image;
 
