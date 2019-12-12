@@ -10,6 +10,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
 use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Serializer\Annotation\MaxDepth;
 
 /**
  * Content holds information and photos you want to show on your pages.
@@ -45,6 +46,7 @@ class Content
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Image")
+     * MaxDepth(1)
      */
     private $image;
 

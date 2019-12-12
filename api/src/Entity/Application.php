@@ -10,6 +10,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
 use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Serializer\Annotation\MaxDepth;
 
 /**
  * Application is your base of a website.
@@ -73,16 +74,19 @@ class Application
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Page", mappedBy="application")
+     * MaxDepth(1)
      */
     private $pages;
 
     /**
      * @ORM\OneToOne(targetEntity="App\Entity\Header", cascade={"persist", "remove"})
+     * MaxDepth(1)
      */
     private $header;
 
     /**
      * @ORM\OneToOne(targetEntity="App\Entity\Footer", cascade={"persist", "remove"})
+     * MaxDepth(1)
      */
     private $footer;
 

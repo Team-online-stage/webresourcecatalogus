@@ -10,6 +10,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
 use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Serializer\Annotation\MaxDepth;
 
 /**
  * A page holds your content in your application.
@@ -50,6 +51,7 @@ class Page
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Content")
+     * MaxDepth(1)
      */
     private $content;
 
@@ -61,6 +63,7 @@ class Page
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Application", inversedBy="pages")
      * @ORM\JoinColumn(nullable=false)
+     * MaxDepth(1)
      */
     private $application;
 

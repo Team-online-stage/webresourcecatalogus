@@ -10,6 +10,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
 use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Serializer\Annotation\MaxDepth;
 
 /**
  * Menu is your way of navigation inside your application.
@@ -52,11 +53,13 @@ class Menu
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\MenuItem", mappedBy="menu")
+     * MaxDepth(1)
      */
     private $menuItem;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Header", inversedBy="menu")
+     * MaxDepth(1)
      */
     private $header;
 

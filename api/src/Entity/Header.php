@@ -10,6 +10,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
 use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Serializer\Annotation\MaxDepth;
 
 /**
  * A header holds your logo and menu in your application.
@@ -38,18 +39,20 @@ class Header
 	private $id;
 
     /**
-	 * @Groups({"read","write"})
      * @ORM\OneToOne(targetEntity="App\Entity\Image", cascade={"persist", "remove"})
+     * MaxDepth(1)
      */
     private $logo;
 
     /**
      * @ORM\OneToOne(targetEntity="App\Entity\Menu", cascade={"persist", "remove"})
+     * MaxDepth(1)
      */
     private $menu;
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Image")
+     * MaxDepth(1)
      */
     private $image;
 

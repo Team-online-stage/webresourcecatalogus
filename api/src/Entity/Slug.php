@@ -10,6 +10,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
 use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Serializer\Annotation\MaxDepth;
 
 /**
  * Your slug connects your application with your pages.
@@ -40,12 +41,14 @@ class Slug
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Application")
      * @ORM\JoinColumn(nullable=false)
+     * MaxDepth(1)
      */
     private $application;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Page")
      * @ORM\JoinColumn(nullable=false)
+     * MaxDepth(1)
      */
     private $page;
 

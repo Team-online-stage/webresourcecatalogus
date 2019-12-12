@@ -10,6 +10,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
 use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Serializer\Annotation\MaxDepth;
 
 /**
  * MenuItem is a part of a menu and can be a link or submenu.
@@ -83,6 +84,7 @@ class MenuItem
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Menu", inversedBy="menuItem")
      * @ORM\JoinColumn(nullable=false)
+     * MaxDepth(1)
      */
     private $menu;
 
