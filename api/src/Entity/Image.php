@@ -38,6 +38,7 @@ class Image
 	private $id;
 
     /**
+	 * @Groups({"read","write"})
      * @ORM\Column(type="string", length=255)
      */
     private $name;

@@ -35,11 +35,35 @@ class Application
 	 * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
 	 */
 	private $id;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $name;
+	
+	/**
+	 * @var string The name of this example property
+	 *
+	 * @example My Group
+	 *
+	 * @Assert\NotNull
+	 * @Assert\Length(
+	 *      max = 255
+	 * )
+	 * @Gedmo\Versioned
+	 * @Groups({"read","write"})
+	 * @ORM\Column(type="string", length=255)
+	 */
+	private $name;
+	
+	/**
+	 * @var string The description of this example property
+	 *
+	 * @example Is the best group ever
+	 *
+	 * @Assert\Length(
+	 *      max = 2555
+	 * )
+	 * @Gedmo\Versioned
+	 * @Groups({"read","write"})
+	 * @ORM\Column(type="text", nullable=true)
+	 */
+	private $description;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -81,6 +105,18 @@ class Application
         $this->name = $name;
 
         return $this;
+    }
+    
+    public function getDescription(): ?string
+    {
+    	return $this->description;
+    }
+    
+    public function setDescription(?string $description): self
+    {
+    	$this->description = $description;
+    	
+    	return $this;
     }
 
     public function getDomain(): ?string

@@ -37,6 +37,7 @@ class Header
 	private $id;
 
     /**
+	 * @Groups({"read","write"})
      * @ORM\OneToOne(targetEntity="App\Entity\Image", cascade={"persist", "remove"})
      */
     private $logo;

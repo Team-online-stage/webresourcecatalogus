@@ -49,6 +49,7 @@ class Slug
     private $page;
 
     /**
+	 * @Groups({"read","write"})
      * @ORM\Column(type="string", length=255)
      */
     private $slug;
