@@ -29,42 +29,42 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Application'
+                  $ref: '#/components/schemas/Application-read'
             application/ld+json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Application'
+                  $ref: '#/components/schemas/Application-read'
             application/vnd.api+json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Application'
+                  $ref: '#/components/schemas/Application-read'
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Application'
+                  $ref: '#/components/schemas/Application-read'
             application/xml:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Application'
+                  $ref: '#/components/schemas/Application-read'
             application/x-yaml:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Application'
+                  $ref: '#/components/schemas/Application-read'
             text/csv:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Application'
+                  $ref: '#/components/schemas/Application-read'
             text/html:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Application'
+                  $ref: '#/components/schemas/Application-read'
       parameters:
         -
           name: page
@@ -157,28 +157,28 @@ paths:
           content:
             application/hal+json:
               schema:
-                $ref: '#/components/schemas/Application'
+                $ref: '#/components/schemas/Application-read'
             application/ld+json:
               schema:
-                $ref: '#/components/schemas/Application'
+                $ref: '#/components/schemas/Application-read'
             application/vnd.api+json:
               schema:
-                $ref: '#/components/schemas/Application'
+                $ref: '#/components/schemas/Application-read'
             application/json:
               schema:
-                $ref: '#/components/schemas/Application'
+                $ref: '#/components/schemas/Application-read'
             application/xml:
               schema:
-                $ref: '#/components/schemas/Application'
+                $ref: '#/components/schemas/Application-read'
             application/x-yaml:
               schema:
-                $ref: '#/components/schemas/Application'
+                $ref: '#/components/schemas/Application-read'
             text/csv:
               schema:
-                $ref: '#/components/schemas/Application'
+                $ref: '#/components/schemas/Application-read'
             text/html:
               schema:
-                $ref: '#/components/schemas/Application'
+                $ref: '#/components/schemas/Application-read'
           links:
             GetApplicationItem:
               parameters:
@@ -193,28 +193,28 @@ paths:
         content:
           application/hal+json:
             schema:
-              $ref: '#/components/schemas/Application'
+              $ref: '#/components/schemas/Application-write'
           application/ld+json:
             schema:
-              $ref: '#/components/schemas/Application'
+              $ref: '#/components/schemas/Application-write'
           application/vnd.api+json:
             schema:
-              $ref: '#/components/schemas/Application'
+              $ref: '#/components/schemas/Application-write'
           application/json:
             schema:
-              $ref: '#/components/schemas/Application'
+              $ref: '#/components/schemas/Application-write'
           application/xml:
             schema:
-              $ref: '#/components/schemas/Application'
+              $ref: '#/components/schemas/Application-write'
           application/x-yaml:
             schema:
-              $ref: '#/components/schemas/Application'
+              $ref: '#/components/schemas/Application-write'
           text/csv:
             schema:
-              $ref: '#/components/schemas/Application'
+              $ref: '#/components/schemas/Application-write'
           text/html:
             schema:
-              $ref: '#/components/schemas/Application'
+              $ref: '#/components/schemas/Application-write'
         description: 'The new Application resource'
       parameters:
         -
@@ -336,28 +336,28 @@ paths:
           content:
             application/hal+json:
               schema:
-                $ref: '#/components/schemas/Application'
+                $ref: '#/components/schemas/Application-read'
             application/ld+json:
               schema:
-                $ref: '#/components/schemas/Application'
+                $ref: '#/components/schemas/Application-read'
             application/vnd.api+json:
               schema:
-                $ref: '#/components/schemas/Application'
+                $ref: '#/components/schemas/Application-read'
             application/json:
               schema:
-                $ref: '#/components/schemas/Application'
+                $ref: '#/components/schemas/Application-read'
             application/xml:
               schema:
-                $ref: '#/components/schemas/Application'
+                $ref: '#/components/schemas/Application-read'
             application/x-yaml:
               schema:
-                $ref: '#/components/schemas/Application'
+                $ref: '#/components/schemas/Application-read'
             text/csv:
               schema:
-                $ref: '#/components/schemas/Application'
+                $ref: '#/components/schemas/Application-read'
             text/html:
               schema:
-                $ref: '#/components/schemas/Application'
+                $ref: '#/components/schemas/Application-read'
         404:
           description: 'Resource not found'
       produces:
@@ -455,28 +455,28 @@ paths:
           content:
             application/hal+json:
               schema:
-                $ref: '#/components/schemas/Application'
+                $ref: '#/components/schemas/Application-read'
             application/ld+json:
               schema:
-                $ref: '#/components/schemas/Application'
+                $ref: '#/components/schemas/Application-read'
             application/vnd.api+json:
               schema:
-                $ref: '#/components/schemas/Application'
+                $ref: '#/components/schemas/Application-read'
             application/json:
               schema:
-                $ref: '#/components/schemas/Application'
+                $ref: '#/components/schemas/Application-read'
             application/xml:
               schema:
-                $ref: '#/components/schemas/Application'
+                $ref: '#/components/schemas/Application-read'
             application/x-yaml:
               schema:
-                $ref: '#/components/schemas/Application'
+                $ref: '#/components/schemas/Application-read'
             text/csv:
               schema:
-                $ref: '#/components/schemas/Application'
+                $ref: '#/components/schemas/Application-read'
             text/html:
               schema:
-                $ref: '#/components/schemas/Application'
+                $ref: '#/components/schemas/Application-read'
         400:
           description: 'Invalid input'
         404:
@@ -485,28 +485,28 @@ paths:
         content:
           application/hal+json:
             schema:
-              $ref: '#/components/schemas/Application'
+              $ref: '#/components/schemas/Application-write'
           application/ld+json:
             schema:
-              $ref: '#/components/schemas/Application'
+              $ref: '#/components/schemas/Application-write'
           application/vnd.api+json:
             schema:
-              $ref: '#/components/schemas/Application'
+              $ref: '#/components/schemas/Application-write'
           application/json:
             schema:
-              $ref: '#/components/schemas/Application'
+              $ref: '#/components/schemas/Application-write'
           application/xml:
             schema:
-              $ref: '#/components/schemas/Application'
+              $ref: '#/components/schemas/Application-write'
           application/x-yaml:
             schema:
-              $ref: '#/components/schemas/Application'
+              $ref: '#/components/schemas/Application-write'
           text/csv:
             schema:
-              $ref: '#/components/schemas/Application'
+              $ref: '#/components/schemas/Application-write'
           text/html:
             schema:
-              $ref: '#/components/schemas/Application'
+              $ref: '#/components/schemas/Application-write'
         description: 'The updated Application resource'
     patch:
       tags:
@@ -555,28 +555,28 @@ paths:
           content:
             application/hal+json:
               schema:
-                $ref: '#/components/schemas/Application'
+                $ref: '#/components/schemas/Application-read'
             application/ld+json:
               schema:
-                $ref: '#/components/schemas/Application'
+                $ref: '#/components/schemas/Application-read'
             application/vnd.api+json:
               schema:
-                $ref: '#/components/schemas/Application'
+                $ref: '#/components/schemas/Application-read'
             application/json:
               schema:
-                $ref: '#/components/schemas/Application'
+                $ref: '#/components/schemas/Application-read'
             application/xml:
               schema:
-                $ref: '#/components/schemas/Application'
+                $ref: '#/components/schemas/Application-read'
             application/x-yaml:
               schema:
-                $ref: '#/components/schemas/Application'
+                $ref: '#/components/schemas/Application-read'
             text/csv:
               schema:
-                $ref: '#/components/schemas/Application'
+                $ref: '#/components/schemas/Application-read'
             text/html:
               schema:
-                $ref: '#/components/schemas/Application'
+                $ref: '#/components/schemas/Application-read'
         400:
           description: 'Invalid input'
         404:
@@ -585,28 +585,28 @@ paths:
         content:
           application/hal+json:
             schema:
-              $ref: '#/components/schemas/Application'
+              $ref: '#/components/schemas/Application-write'
           application/ld+json:
             schema:
-              $ref: '#/components/schemas/Application'
+              $ref: '#/components/schemas/Application-write'
           application/vnd.api+json:
             schema:
-              $ref: '#/components/schemas/Application'
+              $ref: '#/components/schemas/Application-write'
           application/json:
             schema:
-              $ref: '#/components/schemas/Application'
+              $ref: '#/components/schemas/Application-write'
           application/xml:
             schema:
-              $ref: '#/components/schemas/Application'
+              $ref: '#/components/schemas/Application-write'
           application/x-yaml:
             schema:
-              $ref: '#/components/schemas/Application'
+              $ref: '#/components/schemas/Application-write'
           text/csv:
             schema:
-              $ref: '#/components/schemas/Application'
+              $ref: '#/components/schemas/Application-write'
           text/html:
             schema:
-              $ref: '#/components/schemas/Application'
+              $ref: '#/components/schemas/Application-write'
         description: 'The updated Application resource'
   /contents:
     get:
@@ -622,42 +622,42 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Content'
+                  $ref: '#/components/schemas/Content-read'
             application/ld+json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Content'
+                  $ref: '#/components/schemas/Content-read'
             application/vnd.api+json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Content'
+                  $ref: '#/components/schemas/Content-read'
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Content'
+                  $ref: '#/components/schemas/Content-read'
             application/xml:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Content'
+                  $ref: '#/components/schemas/Content-read'
             application/x-yaml:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Content'
+                  $ref: '#/components/schemas/Content-read'
             text/csv:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Content'
+                  $ref: '#/components/schemas/Content-read'
             text/html:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Content'
+                  $ref: '#/components/schemas/Content-read'
       parameters:
         -
           name: page
@@ -750,28 +750,28 @@ paths:
           content:
             application/hal+json:
               schema:
-                $ref: '#/components/schemas/Content'
+                $ref: '#/components/schemas/Content-read'
             application/ld+json:
               schema:
-                $ref: '#/components/schemas/Content'
+                $ref: '#/components/schemas/Content-read'
             application/vnd.api+json:
               schema:
-                $ref: '#/components/schemas/Content'
+                $ref: '#/components/schemas/Content-read'
             application/json:
               schema:
-                $ref: '#/components/schemas/Content'
+                $ref: '#/components/schemas/Content-read'
             application/xml:
               schema:
-                $ref: '#/components/schemas/Content'
+                $ref: '#/components/schemas/Content-read'
             application/x-yaml:
               schema:
-                $ref: '#/components/schemas/Content'
+                $ref: '#/components/schemas/Content-read'
             text/csv:
               schema:
-                $ref: '#/components/schemas/Content'
+                $ref: '#/components/schemas/Content-read'
             text/html:
               schema:
-                $ref: '#/components/schemas/Content'
+                $ref: '#/components/schemas/Content-read'
           links:
             GetContentItem:
               parameters:
@@ -786,28 +786,28 @@ paths:
         content:
           application/hal+json:
             schema:
-              $ref: '#/components/schemas/Content'
+              $ref: '#/components/schemas/Content-write'
           application/ld+json:
             schema:
-              $ref: '#/components/schemas/Content'
+              $ref: '#/components/schemas/Content-write'
           application/vnd.api+json:
             schema:
-              $ref: '#/components/schemas/Content'
+              $ref: '#/components/schemas/Content-write'
           application/json:
             schema:
-              $ref: '#/components/schemas/Content'
+              $ref: '#/components/schemas/Content-write'
           application/xml:
             schema:
-              $ref: '#/components/schemas/Content'
+              $ref: '#/components/schemas/Content-write'
           application/x-yaml:
             schema:
-              $ref: '#/components/schemas/Content'
+              $ref: '#/components/schemas/Content-write'
           text/csv:
             schema:
-              $ref: '#/components/schemas/Content'
+              $ref: '#/components/schemas/Content-write'
           text/html:
             schema:
-              $ref: '#/components/schemas/Content'
+              $ref: '#/components/schemas/Content-write'
         description: 'The new Content resource'
       parameters:
         -
@@ -929,28 +929,28 @@ paths:
           content:
             application/hal+json:
               schema:
-                $ref: '#/components/schemas/Content'
+                $ref: '#/components/schemas/Content-read'
             application/ld+json:
               schema:
-                $ref: '#/components/schemas/Content'
+                $ref: '#/components/schemas/Content-read'
             application/vnd.api+json:
               schema:
-                $ref: '#/components/schemas/Content'
+                $ref: '#/components/schemas/Content-read'
             application/json:
               schema:
-                $ref: '#/components/schemas/Content'
+                $ref: '#/components/schemas/Content-read'
             application/xml:
               schema:
-                $ref: '#/components/schemas/Content'
+                $ref: '#/components/schemas/Content-read'
             application/x-yaml:
               schema:
-                $ref: '#/components/schemas/Content'
+                $ref: '#/components/schemas/Content-read'
             text/csv:
               schema:
-                $ref: '#/components/schemas/Content'
+                $ref: '#/components/schemas/Content-read'
             text/html:
               schema:
-                $ref: '#/components/schemas/Content'
+                $ref: '#/components/schemas/Content-read'
         404:
           description: 'Resource not found'
       produces:
@@ -1048,28 +1048,28 @@ paths:
           content:
             application/hal+json:
               schema:
-                $ref: '#/components/schemas/Content'
+                $ref: '#/components/schemas/Content-read'
             application/ld+json:
               schema:
-                $ref: '#/components/schemas/Content'
+                $ref: '#/components/schemas/Content-read'
             application/vnd.api+json:
               schema:
-                $ref: '#/components/schemas/Content'
+                $ref: '#/components/schemas/Content-read'
             application/json:
               schema:
-                $ref: '#/components/schemas/Content'
+                $ref: '#/components/schemas/Content-read'
             application/xml:
               schema:
-                $ref: '#/components/schemas/Content'
+                $ref: '#/components/schemas/Content-read'
             application/x-yaml:
               schema:
-                $ref: '#/components/schemas/Content'
+                $ref: '#/components/schemas/Content-read'
             text/csv:
               schema:
-                $ref: '#/components/schemas/Content'
+                $ref: '#/components/schemas/Content-read'
             text/html:
               schema:
-                $ref: '#/components/schemas/Content'
+                $ref: '#/components/schemas/Content-read'
         400:
           description: 'Invalid input'
         404:
@@ -1078,28 +1078,28 @@ paths:
         content:
           application/hal+json:
             schema:
-              $ref: '#/components/schemas/Content'
+              $ref: '#/components/schemas/Content-write'
           application/ld+json:
             schema:
-              $ref: '#/components/schemas/Content'
+              $ref: '#/components/schemas/Content-write'
           application/vnd.api+json:
             schema:
-              $ref: '#/components/schemas/Content'
+              $ref: '#/components/schemas/Content-write'
           application/json:
             schema:
-              $ref: '#/components/schemas/Content'
+              $ref: '#/components/schemas/Content-write'
           application/xml:
             schema:
-              $ref: '#/components/schemas/Content'
+              $ref: '#/components/schemas/Content-write'
           application/x-yaml:
             schema:
-              $ref: '#/components/schemas/Content'
+              $ref: '#/components/schemas/Content-write'
           text/csv:
             schema:
-              $ref: '#/components/schemas/Content'
+              $ref: '#/components/schemas/Content-write'
           text/html:
             schema:
-              $ref: '#/components/schemas/Content'
+              $ref: '#/components/schemas/Content-write'
         description: 'The updated Content resource'
     patch:
       tags:
@@ -1148,28 +1148,28 @@ paths:
           content:
             application/hal+json:
               schema:
-                $ref: '#/components/schemas/Content'
+                $ref: '#/components/schemas/Content-read'
             application/ld+json:
               schema:
-                $ref: '#/components/schemas/Content'
+                $ref: '#/components/schemas/Content-read'
             application/vnd.api+json:
               schema:
-                $ref: '#/components/schemas/Content'
+                $ref: '#/components/schemas/Content-read'
             application/json:
               schema:
-                $ref: '#/components/schemas/Content'
+                $ref: '#/components/schemas/Content-read'
             application/xml:
               schema:
-                $ref: '#/components/schemas/Content'
+                $ref: '#/components/schemas/Content-read'
             application/x-yaml:
               schema:
-                $ref: '#/components/schemas/Content'
+                $ref: '#/components/schemas/Content-read'
             text/csv:
               schema:
-                $ref: '#/components/schemas/Content'
+                $ref: '#/components/schemas/Content-read'
             text/html:
               schema:
-                $ref: '#/components/schemas/Content'
+                $ref: '#/components/schemas/Content-read'
         400:
           description: 'Invalid input'
         404:
@@ -1178,28 +1178,28 @@ paths:
         content:
           application/hal+json:
             schema:
-              $ref: '#/components/schemas/Content'
+              $ref: '#/components/schemas/Content-write'
           application/ld+json:
             schema:
-              $ref: '#/components/schemas/Content'
+              $ref: '#/components/schemas/Content-write'
           application/vnd.api+json:
             schema:
-              $ref: '#/components/schemas/Content'
+              $ref: '#/components/schemas/Content-write'
           application/json:
             schema:
-              $ref: '#/components/schemas/Content'
+              $ref: '#/components/schemas/Content-write'
           application/xml:
             schema:
-              $ref: '#/components/schemas/Content'
+              $ref: '#/components/schemas/Content-write'
           application/x-yaml:
             schema:
-              $ref: '#/components/schemas/Content'
+              $ref: '#/components/schemas/Content-write'
           text/csv:
             schema:
-              $ref: '#/components/schemas/Content'
+              $ref: '#/components/schemas/Content-write'
           text/html:
             schema:
-              $ref: '#/components/schemas/Content'
+              $ref: '#/components/schemas/Content-write'
         description: 'The updated Content resource'
   /example_entities:
     get:
@@ -1720,42 +1720,42 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Footer'
+                  $ref: '#/components/schemas/Footer-read'
             application/ld+json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Footer'
+                  $ref: '#/components/schemas/Footer-read'
             application/vnd.api+json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Footer'
+                  $ref: '#/components/schemas/Footer-read'
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Footer'
+                  $ref: '#/components/schemas/Footer-read'
             application/xml:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Footer'
+                  $ref: '#/components/schemas/Footer-read'
             application/x-yaml:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Footer'
+                  $ref: '#/components/schemas/Footer-read'
             text/csv:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Footer'
+                  $ref: '#/components/schemas/Footer-read'
             text/html:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Footer'
+                  $ref: '#/components/schemas/Footer-read'
       parameters:
         -
           name: page
@@ -1848,28 +1848,28 @@ paths:
           content:
             application/hal+json:
               schema:
-                $ref: '#/components/schemas/Footer'
+                $ref: '#/components/schemas/Footer-read'
             application/ld+json:
               schema:
-                $ref: '#/components/schemas/Footer'
+                $ref: '#/components/schemas/Footer-read'
             application/vnd.api+json:
               schema:
-                $ref: '#/components/schemas/Footer'
+                $ref: '#/components/schemas/Footer-read'
             application/json:
               schema:
-                $ref: '#/components/schemas/Footer'
+                $ref: '#/components/schemas/Footer-read'
             application/xml:
               schema:
-                $ref: '#/components/schemas/Footer'
+                $ref: '#/components/schemas/Footer-read'
             application/x-yaml:
               schema:
-                $ref: '#/components/schemas/Footer'
+                $ref: '#/components/schemas/Footer-read'
             text/csv:
               schema:
-                $ref: '#/components/schemas/Footer'
+                $ref: '#/components/schemas/Footer-read'
             text/html:
               schema:
-                $ref: '#/components/schemas/Footer'
+                $ref: '#/components/schemas/Footer-read'
           links:
             GetFooterItem:
               parameters:
@@ -1884,28 +1884,28 @@ paths:
         content:
           application/hal+json:
             schema:
-              $ref: '#/components/schemas/Footer'
+              $ref: '#/components/schemas/Footer-write'
           application/ld+json:
             schema:
-              $ref: '#/components/schemas/Footer'
+              $ref: '#/components/schemas/Footer-write'
           application/vnd.api+json:
             schema:
-              $ref: '#/components/schemas/Footer'
+              $ref: '#/components/schemas/Footer-write'
           application/json:
             schema:
-              $ref: '#/components/schemas/Footer'
+              $ref: '#/components/schemas/Footer-write'
           application/xml:
             schema:
-              $ref: '#/components/schemas/Footer'
+              $ref: '#/components/schemas/Footer-write'
           application/x-yaml:
             schema:
-              $ref: '#/components/schemas/Footer'
+              $ref: '#/components/schemas/Footer-write'
           text/csv:
             schema:
-              $ref: '#/components/schemas/Footer'
+              $ref: '#/components/schemas/Footer-write'
           text/html:
             schema:
-              $ref: '#/components/schemas/Footer'
+              $ref: '#/components/schemas/Footer-write'
         description: 'The new Footer resource'
       parameters:
         -
@@ -2027,28 +2027,28 @@ paths:
           content:
             application/hal+json:
               schema:
-                $ref: '#/components/schemas/Footer'
+                $ref: '#/components/schemas/Footer-read'
             application/ld+json:
               schema:
-                $ref: '#/components/schemas/Footer'
+                $ref: '#/components/schemas/Footer-read'
             application/vnd.api+json:
               schema:
-                $ref: '#/components/schemas/Footer'
+                $ref: '#/components/schemas/Footer-read'
             application/json:
               schema:
-                $ref: '#/components/schemas/Footer'
+                $ref: '#/components/schemas/Footer-read'
             application/xml:
               schema:
-                $ref: '#/components/schemas/Footer'
+                $ref: '#/components/schemas/Footer-read'
             application/x-yaml:
               schema:
-                $ref: '#/components/schemas/Footer'
+                $ref: '#/components/schemas/Footer-read'
             text/csv:
               schema:
-                $ref: '#/components/schemas/Footer'
+                $ref: '#/components/schemas/Footer-read'
             text/html:
               schema:
-                $ref: '#/components/schemas/Footer'
+                $ref: '#/components/schemas/Footer-read'
         404:
           description: 'Resource not found'
       produces:
@@ -2146,28 +2146,28 @@ paths:
           content:
             application/hal+json:
               schema:
-                $ref: '#/components/schemas/Footer'
+                $ref: '#/components/schemas/Footer-read'
             application/ld+json:
               schema:
-                $ref: '#/components/schemas/Footer'
+                $ref: '#/components/schemas/Footer-read'
             application/vnd.api+json:
               schema:
-                $ref: '#/components/schemas/Footer'
+                $ref: '#/components/schemas/Footer-read'
             application/json:
               schema:
-                $ref: '#/components/schemas/Footer'
+                $ref: '#/components/schemas/Footer-read'
             application/xml:
               schema:
-                $ref: '#/components/schemas/Footer'
+                $ref: '#/components/schemas/Footer-read'
             application/x-yaml:
               schema:
-                $ref: '#/components/schemas/Footer'
+                $ref: '#/components/schemas/Footer-read'
             text/csv:
               schema:
-                $ref: '#/components/schemas/Footer'
+                $ref: '#/components/schemas/Footer-read'
             text/html:
               schema:
-                $ref: '#/components/schemas/Footer'
+                $ref: '#/components/schemas/Footer-read'
         400:
           description: 'Invalid input'
         404:
@@ -2176,28 +2176,28 @@ paths:
         content:
           application/hal+json:
             schema:
-              $ref: '#/components/schemas/Footer'
+              $ref: '#/components/schemas/Footer-write'
           application/ld+json:
             schema:
-              $ref: '#/components/schemas/Footer'
+              $ref: '#/components/schemas/Footer-write'
           application/vnd.api+json:
             schema:
-              $ref: '#/components/schemas/Footer'
+              $ref: '#/components/schemas/Footer-write'
           application/json:
             schema:
-              $ref: '#/components/schemas/Footer'
+              $ref: '#/components/schemas/Footer-write'
           application/xml:
             schema:
-              $ref: '#/components/schemas/Footer'
+              $ref: '#/components/schemas/Footer-write'
           application/x-yaml:
             schema:
-              $ref: '#/components/schemas/Footer'
+              $ref: '#/components/schemas/Footer-write'
           text/csv:
             schema:
-              $ref: '#/components/schemas/Footer'
+              $ref: '#/components/schemas/Footer-write'
           text/html:
             schema:
-              $ref: '#/components/schemas/Footer'
+              $ref: '#/components/schemas/Footer-write'
         description: 'The updated Footer resource'
     patch:
       tags:
@@ -2246,28 +2246,28 @@ paths:
           content:
             application/hal+json:
               schema:
-                $ref: '#/components/schemas/Footer'
+                $ref: '#/components/schemas/Footer-read'
             application/ld+json:
               schema:
-                $ref: '#/components/schemas/Footer'
+                $ref: '#/components/schemas/Footer-read'
             application/vnd.api+json:
               schema:
-                $ref: '#/components/schemas/Footer'
+                $ref: '#/components/schemas/Footer-read'
             application/json:
               schema:
-                $ref: '#/components/schemas/Footer'
+                $ref: '#/components/schemas/Footer-read'
             application/xml:
               schema:
-                $ref: '#/components/schemas/Footer'
+                $ref: '#/components/schemas/Footer-read'
             application/x-yaml:
               schema:
-                $ref: '#/components/schemas/Footer'
+                $ref: '#/components/schemas/Footer-read'
             text/csv:
               schema:
-                $ref: '#/components/schemas/Footer'
+                $ref: '#/components/schemas/Footer-read'
             text/html:
               schema:
-                $ref: '#/components/schemas/Footer'
+                $ref: '#/components/schemas/Footer-read'
         400:
           description: 'Invalid input'
         404:
@@ -2276,28 +2276,28 @@ paths:
         content:
           application/hal+json:
             schema:
-              $ref: '#/components/schemas/Footer'
+              $ref: '#/components/schemas/Footer-write'
           application/ld+json:
             schema:
-              $ref: '#/components/schemas/Footer'
+              $ref: '#/components/schemas/Footer-write'
           application/vnd.api+json:
             schema:
-              $ref: '#/components/schemas/Footer'
+              $ref: '#/components/schemas/Footer-write'
           application/json:
             schema:
-              $ref: '#/components/schemas/Footer'
+              $ref: '#/components/schemas/Footer-write'
           application/xml:
             schema:
-              $ref: '#/components/schemas/Footer'
+              $ref: '#/components/schemas/Footer-write'
           application/x-yaml:
             schema:
-              $ref: '#/components/schemas/Footer'
+              $ref: '#/components/schemas/Footer-write'
           text/csv:
             schema:
-              $ref: '#/components/schemas/Footer'
+              $ref: '#/components/schemas/Footer-write'
           text/html:
             schema:
-              $ref: '#/components/schemas/Footer'
+              $ref: '#/components/schemas/Footer-write'
         description: 'The updated Footer resource'
   /headers:
     get:
@@ -2313,42 +2313,42 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Header'
+                  $ref: '#/components/schemas/Header-read'
             application/ld+json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Header'
+                  $ref: '#/components/schemas/Header-read'
             application/vnd.api+json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Header'
+                  $ref: '#/components/schemas/Header-read'
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Header'
+                  $ref: '#/components/schemas/Header-read'
             application/xml:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Header'
+                  $ref: '#/components/schemas/Header-read'
             application/x-yaml:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Header'
+                  $ref: '#/components/schemas/Header-read'
             text/csv:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Header'
+                  $ref: '#/components/schemas/Header-read'
             text/html:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Header'
+                  $ref: '#/components/schemas/Header-read'
       parameters:
         -
           name: page
@@ -2441,28 +2441,28 @@ paths:
           content:
             application/hal+json:
               schema:
-                $ref: '#/components/schemas/Header'
+                $ref: '#/components/schemas/Header-read'
             application/ld+json:
               schema:
-                $ref: '#/components/schemas/Header'
+                $ref: '#/components/schemas/Header-read'
             application/vnd.api+json:
               schema:
-                $ref: '#/components/schemas/Header'
+                $ref: '#/components/schemas/Header-read'
             application/json:
               schema:
-                $ref: '#/components/schemas/Header'
+                $ref: '#/components/schemas/Header-read'
             application/xml:
               schema:
-                $ref: '#/components/schemas/Header'
+                $ref: '#/components/schemas/Header-read'
             application/x-yaml:
               schema:
-                $ref: '#/components/schemas/Header'
+                $ref: '#/components/schemas/Header-read'
             text/csv:
               schema:
-                $ref: '#/components/schemas/Header'
+                $ref: '#/components/schemas/Header-read'
             text/html:
               schema:
-                $ref: '#/components/schemas/Header'
+                $ref: '#/components/schemas/Header-read'
           links:
             GetHeaderItem:
               parameters:
@@ -2477,28 +2477,28 @@ paths:
         content:
           application/hal+json:
             schema:
-              $ref: '#/components/schemas/Header'
+              $ref: '#/components/schemas/Header-write'
           application/ld+json:
             schema:
-              $ref: '#/components/schemas/Header'
+              $ref: '#/components/schemas/Header-write'
           application/vnd.api+json:
             schema:
-              $ref: '#/components/schemas/Header'
+              $ref: '#/components/schemas/Header-write'
           application/json:
             schema:
-              $ref: '#/components/schemas/Header'
+              $ref: '#/components/schemas/Header-write'
           application/xml:
             schema:
-              $ref: '#/components/schemas/Header'
+              $ref: '#/components/schemas/Header-write'
           application/x-yaml:
             schema:
-              $ref: '#/components/schemas/Header'
+              $ref: '#/components/schemas/Header-write'
           text/csv:
             schema:
-              $ref: '#/components/schemas/Header'
+              $ref: '#/components/schemas/Header-write'
           text/html:
             schema:
-              $ref: '#/components/schemas/Header'
+              $ref: '#/components/schemas/Header-write'
         description: 'The new Header resource'
       parameters:
         -
@@ -2620,28 +2620,28 @@ paths:
           content:
             application/hal+json:
               schema:
-                $ref: '#/components/schemas/Header'
+                $ref: '#/components/schemas/Header-read'
             application/ld+json:
               schema:
-                $ref: '#/components/schemas/Header'
+                $ref: '#/components/schemas/Header-read'
             application/vnd.api+json:
               schema:
-                $ref: '#/components/schemas/Header'
+                $ref: '#/components/schemas/Header-read'
             application/json:
               schema:
-                $ref: '#/components/schemas/Header'
+                $ref: '#/components/schemas/Header-read'
             application/xml:
               schema:
-                $ref: '#/components/schemas/Header'
+                $ref: '#/components/schemas/Header-read'
             application/x-yaml:
               schema:
-                $ref: '#/components/schemas/Header'
+                $ref: '#/components/schemas/Header-read'
             text/csv:
               schema:
-                $ref: '#/components/schemas/Header'
+                $ref: '#/components/schemas/Header-read'
             text/html:
               schema:
-                $ref: '#/components/schemas/Header'
+                $ref: '#/components/schemas/Header-read'
         404:
           description: 'Resource not found'
       produces:
@@ -2739,28 +2739,28 @@ paths:
           content:
             application/hal+json:
               schema:
-                $ref: '#/components/schemas/Header'
+                $ref: '#/components/schemas/Header-read'
             application/ld+json:
               schema:
-                $ref: '#/components/schemas/Header'
+                $ref: '#/components/schemas/Header-read'
             application/vnd.api+json:
               schema:
-                $ref: '#/components/schemas/Header'
+                $ref: '#/components/schemas/Header-read'
             application/json:
               schema:
-                $ref: '#/components/schemas/Header'
+                $ref: '#/components/schemas/Header-read'
             application/xml:
               schema:
-                $ref: '#/components/schemas/Header'
+                $ref: '#/components/schemas/Header-read'
             application/x-yaml:
               schema:
-                $ref: '#/components/schemas/Header'
+                $ref: '#/components/schemas/Header-read'
             text/csv:
               schema:
-                $ref: '#/components/schemas/Header'
+                $ref: '#/components/schemas/Header-read'
             text/html:
               schema:
-                $ref: '#/components/schemas/Header'
+                $ref: '#/components/schemas/Header-read'
         400:
           description: 'Invalid input'
         404:
@@ -2769,28 +2769,28 @@ paths:
         content:
           application/hal+json:
             schema:
-              $ref: '#/components/schemas/Header'
+              $ref: '#/components/schemas/Header-write'
           application/ld+json:
             schema:
-              $ref: '#/components/schemas/Header'
+              $ref: '#/components/schemas/Header-write'
           application/vnd.api+json:
             schema:
-              $ref: '#/components/schemas/Header'
+              $ref: '#/components/schemas/Header-write'
           application/json:
             schema:
-              $ref: '#/components/schemas/Header'
+              $ref: '#/components/schemas/Header-write'
           application/xml:
             schema:
-              $ref: '#/components/schemas/Header'
+              $ref: '#/components/schemas/Header-write'
           application/x-yaml:
             schema:
-              $ref: '#/components/schemas/Header'
+              $ref: '#/components/schemas/Header-write'
           text/csv:
             schema:
-              $ref: '#/components/schemas/Header'
+              $ref: '#/components/schemas/Header-write'
           text/html:
             schema:
-              $ref: '#/components/schemas/Header'
+              $ref: '#/components/schemas/Header-write'
         description: 'The updated Header resource'
     patch:
       tags:
@@ -2839,28 +2839,28 @@ paths:
           content:
             application/hal+json:
               schema:
-                $ref: '#/components/schemas/Header'
+                $ref: '#/components/schemas/Header-read'
             application/ld+json:
               schema:
-                $ref: '#/components/schemas/Header'
+                $ref: '#/components/schemas/Header-read'
             application/vnd.api+json:
               schema:
-                $ref: '#/components/schemas/Header'
+                $ref: '#/components/schemas/Header-read'
             application/json:
               schema:
-                $ref: '#/components/schemas/Header'
+                $ref: '#/components/schemas/Header-read'
             application/xml:
               schema:
-                $ref: '#/components/schemas/Header'
+                $ref: '#/components/schemas/Header-read'
             application/x-yaml:
               schema:
-                $ref: '#/components/schemas/Header'
+                $ref: '#/components/schemas/Header-read'
             text/csv:
               schema:
-                $ref: '#/components/schemas/Header'
+                $ref: '#/components/schemas/Header-read'
             text/html:
               schema:
-                $ref: '#/components/schemas/Header'
+                $ref: '#/components/schemas/Header-read'
         400:
           description: 'Invalid input'
         404:
@@ -2869,28 +2869,28 @@ paths:
         content:
           application/hal+json:
             schema:
-              $ref: '#/components/schemas/Header'
+              $ref: '#/components/schemas/Header-write'
           application/ld+json:
             schema:
-              $ref: '#/components/schemas/Header'
+              $ref: '#/components/schemas/Header-write'
           application/vnd.api+json:
             schema:
-              $ref: '#/components/schemas/Header'
+              $ref: '#/components/schemas/Header-write'
           application/json:
             schema:
-              $ref: '#/components/schemas/Header'
+              $ref: '#/components/schemas/Header-write'
           application/xml:
             schema:
-              $ref: '#/components/schemas/Header'
+              $ref: '#/components/schemas/Header-write'
           application/x-yaml:
             schema:
-              $ref: '#/components/schemas/Header'
+              $ref: '#/components/schemas/Header-write'
           text/csv:
             schema:
-              $ref: '#/components/schemas/Header'
+              $ref: '#/components/schemas/Header-write'
           text/html:
             schema:
-              $ref: '#/components/schemas/Header'
+              $ref: '#/components/schemas/Header-write'
         description: 'The updated Header resource'
   /images:
     get:
@@ -2906,42 +2906,42 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Image'
+                  $ref: '#/components/schemas/Image-read'
             application/ld+json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Image'
+                  $ref: '#/components/schemas/Image-read'
             application/vnd.api+json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Image'
+                  $ref: '#/components/schemas/Image-read'
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Image'
+                  $ref: '#/components/schemas/Image-read'
             application/xml:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Image'
+                  $ref: '#/components/schemas/Image-read'
             application/x-yaml:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Image'
+                  $ref: '#/components/schemas/Image-read'
             text/csv:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Image'
+                  $ref: '#/components/schemas/Image-read'
             text/html:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Image'
+                  $ref: '#/components/schemas/Image-read'
       parameters:
         -
           name: page
@@ -3034,28 +3034,28 @@ paths:
           content:
             application/hal+json:
               schema:
-                $ref: '#/components/schemas/Image'
+                $ref: '#/components/schemas/Image-read'
             application/ld+json:
               schema:
-                $ref: '#/components/schemas/Image'
+                $ref: '#/components/schemas/Image-read'
             application/vnd.api+json:
               schema:
-                $ref: '#/components/schemas/Image'
+                $ref: '#/components/schemas/Image-read'
             application/json:
               schema:
-                $ref: '#/components/schemas/Image'
+                $ref: '#/components/schemas/Image-read'
             application/xml:
               schema:
-                $ref: '#/components/schemas/Image'
+                $ref: '#/components/schemas/Image-read'
             application/x-yaml:
               schema:
-                $ref: '#/components/schemas/Image'
+                $ref: '#/components/schemas/Image-read'
             text/csv:
               schema:
-                $ref: '#/components/schemas/Image'
+                $ref: '#/components/schemas/Image-read'
             text/html:
               schema:
-                $ref: '#/components/schemas/Image'
+                $ref: '#/components/schemas/Image-read'
           links:
             GetImageItem:
               parameters:
@@ -3070,28 +3070,28 @@ paths:
         content:
           application/hal+json:
             schema:
-              $ref: '#/components/schemas/Image'
+              $ref: '#/components/schemas/Image-write'
           application/ld+json:
             schema:
-              $ref: '#/components/schemas/Image'
+              $ref: '#/components/schemas/Image-write'
           application/vnd.api+json:
             schema:
-              $ref: '#/components/schemas/Image'
+              $ref: '#/components/schemas/Image-write'
           application/json:
             schema:
-              $ref: '#/components/schemas/Image'
+              $ref: '#/components/schemas/Image-write'
           application/xml:
             schema:
-              $ref: '#/components/schemas/Image'
+              $ref: '#/components/schemas/Image-write'
           application/x-yaml:
             schema:
-              $ref: '#/components/schemas/Image'
+              $ref: '#/components/schemas/Image-write'
           text/csv:
             schema:
-              $ref: '#/components/schemas/Image'
+              $ref: '#/components/schemas/Image-write'
           text/html:
             schema:
-              $ref: '#/components/schemas/Image'
+              $ref: '#/components/schemas/Image-write'
         description: 'The new Image resource'
       parameters:
         -
@@ -3213,28 +3213,28 @@ paths:
           content:
             application/hal+json:
               schema:
-                $ref: '#/components/schemas/Image'
+                $ref: '#/components/schemas/Image-read'
             application/ld+json:
               schema:
-                $ref: '#/components/schemas/Image'
+                $ref: '#/components/schemas/Image-read'
             application/vnd.api+json:
               schema:
-                $ref: '#/components/schemas/Image'
+                $ref: '#/components/schemas/Image-read'
             application/json:
               schema:
-                $ref: '#/components/schemas/Image'
+                $ref: '#/components/schemas/Image-read'
             application/xml:
               schema:
-                $ref: '#/components/schemas/Image'
+                $ref: '#/components/schemas/Image-read'
             application/x-yaml:
               schema:
-                $ref: '#/components/schemas/Image'
+                $ref: '#/components/schemas/Image-read'
             text/csv:
               schema:
-                $ref: '#/components/schemas/Image'
+                $ref: '#/components/schemas/Image-read'
             text/html:
               schema:
-                $ref: '#/components/schemas/Image'
+                $ref: '#/components/schemas/Image-read'
         404:
           description: 'Resource not found'
       produces:
@@ -3332,28 +3332,28 @@ paths:
           content:
             application/hal+json:
               schema:
-                $ref: '#/components/schemas/Image'
+                $ref: '#/components/schemas/Image-read'
             application/ld+json:
               schema:
-                $ref: '#/components/schemas/Image'
+                $ref: '#/components/schemas/Image-read'
             application/vnd.api+json:
               schema:
-                $ref: '#/components/schemas/Image'
+                $ref: '#/components/schemas/Image-read'
             application/json:
               schema:
-                $ref: '#/components/schemas/Image'
+                $ref: '#/components/schemas/Image-read'
             application/xml:
               schema:
-                $ref: '#/components/schemas/Image'
+                $ref: '#/components/schemas/Image-read'
             application/x-yaml:
               schema:
-                $ref: '#/components/schemas/Image'
+                $ref: '#/components/schemas/Image-read'
             text/csv:
               schema:
-                $ref: '#/components/schemas/Image'
+                $ref: '#/components/schemas/Image-read'
             text/html:
               schema:
-                $ref: '#/components/schemas/Image'
+                $ref: '#/components/schemas/Image-read'
         400:
           description: 'Invalid input'
         404:
@@ -3362,28 +3362,28 @@ paths:
         content:
           application/hal+json:
             schema:
-              $ref: '#/components/schemas/Image'
+              $ref: '#/components/schemas/Image-write'
           application/ld+json:
             schema:
-              $ref: '#/components/schemas/Image'
+              $ref: '#/components/schemas/Image-write'
           application/vnd.api+json:
             schema:
-              $ref: '#/components/schemas/Image'
+              $ref: '#/components/schemas/Image-write'
           application/json:
             schema:
-              $ref: '#/components/schemas/Image'
+              $ref: '#/components/schemas/Image-write'
           application/xml:
             schema:
-              $ref: '#/components/schemas/Image'
+              $ref: '#/components/schemas/Image-write'
           application/x-yaml:
             schema:
-              $ref: '#/components/schemas/Image'
+              $ref: '#/components/schemas/Image-write'
           text/csv:
             schema:
-              $ref: '#/components/schemas/Image'
+              $ref: '#/components/schemas/Image-write'
           text/html:
             schema:
-              $ref: '#/components/schemas/Image'
+              $ref: '#/components/schemas/Image-write'
         description: 'The updated Image resource'
     patch:
       tags:
@@ -3432,28 +3432,28 @@ paths:
           content:
             application/hal+json:
               schema:
-                $ref: '#/components/schemas/Image'
+                $ref: '#/components/schemas/Image-read'
             application/ld+json:
               schema:
-                $ref: '#/components/schemas/Image'
+                $ref: '#/components/schemas/Image-read'
             application/vnd.api+json:
               schema:
-                $ref: '#/components/schemas/Image'
+                $ref: '#/components/schemas/Image-read'
             application/json:
               schema:
-                $ref: '#/components/schemas/Image'
+                $ref: '#/components/schemas/Image-read'
             application/xml:
               schema:
-                $ref: '#/components/schemas/Image'
+                $ref: '#/components/schemas/Image-read'
             application/x-yaml:
               schema:
-                $ref: '#/components/schemas/Image'
+                $ref: '#/components/schemas/Image-read'
             text/csv:
               schema:
-                $ref: '#/components/schemas/Image'
+                $ref: '#/components/schemas/Image-read'
             text/html:
               schema:
-                $ref: '#/components/schemas/Image'
+                $ref: '#/components/schemas/Image-read'
         400:
           description: 'Invalid input'
         404:
@@ -3462,79 +3462,79 @@ paths:
         content:
           application/hal+json:
             schema:
-              $ref: '#/components/schemas/Image'
+              $ref: '#/components/schemas/Image-write'
           application/ld+json:
             schema:
-              $ref: '#/components/schemas/Image'
+              $ref: '#/components/schemas/Image-write'
           application/vnd.api+json:
             schema:
-              $ref: '#/components/schemas/Image'
+              $ref: '#/components/schemas/Image-write'
           application/json:
             schema:
-              $ref: '#/components/schemas/Image'
+              $ref: '#/components/schemas/Image-write'
           application/xml:
             schema:
-              $ref: '#/components/schemas/Image'
+              $ref: '#/components/schemas/Image-write'
           application/x-yaml:
             schema:
-              $ref: '#/components/schemas/Image'
+              $ref: '#/components/schemas/Image-write'
           text/csv:
             schema:
-              $ref: '#/components/schemas/Image'
+              $ref: '#/components/schemas/Image-write'
           text/html:
             schema:
-              $ref: '#/components/schemas/Image'
+              $ref: '#/components/schemas/Image-write'
         description: 'The updated Image resource'
-  /links:
+  /menu_items:
     get:
       tags:
-        - Link
-      operationId: getLinkCollection
-      summary: 'Retrieves the collection of Link resources.'
+        - MenuItem
+      operationId: getMenuItemCollection
+      summary: 'Retrieves the collection of MenuItem resources.'
       responses:
         200:
-          description: 'Link collection response'
+          description: 'MenuItem collection response'
           content:
             application/hal+json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Link'
+                  $ref: '#/components/schemas/MenuItem-read'
             application/ld+json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Link'
+                  $ref: '#/components/schemas/MenuItem-read'
             application/vnd.api+json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Link'
+                  $ref: '#/components/schemas/MenuItem-read'
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Link'
+                  $ref: '#/components/schemas/MenuItem-read'
             application/xml:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Link'
+                  $ref: '#/components/schemas/MenuItem-read'
             application/x-yaml:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Link'
+                  $ref: '#/components/schemas/MenuItem-read'
             text/csv:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Link'
+                  $ref: '#/components/schemas/MenuItem-read'
             text/html:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Link'
+                  $ref: '#/components/schemas/MenuItem-read'
       parameters:
         -
           name: page
@@ -3618,43 +3618,43 @@ paths:
         - application/health+json
     post:
       tags:
-        - Link
-      operationId: postLinkCollection
-      summary: 'Creates a Link resource.'
+        - MenuItem
+      operationId: postMenuItemCollection
+      summary: 'Creates a MenuItem resource.'
       responses:
         201:
-          description: 'Link resource created'
+          description: 'MenuItem resource created'
           content:
             application/hal+json:
               schema:
-                $ref: '#/components/schemas/Link'
+                $ref: '#/components/schemas/MenuItem-read'
             application/ld+json:
               schema:
-                $ref: '#/components/schemas/Link'
+                $ref: '#/components/schemas/MenuItem-read'
             application/vnd.api+json:
               schema:
-                $ref: '#/components/schemas/Link'
+                $ref: '#/components/schemas/MenuItem-read'
             application/json:
               schema:
-                $ref: '#/components/schemas/Link'
+                $ref: '#/components/schemas/MenuItem-read'
             application/xml:
               schema:
-                $ref: '#/components/schemas/Link'
+                $ref: '#/components/schemas/MenuItem-read'
             application/x-yaml:
               schema:
-                $ref: '#/components/schemas/Link'
+                $ref: '#/components/schemas/MenuItem-read'
             text/csv:
               schema:
-                $ref: '#/components/schemas/Link'
+                $ref: '#/components/schemas/MenuItem-read'
             text/html:
               schema:
-                $ref: '#/components/schemas/Link'
+                $ref: '#/components/schemas/MenuItem-read'
           links:
-            GetLinkItem:
+            GetMenuItemItem:
               parameters:
                 id: '$response.body#/id'
-              operationId: getLinkItem
-              description: 'The `id` value returned in the response can be used as the `id` parameter in `GET /links/{id}`.'
+              operationId: getMenuItemItem
+              description: 'The `id` value returned in the response can be used as the `id` parameter in `GET /menu_items/{id}`.'
         400:
           description: 'Invalid input'
         404:
@@ -3663,29 +3663,29 @@ paths:
         content:
           application/hal+json:
             schema:
-              $ref: '#/components/schemas/Link'
+              $ref: '#/components/schemas/MenuItem-write'
           application/ld+json:
             schema:
-              $ref: '#/components/schemas/Link'
+              $ref: '#/components/schemas/MenuItem-write'
           application/vnd.api+json:
             schema:
-              $ref: '#/components/schemas/Link'
+              $ref: '#/components/schemas/MenuItem-write'
           application/json:
             schema:
-              $ref: '#/components/schemas/Link'
+              $ref: '#/components/schemas/MenuItem-write'
           application/xml:
             schema:
-              $ref: '#/components/schemas/Link'
+              $ref: '#/components/schemas/MenuItem-write'
           application/x-yaml:
             schema:
-              $ref: '#/components/schemas/Link'
+              $ref: '#/components/schemas/MenuItem-write'
           text/csv:
             schema:
-              $ref: '#/components/schemas/Link'
+              $ref: '#/components/schemas/MenuItem-write'
           text/html:
             schema:
-              $ref: '#/components/schemas/Link'
-        description: 'The new Link resource'
+              $ref: '#/components/schemas/MenuItem-write'
+        description: 'The new MenuItem resource'
       parameters:
         -
           name: Authorization
@@ -3716,12 +3716,12 @@ paths:
           name: X-NLX-Audit-Clarification
           description: 'A clarification as to why a request has been made  (doelbinding)'
           in: header
-  '/links/{id}':
+  '/menu_items/{id}':
     get:
       tags:
-        - Link
-      operationId: getLinkItem
-      summary: 'Retrieves a Link resource.'
+        - MenuItem
+      operationId: getMenuItemItem
+      summary: 'Retrieves a MenuItem resource.'
       parameters:
         -
           name: id
@@ -3802,44 +3802,44 @@ paths:
           in: query
       responses:
         200:
-          description: 'Link resource response'
+          description: 'MenuItem resource response'
           content:
             application/hal+json:
               schema:
-                $ref: '#/components/schemas/Link'
+                $ref: '#/components/schemas/MenuItem-read'
             application/ld+json:
               schema:
-                $ref: '#/components/schemas/Link'
+                $ref: '#/components/schemas/MenuItem-read'
             application/vnd.api+json:
               schema:
-                $ref: '#/components/schemas/Link'
+                $ref: '#/components/schemas/MenuItem-read'
             application/json:
               schema:
-                $ref: '#/components/schemas/Link'
+                $ref: '#/components/schemas/MenuItem-read'
             application/xml:
               schema:
-                $ref: '#/components/schemas/Link'
+                $ref: '#/components/schemas/MenuItem-read'
             application/x-yaml:
               schema:
-                $ref: '#/components/schemas/Link'
+                $ref: '#/components/schemas/MenuItem-read'
             text/csv:
               schema:
-                $ref: '#/components/schemas/Link'
+                $ref: '#/components/schemas/MenuItem-read'
             text/html:
               schema:
-                $ref: '#/components/schemas/Link'
+                $ref: '#/components/schemas/MenuItem-read'
         404:
           description: 'Resource not found'
       produces:
         - application/health+json
     delete:
       tags:
-        - Link
-      operationId: deleteLinkItem
-      summary: 'Removes the Link resource.'
+        - MenuItem
+      operationId: deleteMenuItemItem
+      summary: 'Removes the MenuItem resource.'
       responses:
         204:
-          description: 'Link resource deleted'
+          description: 'MenuItem resource deleted'
         404:
           description: 'Resource not found'
       parameters:
@@ -3880,9 +3880,9 @@ paths:
           in: header
     put:
       tags:
-        - Link
-      operationId: putLinkItem
-      summary: 'Replaces the Link resource.'
+        - MenuItem
+      operationId: putMenuItemItem
+      summary: 'Replaces the MenuItem resource.'
       parameters:
         -
           name: id
@@ -3921,32 +3921,32 @@ paths:
           in: header
       responses:
         200:
-          description: 'Link resource updated'
+          description: 'MenuItem resource updated'
           content:
             application/hal+json:
               schema:
-                $ref: '#/components/schemas/Link'
+                $ref: '#/components/schemas/MenuItem-read'
             application/ld+json:
               schema:
-                $ref: '#/components/schemas/Link'
+                $ref: '#/components/schemas/MenuItem-read'
             application/vnd.api+json:
               schema:
-                $ref: '#/components/schemas/Link'
+                $ref: '#/components/schemas/MenuItem-read'
             application/json:
               schema:
-                $ref: '#/components/schemas/Link'
+                $ref: '#/components/schemas/MenuItem-read'
             application/xml:
               schema:
-                $ref: '#/components/schemas/Link'
+                $ref: '#/components/schemas/MenuItem-read'
             application/x-yaml:
               schema:
-                $ref: '#/components/schemas/Link'
+                $ref: '#/components/schemas/MenuItem-read'
             text/csv:
               schema:
-                $ref: '#/components/schemas/Link'
+                $ref: '#/components/schemas/MenuItem-read'
             text/html:
               schema:
-                $ref: '#/components/schemas/Link'
+                $ref: '#/components/schemas/MenuItem-read'
         400:
           description: 'Invalid input'
         404:
@@ -3955,34 +3955,34 @@ paths:
         content:
           application/hal+json:
             schema:
-              $ref: '#/components/schemas/Link'
+              $ref: '#/components/schemas/MenuItem-write'
           application/ld+json:
             schema:
-              $ref: '#/components/schemas/Link'
+              $ref: '#/components/schemas/MenuItem-write'
           application/vnd.api+json:
             schema:
-              $ref: '#/components/schemas/Link'
+              $ref: '#/components/schemas/MenuItem-write'
           application/json:
             schema:
-              $ref: '#/components/schemas/Link'
+              $ref: '#/components/schemas/MenuItem-write'
           application/xml:
             schema:
-              $ref: '#/components/schemas/Link'
+              $ref: '#/components/schemas/MenuItem-write'
           application/x-yaml:
             schema:
-              $ref: '#/components/schemas/Link'
+              $ref: '#/components/schemas/MenuItem-write'
           text/csv:
             schema:
-              $ref: '#/components/schemas/Link'
+              $ref: '#/components/schemas/MenuItem-write'
           text/html:
             schema:
-              $ref: '#/components/schemas/Link'
-        description: 'The updated Link resource'
+              $ref: '#/components/schemas/MenuItem-write'
+        description: 'The updated MenuItem resource'
     patch:
       tags:
-        - Link
-      operationId: patchLinkItem
-      summary: 'Updates the Link resource.'
+        - MenuItem
+      operationId: patchMenuItemItem
+      summary: 'Updates the MenuItem resource.'
       parameters:
         -
           name: id
@@ -4021,32 +4021,32 @@ paths:
           in: header
       responses:
         200:
-          description: 'Link resource updated'
+          description: 'MenuItem resource updated'
           content:
             application/hal+json:
               schema:
-                $ref: '#/components/schemas/Link'
+                $ref: '#/components/schemas/MenuItem-read'
             application/ld+json:
               schema:
-                $ref: '#/components/schemas/Link'
+                $ref: '#/components/schemas/MenuItem-read'
             application/vnd.api+json:
               schema:
-                $ref: '#/components/schemas/Link'
+                $ref: '#/components/schemas/MenuItem-read'
             application/json:
               schema:
-                $ref: '#/components/schemas/Link'
+                $ref: '#/components/schemas/MenuItem-read'
             application/xml:
               schema:
-                $ref: '#/components/schemas/Link'
+                $ref: '#/components/schemas/MenuItem-read'
             application/x-yaml:
               schema:
-                $ref: '#/components/schemas/Link'
+                $ref: '#/components/schemas/MenuItem-read'
             text/csv:
               schema:
-                $ref: '#/components/schemas/Link'
+                $ref: '#/components/schemas/MenuItem-read'
             text/html:
               schema:
-                $ref: '#/components/schemas/Link'
+                $ref: '#/components/schemas/MenuItem-read'
         400:
           description: 'Invalid input'
         404:
@@ -4055,29 +4055,29 @@ paths:
         content:
           application/hal+json:
             schema:
-              $ref: '#/components/schemas/Link'
+              $ref: '#/components/schemas/MenuItem-write'
           application/ld+json:
             schema:
-              $ref: '#/components/schemas/Link'
+              $ref: '#/components/schemas/MenuItem-write'
           application/vnd.api+json:
             schema:
-              $ref: '#/components/schemas/Link'
+              $ref: '#/components/schemas/MenuItem-write'
           application/json:
             schema:
-              $ref: '#/components/schemas/Link'
+              $ref: '#/components/schemas/MenuItem-write'
           application/xml:
             schema:
-              $ref: '#/components/schemas/Link'
+              $ref: '#/components/schemas/MenuItem-write'
           application/x-yaml:
             schema:
-              $ref: '#/components/schemas/Link'
+              $ref: '#/components/schemas/MenuItem-write'
           text/csv:
             schema:
-              $ref: '#/components/schemas/Link'
+              $ref: '#/components/schemas/MenuItem-write'
           text/html:
             schema:
-              $ref: '#/components/schemas/Link'
-        description: 'The updated Link resource'
+              $ref: '#/components/schemas/MenuItem-write'
+        description: 'The updated MenuItem resource'
   /menus:
     get:
       tags:
@@ -4092,42 +4092,42 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Menu'
+                  $ref: '#/components/schemas/Menu-read'
             application/ld+json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Menu'
+                  $ref: '#/components/schemas/Menu-read'
             application/vnd.api+json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Menu'
+                  $ref: '#/components/schemas/Menu-read'
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Menu'
+                  $ref: '#/components/schemas/Menu-read'
             application/xml:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Menu'
+                  $ref: '#/components/schemas/Menu-read'
             application/x-yaml:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Menu'
+                  $ref: '#/components/schemas/Menu-read'
             text/csv:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Menu'
+                  $ref: '#/components/schemas/Menu-read'
             text/html:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Menu'
+                  $ref: '#/components/schemas/Menu-read'
       parameters:
         -
           name: page
@@ -4220,28 +4220,28 @@ paths:
           content:
             application/hal+json:
               schema:
-                $ref: '#/components/schemas/Menu'
+                $ref: '#/components/schemas/Menu-read'
             application/ld+json:
               schema:
-                $ref: '#/components/schemas/Menu'
+                $ref: '#/components/schemas/Menu-read'
             application/vnd.api+json:
               schema:
-                $ref: '#/components/schemas/Menu'
+                $ref: '#/components/schemas/Menu-read'
             application/json:
               schema:
-                $ref: '#/components/schemas/Menu'
+                $ref: '#/components/schemas/Menu-read'
             application/xml:
               schema:
-                $ref: '#/components/schemas/Menu'
+                $ref: '#/components/schemas/Menu-read'
             application/x-yaml:
               schema:
-                $ref: '#/components/schemas/Menu'
+                $ref: '#/components/schemas/Menu-read'
             text/csv:
               schema:
-                $ref: '#/components/schemas/Menu'
+                $ref: '#/components/schemas/Menu-read'
             text/html:
               schema:
-                $ref: '#/components/schemas/Menu'
+                $ref: '#/components/schemas/Menu-read'
           links:
             GetMenuItem:
               parameters:
@@ -4256,28 +4256,28 @@ paths:
         content:
           application/hal+json:
             schema:
-              $ref: '#/components/schemas/Menu'
+              $ref: '#/components/schemas/Menu-write'
           application/ld+json:
             schema:
-              $ref: '#/components/schemas/Menu'
+              $ref: '#/components/schemas/Menu-write'
           application/vnd.api+json:
             schema:
-              $ref: '#/components/schemas/Menu'
+              $ref: '#/components/schemas/Menu-write'
           application/json:
             schema:
-              $ref: '#/components/schemas/Menu'
+              $ref: '#/components/schemas/Menu-write'
           application/xml:
             schema:
-              $ref: '#/components/schemas/Menu'
+              $ref: '#/components/schemas/Menu-write'
           application/x-yaml:
             schema:
-              $ref: '#/components/schemas/Menu'
+              $ref: '#/components/schemas/Menu-write'
           text/csv:
             schema:
-              $ref: '#/components/schemas/Menu'
+              $ref: '#/components/schemas/Menu-write'
           text/html:
             schema:
-              $ref: '#/components/schemas/Menu'
+              $ref: '#/components/schemas/Menu-write'
         description: 'The new Menu resource'
       parameters:
         -
@@ -4399,28 +4399,28 @@ paths:
           content:
             application/hal+json:
               schema:
-                $ref: '#/components/schemas/Menu'
+                $ref: '#/components/schemas/Menu-read'
             application/ld+json:
               schema:
-                $ref: '#/components/schemas/Menu'
+                $ref: '#/components/schemas/Menu-read'
             application/vnd.api+json:
               schema:
-                $ref: '#/components/schemas/Menu'
+                $ref: '#/components/schemas/Menu-read'
             application/json:
               schema:
-                $ref: '#/components/schemas/Menu'
+                $ref: '#/components/schemas/Menu-read'
             application/xml:
               schema:
-                $ref: '#/components/schemas/Menu'
+                $ref: '#/components/schemas/Menu-read'
             application/x-yaml:
               schema:
-                $ref: '#/components/schemas/Menu'
+                $ref: '#/components/schemas/Menu-read'
             text/csv:
               schema:
-                $ref: '#/components/schemas/Menu'
+                $ref: '#/components/schemas/Menu-read'
             text/html:
               schema:
-                $ref: '#/components/schemas/Menu'
+                $ref: '#/components/schemas/Menu-read'
         404:
           description: 'Resource not found'
       produces:
@@ -4518,28 +4518,28 @@ paths:
           content:
             application/hal+json:
               schema:
-                $ref: '#/components/schemas/Menu'
+                $ref: '#/components/schemas/Menu-read'
             application/ld+json:
               schema:
-                $ref: '#/components/schemas/Menu'
+                $ref: '#/components/schemas/Menu-read'
             application/vnd.api+json:
               schema:
-                $ref: '#/components/schemas/Menu'
+                $ref: '#/components/schemas/Menu-read'
             application/json:
               schema:
-                $ref: '#/components/schemas/Menu'
+                $ref: '#/components/schemas/Menu-read'
             application/xml:
               schema:
-                $ref: '#/components/schemas/Menu'
+                $ref: '#/components/schemas/Menu-read'
             application/x-yaml:
               schema:
-                $ref: '#/components/schemas/Menu'
+                $ref: '#/components/schemas/Menu-read'
             text/csv:
               schema:
-                $ref: '#/components/schemas/Menu'
+                $ref: '#/components/schemas/Menu-read'
             text/html:
               schema:
-                $ref: '#/components/schemas/Menu'
+                $ref: '#/components/schemas/Menu-read'
         400:
           description: 'Invalid input'
         404:
@@ -4548,28 +4548,28 @@ paths:
         content:
           application/hal+json:
             schema:
-              $ref: '#/components/schemas/Menu'
+              $ref: '#/components/schemas/Menu-write'
           application/ld+json:
             schema:
-              $ref: '#/components/schemas/Menu'
+              $ref: '#/components/schemas/Menu-write'
           application/vnd.api+json:
             schema:
-              $ref: '#/components/schemas/Menu'
+              $ref: '#/components/schemas/Menu-write'
           application/json:
             schema:
-              $ref: '#/components/schemas/Menu'
+              $ref: '#/components/schemas/Menu-write'
           application/xml:
             schema:
-              $ref: '#/components/schemas/Menu'
+              $ref: '#/components/schemas/Menu-write'
           application/x-yaml:
             schema:
-              $ref: '#/components/schemas/Menu'
+              $ref: '#/components/schemas/Menu-write'
           text/csv:
             schema:
-              $ref: '#/components/schemas/Menu'
+              $ref: '#/components/schemas/Menu-write'
           text/html:
             schema:
-              $ref: '#/components/schemas/Menu'
+              $ref: '#/components/schemas/Menu-write'
         description: 'The updated Menu resource'
     patch:
       tags:
@@ -4618,28 +4618,28 @@ paths:
           content:
             application/hal+json:
               schema:
-                $ref: '#/components/schemas/Menu'
+                $ref: '#/components/schemas/Menu-read'
             application/ld+json:
               schema:
-                $ref: '#/components/schemas/Menu'
+                $ref: '#/components/schemas/Menu-read'
             application/vnd.api+json:
               schema:
-                $ref: '#/components/schemas/Menu'
+                $ref: '#/components/schemas/Menu-read'
             application/json:
               schema:
-                $ref: '#/components/schemas/Menu'
+                $ref: '#/components/schemas/Menu-read'
             application/xml:
               schema:
-                $ref: '#/components/schemas/Menu'
+                $ref: '#/components/schemas/Menu-read'
             application/x-yaml:
               schema:
-                $ref: '#/components/schemas/Menu'
+                $ref: '#/components/schemas/Menu-read'
             text/csv:
               schema:
-                $ref: '#/components/schemas/Menu'
+                $ref: '#/components/schemas/Menu-read'
             text/html:
               schema:
-                $ref: '#/components/schemas/Menu'
+                $ref: '#/components/schemas/Menu-read'
         400:
           description: 'Invalid input'
         404:
@@ -4648,28 +4648,28 @@ paths:
         content:
           application/hal+json:
             schema:
-              $ref: '#/components/schemas/Menu'
+              $ref: '#/components/schemas/Menu-write'
           application/ld+json:
             schema:
-              $ref: '#/components/schemas/Menu'
+              $ref: '#/components/schemas/Menu-write'
           application/vnd.api+json:
             schema:
-              $ref: '#/components/schemas/Menu'
+              $ref: '#/components/schemas/Menu-write'
           application/json:
             schema:
-              $ref: '#/components/schemas/Menu'
+              $ref: '#/components/schemas/Menu-write'
           application/xml:
             schema:
-              $ref: '#/components/schemas/Menu'
+              $ref: '#/components/schemas/Menu-write'
           application/x-yaml:
             schema:
-              $ref: '#/components/schemas/Menu'
+              $ref: '#/components/schemas/Menu-write'
           text/csv:
             schema:
-              $ref: '#/components/schemas/Menu'
+              $ref: '#/components/schemas/Menu-write'
           text/html:
             schema:
-              $ref: '#/components/schemas/Menu'
+              $ref: '#/components/schemas/Menu-write'
         description: 'The updated Menu resource'
   /pages:
     get:
@@ -4685,42 +4685,42 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Page'
+                  $ref: '#/components/schemas/Page-read'
             application/ld+json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Page'
+                  $ref: '#/components/schemas/Page-read'
             application/vnd.api+json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Page'
+                  $ref: '#/components/schemas/Page-read'
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Page'
+                  $ref: '#/components/schemas/Page-read'
             application/xml:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Page'
+                  $ref: '#/components/schemas/Page-read'
             application/x-yaml:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Page'
+                  $ref: '#/components/schemas/Page-read'
             text/csv:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Page'
+                  $ref: '#/components/schemas/Page-read'
             text/html:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Page'
+                  $ref: '#/components/schemas/Page-read'
       parameters:
         -
           name: page
@@ -4813,28 +4813,28 @@ paths:
           content:
             application/hal+json:
               schema:
-                $ref: '#/components/schemas/Page'
+                $ref: '#/components/schemas/Page-read'
             application/ld+json:
               schema:
-                $ref: '#/components/schemas/Page'
+                $ref: '#/components/schemas/Page-read'
             application/vnd.api+json:
               schema:
-                $ref: '#/components/schemas/Page'
+                $ref: '#/components/schemas/Page-read'
             application/json:
               schema:
-                $ref: '#/components/schemas/Page'
+                $ref: '#/components/schemas/Page-read'
             application/xml:
               schema:
-                $ref: '#/components/schemas/Page'
+                $ref: '#/components/schemas/Page-read'
             application/x-yaml:
               schema:
-                $ref: '#/components/schemas/Page'
+                $ref: '#/components/schemas/Page-read'
             text/csv:
               schema:
-                $ref: '#/components/schemas/Page'
+                $ref: '#/components/schemas/Page-read'
             text/html:
               schema:
-                $ref: '#/components/schemas/Page'
+                $ref: '#/components/schemas/Page-read'
           links:
             GetPageItem:
               parameters:
@@ -4849,28 +4849,28 @@ paths:
         content:
           application/hal+json:
             schema:
-              $ref: '#/components/schemas/Page'
+              $ref: '#/components/schemas/Page-write'
           application/ld+json:
             schema:
-              $ref: '#/components/schemas/Page'
+              $ref: '#/components/schemas/Page-write'
           application/vnd.api+json:
             schema:
-              $ref: '#/components/schemas/Page'
+              $ref: '#/components/schemas/Page-write'
           application/json:
             schema:
-              $ref: '#/components/schemas/Page'
+              $ref: '#/components/schemas/Page-write'
           application/xml:
             schema:
-              $ref: '#/components/schemas/Page'
+              $ref: '#/components/schemas/Page-write'
           application/x-yaml:
             schema:
-              $ref: '#/components/schemas/Page'
+              $ref: '#/components/schemas/Page-write'
           text/csv:
             schema:
-              $ref: '#/components/schemas/Page'
+              $ref: '#/components/schemas/Page-write'
           text/html:
             schema:
-              $ref: '#/components/schemas/Page'
+              $ref: '#/components/schemas/Page-write'
         description: 'The new Page resource'
       parameters:
         -
@@ -4992,28 +4992,28 @@ paths:
           content:
             application/hal+json:
               schema:
-                $ref: '#/components/schemas/Page'
+                $ref: '#/components/schemas/Page-read'
             application/ld+json:
               schema:
-                $ref: '#/components/schemas/Page'
+                $ref: '#/components/schemas/Page-read'
             application/vnd.api+json:
               schema:
-                $ref: '#/components/schemas/Page'
+                $ref: '#/components/schemas/Page-read'
             application/json:
               schema:
-                $ref: '#/components/schemas/Page'
+                $ref: '#/components/schemas/Page-read'
             application/xml:
               schema:
-                $ref: '#/components/schemas/Page'
+                $ref: '#/components/schemas/Page-read'
             application/x-yaml:
               schema:
-                $ref: '#/components/schemas/Page'
+                $ref: '#/components/schemas/Page-read'
             text/csv:
               schema:
-                $ref: '#/components/schemas/Page'
+                $ref: '#/components/schemas/Page-read'
             text/html:
               schema:
-                $ref: '#/components/schemas/Page'
+                $ref: '#/components/schemas/Page-read'
         404:
           description: 'Resource not found'
       produces:
@@ -5111,28 +5111,28 @@ paths:
           content:
             application/hal+json:
               schema:
-                $ref: '#/components/schemas/Page'
+                $ref: '#/components/schemas/Page-read'
             application/ld+json:
               schema:
-                $ref: '#/components/schemas/Page'
+                $ref: '#/components/schemas/Page-read'
             application/vnd.api+json:
               schema:
-                $ref: '#/components/schemas/Page'
+                $ref: '#/components/schemas/Page-read'
             application/json:
               schema:
-                $ref: '#/components/schemas/Page'
+                $ref: '#/components/schemas/Page-read'
             application/xml:
               schema:
-                $ref: '#/components/schemas/Page'
+                $ref: '#/components/schemas/Page-read'
             application/x-yaml:
               schema:
-                $ref: '#/components/schemas/Page'
+                $ref: '#/components/schemas/Page-read'
             text/csv:
               schema:
-                $ref: '#/components/schemas/Page'
+                $ref: '#/components/schemas/Page-read'
             text/html:
               schema:
-                $ref: '#/components/schemas/Page'
+                $ref: '#/components/schemas/Page-read'
         400:
           description: 'Invalid input'
         404:
@@ -5141,28 +5141,28 @@ paths:
         content:
           application/hal+json:
             schema:
-              $ref: '#/components/schemas/Page'
+              $ref: '#/components/schemas/Page-write'
           application/ld+json:
             schema:
-              $ref: '#/components/schemas/Page'
+              $ref: '#/components/schemas/Page-write'
           application/vnd.api+json:
             schema:
-              $ref: '#/components/schemas/Page'
+              $ref: '#/components/schemas/Page-write'
           application/json:
             schema:
-              $ref: '#/components/schemas/Page'
+              $ref: '#/components/schemas/Page-write'
           application/xml:
             schema:
-              $ref: '#/components/schemas/Page'
+              $ref: '#/components/schemas/Page-write'
           application/x-yaml:
             schema:
-              $ref: '#/components/schemas/Page'
+              $ref: '#/components/schemas/Page-write'
           text/csv:
             schema:
-              $ref: '#/components/schemas/Page'
+              $ref: '#/components/schemas/Page-write'
           text/html:
             schema:
-              $ref: '#/components/schemas/Page'
+              $ref: '#/components/schemas/Page-write'
         description: 'The updated Page resource'
     patch:
       tags:
@@ -5211,28 +5211,28 @@ paths:
           content:
             application/hal+json:
               schema:
-                $ref: '#/components/schemas/Page'
+                $ref: '#/components/schemas/Page-read'
             application/ld+json:
               schema:
-                $ref: '#/components/schemas/Page'
+                $ref: '#/components/schemas/Page-read'
             application/vnd.api+json:
               schema:
-                $ref: '#/components/schemas/Page'
+                $ref: '#/components/schemas/Page-read'
             application/json:
               schema:
-                $ref: '#/components/schemas/Page'
+                $ref: '#/components/schemas/Page-read'
             application/xml:
               schema:
-                $ref: '#/components/schemas/Page'
+                $ref: '#/components/schemas/Page-read'
             application/x-yaml:
               schema:
-                $ref: '#/components/schemas/Page'
+                $ref: '#/components/schemas/Page-read'
             text/csv:
               schema:
-                $ref: '#/components/schemas/Page'
+                $ref: '#/components/schemas/Page-read'
             text/html:
               schema:
-                $ref: '#/components/schemas/Page'
+                $ref: '#/components/schemas/Page-read'
         400:
           description: 'Invalid input'
         404:
@@ -5241,28 +5241,28 @@ paths:
         content:
           application/hal+json:
             schema:
-              $ref: '#/components/schemas/Page'
+              $ref: '#/components/schemas/Page-write'
           application/ld+json:
             schema:
-              $ref: '#/components/schemas/Page'
+              $ref: '#/components/schemas/Page-write'
           application/vnd.api+json:
             schema:
-              $ref: '#/components/schemas/Page'
+              $ref: '#/components/schemas/Page-write'
           application/json:
             schema:
-              $ref: '#/components/schemas/Page'
+              $ref: '#/components/schemas/Page-write'
           application/xml:
             schema:
-              $ref: '#/components/schemas/Page'
+              $ref: '#/components/schemas/Page-write'
           application/x-yaml:
             schema:
-              $ref: '#/components/schemas/Page'
+              $ref: '#/components/schemas/Page-write'
           text/csv:
             schema:
-              $ref: '#/components/schemas/Page'
+              $ref: '#/components/schemas/Page-write'
           text/html:
             schema:
-              $ref: '#/components/schemas/Page'
+              $ref: '#/components/schemas/Page-write'
         description: 'The updated Page resource'
   /slugs:
     get:
@@ -5278,42 +5278,42 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Slug'
+                  $ref: '#/components/schemas/Slug-read'
             application/ld+json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Slug'
+                  $ref: '#/components/schemas/Slug-read'
             application/vnd.api+json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Slug'
+                  $ref: '#/components/schemas/Slug-read'
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Slug'
+                  $ref: '#/components/schemas/Slug-read'
             application/xml:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Slug'
+                  $ref: '#/components/schemas/Slug-read'
             application/x-yaml:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Slug'
+                  $ref: '#/components/schemas/Slug-read'
             text/csv:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Slug'
+                  $ref: '#/components/schemas/Slug-read'
             text/html:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Slug'
+                  $ref: '#/components/schemas/Slug-read'
       parameters:
         -
           name: page
@@ -5406,28 +5406,28 @@ paths:
           content:
             application/hal+json:
               schema:
-                $ref: '#/components/schemas/Slug'
+                $ref: '#/components/schemas/Slug-read'
             application/ld+json:
               schema:
-                $ref: '#/components/schemas/Slug'
+                $ref: '#/components/schemas/Slug-read'
             application/vnd.api+json:
               schema:
-                $ref: '#/components/schemas/Slug'
+                $ref: '#/components/schemas/Slug-read'
             application/json:
               schema:
-                $ref: '#/components/schemas/Slug'
+                $ref: '#/components/schemas/Slug-read'
             application/xml:
               schema:
-                $ref: '#/components/schemas/Slug'
+                $ref: '#/components/schemas/Slug-read'
             application/x-yaml:
               schema:
-                $ref: '#/components/schemas/Slug'
+                $ref: '#/components/schemas/Slug-read'
             text/csv:
               schema:
-                $ref: '#/components/schemas/Slug'
+                $ref: '#/components/schemas/Slug-read'
             text/html:
               schema:
-                $ref: '#/components/schemas/Slug'
+                $ref: '#/components/schemas/Slug-read'
           links:
             GetSlugItem:
               parameters:
@@ -5442,28 +5442,28 @@ paths:
         content:
           application/hal+json:
             schema:
-              $ref: '#/components/schemas/Slug'
+              $ref: '#/components/schemas/Slug-write'
           application/ld+json:
             schema:
-              $ref: '#/components/schemas/Slug'
+              $ref: '#/components/schemas/Slug-write'
           application/vnd.api+json:
             schema:
-              $ref: '#/components/schemas/Slug'
+              $ref: '#/components/schemas/Slug-write'
           application/json:
             schema:
-              $ref: '#/components/schemas/Slug'
+              $ref: '#/components/schemas/Slug-write'
           application/xml:
             schema:
-              $ref: '#/components/schemas/Slug'
+              $ref: '#/components/schemas/Slug-write'
           application/x-yaml:
             schema:
-              $ref: '#/components/schemas/Slug'
+              $ref: '#/components/schemas/Slug-write'
           text/csv:
             schema:
-              $ref: '#/components/schemas/Slug'
+              $ref: '#/components/schemas/Slug-write'
           text/html:
             schema:
-              $ref: '#/components/schemas/Slug'
+              $ref: '#/components/schemas/Slug-write'
         description: 'The new Slug resource'
       parameters:
         -
@@ -5585,28 +5585,28 @@ paths:
           content:
             application/hal+json:
               schema:
-                $ref: '#/components/schemas/Slug'
+                $ref: '#/components/schemas/Slug-read'
             application/ld+json:
               schema:
-                $ref: '#/components/schemas/Slug'
+                $ref: '#/components/schemas/Slug-read'
             application/vnd.api+json:
               schema:
-                $ref: '#/components/schemas/Slug'
+                $ref: '#/components/schemas/Slug-read'
             application/json:
               schema:
-                $ref: '#/components/schemas/Slug'
+                $ref: '#/components/schemas/Slug-read'
             application/xml:
               schema:
-                $ref: '#/components/schemas/Slug'
+                $ref: '#/components/schemas/Slug-read'
             application/x-yaml:
               schema:
-                $ref: '#/components/schemas/Slug'
+                $ref: '#/components/schemas/Slug-read'
             text/csv:
               schema:
-                $ref: '#/components/schemas/Slug'
+                $ref: '#/components/schemas/Slug-read'
             text/html:
               schema:
-                $ref: '#/components/schemas/Slug'
+                $ref: '#/components/schemas/Slug-read'
         404:
           description: 'Resource not found'
       produces:
@@ -5704,28 +5704,28 @@ paths:
           content:
             application/hal+json:
               schema:
-                $ref: '#/components/schemas/Slug'
+                $ref: '#/components/schemas/Slug-read'
             application/ld+json:
               schema:
-                $ref: '#/components/schemas/Slug'
+                $ref: '#/components/schemas/Slug-read'
             application/vnd.api+json:
               schema:
-                $ref: '#/components/schemas/Slug'
+                $ref: '#/components/schemas/Slug-read'
             application/json:
               schema:
-                $ref: '#/components/schemas/Slug'
+                $ref: '#/components/schemas/Slug-read'
             application/xml:
               schema:
-                $ref: '#/components/schemas/Slug'
+                $ref: '#/components/schemas/Slug-read'
             application/x-yaml:
               schema:
-                $ref: '#/components/schemas/Slug'
+                $ref: '#/components/schemas/Slug-read'
             text/csv:
               schema:
-                $ref: '#/components/schemas/Slug'
+                $ref: '#/components/schemas/Slug-read'
             text/html:
               schema:
-                $ref: '#/components/schemas/Slug'
+                $ref: '#/components/schemas/Slug-read'
         400:
           description: 'Invalid input'
         404:
@@ -5734,28 +5734,28 @@ paths:
         content:
           application/hal+json:
             schema:
-              $ref: '#/components/schemas/Slug'
+              $ref: '#/components/schemas/Slug-write'
           application/ld+json:
             schema:
-              $ref: '#/components/schemas/Slug'
+              $ref: '#/components/schemas/Slug-write'
           application/vnd.api+json:
             schema:
-              $ref: '#/components/schemas/Slug'
+              $ref: '#/components/schemas/Slug-write'
           application/json:
             schema:
-              $ref: '#/components/schemas/Slug'
+              $ref: '#/components/schemas/Slug-write'
           application/xml:
             schema:
-              $ref: '#/components/schemas/Slug'
+              $ref: '#/components/schemas/Slug-write'
           application/x-yaml:
             schema:
-              $ref: '#/components/schemas/Slug'
+              $ref: '#/components/schemas/Slug-write'
           text/csv:
             schema:
-              $ref: '#/components/schemas/Slug'
+              $ref: '#/components/schemas/Slug-write'
           text/html:
             schema:
-              $ref: '#/components/schemas/Slug'
+              $ref: '#/components/schemas/Slug-write'
         description: 'The updated Slug resource'
     patch:
       tags:
@@ -5804,28 +5804,28 @@ paths:
           content:
             application/hal+json:
               schema:
-                $ref: '#/components/schemas/Slug'
+                $ref: '#/components/schemas/Slug-read'
             application/ld+json:
               schema:
-                $ref: '#/components/schemas/Slug'
+                $ref: '#/components/schemas/Slug-read'
             application/vnd.api+json:
               schema:
-                $ref: '#/components/schemas/Slug'
+                $ref: '#/components/schemas/Slug-read'
             application/json:
               schema:
-                $ref: '#/components/schemas/Slug'
+                $ref: '#/components/schemas/Slug-read'
             application/xml:
               schema:
-                $ref: '#/components/schemas/Slug'
+                $ref: '#/components/schemas/Slug-read'
             application/x-yaml:
               schema:
-                $ref: '#/components/schemas/Slug'
+                $ref: '#/components/schemas/Slug-read'
             text/csv:
               schema:
-                $ref: '#/components/schemas/Slug'
+                $ref: '#/components/schemas/Slug-read'
             text/html:
               schema:
-                $ref: '#/components/schemas/Slug'
+                $ref: '#/components/schemas/Slug-read'
         400:
           description: 'Invalid input'
         404:
@@ -5834,66 +5834,54 @@ paths:
         content:
           application/hal+json:
             schema:
-              $ref: '#/components/schemas/Slug'
+              $ref: '#/components/schemas/Slug-write'
           application/ld+json:
             schema:
-              $ref: '#/components/schemas/Slug'
+              $ref: '#/components/schemas/Slug-write'
           application/vnd.api+json:
             schema:
-              $ref: '#/components/schemas/Slug'
+              $ref: '#/components/schemas/Slug-write'
           application/json:
             schema:
-              $ref: '#/components/schemas/Slug'
+              $ref: '#/components/schemas/Slug-write'
           application/xml:
             schema:
-              $ref: '#/components/schemas/Slug'
+              $ref: '#/components/schemas/Slug-write'
           application/x-yaml:
             schema:
-              $ref: '#/components/schemas/Slug'
+              $ref: '#/components/schemas/Slug-write'
           text/csv:
             schema:
-              $ref: '#/components/schemas/Slug'
+              $ref: '#/components/schemas/Slug-write'
           text/html:
             schema:
-              $ref: '#/components/schemas/Slug'
+              $ref: '#/components/schemas/Slug-write'
         description: 'The updated Slug resource'
 security:
   -
     apiKey: []
 components:
   schemas:
-    Application:
+    Application-read:
       type: object
-      description: ''
+      description: 'This is an example entity.'
       properties:
         id:
           readOnly: true
-          type: integer
-        name:
           type: string
-        domain:
-          type: string
-        pages:
-          type: array
-          items:
-            type: string
-        header:
-          type: string
-        footer:
-          type: string
-    Content:
+    Application-write:
       type: object
-      description: ''
+      description: 'This is an example entity.'
+    Content-read:
+      type: object
+      description: 'This is an example entity.'
       properties:
         id:
           readOnly: true
-          type: integer
-        data:
           type: string
-        image:
-          type: array
-          items:
-            type: string
+    Content-write:
+      type: object
+      description: 'This is an example entity.'
     ExampleEntity-read:
       type: object
       description: 'This is an example entity.'
@@ -5927,107 +5915,87 @@ components:
         camelCase:
           description: 'Proof that we camel case our api'
           type: string
-    Footer:
+    Footer-read:
       type: object
-      description: ''
+      description: 'This is an example entity.'
       properties:
         id:
           readOnly: true
-          type: integer
-        logo:
           type: string
-        menu:
-          type: string
-        image:
-          type: array
-          items:
-            type: string
-    Header:
+    Footer-write:
       type: object
-      description: ''
+      description: 'This is an example entity.'
+    Header-read:
+      type: object
+      description: 'This is an example entity.'
       properties:
         id:
           readOnly: true
-          type: integer
-        logo:
           type: string
-        menu:
-          type: string
-        image:
-          type: array
-          items:
-            type: string
-    Image:
+    Header-write:
       type: object
-      description: ''
+      description: 'This is an example entity.'
+    Image-read:
+      type: object
+      description: 'This is an example entity.'
       properties:
         id:
           readOnly: true
-          type: integer
+          type: string
+    Image-write:
+      type: object
+      description: 'This is an example entity.'
+    Menu-read:
+      type: object
+      description: 'This is an example entity.'
+      properties:
+        id:
+          readOnly: true
+          type: string
         name:
+          description: 'The id of this Menu'
           type: string
-        alt:
-          type: string
-        href:
-          type: string
-    Link:
+      required:
+        - name
+    Menu-write:
       type: object
-      description: ''
+      description: 'This is an example entity.'
+      required:
+        - name
       properties:
-        id:
-          readOnly: true
-          type: integer
         name:
+          description: 'The id of this Menu'
           type: string
-        type:
-          type: string
-        url:
-          type: string
-    Menu:
+    MenuItem-read:
       type: object
-      description: ''
+      description: 'This is an example entity.'
       properties:
         id:
           readOnly: true
-          type: integer
-        name:
           type: string
-        link:
-          type: string
-        header:
-          type: string
-    Page:
+    MenuItem-write:
       type: object
-      description: ''
+      description: 'This is an example entity.'
+    Page-read:
+      type: object
+      description: 'This is an example entity.'
       properties:
         id:
           readOnly: true
-          type: integer
-        title:
           type: string
-        description:
-          type: string
-        templateEngine:
-          type: string
-        application:
-          type: string
-        content:
-          type: array
-          items:
-            type: string
-    Slug:
+    Page-write:
       type: object
-      description: ''
+      description: 'This is an example entity.'
+    Slug-read:
+      type: object
+      description: 'This is an example entity.'
       properties:
         id:
           readOnly: true
-          type: integer
-        application:
           type: string
-        page:
-          type: string
-        slug:
-          type: string
+    Slug-write:
+      type: object
+      description: 'This is an example entity.'
   securitySchemes:
     apiKey:
       type: apiKey
@@ -6035,6 +6003,18 @@ components:
       description: 'Value for the Authorization header'
       name: Authorization
 definitions:
+  Application-read:
+    properties:
+      id:
+        example: e2984465-190a-4562-829e-a8cca81aa35d
+        format: uuid
+    required: []
+  Content-read:
+    properties:
+      id:
+        example: e2984465-190a-4562-829e-a8cca81aa35d
+        format: uuid
+    required: []
   ExampleEntity-read:
     properties:
       id:
@@ -6064,17 +6044,70 @@ definitions:
         maxLength: 255
     required:
       - name
+  Footer-read:
+    properties:
+      id:
+        example: e2984465-190a-4562-829e-a8cca81aa35d
+        format: uuid
+    required: []
+  Header-read:
+    properties:
+      id:
+        example: e2984465-190a-4562-829e-a8cca81aa35d
+        format: uuid
+    required: []
+  Image-read:
+    properties:
+      id:
+        example: e2984465-190a-4562-829e-a8cca81aa35d
+        format: uuid
+    required: []
+  Menu-read:
+    properties:
+      id:
+        example: e2984465-190a-4562-829e-a8cca81aa35d
+        format: uuid
+      name:
+        example: abc
+        maxLength: 255
+    required:
+      - name
+  Menu-write:
+    properties:
+      name:
+        example: abc
+        maxLength: 255
+    required:
+      - name
+  MenuItem-read:
+    properties:
+      id:
+        example: e2984465-190a-4562-829e-a8cca81aa35d
+        format: uuid
+    required: []
+  Page-read:
+    properties:
+      id:
+        example: e2984465-190a-4562-829e-a8cca81aa35d
+        format: uuid
+    required: []
+  Slug-read:
+    properties:
+      id:
+        example: e2984465-190a-4562-829e-a8cca81aa35d
+        format: uuid
+    required: []
 tags:
   -
     name: Application
     description: |
-      
+      This is an example entity.
       
       
   -
     name: Content
     description: |
-      
+      This is an example entity.
       
       
   -
@@ -6086,43 +6119,43 @@ tags:
   -
     name: Footer
     description: |
-      
+      This is an example entity.
       
       
   -
     name: Header
     description: |
-      
+      This is an example entity.
       
       
   -
     name: Image
     description: |
-      
-      
-      
-  -
-    name: Link
-    description: |
-      
+      This is an example entity.
       
       
   -
     name: Menu
     description: |
+      This is an example entity.
       
+      
+  -
+    name: MenuItem
+    description: |
+      This is an example entity.
       
       
   -
     name: Page
     description: |
-      
+      This is an example entity.
       
       
   -
     name: Slug
     description: |
-      
+      This is an example entity.
       
       
 securityDefinitions:
@@ -6131,15 +6164,15 @@ securityDefinitions:
     authorizationUrl: 'http://petstore.swagger.io/api/oauth/dialog'
     flow: implicit
     scopes:
-      read: 'read right to the ExampleEntity resource'
-      write: 'write right to the ExampleEntity resource'
+      read: 'read right to the Slug resource'
+      write: 'write right to the Menu resource'
   JWT-Token:
     type: apiKey
     in: header
     name: Authorization
     scopes:
-      read: 'read right to the ExampleEntity resource'
-      write: 'write right to the ExampleEntity resource'
+      read: 'read right to the Slug resource'
+      write: 'write right to the Menu resource'
 host: irc.zaakonline.nl
 servers:
   -
