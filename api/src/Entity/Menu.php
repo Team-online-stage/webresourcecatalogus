@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -12,6 +14,9 @@ use Doctrine\ORM\Mapping as ORM;
 class Menu
 {
     /**
+     * @var integer The id of this Menu
+     * @example 1
+     *
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
@@ -19,20 +24,27 @@ class Menu
     private $id;
 
     /**
+     * @var string The id of this Menu
+     * @example abc
+     *
      * @ORM\Column(type="string", length=255)
      */
     private $name;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Link")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\OneToMany(targetEntity="App\Entity\MenuItem", mappedBy="menu")
      */
-    private $link;
+    private $menuItem;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Header", inversedBy="menu")
      */
     private $header;
+
+    public function __construct()
+    {
+        $this->menuItem = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -51,14 +63,33 @@ class Menu
         return $this;
     }
 
-    public function getLink(): ?Link
+    /**
+     * @return Collection|MenuItem[]
+     */
+    public function getMenuItem(): Collection
     {
-        return $this->link;
+        return $this->menuItem;
     }
 
-    public function setLink(?Link $link): self
+    public function addMenuItem(MenuItem $menuItem): self
     {
-        $this->link = $link;
+        if (!$this->menuItem->contains($menuItem)) {
+            $this->menuItem[] = $menuItem;
+            $menuItem->setMenu($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMenuItem(MenuItem $menuItem): self
+    {
+        if ($this->menuItem->contains($menuItem)) {
+            $this->menuItem->removeElement($menuItem);
+            // set the owning side to null (unless already changed)
+            if ($menuItem->getMenu() === $this) {
+                $menuItem->setMenu(null);
+            }
+        }
 
         return $this;
     }

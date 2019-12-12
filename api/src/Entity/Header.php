@@ -14,6 +14,9 @@ use Doctrine\ORM\Mapping as ORM;
 class Header
 {
     /**
+     * @var integer The id of this Menu
+     * @example 1
+     *
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")

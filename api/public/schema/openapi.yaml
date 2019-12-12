@@ -9,12 +9,1198 @@ info:
     - Enviroment: dev
     - Version: V.0.1
     - Repository: [online](https://github.com/ConductionNL/Proto-component-commonground) / [zip](https://github.com/ConductionNL/Proto-component-commonground/archive/master.zip)
-    - Docker Image: [online]() 
+    - Docker Image: [online](https://hub.docker.com/repository/docker/conduction/pc-php) 
     - Datamodel: [postman](/schema/openapi.postman_collection) / [oas](/schema/openapi.yaml) / [pdf](/schema/datamodel.pdf) / [mwb](/schema/datamodel.mwb) 
     
     'Naast deze JSON rest API is er ook een [graphql](/graphql) interface beschikbaar.'         
     
 paths:
+  /applications:
+    get:
+      tags:
+        - Application
+      operationId: getApplicationCollection
+      summary: 'Retrieves the collection of Application resources.'
+      responses:
+        200:
+          description: 'Application collection response'
+          content:
+            application/hal+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Application'
+            application/ld+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Application'
+            application/vnd.api+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Application'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Application'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Application'
+            application/x-yaml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Application'
+            text/csv:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Application'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Application'
+      parameters:
+        -
+          name: page
+          in: query
+          required: false
+          description: 'The collection page number'
+          schema:
+            type: integer
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+        -
+          name: Link
+          description: 'A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel="hub"'
+          in: header
+        -
+          name: 'extend[]'
+          required: false
+          description: 'An array of nested objects to include in the return object'
+          in: query
+          schema:
+            type: array
+        -
+          name: 'fields[]'
+          required: false
+          description: 'An array of fields to return in output, wil return all fields is not supplied'
+          in: query
+          schema:
+            type: array
+        -
+          name: validOn
+          required: false
+          description: 'Returns object as valid on a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validFrom
+          required: false
+          description: 'Returns objects valid from a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validUntil
+          required: false
+          description: 'Returns objects valid until a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+      produces:
+        - application/health+json
+    post:
+      tags:
+        - Application
+      operationId: postApplicationCollection
+      summary: 'Creates a Application resource.'
+      responses:
+        201:
+          description: 'Application resource created'
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Application'
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Application'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Application'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Application'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Application'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/Application'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/Application'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Application'
+          links:
+            GetApplicationItem:
+              parameters:
+                id: '$response.body#/id'
+              operationId: getApplicationItem
+              description: 'The `id` value returned in the response can be used as the `id` parameter in `GET /applications/{id}`.'
+        400:
+          description: 'Invalid input'
+        404:
+          description: 'Resource not found'
+      requestBody:
+        content:
+          application/hal+json:
+            schema:
+              $ref: '#/components/schemas/Application'
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/Application'
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/Application'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Application'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Application'
+          application/x-yaml:
+            schema:
+              $ref: '#/components/schemas/Application'
+          text/csv:
+            schema:
+              $ref: '#/components/schemas/Application'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Application'
+        description: 'The new Application resource'
+      parameters:
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+  '/applications/{id}':
+    get:
+      tags:
+        - Application
+      operationId: getApplicationItem
+      summary: 'Retrieves a Application resource.'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+        -
+          name: Link
+          description: 'A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel="hub"'
+          in: header
+        -
+          name: 'extend[]'
+          required: false
+          description: 'An array of nested objects to include in the return object'
+          in: query
+          schema:
+            type: array
+        -
+          name: 'fields[]'
+          required: false
+          description: 'An array of fields to return in output, wil return all fields is not supplied'
+          in: query
+          schema:
+            type: array
+        -
+          name: validOn
+          required: false
+          description: 'Returns object as valid on a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validFrom
+          required: false
+          description: 'Returns objects valid from a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validUntil
+          required: false
+          description: 'Returns objects valid until a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+      responses:
+        200:
+          description: 'Application resource response'
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Application'
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Application'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Application'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Application'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Application'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/Application'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/Application'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Application'
+        404:
+          description: 'Resource not found'
+      produces:
+        - application/health+json
+    delete:
+      tags:
+        - Application
+      operationId: deleteApplicationItem
+      summary: 'Removes the Application resource.'
+      responses:
+        204:
+          description: 'Application resource deleted'
+        404:
+          description: 'Resource not found'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+    put:
+      tags:
+        - Application
+      operationId: putApplicationItem
+      summary: 'Replaces the Application resource.'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+      responses:
+        200:
+          description: 'Application resource updated'
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Application'
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Application'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Application'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Application'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Application'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/Application'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/Application'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Application'
+        400:
+          description: 'Invalid input'
+        404:
+          description: 'Resource not found'
+      requestBody:
+        content:
+          application/hal+json:
+            schema:
+              $ref: '#/components/schemas/Application'
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/Application'
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/Application'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Application'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Application'
+          application/x-yaml:
+            schema:
+              $ref: '#/components/schemas/Application'
+          text/csv:
+            schema:
+              $ref: '#/components/schemas/Application'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Application'
+        description: 'The updated Application resource'
+    patch:
+      tags:
+        - Application
+      operationId: patchApplicationItem
+      summary: 'Updates the Application resource.'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+      responses:
+        200:
+          description: 'Application resource updated'
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Application'
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Application'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Application'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Application'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Application'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/Application'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/Application'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Application'
+        400:
+          description: 'Invalid input'
+        404:
+          description: 'Resource not found'
+      requestBody:
+        content:
+          application/hal+json:
+            schema:
+              $ref: '#/components/schemas/Application'
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/Application'
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/Application'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Application'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Application'
+          application/x-yaml:
+            schema:
+              $ref: '#/components/schemas/Application'
+          text/csv:
+            schema:
+              $ref: '#/components/schemas/Application'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Application'
+        description: 'The updated Application resource'
+  /contents:
+    get:
+      tags:
+        - Content
+      operationId: getContentCollection
+      summary: 'Retrieves the collection of Content resources.'
+      responses:
+        200:
+          description: 'Content collection response'
+          content:
+            application/hal+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Content'
+            application/ld+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Content'
+            application/vnd.api+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Content'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Content'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Content'
+            application/x-yaml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Content'
+            text/csv:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Content'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Content'
+      parameters:
+        -
+          name: page
+          in: query
+          required: false
+          description: 'The collection page number'
+          schema:
+            type: integer
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+        -
+          name: Link
+          description: 'A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel="hub"'
+          in: header
+        -
+          name: 'extend[]'
+          required: false
+          description: 'An array of nested objects to include in the return object'
+          in: query
+          schema:
+            type: array
+        -
+          name: 'fields[]'
+          required: false
+          description: 'An array of fields to return in output, wil return all fields is not supplied'
+          in: query
+          schema:
+            type: array
+        -
+          name: validOn
+          required: false
+          description: 'Returns object as valid on a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validFrom
+          required: false
+          description: 'Returns objects valid from a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validUntil
+          required: false
+          description: 'Returns objects valid until a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+      produces:
+        - application/health+json
+    post:
+      tags:
+        - Content
+      operationId: postContentCollection
+      summary: 'Creates a Content resource.'
+      responses:
+        201:
+          description: 'Content resource created'
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Content'
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Content'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Content'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Content'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Content'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/Content'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/Content'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Content'
+          links:
+            GetContentItem:
+              parameters:
+                id: '$response.body#/id'
+              operationId: getContentItem
+              description: 'The `id` value returned in the response can be used as the `id` parameter in `GET /contents/{id}`.'
+        400:
+          description: 'Invalid input'
+        404:
+          description: 'Resource not found'
+      requestBody:
+        content:
+          application/hal+json:
+            schema:
+              $ref: '#/components/schemas/Content'
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/Content'
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/Content'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Content'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Content'
+          application/x-yaml:
+            schema:
+              $ref: '#/components/schemas/Content'
+          text/csv:
+            schema:
+              $ref: '#/components/schemas/Content'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Content'
+        description: 'The new Content resource'
+      parameters:
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+  '/contents/{id}':
+    get:
+      tags:
+        - Content
+      operationId: getContentItem
+      summary: 'Retrieves a Content resource.'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+        -
+          name: Link
+          description: 'A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel="hub"'
+          in: header
+        -
+          name: 'extend[]'
+          required: false
+          description: 'An array of nested objects to include in the return object'
+          in: query
+          schema:
+            type: array
+        -
+          name: 'fields[]'
+          required: false
+          description: 'An array of fields to return in output, wil return all fields is not supplied'
+          in: query
+          schema:
+            type: array
+        -
+          name: validOn
+          required: false
+          description: 'Returns object as valid on a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validFrom
+          required: false
+          description: 'Returns objects valid from a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validUntil
+          required: false
+          description: 'Returns objects valid until a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+      responses:
+        200:
+          description: 'Content resource response'
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Content'
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Content'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Content'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Content'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Content'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/Content'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/Content'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Content'
+        404:
+          description: 'Resource not found'
+      produces:
+        - application/health+json
+    delete:
+      tags:
+        - Content
+      operationId: deleteContentItem
+      summary: 'Removes the Content resource.'
+      responses:
+        204:
+          description: 'Content resource deleted'
+        404:
+          description: 'Resource not found'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+    put:
+      tags:
+        - Content
+      operationId: putContentItem
+      summary: 'Replaces the Content resource.'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+      responses:
+        200:
+          description: 'Content resource updated'
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Content'
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Content'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Content'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Content'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Content'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/Content'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/Content'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Content'
+        400:
+          description: 'Invalid input'
+        404:
+          description: 'Resource not found'
+      requestBody:
+        content:
+          application/hal+json:
+            schema:
+              $ref: '#/components/schemas/Content'
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/Content'
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/Content'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Content'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Content'
+          application/x-yaml:
+            schema:
+              $ref: '#/components/schemas/Content'
+          text/csv:
+            schema:
+              $ref: '#/components/schemas/Content'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Content'
+        description: 'The updated Content resource'
+    patch:
+      tags:
+        - Content
+      operationId: patchContentItem
+      summary: 'Updates the Content resource.'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+      responses:
+        200:
+          description: 'Content resource updated'
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Content'
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Content'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Content'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Content'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Content'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/Content'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/Content'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Content'
+        400:
+          description: 'Invalid input'
+        404:
+          description: 'Resource not found'
+      requestBody:
+        content:
+          application/hal+json:
+            schema:
+              $ref: '#/components/schemas/Content'
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/Content'
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/Content'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Content'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Content'
+          application/x-yaml:
+            schema:
+              $ref: '#/components/schemas/Content'
+          text/csv:
+            schema:
+              $ref: '#/components/schemas/Content'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Content'
+        description: 'The updated Content resource'
   /example_entities:
     get:
       tags:
@@ -520,11 +1706,4194 @@ paths:
           name: X-NLX-Audit-Clarification
           description: 'A clarification as to why a request has been made  (doelbinding)'
           in: header
+  /footers:
+    get:
+      tags:
+        - Footer
+      operationId: getFooterCollection
+      summary: 'Retrieves the collection of Footer resources.'
+      responses:
+        200:
+          description: 'Footer collection response'
+          content:
+            application/hal+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Footer'
+            application/ld+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Footer'
+            application/vnd.api+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Footer'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Footer'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Footer'
+            application/x-yaml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Footer'
+            text/csv:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Footer'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Footer'
+      parameters:
+        -
+          name: page
+          in: query
+          required: false
+          description: 'The collection page number'
+          schema:
+            type: integer
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+        -
+          name: Link
+          description: 'A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel="hub"'
+          in: header
+        -
+          name: 'extend[]'
+          required: false
+          description: 'An array of nested objects to include in the return object'
+          in: query
+          schema:
+            type: array
+        -
+          name: 'fields[]'
+          required: false
+          description: 'An array of fields to return in output, wil return all fields is not supplied'
+          in: query
+          schema:
+            type: array
+        -
+          name: validOn
+          required: false
+          description: 'Returns object as valid on a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validFrom
+          required: false
+          description: 'Returns objects valid from a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validUntil
+          required: false
+          description: 'Returns objects valid until a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+      produces:
+        - application/health+json
+    post:
+      tags:
+        - Footer
+      operationId: postFooterCollection
+      summary: 'Creates a Footer resource.'
+      responses:
+        201:
+          description: 'Footer resource created'
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Footer'
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Footer'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Footer'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Footer'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Footer'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/Footer'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/Footer'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Footer'
+          links:
+            GetFooterItem:
+              parameters:
+                id: '$response.body#/id'
+              operationId: getFooterItem
+              description: 'The `id` value returned in the response can be used as the `id` parameter in `GET /footers/{id}`.'
+        400:
+          description: 'Invalid input'
+        404:
+          description: 'Resource not found'
+      requestBody:
+        content:
+          application/hal+json:
+            schema:
+              $ref: '#/components/schemas/Footer'
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/Footer'
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/Footer'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Footer'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Footer'
+          application/x-yaml:
+            schema:
+              $ref: '#/components/schemas/Footer'
+          text/csv:
+            schema:
+              $ref: '#/components/schemas/Footer'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Footer'
+        description: 'The new Footer resource'
+      parameters:
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+  '/footers/{id}':
+    get:
+      tags:
+        - Footer
+      operationId: getFooterItem
+      summary: 'Retrieves a Footer resource.'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+        -
+          name: Link
+          description: 'A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel="hub"'
+          in: header
+        -
+          name: 'extend[]'
+          required: false
+          description: 'An array of nested objects to include in the return object'
+          in: query
+          schema:
+            type: array
+        -
+          name: 'fields[]'
+          required: false
+          description: 'An array of fields to return in output, wil return all fields is not supplied'
+          in: query
+          schema:
+            type: array
+        -
+          name: validOn
+          required: false
+          description: 'Returns object as valid on a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validFrom
+          required: false
+          description: 'Returns objects valid from a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validUntil
+          required: false
+          description: 'Returns objects valid until a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+      responses:
+        200:
+          description: 'Footer resource response'
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Footer'
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Footer'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Footer'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Footer'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Footer'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/Footer'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/Footer'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Footer'
+        404:
+          description: 'Resource not found'
+      produces:
+        - application/health+json
+    delete:
+      tags:
+        - Footer
+      operationId: deleteFooterItem
+      summary: 'Removes the Footer resource.'
+      responses:
+        204:
+          description: 'Footer resource deleted'
+        404:
+          description: 'Resource not found'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+    put:
+      tags:
+        - Footer
+      operationId: putFooterItem
+      summary: 'Replaces the Footer resource.'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+      responses:
+        200:
+          description: 'Footer resource updated'
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Footer'
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Footer'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Footer'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Footer'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Footer'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/Footer'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/Footer'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Footer'
+        400:
+          description: 'Invalid input'
+        404:
+          description: 'Resource not found'
+      requestBody:
+        content:
+          application/hal+json:
+            schema:
+              $ref: '#/components/schemas/Footer'
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/Footer'
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/Footer'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Footer'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Footer'
+          application/x-yaml:
+            schema:
+              $ref: '#/components/schemas/Footer'
+          text/csv:
+            schema:
+              $ref: '#/components/schemas/Footer'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Footer'
+        description: 'The updated Footer resource'
+    patch:
+      tags:
+        - Footer
+      operationId: patchFooterItem
+      summary: 'Updates the Footer resource.'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+      responses:
+        200:
+          description: 'Footer resource updated'
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Footer'
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Footer'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Footer'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Footer'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Footer'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/Footer'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/Footer'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Footer'
+        400:
+          description: 'Invalid input'
+        404:
+          description: 'Resource not found'
+      requestBody:
+        content:
+          application/hal+json:
+            schema:
+              $ref: '#/components/schemas/Footer'
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/Footer'
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/Footer'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Footer'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Footer'
+          application/x-yaml:
+            schema:
+              $ref: '#/components/schemas/Footer'
+          text/csv:
+            schema:
+              $ref: '#/components/schemas/Footer'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Footer'
+        description: 'The updated Footer resource'
+  /headers:
+    get:
+      tags:
+        - Header
+      operationId: getHeaderCollection
+      summary: 'Retrieves the collection of Header resources.'
+      responses:
+        200:
+          description: 'Header collection response'
+          content:
+            application/hal+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Header'
+            application/ld+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Header'
+            application/vnd.api+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Header'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Header'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Header'
+            application/x-yaml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Header'
+            text/csv:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Header'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Header'
+      parameters:
+        -
+          name: page
+          in: query
+          required: false
+          description: 'The collection page number'
+          schema:
+            type: integer
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+        -
+          name: Link
+          description: 'A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel="hub"'
+          in: header
+        -
+          name: 'extend[]'
+          required: false
+          description: 'An array of nested objects to include in the return object'
+          in: query
+          schema:
+            type: array
+        -
+          name: 'fields[]'
+          required: false
+          description: 'An array of fields to return in output, wil return all fields is not supplied'
+          in: query
+          schema:
+            type: array
+        -
+          name: validOn
+          required: false
+          description: 'Returns object as valid on a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validFrom
+          required: false
+          description: 'Returns objects valid from a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validUntil
+          required: false
+          description: 'Returns objects valid until a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+      produces:
+        - application/health+json
+    post:
+      tags:
+        - Header
+      operationId: postHeaderCollection
+      summary: 'Creates a Header resource.'
+      responses:
+        201:
+          description: 'Header resource created'
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Header'
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Header'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Header'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Header'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Header'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/Header'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/Header'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Header'
+          links:
+            GetHeaderItem:
+              parameters:
+                id: '$response.body#/id'
+              operationId: getHeaderItem
+              description: 'The `id` value returned in the response can be used as the `id` parameter in `GET /headers/{id}`.'
+        400:
+          description: 'Invalid input'
+        404:
+          description: 'Resource not found'
+      requestBody:
+        content:
+          application/hal+json:
+            schema:
+              $ref: '#/components/schemas/Header'
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/Header'
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/Header'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Header'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Header'
+          application/x-yaml:
+            schema:
+              $ref: '#/components/schemas/Header'
+          text/csv:
+            schema:
+              $ref: '#/components/schemas/Header'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Header'
+        description: 'The new Header resource'
+      parameters:
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+  '/headers/{id}':
+    get:
+      tags:
+        - Header
+      operationId: getHeaderItem
+      summary: 'Retrieves a Header resource.'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+        -
+          name: Link
+          description: 'A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel="hub"'
+          in: header
+        -
+          name: 'extend[]'
+          required: false
+          description: 'An array of nested objects to include in the return object'
+          in: query
+          schema:
+            type: array
+        -
+          name: 'fields[]'
+          required: false
+          description: 'An array of fields to return in output, wil return all fields is not supplied'
+          in: query
+          schema:
+            type: array
+        -
+          name: validOn
+          required: false
+          description: 'Returns object as valid on a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validFrom
+          required: false
+          description: 'Returns objects valid from a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validUntil
+          required: false
+          description: 'Returns objects valid until a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+      responses:
+        200:
+          description: 'Header resource response'
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Header'
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Header'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Header'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Header'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Header'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/Header'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/Header'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Header'
+        404:
+          description: 'Resource not found'
+      produces:
+        - application/health+json
+    delete:
+      tags:
+        - Header
+      operationId: deleteHeaderItem
+      summary: 'Removes the Header resource.'
+      responses:
+        204:
+          description: 'Header resource deleted'
+        404:
+          description: 'Resource not found'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+    put:
+      tags:
+        - Header
+      operationId: putHeaderItem
+      summary: 'Replaces the Header resource.'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+      responses:
+        200:
+          description: 'Header resource updated'
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Header'
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Header'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Header'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Header'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Header'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/Header'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/Header'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Header'
+        400:
+          description: 'Invalid input'
+        404:
+          description: 'Resource not found'
+      requestBody:
+        content:
+          application/hal+json:
+            schema:
+              $ref: '#/components/schemas/Header'
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/Header'
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/Header'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Header'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Header'
+          application/x-yaml:
+            schema:
+              $ref: '#/components/schemas/Header'
+          text/csv:
+            schema:
+              $ref: '#/components/schemas/Header'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Header'
+        description: 'The updated Header resource'
+    patch:
+      tags:
+        - Header
+      operationId: patchHeaderItem
+      summary: 'Updates the Header resource.'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+      responses:
+        200:
+          description: 'Header resource updated'
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Header'
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Header'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Header'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Header'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Header'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/Header'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/Header'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Header'
+        400:
+          description: 'Invalid input'
+        404:
+          description: 'Resource not found'
+      requestBody:
+        content:
+          application/hal+json:
+            schema:
+              $ref: '#/components/schemas/Header'
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/Header'
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/Header'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Header'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Header'
+          application/x-yaml:
+            schema:
+              $ref: '#/components/schemas/Header'
+          text/csv:
+            schema:
+              $ref: '#/components/schemas/Header'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Header'
+        description: 'The updated Header resource'
+  /images:
+    get:
+      tags:
+        - Image
+      operationId: getImageCollection
+      summary: 'Retrieves the collection of Image resources.'
+      responses:
+        200:
+          description: 'Image collection response'
+          content:
+            application/hal+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Image'
+            application/ld+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Image'
+            application/vnd.api+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Image'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Image'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Image'
+            application/x-yaml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Image'
+            text/csv:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Image'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Image'
+      parameters:
+        -
+          name: page
+          in: query
+          required: false
+          description: 'The collection page number'
+          schema:
+            type: integer
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+        -
+          name: Link
+          description: 'A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel="hub"'
+          in: header
+        -
+          name: 'extend[]'
+          required: false
+          description: 'An array of nested objects to include in the return object'
+          in: query
+          schema:
+            type: array
+        -
+          name: 'fields[]'
+          required: false
+          description: 'An array of fields to return in output, wil return all fields is not supplied'
+          in: query
+          schema:
+            type: array
+        -
+          name: validOn
+          required: false
+          description: 'Returns object as valid on a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validFrom
+          required: false
+          description: 'Returns objects valid from a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validUntil
+          required: false
+          description: 'Returns objects valid until a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+      produces:
+        - application/health+json
+    post:
+      tags:
+        - Image
+      operationId: postImageCollection
+      summary: 'Creates a Image resource.'
+      responses:
+        201:
+          description: 'Image resource created'
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Image'
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Image'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Image'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Image'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Image'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/Image'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/Image'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Image'
+          links:
+            GetImageItem:
+              parameters:
+                id: '$response.body#/id'
+              operationId: getImageItem
+              description: 'The `id` value returned in the response can be used as the `id` parameter in `GET /images/{id}`.'
+        400:
+          description: 'Invalid input'
+        404:
+          description: 'Resource not found'
+      requestBody:
+        content:
+          application/hal+json:
+            schema:
+              $ref: '#/components/schemas/Image'
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/Image'
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/Image'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Image'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Image'
+          application/x-yaml:
+            schema:
+              $ref: '#/components/schemas/Image'
+          text/csv:
+            schema:
+              $ref: '#/components/schemas/Image'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Image'
+        description: 'The new Image resource'
+      parameters:
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+  '/images/{id}':
+    get:
+      tags:
+        - Image
+      operationId: getImageItem
+      summary: 'Retrieves a Image resource.'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+        -
+          name: Link
+          description: 'A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel="hub"'
+          in: header
+        -
+          name: 'extend[]'
+          required: false
+          description: 'An array of nested objects to include in the return object'
+          in: query
+          schema:
+            type: array
+        -
+          name: 'fields[]'
+          required: false
+          description: 'An array of fields to return in output, wil return all fields is not supplied'
+          in: query
+          schema:
+            type: array
+        -
+          name: validOn
+          required: false
+          description: 'Returns object as valid on a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validFrom
+          required: false
+          description: 'Returns objects valid from a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validUntil
+          required: false
+          description: 'Returns objects valid until a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+      responses:
+        200:
+          description: 'Image resource response'
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Image'
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Image'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Image'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Image'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Image'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/Image'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/Image'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Image'
+        404:
+          description: 'Resource not found'
+      produces:
+        - application/health+json
+    delete:
+      tags:
+        - Image
+      operationId: deleteImageItem
+      summary: 'Removes the Image resource.'
+      responses:
+        204:
+          description: 'Image resource deleted'
+        404:
+          description: 'Resource not found'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+    put:
+      tags:
+        - Image
+      operationId: putImageItem
+      summary: 'Replaces the Image resource.'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+      responses:
+        200:
+          description: 'Image resource updated'
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Image'
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Image'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Image'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Image'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Image'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/Image'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/Image'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Image'
+        400:
+          description: 'Invalid input'
+        404:
+          description: 'Resource not found'
+      requestBody:
+        content:
+          application/hal+json:
+            schema:
+              $ref: '#/components/schemas/Image'
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/Image'
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/Image'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Image'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Image'
+          application/x-yaml:
+            schema:
+              $ref: '#/components/schemas/Image'
+          text/csv:
+            schema:
+              $ref: '#/components/schemas/Image'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Image'
+        description: 'The updated Image resource'
+    patch:
+      tags:
+        - Image
+      operationId: patchImageItem
+      summary: 'Updates the Image resource.'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+      responses:
+        200:
+          description: 'Image resource updated'
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Image'
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Image'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Image'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Image'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Image'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/Image'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/Image'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Image'
+        400:
+          description: 'Invalid input'
+        404:
+          description: 'Resource not found'
+      requestBody:
+        content:
+          application/hal+json:
+            schema:
+              $ref: '#/components/schemas/Image'
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/Image'
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/Image'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Image'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Image'
+          application/x-yaml:
+            schema:
+              $ref: '#/components/schemas/Image'
+          text/csv:
+            schema:
+              $ref: '#/components/schemas/Image'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Image'
+        description: 'The updated Image resource'
+  /links:
+    get:
+      tags:
+        - Link
+      operationId: getLinkCollection
+      summary: 'Retrieves the collection of Link resources.'
+      responses:
+        200:
+          description: 'Link collection response'
+          content:
+            application/hal+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Link'
+            application/ld+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Link'
+            application/vnd.api+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Link'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Link'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Link'
+            application/x-yaml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Link'
+            text/csv:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Link'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Link'
+      parameters:
+        -
+          name: page
+          in: query
+          required: false
+          description: 'The collection page number'
+          schema:
+            type: integer
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+        -
+          name: Link
+          description: 'A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel="hub"'
+          in: header
+        -
+          name: 'extend[]'
+          required: false
+          description: 'An array of nested objects to include in the return object'
+          in: query
+          schema:
+            type: array
+        -
+          name: 'fields[]'
+          required: false
+          description: 'An array of fields to return in output, wil return all fields is not supplied'
+          in: query
+          schema:
+            type: array
+        -
+          name: validOn
+          required: false
+          description: 'Returns object as valid on a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validFrom
+          required: false
+          description: 'Returns objects valid from a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validUntil
+          required: false
+          description: 'Returns objects valid until a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+      produces:
+        - application/health+json
+    post:
+      tags:
+        - Link
+      operationId: postLinkCollection
+      summary: 'Creates a Link resource.'
+      responses:
+        201:
+          description: 'Link resource created'
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Link'
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Link'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Link'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Link'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Link'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/Link'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/Link'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Link'
+          links:
+            GetLinkItem:
+              parameters:
+                id: '$response.body#/id'
+              operationId: getLinkItem
+              description: 'The `id` value returned in the response can be used as the `id` parameter in `GET /links/{id}`.'
+        400:
+          description: 'Invalid input'
+        404:
+          description: 'Resource not found'
+      requestBody:
+        content:
+          application/hal+json:
+            schema:
+              $ref: '#/components/schemas/Link'
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/Link'
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/Link'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Link'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Link'
+          application/x-yaml:
+            schema:
+              $ref: '#/components/schemas/Link'
+          text/csv:
+            schema:
+              $ref: '#/components/schemas/Link'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Link'
+        description: 'The new Link resource'
+      parameters:
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+  '/links/{id}':
+    get:
+      tags:
+        - Link
+      operationId: getLinkItem
+      summary: 'Retrieves a Link resource.'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+        -
+          name: Link
+          description: 'A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel="hub"'
+          in: header
+        -
+          name: 'extend[]'
+          required: false
+          description: 'An array of nested objects to include in the return object'
+          in: query
+          schema:
+            type: array
+        -
+          name: 'fields[]'
+          required: false
+          description: 'An array of fields to return in output, wil return all fields is not supplied'
+          in: query
+          schema:
+            type: array
+        -
+          name: validOn
+          required: false
+          description: 'Returns object as valid on a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validFrom
+          required: false
+          description: 'Returns objects valid from a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validUntil
+          required: false
+          description: 'Returns objects valid until a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+      responses:
+        200:
+          description: 'Link resource response'
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Link'
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Link'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Link'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Link'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Link'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/Link'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/Link'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Link'
+        404:
+          description: 'Resource not found'
+      produces:
+        - application/health+json
+    delete:
+      tags:
+        - Link
+      operationId: deleteLinkItem
+      summary: 'Removes the Link resource.'
+      responses:
+        204:
+          description: 'Link resource deleted'
+        404:
+          description: 'Resource not found'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+    put:
+      tags:
+        - Link
+      operationId: putLinkItem
+      summary: 'Replaces the Link resource.'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+      responses:
+        200:
+          description: 'Link resource updated'
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Link'
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Link'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Link'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Link'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Link'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/Link'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/Link'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Link'
+        400:
+          description: 'Invalid input'
+        404:
+          description: 'Resource not found'
+      requestBody:
+        content:
+          application/hal+json:
+            schema:
+              $ref: '#/components/schemas/Link'
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/Link'
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/Link'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Link'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Link'
+          application/x-yaml:
+            schema:
+              $ref: '#/components/schemas/Link'
+          text/csv:
+            schema:
+              $ref: '#/components/schemas/Link'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Link'
+        description: 'The updated Link resource'
+    patch:
+      tags:
+        - Link
+      operationId: patchLinkItem
+      summary: 'Updates the Link resource.'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+      responses:
+        200:
+          description: 'Link resource updated'
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Link'
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Link'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Link'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Link'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Link'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/Link'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/Link'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Link'
+        400:
+          description: 'Invalid input'
+        404:
+          description: 'Resource not found'
+      requestBody:
+        content:
+          application/hal+json:
+            schema:
+              $ref: '#/components/schemas/Link'
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/Link'
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/Link'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Link'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Link'
+          application/x-yaml:
+            schema:
+              $ref: '#/components/schemas/Link'
+          text/csv:
+            schema:
+              $ref: '#/components/schemas/Link'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Link'
+        description: 'The updated Link resource'
+  /menus:
+    get:
+      tags:
+        - Menu
+      operationId: getMenuCollection
+      summary: 'Retrieves the collection of Menu resources.'
+      responses:
+        200:
+          description: 'Menu collection response'
+          content:
+            application/hal+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Menu'
+            application/ld+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Menu'
+            application/vnd.api+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Menu'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Menu'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Menu'
+            application/x-yaml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Menu'
+            text/csv:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Menu'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Menu'
+      parameters:
+        -
+          name: page
+          in: query
+          required: false
+          description: 'The collection page number'
+          schema:
+            type: integer
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+        -
+          name: Link
+          description: 'A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel="hub"'
+          in: header
+        -
+          name: 'extend[]'
+          required: false
+          description: 'An array of nested objects to include in the return object'
+          in: query
+          schema:
+            type: array
+        -
+          name: 'fields[]'
+          required: false
+          description: 'An array of fields to return in output, wil return all fields is not supplied'
+          in: query
+          schema:
+            type: array
+        -
+          name: validOn
+          required: false
+          description: 'Returns object as valid on a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validFrom
+          required: false
+          description: 'Returns objects valid from a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validUntil
+          required: false
+          description: 'Returns objects valid until a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+      produces:
+        - application/health+json
+    post:
+      tags:
+        - Menu
+      operationId: postMenuCollection
+      summary: 'Creates a Menu resource.'
+      responses:
+        201:
+          description: 'Menu resource created'
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Menu'
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Menu'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Menu'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Menu'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Menu'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/Menu'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/Menu'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Menu'
+          links:
+            GetMenuItem:
+              parameters:
+                id: '$response.body#/id'
+              operationId: getMenuItem
+              description: 'The `id` value returned in the response can be used as the `id` parameter in `GET /menus/{id}`.'
+        400:
+          description: 'Invalid input'
+        404:
+          description: 'Resource not found'
+      requestBody:
+        content:
+          application/hal+json:
+            schema:
+              $ref: '#/components/schemas/Menu'
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/Menu'
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/Menu'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Menu'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Menu'
+          application/x-yaml:
+            schema:
+              $ref: '#/components/schemas/Menu'
+          text/csv:
+            schema:
+              $ref: '#/components/schemas/Menu'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Menu'
+        description: 'The new Menu resource'
+      parameters:
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+  '/menus/{id}':
+    get:
+      tags:
+        - Menu
+      operationId: getMenuItem
+      summary: 'Retrieves a Menu resource.'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+        -
+          name: Link
+          description: 'A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel="hub"'
+          in: header
+        -
+          name: 'extend[]'
+          required: false
+          description: 'An array of nested objects to include in the return object'
+          in: query
+          schema:
+            type: array
+        -
+          name: 'fields[]'
+          required: false
+          description: 'An array of fields to return in output, wil return all fields is not supplied'
+          in: query
+          schema:
+            type: array
+        -
+          name: validOn
+          required: false
+          description: 'Returns object as valid on a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validFrom
+          required: false
+          description: 'Returns objects valid from a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validUntil
+          required: false
+          description: 'Returns objects valid until a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+      responses:
+        200:
+          description: 'Menu resource response'
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Menu'
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Menu'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Menu'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Menu'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Menu'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/Menu'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/Menu'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Menu'
+        404:
+          description: 'Resource not found'
+      produces:
+        - application/health+json
+    delete:
+      tags:
+        - Menu
+      operationId: deleteMenuItem
+      summary: 'Removes the Menu resource.'
+      responses:
+        204:
+          description: 'Menu resource deleted'
+        404:
+          description: 'Resource not found'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+    put:
+      tags:
+        - Menu
+      operationId: putMenuItem
+      summary: 'Replaces the Menu resource.'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+      responses:
+        200:
+          description: 'Menu resource updated'
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Menu'
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Menu'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Menu'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Menu'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Menu'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/Menu'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/Menu'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Menu'
+        400:
+          description: 'Invalid input'
+        404:
+          description: 'Resource not found'
+      requestBody:
+        content:
+          application/hal+json:
+            schema:
+              $ref: '#/components/schemas/Menu'
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/Menu'
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/Menu'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Menu'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Menu'
+          application/x-yaml:
+            schema:
+              $ref: '#/components/schemas/Menu'
+          text/csv:
+            schema:
+              $ref: '#/components/schemas/Menu'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Menu'
+        description: 'The updated Menu resource'
+    patch:
+      tags:
+        - Menu
+      operationId: patchMenuItem
+      summary: 'Updates the Menu resource.'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+      responses:
+        200:
+          description: 'Menu resource updated'
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Menu'
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Menu'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Menu'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Menu'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Menu'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/Menu'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/Menu'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Menu'
+        400:
+          description: 'Invalid input'
+        404:
+          description: 'Resource not found'
+      requestBody:
+        content:
+          application/hal+json:
+            schema:
+              $ref: '#/components/schemas/Menu'
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/Menu'
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/Menu'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Menu'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Menu'
+          application/x-yaml:
+            schema:
+              $ref: '#/components/schemas/Menu'
+          text/csv:
+            schema:
+              $ref: '#/components/schemas/Menu'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Menu'
+        description: 'The updated Menu resource'
+  /pages:
+    get:
+      tags:
+        - Page
+      operationId: getPageCollection
+      summary: 'Retrieves the collection of Page resources.'
+      responses:
+        200:
+          description: 'Page collection response'
+          content:
+            application/hal+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Page'
+            application/ld+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Page'
+            application/vnd.api+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Page'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Page'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Page'
+            application/x-yaml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Page'
+            text/csv:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Page'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Page'
+      parameters:
+        -
+          name: page
+          in: query
+          required: false
+          description: 'The collection page number'
+          schema:
+            type: integer
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+        -
+          name: Link
+          description: 'A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel="hub"'
+          in: header
+        -
+          name: 'extend[]'
+          required: false
+          description: 'An array of nested objects to include in the return object'
+          in: query
+          schema:
+            type: array
+        -
+          name: 'fields[]'
+          required: false
+          description: 'An array of fields to return in output, wil return all fields is not supplied'
+          in: query
+          schema:
+            type: array
+        -
+          name: validOn
+          required: false
+          description: 'Returns object as valid on a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validFrom
+          required: false
+          description: 'Returns objects valid from a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validUntil
+          required: false
+          description: 'Returns objects valid until a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+      produces:
+        - application/health+json
+    post:
+      tags:
+        - Page
+      operationId: postPageCollection
+      summary: 'Creates a Page resource.'
+      responses:
+        201:
+          description: 'Page resource created'
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Page'
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Page'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Page'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Page'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Page'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/Page'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/Page'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Page'
+          links:
+            GetPageItem:
+              parameters:
+                id: '$response.body#/id'
+              operationId: getPageItem
+              description: 'The `id` value returned in the response can be used as the `id` parameter in `GET /pages/{id}`.'
+        400:
+          description: 'Invalid input'
+        404:
+          description: 'Resource not found'
+      requestBody:
+        content:
+          application/hal+json:
+            schema:
+              $ref: '#/components/schemas/Page'
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/Page'
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/Page'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Page'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Page'
+          application/x-yaml:
+            schema:
+              $ref: '#/components/schemas/Page'
+          text/csv:
+            schema:
+              $ref: '#/components/schemas/Page'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Page'
+        description: 'The new Page resource'
+      parameters:
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+  '/pages/{id}':
+    get:
+      tags:
+        - Page
+      operationId: getPageItem
+      summary: 'Retrieves a Page resource.'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+        -
+          name: Link
+          description: 'A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel="hub"'
+          in: header
+        -
+          name: 'extend[]'
+          required: false
+          description: 'An array of nested objects to include in the return object'
+          in: query
+          schema:
+            type: array
+        -
+          name: 'fields[]'
+          required: false
+          description: 'An array of fields to return in output, wil return all fields is not supplied'
+          in: query
+          schema:
+            type: array
+        -
+          name: validOn
+          required: false
+          description: 'Returns object as valid on a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validFrom
+          required: false
+          description: 'Returns objects valid from a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validUntil
+          required: false
+          description: 'Returns objects valid until a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+      responses:
+        200:
+          description: 'Page resource response'
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Page'
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Page'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Page'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Page'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Page'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/Page'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/Page'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Page'
+        404:
+          description: 'Resource not found'
+      produces:
+        - application/health+json
+    delete:
+      tags:
+        - Page
+      operationId: deletePageItem
+      summary: 'Removes the Page resource.'
+      responses:
+        204:
+          description: 'Page resource deleted'
+        404:
+          description: 'Resource not found'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+    put:
+      tags:
+        - Page
+      operationId: putPageItem
+      summary: 'Replaces the Page resource.'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+      responses:
+        200:
+          description: 'Page resource updated'
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Page'
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Page'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Page'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Page'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Page'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/Page'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/Page'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Page'
+        400:
+          description: 'Invalid input'
+        404:
+          description: 'Resource not found'
+      requestBody:
+        content:
+          application/hal+json:
+            schema:
+              $ref: '#/components/schemas/Page'
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/Page'
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/Page'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Page'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Page'
+          application/x-yaml:
+            schema:
+              $ref: '#/components/schemas/Page'
+          text/csv:
+            schema:
+              $ref: '#/components/schemas/Page'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Page'
+        description: 'The updated Page resource'
+    patch:
+      tags:
+        - Page
+      operationId: patchPageItem
+      summary: 'Updates the Page resource.'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+      responses:
+        200:
+          description: 'Page resource updated'
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Page'
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Page'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Page'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Page'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Page'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/Page'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/Page'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Page'
+        400:
+          description: 'Invalid input'
+        404:
+          description: 'Resource not found'
+      requestBody:
+        content:
+          application/hal+json:
+            schema:
+              $ref: '#/components/schemas/Page'
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/Page'
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/Page'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Page'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Page'
+          application/x-yaml:
+            schema:
+              $ref: '#/components/schemas/Page'
+          text/csv:
+            schema:
+              $ref: '#/components/schemas/Page'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Page'
+        description: 'The updated Page resource'
+  /slugs:
+    get:
+      tags:
+        - Slug
+      operationId: getSlugCollection
+      summary: 'Retrieves the collection of Slug resources.'
+      responses:
+        200:
+          description: 'Slug collection response'
+          content:
+            application/hal+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Slug'
+            application/ld+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Slug'
+            application/vnd.api+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Slug'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Slug'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Slug'
+            application/x-yaml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Slug'
+            text/csv:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Slug'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Slug'
+      parameters:
+        -
+          name: page
+          in: query
+          required: false
+          description: 'The collection page number'
+          schema:
+            type: integer
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+        -
+          name: Link
+          description: 'A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel="hub"'
+          in: header
+        -
+          name: 'extend[]'
+          required: false
+          description: 'An array of nested objects to include in the return object'
+          in: query
+          schema:
+            type: array
+        -
+          name: 'fields[]'
+          required: false
+          description: 'An array of fields to return in output, wil return all fields is not supplied'
+          in: query
+          schema:
+            type: array
+        -
+          name: validOn
+          required: false
+          description: 'Returns object as valid on a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validFrom
+          required: false
+          description: 'Returns objects valid from a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validUntil
+          required: false
+          description: 'Returns objects valid until a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+      produces:
+        - application/health+json
+    post:
+      tags:
+        - Slug
+      operationId: postSlugCollection
+      summary: 'Creates a Slug resource.'
+      responses:
+        201:
+          description: 'Slug resource created'
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Slug'
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Slug'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Slug'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Slug'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Slug'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/Slug'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/Slug'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Slug'
+          links:
+            GetSlugItem:
+              parameters:
+                id: '$response.body#/id'
+              operationId: getSlugItem
+              description: 'The `id` value returned in the response can be used as the `id` parameter in `GET /slugs/{id}`.'
+        400:
+          description: 'Invalid input'
+        404:
+          description: 'Resource not found'
+      requestBody:
+        content:
+          application/hal+json:
+            schema:
+              $ref: '#/components/schemas/Slug'
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/Slug'
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/Slug'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Slug'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Slug'
+          application/x-yaml:
+            schema:
+              $ref: '#/components/schemas/Slug'
+          text/csv:
+            schema:
+              $ref: '#/components/schemas/Slug'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Slug'
+        description: 'The new Slug resource'
+      parameters:
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+  '/slugs/{id}':
+    get:
+      tags:
+        - Slug
+      operationId: getSlugItem
+      summary: 'Retrieves a Slug resource.'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+        -
+          name: Link
+          description: 'A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel="hub"'
+          in: header
+        -
+          name: 'extend[]'
+          required: false
+          description: 'An array of nested objects to include in the return object'
+          in: query
+          schema:
+            type: array
+        -
+          name: 'fields[]'
+          required: false
+          description: 'An array of fields to return in output, wil return all fields is not supplied'
+          in: query
+          schema:
+            type: array
+        -
+          name: validOn
+          required: false
+          description: 'Returns object as valid on a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validFrom
+          required: false
+          description: 'Returns objects valid from a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validUntil
+          required: false
+          description: 'Returns objects valid until a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+      responses:
+        200:
+          description: 'Slug resource response'
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Slug'
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Slug'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Slug'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Slug'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Slug'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/Slug'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/Slug'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Slug'
+        404:
+          description: 'Resource not found'
+      produces:
+        - application/health+json
+    delete:
+      tags:
+        - Slug
+      operationId: deleteSlugItem
+      summary: 'Removes the Slug resource.'
+      responses:
+        204:
+          description: 'Slug resource deleted'
+        404:
+          description: 'Resource not found'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+    put:
+      tags:
+        - Slug
+      operationId: putSlugItem
+      summary: 'Replaces the Slug resource.'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+      responses:
+        200:
+          description: 'Slug resource updated'
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Slug'
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Slug'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Slug'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Slug'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Slug'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/Slug'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/Slug'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Slug'
+        400:
+          description: 'Invalid input'
+        404:
+          description: 'Resource not found'
+      requestBody:
+        content:
+          application/hal+json:
+            schema:
+              $ref: '#/components/schemas/Slug'
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/Slug'
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/Slug'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Slug'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Slug'
+          application/x-yaml:
+            schema:
+              $ref: '#/components/schemas/Slug'
+          text/csv:
+            schema:
+              $ref: '#/components/schemas/Slug'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Slug'
+        description: 'The updated Slug resource'
+    patch:
+      tags:
+        - Slug
+      operationId: patchSlugItem
+      summary: 'Updates the Slug resource.'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+      responses:
+        200:
+          description: 'Slug resource updated'
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Slug'
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Slug'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Slug'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Slug'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Slug'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/Slug'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/Slug'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Slug'
+        400:
+          description: 'Invalid input'
+        404:
+          description: 'Resource not found'
+      requestBody:
+        content:
+          application/hal+json:
+            schema:
+              $ref: '#/components/schemas/Slug'
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/Slug'
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/Slug'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Slug'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Slug'
+          application/x-yaml:
+            schema:
+              $ref: '#/components/schemas/Slug'
+          text/csv:
+            schema:
+              $ref: '#/components/schemas/Slug'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Slug'
+        description: 'The updated Slug resource'
 security:
   -
     apiKey: []
 components:
   schemas:
+    Application:
+      type: object
+      description: ''
+      properties:
+        id:
+          readOnly: true
+          type: integer
+        name:
+          type: string
+        domain:
+          type: string
+        pages:
+          type: array
+          items:
+            type: string
+        header:
+          type: string
+        footer:
+          type: string
+    Content:
+      type: object
+      description: ''
+      properties:
+        id:
+          readOnly: true
+          type: integer
+        data:
+          type: string
+        image:
+          type: array
+          items:
+            type: string
     ExampleEntity-read:
       type: object
       description: 'This is an example entity.'
@@ -557,6 +5926,107 @@ components:
           type: string
         camelCase:
           description: 'Proof that we camel case our api'
+          type: string
+    Footer:
+      type: object
+      description: ''
+      properties:
+        id:
+          readOnly: true
+          type: integer
+        logo:
+          type: string
+        menu:
+          type: string
+        image:
+          type: array
+          items:
+            type: string
+    Header:
+      type: object
+      description: ''
+      properties:
+        id:
+          readOnly: true
+          type: integer
+        logo:
+          type: string
+        menu:
+          type: string
+        image:
+          type: array
+          items:
+            type: string
+    Image:
+      type: object
+      description: ''
+      properties:
+        id:
+          readOnly: true
+          type: integer
+        name:
+          type: string
+        alt:
+          type: string
+        href:
+          type: string
+    Link:
+      type: object
+      description: ''
+      properties:
+        id:
+          readOnly: true
+          type: integer
+        name:
+          type: string
+        type:
+          type: string
+        url:
+          type: string
+    Menu:
+      type: object
+      description: ''
+      properties:
+        id:
+          readOnly: true
+          type: integer
+        name:
+          type: string
+        link:
+          type: string
+        header:
+          type: string
+    Page:
+      type: object
+      description: ''
+      properties:
+        id:
+          readOnly: true
+          type: integer
+        title:
+          type: string
+        description:
+          type: string
+        templateEngine:
+          type: string
+        application:
+          type: string
+        content:
+          type: array
+          items:
+            type: string
+    Slug:
+      type: object
+      description: ''
+      properties:
+        id:
+          readOnly: true
+          type: integer
+        application:
+          type: string
+        page:
+          type: string
+        slug:
           type: string
   securitySchemes:
     apiKey:
@@ -596,11 +6066,65 @@ definitions:
       - name
 tags:
   -
+    name: Application
+    description: |
+      
+      
+      
+  -
+    name: Content
+    description: |
+      
+      
+      
+  -
     name: ExampleEntity
     description: |
       This is an example entity.
       
       With an adtional description, all in all its pritty nice [url](www.google.nl)
+  -
+    name: Footer
+    description: |
+      
+      
+      
+  -
+    name: Header
+    description: |
+      
+      
+      
+  -
+    name: Image
+    description: |
+      
+      
+      
+  -
+    name: Link
+    description: |
+      
+      
+      
+  -
+    name: Menu
+    description: |
+      
+      
+      
+  -
+    name: Page
+    description: |
+      
+      
+      
+  -
+    name: Slug
+    description: |
+      
+      
+      
 securityDefinitions:
   JWT-Oauth:
     type: oauth2

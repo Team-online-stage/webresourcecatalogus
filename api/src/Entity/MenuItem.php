@@ -7,11 +7,14 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ApiResource()
- * @ORM\Entity(repositoryClass="App\Repository\LinkRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\MenuItemRepository")
  */
-class Link
+class MenuItem
 {
     /**
+     * @var integer The id of this Menu
+     * @example 1
+     *
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
@@ -26,12 +29,13 @@ class Link
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $type;
+    private $href;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\ManyToOne(targetEntity="App\Entity\Menu", inversedBy="menuItem")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $url;
+    private $menu;
 
     public function getId(): ?int
     {
@@ -50,26 +54,26 @@ class Link
         return $this;
     }
 
-    public function getType(): ?string
+    public function getHref(): ?string
     {
-        return $this->type;
+        return $this->href;
     }
 
-    public function setType(string $type): self
+    public function setHref(string $href): self
     {
-        $this->type = $type;
+        $this->href = $href;
 
         return $this;
     }
 
-    public function getUrl(): ?string
+    public function getMenu(): ?Menu
     {
-        return $this->url;
+        return $this->menu;
     }
 
-    public function setUrl(string $url): self
+    public function setMenu(?Menu $menu): self
     {
-        $this->url = $url;
+        $this->menu = $menu;
 
         return $this;
     }

@@ -26,8 +26,7 @@ class Application
     private $name;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Link", cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\Column(type="string", length=255)
      */
     private $domain;
 
@@ -68,12 +67,12 @@ class Application
         return $this;
     }
 
-    public function getDomain(): ?Link
+    public function getDomain(): ?string
     {
         return $this->domain;
     }
 
-    public function setDomain(Link $domain): self
+    public function setDomain(string $domain): self
     {
         $this->domain = $domain;
 

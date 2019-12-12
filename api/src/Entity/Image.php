@@ -19,20 +19,17 @@ class Image
     private $id;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Link", cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\Column(type="string", length=255)
      */
     private $name;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Link", cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\Column(type="string", length=255)
      */
     private $alt;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Link", cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\Column(type="string", length=255)
      */
     private $href;
 
@@ -41,36 +38,36 @@ class Image
         return $this->id;
     }
 
-    public function getName(): ?Link
+    public function getName(): ?string
     {
         return $this->name;
     }
 
-    public function setName(Link $name): self
+    public function setName(string $name): self
     {
         $this->name = $name;
 
         return $this;
     }
 
-    public function getAlt(): ?Link
+    public function getAlt(): ?string
     {
         return $this->alt;
     }
 
-    public function setAlt(Link $alt): self
+    public function setAlt(string $alt): self
     {
         $this->alt = $alt;
 
         return $this;
     }
 
-    public function getHref(): ?Link
+    public function getHref(): ?string
     {
         return $this->href;
     }
 
-    public function setHref(Link $href): self
+    public function setHref(string $href): self
     {
         $this->href = $href;
 
