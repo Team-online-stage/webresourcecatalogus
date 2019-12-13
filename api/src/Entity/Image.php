@@ -39,7 +39,7 @@ class Image
 
     /**
      * @var string The name of this image
-     * @example flowers
+     * @example Flowers
      *
      * @Assert\NotNull
      * @Assert\Length(
