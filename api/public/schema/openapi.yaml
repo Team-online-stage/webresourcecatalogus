@@ -5359,10 +5359,11 @@ components:
   schemas:
     Application-read:
       type: object
-      description: 'Application is your base of a website.'
+      description: 'Application is the project of a website.'
       properties:
         id:
           readOnly: true
+          description: 'The UUID identifier of this resource'
           type: string
         name:
           description: 'The name of this application.'
@@ -5370,15 +5371,28 @@ components:
         description:
           description: 'The description of this application.'
           type: string
+        domain:
+          description: 'The domain of this application.'
+          type: string
+        pages:
+          type: array
+          items:
+            $ref: '#/components/schemas/Page-read'
+        header:
+          $ref: '#/components/schemas/Header-read'
+        footer:
+          $ref: '#/components/schemas/Footer-read'
       required:
         - name
         - description
+        - domain
     Application-write:
       type: object
-      description: 'Application is your base of a website.'
+      description: 'Application is the project of a website.'
       required:
         - name
         - description
+        - domain
       properties:
         name:
           description: 'The name of this application.'
@@ -5386,16 +5400,32 @@ components:
         description:
           description: 'The description of this application.'
           type: string
+        domain:
+          description: 'The domain of this application.'
+          type: string
+        pages:
+          type: array
+          items:
+            $ref: '#/components/schemas/Page-write'
+        header:
+          $ref: '#/components/schemas/Header-write'
+        footer:
+          $ref: '#/components/schemas/Footer-write'
     Content-read:
       type: object
       description: 'Content holds information and photos you want to show on your pages.'
       properties:
         id:
           readOnly: true
+          description: 'The UUID identifier of this resource'
           type: string
         data:
           description: 'The data of this content.'
           type: string
+        image:
+          type: array
+          items:
+            $ref: '#/components/schemas/Image-read'
       required:
         - data
     Content-write:
@@ -5407,45 +5437,103 @@ components:
         data:
           description: 'The data of this content.'
           type: string
+        image:
+          type: array
+          items:
+            $ref: '#/components/schemas/Image-write'
     Footer-read:
       type: object
       description: 'Footer can hold a logo and menu or other links.'
       properties:
         id:
           readOnly: true
+          description: 'The UUID identifier of this resource'
           type: string
         logo:
           $ref: '#/components/schemas/Image-read'
+        menu:
+          $ref: '#/components/schemas/Menu-read'
+        image:
+          type: array
+          items:
+            $ref: '#/components/schemas/Image-read'
     Footer-write:
       type: object
       description: 'Footer can hold a logo and menu or other links.'
       properties:
         logo:
           $ref: '#/components/schemas/Image-write'
+        menu:
+          $ref: '#/components/schemas/Menu-write'
+        image:
+          type: array
+          items:
+            $ref: '#/components/schemas/Image-write'
     Header-read:
       type: object
       description: 'A header holds your logo and menu in your application.'
       properties:
         id:
           readOnly: true
+          description: 'The UUID identifier of this resource'
           type: string
+        logo:
+          $ref: '#/components/schemas/Image-read'
+        menu:
+          $ref: '#/components/schemas/Menu-read'
+        image:
+          type: array
+          items:
+            $ref: '#/components/schemas/Image-read'
     Header-write:
       type: object
       description: 'A header holds your logo and menu in your application.'
+      properties:
+        logo:
+          $ref: '#/components/schemas/Image-write'
+        menu:
+          $ref: '#/components/schemas/Menu-write'
+        image:
+          type: array
+          items:
+            $ref: '#/components/schemas/Image-write'
     Image-read:
       type: object
       description: 'Image speaks for itself.'
       properties:
         id:
           readOnly: true
+          description: 'The UUID identifier of this resource'
           type: string
         name:
+          description: 'The name of this image'
           type: string
+        alt:
+          description: 'The alt of of this image for people with poor eyesight'
+          type: string
+        href:
+          description: 'The href of this image'
+          type: string
+      required:
+        - name
+        - alt
+        - href
     Image-write:
       type: object
       description: 'Image speaks for itself.'
+      required:
+        - name
+        - alt
+        - href
       properties:
         name:
+          description: 'The name of this image'
+          type: string
+        alt:
+          description: 'The alt of of this image for people with poor eyesight'
+          type: string
+        href:
+          description: 'The href of this image'
           type: string
     Menu-read:
       type: object
@@ -5453,10 +5541,15 @@ components:
       properties:
         id:
           readOnly: true
+          description: 'The UUID identifier of this resource'
           type: string
         name:
           description: 'The name of this menu'
           type: string
+        menuItem:
+          type: array
+          items:
+            $ref: '#/components/schemas/MenuItem-read'
       required:
         - name
     Menu-write:
@@ -5468,67 +5561,112 @@ components:
         name:
           description: 'The name of this menu'
           type: string
+        menuItem:
+          type: array
+          items:
+            $ref: '#/components/schemas/MenuItem-write'
     MenuItem-read:
       type: object
       description: 'MenuItem is a part of a menu and can be a link or submenu.'
       properties:
         id:
           readOnly: true
+          description: 'The UUID identifier of this resource'
           type: string
         name:
-          description: 'The name of this example property'
+          description: 'The name of this MenuItem'
           type: string
         description:
-          description: 'The description of this example property'
+          description: 'The description of this MenuItem'
           type: string
         href:
-          description: 'An url'
+          description: 'The href of this MenuItem that links to another page'
           type: string
+        menu:
+          $ref: '#/components/schemas/Menu-read'
       required:
         - name
+        - href
     MenuItem-write:
       type: object
       description: 'MenuItem is a part of a menu and can be a link or submenu.'
       required:
         - name
+        - href
       properties:
         name:
-          description: 'The name of this example property'
+          description: 'The name of this MenuItem'
           type: string
         description:
-          description: 'The description of this example property'
+          description: 'The description of this MenuItem'
           type: string
         href:
-          description: 'An url'
+          description: 'The href of this MenuItem that links to another page'
           type: string
+        menu:
+          $ref: '#/components/schemas/Menu-write'
     Page-read:
       type: object
       description: 'A page holds your content in your application.'
       properties:
         id:
           readOnly: true
+          description: 'The UUID identifier of this resource'
           type: string
         title:
           description: 'The title of this page.'
           type: string
+        description:
+          description: 'The description of this page.'
+          type: string
+        content:
+          type: array
+          items:
+            $ref: '#/components/schemas/Content-read'
+        templateEngine:
+          description: 'The template engine of this page.'
+          type: string
+        application:
+          $ref: '#/components/schemas/Application-read'
       required:
         - title
+        - description
+        - templateEngine
     Page-write:
       type: object
       description: 'A page holds your content in your application.'
       required:
         - title
+        - description
+        - templateEngine
       properties:
         title:
           description: 'The title of this page.'
           type: string
+        description:
+          description: 'The description of this page.'
+          type: string
+        content:
+          type: array
+          items:
+            $ref: '#/components/schemas/Content-write'
+        templateEngine:
+          description: 'The template engine of this page.'
+          type: string
+        application:
+          $ref: '#/components/schemas/Application-write'
     Slug-read:
       type: object
       description: 'Your slug connects your application with your pages.'
       properties:
         id:
           readOnly: true
+          description: 'The UUID identifier of this resource'
           type: string
+        application:
+          $ref: '#/components/schemas/Application-read'
+        page:
+          $ref: '#/components/schemas/Page-read'
         slug:
           description: 'The actual slug of this slug.'
           type: string
@@ -5537,12 +5675,16 @@ components:
     Slug-write:
       type: object
       description: 'Your slug connects your application with your pages.'
-      required:
-        - slug
       properties:
+        application:
+          $ref: '#/components/schemas/Application-write'
+        page:
+          $ref: '#/components/schemas/Page-write'
         slug:
           description: 'The actual slug of this slug.'
           type: string
+      required:
+        - slug
   securitySchemes:
     apiKey:
       type: apiKey
@@ -5561,9 +5703,16 @@ definitions:
       description:
         example: 'Is the best site ever'
         maxLength: 2555
+      domain:
+        example: 'https://www.webshop.nl'
+        maxLength: 255
+      pages: []
+      header: []
+      footer: []
     required:
       - name
       - description
+      - domain
   Application-write:
     properties:
       name:
@@ -5572,9 +5721,16 @@ definitions:
       description:
         example: 'Is the best site ever'
         maxLength: 2555
+      domain:
+        example: 'https://www.webshop.nl'
+        maxLength: 255
+      pages: []
+      header: []
+      footer: []
     required:
       - name
       - description
+      - domain
   Content-read:
     properties:
       id:
@@ -5583,6 +5739,7 @@ definitions:
       data:
         example: 'A lot of random info over any topic'
         maxLength: 2555
+      image: []
     required:
       - data
   Content-write:
@@ -5590,6 +5747,7 @@ definitions:
       data:
         example: 'A lot of random info over any topic'
         maxLength: 2555
+      image: []
     required:
       - data
   Footer-read:
@@ -5598,28 +5756,63 @@ definitions:
         example: e2984465-190a-4562-829e-a8cca81aa35d
         format: uuid
       logo: []
+      menu: []
+      image: []
     required: []
   Footer-write:
     properties:
       logo: []
+      menu: []
+      image: []
     required: []
   Header-read:
     properties:
       id:
         example: e2984465-190a-4562-829e-a8cca81aa35d
         format: uuid
+      logo: []
+      menu: []
+      image: []
+    required: []
+  Header-write:
+    properties:
+      logo: []
+      menu: []
+      image: []
     required: []
   Image-read:
     properties:
       id:
         example: e2984465-190a-4562-829e-a8cca81aa35d
         format: uuid
-      name: []
-    required: []
+      name:
+        example: Flowers
+        maxLength: 255
+      alt:
+        example: flowers
+        maxLength: 255
+      href:
+        example: app_img_flowers
+        maxLength: 255
+    required:
+      - name
+      - alt
+      - href
   Image-write:
     properties:
-      name: []
-    required: []
+      name:
+        example: Flowers
+        maxLength: 255
+      alt:
+        example: flowers
+        maxLength: 255
+      href:
+        example: app_img_flowers
+        maxLength: 255
+    required:
+      - name
+      - alt
+      - href
   Menu-read:
     properties:
       id:
@@ -5628,6 +5821,7 @@ definitions:
       name:
         example: 'webshop menu'
         maxLength: 255
+      menuItem: []
     required:
       - name
   Menu-write:
@@ -5635,6 +5829,7 @@ definitions:
       name:
         example: 'webshop menu'
         maxLength: 255
+      menuItem: []
     required:
       - name
   MenuItem-read:
@@ -5643,29 +5838,33 @@ definitions:
         example: e2984465-190a-4562-829e-a8cca81aa35d
         format: uuid
       name:
-        example: 'My Group'
+        example: about-menu-link
         maxLength: 255
       description:
-        example: 'Is the best group ever'
+        example: 'This MenuItem links to the about page'
         maxLength: 2555
       href:
-        example: http
+        example: app_home_about
         maxLength: 2555
+      menu: []
     required:
       - name
+      - href
   MenuItem-write:
     properties:
       name:
-        example: 'My Group'
+        example: about-menu-link
         maxLength: 255
       description:
-        example: 'Is the best group ever'
+        example: 'This MenuItem links to the about page'
         maxLength: 2555
       href:
-        example: http
+        example: app_home_about
         maxLength: 2555
+      menu: []
     required:
       - name
+      - href
   Page-read:
     properties:
       id:
@@ -5674,15 +5873,35 @@ definitions:
       title:
         example: About
         maxLength: 255
+      description:
+        example: 'This page holds info about this application'
+        maxLength: 255
+      templateEngine:
+        example: Twig
+        maxLength: 255
+      content: []
+      application: []
     required:
       - title
+      - description
+      - templateEngine
   Page-write:
     properties:
       title:
         example: About
         maxLength: 255
+      description:
+        example: 'This page holds info about this application'
+        maxLength: 255
+      templateEngine:
+        example: Twig
+        maxLength: 255
+      content: []
+      application: []
     required:
       - title
+      - description
+      - templateEngine
   Slug-read:
     properties:
       id:
@@ -5691,6 +5910,8 @@ definitions:
       slug:
         example: /about
         maxLength: 255
+      application: []
+      page: []
     required:
       - slug
   Slug-write:
@@ -5698,13 +5919,15 @@ definitions:
       slug:
         example: /about
         maxLength: 255
+      application: []
+      page: []
     required:
       - slug
 tags:
   -
     name: Application
     description: |
-      Application is your base of a website.
+      Application is the project of a website.
       
       
   -

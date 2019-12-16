@@ -49,6 +49,7 @@ class AppFixtures extends Fixture
         $manager->persist($menu1);
 
         $menuItem1 = new MenuItem();
+        $menuItem1->setMenu($menu1);
         $menuItem1->setName("about-menu-link");
         $menuItem1->setDescription("This MenuItem links to the about page");
         $menuItem1->setHref("app_home_about");
