@@ -5,6 +5,8 @@ namespace App\Entity;
 use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Filter\LikeFilter;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Ramsey\Uuid\UuidInterface;
@@ -39,24 +41,31 @@ class Header
 
     /**
      * @Groups({"read","write"})
-     * @ORM\OneToOne(targetEntity="App\Entity\Image", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity="App\Entity\Image", inversedBy="logo", cascade={"persist", "remove"})
      * @MaxDepth(1)
      */
     private $logo;
 
     /**
      * @Groups({"read","write"})
-     * @ORM\OneToOne(targetEntity="App\Entity\Menu", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity="App\Entity\Menu", inversedBy="header", cascade={"persist", "remove"})
      * @MaxDepth(1)
      */
     private $menu;
 
     /**
      * @Groups({"read","write"})
-     * @ORM\ManyToMany(targetEntity="App\Entity\Image")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Image", inversedBy="headers")
      * @MaxDepth(1)
      */
     private $image;
+
+    /**
+     * @Groups({"read","write"})
+     * @ORM\OneToOne(targetEntity="App\Entity\Application", mappedBy="header", cascade={"persist", "remove"})
+     * @MaxDepth(1)
+     */
+    private $application;
 
     public function __construct()
     {
@@ -66,6 +75,24 @@ class Header
     public function getId(): ?string
     {
         return $this->id;
+    }
+
+    public function getApplication(): ?Application
+    {
+        return $this->application;
+    }
+
+    public function setApplication(?Application $application): self
+    {
+        $this->application = $application;
+
+        // set (or unset) the owning side of the relation if necessary
+        $newHeader = $application === null ? null : $this;
+        if ($newHeader !== $application->getHeader()) {
+            $application->setHeader($newHeader);
+        }
+
+        return $this;
     }
 
     public function getLogo(): ?Image
@@ -117,6 +144,4 @@ class Header
 
         return $this;
     }
-
-
 }

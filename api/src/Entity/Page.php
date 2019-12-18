@@ -91,6 +91,14 @@ class Page
      */
     private $application;
 
+    /**
+     * @Groups({"read","write"})
+     * @ORM\OneToOne(targetEntity="App\Entity\Slug", inversedBy="page", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=false)
+     * @MaxDepth(1)
+     */
+    private $slug;
+
     public function __construct()
     {
         $this->content = new ArrayCollection();
@@ -171,6 +179,18 @@ class Page
         if ($this->content->contains($content)) {
             $this->content->removeElement($content);
         }
+
+        return $this;
+    }
+
+    public function getSlug(): ?Slug
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(Slug $slug): self
+    {
+        $this->slug = $slug;
 
         return $this;
     }

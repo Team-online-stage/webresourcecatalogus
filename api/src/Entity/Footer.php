@@ -58,6 +58,13 @@ class Footer
      */
     private $image;
 
+    /**
+     * @Groups({"read","write"})
+     * @ORM\OneToOne(targetEntity="App\Entity\Application", mappedBy="footer", cascade={"persist", "remove"})
+     * @MaxDepth(1)
+     */
+    private $application;
+
     public function __construct()
     {
         $this->image = new ArrayCollection();
@@ -113,6 +120,24 @@ class Footer
     {
         if ($this->image->contains($image)) {
             $this->image->removeElement($image);
+        }
+
+        return $this;
+    }
+
+    public function getApplication(): ?Application
+    {
+        return $this->application;
+    }
+
+    public function setApplication(?Application $application): self
+    {
+        $this->application = $application;
+
+        // set (or unset) the owning side of the relation if necessary
+        $newFooter = $application === null ? null : $this;
+        if ($newFooter !== $application->getFooter()) {
+            $application->setFooter($newFooter);
         }
 
         return $this;
