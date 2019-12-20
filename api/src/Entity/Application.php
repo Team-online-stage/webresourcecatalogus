@@ -5,6 +5,8 @@ namespace App\Entity;
 use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Filter\LikeFilter;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Gedmo\Mapping\Annotation as Gedmo;
@@ -58,7 +60,7 @@ class Application
      *
 	 * @Assert\NotNull
 	 * @Assert\Length(
-	 *      max = 2555
+	 *      max = 255
 	 * )
 	 * @Gedmo\Versioned
 	 * @Groups({"read","write"})
@@ -68,7 +70,7 @@ class Application
 
     /**
      * @var string The domain of this application.
-     * @example https://www.webshop.nl
+     * @example https://www.example.org
      *
      * @Assert\NotNull
      * @Assert\Length(
@@ -88,21 +90,29 @@ class Application
 
     /**
      * @Groups({"read","write"})
-     * @ORM\OneToOne(targetEntity="App\Entity\Header", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity="App\Entity\Header", inversedBy="application", cascade={"persist", "remove"})
      * @MaxDepth(1)
      */
     private $header;
 
     /**
      * @Groups({"read","write"})
-     * @ORM\OneToOne(targetEntity="App\Entity\Footer", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity="App\Entity\Footer", inversedBy="application", cascade={"persist", "remove"})
      * @MaxDepth(1)
      */
     private $footer;
 
+    /**
+     * @Groups({"read","write"})
+     * @ORM\OneToMany(targetEntity="App\Entity\Slug", mappedBy="application")
+     * @MaxDepth(1)
+     */
+    private $slugs;
+
     public function __construct()
     {
         $this->pages = new ArrayCollection();
+        $this->slugs = new ArrayCollection();
     }
 
     public function getId(): ?string
@@ -182,7 +192,7 @@ class Application
         return $this->header;
     }
 
-    public function setHeader(Header $header): self
+    public function setHeader(?Header $header): self
     {
         $this->header = $header;
 
@@ -197,6 +207,37 @@ class Application
     public function setFooter(?Footer $footer): self
     {
         $this->footer = $footer;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Slug[]
+     */
+    public function getSlugs(): Collection
+    {
+        return $this->slugs;
+    }
+
+    public function addSlug(Slug $slug): self
+    {
+        if (!$this->slugs->contains($slug)) {
+            $this->slugs[] = $slug;
+            $slug->setApplication($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSlug(Slug $slug): self
+    {
+        if ($this->slugs->contains($slug)) {
+            $this->slugs->removeElement($slug);
+            // set the owning side to null (unless already changed)
+            if ($slug->getApplication() === $this) {
+                $slug->setApplication(null);
+            }
+        }
 
         return $this;
     }

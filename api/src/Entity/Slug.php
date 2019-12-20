@@ -40,16 +40,14 @@ class Slug
 
     /**
      * @Groups({"read","write"})
-     * @ORM\ManyToOne(targetEntity="App\Entity\Application")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToOne(targetEntity="App\Entity\Application", inversedBy="slugs")
      * @MaxDepth(1)
      */
     private $application;
 
     /**
      * @Groups({"read","write"})
-     * @ORM\ManyToOne(targetEntity="App\Entity\Page")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\OneToOne(targetEntity="App\Entity\Page", mappedBy="slug", cascade={"persist", "remove"})
      * @MaxDepth(1)
      */
     private $page;
@@ -89,9 +87,14 @@ class Slug
         return $this->page;
     }
 
-    public function setPage(?Page $page): self
+    public function setPage(Page $page): self
     {
         $this->page = $page;
+
+        // set the owning side of the relation if necessary
+        if ($this !== $page->getSlug()) {
+            $page->setSlug($this);
+        }
 
         return $this;
     }

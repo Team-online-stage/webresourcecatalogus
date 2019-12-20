@@ -25,18 +25,18 @@ use Symfony\Component\Serializer\Annotation\MaxDepth;
  */
 class Menu
 {
-	/**
-	 * @var UuidInterface The UUID identifier of this resource
-	 * @example e2984465-190a-4562-829e-a8cca81aa35d
-	 *
-	 * @Assert\Uuid
-	 * @Groups({"read"})
-	 * @ORM\Id
-	 * @ORM\Column(type="uuid", unique=true)
-	 * @ORM\GeneratedValue(strategy="CUSTOM")
-	 * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
-	 */
-	private $id;
+    /**
+     * @var UuidInterface The UUID identifier of this resource
+     * @example e2984465-190a-4562-829e-a8cca81aa35d
+     *
+     * @Assert\Uuid
+     * @Groups({"read"})
+     * @ORM\Id
+     * @ORM\Column(type="uuid", unique=true)
+     * @ORM\GeneratedValue(strategy="CUSTOM")
+     * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
+     */
+    private $id;
 
     /**
      * @var string The name of this menu
@@ -57,6 +57,20 @@ class Menu
      * @MaxDepth(1)
      */
     private $menuItem;
+
+    /**
+     * @Groups({"read","write"})
+     * @ORM\OneToOne(targetEntity="App\Entity\Header", mappedBy="menu", cascade={"persist", "remove"})
+     * @MaxDepth(1)
+     */
+    private $header;
+
+    /**
+     * @Groups({"read","write"})
+     * @ORM\OneToOne(targetEntity="App\Entity\Footer", mappedBy="menu", cascade={"persist", "remove"})
+     * @MaxDepth(1)
+     */
+    private $footer;
 
     public function __construct()
     {
@@ -106,6 +120,42 @@ class Menu
             if ($menuItem->getMenu() === $this) {
                 $menuItem->setMenu(null);
             }
+        }
+
+        return $this;
+    }
+
+    public function getHeader(): ?Header
+    {
+        return $this->header;
+    }
+
+    public function setHeader(?Header $header): self
+    {
+        $this->header = $header;
+
+        // set (or unset) the owning side of the relation if necessary
+        $newMenu = $header === null ? null : $this;
+        if ($newMenu !== $header->getMenu()) {
+            $header->setMenu($newMenu);
+        }
+
+        return $this;
+    }
+
+    public function getFooter(): ?Footer
+    {
+        return $this->footer;
+    }
+
+    public function setFooter(?Footer $footer): self
+    {
+        $this->footer = $footer;
+
+        // set (or unset) the owning side of the relation if necessary
+        $newMenu = $footer === null ? null : $this;
+        if ($newMenu !== $footer->getMenu()) {
+            $footer->setMenu($newMenu);
         }
 
         return $this;

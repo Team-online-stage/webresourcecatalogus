@@ -5382,6 +5382,10 @@ components:
           $ref: '#/components/schemas/Header-read'
         footer:
           $ref: '#/components/schemas/Footer-read'
+        slugs:
+          type: array
+          items:
+            $ref: '#/components/schemas/Slug-read'
       required:
         - name
         - description
@@ -5411,6 +5415,10 @@ components:
           $ref: '#/components/schemas/Header-write'
         footer:
           $ref: '#/components/schemas/Footer-write'
+        slugs:
+          type: array
+          items:
+            $ref: '#/components/schemas/Slug-write'
     Content-read:
       type: object
       description: 'Content holds information and photos you want to show on your pages.'
@@ -5457,6 +5465,8 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Image-read'
+        application:
+          $ref: '#/components/schemas/Application-read'
     Footer-write:
       type: object
       description: 'Footer can hold a logo and menu or other links.'
@@ -5469,6 +5479,8 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Image-write'
+        application:
+          $ref: '#/components/schemas/Application-write'
     Header-read:
       type: object
       description: 'A header holds your logo and menu in your application.'
@@ -5485,6 +5497,8 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Image-read'
+        application:
+          $ref: '#/components/schemas/Application-read'
     Header-write:
       type: object
       description: 'A header holds your logo and menu in your application.'
@@ -5497,6 +5511,8 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Image-write'
+        application:
+          $ref: '#/components/schemas/Application-write'
     Image-read:
       type: object
       description: 'Image speaks for itself.'
@@ -5514,6 +5530,16 @@ components:
         href:
           description: 'The href of this image'
           type: string
+        logo:
+          $ref: '#/components/schemas/Header-read'
+        headers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Header-read'
+        footers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Footer-read'
       required:
         - name
         - alt
@@ -5535,6 +5561,16 @@ components:
         href:
           description: 'The href of this image'
           type: string
+        logo:
+          $ref: '#/components/schemas/Header-write'
+        headers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Header-write'
+        footers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Footer-write'
     Menu-read:
       type: object
       description: 'Menu is your way of navigation inside your application.'
@@ -5550,6 +5586,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/MenuItem-read'
+        header:
+          $ref: '#/components/schemas/Header-read'
+        footer:
+          $ref: '#/components/schemas/Footer-read'
       required:
         - name
     Menu-write:
@@ -5565,6 +5605,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/MenuItem-write'
+        header:
+          $ref: '#/components/schemas/Header-write'
+        footer:
+          $ref: '#/components/schemas/Footer-write'
     MenuItem-read:
       type: object
       description: 'MenuItem is a part of a menu and can be a link or submenu.'
@@ -5628,6 +5672,8 @@ components:
           type: string
         application:
           $ref: '#/components/schemas/Application-read'
+        slug:
+          $ref: '#/components/schemas/Slug-read'
       required:
         - title
         - description
@@ -5655,6 +5701,8 @@ components:
           type: string
         application:
           $ref: '#/components/schemas/Application-write'
+        slug:
+          $ref: '#/components/schemas/Slug-write'
     Slug-read:
       type: object
       description: 'Your slug connects your application with your pages.'
@@ -5702,13 +5750,14 @@ definitions:
         maxLength: 255
       description:
         example: 'Is the best site ever'
-        maxLength: 2555
+        maxLength: 255
       domain:
         example: 'https://www.webshop.nl'
         maxLength: 255
       pages: []
       header: []
       footer: []
+      slugs: []
     required:
       - name
       - description
@@ -5720,13 +5769,14 @@ definitions:
         maxLength: 255
       description:
         example: 'Is the best site ever'
-        maxLength: 2555
+        maxLength: 255
       domain:
         example: 'https://www.webshop.nl'
         maxLength: 255
       pages: []
       header: []
       footer: []
+      slugs: []
     required:
       - name
       - description
@@ -5758,12 +5808,14 @@ definitions:
       logo: []
       menu: []
       image: []
+      application: []
     required: []
   Footer-write:
     properties:
       logo: []
       menu: []
       image: []
+      application: []
     required: []
   Header-read:
     properties:
@@ -5773,12 +5825,14 @@ definitions:
       logo: []
       menu: []
       image: []
+      application: []
     required: []
   Header-write:
     properties:
       logo: []
       menu: []
       image: []
+      application: []
     required: []
   Image-read:
     properties:
@@ -5794,6 +5848,9 @@ definitions:
       href:
         example: app_img_flowers
         maxLength: 255
+      logo: []
+      headers: []
+      footers: []
     required:
       - name
       - alt
@@ -5809,6 +5866,9 @@ definitions:
       href:
         example: app_img_flowers
         maxLength: 255
+      logo: []
+      headers: []
+      footers: []
     required:
       - name
       - alt
@@ -5822,6 +5882,8 @@ definitions:
         example: 'webshop menu'
         maxLength: 255
       menuItem: []
+      header: []
+      footer: []
     required:
       - name
   Menu-write:
@@ -5830,6 +5892,8 @@ definitions:
         example: 'webshop menu'
         maxLength: 255
       menuItem: []
+      header: []
+      footer: []
     required:
       - name
   MenuItem-read:
@@ -5881,6 +5945,7 @@ definitions:
         maxLength: 255
       content: []
       application: []
+      slug: []
     required:
       - title
       - description
@@ -5898,6 +5963,7 @@ definitions:
         maxLength: 255
       content: []
       application: []
+      slug: []
     required:
       - title
       - description
