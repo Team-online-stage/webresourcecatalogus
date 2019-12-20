@@ -46,14 +46,14 @@ class Footer
 
     /**
      * @Groups({"read","write"})
-     * @ORM\OneToOne(targetEntity="App\Entity\Menu", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity="App\Entity\Menu", inversedBy="footer", cascade={"persist", "remove"})
      * @MaxDepth(1)
      */
     private $menu;
 
     /**
      * @Groups({"read","write"})
-     * @ORM\ManyToMany(targetEntity="App\Entity\Image")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Image", inversedBy="footers")
      * @MaxDepth(1)
      */
     private $image;

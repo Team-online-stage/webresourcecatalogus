@@ -69,7 +69,7 @@ class Application
 
     /**
      * @var string The domain of this application.
-     * @example https://www.webshop.nl
+     * @example https://www.example.org
      *
      * @Assert\NotNull
      * @Assert\Length(

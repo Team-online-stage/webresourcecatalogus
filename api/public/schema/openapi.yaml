@@ -5536,6 +5536,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Header-read'
+        footers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Footer-read'
       required:
         - name
         - alt
@@ -5563,6 +5567,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Header-write'
+        footers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Footer-write'
     Menu-read:
       type: object
       description: 'Menu is your way of navigation inside your application.'
@@ -5580,6 +5588,8 @@ components:
             $ref: '#/components/schemas/MenuItem-read'
         header:
           $ref: '#/components/schemas/Header-read'
+        footer:
+          $ref: '#/components/schemas/Footer-read'
       required:
         - name
     Menu-write:
@@ -5597,6 +5607,8 @@ components:
             $ref: '#/components/schemas/MenuItem-write'
         header:
           $ref: '#/components/schemas/Header-write'
+        footer:
+          $ref: '#/components/schemas/Footer-write'
     MenuItem-read:
       type: object
       description: 'MenuItem is a part of a menu and can be a link or submenu.'
@@ -5838,6 +5850,7 @@ definitions:
         maxLength: 255
       logo: []
       headers: []
+      footers: []
     required:
       - name
       - alt
@@ -5855,6 +5868,7 @@ definitions:
         maxLength: 255
       logo: []
       headers: []
+      footers: []
     required:
       - name
       - alt
@@ -5869,6 +5883,7 @@ definitions:
         maxLength: 255
       menuItem: []
       header: []
+      footer: []
     required:
       - name
   Menu-write:
@@ -5878,6 +5893,7 @@ definitions:
         maxLength: 255
       menuItem: []
       header: []
+      footer: []
     required:
       - name
   MenuItem-read:
