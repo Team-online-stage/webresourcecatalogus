@@ -24,11 +24,10 @@ class AppFixtures extends Fixture
     	$application->setDomain('huwelijksplanner.online');
     	$application->setTemplateEngine('twig');
     	$manager->persist($application);
-    	
-    	
+    	    	
     	// Getuigen   	
     	$template = New Template;
-    	$template->setData();
+    	$template->setData('test');
     	$template->setTemplateEngine('twig');
     	$manager->persist($template);
     	    	
@@ -47,7 +46,7 @@ class AppFixtures extends Fixture
     	
     	// Naamsgerbuik
     	$template = New Template;
-    	$template->setData();
+    	$template->setData('test');
     	$template->setTemplateEngine('twig');
     	$manager->persist($template);
     	
@@ -62,12 +61,11 @@ class AppFixtures extends Fixture
     	$slug->setPage($page);
     	$slug->setApplication($application);
     	$slug->setSlug('naamsgebruik');
-    	$manager->persist($page);
-    	
+    	$manager->persist($page);    	
     	
     	// Melding
     	$template = New Template;
-    	$template->setData();
+    	$template->setData('test');
     	$template->setTemplateEngine('twig');
     	$manager->persist($template);
     	
