@@ -51,6 +51,8 @@ class Page
      */
     private $title;
 
+    /*@to asdasd */
+    
     /**
      * @var string The description of this page.
      * @example This page holds info about this application
@@ -66,23 +68,10 @@ class Page
 
     /**
      * @Groups({"read","write"})
-     * @ORM\ManyToMany(targetEntity="App\Entity\Content")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Template")
      * @MaxDepth(1)
      */
-    private $content;
-
-    /**
-     * @var string The template engine of this page.
-     * @example Twig
-     *
-     * @Assert\NotNull
-     * @Assert\Length(
-     *     max = 255
-     * )
-     * @Groups({"read","write"})
-     * @ORM\Column(type="string", length=255)
-     */
-    private $templateEngine;
+    private $template;
 
     /**
      * @Groups({"read","write"})
@@ -134,18 +123,6 @@ class Page
         return $this;
     }
 
-    public function getTemplateEngine(): ?string
-    {
-        return $this->templateEngine;
-    }
-
-    public function setTemplateEngine(string $templateEngine): self
-    {
-        $this->templateEngine = $templateEngine;
-
-        return $this;
-    }
-
     public function getApplication(): ?Application
     {
         return $this->application;
@@ -159,17 +136,17 @@ class Page
     }
 
     /**
-     * @return Collection|Content[]
+     * @return Collection|Template[]
      */
-    public function getContent(): Collection
+    public function getTemplate(): Collection
     {
-        return $this->content;
+        return $this->template;
     }
 
-    public function addContent(Content $content): self
+    public function addTemplate(Template $template): self
     {
-        if (!$this->content->contains($content)) {
-            $this->content[] = $content;
+    	if (!$this->template->contains($template)) {
+        	$this->template[] = $template;
         }
 
         return $this;

@@ -21,9 +21,9 @@ use Symfony\Component\Serializer\Annotation\MaxDepth;
  *     denormalizationContext={"groups"={"write"}, "enable_max_depth"=true},
  * )
  * @Gedmo\Loggable
- * @ORM\Entity(repositoryClass="App\Repository\ContentRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\TemplateRepository")
  */
-class Content
+class Template
 {
 	/**
 	 * @var UuidInterface The UUID identifier of this resource
@@ -56,8 +56,20 @@ class Content
      * @ORM\ManyToMany(targetEntity="App\Entity\Image")
      * @MaxDepth(1)
      */
-    private $image;
+    private $image;       
+    
+    /**
+     * @var string The template engine used to render this template.
+     * @example Twig
+     *
+     * @Assert\NotNull
+     * @Assert\Choice({"Twig", "Markdown", "reStructuredText"})
+     * @Groups({"read","write"})
+     * @ORM\Column(type="string", length=16)
+     */
+    private $templateEngine;
 
+    
     public function __construct()
     {
         $this->image = new ArrayCollection();
@@ -104,5 +116,19 @@ class Content
         }
 
         return $this;
+    }
+    
+    
+    
+    public function getTemplateEngine(): ?string
+    {
+    	return $this->templateEngine;
+    }
+    
+    public function setTemplateEngine(string $templateEngine): self
+    {
+    	$this->templateEngine = $templateEngine;
+    	
+    	return $this;
     }
 }
