@@ -12,6 +12,7 @@ use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Serializer\Annotation\MaxDepth;
+use Ramsey\Uuid\Uuid;
 
 /**
  * Menu is your way of navigation inside your application.
@@ -76,10 +77,17 @@ class Menu
     {
         $this->menuItem = new ArrayCollection();
     }
-
-    public function getId(): ?string
+    
+    public function getId(): Uuid
     {
-        return $this->id;
+    	return $this->id;
+    }
+    
+    public function setId(Uuid $id): self
+    {
+    	$this->id = $id;
+    	
+    	return $this;
     }
 
     public function getName(): ?string

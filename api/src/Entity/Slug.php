@@ -12,6 +12,7 @@ use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Serializer\Annotation\MaxDepth;
+use Ramsey\Uuid\Uuid;
 
 /**
  * Your slug connects your application with your pages.
@@ -64,10 +65,18 @@ class Slug
      * @ORM\Column(type="string", length=255)
      */
     private $slug;
-
-    public function getId(): ?string
+    
+    
+    public function getId(): Uuid
     {
-        return $this->id;
+    	return $this->id;
+    }
+    
+    public function setId(Uuid $id): self
+    {
+    	$this->id = $id;
+    	
+    	return $this;
     }
 
     public function getApplication(): ?Application

@@ -12,6 +12,7 @@ use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Serializer\Annotation\MaxDepth;
+use Ramsey\Uuid\Uuid;
 
 /**
  * Footer can hold a logo and menu or other links.
@@ -70,10 +71,17 @@ class Footer
     {
         $this->image = new ArrayCollection();
     }
-
-    public function getId(): ?string
+    
+    public function getId(): Uuid
     {
-        return $this->id;
+    	return $this->id;
+    }
+    
+    public function setId(Uuid $id): self
+    {
+    	$this->id = $id;
+    	
+    	return $this;
     }
 
     public function getLogo(): ?Image
