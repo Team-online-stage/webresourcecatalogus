@@ -31,21 +31,10 @@ if [ "$1" = 'php-fpm' ] || [ "$1" = 'php' ] || [ "$1" = 'bin/console' ]; then
 		#fi
 	#fi
 	
-	if [ "$APP_ENV" != 'prod' ]; then
-		jwt_passphrase=$(grep '^JWT_PASSPHRASE=' .env | cut -f 2 -d '=')
-		if [ ! -f config/jwt/private.pem ] || ! echo "$jwt_passphrase" | openssl pkey -in config/jwt/private.pem -passin stdin -noout > /dev/null 2>&1; then
-			echo "Generating public / private keys for JWT"
-			mkdir -p config/jwt
-			echo "$jwt_passphrase" | openssl genpkey -out config/jwt/private.pem -pass stdin -aes256 -algorithm rsa -pkeyopt rsa_keygen_bits:4096
-			echo "$jwt_passphrase" | openssl pkey -in config/jwt/private.pem -passin stdin -out config/jwt/public.pem -pubout
-			#setfacl -R -m u:www-data:rX -m u:"$(whoami)":rwX config/jwt
-            #setfacl -dR -m u:www-data:rX -m u:"$(whoami)":rwX config/jwt
-		fi
-	fi
-	
-	if [ "$APP_ENV" != 'prod' ]; then
+	#wierd bug fix...
+	#if [ "$APP_ENV" != 'prod' ]; then
 		composer install --prefer-dist --no-progress --no-suggest --no-interaction
-	fi
+	#fi
 	
 	# Lets setup an nlx certificate if needed
 	#if [ "$APP_ENV" != 'prod' ]; then
@@ -74,13 +63,17 @@ if [ "$1" = 'php-fpm' ] || [ "$1" = 'php' ] || [ "$1" = 'bin/console' ]; then
 		echo "Loading fixtures"
 		bin/console doctrine:fixtures:load  --no-interaction
 		
+		# Lets update the docs to show the latest chages
 		echo "Creating OAS documentation"
-		# Let update the docs to show the latest chages
 		bin/console api:openapi:export --output=/srv/api/public/schema/openapi.yaml --yaml --spec-version=3		
 				
+		# this should only be done in an build		
 		echo "Updating Helm charts"
-		# Let update the docs to show the latest chages
-		bin/console app:helm:update --location=/srv/api/helm --spec-version=3			
+		bin/console app:helm:update --location=/srv/api/helm --spec-version=3		
+		
+		# this should only be done in an build		
+		echo "Updating publiccode charts"
+		bin/console app:publiccode:update --location=/srv/api/public/schema/ --spec-version=0.2		
 	fi
 fi
 
