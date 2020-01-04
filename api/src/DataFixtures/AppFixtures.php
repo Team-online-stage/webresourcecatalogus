@@ -19,8 +19,8 @@ class AppFixtures extends Fixture
     	
     	// Home
     	$application = New Application;
-    	$application->setName();
-    	$application->setDescription();
+    	$application->setName('Huwelijksplanner');
+    	$application->setDescription('Huwelijksplanner');
     	$application->setDomain('huwelijksplanner.online');
     	$application->setTemplateEngine('twig');
     	$manager->persist($application);
