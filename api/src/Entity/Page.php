@@ -72,7 +72,7 @@ class Page
      * @ORM\ManyToMany(targetEntity="App\Entity\Template")
      * @MaxDepth(1)
      */
-    private $template;
+    private $templates;
 
     /**
      * @Groups({"read","write"})
@@ -146,24 +146,24 @@ class Page
     /**
      * @return Collection|Template[]
      */
-    public function getTemplate(): Collection
+    public function getTemplates(): Collection
     {
-        return $this->template;
+        return $this->templates;
     }
 
     public function addTemplate(Template $template): self
     {
-    	if (!$this->template->contains($template)) {
-        	$this->template[] = $template;
+    	if (!$this->templates->contains($template)) {
+        	$this->templates[] = $template;
         }
 
         return $this;
     }
 
-    public function removeContent(Content $content): self
+    public function removeContent(Template $template): self
     {
-        if ($this->content->contains($content)) {
-            $this->content->removeElement($content);
+    	if ($this->templates->contains($template)) {
+    		$this->templates->removeElement($template);
         }
 
         return $this;

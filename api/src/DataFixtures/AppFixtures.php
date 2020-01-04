@@ -34,7 +34,6 @@ class AppFixtures extends Fixture
     	$page->setTitle('Getuigen');
     	$page->setDescription('Over getuigen');
     	$page->setApplication($application);
-    	$page->addTemplate($template);
     	$manager->persist($page);    	
     	
     	$slug = New Slug;
@@ -53,7 +52,6 @@ class AppFixtures extends Fixture
     	$page->setTitle('Naamsgebruik');
     	$page->setDescription('Over naamsgebruik');
     	$page->setApplication($application);
-    	$page->addTemplate($template);
     	$manager->persist($page);
     	
     	$slug = New Slug;
@@ -72,7 +70,6 @@ class AppFixtures extends Fixture
     	$page->setTitle('Melding');
     	$page->setDescription('Over melding');
     	$page->setApplication($application);
-    	$page->addTemplate($template);
     	$manager->persist($page);
     	
     	$slug = New Slug;
@@ -91,7 +88,6 @@ class AppFixtures extends Fixture
     	$page->setTitle('Ceremonie');
     	$page->setDescription('Ceremonie');
     	$page->setApplication($application);
-    	$page->addTemplate($template);
     	$manager->persist($page);
     	
     	$slug = New Slug;
@@ -110,7 +106,6 @@ class AppFixtures extends Fixture
     	$page->setTitle('Ambtenaren');
     	$page->setDescription('Ambtenaren');
     	$page->setApplication($application);
-    	$page->addTemplate($template);
     	$manager->persist($page);
     	
     	$slug = New Slug;
@@ -129,7 +124,6 @@ class AppFixtures extends Fixture
     	$page->setTitle('Locatie');
     	$page->setDescription('Locaties');
     	$page->setApplication($application);
-    	$page->addTemplate($template);
     	$manager->persist($page);
     	
     	$slug = New Slug;
@@ -148,7 +142,6 @@ class AppFixtures extends Fixture
     	$page->setTitle('Extras');
     	$page->setDescription('Extras');
     	$page->setApplication($application);
-    	$page->addTemplate($template);
     	$manager->persist($page);
     	
     	$slug = New Slug;
@@ -167,7 +160,6 @@ class AppFixtures extends Fixture
     	$page->setTitle('Partner');
     	$page->setDescription('Partner');
     	$page->setApplication($application);
-    	$page->addTemplate($template);
     	$manager->persist($page);
     	
     	$slug = New Slug;
@@ -186,7 +178,6 @@ class AppFixtures extends Fixture
     	$page->setTitle('Checklist');
     	$page->setDescription('Checklist');
     	$page->setApplication($application);
-    	$page->addTemplate($template);
     	$manager->persist($page);
     	
     	$slug = New Slug;
