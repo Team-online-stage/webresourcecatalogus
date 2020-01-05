@@ -23,7 +23,7 @@ use Ramsey\Uuid\Uuid;
  *     denormalizationContext={"groups"={"write"}, "enable_max_depth"=true},     
  *     collectionOperations={
  *     		"get",
- *     		"post
+ *     		"post",
  *     		"get_page_on_slug"={
  *     			"method"="GET",
  *     			"path"="/applications/{id}/{slug}",
