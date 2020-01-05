@@ -69,7 +69,7 @@ class Page
 
     /**
      * @Groups({"read","write"})
-     * @ORM\ManyToMany(targetEntity="App\Entity\Template")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Template", inversedBy="pages")
      * @MaxDepth(1)
      */
     private $template;
@@ -89,11 +89,6 @@ class Page
      * @MaxDepth(1)
      */
     private $slug;
-
-    public function __construct()
-    {
-        $this->content = new ArrayCollection();
-    }
     
     public function getId(): Uuid
     {

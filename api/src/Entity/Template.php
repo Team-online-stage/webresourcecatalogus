@@ -69,6 +69,13 @@ class Template
      * @ORM\Column(type="string", length=16)
      */
     private $templateEngine;
+    
+    /**
+     * @Groups({"read","write"})
+     * @ORM\OneToMany(targetEntity="App\Entity\Page", mappedBy="application")
+     * @MaxDepth(1)
+     */
+    private $pages;
 
     
     public function __construct()
@@ -136,6 +143,37 @@ class Template
     public function setTemplateEngine(string $templateEngine): self
     {
     	$this->templateEngine = $templateEngine;
+    	
+    	return $this;
+    }
+    
+    /**
+     * @return Collection|Page[]
+     */
+    public function getPages(): Collection
+    {
+    	return $this->pages;
+    }
+    
+    public function addPage(Page $page): self
+    {
+    	if (!$this->pages->contains($page)) {
+    		$this->pages[] = $page;
+    		$page->setApplication($this);
+    	}
+    	
+    	return $this;
+    }
+    
+    public function removePage(Page $page): self
+    {
+    	if ($this->pages->contains($page)) {
+    		$this->pages->removeElement($page);
+    		// set the owning side to null (unless already changed)
+    		if ($page->getApplication() === $this) {
+    			$page->setApplication(null);
+    		}
+    	}
     	
     	return $this;
     }
