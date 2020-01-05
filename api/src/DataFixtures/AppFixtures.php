@@ -23,10 +23,28 @@ class AppFixtures extends Fixture
     	$application->setDescription('Huwelijksplanner');
     	$application->setDomain('huwelijksplanner.online');
     	$manager->persist($application);
-    	    	
-    	// Getuigen   	
+    	
+    	// Getuigen
     	$template = New Template;
-    	$template->setData('test');
+    	$template->setData(file_get_contents(dirname(__FILE__).'/Resources/getuigen-kiezen.html.twig', 'r'));
+    	$template->setTemplateEngine('twig');
+    	$manager->persist($template);
+    	
+    	$page = New Page;
+    	$page->setTitle('Getuigen');
+    	$page->setDescription('Over getuigen');
+    	$page->setApplication($application);
+    	$manager->persist($page);
+    	
+    	$slug = New Slug;
+    	$slug->setPage($page);
+    	$slug->setApplication($application);
+    	$slug->setSlug('getuigen-kiezen');
+    	$manager->persist($page);
+    	
+    	// Getuigen   	 
+    	$template = New Template;
+    	$template->setData(file_get_contents(dirname(__FILE__).'/Resources/getuigen.html.twig', 'r'));
     	$template->setTemplateEngine('twig');
     	$manager->persist($template);
     	    	
@@ -44,7 +62,7 @@ class AppFixtures extends Fixture
     	
     	// Naamsgerbuik
     	$template = New Template;
-    	$template->setData('test');
+    	$template->setData(file_get_contents(dirname(__FILE__).'/Resources/naamsgebruik.html.twig', 'r'));
     	$template->setTemplateEngine('twig');
     	$manager->persist($template);
     	
