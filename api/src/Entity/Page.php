@@ -69,10 +69,10 @@ class Page
 
     /**
      * @Groups({"read","write"})
-     * @ORM\ManyToMany(targetEntity="App\Entity\Template")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Template", inversedBy="pages")
      * @MaxDepth(1)
      */
-    private $templates;
+    private $template;
 
     /**
      * @Groups({"read","write"})
@@ -89,11 +89,6 @@ class Page
      * @MaxDepth(1)
      */
     private $slug;
-
-    public function __construct()
-    {
-        $this->content = new ArrayCollection();
-    }
     
     public function getId(): Uuid
     {
@@ -146,25 +141,14 @@ class Page
     /**
      * @return Collection|Template[]
      */
-    public function getTemplates(): Collection
+    public function getTemplate(): Template
     {
-        return $this->templates;
+        return $this->template;
     }
 
-    public function addTemplate(Template $template): self
+    public function setTemplate(Template $template): self
     {
-    	if (!$this->templates->contains($template)) {
-        	$this->templates[] = $template;
-        }
-
-        return $this;
-    }
-
-    public function removeContent(Template $template): self
-    {
-    	if ($this->templates->contains($template)) {
-    		$this->templates->removeElement($template);
-        }
+    	$this->template= $template;
 
         return $this;
     }

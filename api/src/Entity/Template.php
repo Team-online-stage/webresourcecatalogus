@@ -40,17 +40,14 @@ class Template
 	private $id;
 
     /**
-     * @var string The data of this content.
+     * @var string The Content of this template.
      * @example A lot of random info over any topic
      *
      * @Assert\NotNull
-     * @Assert\Length(
-     *      max = 2555
-     * )
 	 * @Groups({"read","write"})
-     * @ORM\Column(type="string", length=2555)
+     * @ORM\Column(type="text")
      */
-    private $data;
+    private $content;
 
     /**
      * @Groups({"read","write"})
@@ -60,15 +57,22 @@ class Template
     private $image;       
     
     /**
-     * @var string The template engine used to render this template.
+     * @var string The template engine used to render this template. Schould be either twig (Twig), md (markdown) or rst (reStructuredText)
      * @example Twig
      *
      * @Assert\NotNull
-     * @Assert\Choice({"Twig", "Markdown", "reStructuredText"})
+     * @Assert\Choice({"twig", "md", "rst"})
      * @Groups({"read","write"})
      * @ORM\Column(type="string", length=16)
      */
     private $templateEngine;
+    
+    /**
+     * @Groups({"read","write"})
+     * @ORM\OneToMany(targetEntity="App\Entity\Page", mappedBy="template")
+     * @MaxDepth(1)
+     */
+    private $pages;
 
     
     public function __construct()
@@ -88,14 +92,14 @@ class Template
     	return $this;
     }
 
-    public function getData(): ?string
+    public function getContent(): ?string
     {
-        return $this->data;
+    	return $this->content;
     }
 
-    public function setData(string $data): self
+    public function setContent(string $content): self
     {
-        $this->data = $data;
+    	$this->content = $content;
 
         return $this;
     }
@@ -136,6 +140,37 @@ class Template
     public function setTemplateEngine(string $templateEngine): self
     {
     	$this->templateEngine = $templateEngine;
+    	
+    	return $this;
+    }
+    
+    /**
+     * @return Collection|Page[]
+     */
+    public function getPages(): Collection
+    {
+    	return $this->pages;
+    }
+    
+    public function addPage(Page $page): self
+    {
+    	if (!$this->pages->contains($page)) {
+    		$this->pages[] = $page;
+    		$page->setApplication($this);
+    	}
+    	
+    	return $this;
+    }
+    
+    public function removePage(Page $page): self
+    {
+    	if ($this->pages->contains($page)) {
+    		$this->pages->removeElement($page);
+    		// set the owning side to null (unless already changed)
+    		if ($page->getApplication() === $this) {
+    			$page->setApplication(null);
+    		}
+    	}
     	
     	return $this;
     }
