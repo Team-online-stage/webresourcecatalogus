@@ -44,11 +44,8 @@ class Template
      * @example A lot of random info over any topic
      *
      * @Assert\NotNull
-     * @Assert\Length(
-     *      max = 2555
-     * )
 	 * @Groups({"read","write"})
-     * @ORM\Column(type="string", length=2555)
+     * @ORM\Column(type="text")
      */
     private $content;
 
