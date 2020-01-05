@@ -69,7 +69,7 @@ class Template
     
     /**
      * @Groups({"read","write"})
-     * @ORM\OneToMany(targetEntity="App\Entity\Page", mappedBy="application")
+     * @ORM\OneToMany(targetEntity="App\Entity\Page", mappedBy="template")
      * @MaxDepth(1)
      */
     private $pages;
@@ -94,7 +94,7 @@ class Template
 
     public function getContent(): ?string
     {
-        return $this->data;
+    	return $this->content;
     }
 
     public function setContent(string $content): self
