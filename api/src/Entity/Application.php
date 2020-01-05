@@ -31,7 +31,7 @@ use Ramsey\Uuid\Uuid;
  *     				"summary"="Get an page trough its slug",
  *     				"description"="Get an page trough its slug"
  *     			}
- *     		},",
+ *     		}
  *     }
  * )
  * @Gedmo\Loggable
