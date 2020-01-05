@@ -41,7 +41,7 @@ class AppFixtures extends Fixture
     	$template = New Template;
     	$template->setContent(file_get_contents(dirname(__FILE__).'/Resources/getuigen-kiezen.html.twig', 'r'));
     	$template->setTemplateEngine('twig');
-    	$manager->persist($product);
+    	$manager->persist($template);
     	$template->setId($id);
     	$manager->persist($template);
     	$manager->flush();
