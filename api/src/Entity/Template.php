@@ -48,13 +48,6 @@ class Template
      * @ORM\Column(type="text")
      */
     private $content;
-
-    /**
-     * @Groups({"read","write"})
-     * @ORM\ManyToMany(targetEntity="App\Entity\Image")
-     * @MaxDepth(1)
-     */
-    private $image;       
     
     /**
      * @var string The template engine used to render this template. Schould be either twig (Twig), md (markdown) or rst (reStructuredText)
@@ -103,34 +96,6 @@ class Template
 
         return $this;
     }
-
-    /**
-     * @return Collection|Image[]
-     */
-    public function getImage(): Collection
-    {
-        return $this->image;
-    }
-
-    public function addImage(Image $image): self
-    {
-        if (!$this->image->contains($image)) {
-            $this->image[] = $image;
-        }
-
-        return $this;
-    }
-
-    public function removeImage(Image $image): self
-    {
-        if ($this->image->contains($image)) {
-            $this->image->removeElement($image);
-        }
-
-        return $this;
-    }
-    
-    
     
     public function getTemplateEngine(): ?string
     {

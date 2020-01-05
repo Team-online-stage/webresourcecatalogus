@@ -25,11 +25,16 @@ class AppFixtures extends Fixture
     	$manager->persist($application);
     	
     	// Home
+    	$id = Uuid::fromString('536bfb73-63a5-4719-b535-d835607b88b2');
     	$application = New Application;
     	$application->setName('Huwelijksplanner');
     	$application->setDescription('Huwelijksplanner');
     	$application->setDomain('huwelijksplanner.online');
     	$manager->persist($application);
+    	$application->setId($id);
+    	$manager->persist($application);
+    	$manager->flush();
+    	$application= $manager->getRepository('App:Application')->findOneBy(array('id'=> $id));
     	
     	// Getuigen
     	$id = Uuid::fromString('da78b8bb-16bf-449c-96e3-3615e9e8e2af');
