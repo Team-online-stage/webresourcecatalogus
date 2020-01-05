@@ -19,6 +19,13 @@ class AppFixtures extends Fixture
     	
     	// Home
     	$application = New Application;
+    	$application->setName('MijnApp');
+    	$application->setDescription('MijnApp');
+    	$application->setDomain('huwelijksplanner.online');
+    	$manager->persist($application);
+    	
+    	// Home
+    	$application = New Application;
     	$application->setName('Huwelijksplanner');
     	$application->setDescription('Huwelijksplanner');
     	$application->setDomain('huwelijksplanner.online');
@@ -26,7 +33,7 @@ class AppFixtures extends Fixture
     	
     	// Getuigen
     	$template = New Template;
-    	$template->setData(file_get_contents(dirname(__FILE__).'/Resources/getuigen-kiezen.html.twig', 'r'));
+    	$template->setContent(file_get_contents(dirname(__FILE__).'/Resources/getuigen-kiezen.html.twig', 'r'));
     	$template->setTemplateEngine('twig');
     	$manager->persist($template);
     	
@@ -34,6 +41,7 @@ class AppFixtures extends Fixture
     	$page->setTitle('Getuigen');
     	$page->setDescription('Over getuigen');
     	$page->setApplication($application);
+    	$page->setTemplate($template);
     	$manager->persist($page);
     	
     	$slug = New Slug;
@@ -44,7 +52,7 @@ class AppFixtures extends Fixture
     	
     	// Getuigen   	 
     	$template = New Template;
-    	$template->setData(file_get_contents(dirname(__FILE__).'/Resources/getuigen.html.twig', 'r'));
+    	$template->setContent(file_get_contents(dirname(__FILE__).'/Resources/getuigen.html.twig', 'r'));
     	$template->setTemplateEngine('twig');
     	$manager->persist($template);
     	    	
@@ -52,6 +60,7 @@ class AppFixtures extends Fixture
     	$page->setTitle('Getuigen');
     	$page->setDescription('Over getuigen');
     	$page->setApplication($application);
+    	$page->setTemplate($template);
     	$manager->persist($page);    	
     	
     	$slug = New Slug;
@@ -62,7 +71,7 @@ class AppFixtures extends Fixture
     	
     	// Naamsgerbuik
     	$template = New Template;
-    	$template->setData(file_get_contents(dirname(__FILE__).'/Resources/naamsgebruik.html.twig', 'r'));
+    	$template->setContent(file_get_contents(dirname(__FILE__).'/Resources/naamsgebruik.html.twig', 'r'));
     	$template->setTemplateEngine('twig');
     	$manager->persist($template);
     	
@@ -70,6 +79,7 @@ class AppFixtures extends Fixture
     	$page->setTitle('Naamsgebruik');
     	$page->setDescription('Over naamsgebruik');
     	$page->setApplication($application);
+    	$page->setTemplate($template);
     	$manager->persist($page);
     	
     	$slug = New Slug;
@@ -80,7 +90,7 @@ class AppFixtures extends Fixture
     	
     	// Melding
     	$template = New Template;
-    	$template->setData('test');
+    	$template->setContent('test');
     	$template->setTemplateEngine('twig');
     	$manager->persist($template);
     	
@@ -88,6 +98,7 @@ class AppFixtures extends Fixture
     	$page->setTitle('Melding');
     	$page->setDescription('Over melding');
     	$page->setApplication($application);
+    	$page->setTemplate($template);
     	$manager->persist($page);
     	
     	$slug = New Slug;
@@ -98,7 +109,7 @@ class AppFixtures extends Fixture
     	    	
     	// Ceremonie
     	$template = New Template;
-    	$template->setData('Ceremonie');
+    	$template->setContent('Ceremonie');
     	$template->setTemplateEngine('twig');
     	$manager->persist($template);
     	
@@ -106,6 +117,7 @@ class AppFixtures extends Fixture
     	$page->setTitle('Ceremonie');
     	$page->setDescription('Ceremonie');
     	$page->setApplication($application);
+    	$page->setTemplate($template);
     	$manager->persist($page);
     	
     	$slug = New Slug;
@@ -116,7 +128,7 @@ class AppFixtures extends Fixture
     	
     	// Ambtenaren
     	$template = New Template;
-    	$template->setData('Ambtenaren');
+    	$template->setContent('Ambtenaren');
     	$template->setTemplateEngine('twig');
     	$manager->persist($template);
     	
@@ -124,6 +136,7 @@ class AppFixtures extends Fixture
     	$page->setTitle('Ambtenaren');
     	$page->setDescription('Ambtenaren');
     	$page->setApplication($application);
+    	$page->setTemplate($template);
     	$manager->persist($page);
     	
     	$slug = New Slug;
@@ -134,7 +147,7 @@ class AppFixtures extends Fixture
     	
     	// Locatie
     	$template = New Template;
-    	$template->setData('Locaties');
+    	$template->setContent('Locaties');
     	$template->setTemplateEngine('twig');
     	$manager->persist($template);
     	
@@ -142,6 +155,7 @@ class AppFixtures extends Fixture
     	$page->setTitle('Locatie');
     	$page->setDescription('Locaties');
     	$page->setApplication($application);
+    	$page->setTemplate($template);
     	$manager->persist($page);
     	
     	$slug = New Slug;
@@ -152,7 +166,7 @@ class AppFixtures extends Fixture
     	
     	// Extras
     	$template = New Template;
-    	$template->setData('Extras');
+    	$template->setContent('Extras');
     	$template->setTemplateEngine('twig');
     	$manager->persist($template);
     	
@@ -160,6 +174,7 @@ class AppFixtures extends Fixture
     	$page->setTitle('Extras');
     	$page->setDescription('Extras');
     	$page->setApplication($application);
+    	$page->setTemplate($template);
     	$manager->persist($page);
     	
     	$slug = New Slug;
@@ -170,7 +185,7 @@ class AppFixtures extends Fixture
     	
     	// Partner
     	$template = New Template;
-    	$template->setData('Partner');
+    	$template->setContent('Partner');
     	$template->setTemplateEngine('twig');
     	$manager->persist($template);
     	
@@ -178,6 +193,7 @@ class AppFixtures extends Fixture
     	$page->setTitle('Partner');
     	$page->setDescription('Partner');
     	$page->setApplication($application);
+    	$page->setTemplate($template);
     	$manager->persist($page);
     	
     	$slug = New Slug;
@@ -188,7 +204,7 @@ class AppFixtures extends Fixture
     	
     	// Checklist
     	$template = New Template;
-    	$template->setData('Checklist');
+    	$template->setContent('Checklist');
     	$template->setTemplateEngine('twig');
     	$manager->persist($template);
     	
@@ -196,6 +212,7 @@ class AppFixtures extends Fixture
     	$page->setTitle('Checklist');
     	$page->setDescription('Checklist');
     	$page->setApplication($application);
+    	$page->setTemplate($template);
     	$manager->persist($page);
     	
     	$slug = New Slug;
