@@ -94,7 +94,6 @@ class Application
     private $domain;
 
     /**
-     * @Groups({"read","write"})
      * @ORM\OneToMany(targetEntity="App\Entity\Page", mappedBy="application")
      * @MaxDepth(1)
      */
