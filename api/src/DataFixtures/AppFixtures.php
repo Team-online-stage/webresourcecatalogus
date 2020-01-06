@@ -60,6 +60,78 @@ class AppFixtures extends Fixture
     	$slug->setSlug('trouwen');
     	$manager->persist($page);
     	
+    	// flow
+    	$id = Uuid::fromString('ba71c65e-7a82-449e-af15-947613ca6caa');
+    	$template = New Template;
+    	$template->setContent(file_get_contents(dirname(__FILE__).'/Resources/checklist.html.twig', 'r'));
+    	$template->setTemplateEngine('twig');
+    	$manager->persist($template);
+    	$template->setId($id);
+    	$manager->persist($template);
+    	$manager->flush();
+    	$template= $manager->getRepository('App:Template')->findOneBy(array('id'=> $id));
+    	
+    	$page = New Page;
+    	$page->setTitle('Checklist');
+    	$page->setDescription('Checklist');
+    	$page->setApplication($application);
+    	$page->setTemplate($template);
+    	$manager->persist($page);
+    	
+    	$slug = New Slug;
+    	$slug->setPage($page);
+    	$slug->setApplication($application);
+    	$slug->setSlug('checklist');
+    	$manager->persist($page);
+    	
+    	// flow
+    	$id = Uuid::fromString('cb0ada5b-185a-4c64-af20-9a21ac4deb3b');
+    	$template = New Template;
+    	$template->setContent(file_get_contents(dirname(__FILE__).'/Resources/flow.html.twig', 'r'));
+    	$template->setTemplateEngine('twig');
+    	$manager->persist($template);
+    	$template->setId($id);
+    	$manager->persist($template);
+    	$manager->flush();
+    	$template= $manager->getRepository('App:Template')->findOneBy(array('id'=> $id));
+    	
+    	$page = New Page;
+    	$page->setTitle('Flow');
+    	$page->setDescription('Flow');
+    	$page->setApplication($application);
+    	$page->setTemplate($template);
+    	$manager->persist($page);
+    	
+    	$slug = New Slug;
+    	$slug->setPage($page);
+    	$slug->setApplication($application);
+    	$slug->setSlug('flow');
+    	$manager->persist($page);
+    	
+    	// requests
+    	$id = Uuid::fromString('1855950c-e4b6-4a11-bfc7-5a2af7101b68');
+    	$template = New Template;
+    	$template->setContent(file_get_contents(dirname(__FILE__).'/Resources/requests.html.twig', 'r'));
+    	$template->setTemplateEngine('twig');
+    	$manager->persist($template);
+    	$template->setId($id);
+    	$manager->persist($template);
+    	$manager->flush();
+    	$template= $manager->getRepository('App:Template')->findOneBy(array('id'=> $id));
+    	
+    	$page = New Page;
+    	$page->setTitle('Requests');
+    	$page->setDescription('Requests');
+    	$page->setApplication($application);
+    	$page->setTemplate($template);
+    	$manager->persist($page);
+    	
+    	$slug = New Slug;
+    	$slug->setPage($page);
+    	$slug->setApplication($application);
+    	$slug->setSlug('requests');
+    	$manager->persist($page);
+    	
     	// Getuigen
     	$id = Uuid::fromString('da78b8bb-16bf-449c-96e3-3615e9e8e2af');
     	$template = New Template;
@@ -155,11 +227,11 @@ class AppFixtures extends Fixture
     	$slug->setApplication($application);
     	$slug->setSlug('melding');
     	$manager->persist($page);
-    	    	
+    	
     	// Ceremonie
-    	$id = Uuid::fromString('1370d87a-fe90-4826-a210-fd8e1c065576');
+    	$id = Uuid::fromString('013276cc-1483-46b4-ad5b-1cba5acf6d9f');
     	$template = New Template;
-    	$template->setContent(file_get_contents(dirname(__FILE__).'/Resources/naamsgebruik.html.twig', 'r'));
+    	$template->setContent(file_get_contents(dirname(__FILE__).'/Resources/plechtigheid.html.twig', 'r'));
     	$template->setTemplateEngine('twig');
     	$manager->persist($template);
     	$template->setId($id);
@@ -168,8 +240,8 @@ class AppFixtures extends Fixture
     	$template= $manager->getRepository('App:Template')->findOneBy(array('id'=> $id));
     	
     	$page = New Page;
-    	$page->setTitle('Ceremonie');
-    	$page->setDescription('Ceremonie');
+    	$page->setTitle('Plechtigheid');
+    	$page->setDescription('Plechtigheid');
     	$page->setApplication($application);
     	$page->setTemplate($template);
     	$manager->persist($page);
@@ -177,13 +249,60 @@ class AppFixtures extends Fixture
     	$slug = New Slug;
     	$slug->setPage($page);
     	$slug->setApplication($application);
-    	$slug->setSlug('ceremonie');
+    	$slug->setSlug('plechtigheid');
+    	$manager->persist($page);
+    	
+    	// Ceremonie
+    	$id = Uuid::fromString('1370d87a-fe90-4826-a210-fd8e1c065576');
+    	$template = New Template;
+    	$template->setContent(file_get_contents(dirname(__FILE__).'/Resources/ceremonies.html.twig', 'r'));
+    	$template->setTemplateEngine('twig');
+    	$manager->persist($template);
+    	$template->setId($id);
+    	$manager->persist($template);
+    	$manager->flush();
+    	$template= $manager->getRepository('App:Template')->findOneBy(array('id'=> $id));
+    	
+    	$page = New Page;
+    	$page->setTitle('Ceremonies');
+    	$page->setDescription('Ceremonies');
+    	$page->setApplication($application);
+    	$page->setTemplate($template);
+    	$manager->persist($page);
+    	
+    	$slug = New Slug;
+    	$slug->setPage($page);
+    	$slug->setApplication($application);
+    	$slug->setSlug('ceremonies');
     	$manager->persist($page);
     	
     	// Ambtenaren
+    	$id = Uuid::fromString('28268026-6f82-4b19-8dc7-a325edfeca82');
+    	$template = New Template;
+    	$template->setContent(file_get_contents(dirname(__FILE__).'/Resources/ambtenaar.html.twig', 'r'));
+    	$template->setTemplateEngine('twig');
+    	$manager->persist($template);
+    	$template->setId($id);
+    	$manager->persist($template);
+    	$manager->flush();
+    	$template= $manager->getRepository('App:Template')->findOneBy(array('id'=> $id));
+    	
+    	$page = New Page;
+    	$page->setTitle('Ambtenaar');
+    	$page->setDescription('Ambtenaar');
+    	$page->setApplication($application);
+    	$page->setTemplate($template);
+    	$manager->persist($page);
+    	
+    	$slug = New Slug;
+    	$slug->setPage($page);
+    	$slug->setApplication($application);
+    	$slug->setSlug('ambtenaar');
+    	$manager->persist($page);
+    	
     	$id = Uuid::fromString('3450ae40-3c07-4e09-83c2-f0c54e3b574a');
     	$template = New Template;
-    	$template->setContent('Ambtenaren');
+    	$template->setContent(file_get_contents(dirname(__FILE__).'/Resources/ambtenaren.html.twig', 'r'));
     	$template->setTemplateEngine('twig');
     	$manager->persist($template);
     	$template->setId($id);
@@ -201,13 +320,36 @@ class AppFixtures extends Fixture
     	$slug = New Slug;
     	$slug->setPage($page);
     	$slug->setApplication($application);
-    	$slug->setSlug('ambtenaar');
+    	$slug->setSlug('ambtenaren');
     	$manager->persist($page);
     	
     	// Locatie
+    	$id = Uuid::fromString('e2615a62-95a5-43a4-8ab7-efaa8777ed7f');
+    	$template = New Template;
+    	$template->setContent(file_get_contents(dirname(__FILE__).'/Resources/locatie.html.twig', 'r'));
+    	$template->setTemplateEngine('twig');
+    	$manager->persist($template);
+    	$template->setId($id);
+    	$manager->persist($template);
+    	$manager->flush();
+    	$template= $manager->getRepository('App:Template')->findOneBy(array('id'=> $id));
+    	
+    	$page = New Page;
+    	$page->setTitle('Locati');
+    	$page->setDescription('Locatie');
+    	$page->setApplication($application);
+    	$page->setTemplate($template);
+    	$manager->persist($page);
+    	
+    	$slug = New Slug;
+    	$slug->setPage($page);
+    	$slug->setApplication($application);
+    	$slug->setSlug('locatie');
+    	$manager->persist($page);
+    	
     	$id = Uuid::fromString('0bd283c4-771c-4ee0-b87f-8ce40dabe6a1');
     	$template = New Template;
-    	$template->setContent('Locaties');
+    	$template->setContent(file_get_contents(dirname(__FILE__).'/Resources/locaties.html.twig', 'r'));
     	$template->setTemplateEngine('twig');
     	$manager->persist($template);
     	$template->setId($id);
