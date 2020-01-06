@@ -39,7 +39,7 @@ class AppFixtures extends Fixture
     	// Getuigen
     	$id = Uuid::fromString('20219e4b-4dd0-4dc9-8768-3ecb33cf3d78');
     	$template = New Template;
-    	$template->setContent(file_get_contents(dirname(__FILE__).'/Resources/trouwens.html.twig', 'r'));
+    	$template->setContent(file_get_contents(dirname(__FILE__).'/Resources/trouwen.html.twig', 'r'));
     	$template->setTemplateEngine('twig');
     	$manager->persist($template);
     	$template->setId($id);
