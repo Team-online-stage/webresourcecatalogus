@@ -111,7 +111,7 @@ class AppFixtures extends Fixture
     	// Melding
     	$id = Uuid::fromString('ea817100-a03d-4fd3-ae7b-3d39b9c577f9');
     	$template = New Template;
-    	$template->setContent('test');
+    	$template->setContent(file_get_contents(dirname(__FILE__).'/Resources/melding.html.twig', 'r'));
     	$template->setTemplateEngine('twig');
     	$manager->persist($template);
     	$template->setId($id);
@@ -135,7 +135,7 @@ class AppFixtures extends Fixture
     	// Ceremonie
     	$id = Uuid::fromString('1370d87a-fe90-4826-a210-fd8e1c065576');
     	$template = New Template;
-    	$template->setContent('Ceremonie');
+    	$template->setContent(file_get_contents(dirname(__FILE__).'/Resources/naamsgebruik.html.twig', 'r'));
     	$template->setTemplateEngine('twig');
     	$manager->persist($template);
     	$template->setId($id);
