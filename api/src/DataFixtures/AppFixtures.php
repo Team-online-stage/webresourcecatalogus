@@ -37,6 +37,30 @@ class AppFixtures extends Fixture
     	$application= $manager->getRepository('App:Application')->findOneBy(array('id'=> $id));
     	
     	// Getuigen
+    	$id = Uuid::fromString('20219e4b-4dd0-4dc9-8768-3ecb33cf3d78');
+    	$template = New Template;
+    	$template->setContent(file_get_contents(dirname(__FILE__).'/Resources/trouwens.html.twig', 'r'));
+    	$template->setTemplateEngine('twig');
+    	$manager->persist($template);
+    	$template->setId($id);
+    	$manager->persist($template);
+    	$manager->flush();
+    	$template= $manager->getRepository('App:Template')->findOneBy(array('id'=> $id));
+    	
+    	$page = New Page;
+    	$page->setTitle('Trouwen');
+    	$page->setDescription('trouwen');
+    	$page->setApplication($application);
+    	$page->setTemplate($template);
+    	$manager->persist($page);
+    	
+    	$slug = New Slug;
+    	$slug->setPage($page);
+    	$slug->setApplication($application);
+    	$slug->setSlug('trouwen');
+    	$manager->persist($page);
+    	
+    	// Getuigen
     	$id = Uuid::fromString('da78b8bb-16bf-449c-96e3-3615e9e8e2af');
     	$template = New Template;
     	$template->setContent(file_get_contents(dirname(__FILE__).'/Resources/getuigen-kiezen.html.twig', 'r'));
