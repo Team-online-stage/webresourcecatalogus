@@ -8,9 +8,9 @@ info:
     - Reference: wrc
     - Enviroment: dev
     - Version: V.0.1
-    - Repository: [online](https://github.com/ConductionNL/Proto-component-commonground) / [zip](https://github.com/ConductionNL/Proto-component-commonground/archive/master.zip)
-    - Docker Image: [online](https://hub.docker.com/repository/docker/conduction/pc-php) 
-    - Datamodel: [postman](/schema/pc.postman_collection.json) / [oas](/schema/openapi.yaml) / [pdf](/schema/datamodel.pdf) / [mwb](/schema/datamodel.mwb) 
+    - Repository: [online](https://github.com/ConductionNL/webresourcecatalogus) / [zip](https://github.com/ConductionNL/webresourcecatalogus/archive/master.zip)
+    - Docker Image: [online](https://hub.docker.com/repository/docker/conduction/wrc-php) 
+    - Datamodel: [postman](/schema/wrc.postman_collection.json) / [oas](/schema/openapi.yaml) / [pdf](/schema/datamodel.pdf) / [mwb](/schema/datamodel.mwb) 
     
     'Naast deze JSON rest API is er ook een [graphql](/graphql) interface beschikbaar.'         
     
@@ -32,9 +32,14 @@ paths:
                   $ref: '#/components/schemas/Application-read'
             application/ld+json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Application-read'
+                type: object
+                properties:
+                  'hydra:member': { type: array, items: { $ref: '#/components/schemas/Application:jsonld-read' } }
+                  'hydra:totalItems': { type: integer, minimum: 0 }
+                  'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
+                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
+                required:
+                  - 'hydra:member'
             application/vnd.api+json:
               schema:
                 type: array
@@ -73,6 +78,7 @@ paths:
           description: 'The collection page number'
           schema:
             type: integer
+            default: 1
         -
           name: Authorization
           description: 'The JWT of the entity performing the request'
@@ -160,7 +166,7 @@ paths:
                 $ref: '#/components/schemas/Application-read'
             application/ld+json:
               schema:
-                $ref: '#/components/schemas/Application-read'
+                $ref: '#/components/schemas/Application:jsonld-read'
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/Application-read'
@@ -196,7 +202,7 @@ paths:
               $ref: '#/components/schemas/Application-write'
           application/ld+json:
             schema:
-              $ref: '#/components/schemas/Application-write'
+              $ref: '#/components/schemas/Application:jsonld-write'
           application/vnd.api+json:
             schema:
               $ref: '#/components/schemas/Application-write'
@@ -339,7 +345,7 @@ paths:
                 $ref: '#/components/schemas/Application-read'
             application/ld+json:
               schema:
-                $ref: '#/components/schemas/Application-read'
+                $ref: '#/components/schemas/Application:jsonld-read'
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/Application-read'
@@ -458,7 +464,7 @@ paths:
                 $ref: '#/components/schemas/Application-read'
             application/ld+json:
               schema:
-                $ref: '#/components/schemas/Application-read'
+                $ref: '#/components/schemas/Application:jsonld-read'
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/Application-read'
@@ -488,7 +494,7 @@ paths:
               $ref: '#/components/schemas/Application-write'
           application/ld+json:
             schema:
-              $ref: '#/components/schemas/Application-write'
+              $ref: '#/components/schemas/Application:jsonld-write'
           application/vnd.api+json:
             schema:
               $ref: '#/components/schemas/Application-write'
@@ -558,7 +564,7 @@ paths:
                 $ref: '#/components/schemas/Application-read'
             application/ld+json:
               schema:
-                $ref: '#/components/schemas/Application-read'
+                $ref: '#/components/schemas/Application:jsonld-read'
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/Application-read'
@@ -583,81 +589,65 @@ paths:
           description: 'Resource not found'
       requestBody:
         content:
-          application/hal+json:
-            schema:
-              $ref: '#/components/schemas/Application-write'
-          application/ld+json:
-            schema:
-              $ref: '#/components/schemas/Application-write'
           application/vnd.api+json:
             schema:
               $ref: '#/components/schemas/Application-write'
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Application-write'
-          application/xml:
-            schema:
-              $ref: '#/components/schemas/Application-write'
-          application/x-yaml:
-            schema:
-              $ref: '#/components/schemas/Application-write'
-          text/csv:
-            schema:
-              $ref: '#/components/schemas/Application-write'
-          text/html:
-            schema:
-              $ref: '#/components/schemas/Application-write'
         description: 'The updated Application resource'
-  /contents:
+  '/applications/{id}/{slug}':
     get:
       tags:
-        - Content
-      operationId: getContentCollection
-      summary: 'Retrieves the collection of Content resources.'
+        - Application
+      operationId: get_page_on_slugApplicationCollection
+      summary: 'Retrieves the collection of Application resources.'
       responses:
         200:
-          description: 'Content collection response'
+          description: 'Application collection response'
           content:
             application/hal+json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Content-read'
+                  $ref: '#/components/schemas/Application-read'
             application/ld+json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Content-read'
+                type: object
+                properties:
+                  'hydra:member': { type: array, items: { $ref: '#/components/schemas/Application:jsonld-read' } }
+                  'hydra:totalItems': { type: integer, minimum: 0 }
+                  'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
+                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
+                required:
+                  - 'hydra:member'
             application/vnd.api+json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Content-read'
+                  $ref: '#/components/schemas/Application-read'
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Content-read'
+                  $ref: '#/components/schemas/Application-read'
             application/xml:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Content-read'
+                  $ref: '#/components/schemas/Application-read'
             application/x-yaml:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Content-read'
+                  $ref: '#/components/schemas/Application-read'
             text/csv:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Content-read'
+                  $ref: '#/components/schemas/Application-read'
             text/html:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Content-read'
+                  $ref: '#/components/schemas/Application-read'
       parameters:
         -
           name: page
@@ -740,468 +730,6 @@ paths:
           in: query
       produces:
         - application/health+json
-    post:
-      tags:
-        - Content
-      operationId: postContentCollection
-      summary: 'Creates a Content resource.'
-      responses:
-        201:
-          description: 'Content resource created'
-          content:
-            application/hal+json:
-              schema:
-                $ref: '#/components/schemas/Content-read'
-            application/ld+json:
-              schema:
-                $ref: '#/components/schemas/Content-read'
-            application/vnd.api+json:
-              schema:
-                $ref: '#/components/schemas/Content-read'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Content-read'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/Content-read'
-            application/x-yaml:
-              schema:
-                $ref: '#/components/schemas/Content-read'
-            text/csv:
-              schema:
-                $ref: '#/components/schemas/Content-read'
-            text/html:
-              schema:
-                $ref: '#/components/schemas/Content-read'
-          links:
-            GetContentItem:
-              parameters:
-                id: '$response.body#/id'
-              operationId: getContentItem
-              description: 'The `id` value returned in the response can be used as the `id` parameter in `GET /contents/{id}`.'
-        400:
-          description: 'Invalid input'
-        404:
-          description: 'Resource not found'
-      requestBody:
-        content:
-          application/hal+json:
-            schema:
-              $ref: '#/components/schemas/Content-write'
-          application/ld+json:
-            schema:
-              $ref: '#/components/schemas/Content-write'
-          application/vnd.api+json:
-            schema:
-              $ref: '#/components/schemas/Content-write'
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Content-write'
-          application/xml:
-            schema:
-              $ref: '#/components/schemas/Content-write'
-          application/x-yaml:
-            schema:
-              $ref: '#/components/schemas/Content-write'
-          text/csv:
-            schema:
-              $ref: '#/components/schemas/Content-write'
-          text/html:
-            schema:
-              $ref: '#/components/schemas/Content-write'
-        description: 'The new Content resource'
-      parameters:
-        -
-          name: Authorization
-          description: 'The JWT of the entity performing the request'
-          in: header
-        -
-          name: API-Version
-          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
-          example: 1.0.1
-          in: header
-        -
-          name: X-NLX-Logrecord-ID
-          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
-          in: header
-        -
-          name: X-NLX-Request-Process-Id
-          description: 'A process id for purpose registration (doelbinding)'
-          in: header
-        -
-          name: X-NLX-Request-Data-Elements
-          description: 'A list of requested data elements'
-          in: header
-        -
-          name: X-NLX-Request-Data-Subject
-          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
-          in: header
-        -
-          name: X-NLX-Audit-Clarification
-          description: 'A clarification as to why a request has been made  (doelbinding)'
-          in: header
-  '/contents/{id}':
-    get:
-      tags:
-        - Content
-      operationId: getContentItem
-      summary: 'Retrieves a Content resource.'
-      parameters:
-        -
-          name: id
-          in: path
-          required: true
-          schema:
-            type: string
-        -
-          name: Authorization
-          description: 'The JWT of the entity performing the request'
-          in: header
-        -
-          name: API-Version
-          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
-          example: 1.0.1
-          in: header
-        -
-          name: X-NLX-Logrecord-ID
-          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
-          in: header
-        -
-          name: X-NLX-Request-Process-Id
-          description: 'A process id for purpose registration (doelbinding)'
-          in: header
-        -
-          name: X-NLX-Request-Data-Elements
-          description: 'A list of requested data elements'
-          in: header
-        -
-          name: X-NLX-Request-Data-Subject
-          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
-          in: header
-        -
-          name: X-NLX-Audit-Clarification
-          description: 'A clarification as to why a request has been made  (doelbinding)'
-          in: header
-        -
-          name: Link
-          description: 'A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel="hub"'
-          in: header
-        -
-          name: 'extend[]'
-          required: false
-          description: 'An array of nested objects to include in the return object'
-          in: query
-          schema:
-            type: array
-        -
-          name: 'fields[]'
-          required: false
-          description: 'An array of fields to return in output, wil return all fields is not supplied'
-          in: query
-          schema:
-            type: array
-        -
-          name: validOn
-          required: false
-          description: 'Returns object as valid on a given date time'
-          schema:
-            type: string
-            format: date-time
-          in: query
-        -
-          name: validFrom
-          required: false
-          description: 'Returns objects valid from a given date time'
-          schema:
-            type: string
-            format: date-time
-          in: query
-        -
-          name: validUntil
-          required: false
-          description: 'Returns objects valid until a given date time'
-          schema:
-            type: string
-            format: date-time
-          in: query
-      responses:
-        200:
-          description: 'Content resource response'
-          content:
-            application/hal+json:
-              schema:
-                $ref: '#/components/schemas/Content-read'
-            application/ld+json:
-              schema:
-                $ref: '#/components/schemas/Content-read'
-            application/vnd.api+json:
-              schema:
-                $ref: '#/components/schemas/Content-read'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Content-read'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/Content-read'
-            application/x-yaml:
-              schema:
-                $ref: '#/components/schemas/Content-read'
-            text/csv:
-              schema:
-                $ref: '#/components/schemas/Content-read'
-            text/html:
-              schema:
-                $ref: '#/components/schemas/Content-read'
-        404:
-          description: 'Resource not found'
-      produces:
-        - application/health+json
-    delete:
-      tags:
-        - Content
-      operationId: deleteContentItem
-      summary: 'Removes the Content resource.'
-      responses:
-        204:
-          description: 'Content resource deleted'
-        404:
-          description: 'Resource not found'
-      parameters:
-        -
-          name: id
-          in: path
-          required: true
-          schema:
-            type: string
-        -
-          name: Authorization
-          description: 'The JWT of the entity performing the request'
-          in: header
-        -
-          name: API-Version
-          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
-          example: 1.0.1
-          in: header
-        -
-          name: X-NLX-Logrecord-ID
-          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
-          in: header
-        -
-          name: X-NLX-Request-Process-Id
-          description: 'A process id for purpose registration (doelbinding)'
-          in: header
-        -
-          name: X-NLX-Request-Data-Elements
-          description: 'A list of requested data elements'
-          in: header
-        -
-          name: X-NLX-Request-Data-Subject
-          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
-          in: header
-        -
-          name: X-NLX-Audit-Clarification
-          description: 'A clarification as to why a request has been made  (doelbinding)'
-          in: header
-    put:
-      tags:
-        - Content
-      operationId: putContentItem
-      summary: 'Replaces the Content resource.'
-      parameters:
-        -
-          name: id
-          in: path
-          required: true
-          schema:
-            type: string
-        -
-          name: Authorization
-          description: 'The JWT of the entity performing the request'
-          in: header
-        -
-          name: API-Version
-          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
-          example: 1.0.1
-          in: header
-        -
-          name: X-NLX-Logrecord-ID
-          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
-          in: header
-        -
-          name: X-NLX-Request-Process-Id
-          description: 'A process id for purpose registration (doelbinding)'
-          in: header
-        -
-          name: X-NLX-Request-Data-Elements
-          description: 'A list of requested data elements'
-          in: header
-        -
-          name: X-NLX-Request-Data-Subject
-          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
-          in: header
-        -
-          name: X-NLX-Audit-Clarification
-          description: 'A clarification as to why a request has been made  (doelbinding)'
-          in: header
-      responses:
-        200:
-          description: 'Content resource updated'
-          content:
-            application/hal+json:
-              schema:
-                $ref: '#/components/schemas/Content-read'
-            application/ld+json:
-              schema:
-                $ref: '#/components/schemas/Content-read'
-            application/vnd.api+json:
-              schema:
-                $ref: '#/components/schemas/Content-read'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Content-read'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/Content-read'
-            application/x-yaml:
-              schema:
-                $ref: '#/components/schemas/Content-read'
-            text/csv:
-              schema:
-                $ref: '#/components/schemas/Content-read'
-            text/html:
-              schema:
-                $ref: '#/components/schemas/Content-read'
-        400:
-          description: 'Invalid input'
-        404:
-          description: 'Resource not found'
-      requestBody:
-        content:
-          application/hal+json:
-            schema:
-              $ref: '#/components/schemas/Content-write'
-          application/ld+json:
-            schema:
-              $ref: '#/components/schemas/Content-write'
-          application/vnd.api+json:
-            schema:
-              $ref: '#/components/schemas/Content-write'
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Content-write'
-          application/xml:
-            schema:
-              $ref: '#/components/schemas/Content-write'
-          application/x-yaml:
-            schema:
-              $ref: '#/components/schemas/Content-write'
-          text/csv:
-            schema:
-              $ref: '#/components/schemas/Content-write'
-          text/html:
-            schema:
-              $ref: '#/components/schemas/Content-write'
-        description: 'The updated Content resource'
-    patch:
-      tags:
-        - Content
-      operationId: patchContentItem
-      summary: 'Updates the Content resource.'
-      parameters:
-        -
-          name: id
-          in: path
-          required: true
-          schema:
-            type: string
-        -
-          name: Authorization
-          description: 'The JWT of the entity performing the request'
-          in: header
-        -
-          name: API-Version
-          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
-          example: 1.0.1
-          in: header
-        -
-          name: X-NLX-Logrecord-ID
-          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
-          in: header
-        -
-          name: X-NLX-Request-Process-Id
-          description: 'A process id for purpose registration (doelbinding)'
-          in: header
-        -
-          name: X-NLX-Request-Data-Elements
-          description: 'A list of requested data elements'
-          in: header
-        -
-          name: X-NLX-Request-Data-Subject
-          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
-          in: header
-        -
-          name: X-NLX-Audit-Clarification
-          description: 'A clarification as to why a request has been made  (doelbinding)'
-          in: header
-      responses:
-        200:
-          description: 'Content resource updated'
-          content:
-            application/hal+json:
-              schema:
-                $ref: '#/components/schemas/Content-read'
-            application/ld+json:
-              schema:
-                $ref: '#/components/schemas/Content-read'
-            application/vnd.api+json:
-              schema:
-                $ref: '#/components/schemas/Content-read'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Content-read'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/Content-read'
-            application/x-yaml:
-              schema:
-                $ref: '#/components/schemas/Content-read'
-            text/csv:
-              schema:
-                $ref: '#/components/schemas/Content-read'
-            text/html:
-              schema:
-                $ref: '#/components/schemas/Content-read'
-        400:
-          description: 'Invalid input'
-        404:
-          description: 'Resource not found'
-      requestBody:
-        content:
-          application/hal+json:
-            schema:
-              $ref: '#/components/schemas/Content-write'
-          application/ld+json:
-            schema:
-              $ref: '#/components/schemas/Content-write'
-          application/vnd.api+json:
-            schema:
-              $ref: '#/components/schemas/Content-write'
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Content-write'
-          application/xml:
-            schema:
-              $ref: '#/components/schemas/Content-write'
-          application/x-yaml:
-            schema:
-              $ref: '#/components/schemas/Content-write'
-          text/csv:
-            schema:
-              $ref: '#/components/schemas/Content-write'
-          text/html:
-            schema:
-              $ref: '#/components/schemas/Content-write'
-        description: 'The updated Content resource'
   /footers:
     get:
       tags:
@@ -1219,9 +747,14 @@ paths:
                   $ref: '#/components/schemas/Footer-read'
             application/ld+json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Footer-read'
+                type: object
+                properties:
+                  'hydra:member': { type: array, items: { $ref: '#/components/schemas/Footer:jsonld-read' } }
+                  'hydra:totalItems': { type: integer, minimum: 0 }
+                  'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
+                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
+                required:
+                  - 'hydra:member'
             application/vnd.api+json:
               schema:
                 type: array
@@ -1260,6 +793,7 @@ paths:
           description: 'The collection page number'
           schema:
             type: integer
+            default: 1
         -
           name: Authorization
           description: 'The JWT of the entity performing the request'
@@ -1347,7 +881,7 @@ paths:
                 $ref: '#/components/schemas/Footer-read'
             application/ld+json:
               schema:
-                $ref: '#/components/schemas/Footer-read'
+                $ref: '#/components/schemas/Footer:jsonld-read'
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/Footer-read'
@@ -1383,7 +917,7 @@ paths:
               $ref: '#/components/schemas/Footer-write'
           application/ld+json:
             schema:
-              $ref: '#/components/schemas/Footer-write'
+              $ref: '#/components/schemas/Footer:jsonld-write'
           application/vnd.api+json:
             schema:
               $ref: '#/components/schemas/Footer-write'
@@ -1526,7 +1060,7 @@ paths:
                 $ref: '#/components/schemas/Footer-read'
             application/ld+json:
               schema:
-                $ref: '#/components/schemas/Footer-read'
+                $ref: '#/components/schemas/Footer:jsonld-read'
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/Footer-read'
@@ -1645,7 +1179,7 @@ paths:
                 $ref: '#/components/schemas/Footer-read'
             application/ld+json:
               schema:
-                $ref: '#/components/schemas/Footer-read'
+                $ref: '#/components/schemas/Footer:jsonld-read'
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/Footer-read'
@@ -1675,7 +1209,7 @@ paths:
               $ref: '#/components/schemas/Footer-write'
           application/ld+json:
             schema:
-              $ref: '#/components/schemas/Footer-write'
+              $ref: '#/components/schemas/Footer:jsonld-write'
           application/vnd.api+json:
             schema:
               $ref: '#/components/schemas/Footer-write'
@@ -1745,7 +1279,7 @@ paths:
                 $ref: '#/components/schemas/Footer-read'
             application/ld+json:
               schema:
-                $ref: '#/components/schemas/Footer-read'
+                $ref: '#/components/schemas/Footer:jsonld-read'
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/Footer-read'
@@ -1770,28 +1304,7 @@ paths:
           description: 'Resource not found'
       requestBody:
         content:
-          application/hal+json:
-            schema:
-              $ref: '#/components/schemas/Footer-write'
-          application/ld+json:
-            schema:
-              $ref: '#/components/schemas/Footer-write'
           application/vnd.api+json:
-            schema:
-              $ref: '#/components/schemas/Footer-write'
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Footer-write'
-          application/xml:
-            schema:
-              $ref: '#/components/schemas/Footer-write'
-          application/x-yaml:
-            schema:
-              $ref: '#/components/schemas/Footer-write'
-          text/csv:
-            schema:
-              $ref: '#/components/schemas/Footer-write'
-          text/html:
             schema:
               $ref: '#/components/schemas/Footer-write'
         description: 'The updated Footer resource'
@@ -1812,9 +1325,14 @@ paths:
                   $ref: '#/components/schemas/Header-read'
             application/ld+json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Header-read'
+                type: object
+                properties:
+                  'hydra:member': { type: array, items: { $ref: '#/components/schemas/Header:jsonld-read' } }
+                  'hydra:totalItems': { type: integer, minimum: 0 }
+                  'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
+                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
+                required:
+                  - 'hydra:member'
             application/vnd.api+json:
               schema:
                 type: array
@@ -1853,6 +1371,7 @@ paths:
           description: 'The collection page number'
           schema:
             type: integer
+            default: 1
         -
           name: Authorization
           description: 'The JWT of the entity performing the request'
@@ -1940,7 +1459,7 @@ paths:
                 $ref: '#/components/schemas/Header-read'
             application/ld+json:
               schema:
-                $ref: '#/components/schemas/Header-read'
+                $ref: '#/components/schemas/Header:jsonld-read'
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/Header-read'
@@ -1976,7 +1495,7 @@ paths:
               $ref: '#/components/schemas/Header-write'
           application/ld+json:
             schema:
-              $ref: '#/components/schemas/Header-write'
+              $ref: '#/components/schemas/Header:jsonld-write'
           application/vnd.api+json:
             schema:
               $ref: '#/components/schemas/Header-write'
@@ -2119,7 +1638,7 @@ paths:
                 $ref: '#/components/schemas/Header-read'
             application/ld+json:
               schema:
-                $ref: '#/components/schemas/Header-read'
+                $ref: '#/components/schemas/Header:jsonld-read'
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/Header-read'
@@ -2238,7 +1757,7 @@ paths:
                 $ref: '#/components/schemas/Header-read'
             application/ld+json:
               schema:
-                $ref: '#/components/schemas/Header-read'
+                $ref: '#/components/schemas/Header:jsonld-read'
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/Header-read'
@@ -2268,7 +1787,7 @@ paths:
               $ref: '#/components/schemas/Header-write'
           application/ld+json:
             schema:
-              $ref: '#/components/schemas/Header-write'
+              $ref: '#/components/schemas/Header:jsonld-write'
           application/vnd.api+json:
             schema:
               $ref: '#/components/schemas/Header-write'
@@ -2338,7 +1857,7 @@ paths:
                 $ref: '#/components/schemas/Header-read'
             application/ld+json:
               schema:
-                $ref: '#/components/schemas/Header-read'
+                $ref: '#/components/schemas/Header:jsonld-read'
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/Header-read'
@@ -2363,28 +1882,7 @@ paths:
           description: 'Resource not found'
       requestBody:
         content:
-          application/hal+json:
-            schema:
-              $ref: '#/components/schemas/Header-write'
-          application/ld+json:
-            schema:
-              $ref: '#/components/schemas/Header-write'
           application/vnd.api+json:
-            schema:
-              $ref: '#/components/schemas/Header-write'
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Header-write'
-          application/xml:
-            schema:
-              $ref: '#/components/schemas/Header-write'
-          application/x-yaml:
-            schema:
-              $ref: '#/components/schemas/Header-write'
-          text/csv:
-            schema:
-              $ref: '#/components/schemas/Header-write'
-          text/html:
             schema:
               $ref: '#/components/schemas/Header-write'
         description: 'The updated Header resource'
@@ -2405,9 +1903,14 @@ paths:
                   $ref: '#/components/schemas/Image-read'
             application/ld+json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Image-read'
+                type: object
+                properties:
+                  'hydra:member': { type: array, items: { $ref: '#/components/schemas/Image:jsonld-read' } }
+                  'hydra:totalItems': { type: integer, minimum: 0 }
+                  'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
+                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
+                required:
+                  - 'hydra:member'
             application/vnd.api+json:
               schema:
                 type: array
@@ -2446,6 +1949,7 @@ paths:
           description: 'The collection page number'
           schema:
             type: integer
+            default: 1
         -
           name: Authorization
           description: 'The JWT of the entity performing the request'
@@ -2533,7 +2037,7 @@ paths:
                 $ref: '#/components/schemas/Image-read'
             application/ld+json:
               schema:
-                $ref: '#/components/schemas/Image-read'
+                $ref: '#/components/schemas/Image:jsonld-read'
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/Image-read'
@@ -2569,7 +2073,7 @@ paths:
               $ref: '#/components/schemas/Image-write'
           application/ld+json:
             schema:
-              $ref: '#/components/schemas/Image-write'
+              $ref: '#/components/schemas/Image:jsonld-write'
           application/vnd.api+json:
             schema:
               $ref: '#/components/schemas/Image-write'
@@ -2712,7 +2216,7 @@ paths:
                 $ref: '#/components/schemas/Image-read'
             application/ld+json:
               schema:
-                $ref: '#/components/schemas/Image-read'
+                $ref: '#/components/schemas/Image:jsonld-read'
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/Image-read'
@@ -2831,7 +2335,7 @@ paths:
                 $ref: '#/components/schemas/Image-read'
             application/ld+json:
               schema:
-                $ref: '#/components/schemas/Image-read'
+                $ref: '#/components/schemas/Image:jsonld-read'
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/Image-read'
@@ -2861,7 +2365,7 @@ paths:
               $ref: '#/components/schemas/Image-write'
           application/ld+json:
             schema:
-              $ref: '#/components/schemas/Image-write'
+              $ref: '#/components/schemas/Image:jsonld-write'
           application/vnd.api+json:
             schema:
               $ref: '#/components/schemas/Image-write'
@@ -2931,7 +2435,7 @@ paths:
                 $ref: '#/components/schemas/Image-read'
             application/ld+json:
               schema:
-                $ref: '#/components/schemas/Image-read'
+                $ref: '#/components/schemas/Image:jsonld-read'
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/Image-read'
@@ -2956,28 +2460,7 @@ paths:
           description: 'Resource not found'
       requestBody:
         content:
-          application/hal+json:
-            schema:
-              $ref: '#/components/schemas/Image-write'
-          application/ld+json:
-            schema:
-              $ref: '#/components/schemas/Image-write'
           application/vnd.api+json:
-            schema:
-              $ref: '#/components/schemas/Image-write'
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Image-write'
-          application/xml:
-            schema:
-              $ref: '#/components/schemas/Image-write'
-          application/x-yaml:
-            schema:
-              $ref: '#/components/schemas/Image-write'
-          text/csv:
-            schema:
-              $ref: '#/components/schemas/Image-write'
-          text/html:
             schema:
               $ref: '#/components/schemas/Image-write'
         description: 'The updated Image resource'
@@ -2998,9 +2481,14 @@ paths:
                   $ref: '#/components/schemas/MenuItem-read'
             application/ld+json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/MenuItem-read'
+                type: object
+                properties:
+                  'hydra:member': { type: array, items: { $ref: '#/components/schemas/MenuItem:jsonld-read' } }
+                  'hydra:totalItems': { type: integer, minimum: 0 }
+                  'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
+                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
+                required:
+                  - 'hydra:member'
             application/vnd.api+json:
               schema:
                 type: array
@@ -3039,6 +2527,7 @@ paths:
           description: 'The collection page number'
           schema:
             type: integer
+            default: 1
         -
           name: Authorization
           description: 'The JWT of the entity performing the request'
@@ -3126,7 +2615,7 @@ paths:
                 $ref: '#/components/schemas/MenuItem-read'
             application/ld+json:
               schema:
-                $ref: '#/components/schemas/MenuItem-read'
+                $ref: '#/components/schemas/MenuItem:jsonld-read'
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/MenuItem-read'
@@ -3162,7 +2651,7 @@ paths:
               $ref: '#/components/schemas/MenuItem-write'
           application/ld+json:
             schema:
-              $ref: '#/components/schemas/MenuItem-write'
+              $ref: '#/components/schemas/MenuItem:jsonld-write'
           application/vnd.api+json:
             schema:
               $ref: '#/components/schemas/MenuItem-write'
@@ -3305,7 +2794,7 @@ paths:
                 $ref: '#/components/schemas/MenuItem-read'
             application/ld+json:
               schema:
-                $ref: '#/components/schemas/MenuItem-read'
+                $ref: '#/components/schemas/MenuItem:jsonld-read'
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/MenuItem-read'
@@ -3424,7 +2913,7 @@ paths:
                 $ref: '#/components/schemas/MenuItem-read'
             application/ld+json:
               schema:
-                $ref: '#/components/schemas/MenuItem-read'
+                $ref: '#/components/schemas/MenuItem:jsonld-read'
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/MenuItem-read'
@@ -3454,7 +2943,7 @@ paths:
               $ref: '#/components/schemas/MenuItem-write'
           application/ld+json:
             schema:
-              $ref: '#/components/schemas/MenuItem-write'
+              $ref: '#/components/schemas/MenuItem:jsonld-write'
           application/vnd.api+json:
             schema:
               $ref: '#/components/schemas/MenuItem-write'
@@ -3524,7 +3013,7 @@ paths:
                 $ref: '#/components/schemas/MenuItem-read'
             application/ld+json:
               schema:
-                $ref: '#/components/schemas/MenuItem-read'
+                $ref: '#/components/schemas/MenuItem:jsonld-read'
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/MenuItem-read'
@@ -3549,28 +3038,7 @@ paths:
           description: 'Resource not found'
       requestBody:
         content:
-          application/hal+json:
-            schema:
-              $ref: '#/components/schemas/MenuItem-write'
-          application/ld+json:
-            schema:
-              $ref: '#/components/schemas/MenuItem-write'
           application/vnd.api+json:
-            schema:
-              $ref: '#/components/schemas/MenuItem-write'
-          application/json:
-            schema:
-              $ref: '#/components/schemas/MenuItem-write'
-          application/xml:
-            schema:
-              $ref: '#/components/schemas/MenuItem-write'
-          application/x-yaml:
-            schema:
-              $ref: '#/components/schemas/MenuItem-write'
-          text/csv:
-            schema:
-              $ref: '#/components/schemas/MenuItem-write'
-          text/html:
             schema:
               $ref: '#/components/schemas/MenuItem-write'
         description: 'The updated MenuItem resource'
@@ -3591,9 +3059,14 @@ paths:
                   $ref: '#/components/schemas/Menu-read'
             application/ld+json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Menu-read'
+                type: object
+                properties:
+                  'hydra:member': { type: array, items: { $ref: '#/components/schemas/Menu:jsonld-read' } }
+                  'hydra:totalItems': { type: integer, minimum: 0 }
+                  'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
+                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
+                required:
+                  - 'hydra:member'
             application/vnd.api+json:
               schema:
                 type: array
@@ -3632,6 +3105,7 @@ paths:
           description: 'The collection page number'
           schema:
             type: integer
+            default: 1
         -
           name: Authorization
           description: 'The JWT of the entity performing the request'
@@ -3719,7 +3193,7 @@ paths:
                 $ref: '#/components/schemas/Menu-read'
             application/ld+json:
               schema:
-                $ref: '#/components/schemas/Menu-read'
+                $ref: '#/components/schemas/Menu:jsonld-read'
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/Menu-read'
@@ -3755,7 +3229,7 @@ paths:
               $ref: '#/components/schemas/Menu-write'
           application/ld+json:
             schema:
-              $ref: '#/components/schemas/Menu-write'
+              $ref: '#/components/schemas/Menu:jsonld-write'
           application/vnd.api+json:
             schema:
               $ref: '#/components/schemas/Menu-write'
@@ -3898,7 +3372,7 @@ paths:
                 $ref: '#/components/schemas/Menu-read'
             application/ld+json:
               schema:
-                $ref: '#/components/schemas/Menu-read'
+                $ref: '#/components/schemas/Menu:jsonld-read'
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/Menu-read'
@@ -4017,7 +3491,7 @@ paths:
                 $ref: '#/components/schemas/Menu-read'
             application/ld+json:
               schema:
-                $ref: '#/components/schemas/Menu-read'
+                $ref: '#/components/schemas/Menu:jsonld-read'
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/Menu-read'
@@ -4047,7 +3521,7 @@ paths:
               $ref: '#/components/schemas/Menu-write'
           application/ld+json:
             schema:
-              $ref: '#/components/schemas/Menu-write'
+              $ref: '#/components/schemas/Menu:jsonld-write'
           application/vnd.api+json:
             schema:
               $ref: '#/components/schemas/Menu-write'
@@ -4117,7 +3591,7 @@ paths:
                 $ref: '#/components/schemas/Menu-read'
             application/ld+json:
               schema:
-                $ref: '#/components/schemas/Menu-read'
+                $ref: '#/components/schemas/Menu:jsonld-read'
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/Menu-read'
@@ -4142,28 +3616,7 @@ paths:
           description: 'Resource not found'
       requestBody:
         content:
-          application/hal+json:
-            schema:
-              $ref: '#/components/schemas/Menu-write'
-          application/ld+json:
-            schema:
-              $ref: '#/components/schemas/Menu-write'
           application/vnd.api+json:
-            schema:
-              $ref: '#/components/schemas/Menu-write'
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Menu-write'
-          application/xml:
-            schema:
-              $ref: '#/components/schemas/Menu-write'
-          application/x-yaml:
-            schema:
-              $ref: '#/components/schemas/Menu-write'
-          text/csv:
-            schema:
-              $ref: '#/components/schemas/Menu-write'
-          text/html:
             schema:
               $ref: '#/components/schemas/Menu-write'
         description: 'The updated Menu resource'
@@ -4184,9 +3637,14 @@ paths:
                   $ref: '#/components/schemas/Page-read'
             application/ld+json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Page-read'
+                type: object
+                properties:
+                  'hydra:member': { type: array, items: { $ref: '#/components/schemas/Page:jsonld-read' } }
+                  'hydra:totalItems': { type: integer, minimum: 0 }
+                  'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
+                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
+                required:
+                  - 'hydra:member'
             application/vnd.api+json:
               schema:
                 type: array
@@ -4225,6 +3683,7 @@ paths:
           description: 'The collection page number'
           schema:
             type: integer
+            default: 1
         -
           name: Authorization
           description: 'The JWT of the entity performing the request'
@@ -4312,7 +3771,7 @@ paths:
                 $ref: '#/components/schemas/Page-read'
             application/ld+json:
               schema:
-                $ref: '#/components/schemas/Page-read'
+                $ref: '#/components/schemas/Page:jsonld-read'
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/Page-read'
@@ -4348,7 +3807,7 @@ paths:
               $ref: '#/components/schemas/Page-write'
           application/ld+json:
             schema:
-              $ref: '#/components/schemas/Page-write'
+              $ref: '#/components/schemas/Page:jsonld-write'
           application/vnd.api+json:
             schema:
               $ref: '#/components/schemas/Page-write'
@@ -4491,7 +3950,7 @@ paths:
                 $ref: '#/components/schemas/Page-read'
             application/ld+json:
               schema:
-                $ref: '#/components/schemas/Page-read'
+                $ref: '#/components/schemas/Page:jsonld-read'
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/Page-read'
@@ -4610,7 +4069,7 @@ paths:
                 $ref: '#/components/schemas/Page-read'
             application/ld+json:
               schema:
-                $ref: '#/components/schemas/Page-read'
+                $ref: '#/components/schemas/Page:jsonld-read'
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/Page-read'
@@ -4640,7 +4099,7 @@ paths:
               $ref: '#/components/schemas/Page-write'
           application/ld+json:
             schema:
-              $ref: '#/components/schemas/Page-write'
+              $ref: '#/components/schemas/Page:jsonld-write'
           application/vnd.api+json:
             schema:
               $ref: '#/components/schemas/Page-write'
@@ -4710,7 +4169,7 @@ paths:
                 $ref: '#/components/schemas/Page-read'
             application/ld+json:
               schema:
-                $ref: '#/components/schemas/Page-read'
+                $ref: '#/components/schemas/Page:jsonld-read'
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/Page-read'
@@ -4735,28 +4194,7 @@ paths:
           description: 'Resource not found'
       requestBody:
         content:
-          application/hal+json:
-            schema:
-              $ref: '#/components/schemas/Page-write'
-          application/ld+json:
-            schema:
-              $ref: '#/components/schemas/Page-write'
           application/vnd.api+json:
-            schema:
-              $ref: '#/components/schemas/Page-write'
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Page-write'
-          application/xml:
-            schema:
-              $ref: '#/components/schemas/Page-write'
-          application/x-yaml:
-            schema:
-              $ref: '#/components/schemas/Page-write'
-          text/csv:
-            schema:
-              $ref: '#/components/schemas/Page-write'
-          text/html:
             schema:
               $ref: '#/components/schemas/Page-write'
         description: 'The updated Page resource'
@@ -4777,9 +4215,14 @@ paths:
                   $ref: '#/components/schemas/Slug-read'
             application/ld+json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Slug-read'
+                type: object
+                properties:
+                  'hydra:member': { type: array, items: { $ref: '#/components/schemas/Slug:jsonld-read' } }
+                  'hydra:totalItems': { type: integer, minimum: 0 }
+                  'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
+                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
+                required:
+                  - 'hydra:member'
             application/vnd.api+json:
               schema:
                 type: array
@@ -4818,6 +4261,7 @@ paths:
           description: 'The collection page number'
           schema:
             type: integer
+            default: 1
         -
           name: Authorization
           description: 'The JWT of the entity performing the request'
@@ -4905,7 +4349,7 @@ paths:
                 $ref: '#/components/schemas/Slug-read'
             application/ld+json:
               schema:
-                $ref: '#/components/schemas/Slug-read'
+                $ref: '#/components/schemas/Slug:jsonld-read'
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/Slug-read'
@@ -4941,7 +4385,7 @@ paths:
               $ref: '#/components/schemas/Slug-write'
           application/ld+json:
             schema:
-              $ref: '#/components/schemas/Slug-write'
+              $ref: '#/components/schemas/Slug:jsonld-write'
           application/vnd.api+json:
             schema:
               $ref: '#/components/schemas/Slug-write'
@@ -5084,7 +4528,7 @@ paths:
                 $ref: '#/components/schemas/Slug-read'
             application/ld+json:
               schema:
-                $ref: '#/components/schemas/Slug-read'
+                $ref: '#/components/schemas/Slug:jsonld-read'
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/Slug-read'
@@ -5203,7 +4647,7 @@ paths:
                 $ref: '#/components/schemas/Slug-read'
             application/ld+json:
               schema:
-                $ref: '#/components/schemas/Slug-read'
+                $ref: '#/components/schemas/Slug:jsonld-read'
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/Slug-read'
@@ -5233,7 +4677,7 @@ paths:
               $ref: '#/components/schemas/Slug-write'
           application/ld+json:
             schema:
-              $ref: '#/components/schemas/Slug-write'
+              $ref: '#/components/schemas/Slug:jsonld-write'
           application/vnd.api+json:
             schema:
               $ref: '#/components/schemas/Slug-write'
@@ -5303,7 +4747,7 @@ paths:
                 $ref: '#/components/schemas/Slug-read'
             application/ld+json:
               schema:
-                $ref: '#/components/schemas/Slug-read'
+                $ref: '#/components/schemas/Slug:jsonld-read'
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/Slug-read'
@@ -5328,31 +4772,588 @@ paths:
           description: 'Resource not found'
       requestBody:
         content:
-          application/hal+json:
-            schema:
-              $ref: '#/components/schemas/Slug-write'
-          application/ld+json:
-            schema:
-              $ref: '#/components/schemas/Slug-write'
           application/vnd.api+json:
             schema:
               $ref: '#/components/schemas/Slug-write'
+        description: 'The updated Slug resource'
+  /templates:
+    get:
+      tags:
+        - Template
+      operationId: getTemplateCollection
+      summary: 'Retrieves the collection of Template resources.'
+      responses:
+        200:
+          description: 'Template collection response'
+          content:
+            application/hal+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Template-read'
+            application/ld+json:
+              schema:
+                type: object
+                properties:
+                  'hydra:member': { type: array, items: { $ref: '#/components/schemas/Template:jsonld-read' } }
+                  'hydra:totalItems': { type: integer, minimum: 0 }
+                  'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
+                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
+                required:
+                  - 'hydra:member'
+            application/vnd.api+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Template-read'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Template-read'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Template-read'
+            application/x-yaml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Template-read'
+            text/csv:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Template-read'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Template-read'
+      parameters:
+        -
+          name: page
+          in: query
+          required: false
+          description: 'The collection page number'
+          schema:
+            type: integer
+            default: 1
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+        -
+          name: Link
+          description: 'A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel="hub"'
+          in: header
+        -
+          name: 'extend[]'
+          required: false
+          description: 'An array of nested objects to include in the return object'
+          in: query
+          schema:
+            type: array
+        -
+          name: 'fields[]'
+          required: false
+          description: 'An array of fields to return in output, wil return all fields is not supplied'
+          in: query
+          schema:
+            type: array
+        -
+          name: validOn
+          required: false
+          description: 'Returns object as valid on a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validFrom
+          required: false
+          description: 'Returns objects valid from a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validUntil
+          required: false
+          description: 'Returns objects valid until a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+      produces:
+        - application/health+json
+    post:
+      tags:
+        - Template
+      operationId: postTemplateCollection
+      summary: 'Creates a Template resource.'
+      responses:
+        201:
+          description: 'Template resource created'
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Template-read'
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Template:jsonld-read'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Template-read'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Template-read'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Template-read'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/Template-read'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/Template-read'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Template-read'
+          links:
+            GetTemplateItem:
+              parameters:
+                id: '$response.body#/id'
+              operationId: getTemplateItem
+              description: 'The `id` value returned in the response can be used as the `id` parameter in `GET /templates/{id}`.'
+        400:
+          description: 'Invalid input'
+        404:
+          description: 'Resource not found'
+      requestBody:
+        content:
+          application/hal+json:
+            schema:
+              $ref: '#/components/schemas/Template-write'
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/Template:jsonld-write'
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/Template-write'
           application/json:
             schema:
-              $ref: '#/components/schemas/Slug-write'
+              $ref: '#/components/schemas/Template-write'
           application/xml:
             schema:
-              $ref: '#/components/schemas/Slug-write'
+              $ref: '#/components/schemas/Template-write'
           application/x-yaml:
             schema:
-              $ref: '#/components/schemas/Slug-write'
+              $ref: '#/components/schemas/Template-write'
           text/csv:
             schema:
-              $ref: '#/components/schemas/Slug-write'
+              $ref: '#/components/schemas/Template-write'
           text/html:
             schema:
-              $ref: '#/components/schemas/Slug-write'
-        description: 'The updated Slug resource'
+              $ref: '#/components/schemas/Template-write'
+        description: 'The new Template resource'
+      parameters:
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+  '/templates/{id}':
+    get:
+      tags:
+        - Template
+      operationId: getTemplateItem
+      summary: 'Retrieves a Template resource.'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+        -
+          name: Link
+          description: 'A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel="hub"'
+          in: header
+        -
+          name: 'extend[]'
+          required: false
+          description: 'An array of nested objects to include in the return object'
+          in: query
+          schema:
+            type: array
+        -
+          name: 'fields[]'
+          required: false
+          description: 'An array of fields to return in output, wil return all fields is not supplied'
+          in: query
+          schema:
+            type: array
+        -
+          name: validOn
+          required: false
+          description: 'Returns object as valid on a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validFrom
+          required: false
+          description: 'Returns objects valid from a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validUntil
+          required: false
+          description: 'Returns objects valid until a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+      responses:
+        200:
+          description: 'Template resource response'
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Template-read'
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Template:jsonld-read'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Template-read'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Template-read'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Template-read'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/Template-read'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/Template-read'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Template-read'
+        404:
+          description: 'Resource not found'
+      produces:
+        - application/health+json
+    delete:
+      tags:
+        - Template
+      operationId: deleteTemplateItem
+      summary: 'Removes the Template resource.'
+      responses:
+        204:
+          description: 'Template resource deleted'
+        404:
+          description: 'Resource not found'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+    put:
+      tags:
+        - Template
+      operationId: putTemplateItem
+      summary: 'Replaces the Template resource.'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+      responses:
+        200:
+          description: 'Template resource updated'
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Template-read'
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Template:jsonld-read'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Template-read'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Template-read'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Template-read'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/Template-read'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/Template-read'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Template-read'
+        400:
+          description: 'Invalid input'
+        404:
+          description: 'Resource not found'
+      requestBody:
+        content:
+          application/hal+json:
+            schema:
+              $ref: '#/components/schemas/Template-write'
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/Template:jsonld-write'
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/Template-write'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Template-write'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Template-write'
+          application/x-yaml:
+            schema:
+              $ref: '#/components/schemas/Template-write'
+          text/csv:
+            schema:
+              $ref: '#/components/schemas/Template-write'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Template-write'
+        description: 'The updated Template resource'
+    patch:
+      tags:
+        - Template
+      operationId: patchTemplateItem
+      summary: 'Updates the Template resource.'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+      responses:
+        200:
+          description: 'Template resource updated'
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Template-read'
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Template:jsonld-read'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Template-read'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Template-read'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Template-read'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/Template-read'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/Template-read'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Template-read'
+        400:
+          description: 'Invalid input'
+        404:
+          description: 'Resource not found'
+      requestBody:
+        content:
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/Template-write'
+        description: 'The updated Template resource'
 security:
   -
     apiKey: []
@@ -5365,6 +5366,8 @@ components:
         id:
           readOnly: true
           description: 'The UUID identifier of this resource'
+          externalDocs:
+            url: 'http://schema.org/identifier'
           type: string
         name:
           description: 'The name of this application.'
@@ -5375,10 +5378,6 @@ components:
         domain:
           description: 'The domain of this application.'
           type: string
-        pages:
-          type: array
-          items:
-            $ref: '#/components/schemas/Page-read'
         header:
           $ref: '#/components/schemas/Header-read'
         footer:
@@ -5408,10 +5407,6 @@ components:
         domain:
           description: 'The domain of this application.'
           type: string
-        pages:
-          type: array
-          items:
-            $ref: '#/components/schemas/Page-write'
         header:
           $ref: '#/components/schemas/Header-write'
         footer:
@@ -5420,36 +5415,80 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Slug-write'
-    Content-read:
+    'Application:jsonld-read':
       type: object
-      description: 'Content holds information and photos you want to show on your pages.'
+      description: 'Application is the project of a website.'
       properties:
+        '@context':
+          readOnly: true
+          type: string
+        '@id':
+          readOnly: true
+          type: string
+        '@type':
+          readOnly: true
+          type: string
         id:
           readOnly: true
           description: 'The UUID identifier of this resource'
+          externalDocs:
+            url: 'http://schema.org/identifier'
           type: string
-        data:
-          description: 'The data of this content.'
+        name:
+          description: 'The name of this application.'
           type: string
-        image:
+        description:
+          description: 'The description of this application.'
+          type: string
+        domain:
+          description: 'The domain of this application.'
+          type: string
+        header:
+          $ref: '#/components/schemas/Header:jsonld-read'
+        footer:
+          $ref: '#/components/schemas/Footer:jsonld-read'
+        slugs:
           type: array
           items:
-            $ref: '#/components/schemas/Image-read'
+            $ref: '#/components/schemas/Slug:jsonld-read'
       required:
-        - data
-    Content-write:
+        - name
+        - description
+        - domain
+    'Application:jsonld-write':
       type: object
-      description: 'Content holds information and photos you want to show on your pages.'
+      description: 'Application is the project of a website.'
       required:
-        - data
+        - name
+        - description
+        - domain
       properties:
-        data:
-          description: 'The data of this content.'
+        '@context':
+          readOnly: true
           type: string
-        image:
+        '@id':
+          readOnly: true
+          type: string
+        '@type':
+          readOnly: true
+          type: string
+        name:
+          description: 'The name of this application.'
+          type: string
+        description:
+          description: 'The description of this application.'
+          type: string
+        domain:
+          description: 'The domain of this application.'
+          type: string
+        header:
+          $ref: '#/components/schemas/Header:jsonld-write'
+        footer:
+          $ref: '#/components/schemas/Footer:jsonld-write'
+        slugs:
           type: array
           items:
-            $ref: '#/components/schemas/Image-write'
+            $ref: '#/components/schemas/Slug:jsonld-write'
     Footer-read:
       type: object
       description: 'Footer can hold a logo and menu or other links.'
@@ -5457,6 +5496,8 @@ components:
         id:
           readOnly: true
           description: 'The UUID identifier of this resource'
+          externalDocs:
+            url: 'http://schema.org/identifier'
           type: string
         logo:
           $ref: '#/components/schemas/Image-read'
@@ -5482,6 +5523,58 @@ components:
             $ref: '#/components/schemas/Image-write'
         application:
           $ref: '#/components/schemas/Application-write'
+    'Footer:jsonld-read':
+      type: object
+      description: 'Footer can hold a logo and menu or other links.'
+      properties:
+        '@context':
+          readOnly: true
+          type: string
+        '@id':
+          readOnly: true
+          type: string
+        '@type':
+          readOnly: true
+          type: string
+        id:
+          readOnly: true
+          description: 'The UUID identifier of this resource'
+          externalDocs:
+            url: 'http://schema.org/identifier'
+          type: string
+        logo:
+          $ref: '#/components/schemas/Image:jsonld-read'
+        menu:
+          $ref: '#/components/schemas/Menu:jsonld-read'
+        image:
+          type: array
+          items:
+            $ref: '#/components/schemas/Image:jsonld-read'
+        application:
+          $ref: '#/components/schemas/Application:jsonld-read'
+    'Footer:jsonld-write':
+      type: object
+      description: 'Footer can hold a logo and menu or other links.'
+      properties:
+        '@context':
+          readOnly: true
+          type: string
+        '@id':
+          readOnly: true
+          type: string
+        '@type':
+          readOnly: true
+          type: string
+        logo:
+          $ref: '#/components/schemas/Image:jsonld-write'
+        menu:
+          $ref: '#/components/schemas/Menu:jsonld-write'
+        image:
+          type: array
+          items:
+            $ref: '#/components/schemas/Image:jsonld-write'
+        application:
+          $ref: '#/components/schemas/Application:jsonld-write'
     Header-read:
       type: object
       description: 'A header holds your logo and menu in your application.'
@@ -5489,6 +5582,8 @@ components:
         id:
           readOnly: true
           description: 'The UUID identifier of this resource'
+          externalDocs:
+            url: 'http://schema.org/identifier'
           type: string
         logo:
           $ref: '#/components/schemas/Image-read'
@@ -5514,6 +5609,58 @@ components:
             $ref: '#/components/schemas/Image-write'
         application:
           $ref: '#/components/schemas/Application-write'
+    'Header:jsonld-read':
+      type: object
+      description: 'A header holds your logo and menu in your application.'
+      properties:
+        '@context':
+          readOnly: true
+          type: string
+        '@id':
+          readOnly: true
+          type: string
+        '@type':
+          readOnly: true
+          type: string
+        id:
+          readOnly: true
+          description: 'The UUID identifier of this resource'
+          externalDocs:
+            url: 'http://schema.org/identifier'
+          type: string
+        logo:
+          $ref: '#/components/schemas/Image:jsonld-read'
+        menu:
+          $ref: '#/components/schemas/Menu:jsonld-read'
+        image:
+          type: array
+          items:
+            $ref: '#/components/schemas/Image:jsonld-read'
+        application:
+          $ref: '#/components/schemas/Application:jsonld-read'
+    'Header:jsonld-write':
+      type: object
+      description: 'A header holds your logo and menu in your application.'
+      properties:
+        '@context':
+          readOnly: true
+          type: string
+        '@id':
+          readOnly: true
+          type: string
+        '@type':
+          readOnly: true
+          type: string
+        logo:
+          $ref: '#/components/schemas/Image:jsonld-write'
+        menu:
+          $ref: '#/components/schemas/Menu:jsonld-write'
+        image:
+          type: array
+          items:
+            $ref: '#/components/schemas/Image:jsonld-write'
+        application:
+          $ref: '#/components/schemas/Application:jsonld-write'
     Image-read:
       type: object
       description: 'Image speaks for itself.'
@@ -5521,6 +5668,8 @@ components:
         id:
           readOnly: true
           description: 'The UUID identifier of this resource'
+          externalDocs:
+            url: 'http://schema.org/identifier'
           type: string
         name:
           description: 'The name of this image'
@@ -5572,6 +5721,84 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Footer-write'
+    'Image:jsonld-read':
+      type: object
+      description: 'Image speaks for itself.'
+      properties:
+        '@context':
+          readOnly: true
+          type: string
+        '@id':
+          readOnly: true
+          type: string
+        '@type':
+          readOnly: true
+          type: string
+        id:
+          readOnly: true
+          description: 'The UUID identifier of this resource'
+          externalDocs:
+            url: 'http://schema.org/identifier'
+          type: string
+        name:
+          description: 'The name of this image'
+          type: string
+        alt:
+          description: 'The alt of of this image for people with poor eyesight'
+          type: string
+        href:
+          description: 'The href of this image'
+          type: string
+        logo:
+          $ref: '#/components/schemas/Header:jsonld-read'
+        headers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Header:jsonld-read'
+        footers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Footer:jsonld-read'
+      required:
+        - name
+        - alt
+        - href
+    'Image:jsonld-write':
+      type: object
+      description: 'Image speaks for itself.'
+      required:
+        - name
+        - alt
+        - href
+      properties:
+        '@context':
+          readOnly: true
+          type: string
+        '@id':
+          readOnly: true
+          type: string
+        '@type':
+          readOnly: true
+          type: string
+        name:
+          description: 'The name of this image'
+          type: string
+        alt:
+          description: 'The alt of of this image for people with poor eyesight'
+          type: string
+        href:
+          description: 'The href of this image'
+          type: string
+        logo:
+          $ref: '#/components/schemas/Header:jsonld-write'
+        headers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Header:jsonld-write'
+        footers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Footer:jsonld-write'
     Menu-read:
       type: object
       description: 'Menu is your way of navigation inside your application.'
@@ -5579,6 +5806,8 @@ components:
         id:
           readOnly: true
           description: 'The UUID identifier of this resource'
+          externalDocs:
+            url: 'http://schema.org/identifier'
           type: string
         name:
           description: 'The name of this menu'
@@ -5610,6 +5839,64 @@ components:
           $ref: '#/components/schemas/Header-write'
         footer:
           $ref: '#/components/schemas/Footer-write'
+    'Menu:jsonld-read':
+      type: object
+      description: 'Menu is your way of navigation inside your application.'
+      properties:
+        '@context':
+          readOnly: true
+          type: string
+        '@id':
+          readOnly: true
+          type: string
+        '@type':
+          readOnly: true
+          type: string
+        id:
+          readOnly: true
+          description: 'The UUID identifier of this resource'
+          externalDocs:
+            url: 'http://schema.org/identifier'
+          type: string
+        name:
+          description: 'The name of this menu'
+          type: string
+        menuItem:
+          type: array
+          items:
+            $ref: '#/components/schemas/MenuItem:jsonld-read'
+        header:
+          $ref: '#/components/schemas/Header:jsonld-read'
+        footer:
+          $ref: '#/components/schemas/Footer:jsonld-read'
+      required:
+        - name
+    'Menu:jsonld-write':
+      type: object
+      description: 'Menu is your way of navigation inside your application.'
+      required:
+        - name
+      properties:
+        '@context':
+          readOnly: true
+          type: string
+        '@id':
+          readOnly: true
+          type: string
+        '@type':
+          readOnly: true
+          type: string
+        name:
+          description: 'The name of this menu'
+          type: string
+        menuItem:
+          type: array
+          items:
+            $ref: '#/components/schemas/MenuItem:jsonld-write'
+        header:
+          $ref: '#/components/schemas/Header:jsonld-write'
+        footer:
+          $ref: '#/components/schemas/Footer:jsonld-write'
     MenuItem-read:
       type: object
       description: 'MenuItem is a part of a menu and can be a link or submenu.'
@@ -5617,6 +5904,8 @@ components:
         id:
           readOnly: true
           description: 'The UUID identifier of this resource'
+          externalDocs:
+            url: 'http://schema.org/identifier'
           type: string
         name:
           description: 'The name of this MenuItem'
@@ -5650,6 +5939,66 @@ components:
           type: string
         menu:
           $ref: '#/components/schemas/Menu-write'
+    'MenuItem:jsonld-read':
+      type: object
+      description: 'MenuItem is a part of a menu and can be a link or submenu.'
+      properties:
+        '@context':
+          readOnly: true
+          type: string
+        '@id':
+          readOnly: true
+          type: string
+        '@type':
+          readOnly: true
+          type: string
+        id:
+          readOnly: true
+          description: 'The UUID identifier of this resource'
+          externalDocs:
+            url: 'http://schema.org/identifier'
+          type: string
+        name:
+          description: 'The name of this MenuItem'
+          type: string
+        description:
+          description: 'The description of this MenuItem'
+          type: string
+        href:
+          description: 'The href of this MenuItem that links to another page'
+          type: string
+        menu:
+          $ref: '#/components/schemas/Menu:jsonld-read'
+      required:
+        - name
+        - href
+    'MenuItem:jsonld-write':
+      type: object
+      description: 'MenuItem is a part of a menu and can be a link or submenu.'
+      required:
+        - name
+        - href
+      properties:
+        '@context':
+          readOnly: true
+          type: string
+        '@id':
+          readOnly: true
+          type: string
+        '@type':
+          readOnly: true
+          type: string
+        name:
+          description: 'The name of this MenuItem'
+          type: string
+        description:
+          description: 'The description of this MenuItem'
+          type: string
+        href:
+          description: 'The href of this MenuItem that links to another page'
+          type: string
+        menu:
+          $ref: '#/components/schemas/Menu:jsonld-write'
     Page-read:
       type: object
       description: 'A page holds your content in your application.'
@@ -5657,6 +6006,8 @@ components:
         id:
           readOnly: true
           description: 'The UUID identifier of this resource'
+          externalDocs:
+            url: 'http://schema.org/identifier'
           type: string
         title:
           description: 'The title of this page.'
@@ -5664,13 +6015,8 @@ components:
         description:
           description: 'The description of this page.'
           type: string
-        content:
-          type: array
-          items:
-            $ref: '#/components/schemas/Content-read'
-        templateEngine:
-          description: 'The template engine of this page.'
-          type: string
+        template:
+          $ref: '#/components/schemas/Template-read'
         application:
           $ref: '#/components/schemas/Application-read'
         slug:
@@ -5678,14 +6024,12 @@ components:
       required:
         - title
         - description
-        - templateEngine
     Page-write:
       type: object
       description: 'A page holds your content in your application.'
       required:
         - title
         - description
-        - templateEngine
       properties:
         title:
           description: 'The title of this page.'
@@ -5693,17 +6037,74 @@ components:
         description:
           description: 'The description of this page.'
           type: string
-        content:
-          type: array
-          items:
-            $ref: '#/components/schemas/Content-write'
-        templateEngine:
-          description: 'The template engine of this page.'
-          type: string
+        template:
+          $ref: '#/components/schemas/Template-write'
         application:
           $ref: '#/components/schemas/Application-write'
         slug:
           $ref: '#/components/schemas/Slug-write'
+    'Page:jsonld-read':
+      type: object
+      description: 'A page holds your content in your application.'
+      properties:
+        '@context':
+          readOnly: true
+          type: string
+        '@id':
+          readOnly: true
+          type: string
+        '@type':
+          readOnly: true
+          type: string
+        id:
+          readOnly: true
+          description: 'The UUID identifier of this resource'
+          externalDocs:
+            url: 'http://schema.org/identifier'
+          type: string
+        title:
+          description: 'The title of this page.'
+          type: string
+        description:
+          description: 'The description of this page.'
+          type: string
+        template:
+          $ref: '#/components/schemas/Template:jsonld-read'
+        application:
+          $ref: '#/components/schemas/Application:jsonld-read'
+        slug:
+          $ref: '#/components/schemas/Slug:jsonld-read'
+      required:
+        - title
+        - description
+    'Page:jsonld-write':
+      type: object
+      description: 'A page holds your content in your application.'
+      required:
+        - title
+        - description
+      properties:
+        '@context':
+          readOnly: true
+          type: string
+        '@id':
+          readOnly: true
+          type: string
+        '@type':
+          readOnly: true
+          type: string
+        title:
+          description: 'The title of this page.'
+          type: string
+        description:
+          description: 'The description of this page.'
+          type: string
+        template:
+          $ref: '#/components/schemas/Template:jsonld-write'
+        application:
+          $ref: '#/components/schemas/Application:jsonld-write'
+        slug:
+          $ref: '#/components/schemas/Slug:jsonld-write'
     Slug-read:
       type: object
       description: 'Your slug connects your application with your pages.'
@@ -5711,6 +6112,8 @@ components:
         id:
           readOnly: true
           description: 'The UUID identifier of this resource'
+          externalDocs:
+            url: 'http://schema.org/identifier'
           type: string
         application:
           $ref: '#/components/schemas/Application-read'
@@ -5734,6 +6137,154 @@ components:
           type: string
       required:
         - slug
+    'Slug:jsonld-read':
+      type: object
+      description: 'Your slug connects your application with your pages.'
+      properties:
+        '@context':
+          readOnly: true
+          type: string
+        '@id':
+          readOnly: true
+          type: string
+        '@type':
+          readOnly: true
+          type: string
+        id:
+          readOnly: true
+          description: 'The UUID identifier of this resource'
+          externalDocs:
+            url: 'http://schema.org/identifier'
+          type: string
+        application:
+          $ref: '#/components/schemas/Application:jsonld-read'
+        page:
+          $ref: '#/components/schemas/Page:jsonld-read'
+        slug:
+          description: 'The actual slug of this slug.'
+          type: string
+      required:
+        - slug
+    'Slug:jsonld-write':
+      type: object
+      description: 'Your slug connects your application with your pages.'
+      properties:
+        '@context':
+          readOnly: true
+          type: string
+        '@id':
+          readOnly: true
+          type: string
+        '@type':
+          readOnly: true
+          type: string
+        application:
+          $ref: '#/components/schemas/Application:jsonld-write'
+        page:
+          $ref: '#/components/schemas/Page:jsonld-write'
+        slug:
+          description: 'The actual slug of this slug.'
+          type: string
+      required:
+        - slug
+    Template-read:
+      type: object
+      description: 'Content holds information and photos you want to show on your pages.'
+      properties:
+        id:
+          readOnly: true
+          description: 'The UUID identifier of this resource'
+          externalDocs:
+            url: 'http://schema.org/identifier'
+          type: string
+        content:
+          description: 'The Content of this template.'
+          type: string
+        templateEngine:
+          description: 'The template engine used to render this template. Schould be either twig (Twig), md (markdown) or rst (reStructuredText)'
+          type: string
+        pages:
+          type: array
+          items:
+            $ref: '#/components/schemas/Page-read'
+      required:
+        - content
+        - templateEngine
+    Template-write:
+      type: object
+      description: 'Content holds information and photos you want to show on your pages.'
+      required:
+        - content
+        - templateEngine
+      properties:
+        content:
+          description: 'The Content of this template.'
+          type: string
+        templateEngine:
+          description: 'The template engine used to render this template. Schould be either twig (Twig), md (markdown) or rst (reStructuredText)'
+          type: string
+        pages:
+          type: array
+          items:
+            $ref: '#/components/schemas/Page-write'
+    'Template:jsonld-read':
+      type: object
+      description: 'Content holds information and photos you want to show on your pages.'
+      properties:
+        '@context':
+          readOnly: true
+          type: string
+        '@id':
+          readOnly: true
+          type: string
+        '@type':
+          readOnly: true
+          type: string
+        id:
+          readOnly: true
+          description: 'The UUID identifier of this resource'
+          externalDocs:
+            url: 'http://schema.org/identifier'
+          type: string
+        content:
+          description: 'The Content of this template.'
+          type: string
+        templateEngine:
+          description: 'The template engine used to render this template. Schould be either twig (Twig), md (markdown) or rst (reStructuredText)'
+          type: string
+        pages:
+          type: array
+          items:
+            $ref: '#/components/schemas/Page:jsonld-read'
+      required:
+        - content
+        - templateEngine
+    'Template:jsonld-write':
+      type: object
+      description: 'Content holds information and photos you want to show on your pages.'
+      required:
+        - content
+        - templateEngine
+      properties:
+        '@context':
+          readOnly: true
+          type: string
+        '@id':
+          readOnly: true
+          type: string
+        '@type':
+          readOnly: true
+          type: string
+        content:
+          description: 'The Content of this template.'
+          type: string
+        templateEngine:
+          description: 'The template engine used to render this template. Schould be either twig (Twig), md (markdown) or rst (reStructuredText)'
+          type: string
+        pages:
+          type: array
+          items:
+            $ref: '#/components/schemas/Page:jsonld-write'
   securitySchemes:
     apiKey:
       type: apiKey
@@ -5753,9 +6304,8 @@ definitions:
         example: 'Is the best site ever'
         maxLength: 255
       domain:
-        example: 'https://www.webshop.nl'
+        example: 'https://www.example.org'
         maxLength: 255
-      pages: []
       header: []
       footer: []
       slugs: []
@@ -5772,9 +6322,8 @@ definitions:
         example: 'Is the best site ever'
         maxLength: 255
       domain:
-        example: 'https://www.webshop.nl'
+        example: 'https://www.example.org'
         maxLength: 255
-      pages: []
       header: []
       footer: []
       slugs: []
@@ -5782,25 +6331,6 @@ definitions:
       - name
       - description
       - domain
-  Content-read:
-    properties:
-      id:
-        example: e2984465-190a-4562-829e-a8cca81aa35d
-        format: uuid
-      data:
-        example: 'A lot of random info over any topic'
-        maxLength: 2555
-      image: []
-    required:
-      - data
-  Content-write:
-    properties:
-      data:
-        example: 'A lot of random info over any topic'
-        maxLength: 2555
-      image: []
-    required:
-      - data
   Footer-read:
     properties:
       id:
@@ -5941,16 +6471,12 @@ definitions:
       description:
         example: 'This page holds info about this application'
         maxLength: 255
-      templateEngine:
-        example: Twig
-        maxLength: 255
-      content: []
+      template: []
       application: []
       slug: []
     required:
       - title
       - description
-      - templateEngine
   Page-write:
     properties:
       title:
@@ -5959,16 +6485,12 @@ definitions:
       description:
         example: 'This page holds info about this application'
         maxLength: 255
-      templateEngine:
-        example: Twig
-        maxLength: 255
-      content: []
+      template: []
       application: []
       slug: []
     required:
       - title
       - description
-      - templateEngine
   Slug-read:
     properties:
       id:
@@ -5990,17 +6512,34 @@ definitions:
       page: []
     required:
       - slug
+  Template-read:
+    properties:
+      id:
+        example: e2984465-190a-4562-829e-a8cca81aa35d
+        format: uuid
+      content:
+        example: 'A lot of random info over any topic'
+      templateEngine:
+        example: Twig
+      pages: []
+    required:
+      - content
+      - templateEngine
+  Template-write:
+    properties:
+      content:
+        example: 'A lot of random info over any topic'
+      templateEngine:
+        example: Twig
+      pages: []
+    required:
+      - content
+      - templateEngine
 tags:
   -
     name: Application
     description: |
       Application is the project of a website.
-      
-      
-  -
-    name: Content
-    description: |
-      Content holds information and photos you want to show on your pages.
       
       
   -
@@ -6045,21 +6584,27 @@ tags:
       Your slug connects your application with your pages.
       
       
+  -
+    name: Template
+    description: |
+      Content holds information and photos you want to show on your pages.
+      
+      
 securityDefinitions:
   JWT-Oauth:
     type: oauth2
     authorizationUrl: 'http://petstore.swagger.io/api/oauth/dialog'
     flow: implicit
     scopes:
-      read: 'read right to the Slug resource'
-      write: 'write right to the Slug resource'
+      read: 'read right to the Template resource'
+      write: 'write right to the Template resource'
   JWT-Token:
     type: apiKey
     in: header
     name: Authorization
     scopes:
-      read: 'read right to the Slug resource'
-      write: 'write right to the Slug resource'
+      read: 'read right to the Template resource'
+      write: 'write right to the Template resource'
 host: irc.zaakonline.nl
 servers:
   -
