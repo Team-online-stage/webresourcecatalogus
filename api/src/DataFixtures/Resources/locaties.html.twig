@@ -25,7 +25,7 @@
                 <div class="isotope-row">
                     {% for product in products %}
                 	<div class="item entertainment mobile intern"> <!-- 1 -->
-                    	<a href="{{ path('app_locatie_view',{'id':product.id}) }}" data-fancybox-group="images_gallery" >
+                    	<a href="{{ path('app_default_view',{'slug':'locatie','id':product.id}) }}" data-fancybox-group="images_gallery" >
                             <figure class="img-overlay">
                             	<img ng-src="{{ product.logo}}" alt="Portfolio Item 1" />
                                 <div class="overlay-masked" style="display: none;">
