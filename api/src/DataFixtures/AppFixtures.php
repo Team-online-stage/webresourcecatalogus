@@ -443,12 +443,12 @@ class AppFixtures extends Fixture
     	$manager->persist($page);
     	
     	// Extras
-    	$id = Uuid::fromString('50409369-6f28-4f9e-b074-2fa638d1b25a');
+    	//$id = Uuid::fromString('50409369-6f28-4f9e-b074-2fa638d1b25a');
     	$template = New Template;
     	$template->setContent(file_get_contents(dirname(__FILE__).'/Resources/extra.html.twig', 'r'));
     	$template->setTemplateEngine('twig');
-    	$manager->persist($template);
-    	$template->setId($id);
+    	//$manager->persist($template);
+    	//$template->setId($id);
     	$manager->persist($template);
     	$manager->flush();
     	$template= $manager->getRepository('App:Template')->findOneBy(array('id'=> $id));
