@@ -228,7 +228,7 @@ class AppFixtures extends Fixture
     	$slug->setSlug('melding');
     	$manager->persist($page);
     	
-    	// Plechtigheid
+    	// Plechtigheid    	
     	$id = Uuid::fromString('013276cc-1483-46b4-ad5b-1cba5acf6d9f');
     	$template = New Template;
     	$template->setContent(file_get_contents(dirname(__FILE__).'/Resources/plechtigheid.html.twig', 'r'));

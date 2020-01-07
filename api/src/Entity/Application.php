@@ -114,7 +114,6 @@ class Application
     private $footer;
 
     /**
-     * @Groups({"read","write"})
      * @ORM\OneToMany(targetEntity="App\Entity\Slug", mappedBy="application")
      * @MaxDepth(1)
      */
