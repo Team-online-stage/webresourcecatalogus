@@ -13,15 +13,15 @@
                 </div>
                 
                 <div class="col-sm-8"> <!-- 2 -->
-                    {% if product is not empty %}
+                    {% elseif request is defined and request and request.properties.order is defined and request.properties.order is not empty %}
                  	<h4>{{ product.naam }} {{ product.prijsExcl / 100 }}</h4>
               		<p>U heeft een huwelijk of opties gekozen waar kosten aan zijn verbonden. U dient deze kosten 6 weken voor aanvang van huwelijk te voldoen</p>
               		<p><a href="https://www.ideal.nl/demo/" class="btn btn-login btn-large" >
 						<i class="fas fa-money-bill-wave" ></i>
-			       		Betaal uw huwelijk
+			       		Betaal uw verzoek
 		        	</a></p>
 		        	{% else %}
-                 	<h4>U heeft nog geen plechtigheid gekozen</h4>
+                 	<h4>U heeft uw verzoek nog niet omgezet naar een order</h4>
 		        	{% endif %}
                 </div>
                 

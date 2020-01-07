@@ -1,8 +1,8 @@
-{# templates/home/flow.html.twig #}
+{# templates/home/index.html.twig #}
 
+{% extends 'base.html.twig' %}
 
-{% block body %}   
-            
+{% block body %}
             <!-- .row -->
             <div class="row animation" data-animation="animation-fade-in" data-delay=" {% if app.session.flashbag.peekAll|length > 0 %}3400{%else%}200{% endif %}" >
                 
@@ -15,113 +15,280 @@
                 <div class="col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-0">
                 	<div class="col-text20 margin-bottom20">
                     	<div class="post-heading-left">
-                            <h4>To do or not do? </h4>
-                            <h2>En, zijn jullie er al klaar voor?</h2>
-                            <p>We kunnen ons goed voorstellen dat er nogal wat op jullie afkomt bij het plannen van een huwelijk, daarom hebben we alles op een rij gezet voor jullie. Een handig overzicht van wat er moet gebeuren, maar ook wat er al is gedaan.</p>
+                            <h2>Wat is er al gedaan en wat moet er nog gebeuren?</h2>
+                            <p>We kunnen ons goed voorstellen dat er nogal wat op jullie afkomt bij het plannen , daarom hebben we alles op een rij gezet voor jullie. Een handig overzicht van wat er moet gebeuren, maar ook wat er al is gedaan.</p>
                             <p>Legenda
                             	<i class="fa far fa-square"></i> Nog te doen
-                            	<i class="fa fas fa-circle-notch fa-spin"></i> In afwachting van reactie
                             	<i class="fa fas fa-check"></i> Gedaan
-                            	<i class="fa fas fa-times"></i> (Nog) niet gelukt
                             </p>
-                        </div>
-                        
-                        <div class="list-row">
-                        	<div class="list-col">
-                        		Uw perfecte dag
-                                <ul class="list-icon">
-                                 	<!-- Trouwdatum -->                                    
+                        </div><!-- /.post-heading-left -->
+                        <div class="list-row"><div class="list-col">
+                        		Gedaan
+                                <ul class="list-icon">   
+                                    
+            	                    {% if request.properties.plechtigheid is defined %}                  
+                                    <li><b>Ceremonie</b>    
+                                		<ul class="list-icon">   
+                                			<li>  
+                                            	<!--  Trouwdatum -->  
+                                            	<i class="fa fas fa-check"></i>{{  request.properties.plechtigheid }}
+                                    		</li> 
+                                		</ul>  
+                                    </li> 
+            	                    {% endif %}  
+            	                    {% if request.properties.datum is defined %}                  
+                                    <li><b>Trouwdatum</b>    
+                                		<ul class="list-icon">   
+                                			<li>  
+                                            	<!--  Trouwdatum -->  
+                                            	<i class="fa fas fa-check"></i> {{ request.properties.datum  }}
+                                    		</li> 
+                                		</ul>  
+                                    </li> 
+            	                    {% endif %}  
+            	                    {% if request.properties.ambtenaar is defined %}                  
+                                    <li><b>Ambtenaar</b>    
+                                		<ul class="list-icon">   
+                                			<li>  
+                                            	<!--  Trouwdatum -->  
+                                            	<i class="fa fas fa-check"></i>{{ request.properties.ambtenaar }}
+                                    		</li> 
+                                		</ul>  
+                                    </li> 
+            	                    {% endif %}  
+            	                    {% if request.properties.locatie is defined %}                  
+                                    <li><b>Locatie</b>    
+                                		<ul class="list-icon">   
+                                			<li>  
+                                            	<!--  Trouwdatum -->  
+                                            	<i class="fa fas fa-check"></i>{{ request.properties.locatie }}
+                                    		</li> 
+                                		</ul>  
+                                    </li> 
+            	                    {% endif %}      
+                                    {% for partner in partners %}                         
+                                    <li>    
+        	                            <b>Partner</b>
+                                		<ul class="list-icon">                    
+                                            <li>    
+                                            	<!-- Partner -->
+                                                {{ partner }}  
+                                            <li>                                          
+                                            <li>    
+                                            	<!--  Trouwdatum -->  
+                                            	<i class="fa fas fa-check"></i>Uw leeftijd is gecontroleerd
+                                            <li>            
+                            		        {% if partners|length >= 2 %}                    
+                                            <li>    
+                                            	<!--  Trouwdatum -->  
+                                            	<i class="fa fas fa-check"></i>U bent geen famillie in de eerste graad
+                                            <li>                   
+                                            {% endif %}       
+                                            <li>    
+                                            	<!--  Trouwdatum -->  
+                                            	<i class="fa fas fa-check"></i>U heeft geen partner
+                                            <li> 
+                                		</ul>       
+                                    </li> 
+                                    {% endfor %}
+                                    {% for getuige in getuigen %}
+                                    <li>    
+        	                            <b>Getuige</b>{% if getuige.personObject is defined %}
+                                	    {{ getuige.personObject.naam.voornamen }}{{ getuige.personObject.naam.geslachtsnaam }}
+                                        {% else %}
+                                        {{ getuige.contactObject.given_name }}{{ getuige.contactObject.family_name }}    
+                                        {% endif %}        
+                                		<ul class="list-icon">               
+                                            <li>    
+                                            	<!--  Trouwdatum -->
+                                                {% if getuige.status != "requested"%}<i class="fa fas fa-check"></i>{% else %}<i class="fas fa-exclamation-triangle"></i>{% endif %} Instemming: {{ getuige.status  }}  
+                                            <li>                             
+                                		</ul>      
+                                    </li>                                 
+                                    {% endfor %}
+                                                    
+                                    {#       
                                     <li>
-                                    	<i class="fa fas" ng-class="{'fa-check':  huwelijk.trouwdatum , 'fa-circle-notch fa-spin': !huwelijk.trouwdatum }"></i>
-                                    	<span ng-show="huwelijk.trouwdatum">{{ huwelijk.trouwdatum | date:'dd-MM-yyyy' }}</span>
-                                    	<span ng-hide="huwelijk.trouwdatum">Kies <a href="#trouwdatum" ng-click="setStage('datum')">hier</a> uw boogde huwelijks datum</span>                                     	
+                                    
+                                    	<i class="fa fas fa-check"></i>{{ huwelijk.type|capitalize }} datum: {{ huwelijk.datum |date("d-m-Y") }}
+                                    	{% if huwelijk is not empty and huwelijk.datum is defined and huwelijk.datum is not empty  %}
+                                    	<i class="fa fas fa-check"></i>{{ huwelijk.type|capitalize }} datum: {{ huwelijk.datum |date("d-m-Y") }}
+                                    	{% else %}
+                                    	<i class="fa far fa-square"></i> Kies <a href="{{ path('app_datum_index') }}" >hier</a> uw boogde  datum
+                                    	{% endif %}                                 	
                                    	</li>
                                     <!--  Type -->
                                     <li>
-                                    	<i class="fa fas" ng-class="{'fa-check': huwelijk.type , 'fa-circle-notch fa-spin': !huwelijk.type }"></i>
-                                    	<span ng-show="huwelijk.type">Type huwelijk : {{ huwelijk.type }}</span>
-                                    	<span ng-hide="huwelijk.type">Kies <a href="#trouwdatum" ng-click="setStage('datum')">hier</a> uw type huwelijk </span> 
+                                    	<i class="fa fas" ></i>
+                                    	{% if huwelijk is defined and huwelijk.type is defined and huwelijk.type is not empty%}
+                                    	<i class="fa fas fa-check"></i> Type plechtigheid: {{ huwelijk.type }}<i class="fa fas fa-check"></i> 
+                                    	{% else %}
+                                    	<i class="fa far fa-square"></i> Kies <a href="{{ path('app_huwelijk_index') }}">hier</a> uw type huwelijk of partnerschap
+                                    	{% endif %}
                                     	
                                     </li>
                                     <!-- Product -->
                                     <li>
-                                    	<i class="fa fas" ng-class="{'fa-check': huwelijk.primairProduct , 'fa-square': !huwelijk.primairProduct }"></i>
-                                    	<span ng-show="huwelijk.primairProduct">Soort huwelijk: : {{ huwelijk.primairProduct.naam }}</span>
-                                    	<span ng-hide="huwelijk.primairProduct">Kies <a href="#producten" ng-click="setStage('type')">hier</a> uw soort huwelijk door </span>                                     	
+                                    	{% if ceremonie is defined and ceremonie  is not empty %}
+                                    	<i class="fa fas fa-check"></i>Plechtigheid: {{ ceremonie.naam }}
+                                    	{% else %}
+                                    	<i class="fa far fa-square"></i> Kies <a href="{{ path('app_huwelijk_index') }}" >hier</a> uw plechtigheid door
+                                    	{% endif %}                                 	
                                     </li>
-                                   
                                     <!-- Partners -->
-                                    <li ng-show="huwelijk.partners < 2 && display != 'flow'"><i class="far fa-square" ></i> Nodig <a href="#partners">hier</a> uw partner uit</li>
-                                    {#
-                                    <li ng-repeat="partnerLees in huwelijk.partners  track by $index" ng-show="display != 'flow'">
-                                    	<i class="fa fas"ng-class="{'fa-check': partnerLees.acceptatieDatum,'fa-times': partnerLees.weigerDatum, 'fa-circle-notch fa-spin': !partnerLees.weigerDatum && !partnerLees.weigerDatum }" ></i>
-                                    	{{$index+1}}: {{ partnerLees.persoon.voornamen }} {{ partnerLees.persoon.geslachtsnaam }}
+                                    <li>
+                                    	{% if partners|length >= 2 %}
+                        				<i class="fa fas fa-check"></i>Partners: {{ partners[0].naam.voornamen }} {{ partners[0].naam.geslachtsnaam}} & {{ partners[1].naam.voornamen }} {{ partners[1].naam.geslachtsnaam}}     
+                                    	{% else %}
+                                    	<i class="fa far fa-square" ></i> Nodig <a href="{{ path('app_partner_index') }}">hier</a> uw partner uit
+                                    	{% endif %}
                                     </li>
                                     #}
+                                    {#
                                     <!-- locatie -->
                                     <li>
-                                    	<i class="fa fas"ng-class="{'fa-check': huwelijk.locatie.acceptatieDatum,'fa-times': huwelijk.locatie.weigerDatum, 'fa-circle-notch fa-spin': huwelijk.locatie && !huwelijk.locatie.weigerDatum && !huwelijk.locatie.weigerDatum, 'fa-square': !huwelijk.locatie }" ></i>
-                                    	<span ng-show="huwelijk.locatie"> Locatie: {{ huwelijk.locatie.locatie.naam }}</span>
-                                    	<span ng-hide="huwelijk.locatie ">U heeft nog  geen locatie doorgegeven, doe dat <a href="#locaties" ng-click="setStage('locatie')">hier</a></span>
+                                    	{% if  locatie is not empty %}
+                                    	<i class="fa fas fa-check"></i> Locatie: {{ locatie.naam }}
+                                    	{% else %}
+                                    	<i class="fa far fa-square"></i> U heeft nog  geen locatie doorgegeven, doe dat <a href="{{ path('app_locatie_index') }}">hier</a>
+                                    	{% endif %}
                                     </li>
                                     <!-- Trouw Ambtenaar -->
                                     <li>
-                                    	<i class="fa fas"ng-class="{'fa-check': huwelijk.trouwAmbtenaar.acceptatieDatum,'fa-times': huwelijk.trouwAmbtenaar.weigerDatum, 'fa-circle-notch fa-spin': huwelijk.trouwAmbtenaar && !huwelijk.trouwAmbtenaar.weigerDatum && !huwelijk.trouwAmbtenaar.weigerDatum, 'fa-square': !huwelijk.trouwAmbtenaar }" ></i>
-                                    	<span ng-show="huwelijk.trouwAmbtenaar">Ambtenaar: {{  huwelijk.trouwAmbtenaar.ambtenaar.voornamen }} {{ huwelijk.trouwAmbtenaar.ambtenaar.geslachtsnaam }}</span>
-                                    	<span ng-hide="huwelijk.trouwAmbtenaar">U heeft nog  geen trouwambtenaar doorgegeven, doe dat <a href="#ambtenaren" ng-click="setStage('ambtenaar')">hier</a></span>
-                                    </li>
-                                    
+                                    	{% if ambtenaar is not empty %}
+                                    	<i class="fa fas fa-check"></i> Ambtenaar: {{  ambtenaar.persoon.naam.voornamen }} {{ambtenaar.persoon.naam.geslachtsnaam }}
+                                    	{% else %}
+                                    	<i class="fa far fa-square"></i> U heeft nog  geen ambtenaar doorgegeven, doe dat <a href="{{ path('app_ambtenaar_index') }}">hier</a>
+                                    	{% endif %}
+                                    </li>        
+                                    #}                            
                                 	</ul>
-                            	</div>   
-                            
-                            <div class="list-col">
-                            	<span  ng-show="display != 'flow'">Uw Getuigen</span>            
-                            	<ul class="list-icon" ng-show="display != 'flow'">
-                                    <li ng-show="huwelijk.getuigen.length < 2">
-                                    	<i class="fa far fa-square" ></i> U heeft nog te weinig getuigen doorgegeven, voeg ze <a href="#getuigen">hier</a> toe
-                                    </li>
+                            	</div><!-- /.list-col -->   
+                        	<div class="list-col">
+                            	Nog te doen
+                            	<ul class="list-icon">   
+                                    
+            	                    {% if request.properties.product is not defined %}                  
+                                    <li><b>Plechtigheid</b>    
+                                		<ul class="list-icon">   
+                                			<li>  
+                                            	<!--  Trouwdatum -->  
+                                            	<i class="fas fa-exclamation-triangle"></i> Geen Plechtigheid, u kunt deze <a href="{{ path('app_default_slug',{'slug':'plechtigheid'}) }}">hier</a> toevoegen.
+                                    		</li> 
+                                		</ul>  
+                                    </li> 
+            	                    {% endif %}  
+            	                    {% if request.properties.datum is not defined %}                  
+                                    <li><b>Trouwdatum</b>    
+                                		<ul class="list-icon">   
+                                			<li>  
+                                            	<!--  Trouwdatum -->  
+                                            	<i class="fas fa-exclamation-triangle"></i> Geen datum, u kunt deze <a href="{{ path('app_default_slug',{'slug':'datum'}) }}">hier</a> toevoegen.
+                                    		</li> 
+                                		</ul>  
+                                    </li> 
+            	                    {% endif %}  
+            	                    {% if request.properties.ambtenaar is not defined %}                  
+                                    <li><b>Ambtenaar</b>    
+                                		<ul class="list-icon">   
+                                			<li>  
+                                            	<!--  Trouwdatum -->  
+                                            	<i class="fas fa-exclamation-triangle"></i> Geen ambtenaar, u kunt deze <a href="{{ path('app_default_slug',{'slug':'ambtenaren'}) }}">hier</a> toevoegen.
+                                    		</li> 
+                                		</ul>  
+                                    </li> 
+            	                    {% endif %}  
+            	                    {% if request.properties.locatie is not defined %}                  
+                                    <li><b>Locatie</b>    
+                                		<ul class="list-icon">   
+                                			<li>  
+                                            	<!--  Trouwdatum -->  
+                                            	<i class="fas fa-exclamation-triangle"></i> Nog geen locatie, u kunt deze <a href="{{ path('app_default_slug',{'slug':'locaties'}) }}">hier</a> toevoegen.
+                                    		</li> 
+                                		</ul>  
+                                    </li> 
+            	                    {% endif %}    
+                            		{% if partners|length < 2 %}                     
+                                    <li><b>Partners</b>   
+                                		<ul class="list-icon">   
+                                			<li>    
+                                    			<!--  Trouwdatum -->  
+                                    			<i class="fas fa-exclamation-triangle"></i> Te weinig partners, u kunt deze <a href="{{ path('app_default_slug',{'slug':'partners'}) }}">hier</a> toevoegen.
+                                    		</li> 
+                                		</ul>  
+                                    </li>         
+                                    {% endif %}
+                            		{% if getuigen|length < 2 %}                     
+                                    <li><b>Getuigen</b>   
+                                		<ul class="list-icon">   
+                                			<li>    
+                                            	<!--  Trouwdatum -->  
+                                            	<i class="fas fa-exclamation-triangle"></i> Te weinig getuigen, u kunt deze <a href="{{ path('app_default_slug',{'slug':'getuigen'}) }}">hier</a> toevoegen.
+                                    		</li> 
+                                		</ul>  
+                                    </li>         
+                                    {% endif %}
                                     {#
-                                    <li ng-repeat="getuigeLees in huwelijk.getuigen  track by $index">
-                                    	<i class="fa fas"ng-class="{'fa-check': getuigeLees.acceptatieDatum,'fa-times': getuigeLees.weigerDatum, 'fa-circle-notch fa-spin': getuigeLees && !getuigeLees.weigerDatum && !getuigeLees.weigerDatum, 'fa-square': !getuigeLees }" ></i>
-                                    	{{$index+1}}: {{ getuigeLees.persoon.voornamen }} {{ getuigeLees.persoon.geslachtsnaam }} 
-                                    </li>
-                                    #}
-                                </ul>
-                            	Uw Verplichtingen
-                            	<ul class="list-icon">
-                                    <li ng-show="display != 'flow'">
-                                    	<i class="fa fas"ng-class="{'fa-check': huwelijk.melding.status == 'akoord','fa-times': huwelijk.melding.status == 'afgewezen', 'fa-circle-notch fa-spin': huwelijk.melding && !huwelijk.melding.status, 'fa-square': !huwelijk.melding }" ></i>
-                                    	<span ng-show="huwelijk.melding"> De status van uw melding: {{ huwelijk.melding.status }} </span>
-                                    	<span ng-hide="huwelijk.melding"> U heeft nog  geen melding gedaan</span>
+                                    {% if huwelijk is not empty and huwelijk.aanvraag  is not empty   %}
+                                    <li>
+                                    	<i class="fa fas fa-check"></i> Uw reservering is bij ons bekend onder nummer: {{ huwelijk.aanvraag }} 
                                     </li>
                                     <li>
-                                    	<i class="fa fas"ng-class="{'fa-check': huwelijk.aanvraag.status == 'akoord','fa-times': huwelijk.aanvraag.status == 'afgewezen', 'fa-circle-notch fa-spin': huwelijk.aanvraag && !huwelijk.aanvraag.status, 'fa-square': !huwelijk.aanvraag }" ></i>
-                                    	<span ng-show="huwelijk.aanvraag"> De status van uw reservering: {{ huwelijk.aanvraag.status }} </span>
-                                    	<span ng-hide="huwelijk.aanvraag"> U heeft nog  geen reservering gedaan</span>
+                                        <i class="fas fa-exclamation"></i><u>Uw reservering is nog xx dagen geldig</u>
                                     </li>
-                                    <li ng-show="huwelijk.inclAmount > 0 && display != 'flow'">
-                                    	<i class="fa fas"ng-class="{'fa-check': huwelijk.betaaling.status == 'akoord','fa-times': huwelijk.betaaling.status == 'afgewezen', 'fa-circle-notch fa-spin': huwelijk.betaaling && !huwelijk.betaaling.status, 'fa-square': !huwelijk.betaaling }" ></i>
-                                    	<span ng-show="huwelijk.betaaling"> De status van uw betaling: {{ huwelijk.v.status }} </span>
-                                    	<span ng-hide="huwelijk.betaaling"> U heeft nog geen betaling gedaan</span>
+                                    {% else %}
+                                    <li>
+                                    	<i class="fa far fa-square"></i> U heeft nog  geen reservering gedaan
                                     </li>
+                                    {% endif %}
+                                    <li>
+                                    	<i class="fa far fa-square"></i> Vergeet niet om ook een melding te doen
+                                    </li>
+                                    <!-- 
+                                    <li>
+                                    	{% if huwelijk is defined and huwelijk.melding is defined and huwelijk.melding %}
+                                    	<i class="fa fas fa-check"></i> De status van uw melding: {{ huwelijk.melding }} 
+                                    	{% else %}
+                                    	<i class="fa far fa-square"></i> U heeft nog geen melding gedaan
+                                    	{% endif %}
+                                    </li>
+                                    <li>
+                                    	{% if huwelijk is defined and huwelijk.betaling is defined and huwelijk.betaling  %}
+                                    	<i class="fa fas fa-check"></i> De status van uw betaling: {{ huwelijk.aanvraag }} 
+                                    	{% else %}
+                                    	<i class="fa far fa-square"></i> U heeft nog geen betaling gedaan
+                                    	{% endif %}
+                                    </li>
+                                     -->
+                                     #}
                                 </ul>
-                            </div>                         
-                        </div>
-                            
+                            </div>     
                         </div><!-- /.list-row -->
-                         <div class="btn-section textcenter animation" data-animation="animation-fade-in-up">
-		                	<a href="#" class="btn-custom btn-icon" ng-click="sendMelding()" ng-show="!huwelijk.melding && huwelijk.aanvraag && huwelijk.primairProduct" ng-disabled="loading">
-							   <i class="fas fa-circle-notch fa-spin" ng-show="loading"></i>
-		                		<i class="fas fa-share-square" ng-hide="loading"></i>
-		                		Meld je huwelijk
-		                	</a>
-		                    <a href="#" class="btn-custom btn-icon"  ng-click="sendAanvraag()" ng-show="!huwelijk.aanvraag && huwelijk.primairProduct" ng-disabled="loading">
-			                    <i class="fas fa-circle-notch fa-spin" ng-show="loading"></i>
-								<i class="fas fa-share-square" ng-hide="loading"></i> 
-			                    Maak een reservering
-		                    </a>
-                    </div>
-                </div>
-            </div>
-            <!-- .row end -->
+                      	<div class="btn-section textcenter animation" data-animation="animation-fade-in-up">
+                      	{#
+                        {% if huwelijk is not empty and huwelijk.aanvraag  is empty   %}
+    		            	<a href="{{ path('app_reservering_send') }}" class="btn btn-primary btn-icon" >
+    							<i class="fas fa-share-square"></i> 
+    			            	Maak een reservering
+    		           		</a>   
+                        {% else %}
+    		            	<a href="{{ path('app_reservering_cancel') }}" class="btn btn-danger btn-icon" >
+    							<i class="fas fa-times"></i>
+    			            	Annuleer uw reservering
+    		           		</a>
+    		            	<a href="{{ path('app_melding_index') }}" class="btn btn-primary btn-icon" >
+    							<i class="fas fa-share-square"></i> 
+    			            	Doe een melding
+    		           		</a>    
+                        {% endif %}
+    		           		#}
+    		            	<a href="{{ path('app_default_slug',{'slug':'melding'}) }}" class="btn btn-primary btn-icon" >
+    							<i class="fas fa-share-square"></i> 
+    			            	Ga door naar melding
+    		           		</a>
+                    	</div><!-- /.btn-section -->    
+                    	  
+                	</div><!-- /.col -->           
+                </div><!-- /.row -->                 
+    
 {% endblock %}
