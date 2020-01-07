@@ -275,6 +275,78 @@ class AppFixtures extends Fixture
     	$slug->setApplication($application);
     	$slug->setSlug('ceremonies');
     	$manager->persist($page);
+    	    	
+    	// Partners
+    	//$id = Uuid::fromString('1370d87a-fe90-4826-a210-fd8e1c065576');
+    	$template = New Template;
+    	$template->setContent(file_get_contents(dirname(__FILE__).'/Resources/partners.html.twig', 'r'));
+    	$template->setTemplateEngine('twig');
+    	//$manager->persist($template);
+    	//$template->setId($id);
+    	$manager->persist($template);
+    	$manager->flush();
+    	$template= $manager->getRepository('App:Template')->findOneBy(array('id'=> $id));
+    	
+    	$page = New Page;
+    	$page->setTitle('Partners');
+    	$page->setDescription('Partners');
+    	$page->setApplication($application);
+    	$page->setTemplate($template);
+    	$manager->persist($page);
+    	
+    	$slug = New Slug;
+    	$slug->setPage($page);
+    	$slug->setApplication($application);
+    	$slug->setSlug('partners');
+    	$manager->persist($page);
+    	
+    	// Datum
+    	//$id = Uuid::fromString('1370d87a-fe90-4826-a210-fd8e1c065576');
+    	$template = New Template;
+    	$template->setContent(file_get_contents(dirname(__FILE__).'/Resources/datum.html.twig', 'r'));
+    	$template->setTemplateEngine('twig');
+    	//$manager->persist($template);
+    	//$template->setId($id);
+    	$manager->persist($template);
+    	$manager->flush();
+    	$template= $manager->getRepository('App:Template')->findOneBy(array('id'=> $id));
+    	
+    	$page = New Page;
+    	$page->setTitle('Datum');
+    	$page->setDescription('Datum');
+    	$page->setApplication($application);
+    	$page->setTemplate($template);
+    	$manager->persist($page);
+    	
+    	$slug = New Slug;
+    	$slug->setPage($page);
+    	$slug->setApplication($application);
+    	$slug->setSlug('datum');
+    	$manager->persist($page);
+    	
+    	// Betalen
+    	//$id = Uuid::fromString('1370d87a-fe90-4826-a210-fd8e1c065576');
+    	$template = New Template;
+    	$template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Betalen.html.twig', 'r'));
+    	$template->setTemplateEngine('twig');
+    	//$manager->persist($template);
+    	//$template->setId($id);
+    	$manager->persist($template);
+    	$manager->flush();
+    	$template= $manager->getRepository('App:Template')->findOneBy(array('id'=> $id));
+    	
+    	$page = New Page;
+    	$page->setTitle('betalen');
+    	$page->setDescription('betalen');
+    	$page->setApplication($application);
+    	$page->setTemplate($template);
+    	$manager->persist($page);
+    	
+    	$slug = New Slug;
+    	$slug->setPage($page);
+    	$slug->setApplication($application);
+    	$slug->setSlug('betalen');
+    	$manager->persist($page);
     	
     	// Ambtenaren
     	$id = Uuid::fromString('28268026-6f82-4b19-8dc7-a325edfeca82');
@@ -373,7 +445,31 @@ class AppFixtures extends Fixture
     	// Extras
     	$id = Uuid::fromString('50409369-6f28-4f9e-b074-2fa638d1b25a');
     	$template = New Template;
-    	$template->setContent('Extras');
+    	$template->setContent(file_get_contents(dirname(__FILE__).'/Resources/extra.html.twig', 'r'));
+    	$template->setTemplateEngine('twig');
+    	$manager->persist($template);
+    	$template->setId($id);
+    	$manager->persist($template);
+    	$manager->flush();
+    	$template= $manager->getRepository('App:Template')->findOneBy(array('id'=> $id));
+    	
+    	$page = New Page;
+    	$page->setTitle('Extra');
+    	$page->setDescription('Extra');
+    	$page->setApplication($application);
+    	$page->setTemplate($template);
+    	$manager->persist($page);
+    	
+    	$slug = New Slug;
+    	$slug->setPage($page);
+    	$slug->setApplication($application);
+    	$slug->setSlug('extra');
+    	$manager->persist($page);
+    	
+    	
+    	$id = Uuid::fromString('50409369-6f28-4f9e-b074-2fa638d1b25a');
+    	$template = New Template;
+    	$template->setContent(file_get_contents(dirname(__FILE__).'/Resources/extras.html.twig', 'r'));
     	$template->setTemplateEngine('twig');
     	$manager->persist($template);
     	$template->setId($id);

@@ -10,7 +10,7 @@
                     <p>Voor een huwelijk zijn er getuigen nodig, minimaal 1 en maximaal 2 per partner.</p>
                 </div>        
                 <div class="
-            	{% if request.properties.getuigen is defined and request.properties.getuigen|length >= 4
+            	{% if request.properties.getuigen is defined
             	 %}	col-sm-12{% else %}col-md-8{% endif %}">                 
 		            <div class="row">   
                         {% for getuige in request.properties.getuigen  %}

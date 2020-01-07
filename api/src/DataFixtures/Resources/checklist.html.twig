@@ -52,10 +52,12 @@
                                    
                                     <!-- Partners -->
                                     <li ng-show="huwelijk.partners < 2 && display != 'flow'"><i class="far fa-square" ></i> Nodig <a href="#partners">hier</a> uw partner uit</li>
+                                    {#
                                     <li ng-repeat="partnerLees in huwelijk.partners  track by $index" ng-show="display != 'flow'">
                                     	<i class="fa fas"ng-class="{'fa-check': partnerLees.acceptatieDatum,'fa-times': partnerLees.weigerDatum, 'fa-circle-notch fa-spin': !partnerLees.weigerDatum && !partnerLees.weigerDatum }" ></i>
                                     	{{$index+1}}: {{ partnerLees.persoon.voornamen }} {{ partnerLees.persoon.geslachtsnaam }}
                                     </li>
+                                    #}
                                     <!-- locatie -->
                                     <li>
                                     	<i class="fa fas"ng-class="{'fa-check': huwelijk.locatie.acceptatieDatum,'fa-times': huwelijk.locatie.weigerDatum, 'fa-circle-notch fa-spin': huwelijk.locatie && !huwelijk.locatie.weigerDatum && !huwelijk.locatie.weigerDatum, 'fa-square': !huwelijk.locatie }" ></i>
@@ -78,10 +80,12 @@
                                     <li ng-show="huwelijk.getuigen.length < 2">
                                     	<i class="fa far fa-square" ></i> U heeft nog te weinig getuigen doorgegeven, voeg ze <a href="#getuigen">hier</a> toe
                                     </li>
+                                    {#
                                     <li ng-repeat="getuigeLees in huwelijk.getuigen  track by $index">
                                     	<i class="fa fas"ng-class="{'fa-check': getuigeLees.acceptatieDatum,'fa-times': getuigeLees.weigerDatum, 'fa-circle-notch fa-spin': getuigeLees && !getuigeLees.weigerDatum && !getuigeLees.weigerDatum, 'fa-square': !getuigeLees }" ></i>
                                     	{{$index+1}}: {{ getuigeLees.persoon.voornamen }} {{ getuigeLees.persoon.geslachtsnaam }} 
                                     </li>
+                                    #}
                                 </ul>
                             	Uw Verplichtingen
                             	<ul class="list-icon">
