@@ -13,7 +13,7 @@
                 </div>
                 
                 <div class="col-sm-8"> <!-- 2 -->
-                    {% elseif request is defined and request and request.properties.order is defined and request.properties.order is not empty %}
+                    {% if request is defined and request and request.properties.order is defined and request.properties.order is not empty %}
                  	<h4>{{ product.naam }} {{ product.prijsExcl / 100 }}</h4>
               		<p>U heeft een huwelijk of opties gekozen waar kosten aan zijn verbonden. U dient deze kosten 6 weken voor aanvang van huwelijk te voldoen</p>
               		<p><a href="https://www.ideal.nl/demo/" class="btn btn-login btn-large" >

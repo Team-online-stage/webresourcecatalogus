@@ -66,7 +66,8 @@
                                 		</ul>  
                                     </li> 
             	                    {% endif %}      
-                                    {% for partner in partners %}                         
+            	                    {% if request.properties.partners is defined %}       
+                                    {% for partner in request.properties.partners %}                         
                                     <li>    
         	                            <b>Partner</b>
                                 		<ul class="list-icon">                    
@@ -91,7 +92,9 @@
                                 		</ul>       
                                     </li> 
                                     {% endfor %}
-                                    {% for getuige in getuigen %}
+            	                    {% endif %}    
+            	                    {% if request.properties.getuigen is defined %}         
+                                    {% for getuige in request.properties.getuigen %}
                                     <li>    
         	                            <b>Getuige</b>    
                                 		<ul class="list-icon">               
@@ -102,6 +105,7 @@
                                 		</ul>      
                                     </li>                                 
                                     {% endfor %}
+            	                    {% endif %}    
                                                     
                                     {#       
                                     <li>
@@ -204,7 +208,7 @@
                                 		</ul>  
                                     </li> 
             	                    {% endif %}    
-                            		{% if partners|length < 2 %}                     
+                            		{% if (request.properties.partners is defined and request.properties.partners|length < 2) or request.properties.partners is not defined %}                     
                                     <li><b>Partners</b>   
                                 		<ul class="list-icon">   
                                 			<li>    
@@ -214,7 +218,7 @@
                                 		</ul>  
                                     </li>         
                                     {% endif %}
-                            		{% if getuigen|length < 2 %}                     
+                            		{% if (request.properties.getuigen is defined and getuigen|length < 2) or request.properties.getuigen is not defined %}                     
                                     <li><b>Getuigen</b>   
                                 		<ul class="list-icon">   
                                 			<li>    

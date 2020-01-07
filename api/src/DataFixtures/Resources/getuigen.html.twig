@@ -20,8 +20,10 @@
                     <p>Voor een huwelijk zijn er getuigen nodig, minimaal 1 en maximaal 2 per partner.</p>
                 </div>        
                 <div class="
-            	{% if request.properties.getuigen is defined
-            	 %}	col-sm-12{% else %}col-md-8{% endif %}">                 
+            	{% if request.properties.getuigen is defined 
+            	 %}	col-sm-12{% else %}col-md-8{% endif %}">   
+            	{% if request.properties.getuigen is defined 
+            	 %}	               
 		            <div class="row">   
                         {% for getuige in request.properties.getuigen  %}
 			            <div class="col-md-3"> <!-- 1 -->
@@ -63,6 +65,7 @@
 		                    </div>
 		                </div>
                         {% endfor %}  
+                        {% endif %}
 		            </div><!-- /.row -->
             	</div>
             	{# We are onlygoing to display this form if we do not yet already have 4 witnesses #}
