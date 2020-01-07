@@ -93,15 +93,11 @@
                                     {% endfor %}
                                     {% for getuige in getuigen %}
                                     <li>    
-        	                            <b>Getuige</b>{% if getuige.personObject is defined %}
-                                	    {{ getuige.personObject.naam.voornamen }}{{ getuige.personObject.naam.geslachtsnaam }}
-                                        {% else %}
-                                        {{ getuige.contactObject.given_name }}{{ getuige.contactObject.family_name }}    
-                                        {% endif %}        
+        	                            <b>Getuige</b>    
                                 		<ul class="list-icon">               
                                             <li>    
-                                            	<!--  Trouwdatum -->
-                                                {% if getuige.status != "requested"%}<i class="fa fas fa-check"></i>{% else %}<i class="fas fa-exclamation-triangle"></i>{% endif %} Instemming: {{ getuige.status  }}  
+                                            	<!--  Getuigen -->
+                                                {{ getuige }}   
                                             <li>                             
                                 		</ul>      
                                     </li>                                 

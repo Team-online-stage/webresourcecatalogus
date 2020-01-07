@@ -5,6 +5,16 @@
 {% block body %}
             <!-- .row -->
             <div class="row animation" data-animation="animation-fade-in" data-delay=" {% if app.session.flashbag.peekAll|length > 0 %}3400{%else%}200{% endif %}" >
+            	{% if request.properties.type is defined and request.properties.type == 'omzetten' %}            	
+                
+                	<div class="post-heading-center animation" data-animation="animation-fade-in-down">
+                    	<h2>U heeft gekozen voor omzetten, en heeft geen ambtenaren nodig</h2>
+                   	</div>
+                    <div class="col-md-12 text-center">
+           				<i class="fas fa-check fa-6x " data-animation="animation-fade-in-down" ></i>
+                    </div><!-- /.col -->
+               
+            	{% else %} 
                 <div class="post-heading-center">
                 	<h2>Door wie wilt u worden getrouwd?</h24>
                     <p>Een trouwambtenaar heet officieel een buitengewoon ambtenaar van de burgerlijke stand (babs ). Een babs waarmee het klikt is belangrijk. Hieronder stellen de babsen van de gemeente Utrecht zich aan u voor. U kunt een voorkeur aangeven voor een van hen, dan krijgt u data te zien waarop die babs beschikbaar is. Wanneer u een babs heeft gekozen zal deze na de melding voorgenomen huwelijk, zelf contact met u opnemen.</p>
@@ -31,7 +41,8 @@
 	                    </div>
                     </a>
                 </div>       
-                {% endfor %}     
+                {% endfor %} 
+                {% endif %}      
             </div>
  			{#
             <div class="row" >            

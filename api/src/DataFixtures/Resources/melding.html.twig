@@ -5,6 +5,16 @@
 {% block body %}              
             <!-- .row -->
             <div class="row" data-animation="animation-fade-in" data-delay=" {% if app.session.flashbag.peekAll|length > 0 %}3400{%else%}200{% endif %}" >
+            	{% if request.properties.type is defined and request.properties.type == 'omzetten' %}            	
+                
+                	<div class="post-heading-center animation" data-animation="animation-fade-in-down">
+                    	<h2>U heeft gekozen voor omzetten, en hoeft gene melding te doen</h2>
+                   	</div>
+                    <div class="col-md-12 text-center">
+           				<i class="fas fa-check fa-6x " data-animation="animation-fade-in-down" ></i>
+                    </div><!-- /.col -->
+               
+            	{% else %} 
                 <div class="post-heading-center ">
                 	<h2>Melding voorgenomen huwelijk</h2>
                 </div>
@@ -25,6 +35,6 @@
                     	<img src="images/content/elements/MakeItKnown.png">
                     </figure>
                 </div><!-- /.col -->
-                
+                {% endif %}
             </div><!-- /.row -->
 {% endblock %}

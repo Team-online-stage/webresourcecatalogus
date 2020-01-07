@@ -4,7 +4,17 @@
 
 {% block body %}
             <!-- .tbl-pricing -->
-            <div class="tbl-pricing tbl-prc-recommended animation" data-animation="animation-fade-in" data-delay=" {% if app.session.flashbag.peekAll|length > 0 %}3400{%else%}200{% endif %}" >                
+            <div class="tbl-pricing tbl-prc-recommended animation" data-animation="animation-fade-in" data-delay=" {% if app.session.flashbag.peekAll|length > 0 %}3400{%else%}200{% endif %}" > 
+            	{% if request.properties.type is defined and request.properties.type == 'omzetten' %}            	
+                
+                	<div class="post-heading-center animation" data-animation="animation-fade-in-down">
+                    	<h2>U heeft gekozen voor omzetten, en heeft geen plechtigheid nodig</h2>
+                   	</div>
+                    <div class="col-md-12 text-center">
+           				<i class="fas fa-check fa-6x " data-animation="animation-fade-in-down" ></i>
+                    </div><!-- /.col -->
+               
+            	{% else %}                
                 <!-- .row -->
                 <div class="row">
         	
@@ -45,7 +55,7 @@
                     
                 </div>
                 <!-- .row end -->
-                
+                {% endif %}
             </div>
             <!-- .tbl-pricing end -->        
 {% endblock %}
