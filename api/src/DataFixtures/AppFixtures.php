@@ -285,7 +285,7 @@ class AppFixtures extends Fixture
     	//$template->setId($id);
     	$manager->persist($template);
     	$manager->flush();
-    	$template= $manager->getRepository('App:Template')->findOneBy(array('id'=> $id));
+    	//$template= $manager->getRepository('App:Template')->findOneBy(array('id'=> $id));
     	
     	$page = New Page;
     	$page->setTitle('Partners');
@@ -309,7 +309,7 @@ class AppFixtures extends Fixture
     	//$template->setId($id);
     	$manager->persist($template);
     	$manager->flush();
-    	$template= $manager->getRepository('App:Template')->findOneBy(array('id'=> $id));
+    	//$template= $manager->getRepository('App:Template')->findOneBy(array('id'=> $id));
     	
     	$page = New Page;
     	$page->setTitle('Datum');
@@ -333,7 +333,7 @@ class AppFixtures extends Fixture
     	//$template->setId($id);
     	$manager->persist($template);
     	$manager->flush();
-    	$template= $manager->getRepository('App:Template')->findOneBy(array('id'=> $id));
+    	//$template= $manager->getRepository('App:Template')->findOneBy(array('id'=> $id));
     	
     	$page = New Page;
     	$page->setTitle('betalen');
@@ -451,7 +451,7 @@ class AppFixtures extends Fixture
     	//$template->setId($id);
     	$manager->persist($template);
     	$manager->flush();
-    	$template= $manager->getRepository('App:Template')->findOneBy(array('id'=> $id));
+    	//$template= $manager->getRepository('App:Template')->findOneBy(array('id'=> $id));
     	
     	$page = New Page;
     	$page->setTitle('Extra');

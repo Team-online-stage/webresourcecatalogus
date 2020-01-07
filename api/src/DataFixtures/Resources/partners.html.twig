@@ -14,16 +14,12 @@
                     	<i class="fas fa-user" ></i>
                         <div class="feature-text">
                         	<h4>
-	                            {% if partner1.personObject.naam is defined and partner1.personObject.naam.voornamen is defined  %}
-                        	    {{ partner1.personObject.naam.voornamen }}
-                        	    {% endif %}
-                                {% if partner1.personObject.naam is defined and partner1.personObject.naam.geslachtsnaam is defined  %}
-                                {{ partner1.personObject.naam.geslachtsnaam }}</h4>
-                                {% endif %}
+                        	    {{ user.naam.voornamen }}
+                        	    {{ user.naam.geslachtsnaam }}
                             <p>
-	                            Status: {{ partner1.status }} 
+	                            Status:  {{ request.properties.partners.0 }} 
 	                           
-                                {# partner is contact #}
+                                {# partner is assent 
 	                            {% if partner1.personObject is defined %}
                         	    <br><b>Voornaam:</b> {{ partner1.personObject.naam.voornamen }}
                                 <br><b>Achternaam:</b> {{ partner1.personObject.naam.geslachtsnaam }}
@@ -32,13 +28,13 @@
                                 <br><b>Achternaam:</b> {{ partne1.contactObject.family_name }}
                                 {% endif %}
                                 
-                                {# partner is person #}
 	                            {% if partner1.contactObject is defined and partner1.contactObject._embedded.emails is defined  %}
                         	    <br><b>Email:</b> {{ partner1.contactObject._embedded.emails[0].email }}
                         	    {% endif %}
                                 {% if partner1.contactObject is defined and  partner1.contactObject._embedded.telephones is defined  %}
                                 <br><b>Telefoon</b></b> {{ partner1.contactObject._embedded.telephones[0].telephone }}
                                 {% endif %}
+                                #}
                             </p>
                         </div>
                     </div>
@@ -48,6 +44,7 @@
                         <div class="feature-text">
                         	<h4>Adres</h4>
                             <p>
+                            {# 
                                 {% if user.verblijfplaats is defined and user.verblijfplaats.straatnaam is defined  %}
 {{ user.verblijfplaats.straatnaam }}
                                 {% endif %}
@@ -57,7 +54,7 @@
                                 {% if user.verblijfplaats is defined and user.verblijfplaats.postcode is defined  %}
 {{ user.verblijfplaats.postcode }}
                                 {% endif %}
-                              
+                              #}
                              <br />
                             </p>
                          </div>
@@ -69,7 +66,8 @@
                         <div class="feature-text">
                         	<h4>Uw contact gegevens</h4>
                             <p>We willen graag nog een paar dingen van u weten</p>         
-                            <br/>                   
+                            <br/>     
+                            {#               
 		                	<form method="post" action="{{ path('app_partner_updateuser') }}" class="affa-form-contact">
 		                    	<div class="submit-status"></div>
 
@@ -79,6 +77,7 @@
                                 <input type="text" name="telefoonnummer" placeholder="+31 6 12345678" value="{% if partner1.contactObject is defined and  partner1.contactObject._embedded.telephones is defined  %}{{ partner1.contactObject._embedded.telephones[0].telephone }}{% endif %}"/>                                
  								<button type="submit" class="btn btn-success btn-lg btn-block btn-icon"><i class="far fa-envelope"></i> Opslaan</button> 								
 		                    </form>
+		                    #}
                         </div>
                     </div>
                 </div>
@@ -91,15 +90,15 @@
                 
                 <div class="col-right">
 					<!-- NAW gegevens partner 2 -->					
-            	    {% if request.properties.partner2 is defined and request.properties.partner2 is not empty %}   
+            	    {% if request.properties.partners is defined and request.properties.partners|length >= 2  %}   
                 	<div class="affa-feature-icon"> 
                     	<i class="fas fa-user " ></i>
                         <div class="feature-text">
                         	<h4>U heeft uw partner reeds uitgenodigd</h4>
                             <p>
-	                            Status: {{ partner2.status }} 
+	                            Status: {{ request.properties.partners.1 }} 
 	                           
-                                {# partner is contact #}
+                                {# partner is contact 
 	                            {% if partner2.personObject is defined %}
                         	    <br><b>Voornaam:</b> {{ partner2.personObject.naam.voornamen }}
                                 <br><b>Achternaam:</b> {{ partner2.personObject.naam.geslachtsnaam }}
@@ -108,14 +107,13 @@
                                 <br><b>Achternaam:</b> {{ partner2.contactObject.family_name }}
                                 {% endif %}
                                 
-                                {# partner is person #}
 	                            {% if partner2.contactObject is defined and partner2.contactObject._embedded.emails is defined  %}
                         	    <br><b>Email:</b> {{ partner2.contactObject._embedded.emails[0].email }}
                         	    {% endif %}
                                 {% if partner2.contactObject is defined and  partner2.contactObject._embedded.telephones is defined  %}
                                 <br><b>Telefoon</b></b> {{ partner2.contactObject._embedded.telephones[0].telephone }}
                                 {% endif %}
-                                
+                                #}
                             </p>
                         </div>
                     </div>
@@ -125,16 +123,16 @@
                     	<i class="fas fa-home"></i>
                         <div class="feature-text">
                         	<h4>Adres en contact</h4>
-                            <p>
-                            {# partner2.verblijfadres.straatnaam }} {{ v.huisnummer }} <br />
-                            {{ partner2.persoon.verblijfadres.postcode }} <br />#}
+                            {# 
+                            <p>partner2.verblijfadres.straatnaam }} {{ v.huisnummer }} <br />
+                            {{ partner2.persoon.verblijfadres.postcode }} <br /
 
 							</p>
 							
 							{% if partner2.status == 'requested'  %}
 							<a href="{{ path('app_partner_unsetpartner') }}" class="btn btn-danger btn-icon btn-block"><i class="far fa-rings-wedding"></i> Partner Verwijderen</a>
 							{% endif %}
-     						<a href="{{ path('app_product_index') }}" class="btn btn-primary btn-icon btn-block"><i class="far fa-rings-wedding"></i> Ga door naar ceremonie</a>
+     						<a href="{{ path('app_product_index') }}" class="btn btn-primary btn-icon btn-block"><i class="far fa-rings-wedding"></i> Ga door naar ceremonie</a>>#}
                         </div>
                     </div>       
                     {% else %} 
@@ -142,20 +140,20 @@
                     <div class="affa-feature-icon"> <!-- 6 -->
                     	<i class="fas fa-envelope"></i>
                         <div class="feature-text">
-                        	<h4>{% if request.properties.type is defined  %}Vraag uw partner ten  {{ request.properties.type|capitalize }}{% else %}Nodig uw partner uit{% endif %}.</h4>
+                        	<h4>{% if request.properties.type is defined  %}Vraag uw partner ten {{ request.properties.type|capitalize }}{% else %}Nodig uw partner uit{% endif %}.</h4>
                             <p>Want dit doet u natuurlijk samen</p>         
                             <br/>                   
-		                	<form method="post" action="" class="affa-form-contact">
+		                	<form method="post" action="{{ path('app_default_view',{'slug':'partners','role':'partner'}) }}" class="affa-form-contact" >
 		                    	<div class="submit-status"></div> <!-- submit status -->
 
-								<label for="partner_voornamen" >Voornaam(en) <span class="required">*</span></label>
-                                <input type="text" name="voornamen" placeholder="John" required/>
-                                <label for="partner_geslachtsnaam">Achternaam <span class="required">*</span></label>
-                                <input type="text" name="geslachtsnaam" placeholder="Do" required/>
-                                <label for="partner_email">Email Adres <span class="required">*</span></label>
-                                <input type="text" name="emailadres" placeholder="john@do.nl" required/>
-                                <label for="partner_telefoonnummer">Telefoonnummer</label>
-                                <input type="text" name="telefoonnummer" placeholder="+31 6 12345678"/>
+								<label for="givenName" >Voornaam(en) <span class="required">*</span></label>
+                                <input type="text" name="givenName" placeholder="John" required/>
+                                <label for="familyName">Achternaam <span class="required">*</span></label>
+                                <input type="text" name="familyName" placeholder="Do" required/>
+                                <label for="email">Email Adres <span class="required">*</span></label>
+                                <input type="text" name="email" placeholder="john@do.nl" required/>
+                                <label for="telephone">Telefoonnummer</label>
+                                <input type="text" name="telephone" placeholder="+31 6 12345678"/>
                                 
  								<button type="submit" class="btn btn-success btn-lg btn-block btn-icon"><i class="far fa-envelope"></i> Per bericht Uitnodigen</button>
  								

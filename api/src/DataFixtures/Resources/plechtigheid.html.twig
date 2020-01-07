@@ -3,59 +3,49 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
- 	  <!-- .container -->
-    	<div class="container bg-white">
-            
-            <!-- .row -->
-            <div class="row">      
-            {% for product in products %}    
-                <div class="col-sm-12 col-md-6 col-sm-offset-1 col-md-offset-0 text-center-sm text-center-xs">
-                	<div class="margin-bottom40">
-                    	<div class="post-heading-left text-center-sm text-center-xs" >
-                        	<h4>Plechtigheid </h4>
-                            <h2>{{ product.naam}}</h2>
+            <!-- .tbl-pricing -->
+            <div class="tbl-pricing tbl-prc-recommended animation" data-animation="animation-fade-in" data-delay=" {% if app.session.flashbag.peekAll|length > 0 %}3400{%else%}200{% endif %}" >                
+                <!-- .row -->
+                <div class="row">
+        	
+                    <div class="post-heading-center">
+                    	<h2>Hoe wilt u gaan trouwen ?</h2>
+                    </div>
+	                            
+                    {% for product in producten %} 
+                    <div class="col-sm-4 tbl-prc-col"> <!-- 1  -->
+                    	<div class="tbl-prc-wrap">
+                        	<div class="tbl-prc-heading">
+                            	<h4>
+                                	{% if request is not empty and request.properties.plechtigheid is defined and request.properties.plechtigheid is not empty and product.id == request.properties.plechtigheid %}
+    								<i class="fas fa-check"></i>
+                                    {%  endif  %}                            	
+                                    {{ product.name }}
+                                </h4>
+                            </div>
+                            <div class="tbl-prc-price bg-yellow">
+                                <h5>&euro; {{ product.price / 100 }} </h5>
+                                {# <p>{{ product.description|raw }}</p> #}
+                            </div>
+                            <ul class="tbl-prc-list">
+                                <li>Eerste mogelijkheid: <b> n.v.t</b></li>
+                            </ul>
+                            {{ product.description|raw }}
+                            <div class="tbl-prc-footer">
+	                            <a href="{{ path('app_view_view',{'id':product.id,'slug':'product'}) }}"  class="btn btn-secondary btn-icon  btn-block" >Meer lezen</a> 
+                                {% if request is not empty  %}
+	                            <br/><br/>
+	                            <a href="{{ path('app_view_set',{'id':product.id,'slug':'plechtigheid'}) }}"  class="btn btn-primary btn-icon  btn-block">Ja dit wil ik!</a> 
+                                {% endif %}
+                            </div>
                         </div>
-                        {{ product.samenvatting|raw }}                        
-                        <br/>
-                        <br/>
-                        {% if  request is defined and request %}
-                        <a href="{{ path('app_default_set',{'id':product.id,'slug':'plechtigheid'}) }}" class="btn btn-success btn-icon" >
-                        	<i class="far fa-calendar-check"></i>
-                         	Kies deze Plechtigheid
-                         </a>
-                         {% else %}
-                         <p>U dient eerst in te loggen voordat u deze product kan reserveren</p>
-                         {% endif %}
-                    </div>
-                </div>
-                <div class="col-sm-12 col-md-6 col-lg-5 col-sm-offset-1 col-md-offset-0 col-lg-offset-1">
-                	<figure class="col-img40 margin-bottom40 animation">
-                        <img  ng-src="{{product.afbeelding.url}}" alt="Image">
-                    </figure>
+                    </div>                    
+                    {% endfor %}        
+                         
                     
-                    beschikbaarheid van deze product
                 </div>
-            {% endfor %} 
-            </div>
-            <!-- .row end -->      
-            {#      
-            <!-- .row -->
-            <div class="row">
-                
-                <div class="col-sm-10 col-md-6 col-lg-5 col-sm-offset-1 col-md-offset-0">
-                	<figure class="margin-bottom40 animation" data-animation="animation-fade-in-left">
-                        <iframe width="560" height="315" frameborder="0" allowfullscreen="" src="{{product.film.url}}"></iframe>
-                    </figure>
-                </div>
-                
-                <div class="col-sm-10 col-md-6 col-sm-offset-1 col-md-offset-0 col-lg-offset-1">
-                	<div class="col-text20 margin-bottom20">{{ product.beschrijving|raw }}
-                    </div>
-                </div>
+                <!-- .row end -->
                 
             </div>
-            <!-- .row end -->
-            #}
-        </div>
-        <!-- .container end -->    
+            <!-- .tbl-pricing end -->        
 {% endblock %}
