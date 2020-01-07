@@ -36,6 +36,44 @@ class AppFixtures extends Fixture
     	$manager->flush();
     	$application= $manager->getRepository('App:Application')->findOneBy(array('id'=> $id));
     	
+    	
+    	// Berichte
+    	$id = Uuid::fromString('b93e6cdf-ed0c-49e7-9975-e6b31f3ebed2');
+    	$template = New Template;
+    	$template->setContent('Wij hebben uw verzoek ontvangen');
+    	$template->setTemplateEngine('twig');
+    	$manager->persist($template);
+    	$template->setId($id);
+    	$manager->persist($template);
+    	$manager->flush();
+    	
+    	$id = Uuid::fromString('2d56603e-65b3-4b17-81f7-d88ac8bb4e7f');
+    	$template = New Template;
+    	$template->setContent('U bent uitgenodigd als {{ role }}, klik op deze link om te bevestigen');
+    	$template->setTemplateEngine('twig');
+    	$manager->persist($template);
+    	$template->setId($id);
+    	$manager->persist($template);
+    	$manager->flush();
+    	
+    	$id = Uuid::fromString('a36433e4-3c9b-4df5-bf85-1a80bd2ae2ce');
+    	$template = New Template;
+    	$template->setContent('Er is een aanvraag voor u als trouw ambtenaar, kijk op uw dashboard om deze te acepteren');
+    	$template->setTemplateEngine('twig');
+    	$manager->persist($template);
+    	$template->setId($id);
+    	$manager->persist($template);
+    	$manager->flush();
+    	
+    	$id = Uuid::fromString('88fefee9-474c-4713-a55c-0ca460882d8d');
+    	$template = New Template;
+    	$template->setContent('Er is een boeking voor uw locaties, kijk op uw dashboard om deze te acepteren');
+    	$template->setTemplateEngine('twig');
+    	$manager->persist($template);
+    	$template->setId($id);
+    	$manager->persist($template);
+    	$manager->flush();
+    	
     	// Trouwen (ofwel home)
     	$id = Uuid::fromString('20219e4b-4dd0-4dc9-8768-3ecb33cf3d78');
     	$template = New Template;

@@ -72,7 +72,7 @@
             	{# if (huwelijk is defined and  huwelijk.getuigen is defined and huwelijk.getuigen|length < 4) or !huwelijk.getuigen #}
             	{# if (request.properties.getuigen is defined and request.properties.getuigen|length < 4) or request.properties.getuigen is defined  %}  #}
                 <div class="col-sm-4"> 
-                	<form method="post" action=""{{ path('app_default_assent',{'slug':'getuigen','role':'getuige'}) }}" class="affa-form-contact">
+                	<form method="post" action="{{ path('app_default_assent',{'slug':'getuigen','role':'getuige'}) }}" class="affa-form-contact">
                     	<h3>Toevoegen</h3>
                         <br/>
                     	<label for="getuige_voornamen">Voor partner</label>    
@@ -99,7 +99,7 @@
                     	<p>Uw getuige ontvangt een email met daarin een bevestigingslink. <br /> Via die link kan uw getuige aangeven of hij voor u wilt/gaat getuigen.</p>
                          
                         <br/>
-                         <a href="{{ path('app_extra_index') }}" class="btn btn-primary btn-block btn-icon" >
+                         <a href="{{ path('app_default_slug',{'slug':'extras'}) }}" class="btn btn-primary btn-block btn-icon" >
                         	<i class="far fa-calendar-times"></i>
                          	Ga door naar extras
                          </a>
