@@ -17,7 +17,7 @@
                         	    {{ user.naam.voornamen }}
                         	    {{ user.naam.geslachtsnaam }}
                             <p>
-	                            Status:  {{ request.properties.partners.0 }} 
+	                            Status:  {# request.properties.partners.0 #} 
 	                           
                                 {# partner is assent 
 	                            {% if partner1.personObject is defined %}
@@ -96,7 +96,7 @@
                         <div class="feature-text">
                         	<h4>U heeft uw partner reeds uitgenodigd</h4>
                             <p>
-	                            Status: {{ request.properties.partners.1 }} 
+	                            Status: {# request.properties.partners.1 #} 
 	                           
                                 {# partner is contact 
 	                            {% if partner2.personObject is defined %}
