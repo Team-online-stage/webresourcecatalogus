@@ -79,10 +79,14 @@
                                             	<!--  Trouwdatum -->  
                                             	<i class="fa fas fa-check"></i>Uw leeftijd is gecontroleerd
                                             <li>            
-                            		        {% if partners|length >= 2 %}                    
+                            		        {% if request.properties.partners|length >= 2 %}                    
                                             <li>    
                                             	<!--  Trouwdatum -->  
                                             	<i class="fa fas fa-check"></i>U bent geen famillie in de eerste graad
+                                            <li>                   
+                                            <li>    
+                                            	<!--  Trouwdatum -->  
+                                            	<i class="fa fas fa-check"></i>U staat niet onder curatele
                                             <li>                   
                                             {% endif %}       
                                             <li>    
