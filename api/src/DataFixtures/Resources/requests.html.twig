@@ -29,10 +29,10 @@
                     <tr>
                       <th scope="row">{{ loop.index }}</th>
                       <td>{{ request.reference }} </td>
-                      <td>{{ request.request_typeObject.name }} </td>
+                      <td>{{ request.request_type }} </td>
                       <td>{{ request.created_at}} </td>
                       <td>{{ request.status }}</td>
-                      <td><a href="{{ path('app_request_continue',{'id':request.id}) }}" class="btn btn-success" role="button">Verder gaan</a></td>
+                      <td><a href="{{ path('app_default_loadrequest',{'id':request.id}) }}" class="btn btn-success" role="button">Verder gaan</a></td>
                     </tr>
                     {% endfor %}
                   </tbody>
