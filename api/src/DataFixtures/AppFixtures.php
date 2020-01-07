@@ -36,7 +36,7 @@ class AppFixtures extends Fixture
     	$manager->flush();
     	$application= $manager->getRepository('App:Application')->findOneBy(array('id'=> $id));
     	
-    	// Getuigen
+    	// Trouwen (ofwel home)
     	$id = Uuid::fromString('20219e4b-4dd0-4dc9-8768-3ecb33cf3d78');
     	$template = New Template;
     	$template->setContent(file_get_contents(dirname(__FILE__).'/Resources/trouwen.html.twig', 'r'));
@@ -228,7 +228,7 @@ class AppFixtures extends Fixture
     	$slug->setSlug('melding');
     	$manager->persist($page);
     	
-    	// Ceremonie
+    	// Plechtigheid
     	$id = Uuid::fromString('013276cc-1483-46b4-ad5b-1cba5acf6d9f');
     	$template = New Template;
     	$template->setContent(file_get_contents(dirname(__FILE__).'/Resources/plechtigheid.html.twig', 'r'));
