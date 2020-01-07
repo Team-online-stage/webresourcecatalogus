@@ -327,7 +327,7 @@ class AppFixtures extends Fixture
     	// Betalen
     	//$id = Uuid::fromString('1370d87a-fe90-4826-a210-fd8e1c065576');
     	$template = New Template;
-    	$template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Betalen.html.twig', 'r'));
+    	$template->setContent(file_get_contents(dirname(__FILE__).'/Resources/betalen.html.twig', 'r'));
     	$template->setTemplateEngine('twig');
     	//$manager->persist($template);
     	//$template->setId($id);
