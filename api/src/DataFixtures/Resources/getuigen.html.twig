@@ -75,11 +75,14 @@
                 	<form method="post" action="{{ path('app_default_assent',{'slug':'getuigen','role':'getuige'}) }}" class="affa-form-contact">
                     	<h3>Toevoegen</h3>
                         <br/>
+            	        {% if request.properties.partners is defined %}	               
                     	<label for="getuige_voornamen">Voor partner</label>    
-                        <select ng-disabled="loading"  name="partner" id="partner">
-                        	<option value="getuigenPartner1">partner1</option>
-                          	<option value="getuigenPartner2">partner2</option>
+                        <select name="partner" id="partner">
+                        	{% for partner in request.properties.partners  %}
+                        	<option value="{{ partner }}">{{ commonground(commonground(partner).contact).formalName }} </option>
+                            {% endfor %}
                         </select>
+                        {% endif %}
                         <label for="givenName">Voornaam(en)</label>
                         <input type="text" name="givenName" placeholder="John" ng-disabled="loading"/>
                         <label for="familyName">Achternaam</label>
@@ -87,10 +90,8 @@
                         <label for="email">Email Adres <span class="required">*</span></label>
                         <input type="text" name="email" placeholder="john@do.nl" ng-disabled="loading"/>
                        	<label for="telephone">Telefoon nummer <span class="required">*</span></label>
-                        <input type="text" name="telephone" placeholder="+31 6 12345678" ng-disabled="loading"/>
-                       
-
-
+                        <input type="text" name="telephone" placeholder="+31 6 12345678" ng-disabled="loading"/>           
+                        
                        	<button type="submit" class="btn btn-success btn-lg btn-block  btn-icon" />
 							<i class="far fa-envelope"></i>
 							Uitnodigen

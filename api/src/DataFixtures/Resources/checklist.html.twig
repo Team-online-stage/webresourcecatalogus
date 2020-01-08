@@ -31,7 +31,7 @@
                                 		<ul class="list-icon">   
                                 			<li>  
                                             	<!--  Trouwdatum -->  
-                                            	<i class="fa fas fa-check"></i>{{  request.properties.plechtigheid }}
+                                            	<i class="fa fas fa-check"></i>{{ commonground(request.properties.plechtigheid).name }}
                                     		</li> 
                                 		</ul>  
                                     </li> 
@@ -41,7 +41,7 @@
                                 		<ul class="list-icon">   
                                 			<li>  
                                             	<!--  Trouwdatum -->  
-                                            	<i class="fa fas fa-check"></i> {{ request.properties.datum  }}
+                                            	<i class="fa fas fa-check"></i> {{ request.properties.datum  }} 
                                     		</li> 
                                 		</ul>  
                                     </li> 
@@ -51,7 +51,7 @@
                                 		<ul class="list-icon">   
                                 			<li>  
                                             	<!--  Trouwdatum -->  
-                                            	<i class="fa fas fa-check"></i>{{ request.properties.ambtenaar }}
+                                            	<i class="fa fas fa-check"></i>{{ commonground(request.properties.ambtenaar).name }}
                                     		</li> 
                                 		</ul>  
                                     </li> 
@@ -61,7 +61,7 @@
                                 		<ul class="list-icon">   
                                 			<li>  
                                             	<!--  Trouwdatum -->  
-                                            	<i class="fa fas fa-check"></i>{{ request.properties.locatie }}
+                                            	<i class="fa fas fa-check"></i>{{ commonground(request.properties.locatie).name }}
                                     		</li> 
                                 		</ul>  
                                     </li> 
@@ -73,7 +73,7 @@
                                 		<ul class="list-icon">                    
                                             <li>    
                                             	<!-- Partner -->
-                                                {{ partner }}  
+                                            	{{ commonground(commonground(partner).contact).formalName }}
                                             <li>                                          
                                             <li>    
                                             	<!--  Trouwdatum -->  
@@ -104,7 +104,7 @@
                                 		<ul class="list-icon">               
                                             <li>    
                                             	<!--  Getuigen -->
-                                                {{ getuige }}   
+                                            	{{ commonground(commonground(getuige).contact).formalName }}
                                             <li>                             
                                 		</ul>      
                                     </li>                                 
@@ -286,10 +286,17 @@
     		           		</a>    
                         {% endif %}
     		           		#}
-    		            	<a href="{{ path('app_default_slug',{'slug':'melding'}) }}" class="btn btn-primary btn-icon" >
+    		           		{% if request.status == "incomplete" %}
+    		            	<a href="{{ path('app_default_request',{'slug':'submit'}) }}" class="btn btn-primary btn-icon" >
     							<i class="fas fa-share-square"></i> 
-    			            	Ga door naar melding
+    			            	{% if request.properties.type is defined  %}{{ request.properties.type|capitalize }}{% else %}Aanvraag{% endif %} indienen
     		           		</a>
+    		           		{% elseif request.status == "submited" %}
+    		            	<a href="{{ path('app_default_request',{'slug':'cancel'}) }}" class="btn btn-danger btn-icon" >
+    							<i class="fas fa-share-square"></i> 
+    			            	Annuleer {% if request.properties.type is defined  %}{{ request.properties.type }}{% else %}aanvraag{% endif %}
+    		           		</a>
+    		           		{% endif %}
                     	</div><!-- /.btn-section -->    
                     	  
                 	</div><!-- /.col -->           

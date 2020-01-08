@@ -14,17 +14,20 @@
                     	<i class="fas fa-heart"></i>
                         <div class="feature-text">
                         	<h4>Partnerschap</h4>
-                            <p class="text-left">
-                            	<ul class="text-left">
-									<li>Niet alle landen in de wereld erkennen het geregistreerd partnerschap. Dit kan bijvoorbeeld gevolgen hebben voor het erfrecht of de familieverhouding tot uw kinderen.</li>
-									<li>Is een geregistreerd partnerschap voor u verstandig? Vraag dit bijvoorbeeld aan de ambassade van het land waar u mee te maken hebt of misschien mee te maken gaat krijgen.</li>
-									<li>Van de akte van geregistreerd partnerschap kunnen wij geen internationaal uittreksel afgeven.</li>
-									<li>Wilt u uw geregistreerd partnerschap later misschien omzetten in een huwelijk? Lees dan de informatie onder &ldquo;Geregistreerd partnerschap omzetten in een huwelijk&rdquo;.</li>
-                            	</ul>
+                            <ul class="text-left">
+								<li>Niet alle landen in de wereld erkennen het geregistreerd partnerschap. Dit kan bijvoorbeeld gevolgen hebben voor het erfrecht of de familieverhouding tot uw kinderen.</li>
+								<li>Is een geregistreerd partnerschap voor u verstandig? Vraag dit bijvoorbeeld aan de ambassade van het land waar u mee te maken hebt of misschien mee te maken gaat krijgen.</li>
+								<li>Van de akte van geregistreerd partnerschap kunnen wij geen internationaal uittreksel afgeven.</li>
+								<li>Wilt u uw geregistreerd partnerschap later misschien omzetten in een huwelijk? Lees dan de informatie onder &ldquo;Geregistreerd partnerschap omzetten in een huwelijk&rdquo;.</li>
+                            </ul>
+                            
+                            <p class="text-left" style="text-align: right;">
 								Meer informatie over trouwen, geregistreerd partnerschap en een samenlevingscontract vindt u op de <a href="https://www.rijksoverheid.nl/onderwerpen/trouwen-samenlevingscontract-en-geregistreerd-partnerschap/">website</a> van de Rijksoverheid.
                             </p>
                         </div>
+                    {% if user is not empty  %}
      				<a href="{{ path('app_default_set',{'slug':'ceremonies','id':'partnerschap'}) }}" class="btn btn-secondary btn-icon  btn-block"><i class="far fa-rings-wedding"></i> Kies Partnerschap</a>
+                         {% endif %}
                     </div>
      			
      			</div><!-- .col-left -->  
@@ -48,7 +51,9 @@
                             	</ul>
                             </p>
                         </div>
+                           {% if user is not empty  %}
      					<a href="{{ path('app_default_set',{'slug':'ceremonies','id':'huwelijk'}) }}" class="btn btn-secondary btn-icon btn-block"><i class="far fa-rings-wedding"></i> Kies huwelijk</a>
+                         {% endif %}
                     </div>
                 	<div class="affa-feature-icon"> 
                     	<i class="fas fa-heart" ></i>
@@ -63,8 +68,10 @@
                             	</ul>
                             </p>
                         </div>
+                    {% if user is not empty  %}
      					<a href="{{ path('app_default_set',{'slug':'ceremonies','id':'omzetten'}) }}" class="btn btn-secondary btn-icon btn-block"><i class="far fa-rings-wedding"></i> Kies Omzetten</a>
      					{# <a href="https://www.utrecht.nl/" class="btn btn-secondary btn-icon btn-block"><i class="far fa-rings-wedding"></i> Kies Omzetten</a> #} 
+                         {% endif %}
                     </div>
                     
      			</div><!-- .col-right --> 			
