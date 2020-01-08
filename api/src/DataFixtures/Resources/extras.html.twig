@@ -26,11 +26,13 @@
 	                    	<a href="{# path('app_extra_view',{'id':extra.id}) #}"  class="btn btn-secondary btn-icon  btn-block" >Meer lezen</a> 
 	                    	<br/>
 	                    	-->
+                                {% if user is not empty  %}
 	                    	<a href="{{ path('app_default_add',{'id':product.id,'slug':'extras'}) }}"  class="btn btn-primary btn-icon  btn-block">Ja dit wil ik!</a> 
                             
-	                    		<br/>	                    	
-                           		<a href="{{ path('app_default_slug',{'slug':'betalen'}) }}"  class="btn btn-danger btn-icon  btn-block">Ik hoef geen extra opties</a> 
+	                    	<br/>	                    	
+                           	<a href="{{ path('app_default_slug',{'slug':'betalen'}) }}"  class="btn btn-danger btn-icon  btn-block">Ik hoef geen extra opties</a> 
                     	</div>
+                                {% endif %}
                     </div>
                 </div>
                 {% endfor %}     
