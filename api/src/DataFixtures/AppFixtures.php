@@ -83,6 +83,7 @@ class AppFixtures extends Fixture
     	$template->setId($id);
     	$manager->persist($template);
     	$manager->flush();
+    	$template= $manager->getRepository('App:Template')->findOneBy(array('id'=> $id));
     	
     	$page = New Page;
     	$page->setTitle('Assent');
