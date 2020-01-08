@@ -14,11 +14,11 @@
                 <div class="col-sm-4"> <!-- 1 -->
                 	<div class="affa-team-profile">
                     	<figure class="team-profile-img" >
-                            <img src="images/thumbs/trouwboek_blauw.png" alt="Avatar" />
+                            <img src="{{ product.image }}" alt="Avatar" />
                         </figure>
                         <div class="team-profile-name">
                         	<h4>{{ product.name }}</h4>
-                            <p>Blauw</p>
+                            <p>{{ product.price }}</p>
                         </div>
                         <p>{{ product.description|raw }}<br/></p>
                         <div class="tbl-prc-footer">

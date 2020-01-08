@@ -21,7 +21,7 @@
                          	Reserveer deze locatie
                          </a>
                          {% elseif request is defined and request and request.properties.locatie  is defined and request.properties.locatie is not empty%}
-                         <a href="{{ path('app_default_unset',{'id':locatie.id,'slug':'locaties'}) }}" class="btn btn-danger btn-icon" >
+                         <a href="{{ path('app_default_unset',{'id':product.id,'slug':'locaties'}) }}" class="btn btn-danger btn-icon" >
                         	<i class="far fa-calendar-times"></i>
                          	Annuleer uw locatie
                          </a> 
