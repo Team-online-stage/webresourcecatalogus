@@ -84,6 +84,19 @@ class AppFixtures extends Fixture
     	$manager->persist($template);
     	$manager->flush();
     	
+    	$page = New Page;
+    	$page->setTitle('Assent');
+    	$page->setDescription('Assent');
+    	$page->setApplication($application);
+    	$page->setTemplate($template);
+    	$manager->persist($page);
+    	
+    	$slug = New Slug;
+    	$slug->setPage($page);
+    	$slug->setApplication($application);
+    	$slug->setSlug('assent');
+    	$manager->persist($page);
+    	
     	// Trouwen (ofwel home)
     	$id = Uuid::fromString('20219e4b-4dd0-4dc9-8768-3ecb33cf3d78');
     	$template = New Template;
