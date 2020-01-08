@@ -37,7 +37,7 @@ class AppFixtures extends Fixture
     	$application= $manager->getRepository('App:Application')->findOneBy(array('id'=> $id));
     	
     	
-    	// Berichte
+    	// Berichten
     	$id = Uuid::fromString('b93e6cdf-ed0c-49e7-9975-e6b31f3ebed2');
     	$template = New Template;
     	$template->setContent('Wij hebben uw verzoek ontvangen');
@@ -68,6 +68,16 @@ class AppFixtures extends Fixture
     	$id = Uuid::fromString('88fefee9-474c-4713-a55c-0ca460882d8d');
     	$template = New Template;
     	$template->setContent('Er is een boeking voor uw locaties, kijk op uw dashboard om deze te acepteren');
+    	$template->setTemplateEngine('twig');
+    	$manager->persist($template);
+    	$template->setId($id);
+    	$manager->persist($template);
+    	$manager->flush();
+    	
+    	// Assent    	
+    	$id = Uuid::fromString('016d30d8-34dd-4841-a4af-8ad0a0f9d23f');
+    	$template = New Template;
+    	$template->setContent(file_get_contents(dirname(__FILE__).'/Resources/assent.html.twig', 'r'));
     	$template->setTemplateEngine('twig');
     	$manager->persist($template);
     	$template->setId($id);
