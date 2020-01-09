@@ -45,7 +45,7 @@
 	                            <a href="{{ path('app_default_view',{'id':product.id,'slug':'product'}) }}"  class="btn btn-secondary btn-icon  btn-block" >Meer lezen</a> 
                                 {% if user is not empty  %}
 	                            <br/><br/>
-	                            <a href="{{ path('app_default_set',{'id':product.id,'slug':'plechtigheid'}) }}"  class="btn btn-primary btn-icon  btn-block">Ja dit wil ik!</a> 
+	                            <a href="{{ path('app_default_set',{'id':'https://pdc.zaakonline.nl/products/'~product.id,'slug':'plechtigheid'}) }}"  class="btn btn-primary btn-icon  btn-block">Ja dit wil ik!</a> 
                                 {% endif %}
                             </div>
                         </div>

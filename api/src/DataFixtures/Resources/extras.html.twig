@@ -27,7 +27,7 @@
 	                    	<br/>
 	                    	-->
                                 {% if user is not empty  %}
-	                    	<a href="{{ path('app_default_add',{'id':product.id,'slug':'extras'}) }}"  class="btn btn-primary btn-icon  btn-block">Ja dit wil ik!</a> 
+	                    	<a href="{{ path('app_default_add',{'id':'https://pdc.zaakonline.nl/products/'~product.id,'slug':'extras'}) }}"  class="btn btn-primary btn-icon  btn-block">Ja dit wil ik!</a> 
                             
 	                    	<br/>	                    	
                            	<a href="{{ path('app_default_slug',{'slug':'betalen'}) }}"  class="btn btn-danger btn-icon  btn-block">Ik hoef geen extra opties</a> 

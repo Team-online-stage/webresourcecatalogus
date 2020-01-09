@@ -16,12 +16,12 @@
                         <br/>
                         <br/>
                          {% if user is not empty and (request.properties.locatie is not defined or request.properties.locatie is empty) %}
-                        <a href="{{ path('app_default_set',{'id':product.id,'slug':'locaties'}) }}" class="btn btn-success btn-icon" >
+                        <a href="{{ path('app_default_set',{'id':'https://pdc.zaakonline.nl/products'~product.id,'slug':'locaties'}) }}" class="btn btn-success btn-icon" >
                         	<i class="far fa-calendar-check"></i>
                          	Reserveer deze locatie
                          </a>
                          {% elseif user is not empty and request and request.properties.locatie  is defined and request.properties.locatie is not empty%}
-                         <a href="{{ path('app_default_unset',{'id':product.id,'slug':'locaties'}) }}" class="btn btn-danger btn-icon" >
+                         <a href="{{ path('app_default_unset',{'id':'https://pdc.zaakonline.nl/products/'~product.id,'slug':'locaties'}) }}" class="btn btn-danger btn-icon" >
                         	<i class="far fa-calendar-times"></i>
                          	Annuleer uw locatie
                          </a> 
