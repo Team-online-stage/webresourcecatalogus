@@ -26,6 +26,10 @@
             	 %}	               
 		            <div class="row">   
                         {% for getuige in request.properties.getuigen  %}
+                        
+			                {% set assent = commonground(getuige) %}
+			                {% set contact = commonground(assent.contact) %}
+			    
 			            <div class="col-md-3"> <!-- 1 -->
 		                	<div class="affa-team-profile">
 		                    	<figure class="team-profile-img animation" data-animation="animation-fade-in-down">
@@ -41,26 +45,22 @@
 		                            <img src="images/content/avatar/1.jpg" alt="Avatar" />
 		                        </figure>
 		                        <div class="team-profile-name">
-		                        	<h4>{{ getuige }}</h4>
-		                        	<p>		                        	
-            							{# getuige is asset 
-        	                            {% if getuige.personObject is defined %}
-                                	    <br><b>Voornaam:</b> {{ getuige.personObject.naam.voornamen }}
-                                        <br><b>Achternaam:</b> {{ getuige.personObject.naam.geslachtsnaam }}
-                                        {% else %}
-                                	    <br><b>Voornaam:</b> {{ getuige.contactObject.given_name }}
-                                        <br><b>Achternaam:</b> {{ getuige.contactObject.family_name }}
-                                        {% endif %}
+                                	<h4>
+                                	    {{ contact.name }}
+                                	</h4>    
+                                    <p>
+        	                            Status:  {{ assent.status }} 
+        	                           
+                                	    <br><b>Voornaam:</b> {{ contact.givenName }}
+                                        <br><b>Achternaam:</b> {{ contact.familyName }}
                                         
-                                        
-        	                            {% if getuige.contactObject is defined and getuige.contactObject._embedded.emails is defined  %}
-                                	    <br><b>Email:</b> {{ getuige.contactObject._embedded.emails[0].email }}
+        	                            {% if contact1['_embedded']['emails'] is defined   %}
+                                	    <br><b>Email:</b> {{ contact['_embedded']['emails'][0].email }}
                                 	    {% endif %}
-                                        {% if getuige.contactObject is defined and  getuige.contactObject._embedded.telephones is defined  %}
-                                        <br><b>Telefoon</b></b> {{ getuige.contactObject._embedded.telephones[0].telephone }}
-                                        {% endif %}
-                                        #}
-		                        	</p>
+        	                            {% if contact1['_embedded']['telephones'] is defined   %}
+                                        <br><b>Telefoon</b></b> {{ contact['_embedded']['telephones'][0].telephone }}
+                                        {% endif %}                                
+                                    </p>
 		                        </div>
 		                    </div>
 		                </div>

@@ -29,8 +29,8 @@
                             <p>
 	                            Status:  {{ assent1.status }} 
 	                           
-                        	    <br><b>Voornaam:</b> {{ contact1.given_name }}
-                                <br><b>Achternaam:</b> {{ contact1.family_name }}
+                        	    <br><b>Voornaam:</b> {{ contact1.givenName }}
+                                <br><b>Achternaam:</b> {{ contact1.familyName }}
                                 
 	                            {% if contact1['_embedded']['emails'] is defined   %}
                         	    <br><b>Email:</b> {{ contact1['_embedded']['emails'][0].email }}
@@ -98,8 +98,8 @@
                             <p>
 	                            Status:  {{ assent2.status }} 
 	                           
-                        	    <br><b>Voornaam:</b> {{ contact2.given_name }}
-                                <br><b>Achternaam:</b> {{ contact2.family_name }}
+                        	    <br><b>Voornaam:</b> {{ contact2.givenName }}
+                                <br><b>Achternaam:</b> {{ contact2.familyName }}
                                 
 	                            {% if contact2['_embedded']['emails'] is defined   %}
                         	    <br><b>Email:</b> {{ contact2['_embedded']['emails'][0].email }}

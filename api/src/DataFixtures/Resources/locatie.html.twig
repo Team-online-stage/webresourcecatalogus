@@ -16,7 +16,7 @@
                         <br/>
                         <br/>
                          {% if user is not empty and (request.properties.locatie is not defined or request.properties.locatie is empty) %}
-                        <a href="{{ path('app_default_set',{'id':'https://pdc.zaakonline.nl/products'~product.id,'slug':'locaties'}) }}" class="btn btn-success btn-icon" >
+                        <a href="{{ path('app_default_set',{'id':'https://pdc.zaakonline.nl/products/'~product.id,'slug':'locaties'}) }}" class="btn btn-success btn-icon" >
                         	<i class="far fa-calendar-check"></i>
                          	Reserveer deze locatie
                          </a>

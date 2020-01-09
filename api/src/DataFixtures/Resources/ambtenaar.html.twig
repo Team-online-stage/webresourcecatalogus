@@ -11,7 +11,7 @@
                         	<h4>Ambtenaar</h4>
                             <h2>{{ product.name|e }}</h2>
                         </div>
-                        {{ product.description|e }}     
+                        {{ product.description|raw }}     
                         <br/>
                         <br/>
                          {% if user is not empty and (request.properties.ambtenaar is not defined or request.properties.ambtenaar is empty) %}
