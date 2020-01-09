@@ -286,7 +286,7 @@
     		           		</a>    
                         {% endif %}
     		           		#}
-    		           		{% if request.status == "incomplete" %}
+    		           		{% if request is not empty and request.status == "incomplete" %}
     		            	<a href="{{ path('app_default_request',{'slug':'submit'}) }}" class="btn btn-primary btn-icon" >
     							<i class="fas fa-share-square"></i> 
     			            	{% if request.properties.type is defined  %}{{ request.properties.type|capitalize }}{% else %}Aanvraag{% endif %} indienen
