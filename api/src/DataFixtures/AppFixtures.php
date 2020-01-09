@@ -411,6 +411,53 @@ class AppFixtures extends Fixture
     	$manager->persist($page);
     	
     	// Ambtenaren
+    	$id = Uuid::fromString('14df39f8-46f7-49b4-9b0c-c1c4761bcb2f');
+    	$template = New Template;
+    	$template->setContent(file_get_contents(dirname(__FILE__).'/Resources/product.html.twig', 'r'));
+    	$template->setTemplateEngine('twig');
+    	$manager->persist($template);
+    	$template->setId($id);
+    	$manager->persist($template);
+    	$manager->flush();
+    	$template= $manager->getRepository('App:Template')->findOneBy(array('id'=> $id));
+    	
+    	$page = New Page;
+    	$page->setTitle('Product');
+    	$page->setDescription('Product');
+    	$page->setApplication($application);
+    	$page->setTemplate($template);
+    	$manager->persist($page);
+    	
+    	$slug = New Slug;
+    	$slug->setPage($page);
+    	$slug->setApplication($application);
+    	$slug->setSlug('product');
+    	$manager->persist($page);
+    	
+    	$id = Uuid::fromString('b747ea1f-e061-4ec8-8f92-959f6a1e2dd0');
+    	$template = New Template;
+    	$template->setContent(file_get_contents(dirname(__FILE__).'/Resources/producten.html.twig', 'r'));
+    	$template->setTemplateEngine('twig');
+    	$manager->persist($template);
+    	$template->setId($id);
+    	$manager->persist($template);
+    	$manager->flush();
+    	$template= $manager->getRepository('App:Template')->findOneBy(array('id'=> $id));
+    	
+    	$page = New Page;
+    	$page->setTitle('Producten');
+    	$page->setDescription('Producten');
+    	$page->setApplication($application);
+    	$page->setTemplate($template);
+    	$manager->persist($page);
+    	
+    	$slug = New Slug;
+    	$slug->setPage($page);
+    	$slug->setApplication($application);
+    	$slug->setSlug('producten');
+    	$manager->persist($page);
+    	
+    	// Ambtenaren
     	$id = Uuid::fromString('28268026-6f82-4b19-8dc7-a325edfeca82');
     	$template = New Template;
     	$template->setContent(file_get_contents(dirname(__FILE__).'/Resources/ambtenaar.html.twig', 'r'));
