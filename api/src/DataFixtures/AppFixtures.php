@@ -436,7 +436,7 @@ class AppFixtures extends Fixture
     	
     	$id = Uuid::fromString('b747ea1f-e061-4ec8-8f92-959f6a1e2dd0');
     	$template = New Template;
-    	$template->setContent(file_get_contents(dirname(__FILE__).'/Resources/producten.html.twig', 'r'));
+    	$template->setContent(file_get_contents(dirname(__FILE__).'/Resources/products.html.twig', 'r'));
     	$template->setTemplateEngine('twig');
     	$manager->persist($template);
     	$template->setId($id);
