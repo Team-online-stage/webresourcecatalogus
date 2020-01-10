@@ -1,0 +1,159 @@
+{# templates/partners/index.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block body %}                  
+
+			{# here we are going to play a small trick but we want to prevent making an commonground call  #}
+			{% if request.properties.partners is defined and request.properties.partners[0] is defined  %} 
+			    {% set assent1 = commonground(request.properties.partners.0) %}
+			    {% set contact1 = commonground(assent1.contact) %}
+            {% endif %} 
+			{% if request.properties.partners is defined and request.properties.partners[1] is defined  %} 
+			    {% set assent2 = commonground(request.properties.partners.1) %}
+			    {% set contact2 = commonground(assent2.contact) %}
+            {% endif %} 
+            <!-- .row-custom -->
+            <div class="row-custom animation" data-animation="animation-fade-in" data-delay=" {% if app.session.flashbag.peekAll|length > 0 %}3400{%else%}200{% endif %}" >     
+                <div class="post-heading-center">
+                	<h2>Uw partner</h2>
+                </div>
+            
+                <div class="col-left">
+                	<div class="affa-feature-icon"> <!-- 1 -->
+                    	<i class="fas fa-user" ></i>
+                        <div class="feature-text">
+                        	<h4>
+                        	    {{ contact1.name }}
+                        	</h4>    
+                            <p>
+	                            Status:  {{ assent1.status }} 
+	                           
+                        	    <br><b>Voornaam:</b> {{ contact1.givenName }}
+                                <br><b>Achternaam:</b> {{ contact1.familyName }}
+                                
+	                            {% if contact1['_embedded']['emails'] is defined   %}
+                        	    <br><b>Email:</b> {{ contact1['_embedded']['emails'][0].email }}
+                        	    {% endif %}
+	                            {% if contact1['_embedded']['telephones'] is defined   %}
+                                <br><b>Telefoon</b></b> {{ contact1['_embedded']['telephones'][0].telephone }}
+                                {% endif %}                                
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="affa-feature-icon"> <!-- 2 -->
+                    	<i class="fas fa-home " ></i>
+                        <div class="feature-text">
+                        	<h4>Adres</h4>
+                            <p>
+	                            {% if contact1['_embedded']['adresses'] is defined   %}
+                                <br> {{ contact1['_embedded']['adresses'][0].street }}  {{ contact1['_embedded']['adresses'][0].houseNumber }}
+                                <br> {{ contact1['_embedded']['adresses'][0].postalCode }}  {{ contact1['_embedded']['adresses'][0].locality }}
+                                {% endif %}
+                             <br />
+                            </p>
+                         </div>
+                    </div>
+                    
+                    <!-- Uitnodigen partner 2 -->
+                    <div class="affa-feature-icon"> 
+                    	<i class="fas fa-envelope"></i>
+                        <div class="feature-text">
+                        	<h4>Uw contact gegevens</h4>
+                            <p>We willen graag nog een paar dingen van u weten</p>         
+                            <br/>     
+   							{#
+		                	<form method="post" action="{{ path('app_partner_updateuser') }}" class="affa-form-contact">
+		                    	<div class="submit-status"></div>
+
+                                <label for="partner_email">Email Adres <span class="required">*</span></label>
+                                <input type="text" name="emailadres" placeholder="john@do.nl" value="" required/>
+                                <label for="partner_telefoonnummer">Telefoonnummer</label>
+                                <input type="text" name="telefoonnummer" placeholder="+31 6 12345678" value=""/> 
+                                                               
+ 								<button type="submit" class="btn btn-success btn-lg btn-block btn-icon"><i class="far fa-envelope"></i> Opslaan</button> 								
+		                    </form>
+		                    #}
+		                    
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-center">
+                	<figure class="margin-bottom40 " >
+                    	<img src="images/content/elements/MakeItKnown.png"/>
+                    </figure>
+                </div>
+                
+                <div class="col-right">
+					<!-- NAW gegevens partner 2 -->					
+            	    {% if assent2 is defined and assent2 is not empty  %}   
+                	<div class="affa-feature-icon"> 
+                    	<i class="fas fa-user " ></i>
+                        <div class="feature-text">
+                        	<h4>
+                        	    {{ contact2.name }}
+                        	</h4>    
+                            <p>
+	                            Status:  {{ assent2.status }} 
+	                           
+                        	    <br><b>Voornaam:</b> {{ contact2.givenName }}
+                                <br><b>Achternaam:</b> {{ contact2.familyName }}
+                                
+	                            {% if contact2['_embedded']['emails'] is defined   %}
+                        	    <br><b>Email:</b> {{ contact2['_embedded']['emails'][0].email }}
+                        	    {% endif %}
+	                            {% if contact2['_embedded']['telephones'] is defined   %}
+                                <br><b>Telefoon</b></b> {{ contact2['_embedded']['telephones'][0].telephone }}
+                                {% endif %}                                
+                            </p>
+                        </div>
+                    </div>
+                   
+					<!-- Overige gegevens partner 2 -->
+                    <div class="affa-feature-icon" > <!-- 5 -->
+                    	<i class="fas fa-home"></i>
+                        <div class="feature-text">
+                        	<h4>Adres en contact</h4>                           
+	                        	{% if contact2['_embedded']['adresses'] is defined   %}
+                                <br> {{ contact2['_embedded']['adresses'][0].street }}  {{ contact2['_embedded']['adresses'][0].houseNumber }}
+                                <br> {{ contact2['_embedded']['adresses'][0].postalCode }}  {{ contact2['_embedded']['adresses'][0].locality }}
+                                {% endif %}
+                        </div>
+                    </div>       
+                    {% else %} 
+					<!-- Uitnodigen partner 2 -->
+                    <div class="affa-feature-icon"> <!-- 6 -->
+                    	<i class="fas fa-envelope"></i>
+                        <div class="feature-text">
+                        	<h4>{% if request.properties.type is defined  %}Vraag uw partner ten {{ request.properties.type|capitalize }}{% else %}Nodig uw partner uit{% endif %}.</h4>
+                            <p>Want dit doet u natuurlijk samen</p>         
+                            <br/>                   
+		                	<form method="post" action="{{ path('app_default_assent',{'slug':'partners','role':'partner'}) }}" class="affa-form-contact" >
+		                    	<div class="submit-status"></div> <!-- submit status -->
+
+								<label for="givenName" >Voornaam(en) <span class="required">*</span></label>
+                                <input type="text" name="givenName" placeholder="John" required/>
+                                <label for="familyName">Achternaam <span class="required">*</span></label>
+                                <input type="text" name="familyName" placeholder="Do" required/>
+                                <label for="email">Email Adres <span class="required">*</span></label>
+                                <input type="text" name="email" placeholder="john@do.nl" required/>
+                                <label for="telephone">Telefoonnummer</label>
+                                <input type="text" name="telephone" placeholder="+31 6 12345678"/>
+                                
+ 								<button type="submit" class="btn btn-success btn-lg btn-block btn-icon"><i class="far fa-envelope"></i> Per bericht Uitnodigen</button>
+ 								
+		                    </form>
+                             <p>- Of -</p>                            
+                        	<a href="{{ path('app_default_assentadd',{'property':'partners'}) }}" class="btn btn-success btn-lg btn-block btn-icon"><i class="far fa-lock"></i> Uw partner laten inloggen</a>  
+                        	 
+                        </div>
+                    </div>
+                    {% endif %} 
+                    
+                </div>
+                
+            </div>
+            <!-- .row-custom end -->       
+{% endblock %}

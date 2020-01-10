@@ -5,12 +5,15 @@ namespace App\Entity;
 use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Filter\LikeFilter;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Serializer\Annotation\MaxDepth;
+use Ramsey\Uuid\Uuid;
 
 /**
  * MenuItem is a part of a menu and can be a link or submenu.
@@ -84,11 +87,18 @@ class MenuItem
      * @ORM\JoinColumn(nullable=false)
      * @MaxDepth(1)
      */
-    private $menu;
-
-    public function getId(): ?string
+    private $menu;    
+    
+    public function getId(): Uuid
     {
-        return $this->id;
+    	return $this->id;
+    }
+    
+    public function setId(Uuid $id): self
+    {
+    	$this->id = $id;
+    	
+    	return $this;
     }
 
     public function getName(): ?string

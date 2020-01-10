@@ -5,12 +5,15 @@ namespace App\Entity;
 use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Filter\LikeFilter;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Serializer\Annotation\MaxDepth;
+use Ramsey\Uuid\Uuid;
 
 /**
  * A page holds your content in your application.
@@ -50,6 +53,8 @@ class Page
      */
     private $title;
 
+    /*@to asdasd */
+    
     /**
      * @var string The description of this page.
      * @example This page holds info about this application
@@ -65,23 +70,10 @@ class Page
 
     /**
      * @Groups({"read","write"})
-     * @ORM\ManyToMany(targetEntity="App\Entity\Content")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Template", inversedBy="pages")
      * @MaxDepth(1)
      */
-    private $content;
-
-    /**
-     * @var string The template engine of this page.
-     * @example Twig
-     *
-     * @Assert\NotNull
-     * @Assert\Length(
-     *     max = 255
-     * )
-     * @Groups({"read","write"})
-     * @ORM\Column(type="string", length=255)
-     */
-    private $templateEngine;
+    private $template;
 
     /**
      * @Groups({"read","write"})
@@ -98,15 +90,17 @@ class Page
      * @MaxDepth(1)
      */
     private $slug;
-
-    public function __construct()
+    
+    public function getId(): Uuid
     {
-        $this->content = new ArrayCollection();
+    	return $this->id;
     }
-
-    public function getId(): ?string
+    
+    public function setId(Uuid $id): self
     {
-        return $this->id;
+    	$this->id = $id;
+    	
+    	return $this;
     }
 
     public function getTitle(): ?string
@@ -133,18 +127,6 @@ class Page
         return $this;
     }
 
-    public function getTemplateEngine(): ?string
-    {
-        return $this->templateEngine;
-    }
-
-    public function setTemplateEngine(string $templateEngine): self
-    {
-        $this->templateEngine = $templateEngine;
-
-        return $this;
-    }
-
     public function getApplication(): ?Application
     {
         return $this->application;
@@ -158,27 +140,16 @@ class Page
     }
 
     /**
-     * @return Collection|Content[]
+     * @return Collection|Template[]
      */
-    public function getContent(): Collection
+    public function getTemplate(): Template
     {
-        return $this->content;
+        return $this->template;
     }
 
-    public function addContent(Content $content): self
+    public function setTemplate(Template $template): self
     {
-        if (!$this->content->contains($content)) {
-            $this->content[] = $content;
-        }
-
-        return $this;
-    }
-
-    public function removeContent(Content $content): self
-    {
-        if ($this->content->contains($content)) {
-            $this->content->removeElement($content);
-        }
+    	$this->template= $template;
 
         return $this;
     }
