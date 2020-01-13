@@ -5382,10 +5382,6 @@ components:
           $ref: '#/components/schemas/Header-read'
         footer:
           $ref: '#/components/schemas/Footer-read'
-        slugs:
-          type: array
-          items:
-            $ref: '#/components/schemas/Slug-read'
       required:
         - name
         - description
@@ -5411,10 +5407,6 @@ components:
           $ref: '#/components/schemas/Header-write'
         footer:
           $ref: '#/components/schemas/Footer-write'
-        slugs:
-          type: array
-          items:
-            $ref: '#/components/schemas/Slug-write'
     'Application:jsonld-read':
       type: object
       description: 'Application is the project of a website.'
@@ -5447,10 +5439,6 @@ components:
           $ref: '#/components/schemas/Header:jsonld-read'
         footer:
           $ref: '#/components/schemas/Footer:jsonld-read'
-        slugs:
-          type: array
-          items:
-            $ref: '#/components/schemas/Slug:jsonld-read'
       required:
         - name
         - description
@@ -5485,10 +5473,6 @@ components:
           $ref: '#/components/schemas/Header:jsonld-write'
         footer:
           $ref: '#/components/schemas/Footer:jsonld-write'
-        slugs:
-          type: array
-          items:
-            $ref: '#/components/schemas/Slug:jsonld-write'
     Footer-read:
       type: object
       description: 'Footer can hold a logo and menu or other links.'
@@ -6197,6 +6181,12 @@ components:
           externalDocs:
             url: 'http://schema.org/identifier'
           type: string
+        name:
+          description: 'The name of this menu'
+          type: string
+        description:
+          description: 'The description of this page.'
+          type: string
         content:
           description: 'The Content of this template.'
           type: string
@@ -6208,15 +6198,25 @@ components:
           items:
             $ref: '#/components/schemas/Page-read'
       required:
+        - name
+        - description
         - content
         - templateEngine
     Template-write:
       type: object
       description: 'Content holds information and photos you want to show on your pages.'
       required:
+        - name
+        - description
         - content
         - templateEngine
       properties:
+        name:
+          description: 'The name of this menu'
+          type: string
+        description:
+          description: 'The description of this page.'
+          type: string
         content:
           description: 'The Content of this template.'
           type: string
@@ -6246,6 +6246,12 @@ components:
           externalDocs:
             url: 'http://schema.org/identifier'
           type: string
+        name:
+          description: 'The name of this menu'
+          type: string
+        description:
+          description: 'The description of this page.'
+          type: string
         content:
           description: 'The Content of this template.'
           type: string
@@ -6257,12 +6263,16 @@ components:
           items:
             $ref: '#/components/schemas/Page:jsonld-read'
       required:
+        - name
+        - description
         - content
         - templateEngine
     'Template:jsonld-write':
       type: object
       description: 'Content holds information and photos you want to show on your pages.'
       required:
+        - name
+        - description
         - content
         - templateEngine
       properties:
@@ -6274,6 +6284,12 @@ components:
           type: string
         '@type':
           readOnly: true
+          type: string
+        name:
+          description: 'The name of this menu'
+          type: string
+        description:
+          description: 'The description of this page.'
           type: string
         content:
           description: 'The Content of this template.'
@@ -6308,7 +6324,6 @@ definitions:
         maxLength: 255
       header: []
       footer: []
-      slugs: []
     required:
       - name
       - description
@@ -6326,7 +6341,6 @@ definitions:
         maxLength: 255
       header: []
       footer: []
-      slugs: []
     required:
       - name
       - description
@@ -6517,22 +6531,38 @@ definitions:
       id:
         example: e2984465-190a-4562-829e-a8cca81aa35d
         format: uuid
+      name:
+        example: 'webshop menu'
+        maxLength: 255
+      description:
+        example: 'This page holds info about this application'
+        maxLength: 255
       content:
         example: 'A lot of random info over any topic'
       templateEngine:
         example: Twig
       pages: []
     required:
+      - name
+      - description
       - content
       - templateEngine
   Template-write:
     properties:
+      name:
+        example: 'webshop menu'
+        maxLength: 255
+      description:
+        example: 'This page holds info about this application'
+        maxLength: 255
       content:
         example: 'A lot of random info over any topic'
       templateEngine:
         example: Twig
       pages: []
     required:
+      - name
+      - description
       - content
       - templateEngine
 tags:
