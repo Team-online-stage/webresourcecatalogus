@@ -6,12 +6,12 @@
 
 			{# here we are going to play a small trick but we want to prevent making an commonground call  #}
 			{% if request.properties.partners is defined and request.properties.partners[0] is defined  %} 
-			    {% set assent1 = commonground(request.properties.partners.0) %}
-			    {% set contact1 = commonground(assent1.contact) %}
+			    {% set assent1 = commonground_resource(request.properties.partners.0) %}
+			    {% set contact1 = commonground_resource(assent1.contact) %}
             {% endif %} 
 			{% if request.properties.partners is defined and request.properties.partners[1] is defined  %} 
-			    {% set assent2 = commonground(request.properties.partners.1) %}
-			    {% set contact2 = commonground(assent2.contact) %}
+			    {% set assent2 = commonground_resource(request.properties.partners.1) %}
+			    {% set contact2 = commonground_resource(assent2.contact) %}
             {% endif %} 
             <!-- .row-custom -->
             <div class="row-custom animation" data-animation="animation-fade-in" data-delay=" {% if app.session.flashbag.peekAll|length > 0 %}3400{%else%}200{% endif %}" >     

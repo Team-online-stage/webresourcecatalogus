@@ -27,8 +27,8 @@
 		            <div class="row">   
                         {% for getuige in request.properties.getuigen  %}
                         
-			                {% set assent = commonground(getuige) %}
-			                {% set contact = commonground(assent.contact) %}
+			                {% set assent = commonground_resource(getuige) %}
+			                {% set contact = commonground_resource(assent.contact) %}
 			    
 			            <div class="col-md-3"> <!-- 1 -->
 		                	<div class="affa-team-profile">
