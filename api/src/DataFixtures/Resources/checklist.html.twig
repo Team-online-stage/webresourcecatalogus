@@ -222,7 +222,7 @@
                                 		</ul>  
                                     </li>         
                                     {% endif %}
-                            		{% if (request.properties.getuigen is defined and getuigen|length < 2) or request.properties.getuigen is not defined %}                     
+                            		{% if (request.properties.getuigen is defined and request.properties.getuigen|length <= 2) or request.properties.getuigen is not defined %}                     
                                     <li><b>Getuigen</b>   
                                 		<ul class="list-icon">   
                                 			<li>    
