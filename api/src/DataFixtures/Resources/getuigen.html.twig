@@ -79,7 +79,7 @@
                     	<label for="getuige_voornamen">Voor partner</label>    
                         <select name="partner" id="partner">
                         	{% for partner in request.properties.partners  %}
-                        	<option value="{{ partner }}">{{ commonground(commonground(partner).contact).formalName }} </option>
+                        	<option value="{{ partner }}">{{ commonground_resource(commonground_resource(partner).contact).formalName }} </option>
                             {% endfor %}
                         </select>
                         {% endif %}
