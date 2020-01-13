@@ -287,12 +287,12 @@
                         {% endif %}
     		           		#}
     		           		{% if request is not empty and request.status == "incomplete" %}
-    		            	<a href="{{ path('app_default_cancelrequest') }}" class="btn btn-primary btn-icon" >
+    		            	<a href="{{ path('app_default_submitrequest') }}" class="btn btn-primary btn-icon" >
     							<i class="fas fa-share-square"></i> 
     			            	{% if request.properties.type is defined  %}{{ request.properties.type|capitalize }}{% else %}Aanvraag{% endif %} indienen
     		           		</a>
     		           		{% elseif request.status == "submited" %}
-    		            	<a href="{{ path('submitrequest}) }}" class="btn btn-danger btn-icon" >
+    		            	<a href="{{ path('app_default_cancelrequest') }}" class="btn btn-danger btn-icon" >
     							<i class="fas fa-share-square"></i> 
     			            	Annuleer {% if request.properties.type is defined  %}{{ request.properties.type }}{% else %}aanvraag{% endif %}
     		           		</a>
