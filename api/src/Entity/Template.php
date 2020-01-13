@@ -39,6 +39,32 @@ class Template
 	 * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
 	 */
 	private $id;
+	
+	/**
+	 * @var string The name of this menu
+	 * @example webshop menu
+	 *
+	 * @Assert\NotNull
+	 * @Assert\Length(
+	 *      max = 255
+	 * )
+	 * @Groups({"read","write"})
+	 * @ORM\Column(type="string", length=255)
+	 */
+	private $name;
+	
+	/**
+	 * @var string The description of this page.
+	 * @example This page holds info about this application
+	 *
+	 * @Assert\NotNull
+	 * @Assert\Length(
+	 *     max = 255
+	 * )
+	 * @Groups({"read","write"})
+	 * @ORM\Column(type="string", length=255)
+	 */
+	private $description;
 
     /**
      * @var string The Content of this template.
@@ -82,6 +108,30 @@ class Template
     public function setId(Uuid $id): self
     {
     	$this->id = $id;
+    	
+    	return $this;
+    }
+    
+    public function getName(): ?string
+    {
+    	return $this->name;
+    }
+    
+    public function setName(string $name): self
+    {
+    	$this->name = $name;
+    	
+    	return $this;
+    }
+    
+    public function getDescription(): ?string
+    {
+    	return $this->description;
+    }
+    
+    public function setDescription(string $description): self
+    {
+    	$this->description = $description;
     	
     	return $this;
     }
