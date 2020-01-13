@@ -14,8 +14,8 @@
                         {{ extra.samenvatting|raw }}                        
                         <br/>
                         <br/>
-                        {% if user is not empty and request is not empty %}
-                        <a href="{{ path('app_extra_add',{'id':extra.id}) }}" class="btn btn-success btn-icon" >
+                        {% if huwelijk is defined  and huwelijk%}
+                        <a href="{{ path('app_default_add',{'id':extra.id,'slug':'extras'}) }}" class="btn btn-success btn-icon" >
                         	<i class="far fa-calendar-check"></i>
                          	Voeg deze extra toe
                          </a>

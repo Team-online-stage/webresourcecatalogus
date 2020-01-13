@@ -5,6 +5,7 @@ namespace App\Entity;
 use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Filter\LikeFilter;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Gedmo\Mapping\Annotation as Gedmo;
@@ -38,6 +39,32 @@ class Template
 	 * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
 	 */
 	private $id;
+	
+	/**
+	 * @var string The name of this menu
+	 * @example webshop menu
+	 *
+	 * @Assert\NotNull
+	 * @Assert\Length(
+	 *      max = 255
+	 * )
+	 * @Groups({"read","write"})
+	 * @ORM\Column(type="string", length=255)
+	 */
+	private $name;
+	
+	/**
+	 * @var string The description of this page.
+	 * @example This page holds info about this application
+	 *
+	 * @Assert\NotNull
+	 * @Assert\Length(
+	 *     max = 255
+	 * )
+	 * @Groups({"read","write"})
+	 * @ORM\Column(type="string", length=255)
+	 */
+	private $description;
 
     /**
      * @var string The Content of this template.
@@ -48,13 +75,6 @@ class Template
      * @ORM\Column(type="text")
      */
     private $content;
-
-    /**
-     * @Groups({"read","write"})
-     * @ORM\ManyToMany(targetEntity="App\Entity\Image")
-     * @MaxDepth(1)
-     */
-    private $image;       
     
     /**
      * @var string The template engine used to render this template. Schould be either twig (Twig), md (markdown) or rst (reStructuredText)
@@ -91,6 +111,30 @@ class Template
     	
     	return $this;
     }
+    
+    public function getName(): ?string
+    {
+    	return $this->name;
+    }
+    
+    public function setName(string $name): self
+    {
+    	$this->name = $name;
+    	
+    	return $this;
+    }
+    
+    public function getDescription(): ?string
+    {
+    	return $this->description;
+    }
+    
+    public function setDescription(string $description): self
+    {
+    	$this->description = $description;
+    	
+    	return $this;
+    }
 
     public function getContent(): ?string
     {
@@ -103,34 +147,6 @@ class Template
 
         return $this;
     }
-
-    /**
-     * @return Collection|Image[]
-     */
-    public function getImage(): Collection
-    {
-        return $this->image;
-    }
-
-    public function addImage(Image $image): self
-    {
-        if (!$this->image->contains($image)) {
-            $this->image[] = $image;
-        }
-
-        return $this;
-    }
-
-    public function removeImage(Image $image): self
-    {
-        if ($this->image->contains($image)) {
-            $this->image->removeElement($image);
-        }
-
-        return $this;
-    }
-    
-    
     
     public function getTemplateEngine(): ?string
     {

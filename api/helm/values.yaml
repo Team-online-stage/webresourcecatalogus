@@ -9,11 +9,10 @@ settings:
   title: Web Resource Component
   version: V.0.1
   description: '&#039;Naast deze JSON rest API is er ook een [graphql](/graphql) interface beschikbaar.&#039;'
-  repro: 'https://github.com/ConductionNL/Proto-component-commonground'
-  subdomain: pc  
+  repro: 'https://github.com/ConductionNL/webresourcecatalogus'
+  subdomain: wrc  
   domains:
     - conduction.nl
-    - vng.cloud
     - zaakonline.nl
     - huwelijksplanner.online
     - common-ground.dev
@@ -24,12 +23,12 @@ settings:
   state: Noord-Holland
   locality: Amsterdam
   unit: Common-Ground  
-  demo: pc.zaakonline.nl
+  demo: wr.zaakonline.nl
   env: dev
   debug: 1
   replicaCount: 1
   corsAllowOrigin: ['*']
-  trustedHosts: '^(.+\.)?conduction\.nl$|^(.+\.)?vng\.cloud$|^(.+\.)?huwelijksplanner\.online$|^(.+\.)?larping\.eu$|^(.+\.)?common-ground\.dev$|^(.+\.)?trouwplanner\.online$|^(.+\.)?zaakonline\.nl$|localhost'
+  trustedHosts: '^(.+\.)?conduction\.nl$|^(.+\.)?huwelijksplanner\.online$|^(.+\.)?larping\.eu$|^(.+\.)?common-ground\.dev$|^(.+\.)?trouwplanner\.online$|^(.+\.)?zaakonline\.nl$|localhost'
   pullPolicy: Always
   # You will need these proxies on kubernetes
   trustedProxies:

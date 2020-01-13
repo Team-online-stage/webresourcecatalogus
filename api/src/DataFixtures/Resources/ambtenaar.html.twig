@@ -11,33 +11,28 @@
                         	<h4>Ambtenaar</h4>
                             <h2>{{ product.name|e }}</h2>
                         </div>
-                        {{ product.description|e }}     
+                        {{ product.description|raw }}     
                         <br/>
                         <br/>
-                         {% if request is defined and request.properties.ambtenaar is not defined and request is not empty %}
-                        <a href="{{ path('app_ambtenaar_set',{'id':product.id}) }}" class="btn btn-success btn-icon" >
+                         {% if user is not empty and (request.properties.ambtenaar is not defined or request.properties.ambtenaar is empty) %}
+                        <a href="{{ path('app_default_set',{'id':'https://pdc.zaakonline.nl/products/'~product.id,'slug':'ambtenaren'}) }}" class="btn btn-success btn-icon" >
                         	<i class="far fa-calendar-check"></i>
                          	Reserveer deze ambtenaar
-                         </a>
-                         {% elseif request is defined and request 
-                         and request.properties.ambtenaar is defined 
-                         and request.properties.product !=  "http://producten-diensten.demo.zaakonline.nl/producten/1" 
-                         and request.properties.product != "http://producten-diensten.demo.zaakonline.nl/producten/2" %}
-                         <a href="{{ path('app_ambtenaar_unset',{'id':product.id}) }}" class="btn btn-danger btn-icon" >
+                         </a>                        
+                         {% elseif user is not empty and request and request.properties.ambtenaar  is defined and request.properties.ambtenaar is not empty %}
+                         <a href="{{ path('app_default_unset',{'id':'https://pdc.zaakonline.nl/products/'~product.id,'slug':'ambtenaren'}) }}" class="btn btn-danger btn-icon" >
                         	<i class="far fa-calendar-times"></i>
                          	Annuleer deze ambtenaar
                          </a>
                          <br/><br/>
-                         <a href="{{ path('app_getuigen_index') }}" class="btn btn-primary btn-icon" >
+                         <a href="{{ path('app_default_slug',{'slug':'getuigen'}) }}" class="btn btn-primary btn-icon" >
                         	<i class="far fa-calendar-times"></i>
                          	Ga door naar getuigen
                          </a>
-                         {% elseif request is defined and request is not null and (
-                         request.properties.product !=  "http://producten-diensten.demo.zaakonline.nl/producten/1" 
-                         or request.properties.product != "http://producten-diensten.demo.zaakonline.nl/producten/2" )%}
+                         {% elseif user is not empty and request and request.properties.ambtenaar  is defined and request.properties.ambtenaar is not empty %}
                          <p>Let op: Het type ceremonie dat u heeft geselecteerd laat geen keuze voor een ambtenaar toe. Alleen bij een uitgebreide ceremonie bestaat de mogelijkheid een ambtenaar te kiezen. Wilt u toch een ambtenaar kunnen kiezen, dan kunt u  <a href="{{ path('app_product_index') }}">hier</a> uw ceremonie aanpassen.</p>
                          
-                         <a href="{{ path('app_getuigen_index') }}" class="btn btn-primary btn-icon" >
+                         <a href="{{ path('app_default_slug',{'slug':'getuigen'}) }}" class="btn btn-primary btn-icon" >
                         	<i class="far fa-calendar-times"></i>
                          	Ga door naar getuigen
                          </a>
