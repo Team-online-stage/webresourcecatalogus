@@ -20,7 +20,19 @@ use Ramsey\Uuid\Uuid;
  *
  * @ApiResource(
  *     normalizationContext={"groups"={"read"}, "enable_max_depth"=true},
- *     denormalizationContext={"groups"={"write"}, "enable_max_depth"=true},
+ *     denormalizationContext={"groups"={"write"}, "enable_max_depth"=true},     
+ *     collectionOperations={
+ *     		"get",
+ *     		"post",
+ *     		"get_page_on_slug"={
+ *     			"method"="GET",
+ *     			"path"="/applications/{id}/{slug}",
+ *     			"swagger_context" = {
+ *     				"summary"="Get an page trough its slug",
+ *     				"description"="Get an page trough its slug"
+ *     			}
+ *     		}
+ *     }
  * )
  * @Gedmo\Loggable
  * @ORM\Entity(repositoryClass="App\Repository\ApplicationRepository")
@@ -82,7 +94,6 @@ class Application
     private $domain;
 
     /**
-     * @Groups({"read","write"})
      * @ORM\OneToMany(targetEntity="App\Entity\Page", mappedBy="application")
      * @MaxDepth(1)
      */
@@ -103,7 +114,6 @@ class Application
     private $footer;
 
     /**
-     * @Groups({"read","write"})
      * @ORM\OneToMany(targetEntity="App\Entity\Slug", mappedBy="application")
      * @MaxDepth(1)
      */
