@@ -16,7 +16,7 @@ class TemplateRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-    	parent::__construct($registry, Template::class);
+        parent::__construct($registry, Template::class);
     }
 
     // /**

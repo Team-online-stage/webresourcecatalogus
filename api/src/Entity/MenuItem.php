@@ -2,18 +2,14 @@
 
 namespace App\Entity;
 
-use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Annotation\ApiResource;
-use App\Filter\LikeFilter;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\Common\Collections\ArrayCollection;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
-use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Serializer\Annotation\MaxDepth;
-use Ramsey\Uuid\Uuid;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * MenuItem is a part of a menu and can be a link or submenu.
@@ -27,56 +23,60 @@ use Ramsey\Uuid\Uuid;
  */
 class MenuItem
 {
-	/**
-	 * @var UuidInterface The UUID identifier of this resource
-	 * @example e2984465-190a-4562-829e-a8cca81aa35d
-	 *
-	 * @Assert\Uuid
-	 * @Groups({"read"})
-	 * @ORM\Id
-	 * @ORM\Column(type="uuid", unique=true)
-	 * @ORM\GeneratedValue(strategy="CUSTOM")
-	 * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
-	 */
-	private $id;
+    /**
+     * @var UuidInterface The UUID identifier of this resource
+     *
+     * @example e2984465-190a-4562-829e-a8cca81aa35d
+     *
+     * @Assert\Uuid
+     * @Groups({"read"})
+     * @ORM\Id
+     * @ORM\Column(type="uuid", unique=true)
+     * @ORM\GeneratedValue(strategy="CUSTOM")
+     * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
+     */
+    private $id;
 
-	/**
-	 * @var string The name of this MenuItem
-	 * @example about-menu-link
-	 *
-	 * @Assert\NotNull
-	 * @Assert\Length(
-	 *      max = 255
-	 * )
-	 * @Gedmo\Versioned
-	 * @Groups({"read","write"})
-	 * @ORM\Column(type="string", length=255)
-	 */
-	private $name;
+    /**
+     * @var string The name of this MenuItem
+     *
+     * @example about-menu-link
+     *
+     * @Assert\NotNull
+     * @Assert\Length(
+     *      max = 255
+     * )
+     * @Gedmo\Versioned
+     * @Groups({"read","write"})
+     * @ORM\Column(type="string", length=255)
+     */
+    private $name;
 
-	/**
-	 * @var string The description of this MenuItem
-	 * @example This MenuItem links to the about page
-	 *
-	 * @Assert\Length(
-	 *      max = 2555
-	 * )
-	 * @Gedmo\Versioned
-	 * @Groups({"read","write"})
-	 * @ORM\Column(type="text", nullable=true)
-	 */
-	private $description;
+    /**
+     * @var string The description of this MenuItem
+     *
+     * @example This MenuItem links to the about page
+     *
+     * @Assert\Length(
+     *      max = 2555
+     * )
+     * @Gedmo\Versioned
+     * @Groups({"read","write"})
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $description;
 
     /**
      * @var string The href of this MenuItem that links to another page
-	 * @example app_home_about
-	 *
+     *
+     * @example app_home_about
+     *
      * @Assert\NotNull
-	 * @Assert\Length(
-	 *      max = 2555
-	 * )
-	 * @Gedmo\Versioned
-	 * @Groups({"read","write"})
+     * @Assert\Length(
+     *      max = 2555
+     * )
+     * @Gedmo\Versioned
+     * @Groups({"read","write"})
      * @ORM\Column(type="string", length=255)
      */
     private $href;
@@ -87,18 +87,18 @@ class MenuItem
      * @ORM\JoinColumn(nullable=false)
      * @MaxDepth(1)
      */
-    private $menu;    
-    
+    private $menu;
+
     public function getId(): Uuid
     {
-    	return $this->id;
+        return $this->id;
     }
-    
+
     public function setId(Uuid $id): self
     {
-    	$this->id = $id;
-    	
-    	return $this;
+        $this->id = $id;
+
+        return $this;
     }
 
     public function getName(): ?string
@@ -115,14 +115,14 @@ class MenuItem
 
     public function getDescription(): ?string
     {
-    	return $this->description;
+        return $this->description;
     }
 
     public function setDescription(?string $description): self
     {
-    	$this->description = $description;
+        $this->description = $description;
 
-    	return $this;
+        return $this;
     }
 
     public function getHref(): ?string
