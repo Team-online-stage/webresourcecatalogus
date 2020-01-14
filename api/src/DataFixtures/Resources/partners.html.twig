@@ -57,26 +57,24 @@
                          </div>
                     </div>
                     
-                    <!-- Uitnodigen partner 2 -->
+                    <!-- Bijwerken partner 1 -->
                     <div class="affa-feature-icon"> 
                     	<i class="fas fa-envelope"></i>
                         <div class="feature-text">
                         	<h4>Uw contact gegevens</h4>
                             <p>We willen graag nog een paar dingen van u weten</p>         
                             <br/>     
-   							{#
-		                	<form method="post" action="{{ path('app_partner_updateuser') }}" class="affa-form-contact">
+   							
+		                	<form method="post" action="{{ path('app_default_updateAssent',{'id':assent1.id}) }}" class="affa-form-contact">
 		                    	<div class="submit-status"></div>
 
                                 <label for="partner_email">Email Adres <span class="required">*</span></label>
-                                <input type="text" name="emailadres" placeholder="john@do.nl" value="" required/>
+                                <input type="text" name="email" placeholder="john@do.nl" value="{% if contact1['_embedded']['emails'] is defined   %}{{ contact1['_embedded']['emails'][0].email }}{% endif %}" required/>
                                 <label for="partner_telefoonnummer">Telefoonnummer</label>
-                                <input type="text" name="telefoonnummer" placeholder="+31 6 12345678" value=""/> 
+                                <input type="text" name="telephone" placeholder="+31 6 12345678" value="{% if contact1['_embedded']['telephones'] is defined   %}{{ contact1['_embedded']['telephones'][0].telephone }}{% endif %}"/> 
                                                                
  								<button type="submit" class="btn btn-success btn-lg btn-block btn-icon"><i class="far fa-envelope"></i> Opslaan</button> 								
-		                    </form>
-		                    #}
-		                    
+		                    </form>		
                         </div>
                     </div>
                     {% endif %}
@@ -124,6 +122,27 @@
                                 {% endif %}
                         </div>
                     </div>       
+                    
+                    <!-- Bijwerken partner 2 -->
+                    <div class="affa-feature-icon"> 
+                    	<i class="fas fa-envelope"></i>
+                        <div class="feature-text">
+                        	<h4>Contact gegevens van uw partner</h4>
+                            <p>Uiteraard willen we ook uw partner graag kunnen berijken</p>         
+                            <br/>     
+   							
+		                	<form method="post" action="{{ path('app_default_updateAssent',{'id':assent2.id}) }}" class="affa-form-contact">
+		                    	<div class="submit-status"></div>
+
+                                <label for="partner_email">Email Adres <span class="required">*</span></label>
+                                <input type="text" name="email" placeholder="john@do.nl" value="{% if contact2['_embedded']['emails'] is defined   %}{{ contact2['_embedded']['emails'][0].email }}{% endif %}" required/>
+                                <label for="partner_telefoonnummer">Telefoonnummer</label>
+                                <input type="text" name="telephone" placeholder="+31 6 12345678" value="{% if contact2['_embedded']['telephones'] is defined   %}{{ contact2['_embedded']['telephones'][0].telephone }}{% endif %}"/> 
+                                                               
+ 								<button type="submit" class="btn btn-success btn-lg btn-block btn-icon"><i class="far fa-envelope"></i> Opslaan</button> 								
+		                    </form>		
+                        </div>
+                    </div>
                     {% else %} 
 					<!-- Uitnodigen partner 2 -->
                     <div class="affa-feature-icon"> <!-- 6 -->
@@ -132,7 +151,7 @@
                         	<h4>{% if request.properties.type is defined  %}Vraag uw partner ten {{ request.properties.type|capitalize }}{% else %}Nodig uw partner uit{% endif %}.</h4>
                             <p>Want dit doet u natuurlijk samen</p>         
                             <br/>                   
-		                	<form method="post" action="{{ path('app_default_assent',{'slug':'partners','role':'partner'}) }}" class="affa-form-contact" >
+		                	<form method="post" action="{{ path('app_default_assentadd',{'property':'partner'}) }}" class="affa-form-contact" >
 		                    	<div class="submit-status"></div> <!-- submit status -->
 
 								<label for="givenName" >Voornaam(en) <span class="required">*</span></label>

@@ -72,7 +72,7 @@
             	{# if (huwelijk is defined and  huwelijk.getuigen is defined and huwelijk.getuigen|length < 4) or !huwelijk.getuigen #}
             	{# if (request.properties.getuigen is defined and request.properties.getuigen|length < 4) or request.properties.getuigen is defined  %}  #}
                 <div class="col-sm-4"> 
-                	<form method="post" action="{{ path('app_default_assent',{'slug':'getuigen','role':'getuige'}) }}" class="affa-form-contact">
+                	<form method="post" action="{{ path('app_default_assentadd',{'property':'getuige'}) }}" class="affa-form-contact">
                     	<h3>Toevoegen</h3>
                         <br/>
             	        {% if request.properties.partners is defined %}	               
