@@ -70,7 +70,7 @@
                                     {% for partner in request.properties.partners %}                         
                                     <li>    
 			                            {% set assent = commonground_resource(partner) %}	
-			                            {% set contact = commonground_resource(assent) %}		
+			                            {% set contact = commonground_resource(assent.contact) %}		
         	                            <b>Partner: {{ contact.formalName }}</b>
                                 		<ul class="list-icon">                                 		
                                             <li>    
@@ -103,7 +103,7 @@
                                 		<ul class="list-icon">     
                                             {% for getuige in request.properties.getuigen %}
         			                        {% set assent = commonground_resource(getuige) %}	
-        			                        {% set contact = commonground_resource(assent) %}	               
+        			                        {% set contact = commonground_resource(assent.contact) %}	               
                                             <li>   
                                             	<!--  Trouwdatum -->  
                                             	<i class="fa fas {% if assent.status == "granted" %}fa-check{% else %}fa-check{% endif %}"></i>{{ contact.formalName }} {% if assent.status == "granted" %}heeft ingestemd{% else %}heeft (nog) niet ingestemd{% endif %}
