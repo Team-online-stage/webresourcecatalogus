@@ -318,7 +318,7 @@ class AppFixtures extends Fixture
         $template = new Template();
         $template->setName('Plechtigheid');
         $template->setDescription('Pagina waarop het product voor het huwelijk kan worden gekozen');
-        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/plechtigheid.html.twig', 'r'));
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/plechtigheden.html.twig', 'r'));
         $template->setTemplateEngine('twig');
         $manager->persist($template);
         $template->setId($id);
@@ -337,6 +337,32 @@ class AppFixtures extends Fixture
         $slug->setPage($page);
         $slug->setApplication($application);
         $slug->setSlug('plechtigheid');
+        $manager->persist($page);
+        
+        
+        $id = Uuid::fromString('310d1039-abdf-4983-9030-608cd3012306');
+        $template = new Template();
+        $template->setName('Plechtigheid');
+        $template->setDescription('Pagina waarop het product voor het huwelijk kan worden gekozen');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/plechtigheid.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        
+        $page = new Page();
+        $page->setTitle('Plechtigheid');
+        $page->setDescription('Plechtigheid');
+        $page->setApplication($application);
+        $page->setTemplate($template);
+        $manager->persist($page);
+        
+        $slug = new Slug();
+        $slug->setPage($page);
+        $slug->setApplication($application);
+        $slug->setSlug('plechtigheid-kiezen');
         $manager->persist($page);
 
         // Ceremonie
