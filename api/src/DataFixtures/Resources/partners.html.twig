@@ -151,7 +151,7 @@
                         	<h4>{% if request.properties.type is defined  %}Vraag uw partner ten {{ request.properties.type|capitalize }}{% else %}Nodig uw partner uit{% endif %}.</h4>
                             <p>Want dit doet u natuurlijk samen</p>         
                             <br/>                   
-		                	<form method="post" action="{{ path('app_default_assentadd',{'property':'partner'}) }}" class="affa-form-contact" >
+		                	<form method="post" action="{{ path('app_default_createassent',{'property':'partner'}) }}" class="affa-form-contact" >
 		                    	<div class="submit-status"></div> <!-- submit status -->
 
 								<label for="givenName" >Voornaam(en) <span class="required">*</span></label>
@@ -167,7 +167,7 @@
  								
 		                    </form>
                              <p>- Of -</p>                            
-                        	<a href="{{ path('app_default_assentadd',{'property':'partners'}) }}" class="btn btn-success btn-lg btn-block btn-icon"><i class="far fa-lock"></i> Uw partner laten inloggen</a>  
+                        	<a href="{{ path('app_default_assentadd',{'property':'partner'}) }}" class="btn btn-success btn-lg btn-block btn-icon"><i class="far fa-lock"></i> Uw partner laten inloggen</a>  
                         	 
                         </div>
                     </div>
