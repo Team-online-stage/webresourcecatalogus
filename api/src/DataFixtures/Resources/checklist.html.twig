@@ -75,7 +75,7 @@
                                 		<ul class="list-icon">                                 		
                                             <li>    
                                             	<!-- Partner -->
-                                            	<i class="fa fas {% if assent.status == "granted" %}fa-check{% else %}fa-check{% endif %}"></i>Status{{ assent.status }}
+                                            	<i class="fa {% if assent.status == "granted" %}fas fa-check{% else %}far fa-square{% endif %}"></i>Status: {{ assent.status }}
                                             <li>                                          
                                             <li>    
                                             	<!--  Trouwdatum -->  
@@ -106,7 +106,7 @@
         			                        {% set contact = commonground_resource(assent.contact) %}	               
                                             <li>   
                                             	<!--  Trouwdatum -->  
-                                            	<i class="fa fas {% if assent.status == "granted" %}fa-check{% else %}fa-check{% endif %}"></i>{{ contact.formalName }} {% if assent.status == "granted" %}heeft ingestemd{% else %}heeft (nog) niet ingestemd{% endif %}
+                                            	<i class="fa {% if assent.status == "granted" %}fas fa-check{% else %}far fa-square{% endif %}"></i>{{ contact.formalName }} {% if assent.status == "granted" %}heeft ingestemd{% else %}heeft (nog) niet ingestemd{% endif %}
                                             <li>                          
                                             {% endfor %}                          
                                 		</ul>      
