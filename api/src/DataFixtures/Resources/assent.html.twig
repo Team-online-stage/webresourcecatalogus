@@ -47,13 +47,20 @@
                 </div>
                 {% if  assent.status == "requested" %}
                 <div class="col-sm-12 col-md-6 col-lg-5 col-sm-offset-1 col-md-offset-0 col-lg-offset-1">          
-                			<a href="{{ path('app_default_assentstatus',{'id':assent.id,'status':'granted'}) }}"" class="btn btn-primary btn-icon" >
+                			<a href="{{ path('app_default_assentstatus',{'id':assent.id,'status':'granted'}) }}" class="btn btn-primary btn-icon" >
     							<i class="fas fa-share-square"></i> 
     							Ik stem hier WEL mee in 
     		           		</a>
     		            	<a href="{{ path('app_default_assentstatus',{'id':assent.id,'status':'declined'}) }}" class="btn btn-danger btn-icon" >
     							<i class="fas fa-share-square"></i>
     							Ik stem hier NIET mee in 
+    		           		</a>
+                </div>
+                {% elseif assent.status == "granted"  %}
+                <div class="col-sm-12 col-md-6 col-lg-5 col-sm-offset-1 col-md-offset-0 col-lg-offset-1">          
+                			<a href="{{ path('app_default_slug',{'slug':'checklist'}) }}" class="btn btn-primary btn-icon" >
+    							<i class="fas fa-share-square"></i> 
+    							Ga door naar aanvraag
     		           		</a>
                 </div>
                 {% endif %}
