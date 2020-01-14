@@ -25,8 +25,8 @@
 			   					{% set contact = commonground_resource(assent.contact) %}
 								Status:  {{ assent.status }} 
 	                           
-                        	    <br><b>Voornaam:</b> {{ contact.given_name }}
-                                <br><b>Achternaam:</b> {{ contact.family_name }}
+                        	    <br><b>Voornaam:</b> {{ contact.givenName }}
+                                <br><b>Achternaam:</b> {{ contact.familyName }}
                                 
 	                            {% if contact['_embedded']['emails'] is defined   %}
                         	    <br><b>Email:</b> {{ contact1['_embedded']['emails'][0].email }}
