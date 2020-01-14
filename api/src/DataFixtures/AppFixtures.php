@@ -258,7 +258,7 @@ class AppFixtures extends Fixture
         $slug = new Slug();
         $slug->setPage($page);
         $slug->setApplication($application);
-        $slug->setSlug('getuigen');
+        $slug->setSlug('getuige');
         $manager->persist($page);
 
         // Naamsgerbuik
@@ -593,7 +593,7 @@ class AppFixtures extends Fixture
         $slug = new Slug();
         $slug->setPage($page);
         $slug->setApplication($application);
-        $slug->setSlug('locaties');
+        $slug->setSlug('locatie');
         $manager->persist($page);
 
         // Extras
