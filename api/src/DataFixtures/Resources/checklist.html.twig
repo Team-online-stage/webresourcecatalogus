@@ -69,46 +69,48 @@
             	                    {% if request.properties.partners is defined %}       
                                     {% for partner in request.properties.partners %}                         
                                     <li>    
-        	                            <b>Partner</b>
-                                		<ul class="list-icon">                    
+			                            {% set assent = commonground_resource(partner) %}	
+			                            {% set contact = commonground_resource(assent) %}		
+        	                            <b>Partner: {{ contact.formalName }}</b>
+                                		<ul class="list-icon">                                 		
                                             <li>    
                                             	<!-- Partner -->
-                                            	{{ commonground_resource(commonground_resource(partner).contact).formalName }}
+                                            	<i class="fa fas {% if assent.status == "granted" %}fa-check{% else %}fa-check{% endif %}"></i>Status{{ assent.status }}
                                             <li>                                          
                                             <li>    
                                             	<!--  Trouwdatum -->  
-                                            	<i class="fa fas fa-check"></i>Uw leeftijd is gecontroleerd
+                                            	<i class="fa fas fa-check"></i>Leeftijd is gecontroleerd
                                             <li>                    
                                             <li>    
                                             	<!--  Trouwdatum -->  
-                                            	<i class="fa fas fa-check"></i>U staat niet onder curatele
-                                            <li>           
-                            		        {# if request.properties.partners|length >= 2 %}                    
-                                            <li>    
-                                            	<!--  Trouwdatum -->  
-                                            	<i class="fa fas fa-check"></i>U bent geen famillie in de eerste graad
+                                            	<i class="fa fas fa-check"></i>Staat niet onder curatele
                                             <li>                   
-                                            {% endif #}       
                                             <li>    
                                             	<!--  Trouwdatum -->  
-                                            	<i class="fa fas fa-check"></i>U heeft geen partner
+                                            	<i class="fa fas fa-check"></i>Is geen famillie in de eerste graad
+                                            <li>               
+                                            <li>    
+                                            	<!--  Trouwdatum -->  
+                                            	<i class="fa fas fa-check"></i>Heeft op dit moment geen partner
                                             <li> 
                                 		</ul>       
                                     </li> 
                                     {% endfor %}
             	                    {% endif %}    
-            	                    {% if request.properties.getuigen is defined %}         
-                                    {% for getuige in request.properties.getuigen %}
+            	                    {% if request.properties.getuigen is defined %}    
                                     <li>    
-        	                            <b>Getuige</b>    
-                                		<ul class="list-icon">               
-                                            <li>    
-                                            	<!--  Getuigen -->
-                                            	{{ commonground_resource(commonground_resource(getuige).contact).formalName }}
-                                            <li>                             
+        	                            <b>Getuigen</b>    
+                                		<ul class="list-icon">     
+                                            {% for getuige in request.properties.getuigen %}
+        			                        {% set assent = commonground_resource(getuige) %}	
+        			                        {% set contact = commonground_resource(assent) %}	               
+                                            <li>   
+                                            	<!--  Trouwdatum -->  
+                                            	<i class="fa fas {% if assent.status == "granted" %}fa-check{% else %}fa-check{% endif %}"></i>{{ contact.formalName }} {% if assent.status == "granted" %}heeft ingestemd{% else %}heeft (nog) niet ingestemd{% endif %}
+                                            <li>                          
+                                            {% endfor %}                          
                                 		</ul>      
-                                    </li>                                 
-                                    {% endfor %}
+                                    </li>          
             	                    {% endif %}    
                                                     
                                     {#       
@@ -118,7 +120,7 @@
                                     	{% if huwelijk is not empty and huwelijk.datum is defined and huwelijk.datum is not empty  %}
                                     	<i class="fa fas fa-check"></i>{{ huwelijk.type|capitalize }} datum: {{ huwelijk.datum |date("d-m-Y") }}
                                     	{% else %}
-                                    	<i class="fa far fa-square"></i> Kies <a href="{{ path('app_datum_index') }}" >hier</a> uw boogde  datum
+                                    	<i class="fa far "></i> Kies <a href="{{ path('app_datum_index') }}" >hier</a> uw boogde  datum
                                     	{% endif %}                                 	
                                    	</li>
                                     <!--  Type -->
