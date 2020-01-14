@@ -25,14 +25,14 @@
                          	Annuleer deze ambtenaar
                          </a>
                          <br/><br/>
-                         <a href="{{ path('app_default_slug',{'slug':'getuigen'}) }}" class="btn btn-primary btn-icon" >
+                         <a href="{{ path('app_default_slug',{'slug':'getuige'}) }}" class="btn btn-primary btn-icon" >
                         	<i class="far fa-calendar-times"></i>
                          	Ga door naar getuigen
                          </a>
                          {% elseif user is not empty and request and request.properties.ambtenaar  is defined and request.properties.ambtenaar is not empty %}
                          <p>Let op: Het type ceremonie dat u heeft geselecteerd laat geen keuze voor een ambtenaar toe. Alleen bij een uitgebreide ceremonie bestaat de mogelijkheid een ambtenaar te kiezen. Wilt u toch een ambtenaar kunnen kiezen, dan kunt u  <a href="{{ path('app_product_index') }}">hier</a> uw ceremonie aanpassen.</p>
                          
-                         <a href="{{ path('app_default_slug',{'slug':'getuigen'}) }}" class="btn btn-primary btn-icon" >
+                         <a href="{{ path('app_default_slug',{'slug':'getuige'}) }}" class="btn btn-primary btn-icon" >
                         	<i class="far fa-calendar-times"></i>
                          	Ga door naar getuigen
                          </a>
