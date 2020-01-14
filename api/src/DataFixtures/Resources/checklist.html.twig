@@ -18,7 +18,7 @@
                             <h2>Wat is er al gedaan en wat moet er nog gebeuren?</h2>
                             <p>We kunnen ons goed voorstellen dat er nogal wat op jullie afkomt bij het plannen , daarom hebben we alles op een rij gezet voor jullie. Een handig overzicht van wat er moet gebeuren, maar ook wat er al is gedaan.</p>
                             <p>Legenda
-                            	<i class="fa far fa-square"></i> Nog te doen
+                            	<i class="fa fa-exclamation-triangle"></i> Nog te doen
                             	<i class="fa fas fa-check"></i> Gedaan
                             </p>
                         </div><!-- /.post-heading-left -->
@@ -26,8 +26,18 @@
                         		Gedaan
                                 <ul class="list-icon">   
                                     
-            	                    {% if request.properties.plechtigheid is defined %}                  
+            	                    {% if request.properties.type is defined %}                  
                                     <li><b>Ceremonie</b>    
+                                		<ul class="list-icon">   
+                                			<li>  
+                                            	<!--  Trouwdatum -->  
+                                            	<i class="fa fas fa-check"></i>{{ request.properties.type }}
+                                    		</li> 
+                                		</ul>  
+                                    </li> 
+            	                    {% endif %} 
+            	                    {% if request.properties.plechtigheid is defined %}                  
+                                    <li><b>Plechtigheid</b>    
                                 		<ul class="list-icon">   
                                 			<li>  
                                             	<!--  Trouwdatum -->  
@@ -75,7 +85,7 @@
                                 		<ul class="list-icon">                                 		
                                             <li>    
                                             	<!-- Partner -->
-                                            	<i class="fa {% if assent.status == "granted" %}fas fa-check{% else %}far fa-square{% endif %}"></i>Status: {{ assent.status }}
+                                            	<i class="fa {% if assent.status == "granted" %}fas fa-check{% else %}fa-exclamation-triangle{% endif %}"></i>Status: {{ assent.status }}
                                             <li>                                          
                                             <li>    
                                             	<!--  Trouwdatum -->  
@@ -106,7 +116,7 @@
         			                        {% set contact = commonground_resource(assent.contact) %}	               
                                             <li>   
                                             	<!--  Trouwdatum -->  
-                                            	<i class="fa {% if assent.status == "granted" %}fas fa-check{% else %}far fa-square{% endif %}"></i>{{ contact.formalName }} {% if assent.status == "granted" %}heeft ingestemd{% else %}heeft (nog) niet ingestemd{% endif %}
+                                            	<i class="fa {% if assent.status == "granted" %}fas fa-check{% else %}fa-exclamation-triangle{% endif %}"></i>{{ contact.formalName }} {% if assent.status == "granted" %}heeft ingestemd{% else %}heeft (nog) niet ingestemd{% endif %}
                                             <li>                          
                                             {% endfor %}                          
                                 		</ul>      
@@ -174,7 +184,18 @@
                             	Nog te doen
                             	<ul class="list-icon">   
                                     
-            	                    {% if request.properties.product is not defined %}                  
+            	                    {% if request.properties.type is not defined %}                  
+                                    <li><b>Ceremonies</b>    
+                                		<ul class="list-icon">   
+                                			<li>  
+                                            	<!--  Trouwdatum -->  
+                                            	<i class="fas fa-exclamation-triangle"></i> Geen Ceremonie, u kunt deze <a href="{{ path('app_default_slug',{'slug':'ceremonies'}) }}">hier</a> toevoegen.
+                                    		</li> 
+                                		</ul>  
+                                    </li> 
+            	                    {% endif %}  
+            	                    
+            	                    {% if request.properties.plechtigheid is not defined %}                  
                                     <li><b>Plechtigheid</b>    
                                 		<ul class="list-icon">   
                                 			<li>  
@@ -184,6 +205,7 @@
                                 		</ul>  
                                     </li> 
             	                    {% endif %}  
+            	                    
             	                    {% if request.properties.datum is not defined %}                  
                                     <li><b>Trouwdatum</b>    
                                 		<ul class="list-icon">   
