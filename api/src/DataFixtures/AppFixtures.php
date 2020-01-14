@@ -362,7 +362,7 @@ class AppFixtures extends Fixture
         $slug = new Slug();
         $slug->setPage($page);
         $slug->setApplication($application);
-        $slug->setSlug('ceremonies');
+        $slug->setSlug('ceremonie');
         $manager->persist($page);
 
         // Partners
@@ -388,7 +388,7 @@ class AppFixtures extends Fixture
         $slug = new Slug();
         $slug->setPage($page);
         $slug->setApplication($application);
-        $slug->setSlug('partners');
+        $slug->setSlug('partner');
         $manager->persist($page);
 
         // Datum
@@ -517,7 +517,7 @@ class AppFixtures extends Fixture
         $slug = new Slug();
         $slug->setPage($page);
         $slug->setApplication($application);
-        $slug->setSlug('ambtenaar');
+        $slug->setSlug('ambtenaar-kiezen');
         $manager->persist($page);
 
         $id = Uuid::fromString('3450ae40-3c07-4e09-83c2-f0c54e3b574a');
@@ -542,7 +542,7 @@ class AppFixtures extends Fixture
         $slug = new Slug();
         $slug->setPage($page);
         $slug->setApplication($application);
-        $slug->setSlug('ambtenaren');
+        $slug->setSlug('ambtenaar');
         $manager->persist($page);
 
         // Locatie
@@ -568,7 +568,7 @@ class AppFixtures extends Fixture
         $slug = new Slug();
         $slug->setPage($page);
         $slug->setApplication($application);
-        $slug->setSlug('locatie');
+        $slug->setSlug('locatie-kiezen');
         $manager->persist($page);
 
         $id = Uuid::fromString('0bd283c4-771c-4ee0-b87f-8ce40dabe6a1');
@@ -619,7 +619,7 @@ class AppFixtures extends Fixture
         $slug = new Slug();
         $slug->setPage($page);
         $slug->setApplication($application);
-        $slug->setSlug('extra');
+        $slug->setSlug('extra-kiezen');
         $manager->persist($page);
 
         $id = Uuid::fromString('50409369-6f28-4f9e-b074-2fa638d1b25a');
@@ -644,7 +644,7 @@ class AppFixtures extends Fixture
         $slug = new Slug();
         $slug->setPage($page);
         $slug->setApplication($application);
-        $slug->setSlug('extras');
+        $slug->setSlug('extra');
         $manager->persist($page);
 
         $manager->flush();
