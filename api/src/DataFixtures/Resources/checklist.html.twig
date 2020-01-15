@@ -313,12 +313,12 @@
     		           		{% if request is not empty and request.status != "submitted" %}
     		            	<a href="{{ path('app_default_submitrequest') }}" class="btn btn-primary btn-icon" >
     							<i class="fas fa-share-square"></i> 
-    			            	{% if request.properties.type is defined  %}{{ request.properties.type|capitalize }}{% else %}Aanvraag{% endif %} indienen
+    			            	{% if request.properties.ceremonie is defined  %}{{ request.properties.ceremonie|capitalize }}{% else %}Aanvraag{% endif %} indienen
     		           		</a>
     		           		{% else %}
     		            	<a href="{{ path('app_default_cancelrequest') }}" class="btn btn-danger btn-icon" >
     							<i class="fas fa-share-square"></i> 
-    			            	Annuleer {% if request.properties.type is defined  %}{{ request.properties.type }}{% else %}aanvraag{% endif %}
+    			            	Annuleer {% if request.properties.ceremonie is defined  %}{{ request.properties.ceremonie }}{% else %}aanvraag{% endif %}
     		           		</a>
     		           		{% endif %}
                     	</div><!-- /.btn-section -->    
