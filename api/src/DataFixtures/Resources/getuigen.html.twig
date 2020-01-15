@@ -26,6 +26,7 @@
             	col-md-12
             	{% endif %}">       
 		            <div class="row">   
+		            {% if request.properties.getuige is defined %}
                         {% for getuige in request.properties.getuige  %}
                         
 			                {% set assent = commonground_resource(getuige) %}
@@ -66,6 +67,7 @@
 		                    </div><!-- /.affa-team-profile -->
 		                </div><!-- /.col-md-3 -->
                         {% endfor %}  
+                        {% endif %}
 		            </div><!-- /.row -->
                 {% endif %}
             	</div>
