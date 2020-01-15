@@ -13,9 +13,11 @@
                 {% for product in products %}
                 <div class="col-sm-4"> <!-- 1 -->
                 	<div class="affa-team-profile">
+                       {% if product.logo is defined and product.logo is not empty%}   
                     	<figure class="team-profile-img" >
                             <img src="{{ product.logo }}" alt="Avatar" />
                         </figure>
+                       {% endif %}
                         <div class="team-profile-name">
                         	<h4>{{ product.name }}</h4>
                             <p>{{ product.price }}</p>
