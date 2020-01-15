@@ -8,7 +8,7 @@
             	{% if request.properties.type is defined and request.properties.type == 'omzetten' %}            	
                 
                 	<div class="post-heading-center animation" data-animation="animation-fade-in-down">
-                    	<h2>U heeft gekozen voor omzetten, en hoeft gene melding te doen</h2>
+                    	<h2>U heeft gekozen voor omzetten, en hoeft geen melding te doen</h2>
                    	</div>
                     <div class="col-md-12 text-center">
            				<i class="fas fa-check fa-6x " data-animation="animation-fade-in-down" ></i>
@@ -40,7 +40,7 @@
             
             {% if user is not empty %}       
             <!-- .row -->
-            <div class="row animation" {% if app.session.flashbag.peekAll|length > 0 %}data-animation="animation-fade-in" data-delay="3400"{% endif %}>
+            <div class="row animation" {% if app.session.flashbag.peekAll|length > 0 %}data-animation="animation-fade-in" data-delay="400"{% endif %}>
                 <div class="col-sm-10 col-md-7 col-lg-6 col-sm-offset-0 col-md-offset-0 col-lg-offset-1">
         			<a href="https://www.utrecht.nl/" class="btn btn-primary btn-icon" >
         				<i class="fas fa-share-square"></i> 
@@ -55,7 +55,7 @@
             <!-- .row end -->
             {% else %} 
             <!-- .row -->
-            <div class="row animation" {% if app.session.flashbag.peekAll|length > 0 %}data-animation="animation-fade-in" data-delay="3400"{% endif %}>
+            <div class="row animation" {% if app.session.flashbag.peekAll|length > 0 %}data-animation="animation-fade-in" data-delay="400"{% endif %}>
                 <div class="col-sm-10 col-md-7 col-lg-6 col-sm-offset-0 col-md-offset-0 col-lg-offset-1">
         			<a href="{{ path('app_default_index') }}" class="btn btn-primary btn-icon" >
         				<i class="fas fa-share-square"></i> 

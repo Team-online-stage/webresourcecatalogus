@@ -18,7 +18,7 @@
                             <h2>Wat is er al gedaan en wat moet er nog gebeuren?</h2>
                             <p>We kunnen ons goed voorstellen dat er nogal wat op jullie afkomt bij het plannen , daarom hebben we alles op een rij gezet voor jullie. Een handig overzicht van wat er moet gebeuren, maar ook wat er al is gedaan.</p>
                             <p>Legenda
-                            	<i class="fa far fa-square"></i> Nog te doen
+                            	<i class="fa fa-exclamation-triangle"></i> Nog te doen
                             	<i class="fa fas fa-check"></i> Gedaan
                             </p>
                         </div><!-- /.post-heading-left -->
@@ -26,8 +26,18 @@
                         		Gedaan
                                 <ul class="list-icon">   
                                     
-            	                    {% if request.properties.plechtigheid is defined %}                  
+            	                    {% if request.properties.type is defined %}                  
                                     <li><b>Ceremonie</b>    
+                                		<ul class="list-icon">   
+                                			<li>  
+                                            	<!--  Trouwdatum -->  
+                                            	<i class="fa fas fa-check"></i>{{ request.properties.type }}
+                                    		</li> 
+                                		</ul>  
+                                    </li> 
+            	                    {% endif %} 
+            	                    {% if request.properties.plechtigheid is defined %}                  
+                                    <li><b>Plechtigheid</b>    
                                 		<ul class="list-icon">   
                                 			<li>  
                                             	<!--  Trouwdatum -->  
@@ -69,46 +79,48 @@
             	                    {% if request.properties.partners is defined %}       
                                     {% for partner in request.properties.partners %}                         
                                     <li>    
-        	                            <b>Partner</b>
-                                		<ul class="list-icon">                    
+			                            {% set assent = commonground_resource(partner) %}	
+			                            {% set contact = commonground_resource(assent.contact) %}		
+        	                            <b>Partner: {{ contact.formalName }}</b>
+                                		<ul class="list-icon">                                 		
                                             <li>    
                                             	<!-- Partner -->
-                                            	{{ commonground_resource(commonground_resource(partner).contact).formalName }}
+                                            	<i class="fa {% if assent.status == "granted" %}fas fa-check{% else %}fa-exclamation-triangle{% endif %}"></i>Status: {{ assent.status }}
                                             <li>                                          
                                             <li>    
                                             	<!--  Trouwdatum -->  
-                                            	<i class="fa fas fa-check"></i>Uw leeftijd is gecontroleerd
+                                            	<i class="fa fas fa-check"></i>Leeftijd is gecontroleerd
                                             <li>                    
                                             <li>    
                                             	<!--  Trouwdatum -->  
-                                            	<i class="fa fas fa-check"></i>U staat niet onder curatele
-                                            <li>           
-                            		        {# if request.properties.partners|length >= 2 %}                    
-                                            <li>    
-                                            	<!--  Trouwdatum -->  
-                                            	<i class="fa fas fa-check"></i>U bent geen famillie in de eerste graad
+                                            	<i class="fa fas fa-check"></i>Staat niet onder curatele
                                             <li>                   
-                                            {% endif #}       
                                             <li>    
                                             	<!--  Trouwdatum -->  
-                                            	<i class="fa fas fa-check"></i>U heeft geen partner
+                                            	<i class="fa fas fa-check"></i>Is geen famillie in de eerste graad
+                                            <li>               
+                                            <li>    
+                                            	<!--  Trouwdatum -->  
+                                            	<i class="fa fas fa-check"></i>Heeft op dit moment geen partner
                                             <li> 
                                 		</ul>       
                                     </li> 
                                     {% endfor %}
             	                    {% endif %}    
-            	                    {% if request.properties.getuigen is defined %}         
-                                    {% for getuige in request.properties.getuigen %}
+            	                    {% if request.properties.getuigen is defined %}    
                                     <li>    
-        	                            <b>Getuige</b>    
-                                		<ul class="list-icon">               
-                                            <li>    
-                                            	<!--  Getuigen -->
-                                            	{{ commonground_resource(commonground_resource(getuige).contact).formalName }}
-                                            <li>                             
+        	                            <b>Getuigen</b>    
+                                		<ul class="list-icon">     
+                                            {% for getuige in request.properties.getuigen %}
+        			                        {% set assent = commonground_resource(getuige) %}	
+        			                        {% set contact = commonground_resource(assent.contact) %}	               
+                                            <li>   
+                                            	<!--  Trouwdatum -->  
+                                            	<i class="fa {% if assent.status == "granted" %}fas fa-check{% else %}fa-exclamation-triangle{% endif %}"></i>{{ contact.formalName }} {% if assent.status == "granted" %}heeft ingestemd{% else %}heeft (nog) niet ingestemd{% endif %}
+                                            <li>                          
+                                            {% endfor %}                          
                                 		</ul>      
-                                    </li>                                 
-                                    {% endfor %}
+                                    </li>          
             	                    {% endif %}    
                                                     
                                     {#       
@@ -118,7 +130,7 @@
                                     	{% if huwelijk is not empty and huwelijk.datum is defined and huwelijk.datum is not empty  %}
                                     	<i class="fa fas fa-check"></i>{{ huwelijk.type|capitalize }} datum: {{ huwelijk.datum |date("d-m-Y") }}
                                     	{% else %}
-                                    	<i class="fa far fa-square"></i> Kies <a href="{{ path('app_datum_index') }}" >hier</a> uw boogde  datum
+                                    	<i class="fa far "></i> Kies <a href="{{ path('app_datum_index') }}" >hier</a> uw boogde  datum
                                     	{% endif %}                                 	
                                    	</li>
                                     <!--  Type -->
@@ -172,7 +184,18 @@
                             	Nog te doen
                             	<ul class="list-icon">   
                                     
-            	                    {% if request.properties.product is not defined %}                  
+            	                    {% if request.properties.type is not defined %}                  
+                                    <li><b>Ceremonies</b>    
+                                		<ul class="list-icon">   
+                                			<li>  
+                                            	<!--  Trouwdatum -->  
+                                            	<i class="fas fa-exclamation-triangle"></i> Geen Ceremonie, u kunt deze <a href="{{ path('app_default_slug',{'slug':'ceremonies'}) }}">hier</a> toevoegen.
+                                    		</li> 
+                                		</ul>  
+                                    </li> 
+            	                    {% endif %}  
+            	                    
+            	                    {% if request.properties.plechtigheid is not defined %}                  
                                     <li><b>Plechtigheid</b>    
                                 		<ul class="list-icon">   
                                 			<li>  
@@ -182,6 +205,7 @@
                                 		</ul>  
                                     </li> 
             	                    {% endif %}  
+            	                    
             	                    {% if request.properties.datum is not defined %}                  
                                     <li><b>Trouwdatum</b>    
                                 		<ul class="list-icon">   
@@ -289,12 +313,12 @@
     		           		{% if request is not empty and request.status != "submitted" %}
     		            	<a href="{{ path('app_default_submitrequest') }}" class="btn btn-primary btn-icon" >
     							<i class="fas fa-share-square"></i> 
-    			            	{% if request.properties.type is defined  %}{{ request.properties.type|capitalize }}{% else %}Aanvraag{% endif %} indienen
+    			            	{% if request.properties.ceremonie is defined  %}{{ request.properties.ceremonie|capitalize }}{% else %}Aanvraag{% endif %} indienen
     		           		</a>
     		           		{% else %}
     		            	<a href="{{ path('app_default_cancelrequest') }}" class="btn btn-danger btn-icon" >
     							<i class="fas fa-share-square"></i> 
-    			            	Annuleer {% if request.properties.type is defined  %}{{ request.properties.type }}{% else %}aanvraag{% endif %}
+    			            	Annuleer {% if request.properties.ceremonie is defined  %}{{ request.properties.ceremonie }}{% else %}aanvraag{% endif %}
     		           		</a>
     		           		{% endif %}
                     	</div><!-- /.btn-section -->    
