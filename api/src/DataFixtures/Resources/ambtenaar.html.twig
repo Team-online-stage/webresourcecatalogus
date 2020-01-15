@@ -43,15 +43,19 @@
                     </div>
                 </div>
                                 <div class="col-sm-12 col-md-6 col-lg-5 col-sm-offset-1 col-md-offset-0 col-lg-offset-1">
+                                               	
+                   {% if product.logo is defined and product.logo is not empty%}          
                 	<figure class="col-img40 margin-bottom40 animation">
                         <img  ng-src="{{product.logo}}" alt="Image">
                     </figure>
+                    {% endif %}
                     
                     beschikbaarheid van deze Ambtenaar
                 </div>
                 
             </div>
-            <!-- .row end -->            
+            <!-- .row end -->  
+            {% if product.movie is defined and product.movie is not empty%}          
             <!-- .row -->
             <div class="row animation"  {% if app.session.flashbag.peekAll|length > 0 %}data-animation="animation-fade-in" data-delay="3400"{% endif %}>
                 
@@ -67,7 +71,8 @@
                 </div>
                 
             </div>
-            <!-- .row end -->    
+            <!-- .row end --> 
+            {% endif %}   
             <!-- .row -->
             <div class="row animation" {% if app.session.flashbag.peekAll|length > 0 %}data-animation="animation-fade-in" data-delay="3400"{% endif %}>
                 <div class="col-sm-10 col-md-7 col-lg-6 col-sm-offset-0 col-md-offset-0 col-lg-offset-1">
