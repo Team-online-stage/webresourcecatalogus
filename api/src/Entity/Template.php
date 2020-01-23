@@ -13,12 +13,24 @@ use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Serializer\Annotation\MaxDepth;
 use Symfony\Component\Validator\Constraints as Assert;
 
+
+use App\Controller\DefaultController;
+
 /**
  * Content holds information and photos you want to show on your pages.
  *
- * @ApiResource(
- *     normalizationContext={"groups"={"read"}, "enable_max_depth"=true},
- *     denormalizationContext={"groups"={"write"}, "enable_max_depth"=true},
+ * @ApiResource(itemOperations={
+ * 		"get",
+ * 		"put",
+ * 		"delete",
+ *     "render_template"={
+ *         "method"="GET",
+ *         "path"="/templates/{id}/render",
+ *         "controller"=DefaultController::class,
+ *     		}
+ * 		},
+ *     	normalizationContext={"groups"={"read"}, "enable_max_depth"=true},
+ *     	denormalizationContext={"groups"={"write"}, "enable_max_depth"=true},
  * )
  * @Gedmo\Loggable
  * @ORM\Entity(repositoryClass="App\Repository\TemplateRepository")
