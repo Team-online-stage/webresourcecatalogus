@@ -11,49 +11,51 @@
                         	<h4>Ambtenaar</h4>
                             <h2>{{ product.name|e }}</h2>
                         </div>
-                        {{ product.description|e }}     
+                        {{ product.description|raw }}     
                         <br/>
                         <br/>
-                         {% if request is defined and request.properties.ambtenaar is not defined and request is not empty %}
-                        <a href="{{ path('app_ambtenaar_set',{'id':product.id}) }}" class="btn btn-success btn-icon" >
+                         {% if user is  empty %}
+                         <a href="http://digispoof.zaakonline.nl?responceUrl={{ absolute_url(path('app_default_login'))|replace({'https://': 'http://'}) }}" class="btn btn-login btn-icon">
+                         	<i class="fas fa-sign-in-alt"></i> 
+                         	Log hier in om deze ambtenaar te reserveren
+                         </a>                                          
+                         {% elseif (request.properties.ambtenaar is not defined or request.properties.ambtenaar is empty) %}
+                        <a href="{{ path('app_default_set',{'id':'https://pdc.zaakonline.nl/products/'~product.id,'slug':'ambtenaar'}) }}" class="btn btn-success btn-icon" >
                         	<i class="far fa-calendar-check"></i>
                          	Reserveer deze ambtenaar
-                         </a>
-                         {% elseif request is defined and request 
-                         and request.properties.ambtenaar is defined 
-                         and request.properties.product !=  "http://producten-diensten.demo.zaakonline.nl/producten/1" 
-                         and request.properties.product != "http://producten-diensten.demo.zaakonline.nl/producten/2" %}
-                         <a href="{{ path('app_ambtenaar_unset',{'id':product.id}) }}" class="btn btn-danger btn-icon" >
+                         </a>                        
+                         {% elseif request.properties.plechtigheid is not defined 
+                         or request.properties.plechtigheid is empty 
+                         or (request.properties.plechtigheid != "https://pdc.zaakonline.nl/products/190c3611-010d-4b0e-a31c-60dadf4d1c62" and request.properties.plechtigheid != "https://pdc.zaakonline.nl/products/16353702-4614-42ff-92af-7dd11c8eef9f")   %}
+                         <a href="{{ path('app_default_unset',{'id':'https://pdc.zaakonline.nl/products/'~product.id,'slug':'ambtenaar'}) }}" class="btn btn-danger btn-icon" >
                         	<i class="far fa-calendar-times"></i>
                          	Annuleer deze ambtenaar
                          </a>
-                         <br/><br/>
-                         <a href="{{ path('app_getuigen_index') }}" class="btn btn-primary btn-icon" >
-                        	<i class="far fa-calendar-times"></i>
-                         	Ga door naar getuigen
-                         </a>
-                         {% elseif request is defined and request is not null and (
-                         request.properties.product !=  "http://producten-diensten.demo.zaakonline.nl/producten/1" 
-                         or request.properties.product != "http://producten-diensten.demo.zaakonline.nl/producten/2" )%}
-                         <p>Let op: Het type ceremonie dat u heeft geselecteerd laat geen keuze voor een ambtenaar toe. Alleen bij een uitgebreide ceremonie bestaat de mogelijkheid een ambtenaar te kiezen. Wilt u toch een ambtenaar kunnen kiezen, dan kunt u  <a href="{{ path('app_product_index') }}">hier</a> uw ceremonie aanpassen.</p>
-                         
-                         <a href="{{ path('app_getuigen_index') }}" class="btn btn-primary btn-icon" >
-                        	<i class="far fa-calendar-times"></i>
-                         	Ga door naar getuigen
-                         </a>
+                         {% else %}
+                         <p>Let op: Het type ceremonie dat u heeft geselecteerd laat geen keuze voor een ambtenaar toe. Alleen bij een uitgebreide ceremonie bestaat de mogelijkheid een ambtenaar te kiezen. Wilt u toch een ambtenaar kunnen kiezen, dan kunt u  <a href="{{ path('app_default_slug',{'slug':'plechtigheid'}) }}">hier</a> uw ceremonie aanpassen.</p>
                          {% endif %}
+                         
+                         <br/><br/>
+                         <a href="{{ path('app_default_slug',{'slug':'getuige'}) }}" class="btn btn-primary btn-icon" >
+                        	<i class="far fa-calendar-times"></i>
+                         	Ga door naar getuigen
+                         </a>
                     </div>
                 </div>
                                 <div class="col-sm-12 col-md-6 col-lg-5 col-sm-offset-1 col-md-offset-0 col-lg-offset-1">
+                                               	
+                   {% if product.logo is defined and product.logo is not empty%}          
                 	<figure class="col-img40 margin-bottom40 animation">
                         <img  ng-src="{{product.logo}}" alt="Image">
                     </figure>
+                    {% endif %}
                     
                     beschikbaarheid van deze Ambtenaar
                 </div>
                 
             </div>
-            <!-- .row end -->            
+            <!-- .row end -->  
+            {% if product.movie is defined and product.movie is not empty%}          
             <!-- .row -->
             <div class="row animation"  {% if app.session.flashbag.peekAll|length > 0 %}data-animation="animation-fade-in" data-delay="3400"{% endif %}>
                 
@@ -69,5 +71,16 @@
                 </div>
                 
             </div>
-            <!-- .row end -->    
+            <!-- .row end --> 
+            {% endif %}   
+            <!-- .row -->
+            <div class="row animation" {% if app.session.flashbag.peekAll|length > 0 %}data-animation="animation-fade-in" data-delay="3400"{% endif %}>
+                <div class="col-sm-10 col-md-7 col-lg-6 col-sm-offset-0 col-md-offset-0 col-lg-offset-1">
+        			<a href="{{ path('app_default_slug',{'slug':'ambtenaren'}) }}" class="btn btn-primary btn-icon" >
+        				<i class="fas fa-share-square"></i> 
+        			 	Terug naar Ambtenaren
+        		    </a>
+                </div><!-- /.col -->
+            </div>
+            <!-- .row end -->
 {% endblock %}

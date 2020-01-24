@@ -2,18 +2,16 @@
 
 namespace App\Entity;
 
-use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Annotation\ApiResource;
-use App\Filter\LikeFilter;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\Common\Collections\ArrayCollection;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
-use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Serializer\Annotation\MaxDepth;
-use Ramsey\Uuid\Uuid;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Application is the project of a website.
@@ -21,55 +19,71 @@ use Ramsey\Uuid\Uuid;
  * @ApiResource(
  *     normalizationContext={"groups"={"read"}, "enable_max_depth"=true},
  *     denormalizationContext={"groups"={"write"}, "enable_max_depth"=true},
+ *     collectionOperations={
+ *     		"get",
+ *     		"post",
+ *     		"get_page_on_slug"={
+ *     			"method"="GET",
+ *     			"path"="/applications/{id}/{slug}",
+ *     			"swagger_context" = {
+ *     				"summary"="Get an page trough its slug",
+ *     				"description"="Get an page trough its slug"
+ *     			}
+ *     		}
+ *     }
  * )
  * @Gedmo\Loggable
  * @ORM\Entity(repositoryClass="App\Repository\ApplicationRepository")
  */
 class Application
 {
-	/**
-	 * @var UuidInterface The UUID identifier of this resource
-	 * @example e2984465-190a-4562-829e-a8cca81aa35d
-	 *
-	 * @Assert\Uuid
-	 * @Groups({"read"})
-	 * @ORM\Id
-	 * @ORM\Column(type="uuid", unique=true)
-	 * @ORM\GeneratedValue(strategy="CUSTOM")
-	 * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
-	 */
-	private $id;
-
-	/**
-	 * @var string The name of this application.
-	 * @example Webshop
-	 *
-	 * @Assert\NotNull
-	 * @Assert\Length(
-	 *      max = 255
-	 * )
-	 * @Gedmo\Versioned
-	 * @Groups({"read","write"})
-	 * @ORM\Column(type="string", length=255)
-	 */
-	private $name;
-
-	/**
-	 * @var string The description of this application.
-	 * @example Is the best site ever
+    /**
+     * @var UuidInterface The UUID identifier of this resource
      *
-	 * @Assert\NotNull
-	 * @Assert\Length(
-	 *      max = 255
-	 * )
-	 * @Gedmo\Versioned
-	 * @Groups({"read","write"})
-	 * @ORM\Column(type="text", nullable=true)
-	 */
-	private $description;
+     * @example e2984465-190a-4562-829e-a8cca81aa35d
+     *
+     * @Assert\Uuid
+     * @Groups({"read"})
+     * @ORM\Id
+     * @ORM\Column(type="uuid", unique=true)
+     * @ORM\GeneratedValue(strategy="CUSTOM")
+     * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
+     */
+    private $id;
+
+    /**
+     * @var string The name of this application.
+     *
+     * @example Webshop
+     *
+     * @Assert\NotNull
+     * @Assert\Length(
+     *      max = 255
+     * )
+     * @Gedmo\Versioned
+     * @Groups({"read","write"})
+     * @ORM\Column(type="string", length=255)
+     */
+    private $name;
+
+    /**
+     * @var string The description of this application.
+     *
+     * @example Is the best site ever
+     *
+     * @Assert\NotNull
+     * @Assert\Length(
+     *      max = 255
+     * )
+     * @Gedmo\Versioned
+     * @Groups({"read","write"})
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $description;
 
     /**
      * @var string The domain of this application.
+     *
      * @example https://www.example.org
      *
      * @Assert\NotNull
@@ -82,7 +96,6 @@ class Application
     private $domain;
 
     /**
-     * @Groups({"read","write"})
      * @ORM\OneToMany(targetEntity="App\Entity\Page", mappedBy="application")
      * @MaxDepth(1)
      */
@@ -103,7 +116,6 @@ class Application
     private $footer;
 
     /**
-     * @Groups({"read","write"})
      * @ORM\OneToMany(targetEntity="App\Entity\Slug", mappedBy="application")
      * @MaxDepth(1)
      */
@@ -114,18 +126,19 @@ class Application
         $this->pages = new ArrayCollection();
         $this->slugs = new ArrayCollection();
     }
-    
+
     public function getId(): Uuid
     {
-    	return $this->id;
+        return $this->id;
     }
-    
+
     public function setId(Uuid $id): self
     {
-    	$this->id = $id;
-    	
-    	return $this;
+        $this->id = $id;
+
+        return $this;
     }
+
     public function getName(): ?string
     {
         return $this->name;
@@ -140,14 +153,14 @@ class Application
 
     public function getDescription(): ?string
     {
-    	return $this->description;
+        return $this->description;
     }
 
     public function setDescription(?string $description): self
     {
-    	$this->description = $description;
+        $this->description = $description;
 
-    	return $this;
+        return $this;
     }
 
     public function getDomain(): ?string
