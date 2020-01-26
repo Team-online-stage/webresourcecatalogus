@@ -3,59 +3,66 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-            <!-- .tbl-pricing -->
-            <div class="tbl-pricing tbl-prc-recommended animation" data-animation="animation-fade-in" data-delay=" {% if app.session.flashbag.peekAll|length > 0 %}3400{%else%}200{% endif %}" > 
-            	{% if request.properties.type is defined and request.properties.type == 'omzetten' %}            	
-                
-                	<div class="post-heading-center animation" data-animation="animation-fade-in-down">
-                    	<h2>U heeft gekozen voor omzetten, en heeft geen plechtigheid nodig</h2>
-                   	</div>
-                    <div class="col-md-12 text-center">
-           				<i class="fas fa-check fa-6x " data-animation="animation-fade-in-down" ></i>
-                    </div><!-- /.col -->
-               
-            	{% else %}                
-                <!-- .row -->
-                <div class="row">
-        	
-                    <div class="post-heading-center">
-                    	<h2>Hoe wilt u gaan trouwen ?</h2>
-                    </div>
-	                            
-                    {% for product in products %} 
-                    <div class="col-sm-4 tbl-prc-col"> <!-- 1  -->
-                    	<div class="tbl-prc-wrap">
-                        	<div class="tbl-prc-heading">
-                            	<h4>
-                                	{% if request is not empty and request.properties.plechtigheid is defined and request.properties.plechtigheid is not empty and product.id == request.properties.plechtigheid %}
-    								<i class="fas fa-check"></i>
-                                    {%  endif  %}                            	
-                                    {{ product.name }}
-                                </h4>
-                            </div>
-                            <div class="tbl-prc-price bg-yellow">
-                                <h5>&euro; {{ product.price / 100 }} </h5>
-                                {# <p>{{ product.description|raw }}</p> #}
-                            </div>
-                            <ul class="tbl-prc-list">
-                                <li>Eerste mogelijkheid: <b> n.v.t</b></li>
-                            </ul>
-                            {{ product.description|raw }}
-                            <div class="tbl-prc-footer">
-	                            <a href="{{ path('app_default_view',{'id':product.id,'slug':'product'}) }}"  class="btn btn-secondary btn-icon  btn-block" >Meer lezen</a> 
-                                {% if user is not empty  %}
-	                            <br/><br/>
-	                            <a href="{{ path('app_default_set',{'id':'https://pdc.zaakonline.nl/products/'~product.id,'slug':'plechtigheid'}) }}"  class="btn btn-primary btn-icon  btn-block">Ja dit wil ik!</a> 
-                                {% endif %}
-                            </div>
+            <!-- .row -->
+            <div class="row animation" data-animation="animation-fade-in" data-delay=" {% if app.session.flashbag.peekAll|length > 0 %}3400{%else%}200{% endif %}" >          
+                <div class="col-sm-12 col-md-6 col-sm-offset-1 col-md-offset-0 text-center-sm text-center-xs">
+                	<div class="margin-bottom40">
+                    	<div class="post-heading-left text-center-sm text-center-xs" >
+                        	<h4>Extra </h4>
+                            <h2>{{ product.name|e }}</h2>
                         </div>
-                    </div>                    
-                    {% endfor %}        
-                         
-                    
+                        {{product.description|raw  }}                        
+                        <br/>
+                        <br/>
+                        {% if user is not empty and request is not empty %}
+                        <a href="{{ path('app_default_set',{'id':'https://pdc.zaakonline.nl/products/'~product.id,'slug':'plechtigheid'}) }}" class="btn btn-success btn-icon" >
+                        	<i class="far fa-calendar-check"></i>
+                         	Kies deze plechtigheid
+                         </a>
+                         {% else %}
+                         <p>U dient eerst in te loggen voordat u deze extra kan reserveren</p>
+                         {% endif %}
+                    </div>
                 </div>
-                <!-- .row end -->
-                {% endif %}
+                <div class="col-sm-12 col-md-6 col-lg-5 col-sm-offset-1 col-md-offset-0 col-lg-offset-1">               	
+                   {% if product.logo is defined and product.logo is not empty%}          
+                	<figure class="col-img40 margin-bottom40 animation">
+                        <img  ng-src="{{product.logo}}" alt="Image">
+                    </figure>
+                    {% endif %}
+                </div>
+                
             </div>
-            <!-- .tbl-pricing end -->        
+            <!-- .row end -->  
+            
+            {% if product.movie is defined and product.movie is not empty%}                    
+            <!-- .row -->
+            <div class="row animation" class="row animation"  {% if app.session.flashbag.peekAll|length > 0 %}data-animation="animation-fade-in" data-delay="3400"{% endif %}>
+                
+                <div class="col-sm-10 col-md-6 col-lg-5 col-sm-offset-1 col-md-offset-0">
+                	<figure class="margin-bottom40 animation" data-animation="animation-fade-in-left">
+                        <iframe width="560" height="315" frameborder="0" allowfullscreen="" src="{{ product.movie}}"></iframe>
+                    </figure>
+                </div>
+                
+                <div class="col-sm-10 col-md-6 col-sm-offset-1 col-md-offset-0 col-lg-offset-1">
+                	<div class="col-text20 margin-bottom20">{{product.description|raw  }}
+                    </div>
+                </div>
+                
+            </div>
+            <!-- .row end -->
+            {% endif %}
+            <!-- .row -->
+            <div class="row animation" {% if app.session.flashbag.peekAll|length > 0 %}data-animation="animation-fade-in" data-delay="3400"{% endif %}>
+                <div class="col-sm-10 col-md-7 col-lg-6 col-sm-offset-0 col-md-offset-0 col-lg-offset-1">
+        			<a href="{{ path('app_default_slug',{'slug':'plechtigheid'}) }}" class="btn btn-primary btn-icon" >
+        				<i class="fas fa-share-square"></i> 
+        			 	Terug naar plechtigheden
+        		    </a>
+                </div><!-- /.col -->
+            </div>
+            <!-- .row end -->
+            
+    
 {% endblock %}

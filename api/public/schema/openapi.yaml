@@ -4946,12 +4946,6 @@ paths:
             text/html:
               schema:
                 $ref: '#/components/schemas/Template-read'
-          links:
-            GetTemplateItem:
-              parameters:
-                id: '$response.body#/id'
-              operationId: getTemplateItem
-              description: 'The `id` value returned in the response can be used as the `id` parameter in `GET /templates/{id}`.'
         400:
           description: 'Invalid input'
         404:
@@ -5013,173 +5007,12 @@ paths:
           name: X-NLX-Audit-Clarification
           description: 'A clarification as to why a request has been made  (doelbinding)'
           in: header
-  '/templates/{id}':
-    get:
+  '/teplates/{id}/render':
+    post:
       tags:
         - Template
-      operationId: getTemplateItem
-      summary: 'Retrieves a Template resource.'
-      parameters:
-        -
-          name: id
-          in: path
-          required: true
-          schema:
-            type: string
-        -
-          name: Authorization
-          description: 'The JWT of the entity performing the request'
-          in: header
-        -
-          name: API-Version
-          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
-          example: 1.0.1
-          in: header
-        -
-          name: X-NLX-Logrecord-ID
-          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
-          in: header
-        -
-          name: X-NLX-Request-Process-Id
-          description: 'A process id for purpose registration (doelbinding)'
-          in: header
-        -
-          name: X-NLX-Request-Data-Elements
-          description: 'A list of requested data elements'
-          in: header
-        -
-          name: X-NLX-Request-Data-Subject
-          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
-          in: header
-        -
-          name: X-NLX-Audit-Clarification
-          description: 'A clarification as to why a request has been made  (doelbinding)'
-          in: header
-        -
-          name: Link
-          description: 'A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel="hub"'
-          in: header
-        -
-          name: 'extend[]'
-          required: false
-          description: 'An array of nested objects to include in the return object'
-          in: query
-          schema:
-            type: array
-        -
-          name: 'fields[]'
-          required: false
-          description: 'An array of fields to return in output, wil return all fields is not supplied'
-          in: query
-          schema:
-            type: array
-        -
-          name: validOn
-          required: false
-          description: 'Returns object as valid on a given date time'
-          schema:
-            type: string
-            format: date-time
-          in: query
-        -
-          name: validFrom
-          required: false
-          description: 'Returns objects valid from a given date time'
-          schema:
-            type: string
-            format: date-time
-          in: query
-        -
-          name: validUntil
-          required: false
-          description: 'Returns objects valid until a given date time'
-          schema:
-            type: string
-            format: date-time
-          in: query
-      responses:
-        200:
-          description: 'Template resource response'
-          content:
-            application/hal+json:
-              schema:
-                $ref: '#/components/schemas/Template-read'
-            application/ld+json:
-              schema:
-                $ref: '#/components/schemas/Template:jsonld-read'
-            application/vnd.api+json:
-              schema:
-                $ref: '#/components/schemas/Template-read'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Template-read'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/Template-read'
-            application/x-yaml:
-              schema:
-                $ref: '#/components/schemas/Template-read'
-            text/csv:
-              schema:
-                $ref: '#/components/schemas/Template-read'
-            text/html:
-              schema:
-                $ref: '#/components/schemas/Template-read'
-        404:
-          description: 'Resource not found'
-      produces:
-        - application/health+json
-    delete:
-      tags:
-        - Template
-      operationId: deleteTemplateItem
-      summary: 'Removes the Template resource.'
-      responses:
-        204:
-          description: 'Template resource deleted'
-        404:
-          description: 'Resource not found'
-      parameters:
-        -
-          name: id
-          in: path
-          required: true
-          schema:
-            type: string
-        -
-          name: Authorization
-          description: 'The JWT of the entity performing the request'
-          in: header
-        -
-          name: API-Version
-          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
-          example: 1.0.1
-          in: header
-        -
-          name: X-NLX-Logrecord-ID
-          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
-          in: header
-        -
-          name: X-NLX-Request-Process-Id
-          description: 'A process id for purpose registration (doelbinding)'
-          in: header
-        -
-          name: X-NLX-Request-Data-Elements
-          description: 'A list of requested data elements'
-          in: header
-        -
-          name: X-NLX-Request-Data-Subject
-          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
-          in: header
-        -
-          name: X-NLX-Audit-Clarification
-          description: 'A clarification as to why a request has been made  (doelbinding)'
-          in: header
-    put:
-      tags:
-        - Template
-      operationId: putTemplateItem
-      summary: 'Replaces the Template resource.'
+      operationId: render_templateTemplateItem
+      summary: 'Creates a Template resource.'
       parameters:
         -
           name: id
@@ -5217,8 +5050,8 @@ paths:
           description: 'A clarification as to why a request has been made  (doelbinding)'
           in: header
       responses:
-        200:
-          description: 'Template resource updated'
+        201:
+          description: 'Template resource created'
           content:
             application/hal+json:
               schema:
@@ -5274,86 +5107,7 @@ paths:
           text/html:
             schema:
               $ref: '#/components/schemas/Template-write'
-        description: 'The updated Template resource'
-    patch:
-      tags:
-        - Template
-      operationId: patchTemplateItem
-      summary: 'Updates the Template resource.'
-      parameters:
-        -
-          name: id
-          in: path
-          required: true
-          schema:
-            type: string
-        -
-          name: Authorization
-          description: 'The JWT of the entity performing the request'
-          in: header
-        -
-          name: API-Version
-          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
-          example: 1.0.1
-          in: header
-        -
-          name: X-NLX-Logrecord-ID
-          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
-          in: header
-        -
-          name: X-NLX-Request-Process-Id
-          description: 'A process id for purpose registration (doelbinding)'
-          in: header
-        -
-          name: X-NLX-Request-Data-Elements
-          description: 'A list of requested data elements'
-          in: header
-        -
-          name: X-NLX-Request-Data-Subject
-          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
-          in: header
-        -
-          name: X-NLX-Audit-Clarification
-          description: 'A clarification as to why a request has been made  (doelbinding)'
-          in: header
-      responses:
-        200:
-          description: 'Template resource updated'
-          content:
-            application/hal+json:
-              schema:
-                $ref: '#/components/schemas/Template-read'
-            application/ld+json:
-              schema:
-                $ref: '#/components/schemas/Template:jsonld-read'
-            application/vnd.api+json:
-              schema:
-                $ref: '#/components/schemas/Template-read'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Template-read'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/Template-read'
-            application/x-yaml:
-              schema:
-                $ref: '#/components/schemas/Template-read'
-            text/csv:
-              schema:
-                $ref: '#/components/schemas/Template-read'
-            text/html:
-              schema:
-                $ref: '#/components/schemas/Template-read'
-        400:
-          description: 'Invalid input'
-        404:
-          description: 'Resource not found'
-      requestBody:
-        content:
-          application/vnd.api+json:
-            schema:
-              $ref: '#/components/schemas/Template-write'
-        description: 'The updated Template resource'
+        description: 'The new Template resource'
 security:
   -
     apiKey: []
@@ -6311,15 +6065,23 @@ definitions:
   Application-read:
     properties:
       id:
+        description: 'The UUID identifier of this resource'
+        type: string
         example: e2984465-190a-4562-829e-a8cca81aa35d
         format: uuid
       name:
+        description: 'The name of this application.'
+        type: string
         example: Webshop
         maxLength: 255
       description:
+        description: 'The description of this application.'
+        type: string
         example: 'Is the best site ever'
         maxLength: 255
       domain:
+        description: 'The domain of this application.'
+        type: string
         example: 'https://www.example.org'
         maxLength: 255
       header: []
@@ -6331,12 +6093,18 @@ definitions:
   Application-write:
     properties:
       name:
+        description: 'The name of this application.'
+        type: string
         example: Webshop
         maxLength: 255
       description:
+        description: 'The description of this application.'
+        type: string
         example: 'Is the best site ever'
         maxLength: 255
       domain:
+        description: 'The domain of this application.'
+        type: string
         example: 'https://www.example.org'
         maxLength: 255
       header: []
@@ -6348,6 +6116,8 @@ definitions:
   Footer-read:
     properties:
       id:
+        description: 'The UUID identifier of this resource'
+        type: string
         example: e2984465-190a-4562-829e-a8cca81aa35d
         format: uuid
       logo: []
@@ -6365,6 +6135,8 @@ definitions:
   Header-read:
     properties:
       id:
+        description: 'The UUID identifier of this resource'
+        type: string
         example: e2984465-190a-4562-829e-a8cca81aa35d
         format: uuid
       logo: []
@@ -6382,15 +6154,23 @@ definitions:
   Image-read:
     properties:
       id:
+        description: 'The UUID identifier of this resource'
+        type: string
         example: e2984465-190a-4562-829e-a8cca81aa35d
         format: uuid
       name:
+        description: 'The name of this image'
+        type: string
         example: Flowers
         maxLength: 255
       alt:
+        description: 'The alt of of this image for people with poor eyesight'
+        type: string
         example: flowers
         maxLength: 255
       href:
+        description: 'The href of this image'
+        type: string
         example: app_img_flowers
         maxLength: 255
       logo: []
@@ -6403,12 +6183,18 @@ definitions:
   Image-write:
     properties:
       name:
+        description: 'The name of this image'
+        type: string
         example: Flowers
         maxLength: 255
       alt:
+        description: 'The alt of of this image for people with poor eyesight'
+        type: string
         example: flowers
         maxLength: 255
       href:
+        description: 'The href of this image'
+        type: string
         example: app_img_flowers
         maxLength: 255
       logo: []
@@ -6421,9 +6207,13 @@ definitions:
   Menu-read:
     properties:
       id:
+        description: 'The UUID identifier of this resource'
+        type: string
         example: e2984465-190a-4562-829e-a8cca81aa35d
         format: uuid
       name:
+        description: 'The name of this menu'
+        type: string
         example: 'webshop menu'
         maxLength: 255
       menuItem: []
@@ -6434,6 +6224,8 @@ definitions:
   Menu-write:
     properties:
       name:
+        description: 'The name of this menu'
+        type: string
         example: 'webshop menu'
         maxLength: 255
       menuItem: []
@@ -6444,15 +6236,23 @@ definitions:
   MenuItem-read:
     properties:
       id:
+        description: 'The UUID identifier of this resource'
+        type: string
         example: e2984465-190a-4562-829e-a8cca81aa35d
         format: uuid
       name:
+        description: 'The name of this MenuItem'
+        type: string
         example: about-menu-link
         maxLength: 255
       description:
+        description: 'The description of this MenuItem'
+        type: string
         example: 'This MenuItem links to the about page'
         maxLength: 2555
       href:
+        description: 'The href of this MenuItem that links to another page'
+        type: string
         example: app_home_about
         maxLength: 2555
       menu: []
@@ -6462,12 +6262,18 @@ definitions:
   MenuItem-write:
     properties:
       name:
+        description: 'The name of this MenuItem'
+        type: string
         example: about-menu-link
         maxLength: 255
       description:
+        description: 'The description of this MenuItem'
+        type: string
         example: 'This MenuItem links to the about page'
         maxLength: 2555
       href:
+        description: 'The href of this MenuItem that links to another page'
+        type: string
         example: app_home_about
         maxLength: 2555
       menu: []
@@ -6477,12 +6283,18 @@ definitions:
   Page-read:
     properties:
       id:
+        description: 'The UUID identifier of this resource'
+        type: string
         example: e2984465-190a-4562-829e-a8cca81aa35d
         format: uuid
       title:
+        description: 'The title of this page.'
+        type: string
         example: About
         maxLength: 255
       description:
+        description: 'The description of this page.'
+        type: string
         example: 'This page holds info about this application'
         maxLength: 255
       template: []
@@ -6494,9 +6306,13 @@ definitions:
   Page-write:
     properties:
       title:
+        description: 'The title of this page.'
+        type: string
         example: About
         maxLength: 255
       description:
+        description: 'The description of this page.'
+        type: string
         example: 'This page holds info about this application'
         maxLength: 255
       template: []
@@ -6508,9 +6324,13 @@ definitions:
   Slug-read:
     properties:
       id:
+        description: 'The UUID identifier of this resource'
+        type: string
         example: e2984465-190a-4562-829e-a8cca81aa35d
         format: uuid
       slug:
+        description: 'The actual slug of this slug.'
+        type: string
         example: /about
         maxLength: 255
       application: []
@@ -6520,6 +6340,8 @@ definitions:
   Slug-write:
     properties:
       slug:
+        description: 'The actual slug of this slug.'
+        type: string
         example: /about
         maxLength: 255
       application: []
@@ -6529,17 +6351,27 @@ definitions:
   Template-read:
     properties:
       id:
+        description: 'The UUID identifier of this resource'
+        type: string
         example: e2984465-190a-4562-829e-a8cca81aa35d
         format: uuid
       name:
+        description: 'The name of this menu'
+        type: string
         example: 'webshop menu'
         maxLength: 255
       description:
+        description: 'The description of this page.'
+        type: string
         example: 'This page holds info about this application'
         maxLength: 255
       content:
+        description: 'The Content of this template.'
+        type: string
         example: 'A lot of random info over any topic'
       templateEngine:
+        description: 'The template engine used to render this template. Schould be either twig (Twig), md (markdown) or rst (reStructuredText)'
+        type: string
         example: Twig
       pages: []
     required:
@@ -6550,14 +6382,22 @@ definitions:
   Template-write:
     properties:
       name:
+        description: 'The name of this menu'
+        type: string
         example: 'webshop menu'
         maxLength: 255
       description:
+        description: 'The description of this page.'
+        type: string
         example: 'This page holds info about this application'
         maxLength: 255
       content:
+        description: 'The Content of this template.'
+        type: string
         example: 'A lot of random info over any topic'
       templateEngine:
+        description: 'The template engine used to render this template. Schould be either twig (Twig), md (markdown) or rst (reStructuredText)'
+        type: string
         example: Twig
       pages: []
     required:
