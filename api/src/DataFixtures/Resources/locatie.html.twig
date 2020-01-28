@@ -34,7 +34,7 @@
                                  Annuleer deze locatie
                              </a>
                          {% else %}
-                             U heeft reeds een locatie gekozen, zie
+                             U heeft reeds <a href="{{  path('app_default_view',{'slug':'locatie-kiezen','id':request.properties.locatie|replace({"https://pdc.zaakonline.nl/products/": ""})}) }}">een locatie</a> gekozen, annuleer deze eerst als u deze ambtenaar wil reserveren.
                          {% endif %}
 
                          <br/><br/>

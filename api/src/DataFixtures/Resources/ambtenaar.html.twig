@@ -35,7 +35,7 @@
                                  Annuleer deze ambtenaar
                              </a>
                          {% else %}
-                             U heeft reeds een ambtenaar gekozen, zie <a href="{{ path('app_default_slug'{'slug':'ambtenaar-kiezen/'~request.properties.ambtenaar }) }}">hier</a>
+                             U heeft reeds <a href="{{  path('app_default_view',{'slug':'ambtenaar-kiezen','id':request.properties.ambtenaar|replace({"https://pdc.zaakonline.nl/products/": ""})}) }}">een ambtenaar</a> gekozen, annuleer deze eerst als u deze ambtenaar wil reserveren.
                          {% endif %}
 
                          <br/><br/>
