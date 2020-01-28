@@ -25,11 +25,9 @@
                         	<i class="far fa-calendar-check"></i>
                          	Reserveer deze ambtenaar
                          </a>
-                         {% elseif (request.properties.ambtenaar == 'https://pdc.zaakonline.nl/products/'~product.id) %}
 
-                         {% elseif request.properties.plechtigheid is not defined
-                         or request.properties.plechtigheid is empty
-                         or (request.properties.plechtigheid == "https://pdc.zaakonline.nl/products/190c3611-010d-4b0e-a31c-60dadf4d1c62" or request.properties.plechtigheid == "https://pdc.zaakonline.nl/products/16353702-4614-42ff-92af-7dd11c8eef9f")   %}
+                         {% elseif request.properties.plechtigheid is defined
+                         and (request.properties.plechtigheid == "https://pdc.zaakonline.nl/products/190c3611-010d-4b0e-a31c-60dadf4d1c62" or request.properties.plechtigheid == "https://pdc.zaakonline.nl/products/16353702-4614-42ff-92af-7dd11c8eef9f")   %}
                              <p>Let op: Het type ceremonie dat u heeft geselecteerd laat geen keuze voor een ambtenaar toe. Alleen bij een uitgebreide ceremonie bestaat de mogelijkheid een ambtenaar te kiezen. Wilt u toch een ambtenaar kunnen kiezen, dan kunt u  <a href="{{ path('app_default_slug',{'slug':'plechtigheid'}) }}">hier</a> uw ceremonie aanpassen.</p>
                          {% elseif (request.properties.ambtenaar == "https://pdc.zaakonline.nl/products/"~product.id) %}
                              <a href="{{ path('app_default_unset',{'id':'https://pdc.zaakonline.nl/products/'~product.id,'slug':'ambtenaar'}) }}" class="btn btn-danger btn-icon" >
