@@ -34,12 +34,12 @@
                          and (request.properties.plechtigheid == "https://pdc.zaakonline.nl/products/190c3611-010d-4b0e-a31c-60dadf4d1c62" or request.properties.plechtigheid != "https://pdc.zaakonline.nl/products/16353702-4614-42ff-92af-7dd11c8eef9f") %}
                              <p>Let op: Het type ceremonie dat u heeft geselecteerd laat geen keuze voor een locatie toe. Alleen bij een uitgebreide ceremonie bestaat de mogelijkheid een locatie te kiezen. Wilt u toch een ambtenaar kunnen kiezen, dan kunt u  <a href="{{ path('app_default_slug',{'slug':'plechtigheid'}) }}">hier</a> uw ceremonie aanpassen.</p>
                          {% elseif (request.properties.locatie == "https://pdc.zaakonline.nl/products/"~product.id) %}
-                             <a href="{{ path('app_default_unset',{'id':'https://pdc.zaakonline.nl/products/'~product.id,'slug':'ambtenaar'}) }}" class="btn btn-danger btn-icon" >
+                             <a href="{{ path('app_default_unset',{'id':'https://pdc.zaakonline.nl/products/'~product.id,'slug':'locatie'}) }}" class="btn btn-danger btn-icon" >
                                  <i class="far fa-calendar-times"></i>
                                  Annuleer deze locatie
                              </a>
                          {% else %}
-                             U heeft reeds <a href="{{  path('app_default_view',{'slug':'locatie-kiezen','id':request.properties.locatie|replace({"https://pdc.zaakonline.nl/products/": ""})}) }}">een locatie</a> gekozen, annuleer deze eerst als u deze ambtenaar wil reserveren.
+                             U heeft reeds <a href="{{  path('app_default_view',{'slug':'locatie-kiezen','id':request.properties.locatie|replace({"https://pdc.zaakonline.nl/products/": ""})}) }}">een locatie</a> gekozen, annuleer deze eerst als u deze locatie wil reserveren.
                          {% endif %}
 
                          <br/><br/>
