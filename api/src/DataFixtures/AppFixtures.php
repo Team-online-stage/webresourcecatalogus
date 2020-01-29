@@ -208,6 +208,32 @@ class AppFixtures extends Fixture
         $slug->setApplication($application);
         $slug->setSlug('requests');
         $manager->persist($page);
+        
+        
+        $id = Uuid::fromString('1855950c-e4b6-4a11-bfc7-5a2af7101b68');
+        $template = new Template();
+        $template->setName('Niew verzoek');
+        $template->setDescription('De verzoeks overzichts pagina die wordt getoond na inloggen');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/new-request.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        
+        $page = new Page();
+        $page->setTitle('Niew verzoek');
+        $page->setDescription('Niew verzoek');
+        $page->setApplication($application);
+        $page->setTemplate($template);
+        $manager->persist($page);
+        
+        $slug = new Slug();
+        $slug->setPage($page);
+        $slug->setApplication($application);
+        $slug->setSlug('new-request');
+        $manager->persist($page);
 
         // Getuigen
         $id = Uuid::fromString('da78b8bb-16bf-449c-96e3-3615e9e8e2af');

@@ -21,8 +21,8 @@ use App\Controller\DefaultController;
  *
  * @ApiResource(itemOperations={
  * 		"get",
- * 		"put",
- * 		"delete",
+ * 	    "put",
+ * 	   "delete",
  *     "render_template"={
  *         "method"="GET",
  *         "path"="/templates/{id}/render",
