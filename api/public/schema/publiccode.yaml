@@ -67,7 +67,7 @@ description:
 #          is and why one should need it.
 
     documentation: "https://github.com/ConductionNL/webresourcecatalogus/blob/master/README.md"
-    apiDocumentation: "wr.zaakonline.nl"
+    apiDocumentation: "wrc.zaakonline.nl"
 #
 #    features:
 #       - Very important feature

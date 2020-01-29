@@ -8,6 +8,7 @@ Het "Resources" component is ontwikkeld voor de gemeente Utrecht en heeft als do
 - [contributing](https://github.com/ConductionNL/resourcescomponent/blob/master/CONTRIBUTING.md) for tips tricks and general rules concerning contributing to this component.
 - [codebase](https://github.com/ConductionNL/resourcescomponent) on github.
 - [codebase](https://github.com/ConductionNL/resourcescomponent/archive/master.zip) as a download.
+- [Datamodel of this component](api/public/schema/datamodel.pdf)
 
 
 ## License
