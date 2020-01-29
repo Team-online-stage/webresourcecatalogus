@@ -2,41 +2,41 @@
 
 {% extends 'base.html.twig' %}
 
-{% block body %}   
+{% block body %}
             <!-- .row -->
-            <div class="row animation" data-animation="animation-fade-in" data-delay=" {% if app.session.flashbag.peekAll|length > 0 %}3400{%else%}200{% endif %}" >     
-            	{% if request.properties.type is defined and request.properties.type == 'omzetten' %}            	
-                
+            <div class="row animation" data-animation="animation-fade-in" data-delay=" {% if app.session.flashbag.peekAll|length > 0 %}3400{%else%}200{% endif %}" >
+            	{% if request.properties.type is defined and request.properties.type == 'omzetten' %}
+
                 	<div class="post-heading-center animation" data-animation="animation-fade-in-down">
                     	<h2>U heeft gekozen voor omzetten, en heeft geen getuigen nodig</h2>
                    	</div>
                     <div class="col-md-12 text-center">
            				<i class="fas fa-check fa-6x " data-animation="animation-fade-in-down" ></i>
                     </div><!-- /.col -->
-               
-            	{% else %} 
+
+            	{% else %}
                 <div class="post-heading-center">
                 	<h2>Uw Getuigen</h2>
-                    <p>Voor een huwelijk zijn er getuigen nodig, minimaal 1 en maximaal 2 per partner.</p>
-                </div>        
-                <div class="                
-            	{% if (request.properties.getuige is defined and request.properties.getuige|length < 4) or request.properties.getuige is not defined  %}  
+                    <p>Voor een huwelijk zijn er getuigen nodig, minimaal 1 en maximaal 3 per partner. In totaal moeten er minimaal 2 en maximaal 4 getuigen zijn.</p>
+                </div>
+                <div class="
+            	{% if (request.properties.getuige is defined and request.properties.getuige|length < 4) or request.properties.getuige is not defined  %}
             	col-md-8
             	{% else %}
             	col-md-12
-            	{% endif %}">       
-		            <div class="row">   
+            	{% endif %}">
+		            <div class="row">
 		            {% if request.properties.getuige is defined %}
                         {% for getuige in request.properties.getuige  %}
-                        
+
 			                {% set assent = commonground_resource(getuige) %}
 			                {% set contact = commonground_resource(assent.contact) %}
-			    
+
 			            <div class="col-md-3"> <!-- 1 -->
 		                	<div class="affa-team-profile">
 		                    	<figure class="team-profile-img animation" data-animation="animation-fade-in-down">
 		                        	<div class="team-profile-socials">
-		                        		<!-- 
+		                        		<!--
 		                            	<div class="team-profile-socials-wrap">
 		                                    <a href="#" title="Facebook"><i class="fa fa-facebook"></i></a>
 		                                    <a href="#" title="Twitter"><i class="fa fa-twitter"></i></a>
@@ -49,36 +49,36 @@
 		                        <div class="team-profile-name">
                                 	<h4>
                                 	    {{ contact.name }}
-                                	</h4>    
+                                	</h4>
                                     <p>
-        	                            Status:  {{ assent.status }} 
-        	                           
+        	                            Status:  {{ assent.status }}
+
                                 	    <br><b>Voornaam:</b> {{ contact.givenName }}
                                         <br><b>Achternaam:</b> {{ contact.familyName }}
-                                        
+
         	                            {% if contact1['_embedded']['emails'] is defined   %}
                                 	    <br><b>Email:</b> {{ contact['_embedded']['emails'][0].email }}
                                 	    {% endif %}
         	                            {% if contact1['_embedded']['telephones'] is defined   %}
                                         <br><b>Telefoon</b></b> {{ contact['_embedded']['telephones'][0].telephone }}
-                                        {% endif %}                                
+                                        {% endif %}
                                     </p>
 		                        </div><!-- /.team-profile-name -->
 		                    </div><!-- /.affa-team-profile -->
 		                </div><!-- /.col-md-3 -->
-                        {% endfor %}  
+                        {% endfor %}
                         {% endif %}
 		            </div><!-- /.row -->
                 {% endif %}
             	</div>
             	{# We are onlygoing to display this form if we do not yet already have 4 witnesses #}
-            	{%  if (request.properties.getuige is defined and request.properties.getuige|length < 4) or request.properties.getuige is not defined  %}  
-                <div class="col-md-4"> 
+            	{%  if (request.properties.getuige is defined and request.properties.getuige|length < 4) or request.properties.getuige is not defined  %}
+                <div class="col-md-4">
                 	<form method="post" action="{{ path('app_default_createassent',{'property':'getuige'}) }}" class="affa-form-contact">
                     	<h3>Toevoegen</h3>
                         <br/>
-            	        {% if request.properties.partners is defined %}	               
-                    	<label for="getuige_voornamen">Voor partner</label>    
+            	        {% if request.properties.partners is defined %}
+                    	<label for="getuige_voornamen">Voor partner</label>
                         <select name="partner" id="partner">
                         	{% for partner in request.properties.partners  %}
                         	<option value="{{ partner }}">{{ commonground_resource(commonground_resource(partner).contact).formalName }} </option>
@@ -92,15 +92,15 @@
                         <label for="email">Email Adres <span class="required">*</span></label>
                         <input type="email" name="email" placeholder="john@do.nl" ng-disabled="loading"/>
                        	<label for="telephone">Telefoon nummer <span class="required">*</span></label>
-                        <input type="tel" name="telephone" placeholder="+31 6 12345678" ng-disabled="loading"/>           
-                        
+                        <input type="tel" name="telephone" placeholder="+31 6 12345678" ng-disabled="loading"/>
+
                        	<button type="submit" class="btn btn-success btn-lg btn-block  btn-icon" />
 							<i class="far fa-envelope"></i>
 							Uitnodigen
 						</button>
                         <br/>
                     	<p>Uw getuige ontvangt een email met daarin een bevestigingslink. <br /> Via die link kan uw getuige aangeven of hij voor u wilt/gaat s.</p>
-                         
+
                         <br/>
                          <a href="{{ path('app_default_slug',{'slug':'extra'}) }}" class="btn btn-primary btn-block btn-icon" >
                         	<i class="far fa-calendar-times"></i>
@@ -108,17 +108,17 @@
                          </a>
                		</form>
             	</div>
-                {% endif %}   
-            </div><!-- /.row --> 
-            {% if request.properties.getuige is defined and request.properties.getuige|length >= 4 %}   
-            <div class="row animation" data-animation="animation-fade-in" data-delay=" {% if app.session.flashbag.peekAll|length > 0 %}3400{%else%}200{% endif %}" >   
-                <div class="col-sm-12"> 
+                {% endif %}
+            </div><!-- /.row -->
+            {% if request.properties.getuige is defined and request.properties.getuige|length >= 4 %}
+            <div class="row animation" data-animation="animation-fade-in" data-delay=" {% if app.session.flashbag.peekAll|length > 0 %}3400{%else%}200{% endif %}" >
+                <div class="col-sm-12">
                          <a href="{{ path('app_default_slug',{'slug':'extra'}) }}" class="btn btn-primary btn-block btn-icon" >
                         	<i class="far fa-calendar-times"></i>
                          	Ga door naar extras
                          </a>
             	</div>
-            </div><!-- /.row -->       
-            {% endif %}   
-        
+            </div><!-- /.row -->
+            {% endif %}
+
 {% endblock %}
