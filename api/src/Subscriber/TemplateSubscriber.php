@@ -49,7 +49,7 @@ class TemplateSubscriber implements EventSubscriberInterface
     	if (!$result instanceof Template && $route != 'api_templates_render_template_item' ){
     		return;
     	}
-    	
+    	/*
     	switch ($result->getTemplateEngine()) {
     		case 'twig':
     			
@@ -63,7 +63,7 @@ class TemplateSubscriber implements EventSubscriberInterface
     			$result->setContent($reponce);
     			break;
     	}
-    	
+    	*/
     	return $result;
     }
 }
