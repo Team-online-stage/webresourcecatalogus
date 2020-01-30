@@ -8,7 +8,7 @@
         {% if request.properties.type is defined and request.properties.type == 'omzetten' %}
 
             <div class="post-heading-center animation" data-animation="animation-fade-in-down">
-                <h2>U heeft gekozen voor omzetten, en heeft geen ambtenaren nodig</h2>
+                <h2>U heeft gekozen voor omzetten, en heeft geen ambtenaar nodig</h2>
             </div>
             <div class="col-md-12 text-center">
                 <i class="fas fa-check fa-6x " data-animation="animation-fade-in-down" ></i>
@@ -16,12 +16,11 @@
 
         {% else %}
             <div class="post-heading-center">
-                <h2>Door wie wilt u worden getrouwd?</h24>
+                	<h2>Door wie wilt u worden getrouwd?</h2>
                     <p>Een trouwambtenaar heet officieel een buitengewoon ambtenaar van de burgerlijke stand (babs ). Een babs waarmee het klikt is belangrijk. Hieronder stellen de babsen van de gemeente Utrecht zich aan u voor. U kunt een voorkeur aangeven voor een van hen, dan krijgt u data te zien waarop die babs beschikbaar is. Wanneer u een babs heeft gekozen zal deze na de melding voorgenomen huwelijk, zelf contact met u opnemen.</p>
                     <p>Kiest u liever voor een babs uit een andere gemeente? Of voor een vriend of familielid als trouwambtenaar? Dan kunt u hem of haar laten benoemen tot trouwambtenaar voor 1 dag bij de gemeente Utrecht. Dit kunt u hier ook opgeven.</p>
                     <p class="margin-bottom30">Bij een gratis of een eenvoudig huwelijk of geregistreerd partnerschap kunt u niet zelf een babs kiezen, de gemeente wijst er een toe.</p>
-
-            </div>
+			</div>
             {% for product in products %}
                 <div class="col-sm-6"> <!-- 4 -->
                     <a href="{{ path('app_default_view',{'slug':'ambtenaar-kiezen','id':product.id}) }}">
@@ -34,7 +33,7 @@
                                 {% if  request.properties.ambtenaar is defined and request.properties.ambtenaar == "https://pdc.zaakonline.nl/products/"~product.id %}
                                     <h5>Door u gekozen</h5>
                                 {% endif %}
-                                <p>Trouwambtenaar</p>
+                                <p>Ambtenaar</p>
                                 <img src="{{product.logo}}" alt="{{ product.name|e }}"/>
                             </div>
                         </div>
@@ -45,11 +44,12 @@
                     <a href="{{ path('app_default_view',{'requestType':'http://vtc.zaakonline.nl/request_types/cdd7e88b-1890-425d-a158-7f9ec92c9508'}) }}">
                         <div class="affa-testimonial">
                             <div class="testimonial-text" >
-                                U kunt ook een bijzonder trouwambenaar voor een dag aanvragen, dat kan iemand zijn die u kent of elders heeft betrokken. Deze persoon wordt dan door de gemeent voor één dag beidigd als buitegewoon ambtenaar van de burgelijke stand. Hier zijn kosten aan verbonden.
+                               Ambtenaar voor een dag.
                             </div>
                             <div class="testimonial-author">
-                                <h4> Trouwambenaar voor een dag</h4>
-                                <p>Trouwambtenaar</p>
+                                <h4>Ambtenaar voor een dag</h4>
+                                <p>ambtenaar</p>
+                                <!-- <img src="" alt=""/> -->
                             </div>
                         </div>
                     </a>
