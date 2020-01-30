@@ -103,7 +103,6 @@ class Template
     private $templateEngine;
 
     /**
-     * @Groups({"read","write"})
      * @ORM\OneToMany(targetEntity="App\Entity\Page", mappedBy="template")
      * @MaxDepth(1)
      */

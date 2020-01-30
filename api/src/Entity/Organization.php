@@ -13,6 +13,10 @@ use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Serializer\Annotation\MaxDepth;
 use Symfony\Component\Validator\Constraints as Assert;
 
+
+use App\Entity\Style;
+use App\Entity\Application;
+use App\Entity\Image;
 /**
  * An organization as active on commonground.
  *
@@ -130,6 +134,8 @@ class Organization
 
     public function __construct()
     {
+    	$this->styles= new ArrayCollection();
+    	$this->applications = new ArrayCollection();
         $this->images = new ArrayCollection();
     }
 
@@ -186,41 +192,62 @@ class Organization
         return $this;
     }
 
-    public function getStyles(): ?Style
+    public function getStyles(): ?Collection
     {
         return $this->styles;
     }
-
-    public function setStyles(?Style $styles): self
+    
+    public function addStyle(Style $style): self
     {
-        $this->styles = $styles;
-
-        return $this;
+    	if (!$this->styles->contains($style)) {
+    		$this->styles[] = $style;
+    		$style->setOrganization($this);
+    	}
+    	
+    	return $this;
+    }
+    
+    public function removeStyle(Style $style): self
+    {
+    	if ($this->styles->contains($style)) {
+    		$this->styles->removeElement($style);
+    		// set the owning side to null (unless already changed)
+    		if ($style->getOrganization() === $this) {
+    			$style->setOrganization(null);
+    		}
+    	}
+    	
+    	return $this;
     }
 
-    public function getApplications(): ?Application
+    public function getApplications(): ?Collection
     {
         return $this->applications;
     }
-
-    public function setApplications(?Application $applications): self
+    
+    public function addApplication(Application $application): self
     {
-        $this->applications = $applications;
-
-        return $this;
+    	if (!$this->applications->contains($application)) {
+    		$this->applications[] = $application;
+    		$image->setOrganization($this);
+    	}
+    	
+    	return $this;
+    }
+    
+    public function removeApplication(Application $application): self
+    {
+    	if ($this->applications->contains($application)) {
+    		$this->applications->removeElement($application);
+    		// set the owning side to null (unless already changed)
+    		if ($application->getOrganization() === $this) {
+    			$application->setOrganization(null);
+    		}
+    	}
+    	
+    	return $this;
     }
 
-    public function getPages(): ?Page
-    {
-        return $this->pages;
-    }
-
-    public function setPages(?Page $pages): self
-    {
-        $this->pages = $pages;
-
-        return $this;
-    }
 
     /**
      * @return Collection|Image[]
