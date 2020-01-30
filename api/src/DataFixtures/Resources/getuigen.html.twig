@@ -110,7 +110,7 @@
             	</div>
                 {% endif %}
             </div><!-- /.row -->
-            {% if request.properties.getuige is defined and request.properties.getuige|length >= 4 %}
+            {% if request.properties.getuigen is defined and request.properties.getuigen|length >= 4 %}
             <div class="row animation" data-animation="animation-fade-in" data-delay=" {% if app.session.flashbag.peekAll|length > 0 %}3400{%else%}200{% endif %}" >
                 <div class="col-sm-12">
                          <a href="{{ path('app_default_slug',{'slug':'extra'}) }}" class="btn btn-primary btn-block btn-icon" >
