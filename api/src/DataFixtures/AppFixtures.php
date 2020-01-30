@@ -370,8 +370,7 @@ class AppFixtures extends Fixture
         $manager->persist($page);        
         
         
-        
-        $id = Uuid::fromString('5b9fdd2f-273e-49c3-aa8d-2377be792b76');
+        $id = Uuid::fromString('d19eb461-284b-4fe0-bd61-2e45ac7fe615');
         $template = new Template();
         $template->setName('Formulier');
         $template->setDescription('Een formulier pagina');
