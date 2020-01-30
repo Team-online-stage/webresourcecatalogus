@@ -41,31 +41,28 @@ class Header
 
     /**
      * @Groups({"read","write"})
-     * @ORM\OneToOne(targetEntity="App\Entity\Image", inversedBy="logo", cascade={"persist", "remove"})
-     * @MaxDepth(1)
-     */
-    private $logo;
-
-    /**
-     * @Groups({"read","write"})
-     * @ORM\OneToOne(targetEntity="App\Entity\Menu", inversedBy="header", cascade={"persist", "remove"})
-     * @MaxDepth(1)
-     */
-    private $menu;
-
-    /**
-     * @Groups({"read","write"})
-     * @ORM\ManyToMany(targetEntity="App\Entity\Image", inversedBy="headers")
-     * @MaxDepth(1)
-     */
-    private $image;
-
-    /**
-     * @Groups({"read","write"})
      * @ORM\OneToOne(targetEntity="App\Entity\Application", mappedBy="header", cascade={"persist", "remove"})
      * @MaxDepth(1)
      */
     private $application;
+    
+    /**
+     * @var Datetime $dateCreated The moment this request was created
+     *
+     * @Groups({"read"})
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $dateCreated;
+    
+    /**
+     * @var Datetime $dateModified  The moment this request last Modified
+     *
+     * @Groups({"read"})
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $dateModified;
 
     public function __construct()
     {
@@ -113,42 +110,28 @@ class Header
 
         return $this;
     }
-
-    public function getMenu(): ?Menu
+    
+    public function getDateCreated(): ?\DateTimeInterface
     {
-        return $this->menu;
+    	return $this->dateModified;
     }
-
-    public function setMenu(?Menu $menu): self
+    
+    public function setDateCreated(\DateTimeInterface $dateCreated): self
     {
-        $this->menu = $menu;
-
-        return $this;
+    	$this->dateCreated= $dateCreated;
+    	
+    	return $this;
     }
-
-    /**
-     * @return Collection|Image[]
-     */
-    public function getImage(): Collection
+    
+    public function getDateModified(): ?\DateTimeInterface
     {
-        return $this->image;
+    	return $this->dateModified;
     }
-
-    public function addImage(Image $image): self
+    
+    public function setDateModified(\DateTimeInterface $dateModified): self
     {
-        if (!$this->image->contains($image)) {
-            $this->image[] = $image;
-        }
-
-        return $this;
-    }
-
-    public function removeImage(Image $image): self
-    {
-        if ($this->image->contains($image)) {
-            $this->image->removeElement($image);
-        }
-
-        return $this;
+    	$this->dateModified = $dateModified;
+    	
+    	return $this;
     }
 }

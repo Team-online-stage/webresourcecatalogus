@@ -52,11 +52,11 @@ class Image
      * @ORM\Column(type="string", length=255)
      */
     private $name;
-
+    
     /**
-     * @var string The alt of of this image for people with poor eyesight
+     * @var string The description of this organisation.
      *
-     * @example flowers
+     * @example This is the manucipality of Utrecht
      *
      * @Assert\NotNull
      * @Assert\Length(
@@ -64,6 +64,19 @@ class Image
      * )
      * @Groups({"read","write"})
      * @ORM\Column(type="string", length=255)
+     */
+    private $description;
+
+    /**
+     * @var string The alt of of this image for people with poor eyesight
+     *
+     * @example flowers
+     *
+     * @Assert\Length(
+     *     max = 255
+     * )
+     * @Groups({"read","write"})
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $alt;
 
@@ -72,35 +85,44 @@ class Image
      *
      * @example app_img_flowers
      *
-     * @Assert\NotNull
      * @Assert\Length(
      *     max = 255
      * )
      * @Groups({"read","write"})
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $href;
+        
+    /**
+     * @Groups({"read","write"})
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $base64;
 
     /**
      * @Groups({"read","write"})
-     * @ORM\OneToOne(targetEntity="App\Entity\Header", mappedBy="logo", cascade={"persist", "remove"})
-     * @MaxDepth(1)
+     * @ORM\ManyToOne(targetEntity="App\Entity\Organization", inversedBy="images")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $logo;
-
+    private $organization;
+    
     /**
-     * @Groups({"read","write"})
-     * @ORM\ManyToMany(targetEntity="App\Entity\Header", mappedBy="image")
-     * @MaxDepth(1)
+     * @var Datetime $dateCreated The moment this request was created
+     *
+     * @Groups({"read"})
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(type="datetime", nullable=true)
      */
-    private $headers;
-
+    private $dateCreated;
+    
     /**
-     * @Groups({"read","write"})
-     * @ORM\ManyToMany(targetEntity="App\Entity\Footer", mappedBy="image")
-     * @MaxDepth(1)
+     * @var Datetime $dateModified  The moment this request last Modified
+     *
+     * @Groups({"read"})
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(type="datetime", nullable=true)
      */
-    private $footers;
+    private $dateModified;
 
     public function __construct()
     {
@@ -130,6 +152,18 @@ class Image
 
         return $this;
     }
+    
+    public function getDescription(): ?string
+    {
+    	return $this->description;
+    }
+    
+    public function setDescription(?string $description): self
+    {
+    	$this->description = $description;
+    	
+    	return $this;
+    }
 
     public function getAlt(): ?string
     {
@@ -154,78 +188,52 @@ class Image
 
         return $this;
     }
-
-    public function getLogo(): ?Header
+    
+    public function getBase64(): ?string
     {
-        return $this->logo;
+    	return $this->base64;
+    }
+    
+    public function setBase64(?string $base64): self
+    {
+    	$this->base64 = $base64;
+    	
+    	return $this;
     }
 
-    public function setLogo(?Header $logo): self
+    public function getOrganization(): ?Organization
     {
-        $this->logo = $logo;
+        return $this->organization;
+    }
 
-        // set (or unset) the owning side of the relation if necessary
-        $newLogo = $logo === null ? null : $this;
-        if ($newLogo !== $logo->getLogo()) {
-            $logo->setLogo($newLogo);
-        }
+    public function setOrganization(?Organization $organization): self
+    {
+        $this->organization = $organization;
 
         return $this;
     }
-
-    /**
-     * @return Collection|Header[]
-     */
-    public function getHeaders(): Collection
+    
+    public function getDateCreated(): ?\DateTimeInterface
     {
-        return $this->headers;
+    	return $this->dateModified;
     }
-
-    public function addHeader(Header $header): self
+    
+    public function setDateCreated(\DateTimeInterface $dateCreated): self
     {
-        if (!$this->headers->contains($header)) {
-            $this->headers[] = $header;
-            $header->addImage($this);
-        }
-
-        return $this;
+    	$this->dateCreated= $dateCreated;
+    	
+    	return $this;
     }
-
-    public function removeHeader(Header $header): self
+    
+    public function getDateModified(): ?\DateTimeInterface
     {
-        if ($this->headers->contains($header)) {
-            $this->headers->removeElement($header);
-            $header->removeImage($this);
-        }
-
-        return $this;
+    	return $this->dateModified;
     }
-
-    /**
-     * @return Collection|Footer[]
-     */
-    public function getFooters(): Collection
+    
+    public function setDateModified(\DateTimeInterface $dateModified): self
     {
-        return $this->footers;
-    }
-
-    public function addFooter(Footer $footer): self
-    {
-        if (!$this->footers->contains($footer)) {
-            $this->footers[] = $footer;
-            $footer->addImage($this);
-        }
-
-        return $this;
-    }
-
-    public function removeFooter(Footer $footer): self
-    {
-        if ($this->footers->contains($footer)) {
-            $this->footers->removeElement($footer);
-            $footer->removeImage($this);
-        }
-
-        return $this;
+    	$this->dateModified = $dateModified;
+    	
+    	return $this;
     }
 }

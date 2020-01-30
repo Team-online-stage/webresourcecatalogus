@@ -59,20 +59,24 @@ class Menu
      * @MaxDepth(1)
      */
     private $menuItem;
-
+    
     /**
-     * @Groups({"read","write"})
-     * @ORM\OneToOne(targetEntity="App\Entity\Header", mappedBy="menu", cascade={"persist", "remove"})
-     * @MaxDepth(1)
+     * @var Datetime $dateCreated The moment this request was created
+     *
+     * @Groups({"read"})
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(type="datetime", nullable=true)
      */
-    private $header;
-
+    private $dateCreated;
+    
     /**
-     * @Groups({"read","write"})
-     * @ORM\OneToOne(targetEntity="App\Entity\Footer", mappedBy="menu", cascade={"persist", "remove"})
-     * @MaxDepth(1)
+     * @var Datetime $dateModified  The moment this request last Modified
+     *
+     * @Groups({"read"})
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(type="datetime", nullable=true)
      */
-    private $footer;
+    private $dateModified;
 
     public function __construct()
     {
@@ -133,40 +137,28 @@ class Menu
 
         return $this;
     }
-
-    public function getHeader(): ?Header
+    
+    public function getDateCreated(): ?\DateTimeInterface
     {
-        return $this->header;
+    	return $this->dateModified;
     }
-
-    public function setHeader(?Header $header): self
+    
+    public function setDateCreated(\DateTimeInterface $dateCreated): self
     {
-        $this->header = $header;
-
-        // set (or unset) the owning side of the relation if necessary
-        $newMenu = $header === null ? null : $this;
-        if ($newMenu !== $header->getMenu()) {
-            $header->setMenu($newMenu);
-        }
-
-        return $this;
+    	$this->dateCreated= $dateCreated;
+    	
+    	return $this;
     }
-
-    public function getFooter(): ?Footer
+    
+    public function getDateModified(): ?\DateTimeInterface
     {
-        return $this->footer;
+    	return $this->dateModified;
     }
-
-    public function setFooter(?Footer $footer): self
+    
+    public function setDateModified(\DateTimeInterface $dateModified): self
     {
-        $this->footer = $footer;
-
-        // set (or unset) the owning side of the relation if necessary
-        $newMenu = $footer === null ? null : $this;
-        if ($newMenu !== $footer->getMenu()) {
-            $footer->setMenu($newMenu);
-        }
-
-        return $this;
+    	$this->dateModified = $dateModified;
+    	
+    	return $this;
     }
 }
