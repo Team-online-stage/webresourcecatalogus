@@ -72,7 +72,7 @@
                 {% endif %}
             	</div>
             	{# We are onlygoing to display this form if we do not yet already have 4 witnesses #}
-            	{%  if (request.properties.getuige is defined and request.properties.getuige|length < 4) or request.properties.getuige is not defined  %}
+            	{%  if (request.properties.getuigen is defined and request.properties.getuigen|length < 4) or request.properties.getuigen is not defined  %}
                 <div class="col-md-4">
                 	<form method="post" action="{{ path('app_default_createassent',{'property':'getuige'}) }}" class="affa-form-contact">
                     	<h3>Toevoegen</h3>
