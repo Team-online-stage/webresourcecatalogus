@@ -48,24 +48,28 @@ class Footer
 
     /**
      * @Groups({"read","write"})
-     * @ORM\OneToOne(targetEntity="App\Entity\Menu", inversedBy="footer", cascade={"persist", "remove"})
-     * @MaxDepth(1)
-     */
-    private $menu;
-
-    /**
-     * @Groups({"read","write"})
-     * @ORM\ManyToMany(targetEntity="App\Entity\Image", inversedBy="footers")
-     * @MaxDepth(1)
-     */
-    private $image;
-
-    /**
-     * @Groups({"read","write"})
      * @ORM\OneToOne(targetEntity="App\Entity\Application", mappedBy="footer", cascade={"persist", "remove"})
      * @MaxDepth(1)
      */
     private $application;
+    
+    /**
+     * @var Datetime $dateCreated The moment this request was created
+     *
+     * @Groups({"read"})
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $dateCreated;
+    
+    /**
+     * @var Datetime $dateModified  The moment this request last Modified
+     *
+     * @Groups({"read"})
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $dateModified;
 
     public function __construct()
     {
@@ -96,44 +100,6 @@ class Footer
         return $this;
     }
 
-    public function getMenu(): ?Menu
-    {
-        return $this->menu;
-    }
-
-    public function setMenu(?Menu $menu): self
-    {
-        $this->menu = $menu;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Image[]
-     */
-    public function getImage(): Collection
-    {
-        return $this->image;
-    }
-
-    public function addImage(Image $image): self
-    {
-        if (!$this->image->contains($image)) {
-            $this->image[] = $image;
-        }
-
-        return $this;
-    }
-
-    public function removeImage(Image $image): self
-    {
-        if ($this->image->contains($image)) {
-            $this->image->removeElement($image);
-        }
-
-        return $this;
-    }
-
     public function getApplication(): ?Application
     {
         return $this->application;
@@ -150,5 +116,29 @@ class Footer
         }
 
         return $this;
+    }
+    
+    public function getDateCreated(): ?\DateTimeInterface
+    {
+    	return $this->dateModified;
+    }
+    
+    public function setDateCreated(\DateTimeInterface $dateCreated): self
+    {
+    	$this->dateCreated= $dateCreated;
+    	
+    	return $this;
+    }
+    
+    public function getDateModified(): ?\DateTimeInterface
+    {
+    	return $this->dateModified;
+    }
+    
+    public function setDateModified(\DateTimeInterface $dateModified): self
+    {
+    	$this->dateModified = $dateModified;
+    	
+    	return $this;
     }
 }

@@ -8,7 +8,7 @@
         {% if request.properties.type is defined and request.properties.type == 'omzetten' %}
 
             <div class="post-heading-center animation" data-animation="animation-fade-in-down">
-                <h2>U heeft gekozen voor omzetten, en heeft geen locatie nodig</h2>
+                <h2>U heeft gekozen voor omzetten, en heeft geen ambtenaren nodig</h2>
             </div>
             <div class="col-md-12 text-center">
                 <i class="fas fa-check fa-6x " data-animation="animation-fade-in-down" ></i>
@@ -16,44 +16,28 @@
 
         {% else %}
             <div class="post-heading-center">
-                	<h2>Waar wilt u trouwen?</h2>                	
-                    <p>Een trouwlocatie; in Utrecht is er voor elk wat wils. De gemeente Utrecht heeft een aantal eigen trouwlocaties; het Stadhuis, het Wijkservicecentrum in Vleuten en het Stadskantoor.  Een keuze voor een van deze trouwlocaties kunt u direct hier doen. </p>
-                	<p>Daarnaast zijn er verschillende andere vaste trouwlocaties. Deze trouwlocaties zijn door de gemeente Utrecht al goedgekeurd. Hieronder vindt u het overzicht van deze trouwlocaties. Heeft u een keuze gemaakt uit een van de vaste trouwlocaties? Maak dan eerst een afspraak met de locatie en geef dan aan ons door waar en wanneer u wilt trouwen. </p>
-                	<p class="margin-bottom30"> Maar misschien wilt u een heel andere locatie. Bijvoorbeeld het caf� om de hoek, bij u thuis of in uw favoriete restaurant. Zo'n locatie heet een vrije locatie.  Een aanvraag voor een vrije locatie kunt u hier ook doen. </p>
-                </div>
-            {% for product in products %}
+                <h2>Bij welke organisatie wilt u uw verzoek indienen?</h24>
+                    <p>Een trouwambtenaar heet officieel een buitengewoon ambtenaar van de burgerlijke stand (babs ). Een babs waarmee het klikt is belangrijk. Hieronder stellen de babsen van de gemeente Utrecht zich aan u voor. U kunt een voorkeur aangeven voor een van hen, dan krijgt u data te zien waarop die babs beschikbaar is. Wanneer u een babs heeft gekozen zal deze na de melding voorgenomen huwelijk, zelf contact met u opnemen.</p>
+                    <p>Kiest u liever voor een babs uit een andere gemeente? Of voor een vriend of familielid als trouwambtenaar? Dan kunt u hem of haar laten benoemen tot trouwambtenaar voor 1 dag bij de gemeente Utrecht. Dit kunt u hier ook opgeven.</p>
+                    <p class="margin-bottom30">Bij een gratis of een eenvoudig huwelijk of geregistreerd partnerschap kunt u niet zelf een babs kiezen, de gemeente wijst er een toe.</p>
+
+            </div>
+            {% for organization in organizations %}
                 <div class="col-sm-6"> <!-- 4 -->
-                    <a href="{{ path('app_default_view',{'slug':'ambtenaar-kiezen','id':product.id}) }}">
+                    <a href="{{ path('app_default_view',{'slug':'ambtenaar-kiezen','id':organization.id}) }}">
                         <div class="affa-testimonial">
                             <div class="testimonial-text" >
-                                {{ product.description|raw }}
+                                {{ organization.description|raw }}
                             </div>
                             <div class="testimonial-author">
-                                <h4>{{ product.name|e }}</h4>
-                                {% if  request.properties.locatie is defined and request.properties.locatie == "https://pdc.zaakonline.nl/products/"~product.id %}
-                                    <h5>Door u gekozen</h5>
-                                {% endif %}
-                                <p>Locatie</p>
-                                <img src="{{product.logo}}" alt="{{ product.name|e }}"/>
+                                <h4>{{ organization.name|e }}</h4>
+                                <p>Organisatie</p>
+                                <img src="{{organization.logo}}" alt="{{ organization.name|e }}"/>
                             </div>
                         </div>
                     </a>
                 </div>
             {% endfor %}
-                <div class="col-sm-6"> <!-- 4 -->
-                    <a href="{{ path('app_default_view',{'requestType':'http://vtc.zaakonline.nl/request_types/c8704ea6-4962-4b7e-8d4e-69a257aa9577'}) }}">
-                        <div class="affa-testimonial">
-                            <div class="testimonial-text" >
-                                U kunt ook zelf een eigen locatie aandragen, deze moet dan door de gemeente worden aangewezen als trouw locatie. Hier zijn kosten aan verbonden.
-                            </div>
-                            <div class="testimonial-author">
-                                <h4>Eigen locatie</h4>
-                                <p>Locatie</p>
-                                <!-- <img src="" alt=""/> -->
-                            </div>
-                        </div>
-                    </a>
-                </div>
         {% endif %}
     </div>
     {#

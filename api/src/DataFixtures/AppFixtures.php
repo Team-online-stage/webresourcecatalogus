@@ -2,10 +2,13 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Organization;
+use App\Entity\Style;
 use App\Entity\Application;
 use App\Entity\Page;
 use App\Entity\Slug;
 use App\Entity\Template;
+use App\Entity\Image;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Ramsey\Uuid\Uuid;
@@ -13,13 +16,143 @@ use Ramsey\Uuid\Uuid;
 class AppFixtures extends Fixture
 {
     public function load(ObjectManager $manager)
-    {
-
+    {   	
+    	// Utrecht
+    	$utrecht = new Organization();
+    	$utrecht->setName('Utrecht');
+    	$utrecht->setDescription('Gemeente Utrecht');
+    	$utrecht->setRsin('');
+    	$manager->persist($utrecht);
+    	
+    	$favicon = new Image();
+    	$favicon->setName('VNG Favicon');
+    	$favicon->setDescription('Favicon VNG');
+    	$favicon->setOrganization($utrecht);
+    	
+    	$logo = new Image();
+    	$logo->setName('VNG Logo');
+    	$logo->setDescription('Logo VNG');
+    	$logo->setOrganization($utrecht);
+    	
+    	$style = new Style();
+    	$style->setName('Utrecht');
+    	$style->setDescription('Huistlijl Gemeente Utrecht');
+    	$style->setCss('');
+    	$style->setfavicon($favicon);
+    	$style->setOrganization($utrecht);
+    	
+    	$utrecht->setLogo($logo);
+    	
+    	$manager->persist($utrecht);
+    	$manager->persist($favicon);
+    	$manager->persist($logo);
+    	$manager->persist($style);
+    	
+    	$manager->flush();
+    	
+    	// Rotterdam
+    	$rotterdam= new Organization();
+    	$rotterdam->setName('Rotterdam');
+    	$rotterdam->setDescription('Gemeente Rotterdam');
+    	$rotterdam->setRsin('');
+    	
+    	$favicon = new Image();
+    	$favicon->setName('VNG Favicon');
+    	$favicon->setDescription('Favicon VNG');
+    	$favicon->setOrganization($rotterdam);
+    	
+    	$logo = new Image();
+    	$logo->setName('VNG Logo');
+    	$logo->setDescription('Logo VNG');
+    	$logo->setOrganization($rotterdam);
+    	
+    	$style = new Style();
+    	$style->setName('Utrecht');
+    	$style->setDescription('Huistlijl Gemeente Utrecht');
+    	$style->setCss('');
+    	$style->setfavicon($favicon);
+    	$style->setOrganization($rotterdam);
+    	
+    	$rotterdam->setLogo($logo);
+    	
+    	$manager->persist($rotterdam);
+    	$manager->persist($favicon);
+    	$manager->persist($logo);
+    	$manager->persist($style);
+    	
+    	$manager->flush();
+    	
+    	// Rotterdam
+    	$eindhoven= new Organization();
+    	$eindhoven->setName('Eindhoven');
+    	$eindhoven->setDescription('Gemeente Eindhoven');
+    	$eindhoven->setRsin('');
+    	
+    	$favicon = new Image();
+    	$favicon->setName('Gemeente Eindhoven Favicon');
+    	$favicon->setDescription('Favicon Gemeente Eindhoven');
+    	$favicon->setOrganization($eindhoven);
+    	
+    	$logo = new Image();
+    	$logo->setName('Gemeente Eindhoven Logo');
+    	$logo->setDescription('Logo Gemeente Eindhoven');
+    	$logo->setOrganization($eindhoven);
+    	
+    	$style = new Style();
+    	$style->setName('Gemeente Eindhoven');
+    	$style->setDescription('Huistlijl Gemeente Eindhoven');
+    	$style->setCss('');
+    	$style->setfavicon($favicon);
+    	$style->setOrganization($eindhoven);
+    	
+    	$eindhoven->setLogo($logo);
+    	
+    	$manager->persist($eindhoven);
+    	$manager->persist($favicon);
+    	$manager->persist($logo);
+    	$manager->persist($style);
+    	
+    	$manager->flush();
+    	
+    	// VNG
+    	$vng = new Organization();
+    	$vng->setName('VNG');
+    	$vng->setDescription('Vereniging Nederlandse Gemeente');
+    	$vng->setRsin('');
+    	$manager->persist($vng);    	
+    	
+    	$favicon = new Image();
+    	$favicon->setName('VNG Favicon');
+    	$favicon->setDescription('Favicon VNG');
+    	$favicon->setOrganization($vng);  
+    	
+    	$logo = new Image();
+    	$logo->setName('VNG Logo');
+    	$logo->setDescription('Logo VNG');
+    	$logo->setOrganization($vng);  
+    	
+    	$style = new Style();
+    	$style->setName('Utrecht');
+    	$style->setDescription('Huistlijl Gemeente Utrecht');
+    	$style->setCss('');
+    	$style->setfavicon($favicon);
+    	$style->setOrganization($vng);  
+    	
+    	$vng->setLogo($logo);    	
+    	
+    	$manager->persist($vng);
+    	$manager->persist($favicon);
+    	$manager->persist($logo);
+    	$manager->persist($style);
+    	
+    	$manager->flush();
+    	
         // Home
         $application = new Application();
         $application->setName('MijnApp');
-        $application->setDescription('MijnApp');
-        $application->setDomain('huwelijksplanner.online');
+        $application->setDescription('MijnApp'); 
+        $application->setDomain('huwelijksplanner.online'); 
+        $application->setOrganization($eindhoven);
         $manager->persist($application);
 
         // Home
@@ -28,6 +161,7 @@ class AppFixtures extends Fixture
         $application->setName('Huwelijksplanner');
         $application->setDescription('Huwelijksplanner');
         $application->setDomain('huwelijksplanner.online');
+        $application->setOrganization($utrecht);
         $manager->persist($application);
         $application->setId($id);
         $manager->persist($application);
@@ -208,6 +342,85 @@ class AppFixtures extends Fixture
         $slug->setApplication($application);
         $slug->setSlug('requests');
         $manager->persist($page);
+        
+        
+        $id = Uuid::fromString('5b9fdd2f-273e-49c3-aa8d-2377be792b76');
+        $template = new Template();
+        $template->setName('Niew verzoek');
+        $template->setDescription('De verzoeks overzichts pagina die wordt getoond na inloggen');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/new-request.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        
+        $page = new Page();
+        $page->setTitle('Niew verzoek');
+        $page->setDescription('Niew verzoek');
+        $page->setApplication($application);
+        $page->setTemplate($template);
+        $manager->persist($page);
+        
+        $slug = new Slug();
+        $slug->setPage($page);
+        $slug->setApplication($application);
+        $slug->setSlug('new-request');
+        $manager->persist($page);        
+        
+        
+        
+        $id = Uuid::fromString('5b9fdd2f-273e-49c3-aa8d-2377be792b76');
+        $template = new Template();
+        $template->setName('Formulier');
+        $template->setDescription('Een formulier pagina');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/form.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        
+        $page = new Page();
+        $page->setTitle('Formulier');
+        $page->setDescription('Formulier');
+        $page->setApplication($application);
+        $page->setTemplate($template);
+        $manager->persist($page);
+        
+        $slug = new Slug();
+        $slug->setPage($page);
+        $slug->setApplication($application);
+        $slug->setSlug('form');
+        $manager->persist($page);        
+        
+        // Organizations        
+        $id = Uuid::fromString('f99412f1-6e44-4a75-bc99-99201d08c4c8');
+        $template = new Template();
+        $template->setName('Organisaties');
+        $template->setDescription('ia deze pagina kan er worden gewizeld van organisatie');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/organizations.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        
+        $page = new Page();
+        $page->setTitle('Wissel organisatie');
+        $page->setDescription('Via deze pagina kan er worden gewizeld van organisatie');
+        $page->setApplication($application);
+        $page->setTemplate($template);
+        $manager->persist($page);
+        
+        $slug = new Slug();
+        $slug->setPage($page);
+        $slug->setApplication($application);
+        $slug->setSlug('organizations');
+        $manager->persist($page); 
 
         // Getuigen
         $id = Uuid::fromString('da78b8bb-16bf-449c-96e3-3615e9e8e2af');

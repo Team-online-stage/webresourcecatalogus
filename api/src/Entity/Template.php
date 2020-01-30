@@ -21,8 +21,8 @@ use App\Controller\DefaultController;
  *
  * @ApiResource(itemOperations={
  * 		"get",
- * 		"put",
- * 		"delete",
+ * 	    "put",
+ * 	   "delete",
  *     "render_template"={
  *         "method"="GET",
  *         "path"="/templates/{id}/render",
@@ -103,11 +103,28 @@ class Template
     private $templateEngine;
 
     /**
-     * @Groups({"read","write"})
      * @ORM\OneToMany(targetEntity="App\Entity\Page", mappedBy="template")
      * @MaxDepth(1)
      */
     private $pages;
+    
+    /**
+     * @var Datetime $dateCreated The moment this request was created
+     *
+     * @Groups({"read"})
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $dateCreated;
+    
+    /**
+     * @var Datetime $dateModified  The moment this request last Modified
+     *
+     * @Groups({"read"})
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $dateModified;
 
     public function __construct()
     {
@@ -203,5 +220,29 @@ class Template
         }
 
         return $this;
+    }
+    
+    public function getDateCreated(): ?\DateTimeInterface
+    {
+    	return $this->dateCreated;
+    }
+    
+    public function setDateCreated(\DateTimeInterface $dateCreated): self
+    {
+    	$this->dateCreated= $dateCreated;
+    	
+    	return $this;
+    }
+    
+    public function getDateModified(): ?\DateTimeInterface
+    {
+    	return $this->dateModified;
+    }
+    
+    public function setDateModified(\DateTimeInterface $dateModified): self
+    {
+    	$this->dateModified = $dateModified;
+    	
+    	return $this;
     }
 }
