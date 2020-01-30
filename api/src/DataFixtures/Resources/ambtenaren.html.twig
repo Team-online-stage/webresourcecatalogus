@@ -22,6 +22,7 @@
                     <p class="margin-bottom30">Bij een gratis of een eenvoudig huwelijk of geregistreerd partnerschap kunt u niet zelf een babs kiezen, de gemeente wijst er een toe.</p>
 			</div>
             {% for product in products %}
+                {% if (product.audience == "public") %}
                 <div class="col-sm-6"> <!-- 4 -->
                     <a href="{{ path('app_default_view',{'slug':'ambtenaar-kiezen','id':product.id}) }}">
                         <div class="affa-testimonial">
@@ -39,6 +40,7 @@
                         </div>
                     </a>
                 </div>
+                {%endif%}
             {% endfor %}
                 <div class="col-sm-6"> <!-- 4 -->
                     <a href="{{ path('app_default_view',{'requestType':'http://vtc.zaakonline.nl/request_types/cdd7e88b-1890-425d-a158-7f9ec92c9508'}) }}">
