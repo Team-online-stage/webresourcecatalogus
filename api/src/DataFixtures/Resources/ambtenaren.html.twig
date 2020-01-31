@@ -43,7 +43,7 @@
                 {%endif%}
             {% endfor %}
                 <div class="col-sm-6"> <!-- 4 -->
-                    <a href="{{ path('app_default_view',{'requestType':'http://vtc.zaakonline.nl/request_types/cdd7e88b-1890-425d-a158-7f9ec92c9508'}) }}">
+                    <a href="{{ path('app_default_view',{'requestType':'http://vtc.zaakonline.nl/request_types/cdd7e88b-1890-425d-a158-7f9ec92c9508','requestParent':'http://vrc.zaakonline.nl'~request['@id']}) }}">
                         <div class="affa-testimonial">
                             <div class="testimonial-text" >
                                Ambtenaar voor een dag.
