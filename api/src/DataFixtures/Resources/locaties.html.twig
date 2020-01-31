@@ -16,58 +16,58 @@
 
         {% else %}
             <div class="post-heading-center">
-                	<h2>Waar wilt u trouwen?</h2>
-                    <p>Een trouwlocatie; in Utrecht is er voor elk wat wils. De gemeente Utrecht heeft een aantal eigen trouwlocaties; het Stadhuis, het Wijkservicecentrum in Vleuten en het Stadskantoor.  Een keuze voor een van deze trouwlocaties kunt u direct hier doen. </p>
-                	<p>Daarnaast zijn er verschillende andere vaste trouwlocaties. Deze trouwlocaties zijn door de gemeente Utrecht al goedgekeurd. Hieronder vindt u het overzicht van deze trouwlocaties. Heeft u een keuze gemaakt uit een van de vaste trouwlocaties? Maak dan eerst een afspraak met de locatie en geef dan aan ons door waar en wanneer u wilt trouwen. </p>
-                	<p class="margin-bottom30"> Maar misschien wilt u een heel andere locatie. Bijvoorbeeld het caf� om de hoek, bij u thuis of in uw favoriete restaurant. Zo'n locatie heet een vrije locatie.  Een aanvraag voor een vrije locatie kunt u hier ook doen. </p>
-                </div>
+                <h2>Waar wilt u trouwen?</h2>
+                <p>Een trouwlocatie; in Utrecht is er voor elk wat wils. De gemeente Utrecht heeft een aantal eigen trouwlocaties; het Stadhuis, het Wijkservicecentrum in Vleuten en het Stadskantoor.  Een keuze voor een van deze trouwlocaties kunt u direct hier doen. </p>
+                <p>Daarnaast zijn er verschillende andere vaste trouwlocaties. Deze trouwlocaties zijn door de gemeente Utrecht al goedgekeurd. Hieronder vindt u het overzicht van deze trouwlocaties. Heeft u een keuze gemaakt uit een van de vaste trouwlocaties? Maak dan eerst een afspraak met de locatie en geef dan aan ons door waar en wanneer u wilt trouwen. </p>
+                <p class="margin-bottom30"> Maar misschien wilt u een heel andere locatie. Bijvoorbeeld het caf� om de hoek, bij u thuis of in uw favoriete restaurant. Zo'n locatie heet een vrije locatie.  Een aanvraag voor een vrije locatie kunt u hier ook doen. </p>
+            </div>
             {% for product in products %}
                 {% if (product.audience == "public") %}
-                <div class="col-sm-6"> <!-- 4 -->
-                    <a href="{{ path('app_default_view',{'slug':'ambtenaar-kiezen','id':product.id}) }}">
-                        <div class="affa-testimonial">
-                            <div class="testimonial-text" >
-                                {{ product.description|raw }}
+                    <div class="col-sm-6"> <!-- 4 -->
+                        <a href="{{ path('app_default_view',{'slug':'locatie-kiezen','id':product.id}) }}">
+                            <div class="affa-testimonial">
+                                <div class="testimonial-text" >
+                                    {{ product.description|raw }}
+                                </div>
+                                <div class="testimonial-author">
+                                    <h4>{{ product.name|e }}</h4>
+                                    {% if  request.properties.locatie is defined and request.properties.locatie == "https://pdc.zaakonline.nl/products/"~product.id %}
+                                        <h5>Door u gekozen</h5>
+                                    {% endif %}
+                                    <p>Locatie</p>
+                                    <img src="{{product.logo}}" alt="{{ product.name|e }}"/>
+                                </div>
                             </div>
-                            <div class="testimonial-author">
-                                <h4>{{ product.name|e }}</h4>
-                                {% if  request.properties.locatie is defined and request.properties.locatie == "https://pdc.zaakonline.nl/products/"~product.id %}
-                                    <h5>Door u gekozen</h5>
-                                {% endif %}
-                                <p>Locatie</p>
-                                <img src="{{product.logo}}" alt="{{ product.name|e }}"/>
-                            </div>
-                        </div>
-                    </a>
-                </div>
+                        </a>
+                    </div>
                 {%endif%}
             {% endfor %}
-                <div class="col-sm-6"> <!-- 4 -->
-                    <a href="{{ path('app_default_view',{'requestType':'http://vtc.zaakonline.nl/request_types/c8704ea6-4962-4b7e-8d4e-69a257aa9577'}) }}">
-                        <div class="affa-testimonial">
-                            <div class="testimonial-text" >
-                                U kunt ook zelf een eigen locatie aandragen, deze moet dan door de gemeente worden aangewezen als trouw locatie. Hier zijn kosten aan verbonden.
-                            </div>
-                            <div class="testimonial-author">
-                                <h4>Eigen locatie</h4>
-                                <p>Locatie</p>
-                                <!-- <img src="" alt=""/> -->
-                            </div>
+            <div class="col-sm-6"> <!-- 4 -->
+                <a href="{{ path('app_default_view',{'requestType':'http://vtc.zaakonline.nl/request_types/c8704ea6-4962-4b7e-8d4e-69a257aa9577'}) }}">
+                    <div class="affa-testimonial">
+                        <div class="testimonial-text" >
+                            U kunt ook zelf een eigen locatie aandragen, deze moet dan door de gemeente worden aangewezen als trouw locatie. Hier zijn kosten aan verbonden.
                         </div>
-                    </a>
-                </div>
+                        <div class="testimonial-author">
+                            <h4>Eigen locatie</h4>
+                            <p>Locatie</p>
+                            <!-- <img src="" alt=""/> -->
+                        </div>
+                    </div>
+                </a>
+            </div>
         {% endif %}
     </div>
     {#
    <div class="row" >
        <div class="col-sm-6">
-           <a href="{{ path('app_ambtenaar_vooreendag') }}">
+           <a href="{{ path('app_locatie_vooreendag') }}">
                <div class="affa-testimonial">
                    <div class="testimonial-text">
-                       <p>Je kan ook zelf een een trouwambtenaar voor een dag aanleveren.</p>
+                       <p>Je kan ook zelf een een trouwlocatie voor een dag aanleveren.</p>
                    </div>
                    <div class="testimonial-author">
-                       <h4>Trouwambtenaar voor een dag</h4>
+                       <h4>Trouwlocatie voor een dag</h4>
                        <p>Zelf regelen</p>
                        <img src="https://utrecht.trouwplanner.online/images/content/avatar/2.png" alt="Avatar" />
                    </div>
@@ -77,13 +77,13 @@
 
 
        <div class="col-sm-6">
-           <a href="{{ path('app_ambtenaar_zelfstandig') }}">
+           <a href="{{ path('app_locatie_zelfstandig') }}">
                <div class="affa-testimonial" >
                    <div class="testimonial-text">
-                       <p>Je kan ook een trouwambtenaar uit een andere gemeente regelen.</p>
+                       <p>Je kan ook een trouwlocatie uit een andere gemeente regelen.</p>
                    </div>
                    <div class="testimonial-author">
-                       <h4>Zelfstandige trouwambtenaar</h4>
+                       <h4>Zelfstandige trouwlocatie</h4>
                        <p>Zelf regelen</p>
                        <img src="https://utrecht.trouwplanner.online/images/content/avatar/3.png" alt="Avatar" />
                    </div>
