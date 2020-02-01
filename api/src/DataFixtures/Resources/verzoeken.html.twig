@@ -17,7 +17,7 @@
                   <thead>
                     <tr>
                       <th scope="col">#</th>
-                      <th scope="col">Referentie</th>
+                      <th scope="col">{{ 'reference'|trans }}</th>
                       <th scope="col">Verzoek type</th>
                       <th scope="col">Begonnen op</th>
                       <th scope="col">Status</th>
@@ -31,7 +31,7 @@
                       <td>{{ request.reference }}</td>
                       <td>{{ commonground_resource(request.request_type).name }}</td>
                       <td>{{ request.date_created}} </td>
-                      <td>{{ request.status }}</td>
+                      <td>{{ request.status|trans }}</td>
                       <td><a href="{{ path('app_default_slug',{'request':'http://vrc.zaakonline.nl/requests/'~request.id}) }}" class="btn btn-success" role="button">Verder gaan</a></td>
                     </tr>
                     {% endfor %}

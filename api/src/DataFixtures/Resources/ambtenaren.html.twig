@@ -44,7 +44,7 @@
             {% endfor %}
             {% if request['@id']  is defined %}
                 <div class="col-sm-6"> <!-- 4 -->
-                    <a href="{{ path('app_default_view',{'requestType':'https://vtc.zaakonline.nl/request_types/cdd7e88b-1890-425d-a158-7f9ec92c9508','requestParent':'httpss://vrc.zaakonline.nl'~request['@id']}) }}">
+                    <a href="{{ path('app_default_slug',{'requestType':'https://vtc.zaakonline.nl/request_types/cdd7e88b-1890-425d-a158-7f9ec92c9508','requestParent':'httpss://vrc.zaakonline.nl'~request['@id']}) }}">
                         <div class="affa-testimonial">
                             <div class="testimonial-text" >
                                Ambtenaar voor een dag.

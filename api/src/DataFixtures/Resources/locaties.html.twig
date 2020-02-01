@@ -44,7 +44,7 @@
             {% endfor %}
             {% if request['@id']  is defined %}
             <div class="col-sm-6"> <!-- 4 -->
-                <a href="{{ path('app_default_view',{'requestType':'https://vtc.zaakonline.nl/request_types/c8704ea6-4962-4b7e-8d4e-69a257aa9577','requestParent':'https://vrc.zaakonline.nl'~request['@id']}) }}">
+                <a href="{{ path('app_default_slug',{'requestType':'https://vtc.zaakonline.nl/request_types/c8704ea6-4962-4b7e-8d4e-69a257aa9577','requestParent':'https://vrc.zaakonline.nl'~request['@id']}) }}">
                     <div class="affa-testimonial">
                         <div class="testimonial-text" >
                             U kunt ook zelf een eigen locatie aandragen, deze moet dan door de gemeente worden aangewezen als trouw locatie. Hier zijn kosten aan verbonden.
