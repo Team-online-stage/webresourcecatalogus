@@ -1,4 +1,4 @@
-{# templates/home/index.html.twig #}
+    													    													{# templates/home/index.html.twig #}
 
 {% extends 'base.html.twig' %}
 
@@ -28,11 +28,11 @@
                  	 {% for request in requests %}
                     <tr>
                       <th scope="row">{{ loop.index }}</th>
-                      <td>{{ request.reference }} </td>
-                      <td>{{ commonground_resource(request.request_type).name }} </td>
-                      <td>{{ request.created_at}} </td>
+                      <td>{{ request.reference }}</td>
+                      <td>{{ commonground_resource(request.request_type).name }}</td>
+                      <td>{{ request.date_created}} </td>
                       <td>{{ request.status }}</td>
-                      <td><a href="{{ path('app_request_continue',{'id':request.id}) }}" class="btn btn-success" role="button">Verder gaan</a></td>
+                      <td><a href="{{ path('app_default_slug',{'request':'http://vrc.zaakonline.nl/requests/'~request.id}) }}" class="btn btn-success" role="button">Verder gaan</a></td>
                     </tr>
                     {% endfor %}
                   </tbody>
@@ -40,12 +40,11 @@
                 </div>
             </div>
             <div class="row animation" data-animation="animation-fade-in" data-delay=" {% if app.session.flashbag.peekAll|length > 0 %}3400{%else%}200{% endif %}" > 
-                <div class="col-md-2"> <!-- 4 -->
+                <div class="col-md-6"> <!-- 4 -->             
+     				<a href="{{ path('app_default_slug',{'requestType':'http://vtc.zaakonline.nl/request_types/5b10c1d6-7121-4be2-b479-7523f1b625f1'}) }}" class="btn btn-primary btn-icon btn-block btn-lg"><i class="far fa-rings-wedding"></i> Start huwelijks verzoek</a>
                 </div>
-                <div class="col-md-8"> <!-- 4 -->                
-     				<a href="{{ path('app_request_new') }}" class="btn btn-primary btn-icon btn-block btn-lg"><i class="far fa-rings-wedding"></i> Ik wil liever een nieuw verzoek starten</a>
-                </div>
-                <div class="col-md-2"> <!-- 4 -->
+                <div class="col-md-6"> <!-- 4 -->
+     				<a href="{{ path('app_default_slug',{'slug':'new-request'}) }}" class="btn btn-primary btn-icon btn-block btn-lg"><i class="fal fa-file-alt"></i> Start overig verzoek (test)</a>
                 </div>
             </div> 
             <!-- /.row --> 
