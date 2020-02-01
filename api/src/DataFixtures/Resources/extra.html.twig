@@ -15,7 +15,7 @@
                         <br/>
                         <br/>
                         {% if huwelijk is defined  and huwelijk%}
-                        <a href="{{ path('app_default_add',{'id':extra.id,'slug':'extra'}) }}" class="btn btn-success btn-icon" >
+                        <a href="{{ path('app_default_set',{'value':"https://pdc.zaakonline.nl"~resource['@id'],'slug':'extra'}) }}" class="btn btn-success btn-icon" >
                         	<i class="far fa-calendar-check"></i>
                          	Voeg deze extra toe
                          </a>
@@ -33,7 +33,7 @@
                 
             </div>
             <!-- .row end -->            
-            {% if product.movie is defined and product.movie is not empty%}         
+            {% if resource.movie is defined and resource.movie is not empty%}         
             <!-- .row -->
             <div class="row animation" class="row animation"  {% if app.session.flashbag.peekAll|length > 0 %}data-animation="animation-fade-in" data-delay="3400"{% endif %}>
                 

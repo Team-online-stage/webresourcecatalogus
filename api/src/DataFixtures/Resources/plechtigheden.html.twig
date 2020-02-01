@@ -22,12 +22,12 @@
                     	<h2>Hoe wilt u gaan trouwen ?</h2>
                     </div>
 
-                    {% for product in products %}
+                    {% for product in products["hydra:member"] %}
                     <div class="col-sm-4 tbl-prc-col"> <!-- 1  -->
                     	<div class="tbl-prc-wrap">
                         	<div class="tbl-prc-heading">
                             	<h4>
-                                	{% if request is not empty and request.properties.plechtigheid is defined and request.properties.plechtigheid is not empty and product.id == request.properties.plechtigheid %}
+                                	{% if request is not empty and request.properties.plechtigheid is defined and request.properties.plechtigheid is not empty and 'https://pdc.zaakonline.nl/'~product['@id'] == request.properties.plechtigheid %}
     								<i class="fas fa-check"></i>
                                     {%  endif  %}
                                     {{ product.name }}
@@ -42,10 +42,10 @@
                             </ul>
                             {{ product.description|raw }}
                             <div class="tbl-prc-footer">
-	                            <a href="{{ path('app_default_view',{'id':product.id,'slug':'plechtigheid-kiezen'}) }}"  class="btn btn-secondary btn-icon  btn-block" >Meer lezen</a>
+	                            <a href="{{ path('app_default_view',{'resource':'https://pdc.zaakonline.nl'~product['@id'],'slug':'plechtigheid-kiezen'}) }}"  class="btn btn-secondary btn-icon  btn-block" >Meer lezen</a>
                                 {% if user is not empty  %}
 	                            <br/><br/>
-	                            <a href="{{ path('app_default_set',{'id':'https://pdc.zaakonline.nl/products/'~product.id,'slug':'plechtigheid'}) }}"  class="btn btn-primary btn-icon  btn-block">Ja dit wil ik!</a>
+	                            <a href="{{ path('app_default_set',{'value':'https://pdc.zaakonline.nl'~product['@id'],'slug':'plechtigheid'}) }}"  class="btn btn-primary btn-icon  btn-block">Ja dit wil ik!</a>
                                 {% endif %}
                             </div>
                         </div>

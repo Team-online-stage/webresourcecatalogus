@@ -21,7 +21,7 @@
                 <p>Daarnaast zijn er verschillende andere vaste trouwlocaties. Deze trouwlocaties zijn door de gemeente Utrecht al goedgekeurd. Hieronder vindt u het overzicht van deze trouwlocaties. Heeft u een keuze gemaakt uit een van de vaste trouwlocaties? Maak dan eerst een afspraak met de locatie en geef dan aan ons door waar en wanneer u wilt trouwen. </p>
                 <p class="margin-bottom30"> Maar misschien wilt u een heel andere locatie. Bijvoorbeeld het caf� om de hoek, bij u thuis of in uw favoriete restaurant. Zo'n locatie heet een vrije locatie.  Een aanvraag voor een vrije locatie kunt u hier ook doen. </p>
             </div>
-            {% for product in products %}
+            {% for product in products["hydra:member"] %}
                 {% if (product.audience == "public") %}
                     <div class="col-sm-6"> <!-- 4 -->
                         <a href="{{ path('app_default_view',{'slug':'locatie-kiezen','id':product.id}) }}">
@@ -31,7 +31,7 @@
                                 </div>
                                 <div class="testimonial-author">
                                     <h4>{{ product.name|e }}</h4>
-                                    {% if  request.properties.locatie is defined and request.properties.locatie == "https://pdc.zaakonline.nl/products/"~product.id %}
+                                    {% if  request.properties.locatie is defined and request.properties.locatie == "https://pdc.zaakonline.nl"~product['@id'] %}
                                         <h5>Door u gekozen</h5>
                                     {% endif %}
                                     <p>Locatie</p>
