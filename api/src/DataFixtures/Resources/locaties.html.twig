@@ -24,7 +24,7 @@
             {% for product in products["hydra:member"] %}
                 {% if (product.audience == "public") %}
                     <div class="col-sm-6"> <!-- 4 -->
-                        <a href="{{ path('app_default_view',{'slug':'locatie-kiezen','id':product.id}) }}">
+                        <a href="{{ path('app_default_slug',{'slug':'locatie-kiezen','resource':"https://pdc.zaakonline.nl"~product['@id']}) }}">
                             <div class="affa-testimonial">
                                 <div class="testimonial-text" >
                                     {{ product.description|raw }}

@@ -42,7 +42,7 @@
                             </ul>
                             {{ product.description|raw }}
                             <div class="tbl-prc-footer">
-	                            <a href="{{ path('app_default_view',{'resource':'https://pdc.zaakonline.nl'~product['@id'],'slug':'plechtigheid-kiezen'}) }}"  class="btn btn-secondary btn-icon  btn-block" >Meer lezen</a>
+	                            <a href="{{ path('app_default_slug',{'resource':'https://pdc.zaakonline.nl'~product['@id'],'slug':'plechtigheid-kiezen'}) }}"  class="btn btn-secondary btn-icon  btn-block" >Meer lezen</a>
                                 {% if user is not empty  %}
 	                            <br/><br/>
 	                            <a href="{{ path('app_default_set',{'value':'https://pdc.zaakonline.nl'~product['@id'],'slug':'plechtigheid'}) }}"  class="btn btn-primary btn-icon  btn-block">Ja dit wil ik!</a>
