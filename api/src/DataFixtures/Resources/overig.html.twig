@@ -1,0 +1,73 @@
+{# templates/partners/index.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    {# here we are going to play a small trick but we want to prevent making an commonground call  #}
+    {% if request.properties.partners is defined and request.properties.partners[0] is defined  %}
+        {% set assent1 = commonground_resource(request.properties.partners.0) %}
+        {% set contact1 = commonground_resource(assent1.contact) %}
+    {% endif %}
+    {% if request.properties.partners is defined and request.properties.partners[1] is defined  %}
+        {% set assent2 = commonground_resource(request.properties.partners.1) %}
+        {% set contact2 = commonground_resource(assent2.contact) %}
+    {% endif %}
+    <!-- .row-custom -->
+    <div class="row-custom animation" data-animation="animation-fade-in" data-delay=" {% if app.session.flashbag.peekAll|length > 0 %}3400{%else%}200{% endif %}" >
+        <div class="post-heading-center">
+            <h2>Overige vragen</h2>
+        </div>
+
+        <div class="col-left">
+            Voordat we uw aanvraag kunnen verwerken zijn er nog een paar extra zaken die we graag zouden weten
+        </div>
+
+        <div class="col-center">
+
+        </div>
+
+        <div class="col-right">
+            
+                <!-- Uitnodigen partner 2 -->
+                <div class="affa-feature-icon"> <!-- 6 -->
+                    <i class="fas fa-envelope"></i>
+                    <div class="feature-text">
+                        <h4>Aanvullende gegevens</h4>
+                        <p>Graag zouden wij nog het volgende van u weten</p>
+
+                        <form method="post" action="{{ path('app_default_post',{'slug':'overig'}) }}" class="affa-form-contact" >
+                            
+                            {% if request.properties.partners is defined %}
+                                {% for partner in request.properties.partners  %}
+                                    <label for="naamgebruik_{{ partner }}">Naamgebruik {{ commonground_resource(commonground_resource(partner).contact).formalName }}</label>
+                                    <select name="naamgebruik_{{ partner }}" id="naamgebruik_{{ partner }}">
+                                        <option value="ongewijzigd" selected>ongewijzigd</option>
+                                        <option value="eigennaam, partnernaam,">eerst uw eigen achternaam, gevolgd door de achternaam uw partner</option>
+                                        <option value="partnernaam, eigennaam">eerst de achternaam van uw partner, gevolgd door uw eigen achternaam</option>
+                                        <option value="partnernaam">alleen de achternaam van uw partne</option>
+                                    </select>   
+                                    {% endfor %}  
+                            {% endif %}                          
+                            
+                            <label for="nederlands">Spreekt u bijde Nederlands?</label>
+                            <select name="nederlands" id="nederlands">
+                                <option value="ja" selected>Ja</option>
+                                <option value="nee">Nee</option>
+                            </select>                    
+                                                                                    
+                            <label for="opmerkingen">Opmerkingen / verzoeken</label>
+                            <textarea name="opmerkingen" id="opmerkingen">
+                            </textarea>
+
+                            <button type="submit" class="btn btn-success btn-lg btn-block btn-icon"><i class="far fa-envelope"></i> Opslaan</button>
+                        </form>
+                    </div>
+                </div>
+        </div>
+
+    </div>
+    <!-- .row-custom end -->
+{% endblock %}
+
+

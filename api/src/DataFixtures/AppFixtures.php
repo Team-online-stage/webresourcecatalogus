@@ -268,6 +268,32 @@ class AppFixtures extends Fixture
         // indienen
         $id = Uuid::fromString('50fe81a3-6723-4b9c-acf1-9a7c30f7cc4f');
         $template = new Template();
+        $template->setName('Overige vragen');
+        $template->setDescription('');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/overig.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        
+        $page = new Page();
+        $page->setTitle('Overige vragen');
+        $page->setDescription('overig');
+        $page->setApplication($application);
+        $page->setTemplate($template);
+        $manager->persist($page);
+        
+        $slug = new Slug();
+        $slug->setPage($page);
+        $slug->setApplication($application);
+        $slug->setSlug('overig');
+        $manager->persist($page);
+        
+        // indienen
+        $id = Uuid::fromString('50fe81a3-6723-4b9c-acf1-9a7c30f7cc4f');
+        $template = new Template();
         $template->setName('Indienen');
         $template->setDescription('');
         $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/indienen.html.twig', 'r'));

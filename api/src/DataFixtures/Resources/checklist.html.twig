@@ -310,7 +310,7 @@
     		           		</a>
                         {% endif %}
     		           		#}
-    		           		{% if request is not empty and request.status != "submitted" %}
+    		           		{% if request is not empty and request.status is defined and request.status != "submitted" %}
     		            	<a href="{{ path('app_default_submitrequest') }}" class="btn btn-primary btn-icon" >
     							<i class="fas fa-share-square"></i>
     			            	{% if request.properties.ceremonie is defined  %}{{ request.properties.ceremonie|capitalize }}{% else %}Aanvraag{% endif %} indienen
