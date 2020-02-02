@@ -266,7 +266,7 @@ class AppFixtures extends Fixture
         $manager->persist($page);
         
         // indienen
-        $id = Uuid::fromString('50fe81a3-6723-4b9c-acf1-9a7c30f7cc4f');
+        $id = Uuid::fromString('ed2b2747-2152-456b-8bc3-2524799e1e86');
         $template = new Template();
         $template->setName('Overige vragen');
         $template->setDescription('');
