@@ -21,17 +21,17 @@
                     <p>Kiest u liever voor een babs uit een andere gemeente? Of voor een vriend of familielid als trouwambtenaar? Dan kunt u hem of haar laten benoemen tot trouwambtenaar voor 1 dag bij de gemeente Utrecht. Dit kunt u hier ook opgeven.</p>
                     <p class="margin-bottom30">Bij een gratis of een eenvoudig huwelijk of geregistreerd partnerschap kunt u niet zelf een babs kiezen, de gemeente wijst er een toe.</p>
 			</div>
-            {% for product in products %}
+            {% for product in products["hydra:member"] %}
                 {% if (product.audience == "public") %}
                 <div class="col-sm-6"> <!-- 4 -->
-                    <a href="{{ path('app_default_view',{'slug':'ambtenaar-kiezen','id':product.id}) }}">
+                    <a href="{{ path('app_default_slug',{'slug':'ambtenaar-kiezen','resource':'https://pdc.zaakonline.nl'~product['@id']}) }}">
                         <div class="affa-testimonial">
                             <div class="testimonial-text" >
                                 {{ product.description|raw }}
                             </div>
                             <div class="testimonial-author">
                                 <h4>{{ product.name|e }}</h4>
-                                {% if  request.properties.ambtenaar is defined and request.properties.ambtenaar == "https://pdc.zaakonline.nl/products/"~product.id %}
+                                {% if  request.properties.ambtenaar is defined and request.properties.ambtenaar == "https://pdc.zaakonline.nl"~product['@id'] %}
                                     <h5>Door u gekozen</h5>
                                 {% endif %}
                                 <p>Ambtenaar</p>
@@ -42,8 +42,9 @@
                 </div>
                 {%endif%}
             {% endfor %}
+            {% if request['@id']  is defined %}
                 <div class="col-sm-6"> <!-- 4 -->
-                    <a href="{{ path('app_default_view',{'requestType':'http://vtc.zaakonline.nl/request_types/cdd7e88b-1890-425d-a158-7f9ec92c9508'}) }}">
+                    <a href="{{ path('app_default_slug',{'requestType':'https://vtc.zaakonline.nl/request_types/cdd7e88b-1890-425d-a158-7f9ec92c9508','requestParent':'httpss://vrc.zaakonline.nl'~request['@id']}) }}">
                         <div class="affa-testimonial">
                             <div class="testimonial-text" >
                                Ambtenaar voor een dag.
@@ -56,6 +57,7 @@
                         </div>
                     </a>
                 </div>
+            {%endif%}
         {% endif %}
     </div>
 

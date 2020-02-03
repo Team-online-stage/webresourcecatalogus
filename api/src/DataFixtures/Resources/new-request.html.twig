@@ -8,7 +8,7 @@
             
             	
                 {% for requestType in requestTypes %}
-            	<a href="{{ path('app_default_view',{'requestType':'http://vtc.zaakonline.nl'~requestType['@id']}) }}" class="well-frontpage-link">           	
+            	<a href="{{ path('app_default_slug',{'requestType':'http://vtc.zaakonline.nl'~requestType['@id']}) }}" class="well-frontpage-link">           	
                 <div class="col-sm-6 col-md-4 text-center-sm text-center-xs">
                 	<div class="well well-lg well-frontpage">
                 		<i class="{{ requestType.icon }} fa-6x"></i>

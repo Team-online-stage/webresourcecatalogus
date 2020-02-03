@@ -264,7 +264,59 @@ class AppFixtures extends Fixture
         $slug->setApplication($application);
         $slug->setSlug('trouwen');
         $manager->persist($page);
-
+        
+        // indienen
+        $id = Uuid::fromString('ed2b2747-2152-456b-8bc3-2524799e1e86');
+        $template = new Template();
+        $template->setName('Overige vragen');
+        $template->setDescription('');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/overig.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        
+        $page = new Page();
+        $page->setTitle('Overige vragen');
+        $page->setDescription('overig');
+        $page->setApplication($application);
+        $page->setTemplate($template);
+        $manager->persist($page);
+        
+        $slug = new Slug();
+        $slug->setPage($page);
+        $slug->setApplication($application);
+        $slug->setSlug('overig');
+        $manager->persist($page);
+        
+        // indienen
+        $id = Uuid::fromString('50fe81a3-6723-4b9c-acf1-9a7c30f7cc4f');
+        $template = new Template();
+        $template->setName('Indienen');
+        $template->setDescription('');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/indienen.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        
+        $page = new Page();
+        $page->setTitle('Indienen');
+        $page->setDescription('Indienen');
+        $page->setApplication($application);
+        $page->setTemplate($template);
+        $manager->persist($page);
+        
+        $slug = new Slug();
+        $slug->setPage($page);
+        $slug->setApplication($application);
+        $slug->setSlug('indienen');
+        $manager->persist($page);
+        
         // flow
         $id = Uuid::fromString('ba71c65e-7a82-449e-af15-947613ca6caa');
         $template = new Template();

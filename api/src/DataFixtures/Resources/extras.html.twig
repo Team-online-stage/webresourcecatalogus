@@ -10,7 +10,7 @@
                     <p>U kunt uiteraard ook extra opties kiezen voor uw huwelijk</p>
                 </div>
 
-                {% for product in products %}
+                {% for product in products["hydra:member"] %}
                     {% if (product.audience == "public") %}
                 <div class="col-sm-4"> <!-- 1 -->
                 	<div class="affa-team-profile">
@@ -25,17 +25,11 @@
                         </div>
                         <p>{{ product.description|raw }}<br/></p>
                         <div class="tbl-prc-footer">
-                        	<!--
-	                    	<a href="{# path('app_extra_view',{'id':extra.id}) #}"  class="btn btn-secondary btn-icon  btn-block" >Meer lezen</a>
-	                    	<br/>
-	                    	-->
-                                {% if user is not empty  %}
-	                    	<a href="{{ path('app_default_add',{'id':'https://pdc.zaakonline.nl/products/'~product.id,'slug':'extra'}) }}"  class="btn btn-primary btn-icon  btn-block">Ja dit wil ik!</a>
-
-	                    	<br/>
-                           	<a href="{{ path('app_default_slug',{'slug':'betalen'}) }}"  class="btn btn-danger btn-icon  btn-block">Ik hoef geen extra opties</a>
+                            {% if user is not empty  %}
+	                    	<a href="{{ path('app_default_set',{'value':'https://pdc.zaakonline.nl/'~product['@id'],'slug':'extra'}) }}"  class="btn btn-primary btn-icon  btn-block">Ja dit wil ik!</a>
+							{% endif %}
                     	</div>
-                                {% endif %}
+                       
                     </div>
                 </div>
                     {%endif%}
