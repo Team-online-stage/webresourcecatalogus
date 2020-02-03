@@ -64,14 +64,12 @@
                     <div class="feature-text">
                         <h4>Aanvullende gegevens</h4>
                         <p>Graag zouden wij nog het volgende van u weten</p>
-
-                            
                             {% if request.properties.partners is defined %}
                                 {% for partner in request.properties.partners  %}
-                                    <label for="naamgebruik_{{ partner }}">Naamgebruik {{ commonground_resource(commonground_resource(partner).contact).formalName }}</label>
-                                    <select name="naamgebruik_{{ partner }}" id="naamgebruik_{{ partner }}">
-                                        <option value="ongewijzigd" selected>ongewijzigd</option>
-                                        <option value="eigennaam, partnernaam,">eerst uw eigen achternaam, gevolgd door de achternaam uw partner</option>
+                                    <label for="naamgebruik[{{ partner }}]">Naamgebruik {{ commonground_resource(commonground_resource(partner).contact).formalName }}</label>
+                                    <select name="naamgebruik[{{ partner }}]" id="naamgebruik[{{ partner }}]">
+                                        <option value="ongewijzigd" selected >ongewijzigd</option>
+                                        <option value="eigennaam, partnernaam">eerst uw eigen achternaam, gevolgd door de achternaam uw partner</option>
                                         <option value="partnernaam, eigennaam">eerst de achternaam van uw partner, gevolgd door uw eigen achternaam</option>
                                         <option value="partnernaam">alleen de achternaam van uw partne</option>
                                     </select>   
