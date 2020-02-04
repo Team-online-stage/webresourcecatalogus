@@ -26,7 +26,7 @@
                     <b>Gedaan:</b>
                     <ul class="list-icon">
 
-                        {% if request.properties.type is defined %}
+                        {% if request.properties.type is defined and request.properties.type is not empty %}
                             <li><b>Ceremonie</b>
                                 <ul class="list-icon">
                                     <li>
@@ -36,7 +36,7 @@
                                 </ul>
                             </li>
                         {% endif %}
-                        {% if request.properties.plechtigheid is defined %}
+                        {% if request.properties.plechtigheid is defined and request.properties.plechtigheid is not empty  %}
                             <li><b>Plechtigheid</b>
                                 <ul class="list-icon">
                                     <li>
@@ -46,7 +46,7 @@
                                 </ul>
                             </li>
                         {% endif %}
-                        {% if request.properties.datum is defined %}
+                        {% if request.properties.datum is defined and request.properties.datum is not empty %}
                             <li><b>Trouwdatum</b>
                                 <ul class="list-icon">
                                     <li>
@@ -56,7 +56,7 @@
                                 </ul>
                             </li>
                         {% endif %}
-                        {% if request.properties.ambtenaar is defined and request.properties.ambtenaar is not null %}
+                        {% if request.properties.ambtenaar is defined and request.properties.ambtenaar is not empty %}
                             <li><b>Ambtenaar</b>
                                 <ul class="list-icon">
                                     <li>
@@ -66,7 +66,7 @@
                                 </ul>
                             </li>
                         {% endif %}
-                        {% if request.properties.locatie is defined and request.properties.locatie is not null%}
+                        {% if request.properties.locatie is defined and request.properties.locatie is not empty %}
                             <li><b>Locatie</b>
                                 <ul class="list-icon">
                                     <li>
@@ -76,7 +76,7 @@
                                 </ul>
                             </li>
                         {% endif %}
-                        {% if request.properties.partners is defined %}
+                        {% if request.properties.partners is defined and request.properties.partners is not empty %}
                             {% for partner in request.properties.partners %}
                                 <li>
                                     {% set assent = commonground_resource(partner) %}
@@ -107,7 +107,7 @@
                                 </li>
                             {% endfor %}
                         {% endif %}
-                        {% if request.properties.getuigen is defined %}
+                        {% if request.properties.getuigen is defined and request.properties.getuigen is not empty %}
                             <li>
                                 <b>Getuigen</b>
                                 <ul class="list-icon">
@@ -163,7 +163,7 @@
                         {#
                         <!-- locatie -->
                         <li>
-                            {% if  request.properties.locatie is not empty %}
+                            {% if  locatie is not empty %}
                             <i class="fa fas fa-check"></i> Locatie: {{ locatie.naam }}
                             {% else %}
                             <i class="fa far fa-square"></i> U heeft nog  geen locatie doorgegeven, doe dat <a href="{{ path('app_locatie_index') }}">hier</a>
@@ -171,7 +171,7 @@
                         </li>
                         <!-- Trouw Ambtenaar -->
                         <li>
-                            {% if request.properties.ambtenaar is not empty %}
+                            {% if ambtenaar is not empty %}
                             <i class="fa fas fa-check"></i> Ambtenaar: {{  ambtenaar.persoon.naam.voornamen }} {{ambtenaar.persoon.naam.geslachtsnaam }}
                             {% else %}
                             <i class="fa far fa-square"></i> U heeft nog  geen ambtenaar doorgegeven, doe dat <a href="{{ path('app_ambtenaar_index') }}">hier</a>
@@ -184,7 +184,7 @@
                     <b>Nog te doen:</b>
                     <ul class="list-icon">
 
-                        {% if request.properties.type is not defined %}
+                        {% if request.properties.type is not defined or request.properties.type is empty %}
                             <li><b>Ceremonies</b>
                                 <ul class="list-icon">
                                     <li>
@@ -195,7 +195,7 @@
                             </li>
                         {% endif %}
 
-                        {% if request.properties.plechtigheid is not defined %}
+                        {% if request.properties.plechtigheid is not defined or request.properties.plechtigheid is empty %}
                             <li><b>Plechtigheid</b>
                                 <ul class="list-icon">
                                     <li>
@@ -206,7 +206,7 @@
                             </li>
                         {% endif %}
 
-                        {% if request.properties.datum is not defined %}
+                        {% if request.properties.datum is not defined or request.properties.datum is empty %}
                             <li><b>Trouwdatum</b>
                                 <ul class="list-icon">
                                     <li>
@@ -216,7 +216,7 @@
                                 </ul>
                             </li>
                         {% endif %}
-                        {% if request.properties.ambtenaar is not defined or request.properties.ambtenaar is empty%}
+                        {% if request.properties.ambtenaar is not defined or request.properties.ambtenaar is empty %}
                             <li><b>Ambtenaar</b>
                                 <ul class="list-icon">
                                     <li>
@@ -270,18 +270,18 @@
                         </li>
                         {% endif %}
     		           		#}
-    		           		{% if request is not empty and request.status is defined and request.status != "submitted" %}
-    		            	<a href="{{ path('app_default_submitrequest') }}" class="btn btn-primary btn-icon" >
-    							<i class="fas fa-share-square"></i>
-    			            	{% if request.properties.ceremonie is defined  %}{{ request.properties.ceremonie|capitalize }}{% else %}Aanvraag{% endif %} indienen
-    		           		</a>
-    		           		{% else %}
-    		            	<a href="{{ path('app_default_cancelrequest') }}" class="btn btn-danger btn-icon" >
-    							<i class="fas fa-share-square"></i>
-    			            	Annuleer {% if request.properties.ceremonie is defined  %}{{ request.properties.ceremonie }}{% else %}aanvraag{% endif %}
-    		           		</a>
-    		           		{% endif %}
-                    	</div><!-- /.btn-section -->
+                {% if request is not empty and request.status is defined and request.status != "submitted" %}
+                    <a href="{{ path('app_default_submitrequest') }}" class="btn btn-primary btn-icon" >
+                        <i class="fas fa-share-square"></i>
+                        {% if request.properties.ceremonie is defined  %}{{ request.properties.ceremonie|capitalize }}{% else %}Aanvraag{% endif %} indienen
+                    </a>
+                {% endif %}
+                <a href="{{ path('app_default_cancelrequest') }}" class="btn btn-danger btn-icon" >
+                    <i class="fas fa-share-square"></i>
+                    Annuleer {% if request.properties.ceremonie is defined  %}{{ request.properties.ceremonie }}{% else %}aanvraag{% endif %}
+                </a>
+
+            </div><!-- /.btn-section -->
 
         </div><!-- /.col -->
     </div><!-- /.row -->
