@@ -33,11 +33,11 @@
                             <br><b>Voornaam:</b> {{ contact1.givenName }}
                             <br><b>Achternaam:</b> {{ contact1.familyName }}
 
-                            {% if contact1['_embedded']['emails'] is defined   %}
-                                <br><b>Email:</b> {{ contact1['_embedded']['emails'][0].email }}
+                            {% if contact1.emails is defined and contact1.emails is not empty %}
+                                <br><b>Email:</b> {{ contact1.emails[0].email }}
                             {% endif %}
-                            {% if contact1['_embedded']['telephones'] is defined   %}
-                                <br><b>Telefoon</b></b> {{ contact1['_embedded']['telephones'][0].telephone }}
+                            {% if contact1.telephones is defined and contact1.telephones is not empty  %}
+                                <br><b>Telefoon</b></b> {{ contact1.telephones[0].telephone }}
                             {% endif %}
                         </p>
                     </div>
@@ -48,9 +48,9 @@
                     <div class="feature-text">
                         <h4>Adres</h4>
                         <p>
-                            {% if contact1['_embedded']['adresses'] is defined   %}
-                                <br> {{ contact1['_embedded']['adresses'][0].street }}  {{ contact1['_embedded']['adresses'][0].houseNumber }}
-                                <br> {{ contact1['_embedded']['adresses'][0].postalCode }}  {{ contact1['_embedded']['adresses'][0].locality }}
+                            {% if contact1.adresses is defined  and contact1.adresses is not empty %}
+                                <br> {{ contact1.adresses[0].street }}  {{ contact1.adresses[0].houseNumber }}
+                                <br> {{ contact1.adresses[0].postalCode }}  {{ contact1.adresses[0].locality }}
                             {% endif %}
                             <br />
                         </p>
@@ -101,11 +101,11 @@
                             <br><b>Voornaam:</b> {{ contact2.givenName }}
                             <br><b>Achternaam:</b> {{ contact2.familyName }}
 
-                            {% if contact2['_embedded']['emails'] is defined   %}
-                                <br><b>Email:</b> {{ contact2['_embedded']['emails'][0].email }}
+                            {% if contact2.emails is defined and contact2.emails is not empty  %}
+                                <br><b>Email:</b> {{ contact2.emails[0].email }}
                             {% endif %}
-                            {% if contact2['_embedded']['telephones'] is defined   %}
-                                <br><b>Telefoon</b></b> {{ contact2['_embedded']['telephones'][0].telephone }}
+                            {% if contact2.telephones is defined and contact2.telephones is not empty and contact2.telephones[0].telephone != ""  %}
+                                <br><b>Telefoon</b></b> {{ contact2.telephones[0].telephone }}
                             {% endif %}
                         </p>
                     </div>
@@ -116,9 +116,9 @@
                     <i class="fas fa-home"></i>
                     <div class="feature-text">
                         <h4>Adres en contact</h4>
-                        {% if contact2['_embedded']['adresses'] is defined   %}
-                            <br> {{ contact2['_embedded']['adresses'][0].street }}  {{ contact2['_embedded']['adresses'][0].houseNumber }}
-                            <br> {{ contact2['_embedded']['adresses'][0].postalCode }}  {{ contact2['_embedded']['adresses'][0].locality }}
+                        {% if contact2.adresses is defined and contact2.adresses is not empty  %}
+                            <br> {{ contact2.adresses[0].street }}  {{ contact2.adresses[0].houseNumber }}
+                            <br> {{ contact2.adresses[0].postalCode }}  {{ contact2.adresses[0].locality }}
                         {% endif %}
                     </div>
                 </div>
@@ -152,12 +152,12 @@
                         <p>Want dit doet u natuurlijk samen.</p>
                         <p>U kunt via deze knop uw partner laten inloggen om uw verzoek te accepteren.</p>
                         <br/>
-                        <a href="{{ path('app_default_assentadd',{'property':'partner'}) }}" class="btn btn-success btn-lg btn-block btn-icon"><i class="far fa-lock"></i> Uw partner laten inloggen</a>
+                        <a href="{{ path('app_default_post',{'slug':'partner'}) }}" class="btn btn-success btn-lg btn-block btn-icon"><i class="far fa-lock"></i> Uw partner laten inloggen</a>
                         <br/>
 
                         <p>Of u partner via bericht ten huwelijk vragen.</p>
 
-                        <form method="post" action="{{ path('app_default_createassent',{'property':'partner'}) }}" class="affa-form-contact" >
+                        <form method="post" action="{{ path('app_default_post',{'slug':'partner'}) }}" class="affa-form-contact" >
                             <div class="submit-status"></div> <!-- submit status -->
 
                             <label for="givenName" >Voornaam(en) <span class="required">*</span></label>
@@ -182,5 +182,3 @@
     </div>
     <!-- .row-custom end -->
 {% endblock %}
-
-

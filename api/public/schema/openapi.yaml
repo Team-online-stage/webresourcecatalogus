@@ -7766,10 +7766,6 @@ components:
         templateEngine:
           description: 'The template engine used to render this template. Schould be either twig (Twig), md (markdown) or rst (reStructuredText)'
           type: string
-        pages:
-          type: array
-          items:
-            $ref: '#/components/schemas/Page-read'
         dateCreated:
           readOnly: true
           description: 'The moment this request was created'
@@ -7806,10 +7802,6 @@ components:
         templateEngine:
           description: 'The template engine used to render this template. Schould be either twig (Twig), md (markdown) or rst (reStructuredText)'
           type: string
-        pages:
-          type: array
-          items:
-            $ref: '#/components/schemas/Page-write'
     'Template:jsonld-read':
       type: object
       description: 'Content holds information and photos you want to show on your pages.'
@@ -7841,10 +7833,6 @@ components:
         templateEngine:
           description: 'The template engine used to render this template. Schould be either twig (Twig), md (markdown) or rst (reStructuredText)'
           type: string
-        pages:
-          type: array
-          items:
-            $ref: '#/components/schemas/Page:jsonld-read'
         dateCreated:
           readOnly: true
           description: 'The moment this request was created'
@@ -7890,10 +7878,6 @@ components:
         templateEngine:
           description: 'The template engine used to render this template. Schould be either twig (Twig), md (markdown) or rst (reStructuredText)'
           type: string
-        pages:
-          type: array
-          items:
-            $ref: '#/components/schemas/Page:jsonld-write'
   securitySchemes:
     apiKey:
       type: apiKey
@@ -8368,7 +8352,6 @@ definitions:
       dateModified:
         description: 'The moment this request last Modified'
         type: \Datetime
-      pages: []
     required:
       - name
       - description
@@ -8394,7 +8377,6 @@ definitions:
         description: 'The template engine used to render this template. Schould be either twig (Twig), md (markdown) or rst (reStructuredText)'
         type: string
         example: Twig
-      pages: []
     required:
       - name
       - description
