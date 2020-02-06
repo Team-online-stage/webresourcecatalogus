@@ -396,6 +396,56 @@ class AppFixtures extends Fixture
         $manager->persist($page);
         
         
+        $id = Uuid::fromString('6c749286-1178-453a-ba17-4e922686a4da');
+        $template = new Template();
+        $template->setName('Verander van Organisatie');
+        $template->setDescription('De verzoeks overzichts pagina die wordt getoond na inloggen');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/switch-organisation.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        
+        $page = new Page();
+        $page->setTitle('Verander van Organisatie');
+        $page->setDescription('Verander van Organisatie');
+        $page->setApplication($application);
+        $page->setTemplate($template);
+        $manager->persist($page);
+        
+        $slug = new Slug();
+        $slug->setPage($page);
+        $slug->setApplication($application);
+        $slug->setSlug('switch-organisation');
+        $manager->persist($page);
+        
+        $id = Uuid::fromString('e2f9e1f1-c322-48bf-9b18-c822fee32283');
+        $template = new Template();
+        $template->setName('Verander Applicatie');
+        $template->setDescription('De verzoeks overzichts pagina die wordt getoond na inloggen');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/switch-application.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        
+        $page = new Page();
+        $page->setTitle('Verander Applicatie');
+        $page->setDescription('Verander Applicatie');
+        $page->setApplication($application);
+        $page->setTemplate($template);
+        $manager->persist($page);
+        
+        $slug = new Slug();
+        $slug->setPage($page);
+        $slug->setApplication($application);
+        $slug->setSlug('switch-application');
+        $manager->persist($page);      
+        
         $id = Uuid::fromString('5b9fdd2f-273e-49c3-aa8d-2377be792b76');
         $template = new Template();
         $template->setName('Niew verzoek');

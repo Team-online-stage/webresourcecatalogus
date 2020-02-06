@@ -101,14 +101,12 @@ class Organization
     private $styles;
 
     /**
-     * @Groups({"read","write"})
      * @MaxDepth(1)
      * @ORM\OneToMany(targetEntity="App\Entity\Application", mappedBy="organization", orphanRemoval=true)
      */
     private $applications;
 
     /**
-     * @Groups({"read","write"})
      * @MaxDepth(1)
      * @ORM\OneToMany(targetEntity="App\Entity\Image", mappedBy="organization", orphanRemoval=true)
      */
