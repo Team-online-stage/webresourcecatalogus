@@ -16,142 +16,142 @@ use Ramsey\Uuid\Uuid;
 class AppFixtures extends Fixture
 {
     public function load(ObjectManager $manager)
-    {   	
+    {
     	// Utrecht
     	$utrecht = new Organization();
     	$utrecht->setName('Utrecht');
     	$utrecht->setDescription('Gemeente Utrecht');
     	$utrecht->setRsin('');
     	$manager->persist($utrecht);
-    	
+
     	$favicon = new Image();
     	$favicon->setName('VNG Favicon');
     	$favicon->setDescription('Favicon VNG');
     	$favicon->setOrganization($utrecht);
-    	
+
     	$logo = new Image();
     	$logo->setName('VNG Logo');
     	$logo->setDescription('Logo VNG');
     	$logo->setOrganization($utrecht);
-    	
+
     	$style = new Style();
     	$style->setName('Utrecht');
     	$style->setDescription('Huistlijl Gemeente Utrecht');
     	$style->setCss('');
     	$style->setfavicon($favicon);
     	$style->setOrganization($utrecht);
-    	
+
     	$utrecht->setLogo($logo);
-    	
+
     	$manager->persist($utrecht);
     	$manager->persist($favicon);
     	$manager->persist($logo);
     	$manager->persist($style);
-    	
+
     	$manager->flush();
-    	
+
     	// Rotterdam
     	$rotterdam= new Organization();
     	$rotterdam->setName('Rotterdam');
     	$rotterdam->setDescription('Gemeente Rotterdam');
     	$rotterdam->setRsin('');
-    	
+
     	$favicon = new Image();
     	$favicon->setName('VNG Favicon');
     	$favicon->setDescription('Favicon VNG');
     	$favicon->setOrganization($rotterdam);
-    	
+
     	$logo = new Image();
     	$logo->setName('VNG Logo');
     	$logo->setDescription('Logo VNG');
     	$logo->setOrganization($rotterdam);
-    	
+
     	$style = new Style();
     	$style->setName('Utrecht');
     	$style->setDescription('Huistlijl Gemeente Utrecht');
     	$style->setCss('');
     	$style->setfavicon($favicon);
     	$style->setOrganization($rotterdam);
-    	
+
     	$rotterdam->setLogo($logo);
-    	
+
     	$manager->persist($rotterdam);
     	$manager->persist($favicon);
     	$manager->persist($logo);
     	$manager->persist($style);
-    	
+
     	$manager->flush();
-    	
+
     	// Rotterdam
     	$eindhoven= new Organization();
     	$eindhoven->setName('Eindhoven');
     	$eindhoven->setDescription('Gemeente Eindhoven');
     	$eindhoven->setRsin('');
-    	
+
     	$favicon = new Image();
     	$favicon->setName('Gemeente Eindhoven Favicon');
     	$favicon->setDescription('Favicon Gemeente Eindhoven');
     	$favicon->setOrganization($eindhoven);
-    	
+
     	$logo = new Image();
     	$logo->setName('Gemeente Eindhoven Logo');
     	$logo->setDescription('Logo Gemeente Eindhoven');
     	$logo->setOrganization($eindhoven);
-    	
+
     	$style = new Style();
     	$style->setName('Gemeente Eindhoven');
     	$style->setDescription('Huistlijl Gemeente Eindhoven');
     	$style->setCss('');
     	$style->setfavicon($favicon);
     	$style->setOrganization($eindhoven);
-    	
+
     	$eindhoven->setLogo($logo);
-    	
+
     	$manager->persist($eindhoven);
     	$manager->persist($favicon);
     	$manager->persist($logo);
     	$manager->persist($style);
-    	
+
     	$manager->flush();
-    	
+
     	// VNG
     	$vng = new Organization();
     	$vng->setName('VNG');
     	$vng->setDescription('Vereniging Nederlandse Gemeente');
     	$vng->setRsin('');
-    	$manager->persist($vng);    	
-    	
+    	$manager->persist($vng);
+
     	$favicon = new Image();
     	$favicon->setName('VNG Favicon');
     	$favicon->setDescription('Favicon VNG');
-    	$favicon->setOrganization($vng);  
-    	
+    	$favicon->setOrganization($vng);
+
     	$logo = new Image();
     	$logo->setName('VNG Logo');
     	$logo->setDescription('Logo VNG');
-    	$logo->setOrganization($vng);  
-    	
+    	$logo->setOrganization($vng);
+
     	$style = new Style();
     	$style->setName('Utrecht');
     	$style->setDescription('Huistlijl Gemeente Utrecht');
     	$style->setCss('');
     	$style->setfavicon($favicon);
-    	$style->setOrganization($vng);  
-    	
-    	$vng->setLogo($logo);    	
-    	
+    	$style->setOrganization($vng);
+
+    	$vng->setLogo($logo);
+
     	$manager->persist($vng);
     	$manager->persist($favicon);
     	$manager->persist($logo);
     	$manager->persist($style);
-    	
+
     	$manager->flush();
-    	
+
         // Home
         $application = new Application();
         $application->setName('MijnApp');
-        $application->setDescription('MijnApp'); 
-        $application->setDomain('huwelijksplanner.online'); 
+        $application->setDescription('MijnApp');
+        $application->setDomain('huwelijksplanner.online');
         $application->setOrganization($eindhoven);
         $manager->persist($application);
 
@@ -264,7 +264,7 @@ class AppFixtures extends Fixture
         $slug->setApplication($application);
         $slug->setSlug('trouwen');
         $manager->persist($page);
-        
+
         // indienen
         $id = Uuid::fromString('ed2b2747-2152-456b-8bc3-2524799e1e86');
         $template = new Template();
@@ -277,20 +277,20 @@ class AppFixtures extends Fixture
         $manager->persist($template);
         $manager->flush();
         $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
-        
+
         $page = new Page();
         $page->setTitle('Overige vragen');
         $page->setDescription('overig');
         $page->setApplication($application);
         $page->setTemplate($template);
         $manager->persist($page);
-        
+
         $slug = new Slug();
         $slug->setPage($page);
         $slug->setApplication($application);
         $slug->setSlug('overig');
         $manager->persist($page);
-        
+
         // indienen
         $id = Uuid::fromString('50fe81a3-6723-4b9c-acf1-9a7c30f7cc4f');
         $template = new Template();
@@ -303,20 +303,20 @@ class AppFixtures extends Fixture
         $manager->persist($template);
         $manager->flush();
         $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
-        
+
         $page = new Page();
         $page->setTitle('Indienen');
         $page->setDescription('Indienen');
         $page->setApplication($application);
         $page->setTemplate($template);
         $manager->persist($page);
-        
+
         $slug = new Slug();
         $slug->setPage($page);
         $slug->setApplication($application);
         $slug->setSlug('indienen');
         $manager->persist($page);
-        
+
         // flow
         $id = Uuid::fromString('ba71c65e-7a82-449e-af15-947613ca6caa');
         $template = new Template();
@@ -394,8 +394,7 @@ class AppFixtures extends Fixture
         $slug->setApplication($application);
         $slug->setSlug('requests');
         $manager->persist($page);
-        
-        
+ 
         $id = Uuid::fromString('6c749286-1178-453a-ba17-4e922686a4da');
         $template = new Template();
         $template->setName('Verander van Organisatie');
@@ -445,7 +444,7 @@ class AppFixtures extends Fixture
         $slug->setApplication($application);
         $slug->setSlug('switch-application');
         $manager->persist($page);      
-        
+
         $id = Uuid::fromString('5b9fdd2f-273e-49c3-aa8d-2377be792b76');
         $template = new Template();
         $template->setName('Niew verzoek');
@@ -457,21 +456,21 @@ class AppFixtures extends Fixture
         $manager->persist($template);
         $manager->flush();
         $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
-        
+
         $page = new Page();
         $page->setTitle('Niew verzoek');
         $page->setDescription('Niew verzoek');
         $page->setApplication($application);
         $page->setTemplate($template);
         $manager->persist($page);
-        
+
         $slug = new Slug();
         $slug->setPage($page);
         $slug->setApplication($application);
         $slug->setSlug('new-request');
-        $manager->persist($page);        
-        
-        
+        $manager->persist($page);
+
+
         $id = Uuid::fromString('d19eb461-284b-4fe0-bd61-2e45ac7fe615');
         $template = new Template();
         $template->setName('Formulier');
@@ -483,21 +482,21 @@ class AppFixtures extends Fixture
         $manager->persist($template);
         $manager->flush();
         $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
-        
+
         $page = new Page();
         $page->setTitle('Formulier');
         $page->setDescription('Formulier');
         $page->setApplication($application);
         $page->setTemplate($template);
         $manager->persist($page);
-        
+
         $slug = new Slug();
         $slug->setPage($page);
         $slug->setApplication($application);
         $slug->setSlug('form');
-        $manager->persist($page);        
-        
-        // Organizations        
+        $manager->persist($page);
+
+        // Organizations
         $id = Uuid::fromString('f99412f1-6e44-4a75-bc99-99201d08c4c8');
         $template = new Template();
         $template->setName('Organisaties');
@@ -509,19 +508,19 @@ class AppFixtures extends Fixture
         $manager->persist($template);
         $manager->flush();
         $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
-        
+
         $page = new Page();
         $page->setTitle('Wissel organisatie');
         $page->setDescription('Via deze pagina kan er worden gewizeld van organisatie');
         $page->setApplication($application);
         $page->setTemplate($template);
         $manager->persist($page);
-        
+
         $slug = new Slug();
         $slug->setPage($page);
         $slug->setApplication($application);
         $slug->setSlug('organizations');
-        $manager->persist($page); 
+        $manager->persist($page);
 
         // Getuigen
         $id = Uuid::fromString('da78b8bb-16bf-449c-96e3-3615e9e8e2af');
@@ -652,8 +651,8 @@ class AppFixtures extends Fixture
         $slug->setApplication($application);
         $slug->setSlug('plechtigheid');
         $manager->persist($page);
-        
-        
+
+
         $id = Uuid::fromString('310d1039-abdf-4983-9030-608cd3012306');
         $template = new Template();
         $template->setName('Plechtigheid');
@@ -665,14 +664,14 @@ class AppFixtures extends Fixture
         $manager->persist($template);
         $manager->flush();
         $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
-        
+
         $page = new Page();
         $page->setTitle('Plechtigheid');
         $page->setDescription('Plechtigheid');
         $page->setApplication($application);
         $page->setTemplate($template);
         $manager->persist($page);
-        
+
         $slug = new Slug();
         $slug->setPage($page);
         $slug->setApplication($application);
@@ -988,5 +987,32 @@ class AppFixtures extends Fixture
         $manager->persist($page);
 
         $manager->flush();
+
+        $template = new Template();
+        $template->setName('FAQ');
+        $template->setDescription('');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/faq.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        //$manager->persist($template);
+        //$template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+
+        $page = new Page();
+        $page->setTitle('FAQ');
+        $page->setDescription('Frequently Asked Questions');
+        $page->setApplication($application);
+        $page->setTemplate($template);
+        $manager->persist($page);
+
+        $slug = new Slug();
+        $slug->setPage($page);
+        $slug->setApplication($application);
+        $slug->setSlug('faq');
+        $manager->persist($page);
+
+        $manager->flush();
+
     }
 }
