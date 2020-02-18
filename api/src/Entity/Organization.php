@@ -142,6 +142,13 @@ class Organization
         return $this->id;
     }
     
+    public function setId(Uuid $id): self
+    {
+    	$this->id = $id;
+    	
+    	return $this;
+    }
+    
     public function getRsin(): ?string
     {
     	return $this->rsin;

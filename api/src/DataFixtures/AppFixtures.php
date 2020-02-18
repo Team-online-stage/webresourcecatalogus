@@ -24,9 +24,10 @@ class AppFixtures extends Fixture
     	$utrecht->setDescription('Gemeente Utrecht');
     	$utrecht->setRsin('');
     	$manager->persist($utrecht);
-    	$template->setId($id);
+    	$utrecht->setId($id);
     	$manager->persist($utrecht);
     	$manager->flush();
+    	$utrecht= $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
     	
     	$favicon = new Image();
     	$favicon->setName('VNG Favicon');
@@ -403,7 +404,7 @@ class AppFixtures extends Fixture
         $template = new Template();
         $template->setName('Verander van Organisatie');
         $template->setDescription('De verzoeks overzichts pagina die wordt getoond na inloggen');
-        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/switch-organisation.html.twig', 'r'));
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/switch-organization.html.twig', 'r'));
         $template->setTemplateEngine('twig');
         $manager->persist($template);
         $template->setId($id);
