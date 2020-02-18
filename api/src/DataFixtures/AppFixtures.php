@@ -18,11 +18,15 @@ class AppFixtures extends Fixture
     public function load(ObjectManager $manager)
     {   	
     	// Utrecht
+    	$id = Uuid::fromString('68b64145-0740-46df-a65a-9d3259c2fec8');
     	$utrecht = new Organization();
     	$utrecht->setName('Utrecht');
     	$utrecht->setDescription('Gemeente Utrecht');
     	$utrecht->setRsin('');
     	$manager->persist($utrecht);
+    	$template->setId($id);
+    	$manager->persist($utrecht);
+    	$manager->flush();
     	
     	$favicon = new Image();
     	$favicon->setName('VNG Favicon');
