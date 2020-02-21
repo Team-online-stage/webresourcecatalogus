@@ -57,7 +57,7 @@
                                         <br><b>Achternaam:</b> {{ contact.familyName }}
 
                                         {% if contact.emails is defined   %}
-                                            <br><b>Email:</b> {{ contact1.emails[0].email }}
+                                            <br><b>Email:</b> {{ contact.emails[0].email }}
                                         {% endif %}
                                         {% if contact.telephones is defined and contact.telephones is not empty and contact.telephones[0].telephone != '' %}
                                             <br><b>Telefoon</b></b> {{ contact.telephones[0].telephone }}
