@@ -218,10 +218,10 @@
 
                             <p><b>Email wijzigen:</b></p>
                             <input class="form-control" type="email" name="email" value="{% if contact2.emails is defined and contact2.emails is not empty %}{{ contact2.emails[0].email }}{% endif %}">
-
+                            {% if contact2.telephones is defined and contact2.telephones is not empty and contact2.telephones[0].telephone is not empty %}
                             <p><b>Telefoonnummer wijzigen:</b></p>
                             <input class="form-control" type="text" name="telephone" value="{% if contact2.telephones is defined and contact2.telephones is not empty %}{{ contact2.telephones[0].telephone }}{% endif %}">
-
+                            {% endif %}
                             <button type="submit" class="btn btn-success mx-auto m-4">
                                 Wijzigen
                             </button>
