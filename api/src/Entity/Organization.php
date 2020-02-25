@@ -101,14 +101,12 @@ class Organization
     private $styles;
 
     /**
-     * @Groups({"read","write"})
      * @MaxDepth(1)
      * @ORM\OneToMany(targetEntity="App\Entity\Application", mappedBy="organization", orphanRemoval=true)
      */
     private $applications;
 
     /**
-     * @Groups({"read","write"})
      * @MaxDepth(1)
      * @ORM\OneToMany(targetEntity="App\Entity\Image", mappedBy="organization", orphanRemoval=true)
      */
@@ -142,6 +140,13 @@ class Organization
     public function getId(): ?Uuid
     {
         return $this->id;
+    }
+    
+    public function setId(Uuid $id): self
+    {
+    	$this->id = $id;
+    	
+    	return $this;
     }
     
     public function getRsin(): ?string
