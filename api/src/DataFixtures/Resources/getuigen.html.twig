@@ -56,12 +56,14 @@
                                         <br><b>Voornaam:</b> {{ contact.givenName }}
                                         <br><b>Achternaam:</b> {{ contact.familyName }}
 
-                                        {% if contact1['_embedded']['emails'] is defined   %}
-                                            <br><b>Email:</b> {{ contact['_embedded']['emails'][0].email }}
+                                        {% if contact.emails is defined   %}
+                                            <br><b>Email:</b> {{ contact.emails[0].email }}
                                         {% endif %}
-                                        {% if contact1['_embedded']['telephones'] is defined   %}
-                                            <br><b>Telefoon</b></b> {{ contact['_embedded']['telephones'][0].telephone }}
+                                        {% if contact.telephones is defined and contact.telephones is not empty and contact.telephones[0].telephone != '' %}
+                                            <br><b>Telefoon</b></b> {{ contact.telephones[0].telephone }}
                                         {% endif %}
+
+                                        <a href="{{ path('app_default_unset', {'slug':'getuigen', 'value': 'http://irc.zaakonline.nl/assents/'~assent.id}) }}" class="btn btn-danger btn-icon">Annuleer getuige</a>
                                     </p>
                                 </div><!-- /.team-profile-name -->
                             </div><!-- /.affa-team-profile -->
