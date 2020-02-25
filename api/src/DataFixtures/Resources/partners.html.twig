@@ -33,12 +33,7 @@
                             <br><b>Voornaam:</b> {{ contact1.givenName }}
                             <br><b>Achternaam:</b> {{ contact1.familyName }}
 
-                            {% if contact1.emails is defined and contact1.emails is not empty %}
-                                <br><b>Email:</b> {{ contact1.emails[0].email }}
-                            {% endif %}
-                            {% if contact1.telephones is defined and contact1.telephones is not empty  %}
-                                <br><b>Telefoon</b></b> {{ contact1.telephones[0].telephone }}
-                            {% endif %}
+
                         </p>
                     </div>
                 </div>
@@ -46,11 +41,17 @@
                 <div class="affa-feature-icon"> <!-- 2 -->
                     <i class="fas fa-home " ></i>
                     <div class="feature-text">
-                        <h4>Adres</h4>
+                        <h4>Adres en Contact</h4>
                         <p>
                             {% if contact1.adresses is defined  and contact1.adresses is not empty %}
                                 <br> {{ contact1.adresses[0].street }}  {{ contact1.adresses[0].houseNumber }}
                                 <br> {{ contact1.adresses[0].postalCode }}  {{ contact1.adresses[0].locality }}
+                            {% endif %}
+                            {% if contact1.emails is defined and contact1.emails is not empty %}
+                                <br><b>Email:</b> {{ contact1.emails[0].email }}
+                            {% endif %}
+                            {% if contact1.telephones is defined and contact1.telephones is not empty  %}
+                                <br><b>Telefoon</b></b> {{ contact1.telephones[0].telephone }}
                             {% endif %}
                             <br />
                         </p>
@@ -92,21 +93,23 @@
                 <div class="affa-feature-icon">
                     <i class="fas fa-user " ></i>
                     <div class="feature-text">
-                        <h4>
-                            {{ contact2.name }}
-                        </h4>
+                        <div class="row">
+                            <div class="col-md-10">
+                                <h4>
+                                    {{ contact2.name }}
+                                </h4>
+                            </div>
+                            <div class="col-md-2">
+                                <a class="float-right" href="#editModal" data-toggle="modal" data-target="#editModal"><i style="color: #2A5587; background-color:white;font-size:16px" class="fa  fa-edit"></i></a>
+                            </div>
+                        </div>
                         <p>
                             <b>Status:</b>  {% if assent2.status == "requested" %} aangevraagd {% else %} {{ assent2.status|trans }} {% endif %}
 
                             <br><b>Voornaam:</b> {{ contact2.givenName }}
                             <br><b>Achternaam:</b> {{ contact2.familyName }}
 
-                            {% if contact2.emails is defined and contact2.emails is not empty  %}
-                                <br><b>Email:</b> {{ contact2.emails[0].email }}
-                            {% endif %}
-                            {% if contact2.telephones is defined and contact2.telephones is not empty and contact2.telephones[0].telephone != ""  %}
-                                <br><b>Telefoon</b></b> {{ contact2.telephones[0].telephone }}
-                            {% endif %}
+
                         </p>
                     </div>
                 </div>
@@ -119,6 +122,12 @@
                         {% if contact2.adresses is defined and contact2.adresses is not empty  %}
                             <br> {{ contact2.adresses[0].street }}  {{ contact2.adresses[0].houseNumber }}
                             <br> {{ contact2.adresses[0].postalCode }}  {{ contact2.adresses[0].locality }}
+                        {% endif %}
+                        {% if contact2.emails is defined and contact2.emails is not empty  %}
+                            <br><b>Email:</b> {{ contact2.emails[0].email }}
+                        {% endif %}
+                        {% if contact2.telephones is defined and contact2.telephones is not empty and contact2.telephones[0].telephone != ""  %}
+                            <br><b>Telefoon</b></b> {{ contact2.telephones[0].telephone }}
                         {% endif %}
                     </div>
                 </div>
@@ -154,7 +163,6 @@
                         <br/>
                         <a href="{{ path('app_default_set',{'slug':'partner','value':null,'forceAssent':true}) }}" class="btn btn-success btn-lg btn-block btn-icon"><i class="far fa-lock"></i> Uw partner laten inloggen</a>
                         <br/>
-
                         <p>Of u partner via bericht ten huwelijk vragen.</p>
 
                         <form method="post" action="{{ path('app_default_post',{'slug':'partner'}) }}" class="affa-form-contact" >
@@ -181,4 +189,44 @@
 
     </div>
     <!-- .row-custom end -->
+    {% if assent2 is defined and assent2 is not empty  %}
+        <div class="modal fade" style="text-align: center" id="editModal" tabindex="-1"
+             role="dialog"
+             aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog model-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel"><b>Gegevens  {{ contact2.name }} wijzigen</b></h5>
+                        <button type="button" class="close" data-dismiss="modal"
+                                aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body p-4">
+                        <form method="post" action="{{ path('app_default_updateassent',{'id':assent2.id}) }}"
+
+                        <p><b>Voornaam wijzigen:</b></p>
+                        <input class="form-control" type="text" name="givenName">
+
+                        <p><b>Achternaam wijzigen:</b></p>
+                        <input class="form-control" type="text" name="familyName">
+
+                        <p><b>Telefoonnummer wijzigen:</b></p>
+                        <input class="form-control" type="text" name="telephone">
+
+                        <p><b>Email wijzigen:</b></p>
+                        <input class="form-control" type="email" name="email">
+
+                        <button type="submit" class="btn btn-success mx-auto m-4">
+                            Wijzigen
+                        </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
 {% endblock %}
+
+
+    												
