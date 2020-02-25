@@ -589,7 +589,31 @@ paths:
           description: 'Resource not found'
       requestBody:
         content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Application-write'
+          application/hal+json:
+            schema:
+              $ref: '#/components/schemas/Application-write'
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/Application:jsonld-write'
           application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/Application-write'
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/Application-write'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Application-write'
+          applications/x-yaml:
+            schema:
+              $ref: '#/components/schemas/Application-write'
+          text/csv:
+            schema:
+              $ref: '#/components/schemas/Application-write'
+          text/html:
             schema:
               $ref: '#/components/schemas/Application-write'
         description: 'The updated Application resource'
@@ -1304,7 +1328,31 @@ paths:
           description: 'Resource not found'
       requestBody:
         content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Footer-write'
+          application/hal+json:
+            schema:
+              $ref: '#/components/schemas/Footer-write'
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/Footer:jsonld-write'
           application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/Footer-write'
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/Footer-write'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Footer-write'
+          applications/x-yaml:
+            schema:
+              $ref: '#/components/schemas/Footer-write'
+          text/csv:
+            schema:
+              $ref: '#/components/schemas/Footer-write'
+          text/html:
             schema:
               $ref: '#/components/schemas/Footer-write'
         description: 'The updated Footer resource'
@@ -1882,7 +1930,31 @@ paths:
           description: 'Resource not found'
       requestBody:
         content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Header-write'
+          application/hal+json:
+            schema:
+              $ref: '#/components/schemas/Header-write'
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/Header:jsonld-write'
           application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/Header-write'
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/Header-write'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Header-write'
+          applications/x-yaml:
+            schema:
+              $ref: '#/components/schemas/Header-write'
+          text/csv:
+            schema:
+              $ref: '#/components/schemas/Header-write'
+          text/html:
             schema:
               $ref: '#/components/schemas/Header-write'
         description: 'The updated Header resource'
@@ -2460,7 +2532,31 @@ paths:
           description: 'Resource not found'
       requestBody:
         content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Image-write'
+          application/hal+json:
+            schema:
+              $ref: '#/components/schemas/Image-write'
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/Image:jsonld-write'
           application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/Image-write'
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/Image-write'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Image-write'
+          applications/x-yaml:
+            schema:
+              $ref: '#/components/schemas/Image-write'
+          text/csv:
+            schema:
+              $ref: '#/components/schemas/Image-write'
+          text/html:
             schema:
               $ref: '#/components/schemas/Image-write'
         description: 'The updated Image resource'
@@ -3038,7 +3134,31 @@ paths:
           description: 'Resource not found'
       requestBody:
         content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MenuItem-write'
+          application/hal+json:
+            schema:
+              $ref: '#/components/schemas/MenuItem-write'
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/MenuItem:jsonld-write'
           application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/MenuItem-write'
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/MenuItem-write'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/MenuItem-write'
+          applications/x-yaml:
+            schema:
+              $ref: '#/components/schemas/MenuItem-write'
+          text/csv:
+            schema:
+              $ref: '#/components/schemas/MenuItem-write'
+          text/html:
             schema:
               $ref: '#/components/schemas/MenuItem-write'
         description: 'The updated MenuItem resource'
@@ -3616,7 +3736,31 @@ paths:
           description: 'Resource not found'
       requestBody:
         content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Menu-write'
+          application/hal+json:
+            schema:
+              $ref: '#/components/schemas/Menu-write'
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/Menu:jsonld-write'
           application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/Menu-write'
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/Menu-write'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Menu-write'
+          applications/x-yaml:
+            schema:
+              $ref: '#/components/schemas/Menu-write'
+          text/csv:
+            schema:
+              $ref: '#/components/schemas/Menu-write'
+          text/html:
             schema:
               $ref: '#/components/schemas/Menu-write'
         description: 'The updated Menu resource'
@@ -4194,7 +4338,31 @@ paths:
           description: 'Resource not found'
       requestBody:
         content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Organization-write'
+          application/hal+json:
+            schema:
+              $ref: '#/components/schemas/Organization-write'
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/Organization:jsonld-write'
           application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/Organization-write'
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/Organization-write'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Organization-write'
+          applications/x-yaml:
+            schema:
+              $ref: '#/components/schemas/Organization-write'
+          text/csv:
+            schema:
+              $ref: '#/components/schemas/Organization-write'
+          text/html:
             schema:
               $ref: '#/components/schemas/Organization-write'
         description: 'The updated Organization resource'
@@ -4772,7 +4940,31 @@ paths:
           description: 'Resource not found'
       requestBody:
         content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Page-write'
+          application/hal+json:
+            schema:
+              $ref: '#/components/schemas/Page-write'
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/Page:jsonld-write'
           application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/Page-write'
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/Page-write'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Page-write'
+          applications/x-yaml:
+            schema:
+              $ref: '#/components/schemas/Page-write'
+          text/csv:
+            schema:
+              $ref: '#/components/schemas/Page-write'
+          text/html:
             schema:
               $ref: '#/components/schemas/Page-write'
         description: 'The updated Page resource'
@@ -5350,7 +5542,31 @@ paths:
           description: 'Resource not found'
       requestBody:
         content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Slug-write'
+          application/hal+json:
+            schema:
+              $ref: '#/components/schemas/Slug-write'
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/Slug:jsonld-write'
           application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/Slug-write'
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/Slug-write'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Slug-write'
+          applications/x-yaml:
+            schema:
+              $ref: '#/components/schemas/Slug-write'
+          text/csv:
+            schema:
+              $ref: '#/components/schemas/Slug-write'
+          text/html:
             schema:
               $ref: '#/components/schemas/Slug-write'
         description: 'The updated Slug resource'
@@ -5928,7 +6144,31 @@ paths:
           description: 'Resource not found'
       requestBody:
         content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Style-write'
+          application/hal+json:
+            schema:
+              $ref: '#/components/schemas/Style-write'
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/Style:jsonld-write'
           application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/Style-write'
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/Style-write'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Style-write'
+          applications/x-yaml:
+            schema:
+              $ref: '#/components/schemas/Style-write'
+          text/csv:
+            schema:
+              $ref: '#/components/schemas/Style-write'
+          text/html:
             schema:
               $ref: '#/components/schemas/Style-write'
         description: 'The updated Style resource'
@@ -7241,14 +7481,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Style-read'
-        applications:
-          type: array
-          items:
-            $ref: '#/components/schemas/Application-read'
-        images:
-          type: array
-          items:
-            $ref: '#/components/schemas/Image-read'
         dateCreated:
           readOnly: true
           description: 'The moment this request was created'
@@ -7286,14 +7518,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Style-write'
-        applications:
-          type: array
-          items:
-            $ref: '#/components/schemas/Application-write'
-        images:
-          type: array
-          items:
-            $ref: '#/components/schemas/Image-write'
     'Organization:jsonld-read':
       type: object
       description: 'An organization as active on commonground.'
@@ -7328,14 +7552,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Style:jsonld-read'
-        applications:
-          type: array
-          items:
-            $ref: '#/components/schemas/Application:jsonld-read'
-        images:
-          type: array
-          items:
-            $ref: '#/components/schemas/Image:jsonld-read'
         dateCreated:
           readOnly: true
           description: 'The moment this request was created'
@@ -7382,14 +7598,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Style:jsonld-write'
-        applications:
-          type: array
-          items:
-            $ref: '#/components/schemas/Application:jsonld-write'
-        images:
-          type: array
-          items:
-            $ref: '#/components/schemas/Image:jsonld-write'
     Page-read:
       type: object
       description: 'A page holds your content in your application.'
@@ -8163,8 +8371,6 @@ definitions:
         type: \Datetime
       logo: []
       styles: []
-      applications: []
-      images: []
     required:
       - rsin
       - name
@@ -8188,8 +8394,6 @@ definitions:
         maxLength: 255
       logo: []
       styles: []
-      applications: []
-      images: []
     required:
       - rsin
       - name

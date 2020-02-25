@@ -46,21 +46,20 @@
                     <i class="fal fa-envelope"></i>
                     <div class="feature-text">
                         <h4>Melding</h4>
-                        <p> U moet minimaal twee weken voor uw huwelijk melding maken van uw huwelijk. <a>Hier</a> kunt
-                            u meer lezen over het doen van een melding. </p>
+                        <p> U moet minimaal twee weken voor uw huwelijk melding maken van u huwelijk. Lees <a>hier</a> meer over het doen van een melding </p>
                         <p>
-                            {% if request['@id']  is defined %}
-                                <a href="{{ path('app_default_slug',{'requestType':'https://vtc.zaakonline.nl/request_types/146cb7c8-46b9-4911-8ad9-3238bab4313e','requestParent':'https://vrc.zaakonline.nl'~request['@id']}) }}"
-                                   class="btn btn-primary btn-icon">
-                                    Doe melding
-                                </a>
-                            {% endif %}
-                        </p>
+                        {% if request['@id']  is defined %}
+                			<a href="{{ path('app_default_slug',{'requestType':'https://vtc.zaakonline.nl/request_types/146cb7c8-46b9-4911-8ad9-3238bab4313e','requestParent':'https://vrc.zaakonline.nl'~request['@id']}) }}" class="btn btn-primary btn-icon" >
+                				<i class="fas fa-share-square"></i>
+                			 	Doe melding
+                		    </a>
+                         {% endif %}
+                  		</p>
                     </div><!-- /.feature-text -->
                 </div><!-- /.affa-feature-icon -->
             </div>
 
-            <div class="col-sm-6 col-md-6 col-lg-6s">
+        <div class="col-sm-6 col-md-6 col-lg-6s">
 
                 <!-- Uitnodigen partner 2 -->
                 <div class="affa-feature-icon"> <!-- 6 -->
@@ -68,31 +67,26 @@
                     <div class="feature-text">
                         <h4>Aanvullende gegevens</h4>
                         <p>Graag zouden wij nog het volgende van u weten</p>
-                        {% if request.properties.partners is defined %}
-                            {% for partner in request.properties.partners %}
-                                <label
-                                    for="naamgebruik[{{ partner }}]">Naamgebruik {{ commonground_resource(commonground_resource(partner).contact).formalName }}</label>
-                                <select name="naamgebruik[{{ partner }}]" id="naamgebruik[{{ partner }}]">
-                                    <option value="ongewijzigd" selected>ongewijzigd</option>
-                                    <option value="eigennaam, partnernaam">eerst uw eigen achternaam, gevolgd door de
-                                        achternaam uw partner
-                                    </option>
-                                    <option value="partnernaam, eigennaam">eerst de achternaam van uw partner, gevolgd
-                                        door uw eigen achternaam
-                                    </option>
-                                    <option value="partnernaam">alleen de achternaam van uw partner</option>
-                                </select>
-                            {% endfor %}
-                        {% endif %}
+                            {% if request.properties.partners is defined %}
+                                {% for partner in request.properties.partners  %}
+                                    <label for="naamgebruik[{{ partner }}]">Naamgebruik {{ commonground_resource(commonground_resource(partner).contact).formalName }}</label>
+                                    <select name="naamgebruik[{{ partner }}]" id="naamgebruik[{{ partner }}]">
+                                        <option value="ongewijzigd" selected >ongewijzigd</option>
+                                        <option value="eigennaam, partnernaam">eerst uw eigen achternaam, gevolgd door de achternaam uw partner</option>
+                                        <option value="partnernaam, eigennaam">eerst de achternaam van uw partner, gevolgd door uw eigen achternaam</option>
+                                        <option value="partnernaam">alleen de achternaam van uw partne</option>
+                                    </select>
+                                    {% endfor %}
+                            {% endif %}
 
-                        <label for="nederlands">Spreekt u beide Nederlands?</label>
-                        <select name="nederlands" id="nederlands">
-                            <option value="ja" selected>Ja</option>
-                            <option value="nee">Nee</option>
-                        </select>
+                            <label for="nederlands">Spreekt u beiden Nederlands?</label>
+                            <select name="nederlands" id="nederlands">
+                                <option value="ja" selected>Ja</option>
+                                <option value="nee">Nee</option>
+                            </select>
 
-                        <label for="opmerkingen">Opmerkingen / verzoeken</label>
-                        <textarea name="opmerkingen" id="opmerkingen">
+                            <label for="opmerkingen">Opmerkingen / verzoeken</label>
+                            <textarea name="opmerkingen" id="opmerkingen">
                             </textarea>
 
                         <button type="submit" class="btn btn-success btn-lg btn-block btn-icon"><i
@@ -105,5 +99,3 @@
     </div>
     <!-- .row-custom end -->
 {% endblock %}
-
-

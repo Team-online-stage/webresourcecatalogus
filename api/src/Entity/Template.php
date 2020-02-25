@@ -24,7 +24,7 @@ use App\Controller\DefaultController;
  * 	    "put",
  * 	   "delete",
  *     "render_template"={
- *         "method"="GET",
+ *         "method"="POST",
  *         "path"="/templates/{id}/render",
  *         "controller"=DefaultController::class,
  *     		}
