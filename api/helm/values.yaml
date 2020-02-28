@@ -4,13 +4,13 @@
 
 settings:
   registryBase: docker.io/conduction
-  projectName: pa
-  name: pa
-  title: Proto Applicatie
+  projectName: wrc
+  name: wrc
+  title: Web Resource Component
   version: V.0.1
   description: '&#039;Naast deze JSON rest API is er ook een [graphql](/graphql) interface beschikbaar.&#039;'
-  repro: 'https://github.com/ConductionNL/Proto-component-commonground'
-  subdomain: pc  
+  repro: 'https://github.com/ConductionNL/webresourcecatalogus'
+  subdomain: wrc  
   domains:
     - conduction.nl
     - zaakonline.nl
@@ -23,7 +23,7 @@ settings:
   state: Noord-Holland
   locality: Amsterdam
   unit: Common-Ground  
-  demo: test.conduction.nl
+  demo: wr.zaakonline.nl
   env: dev
   debug: 1
   replicaCount: 1
