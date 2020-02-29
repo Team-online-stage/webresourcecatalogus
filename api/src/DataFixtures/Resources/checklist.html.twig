@@ -51,7 +51,7 @@
                                 <ul class="list-icon">
                                     <li>
                                         <!--  Trouwdatum -->
-                                        <i class="fa fas fa-check"></i> {{ request.properties.datum  }}
+                                        <i class="fa fas fa-check"></i> {{ request.properties.datum|date("d-m-Y H:i", "Europe/Paris")  }}
                                     </li>
                                 </ul>
                             </li>

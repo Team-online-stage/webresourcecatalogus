@@ -136,20 +136,25 @@
                 <div class="affa-feature-icon">
                     <i class="fas fa-envelope"></i>
                     <div class="feature-text">
+                        {% if contact2.emails is not defined or contact2.emails is empty or contact2.emails[0].email is empty
+                            or contact2.telephones is not defined or contact2.telephones is empty or contact2.telephones[0].telephone is empty %}
                         <h4>Contact gegevens van uw partner</h4>
                         <p>Uiteraard willen we ook uw partner graag kunnen bereiken.</p>
                         <br/>
 
                         <form method="post" action="{{ path('app_default_updateassent',{'id':assent2.id}) }}" class="affa-form-contact">
                             <div class="submit-status"></div>
-
+                            {% if contact2.emails is not defined or contact2.emails is empty or contact2.emails[0].email is empty %}
                             <label for="partner_email">Email Adres <span class="required">*</span></label>
-                            <input type="email" name="email" placeholder="john@do.nl" value="{% if contact2['_embedded']['emails'] is defined   %}{{ contact2['_embedded']['emails'][0].email }}{% endif %}" required/>
+                            <input type="email" name="email" placeholder="john@do.nl" value="{% if contact2.emails is defined   %}{{ contact2.emails[0].email }}{% endif %}" required/>
+                            {% endif %}
+                            {% if contact2.telephones is not defined or contact2.telephones is empty or contact2.telephones[0].telephone is empty %}
                             <label for="partner_telefoonnummer">Telefoonnummer</label>
-                            <input type="text" name="telephone" placeholder="+31 6 12345678" value="{% if contact2['_embedded']['telephones'] is defined   %}{{ contact2['_embedded']['telephones'][0].telephone }}{% endif %}"/>
-
+                            <input type="text" name="telephone" placeholder="+31 6 12345678" value="{% if contact2.telephones is defined   %}{{ contact2.telephones[0].telephone }}{% endif %}"/>
+                            {% endif %}
                             <button type="submit" class="btn btn-success btn-lg btn-block btn-icon"><i class="far fa-envelope"></i> Opslaan</button>
                         </form>
+                        {% endif %}
                     </div>
                 </div>
             {% else %}
@@ -203,23 +208,23 @@
                         </button>
                     </div>
                     <div class="modal-body p-4">
-                        <form method="post" action="{{ path('app_default_updateassent',{'id':assent2.id}) }}"
+                        <form method="post" action="{{ path('app_default_updateassent',{'id':assent2.id}) }}">
 
-                        <p><b>Voornaam wijzigen:</b></p>
-                        <input class="form-control" type="text" name="givenName">
+                            <p><b>Voornaam wijzigen:</b></p>
+                            <input class="form-control" type="text" name="givenName" value="{{ contact2.givenName }}">
 
-                        <p><b>Achternaam wijzigen:</b></p>
-                        <input class="form-control" type="text" name="familyName">
+                            <p><b>Achternaam wijzigen:</b></p>
+                            <input class="form-control" type="text" name="familyName" value="{{ contact2.familyName }}">
 
-                        <p><b>Telefoonnummer wijzigen:</b></p>
-                        <input class="form-control" type="text" name="telephone">
-
-                        <p><b>Email wijzigen:</b></p>
-                        <input class="form-control" type="email" name="email">
-
-                        <button type="submit" class="btn btn-success mx-auto m-4">
-                            Wijzigen
-                        </button>
+                            <p><b>Email wijzigen:</b></p>
+                            <input class="form-control" type="email" name="email" value="{% if contact2.emails is defined and contact2.emails is not empty %}{{ contact2.emails[0].email }}{% endif %}">
+                            {% if contact2.telephones is defined and contact2.telephones is not empty and contact2.telephones[0].telephone is not empty %}
+                            <p><b>Telefoonnummer wijzigen:</b></p>
+                            <input class="form-control" type="text" name="telephone" value="{% if contact2.telephones is defined and contact2.telephones is not empty %}{{ contact2.telephones[0].telephone }}{% endif %}">
+                            {% endif %}
+                            <button type="submit" class="btn btn-success mx-auto m-4">
+                                Wijzigen
+                            </button>
                         </form>
                     </div>
                 </div>
@@ -229,4 +234,4 @@
 {% endblock %}
 
 
-    												
+

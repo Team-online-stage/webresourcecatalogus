@@ -31,6 +31,8 @@
 
                         {% set assent = commonground_resource(getuige) %}
                         {% set contact = commonground_resource(assent.contact) %}
+                        {% set requester = commonground_resource(assent.requester) %}
+                        {% set requesterContact = commonground_resource(requester.contact) %}
 
                         <div class="col-md-3"> <!-- 1 -->
                             <div class="affa-team-profile">
@@ -52,6 +54,10 @@
                                     </h4>
                                     <p>
                                         Status:  {{ assent.status|trans }}
+
+                                        {% if requesterContact is defined and requesterContact is not empty %}
+                                            <br> <b>Voor:</b> {{ requesterContact.givenName }} {{ requesterContact.familyName }}
+                                        {% endif %}
 
                                         <br><b>Voornaam:</b> {{ contact.givenName }}
                                         <br><b>Achternaam:</b> {{ contact.familyName }}
@@ -124,6 +130,3 @@
     {% endif %}
 
 {% endblock %}
-
-    												
-    												
