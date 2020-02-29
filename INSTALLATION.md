@@ -118,9 +118,10 @@ $ helm upgrade wrc-prod ./api/helm --kubeconfig="api/helm/kubeconfig.yaml" --nam
 
 Or del if you want to delete an existing  one
 ```CLI
-$ helm del wrc-dev  --purge --kubeconfig="api/helm/kubeconfig.yaml" --namespace=dev 
-$ helm del wrc-stag --purge --kubeconfig="api/helm/kubeconfig.yaml" --namespace=stag 
-$ helm del wrc-prod --purge --kubeconfig="api/helm/kubeconfig.yaml" --namespace=prod 
+$ helm del wrc-dev  --purge --kubeconfig="api/helm/kubeconfig.yaml"
+$ helm del wrc-stag --purge --kubeconfig="api/helm/kubeconfig.yaml" 
+$ helm del wrc-prod --purge --kubeconfig="api/helm/kubeconfig.yaml" 
+
 ```
 
 Note that you can replace common ground with the namespace that you want to use (normally the name of your component).
