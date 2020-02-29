@@ -3,6 +3,9 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Annotation\ApiFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\DateFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -32,6 +35,7 @@ use App\Controller\DefaultController;
  *     	normalizationContext={"groups"={"read"}, "enable_max_depth"=true},
  *     	denormalizationContext={"groups"={"write"}, "enable_max_depth"=true},
  * )
+ * @ApiFilter(DateFilter::class, properties={"dateCreated","dateModified"})
  * @Gedmo\Loggable
  * @ORM\Entity(repositoryClass="App\Repository\TemplateRepository")
  */

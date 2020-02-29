@@ -3,6 +3,9 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Annotation\ApiFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\DateFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -24,6 +27,8 @@ use App\Entity\Image;
  *     normalizationContext={"groups"={"read"}, "enable_max_depth"=true},
  *     denormalizationContext={"groups"={"write"}, "enable_max_depth"=true},
  * )
+ * @ApiFilter(SearchFilter::class, properties={"id": "exact","rsin": "exact","chamberOfComerce": "exact", "name": "exact", "description": "partial", "domain": "exact"})
+ * @ApiFilter(DateFilter::class, properties={"dateCreated","dateModified"})
  * @Gedmo\Loggable
  * 
  * @ORM\Entity(repositoryClass="App\Repository\OrganizationRepository")
@@ -56,7 +61,21 @@ class Organization
 	 * @Groups({"read","write"})
 	 * @ORM\Column(type="string", length=255)
 	 */
-	private $rsin;	
+	private $rsin;
+	
+	/**
+	 * @var string The Chamber of Comerce ID of this organisations.
+	 *
+	 * @example About
+	 *
+	 * @Assert\NotNull
+	 * @Assert\Length(
+	 *     max = 255
+	 * )
+	 * @Groups({"read","write"})
+	 * @ORM\Column(type="string", length=255)
+	 */
+	private $chamberOfComerce;	
 	
 	/**
 	 * @var string The name of this organization.
@@ -159,7 +178,19 @@ class Organization
     	$this->rsin = $rsin;
     	
     	return $this;
+    } 
+    
+    public function getChamberOfComerce(): ?string
+    {
+    	return $this->chamberOfComerce;
     }
+    
+    public function setChamberOfComerce(string $chamberOfComerce): self
+    {
+    	$this->chamberOfComerce= $chamberOfComerce;
+    	
+    	return $this;
+    } 
 
     public function getName(): ?string
     {

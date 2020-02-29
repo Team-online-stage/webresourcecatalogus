@@ -12,11 +12,24 @@ use App\Entity\Image;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Ramsey\Uuid\Uuid;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 
-class AppFixtures extends Fixture
+class HuwelijksplannerFixtures extends Fixture
 {
+	private $params;
+	
+	public function __construct(ParameterBagInterface $params)
+	{
+		$this->params = $params;
+	}
+	
     public function load(ObjectManager $manager)
     {
+    	// Lets make sure we only run these fixtures on huwelijksplanner enviroments
+    	if(!in_array("huwelijksplanner.onlie",$this->params->get('app_domains')){
+    		return false;
+    	}
+    	
     	// Utrecht
     	$id = Uuid::fromString('68b64145-0740-46df-a65a-9d3259c2fec8');
     	$utrecht = new Organization();
