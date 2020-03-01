@@ -46,7 +46,7 @@ class Configuration
 	private $id;
 
     /**
-     * @Groups({"read","write"})
+     * @Groups({"write"})
      * @MaxDepth(1)
      * @ORM\ManyToOne(targetEntity="App\Entity\Application", inversedBy="configurations")
      * @ORM\JoinColumn(nullable=false)
@@ -54,7 +54,7 @@ class Configuration
     private $application;
 
     /**
-     * @Groups({"read","write"})
+     * @Groups({"write"})
      * @MaxDepth(1)
      * @ORM\ManyToOne(targetEntity="App\Entity\Organization", inversedBy="configurations")
      * @ORM\JoinColumn(nullable=false)

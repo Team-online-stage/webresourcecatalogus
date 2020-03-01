@@ -8403,10 +8403,6 @@ components:
           externalDocs:
             url: 'http://schema.org/identifier'
           type: string
-        application:
-          $ref: '#/components/schemas/Application-read'
-        organization:
-          $ref: '#/components/schemas/Organization-read'
         configuration:
           type: array
           items:
@@ -8426,8 +8422,10 @@ components:
       description: 'Configurations hold a specific organisation configruation for an application.'
       properties:
         application:
+          writeOnly: true
           $ref: '#/components/schemas/Application-write'
         organization:
+          writeOnly: true
           $ref: '#/components/schemas/Organization-write'
         configuration:
           type: array
@@ -8452,10 +8450,6 @@ components:
           externalDocs:
             url: 'http://schema.org/identifier'
           type: string
-        application:
-          $ref: '#/components/schemas/Application:jsonld-read'
-        organization:
-          $ref: '#/components/schemas/Organization:jsonld-read'
         configuration:
           type: array
           items:
@@ -8484,8 +8478,10 @@ components:
           readOnly: true
           type: string
         application:
+          writeOnly: true
           $ref: '#/components/schemas/Application:jsonld-write'
         organization:
+          writeOnly: true
           $ref: '#/components/schemas/Organization:jsonld-write'
         configuration:
           type: array
@@ -9785,8 +9781,6 @@ definitions:
       dateModified:
         description: 'The moment this request last Modified'
         type: \Datetime
-      application: []
-      organization: []
     required: []
   Configuration-write:
     properties:

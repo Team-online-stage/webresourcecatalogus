@@ -136,16 +136,22 @@ class LarpingFixtures extends Fixture
     	$organizationMail->setApplication($application);
     	$manager->persist($organizationMail);     
     	
-    	// Larping / Larping Configuration
+    	// Larping / Larping Configuration 
+    	/*@todo we should take local development into consideration, this only works for online enviroments with a domain*/
+    	$env = '';
+    	$protocol = 'https://';
+    	if($this->params->get('app_env') != "prod"){
+    		$env = $this->params->get('app_env').'.';
+    	}
     	
     	$configParams = [];
-    	$configParams['menuPrimary'] = (string) $menu->getId();
-    	$configParams['menuFooter1'] = (string) $menu->getId();
-    	$configParams['menuFooter2'] = (string) $menu->getId();
-    	$configParams['confirmationClientSMS'] = (string) $clientSMS->getId();
-    	$configParams['confirmationClientMail'] = (string) $clientMail->getId();
-    	$configParams['confirmationOrganizationSMS'] = (string) $organizationSMS->getId();
-    	$configParams['confirmationOrganizationMail'] = (string) $organizationMail->getId();
+    	$configParams['menuPrimary'] = $protocol.$this->params->get('app_name').'.'.$env.$this->params->get('app_domains')[0].'/menus/'. (string) $menu->getId();
+    	$configParams['menuFooter1'] = $protocol.$this->params->get('app_name').'.'.$env.$this->params->get('app_domains')[0].'/menus/'. (string) $menu->getId();
+    	$configParams['menuFooter2'] = $protocol.$this->params->get('app_name').'.'.$env.$this->params->get('app_domains')[0].'/menus/'. (string) $menu->getId();
+    	$configParams['confirmationClientSMS'] = $protocol.$this->params->get('app_name').'.'.$env.$this->params->get('app_domains')[0].'/templates/'.  (string) $clientSMS->getId();
+    	$configParams['confirmationClientMail'] = $protocol.$this->params->get('app_name').'.'.$env.$this->params->get('app_domains')[0].'/templates/'.  (string) $clientMail->getId();
+    	$configParams['confirmationOrganizationSMS'] = $protocol.$this->params->get('app_name').'.'.$env.$this->params->get('app_domains')[0].'/templates/'.  (string) $organizationSMS->getId();
+    	$configParams['confirmationOrganizationMail'] = $protocol.$this->params->get('app_name').'.'.$env.$this->params->get('app_domains')[0].'/templates/'.  (string) $organizationMail->getId();
     	
     	$configuration= new Configuration();
     	$configuration->setApplication($application);
