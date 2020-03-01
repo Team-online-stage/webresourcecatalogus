@@ -26,7 +26,7 @@ class HuwelijksplannerFixtures extends Fixture
     public function load(ObjectManager $manager)
     {
     	// Lets make sure we only run these fixtures on huwelijksplanner enviroments
-    	if(!in_array("huwelijksplanner.onlie",$this->params->get('app_domains')){
+    	if(!in_array("huwelijksplanner.online",$this->params->get('app_domains'))){
     		return false;
     	}
     	

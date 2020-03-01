@@ -56,13 +56,43 @@ class Menu
      * @ORM\Column(type="string", length=255)
      */
     private $name;
+    
+    /**
+     * @var string The description of this menuItems
+     *
+     * @example This menuItems links to the about page
+     *
+     * @Assert\Length(
+     *      max = 2555
+     * )
+     * @Gedmo\Versioned
+     * @Groups({"read","write"})
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $description;
 
     /**
      * @Groups({"read","write"})
      * @ORM\OneToMany(targetEntity="App\Entity\MenuItem", mappedBy="menu")
      * @MaxDepth(1)
      */
-    private $menuItem;
+    private $menuItems;
+    
+    /**
+     * @Groups({"read","write"})
+     * @MaxDepth(1)
+     * @ORM\ManyToOne(targetEntity="App\Entity\Application", inversedBy="menus")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $application;
+    
+    /**
+     * @Groups({"read","write"})
+     * @MaxDepth(1)
+     * @ORM\ManyToOne(targetEntity="App\Entity\Organization", inversedBy="menus")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $organization;
     
     /**
      * @var Datetime $dateCreated The moment this request was created
@@ -84,7 +114,7 @@ class Menu
 
     public function __construct()
     {
-        $this->menuItem = new ArrayCollection();
+        $this->menuItems = new ArrayCollection();
     }
 
     public function getId(): Uuid
@@ -110,19 +140,31 @@ class Menu
 
         return $this;
     }
-
-    /**
-     * @return Collection|MenuItem[]
-     */
-    public function getMenuItem(): Collection
+    
+    public function getDescription(): ?string
     {
-        return $this->menuItem;
+    	return $this->description;
+    }
+    
+    public function setDescription(?string $description): self
+    {
+    	$this->description = $description;
+    	
+    	return $this;
     }
 
-    public function addMenuItem(MenuItem $menuItem): self
+    /**
+     * @return Collection|menuItems[]
+     */
+    public function getMenuItems(): Collection
     {
-        if (!$this->menuItem->contains($menuItem)) {
-            $this->menuItem[] = $menuItem;
+        return $this->menuItems;
+    }
+
+    public function addNenuItem(MenuItem $menuItem): self
+    {
+        if (!$this->menuItems->contains($menuItem)) {
+            $this->menuItems[] = $menuItem;
             $menuItem->setMenu($this);
         }
 
@@ -131,8 +173,8 @@ class Menu
 
     public function removeMenuItem(MenuItem $menuItem): self
     {
-        if ($this->menuItem->contains($menuItem)) {
-            $this->menuItem->removeElement($menuItem);
+        if ($this->menuItems->contains($menuItem)) {
+            $this->menuItems->removeElement($menuItem);
             // set the owning side to null (unless already changed)
             if ($menuItem->getMenu() === $this) {
                 $menuItem->setMenu(null);
@@ -140,6 +182,30 @@ class Menu
         }
 
         return $this;
+    }
+    
+    public function getApplication(): ?Application
+    {
+    	return $this->application;
+    }
+    
+    public function setApplication(?Application $application): self
+    {
+    	$this->application = $application;
+    	
+    	return $this;
+    }
+    
+    public function getOrganization(): ?Organization
+    {
+    	return $this->organization;
+    }
+    
+    public function setOrganization(?Organization $organization): self
+    {
+    	$this->organization = $organization;
+    	
+    	return $this;
     }
     
     public function getDateCreated(): ?\DateTimeInterface

@@ -135,6 +135,25 @@ class Application
     private $organization;
     
     /**
+     * @Groups({"read","write"})
+     * @MaxDepth(1)
+     * @ORM\OneToMany(targetEntity="App\Entity\Configuration", mappedBy="application", orphanRemoval=true)
+     */
+    private $configurations;
+    
+    /**
+     * @MaxDepth(1)
+     * @ORM\OneToMany(targetEntity="App\Entity\Template", mappedBy="application", orphanRemoval=true)
+     */
+    private $templates;
+    
+    /**
+     * @MaxDepth(1)
+     * @ORM\OneToMany(targetEntity="App\Entity\Menu", mappedBy="application", orphanRemoval=true)
+     */
+    private $menus;
+    
+    /**
      * @var Datetime $dateCreated The moment this request was created
      *
      * @Groups({"read"})
@@ -156,6 +175,8 @@ class Application
     {
         $this->pages = new ArrayCollection();
         $this->slugs = new ArrayCollection();
+        $this->configurations = new ArrayCollection();
+        $this->templates = new ArrayCollection();
     }
 
     public function getId(): Uuid
@@ -300,6 +321,99 @@ class Application
     public function setOrganization(?Organization $organization): self
     {
     	$this->organization = $organization;
+    	
+    	return $this;
+    }
+    
+    /**
+     * @return Collection|Configuration[]
+     */
+    public function getConfigurations(): Collection
+    {
+    	return $this->configurations;
+    }
+    
+    public function addConfiguration(Configuration $configuration): self
+    {
+    	if (!$this->configurations->contains($configuration)) {
+    		$this->configurations[] = $configuration;
+    		$configuration->setApplication($this);
+    	}
+    	
+    	return $this;
+    }
+    
+    public function removeConfiguration(Configuration $configuration): self
+    {
+    	if ($this->configurations->contains($configuration)) {
+    		$this->configurations->removeElement($configuration);
+    		// set the owning side to null (unless already changed)
+    		if ($configuration->getApplication() === $this) {
+    			$configuration->setApplication(null);
+    		}
+    	}
+    	
+    	return $this;
+    }
+    
+    /**
+     * @return Collection|Templates[]
+     */
+    public function getTemplates(): Collection
+    {
+    	return $this->templates;
+    }
+    
+    public function addTemplate(Template $template): self
+    {
+    	if (!$this->templates->contains($configuration)) {
+    		$this->templates[] = $configuration;
+    		$template->setApplication($this);
+    	}
+    	
+    	return $this;
+    }
+    
+    public function removeTemplate(Template $template): self
+    {
+    	if ($this->templates->contains($template)) {
+    		$this->templates->removeElement($template);
+    		// set the owning side to null (unless already changed)
+    		if ($template->getApplication() === $this) {
+    			$template->setApplication(null);
+    		}
+    	}
+    	
+    	return $this;
+    }
+    
+    /**
+     * @return Collection|Menus[]
+     */
+    public function getMenus(): Collection
+    {
+    	return $this->menus;
+    }
+    
+    public function addMenu(Menu $template): self
+    {
+    	if (!$this->menus->contains($menu)) {
+    		$this->menus[] = $menu;
+    		$menu->setApplication($this);
+    	}
+    	
+    	return $this;
+    }
+    
+    public function removeMenu(Menu $menu): self
+    {
+    	if ($this->menus->contains($menu)) {
+    		$this->menus->removeElement($menu);
+    		// set the owning side to null (unless already changed)
+    		if ($menu->getApplication() === $this) {
+    			$menu->setApplication(null);
+    		}
+    	}
     	
     	return $this;
     }

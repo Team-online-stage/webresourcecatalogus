@@ -58,8 +58,7 @@ class Organization
 	 * @Assert\Length(
 	 *     max = 255
 	 * )
-	 * @Groups({"read","write"})
-	 * @ORM\Column(type="string", length=255)
+	 * @ORM\Column(type="string", length=255, nullable=true)
 	 */
 	private $rsin;
 	
@@ -72,8 +71,7 @@ class Organization
 	 * @Assert\Length(
 	 *     max = 255
 	 * )
-	 * @Groups({"read","write"})
-	 * @ORM\Column(type="string", length=255)
+	 * @ORM\Column(type="string", length=255, nullable=true)
 	 */
 	private $chamberOfComerce;	
 	
@@ -126,10 +124,29 @@ class Organization
     private $applications;
 
     /**
+     * @Groups({"read","write"})
      * @MaxDepth(1)
      * @ORM\OneToMany(targetEntity="App\Entity\Image", mappedBy="organization", orphanRemoval=true)
      */
     private $images;
+    
+    /**
+     * @MaxDepth(1)
+     * @ORM\OneToMany(targetEntity="App\Entity\Configuration", mappedBy="organization", orphanRemoval=true)
+     */
+    private $configurations;
+    
+    /**
+     * @MaxDepth(1)
+     * @ORM\OneToMany(targetEntity="App\Entity\Template", mappedBy="organization", orphanRemoval=true)
+     */
+    private $templates;
+    
+    /**
+     * @MaxDepth(1)
+     * @ORM\OneToMany(targetEntity="App\Entity\Menu", mappedBy="organization", orphanRemoval=true)
+     */
+    private $menus;
     
     /**
      * @var Datetime $dateCreated The moment this request was created
@@ -154,6 +171,8 @@ class Organization
     	$this->styles= new ArrayCollection();
     	$this->applications = new ArrayCollection();
         $this->images = new ArrayCollection();
+        $this->configurations = new ArrayCollection();
+        $this->templates = new ArrayCollection();
     }
 
     public function getId(): ?Uuid
@@ -314,6 +333,101 @@ class Organization
         }
 
         return $this;
+    }
+    
+    /**
+     * @return Collection|Configuration[]
+     */
+    public function getConfigurations(): Collection
+    {
+    	return $this->configurations;
+    }
+    
+    public function addConfiguration(Configuration $configuration): self
+    {
+    	if (!$this->configurations->contains($configuration)) {
+    		$this->configurations[] = $configuration;
+    		$configuration->setOrganization($this);
+    	}
+    	
+    	return $this;
+    }
+    
+    public function removeConfiguration(Configuration $configuration): self
+    {
+    	if ($this->configurations->contains($configuration)) {
+    		$this->configurations->removeElement($configuration);
+    		// set the owning side to null (unless already changed)
+    		if ($configuration->getOrganization() === $this) {
+    			$configuration->setOrganization(null);
+    		}
+    	}
+    	
+    	return $this;
+    }
+    
+    
+    
+    /**
+     * @return Collection|Templates[]
+     */
+    public function getTemplates(): Collection
+    {
+    	return $this->templates;
+    }
+    
+    public function addTemplates(Template $template): self
+    {
+    	if (!$this->templates->contains($template)) {
+    		$this->templates[] = $template;
+    		$template->setOrganization($this);
+    	}
+    	
+    	return $this;
+    }
+    
+    public function removeTemplate(Template $template): self
+    {
+    	if ($this->templates->contains($template)) {
+    		$this->templates->removeElement($template);
+    		// set the owning side to null (unless already changed)
+    		if ($template->getOrganization() === $this) {
+    			$template->setOrganization(null);
+    		}
+    	}
+    	
+    	return $this;
+    }
+    
+    /**
+     * @return Collection|Menus[]
+     */
+    public function getMenus(): Collection
+    {
+    	return $this->menus;
+    }
+    
+    public function addMenu(Menu $template): self
+    {
+    	if (!$this->menus->contains($menu)) {
+    		$this->menus[] = $menu;
+    		$menu->setOrganization($this);
+    	}
+    	
+    	return $this;
+    }
+    
+    public function removeMenu(Menu $menu): self
+    {
+    	if ($this->menus->contains($menu)) {
+    		$this->menus->removeElement($menu);
+    		// set the owning side to null (unless already changed)
+    		if ($menu->getOrganization() === $this) {
+    			$menu->setOrganization(null);
+    		}
+    	}
+    	
+    	return $this;
     }
     
     public function getDateCreated(): ?\DateTimeInterface

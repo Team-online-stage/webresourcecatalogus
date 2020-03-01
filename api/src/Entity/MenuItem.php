@@ -87,7 +87,7 @@ class MenuItem
 
     /**
      * @Groups({"read","write"})
-     * @ORM\ManyToOne(targetEntity="App\Entity\Menu", inversedBy="menuItem")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Menu", inversedBy="menuItems")
      * @ORM\JoinColumn(nullable=false)
      * @MaxDepth(1)
      */
