@@ -6,6 +6,7 @@ use ApiPlatform\Core\Annotation\ApiResource;
 use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\DateFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
+use Doctrine\Common\Collections\Criteria;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -135,11 +136,15 @@ class Application
     private $organization;
     
     /**
-     * @Groups({"read","write"})
      * @MaxDepth(1)
      * @ORM\OneToMany(targetEntity="App\Entity\Configuration", mappedBy="application", orphanRemoval=true)
      */
     private $configurations;
+    
+    /**
+     * @Groups({"read"})
+     */
+    private $defaultConfiguration;
     
     /**
      * @MaxDepth(1)
@@ -177,6 +182,14 @@ class Application
         $this->slugs = new ArrayCollection();
         $this->configurations = new ArrayCollection();
         $this->templates = new ArrayCollection();
+    }
+    
+    public function getDefaultConfiguration(){
+    	
+    	$criteria = Criteria::create()
+    	->andWhere(Criteria::expr()->eq('organization', $this->getOrganization()));
+    	
+    	return $this->getConfigurations()->matching($criteria)->first();
     }
 
     public function getId(): Uuid
