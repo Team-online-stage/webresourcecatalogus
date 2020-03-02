@@ -40,6 +40,13 @@ class LarpingFixtures extends Fixture
     	$larping->setRsin('');
     	$manager->persist($larping);
     	
+    	// Fix Id (for linked datapurposes)
+    	$id = Uuid::fromString('39405560-7859-4d16-943b-042d6c053a0f');
+    	$larping->setId($id);
+    	$manager->persist($larping);
+    	$manager->flush();
+    	$manager->refresh($$larping);
+    	
     	// Application
     	$application= new Application();
     	$application->setName('Larping.eu');
@@ -159,12 +166,19 @@ class LarpingFixtures extends Fixture
     	$configuration->setConfiguration($configParams);
     	$manager->persist($configuration);
     	
-    	// Vortex Adventures
+    	// Vortex Adventures    	
     	$va = new Organization();
     	$va->setName('Vortex Adventures');
     	$va->setDescription('Va');
     	$va->setRsin('');
     	$manager->persist($va);
+    	
+    	// Fix Id (for linked datapurposes)
+    	$id = Uuid::fromString('0972a00f-1893-4e9b-ac13-0e43f225eca5');
+    	$va->setId($id);
+    	$manager->persist($va);
+    	$manager->flush();
+    	$manager->refresh($va);
     	
     	// Larping / Vortex Adventures
     	

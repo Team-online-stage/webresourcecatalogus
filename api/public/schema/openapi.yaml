@@ -8260,10 +8260,8 @@ components:
           $ref: '#/components/schemas/Footer-read'
         organization:
           $ref: '#/components/schemas/Organization-read'
-        configurations:
-          type: array
-          items:
-            $ref: '#/components/schemas/Configuration-read'
+        defaultConfiguration:
+          readOnly: true
         dateCreated:
           readOnly: true
           description: 'The moment this request was created'
@@ -8301,10 +8299,6 @@ components:
           $ref: '#/components/schemas/Footer-write'
         organization:
           $ref: '#/components/schemas/Organization-write'
-        configurations:
-          type: array
-          items:
-            $ref: '#/components/schemas/Configuration-write'
     'Application:jsonld-read':
       type: object
       description: 'Application is the project of a website.'
@@ -8339,10 +8333,8 @@ components:
           $ref: '#/components/schemas/Footer:jsonld-read'
         organization:
           $ref: '#/components/schemas/Organization:jsonld-read'
-        configurations:
-          type: array
-          items:
-            $ref: '#/components/schemas/Configuration:jsonld-read'
+        defaultConfiguration:
+          readOnly: true
         dateCreated:
           readOnly: true
           description: 'The moment this request was created'
@@ -8389,10 +8381,6 @@ components:
           $ref: '#/components/schemas/Footer:jsonld-write'
         organization:
           $ref: '#/components/schemas/Organization:jsonld-write'
-        configurations:
-          type: array
-          items:
-            $ref: '#/components/schemas/Configuration:jsonld-write'
     Configuration-read:
       type: object
       description: 'Configurations hold a specific organisation configruation for an application.'
@@ -9737,7 +9725,6 @@ definitions:
       header: []
       footer: []
       organization: []
-      configurations: []
     required:
       - name
       - description
@@ -9762,7 +9749,6 @@ definitions:
       header: []
       footer: []
       organization: []
-      configurations: []
     required:
       - name
       - description
