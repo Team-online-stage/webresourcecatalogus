@@ -45,7 +45,7 @@ class LarpingFixtures extends Fixture
     	$larping->setId($id);
     	$manager->persist($larping);
     	$manager->flush();
-    	$manager->refresh($$larping);
+    	$manager->refresh($larping);
     	
     	// Application
     	$application= new Application();
@@ -152,13 +152,27 @@ class LarpingFixtures extends Fixture
     	}
     	
     	$configParams = [];
-    	$configParams['menuPrimary'] = $protocol.$this->params->get('app_name').'.'.$env.$this->params->get('app_domains')[0].'/menus/'. (string) $menu->getId();
-    	$configParams['menuFooter1'] = $protocol.$this->params->get('app_name').'.'.$env.$this->params->get('app_domains')[0].'/menus/'. (string) $menu->getId();
-    	$configParams['menuFooter2'] = $protocol.$this->params->get('app_name').'.'.$env.$this->params->get('app_domains')[0].'/menus/'. (string) $menu->getId();
-    	$configParams['confirmationClientSMS'] = $protocol.$this->params->get('app_name').'.'.$env.$this->params->get('app_domains')[0].'/templates/'.  (string) $clientSMS->getId();
-    	$configParams['confirmationClientMail'] = $protocol.$this->params->get('app_name').'.'.$env.$this->params->get('app_domains')[0].'/templates/'.  (string) $clientMail->getId();
-    	$configParams['confirmationOrganizationSMS'] = $protocol.$this->params->get('app_name').'.'.$env.$this->params->get('app_domains')[0].'/templates/'.  (string) $organizationSMS->getId();
-    	$configParams['confirmationOrganizationMail'] = $protocol.$this->params->get('app_name').'.'.$env.$this->params->get('app_domains')[0].'/templates/'.  (string) $organizationMail->getId();
+    	
+    	$larpingUiParams = [];
+    	$larpingUiParams['menuPrimary'] = $protocol.$this->params->get('app_name').'.'.$env.$this->params->get('app_domains')[0].'/menus/'. (string) $menu->getId();
+    	$larpingUiParams['menuFooter1'] = $protocol.$this->params->get('app_name').'.'.$env.$this->params->get('app_domains')[0].'/menus/'. (string) $menu->getId();
+    	$larpingUiParams['menuFooter2'] = $protocol.$this->params->get('app_name').'.'.$env.$this->params->get('app_domains')[0].'/menus/'. (string) $menu->getId();
+    	$larpingUiParams['confirmationClientSMS'] = $protocol.$this->params->get('app_name').'.'.$env.$this->params->get('app_domains')[0].'/templates/'.  (string) $clientSMS->getId();
+    	$larpingUiParams['confirmationClientMail'] = $protocol.$this->params->get('app_name').'.'.$env.$this->params->get('app_domains')[0].'/templates/'.  (string) $clientMail->getId();
+    	$larpingUiParams['confirmationOrganizationSMS'] = $protocol.$this->params->get('app_name').'.'.$env.$this->params->get('app_domains')[0].'/templates/'.  (string) $organizationSMS->getId();
+    	$larpingUiParams['confirmationOrganizationMail'] = $protocol.$this->params->get('app_name').'.'.$env.$this->params->get('app_domains')[0].'/templates/'.  (string) $organizationMail->getId();    	
+    	
+    	$configParams['larpingUi'] = $larpingUiParams;
+    	    	
+    	$bcParams= [];
+    	$bcParams['paymentProviders'] = [];    	
+    	
+    	$configParams['bc'] = $bcParams;    	
+    	
+    	$bsParams= [];
+    	$bsParams['services'] = [];
+    	
+    	$configParams['bs'] = $bsParams;
     	
     	$configuration= new Configuration();
     	$configuration->setApplication($application);
@@ -182,7 +196,15 @@ class LarpingFixtures extends Fixture
     	
     	// Larping / Vortex Adventures
     	
-    	$configParams = [];
+    	$configParams = [];    	
+    	
+    	$larpingUiParams = [];
+    	$configParams['larpingUi'] = $larpingUiParams;
+    	
+    	$bcParams= [];
+    	$bcParams['paymentProviders'] = [];
+    	
+    	$configParams['bc'] = $bcParams;
     	
     	$configuration= new Configuration();
     	$configuration->setApplication($application);
