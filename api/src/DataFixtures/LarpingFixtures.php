@@ -45,7 +45,7 @@ class LarpingFixtures extends Fixture
     	$larping->setId($id);
     	$manager->persist($larping);
     	$manager->flush();
-    	//$manager->refresh($larping);
+    	$larping= $manager->getRepository('App:Organization')->findOneBy(['id'=> '39405560-7859-4d16-943b-042d6c053a0f']);
     	
     	// Application
     	$application= new Application();
@@ -192,7 +192,7 @@ class LarpingFixtures extends Fixture
     	$va->setId($id);
     	$manager->persist($va);
     	$manager->flush();
-    	//$manager->refresh($va);
+    	$va= $manager->getRepository('App:Organization')->findOneBy(['id'=> '0972a00f-1893-4e9b-ac13-0e43f225eca5']);
     	
     	// Larping / Vortex Adventures
     	
