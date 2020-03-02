@@ -45,7 +45,7 @@ class LarpingFixtures extends Fixture
     	$larping->setId($id);
     	$manager->persist($larping);
     	$manager->flush();
-    	$manager->refresh($$larping);
+    	//$manager->refresh($larping);
     	
     	// Application
     	$application= new Application();
@@ -117,7 +117,7 @@ class LarpingFixtures extends Fixture
     	$clientMail->setName('Bestel Bevestiging | Klant | Email');
     	$clientMail->setDescription('Deze email bevestigd een bestelling aan een klant');
     	$clientMail->setContent('U heeft iets besteld');
-    	//$clientMail->setContent('Beste {{ contact.givenName }},<br><br>Tof dat je je hebt ingeschreven voor VA! Op de website kun je alle verdere informatie vinden zoals de eventguide, spelregels en ook de algemene settinginformatie. Daarnaast zijn de terms en conditions terug te vinden op https://larping.eu/terms-of-services.<br><br>Heb je nog spelgerelateerde vragen? Mail dan naar: vortexspelleider@gmail.com<br><br>Heb je nog feedback en kan het écht niet wachten tot de evaluatie? Mail je feedback dan naar vasecretaris@gmail.com , en dan streven we naar een reactie binnen 2 weken!<br><br>We zien je op het evenement!<br><br>Groetjes,<br>Het VA bestuur');
+    	//$clientMail->setContent('Beste {{ contact.givenName }},<br><br>Tof dat je je hebt ingeschreven voor VA! Op de website kun je alle verdere informatie vinden zoals de eventguide, spelregels en ook de algemene settinginformatie. Daarnaast zijn de terms en conditions terug te vinden op https://larping.eu/terms-of-services.<br><br>Heb je nog spelgerelateerde vragen? Mail dan naar: vortexspelleider@gmail.com<br><br>Heb je nog feedback en kan het ï¿½cht niet wachten tot de evaluatie? Mail je feedback dan naar vasecretaris@gmail.com , en dan streven we naar een reactie binnen 2 weken!<br><br>We zien je op het evenement!<br><br>Groetjes,<br>Het VA bestuur');
     	$clientMail->setTemplateEngine('twig');
     	$clientMail->setOrganization($larping);
     	$clientMail->setApplication($application);
@@ -152,13 +152,27 @@ class LarpingFixtures extends Fixture
     	}
     	
     	$configParams = [];
-    	$configParams['menuPrimary'] = $protocol.$this->params->get('app_name').'.'.$env.$this->params->get('app_domains')[0].'/menus/'. (string) $menu->getId();
-    	$configParams['menuFooter1'] = $protocol.$this->params->get('app_name').'.'.$env.$this->params->get('app_domains')[0].'/menus/'. (string) $menu->getId();
-    	$configParams['menuFooter2'] = $protocol.$this->params->get('app_name').'.'.$env.$this->params->get('app_domains')[0].'/menus/'. (string) $menu->getId();
-    	$configParams['confirmationClientSMS'] = $protocol.$this->params->get('app_name').'.'.$env.$this->params->get('app_domains')[0].'/templates/'.  (string) $clientSMS->getId();
-    	$configParams['confirmationClientMail'] = $protocol.$this->params->get('app_name').'.'.$env.$this->params->get('app_domains')[0].'/templates/'.  (string) $clientMail->getId();
-    	$configParams['confirmationOrganizationSMS'] = $protocol.$this->params->get('app_name').'.'.$env.$this->params->get('app_domains')[0].'/templates/'.  (string) $organizationSMS->getId();
-    	$configParams['confirmationOrganizationMail'] = $protocol.$this->params->get('app_name').'.'.$env.$this->params->get('app_domains')[0].'/templates/'.  (string) $organizationMail->getId();
+    	
+    	$larpingUiParams = [];
+    	$larpingUiParams['menuPrimary'] = $protocol.$this->params->get('app_name').'.'.$env.$this->params->get('app_domains')[0].'/menus/'. (string) $menu->getId();
+    	$larpingUiParams['menuFooter1'] = $protocol.$this->params->get('app_name').'.'.$env.$this->params->get('app_domains')[0].'/menus/'. (string) $menu->getId();
+    	$larpingUiParams['menuFooter2'] = $protocol.$this->params->get('app_name').'.'.$env.$this->params->get('app_domains')[0].'/menus/'. (string) $menu->getId();
+    	$larpingUiParams['confirmationClientSMS'] = $protocol.$this->params->get('app_name').'.'.$env.$this->params->get('app_domains')[0].'/templates/'.  (string) $clientSMS->getId();
+    	$larpingUiParams['confirmationClientMail'] = $protocol.$this->params->get('app_name').'.'.$env.$this->params->get('app_domains')[0].'/templates/'.  (string) $clientMail->getId();
+    	$larpingUiParams['confirmationOrganizationSMS'] = $protocol.$this->params->get('app_name').'.'.$env.$this->params->get('app_domains')[0].'/templates/'.  (string) $organizationSMS->getId();
+    	$larpingUiParams['confirmationOrganizationMail'] = $protocol.$this->params->get('app_name').'.'.$env.$this->params->get('app_domains')[0].'/templates/'.  (string) $organizationMail->getId();    	
+    	
+    	$configParams['larpingUi'] = $larpingUiParams;
+    	    	
+    	$bcParams= [];
+    	$bcParams['paymentProviders'] = [];    	
+    	
+    	$configParams['bc'] = $bcParams;    	
+    	
+    	$bsParams= [];
+    	$bsParams['services'] = [];
+    	
+    	$configParams['bs'] = $bsParams;
     	
     	$configuration= new Configuration();
     	$configuration->setApplication($application);
@@ -178,11 +192,19 @@ class LarpingFixtures extends Fixture
     	$va->setId($id);
     	$manager->persist($va);
     	$manager->flush();
-    	$manager->refresh($va);
+    	//$manager->refresh($va);
     	
     	// Larping / Vortex Adventures
     	
-    	$configParams = [];
+    	$configParams = [];    	
+    	
+    	$larpingUiParams = [];
+    	$configParams['larpingUi'] = $larpingUiParams;
+    	
+    	$bcParams= [];
+    	$bcParams['paymentProviders'] = [];
+    	
+    	$configParams['bc'] = $bcParams;
     	
     	$configuration= new Configuration();
     	$configuration->setApplication($application);
