@@ -35,8 +35,8 @@
                     <md-datepicker  ng-model="defaultDate" md-placeholder="Voer datum in" md-open-on-focus="" md-date-filter="availabledates" md-date-locale="dutchDates" md-min-date = "minDate"></md-datepicker>
                 </div>
                 <select name="tijd">
-                    <option value="10:00">10:00</option>
-                    <option value="10:30">10:30</option>
+                    <option value="10:00" {% if "10:00" == request.properties.datum|date("H:i", "Europe/Paris") %} selected {% endif %}>10:00</option>
+                    <option value="10:30" {% if "10:30" == request.properties.datum|date("H:i", "Europe/Paris") %} selected {% endif %}>10:30</option>
                     <!--
                     <option value="11:00">11:00</option>
                     <option value="11:30">11:30</option>
