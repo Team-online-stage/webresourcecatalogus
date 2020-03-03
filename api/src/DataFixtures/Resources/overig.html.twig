@@ -5,41 +5,38 @@
 {% block body %}
 
     {# here we are going to play a small trick but we want to prevent making an commonground call  #}
-    {% if request.properties.partners is defined and request.properties.partners[0] is defined %}
+    {% if request.properties.partners is defined and request.properties.partners[0] is defined  %}
         {% set assent1 = commonground_resource(request.properties.partners.0) %}
         {% set contact1 = commonground_resource(assent1.contact) %}
     {% endif %}
-    {% if request.properties.partners is defined and request.properties.partners[1] is defined %}
+    {% if request.properties.partners is defined and request.properties.partners[1] is defined  %}
         {% set assent2 = commonground_resource(request.properties.partners.1) %}
         {% set contact2 = commonground_resource(assent2.contact) %}
     {% endif %}
     <!-- .row-custom -->
-    <div class="row-custom animation" data-animation="animation-fade-in"
-         data-delay=" {% if app.session.flashbag.peekAll|length > 0 %}3400{% else %}200{% endif %}">
+    <div class="row-custom animation" data-animation="animation-fade-in" data-delay=" {% if app.session.flashbag.peekAll|length > 0 %}3400{%else%}200{% endif %}" >
         <div class="post-heading-center">
             <h2>Overig</h2>
         </div>
-    </div>
-    <div class="row-custom animation" data-animation="animation-fade-in"
-         data-delay=" {% if app.session.flashbag.peekAll|length > 0 %}3600{% else %}400{% endif %}">
-        <form method="post" action="{{ path('app_default_post_request') }}" class="affa-form-contact">
+	</div>
+    <div class="row-custom animation" data-animation="animation-fade-in" data-delay=" {% if app.session.flashbag.peekAll|length > 0 %}3600{%else%}400{% endif %}" >
+        <form method="post" action="{{ path('app_default_post_request') }}" class="affa-form-contact" >
 
-            <div class="col-sm-6 col-md-6 col-lg-5 col-sm-offset-0 col-md-offset-0 col-lg-offset-1">
-                Voordat we uw aanvraag kunnen verwerken zijn er nog een paar extra zaken die we graag zouden weten.
+        <div class="col-sm-6 col-md-6 col-lg-5 col-sm-offset-0 col-md-offset-0 col-lg-offset-1">
+            Voordat we uw aanvraag kunnen verwerken zijn er nog een paar extra zaken die we graag zouden weten
                 <div class="affa-feature-icon"> <!-- 6 -->
                     <i class="fal fa-cash-register"></i>
                     <div class="feature-text">
                         <h4>Betalen</h4>
                         {% if request is defined and request and request.properties.order is defined and request.properties.order is not empty %}
-                            <p>U heeft een huwelijk of opties gekozen waar kosten aan zijn verbonden. U dient deze
-                                kosten 6 weken voor aanvang van huwelijk te voldoen.</p>
-                            <p><a href="https://www.ideal.nl/demo/" class="btn btn-login btn-large">
-                                    <i class="fas fa-money-bill-wave"></i>
-                                    Betaal uw verzoek.
-                                </a></p>
-                        {% else %}
-                            <p>Uw verzoek kan op dit moment niet worden omgezet naar een order.</p>
-                        {% endif %}
+                 		<p>U heeft een huwelijk of opties gekozen waar kosten aan zijn verbonden. U dient deze kosten 6 weken voor aanvang van huwelijk te voldoen</p>
+                  		<p><a href="https://www.ideal.nl/demo/" class="btn btn-login btn-large" >
+    						<i class="fas fa-money-bill-wave" ></i>
+    			       		Betaal uw verzoek
+    		        	</a></p>
+    		        	{% else %}
+                     	<hp>Uw verzoek kan op dit moment niet worden omgezet naar een order</hp>
+    		        	{% endif %}
                     </div><!-- /.feature-text -->
                 </div><!-- /.affa-feature-icon -->
                 <div class="affa-feature-icon"> <!-- 6 -->
@@ -57,7 +54,7 @@
                   		</p>
                     </div><!-- /.feature-text -->
                 </div><!-- /.affa-feature-icon -->
-            </div>
+        </div>
 
         <div class="col-sm-6 col-md-6 col-lg-6s">
 
@@ -89,13 +86,12 @@
                             <textarea name="opmerkingen" id="opmerkingen">
                             </textarea>
 
-                        <button type="submit" class="btn btn-success btn-lg btn-block btn-icon"><i
-                                class="far fa-envelope"></i> Opslaan
-                        </button>
+                            <button type="submit" class="btn btn-success btn-lg btn-block btn-icon"><i class="far fa-envelope"></i> Opslaan</button>
+                        </form>
                     </div>
                 </div>
-            </div>
-        </form>
+        </div>
+
     </div>
     <!-- .row-custom end -->
 {% endblock %}

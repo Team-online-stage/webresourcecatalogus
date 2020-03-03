@@ -17,45 +17,55 @@ use Symfony\Component\Serializer\Annotation\MaxDepth;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Footer can hold a logo and menu or other links.
+ * Configurations hold a specific organisation configruation for an application.
  *
  * @ApiResource(
  *     normalizationContext={"groups"={"read"}, "enable_max_depth"=true},
  *     denormalizationContext={"groups"={"write"}, "enable_max_depth"=true},
  * )
+ * @ApiResource()
+ * @ApiFilter(SearchFilter::class, properties={"id": "exact", "application.id": "exact","organization.id": "exact"})
  * @ApiFilter(DateFilter::class, properties={"dateCreated","dateModified"})
  * @Gedmo\Loggable
- * @ORM\Entity(repositoryClass="App\Repository\FooterRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\ConfigurationRepository")
  */
-class Footer
+class Configuration
 {
-    /**
-     * @var UuidInterface The UUID identifier of this resource
-     *
-     * @example e2984465-190a-4562-829e-a8cca81aa35d
-     *
-     * @Assert\Uuid
-     * @Groups({"read"})
-     * @ORM\Id
-     * @ORM\Column(type="uuid", unique=true)
-     * @ORM\GeneratedValue(strategy="CUSTOM")
-     * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
-     */
-    private $id;
+	/**
+	 * @var UuidInterface The UUID identifier of this resource
+	 *
+	 * @example e2984465-190a-4562-829e-a8cca81aa35d
+	 *
+	 * @Assert\Uuid
+	 * @Groups({"read"})
+	 * @ORM\Id
+	 * @ORM\Column(type="uuid", unique=true)
+	 * @ORM\GeneratedValue(strategy="CUSTOM")
+	 * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
+	 */
+	private $id;
 
     /**
-     * @Groups({"read","write"})
-     * @ORM\OneToOne(targetEntity="App\Entity\Image", cascade={"persist", "remove"})
+     * @Groups({"write"})
      * @MaxDepth(1)
-     */
-    private $logo;
-
-    /**
-     * @Groups({"read","write"})
-     * @ORM\OneToOne(targetEntity="App\Entity\Application", mappedBy="footer", cascade={"persist", "remove"})
-     * @MaxDepth(1)
+     * @ORM\ManyToOne(targetEntity="App\Entity\Application", inversedBy="configurations")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $application;
+
+    /**
+     * @Groups({"write"})
+     * @MaxDepth(1)
+     * @ORM\ManyToOne(targetEntity="App\Entity\Organization", inversedBy="configurations")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $organization;
+
+    /**
+     * @Groups({"read","write"})
+     * @ORM\Column(type="json")
+     */
+    private $configuration = [];
     
     /**
      * @var Datetime $dateCreated The moment this request was created
@@ -74,34 +84,17 @@ class Footer
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $dateModified;
-
-    public function __construct()
-    {
-        $this->image = new ArrayCollection();
-    }
-
+    
     public function getId(): Uuid
     {
-        return $this->id;
+    	return $this->id;
     }
-
+    
     public function setId(Uuid $id): self
     {
-        $this->id = $id;
-
-        return $this;
-    }
-
-    public function getLogo(): ?Image
-    {
-        return $this->logo;
-    }
-
-    public function setLogo(?Image $logo): self
-    {
-        $this->logo = $logo;
-
-        return $this;
+    	$this->id = $id;
+    	
+    	return $this;
     }
 
     public function getApplication(): ?Application
@@ -113,18 +106,36 @@ class Footer
     {
         $this->application = $application;
 
-        // set (or unset) the owning side of the relation if necessary
-        $newFooter = $application === null ? null : $this;
-        if ($newFooter !== $application->getFooter()) {
-            $application->setFooter($newFooter);
-        }
+        return $this;
+    }
+
+    public function getOrganization(): ?Organization
+    {
+        return $this->organization;
+    }
+
+    public function setOrganization(?Organization $organization): self
+    {
+        $this->organization = $organization;
+
+        return $this;
+    }
+
+    public function getConfiguration(): ?array
+    {
+        return $this->configuration;
+    }
+
+    public function setConfiguration(array $configuration): self
+    {
+        $this->configuration = $configuration;
 
         return $this;
     }
     
     public function getDateCreated(): ?\DateTimeInterface
     {
-    	return $this->dateModified;
+    	return $this->dateCreated;
     }
     
     public function setDateCreated(\DateTimeInterface $dateCreated): self
