@@ -3,6 +3,9 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Annotation\ApiFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\DateFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -32,6 +35,7 @@ use App\Controller\DefaultController;
  *     	normalizationContext={"groups"={"read"}, "enable_max_depth"=true},
  *     	denormalizationContext={"groups"={"write"}, "enable_max_depth"=true},
  * )
+ * @ApiFilter(DateFilter::class, properties={"dateCreated","dateModified"})
  * @Gedmo\Loggable
  * @ORM\Entity(repositoryClass="App\Repository\TemplateRepository")
  */
@@ -52,7 +56,7 @@ class Template
     private $id;
 
     /**
-     * @var string The name of this menu
+     * @var string The internal name of this menu
      *
      * @example webshop menu
      *
@@ -64,6 +68,20 @@ class Template
      * @ORM\Column(type="string", length=255)
      */
     private $name;
+    
+    /**
+     * @var string $title The external name of this menu
+     *
+     * @example webshop menu
+     *
+     * @Assert\NotNull
+     * @Assert\Length(
+     *      max = 255
+     * )
+     * @Groups({"read","write"})
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $title;
 
     /**
      * @var string The description of this page.
@@ -75,7 +93,7 @@ class Template
      *     max = 255
      * )
      * @Groups({"read","write"})
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $description;
 
@@ -107,6 +125,22 @@ class Template
      * @MaxDepth(1)
      */
     private $pages;
+    
+    /**
+     * @Groups({"read","write"})
+     * @MaxDepth(1)
+     * @ORM\ManyToOne(targetEntity="App\Entity\Application", inversedBy="templates")
+     * @ORM\JoinColumn(nullable=false, nullable=true)
+     */
+    private $application;
+    
+    /**
+     * @Groups({"read","write"})
+     * @MaxDepth(1)
+     * @ORM\ManyToOne(targetEntity="App\Entity\Organization", inversedBy="templates")
+     * @ORM\JoinColumn(nullable=false, nullable=true)
+     */
+    private $organization;
     
     /**
      * @var Datetime $dateCreated The moment this request was created
@@ -153,6 +187,18 @@ class Template
         $this->name = $name;
 
         return $this;
+    }
+    
+    public function getTitle(): ?string
+    {
+    	return $this->title;
+    }
+    
+    public function setTitle(string $title): self
+    {
+    	$this->title = $title;
+    	
+    	return $this;
     }
 
     public function getDescription(): ?string
@@ -220,6 +266,30 @@ class Template
         }
 
         return $this;
+    }
+    
+    public function getApplication(): ?Application
+    {
+    	return $this->application;
+    }
+    
+    public function setApplication(?Application $application): self
+    {
+    	$this->application = $application;
+    	
+    	return $this;
+    }
+    
+    public function getOrganization(): ?Organization
+    {
+    	return $this->organization;
+    }
+    
+    public function setOrganization(?Organization $organization): self
+    {
+    	$this->organization = $organization;
+    	
+    	return $this;
     }
     
     public function getDateCreated(): ?\DateTimeInterface
