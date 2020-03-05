@@ -16,7 +16,7 @@
                         <br>
                         <br>
                          {% if user is  empty %}
-                         <a href="http://digispoof.zaakonline.nl?responceUrl={{ absolute_url(path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params'))) }}" class="btn btn-login btn-icon">
+                         <a href="http://digispoof.huwelijksplanner.online/responceUrl={{ absolute_url(path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params'))) }}" class="btn btn-login btn-icon">
                          	<i class="fas fa-sign-in-alt"></i>
                          	Log hier in om deze locatie te reserveren
                          </a>
@@ -52,9 +52,9 @@
                     </div>
                 </div>
                 <div class="col-sm-12 col-md-6 col-lg-5 col-sm-offset-1 col-md-offset-0 col-lg-offset-1">
-                   {% if resource.logo is defined and resource.logo is not empty%}          
+                   {% if resource.logo is defined and resource.logo is not empty%}
                         	<figure class="col-img40 margin-bottom40">
-                                <img ng-src="{{resource.logo}}" alt="Image">
+                                <img src="{{resource.logo}}" alt="Image">
                             </figure>
                          {% endif %}
 
