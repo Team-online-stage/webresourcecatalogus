@@ -32,8 +32,8 @@
                       <td>{{ commonground_resource(request.request_type).name }}</td>
                       <td>{{ request.date_created}} </td>
                       <td>{{ request.status|trans }}</td>
-                      <td>{% if request.status == 'incomplete' %}<a href="{{ path('app_default_slug',{'request':request['@id']]}) }}" class="btn btn-primary" role="button">Verder gaan</a>
-                      	  {% elseif request.status == 'complete' %}<a href="{{ path('app_default_slug',{'request':requestv}) }}" class="btn btn-success" role="button">Indienen</a>
+                      <td>{% if request.status == 'incomplete' %}<a href="{{ path('app_default_slug',{'request':request['@id']}) }}" class="btn btn-primary" role="button">Verder gaan</a>
+                      	  {% elseif request.status == 'complete' %}<a href="{{ path('app_default_slug',{'request':request['@id']}) }}" class="btn btn-success" role="button">Indienen</a>
                       	  {% else %}<a href="{{ path('app_default_slug',{'request':request['@id']}) }}" class="btn btn-primary" role="button">Bekijken</a>
                       	  {% endif %}
                       	  
