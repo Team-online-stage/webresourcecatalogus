@@ -27,7 +27,7 @@
                          </a>
 
                          {% elseif (request.properties.locatie is not defined or request.properties.locatie is empty) %}
-                        <a href="{{ path('app_default_set',{'value':"https://pdc.zaakonline.nl"~resource['@id'],'slug':'locatie'}) }}" class="btn btn-success btn-icon" >
+                        <a href="{{ path('app_default_set',{'value':resource['@id'],'slug':'locatie'}) }}" class="btn btn-success btn-icon" >
                         	<i class="far fa-calendar-check"></i>
                          	Reserveer deze locatie
                          </a>
@@ -35,13 +35,13 @@
                          {% elseif request.properties.plechtigheid is defined
                          and (request.properties.plechtigheid == "https://pdc.zaakonline.nl/products/190c3611-010d-4b0e-a31c-60dadf4d1c62" or request.properties.plechtigheid == "https://pdc.zaakonline.nl/products/16353702-4614-42ff-92af-7dd11c8eef9f") %}
                              <p>Let op: Het type ceremonie dat u heeft geselecteerd laat geen keuze voor een locatie toe. Alleen bij een uitgebreide ceremonie bestaat de mogelijkheid een locatie te kiezen. Wilt u toch een locatie kunnen kiezen, dan kunt u  <a href="{{ path('app_default_slug',{'slug':'plechtigheid'}) }}">hier</a> uw ceremonie aanpassen.</p>
-                         {% elseif (request.properties.locatie == "https://pdc.zaakonline.nl"~resource['@id']) %}
-                             <a href="{{ path('app_default_unset',{'value':"https://pdc.zaakonline.nl"~resource['@id'],'slug':'locatie'}) }}" class="btn btn-danger btn-icon" >
+                         {% elseif (request.properties.locatie == resource['@id']) %}
+                             <a href="{{ path('app_default_unset',{'value':resource['@id'],'slug':'locatie'}) }}" class="btn btn-danger btn-icon" >
                                  <i class="far fa-calendar-times"></i>
                                  Annuleer deze locatie
                              </a>
                          {% else %}
-                             U heeft reeds <a href="{{  path('app_default_view',{'slug':'locatie-kiezen','id':request.properties.locatie|replace({"https://pdc.zaakonline.nl/resources/": ""})}) }}">een locatie</a> gekozen, annuleer deze eerst als u deze locatie wil reserveren.
+                             U heeft reeds <a href="{{  path('app_default_view',{'slug':'locatie-kiezen','id':request.properties.locatie}) }}">een locatie</a> gekozen, annuleer deze eerst als u deze locatie wil reserveren.
                          {% endif %}
                          <br><br>
                          <a href="{{ path('app_default_slug',{'slug':'getuige'}) }}" class="btn btn-primary btn-icon">
