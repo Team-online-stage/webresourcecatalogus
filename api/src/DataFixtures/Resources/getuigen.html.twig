@@ -30,7 +30,7 @@
             <div class="row">
                 {% if request.properties.getuigen is defined %}
                     {% for partner in request.properties.partners %}
-                        <h3 class="col-md-12 text-center">{{ commonground_resource(commonground_resource(partner).contact).name }} </h3>
+                        <h3 class="col-md-12 text-center">Getuigen van {{ commonground_resource(commonground_resource(partner).contact).name }} </h3>
                         {% for getuige in request.properties.getuigen %}
                             {% set assent = commonground_resource(getuige) %}
                             {% set contact = commonground_resource(assent.contact) %}
@@ -54,6 +54,7 @@
                                             <h4>
                                                 {{ contact.name }}
                                             </h4>
+                                            <div style="text-align: left;" class="col-md-offset-2">
                                             <p><b>Status: </b>{{ assent.status|trans }}</p>
 
                                             <p><b>Voornaam:</b> {{ contact.givenName }}</p>
@@ -65,6 +66,8 @@
                                                 {% if contact.telephones is defined and contact.telephones is not empty and contact.telephones[0].telephone != '' %}
                                             <p><b>Telefoon</b></b> {{ contact.telephones[0].telephone }}</p>
                                                 {% endif %}
+
+                                            </div>
 
                                                 <a style="margin-top: 10px" href="{{ path('app_default_unset', {'slug':'getuigen', 'value': 'http://irc.zaakonline.nl/assents/'~assent.id}) }}"
                                                    class="btn btn-danger btn-icon col-md-8 col-md-offset-2">Annuleer
