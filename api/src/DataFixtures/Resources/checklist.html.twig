@@ -270,13 +270,15 @@
                         </li>
                         {% endif %}
     		           		#}
+
+
                 {% if request is not empty and request.status is defined and request.status != "submitted" %}
-                    <a href="{{ path('app_default_submitrequest') }}" class="btn btn-primary btn-icon" >
+                    <a style="margin-left: 12.5% !important; margin-bottom: 5px;" href="{{ path('app_default_submitrequest') }}" class="btn btn-primary btn-icon col-md-8" >
                         <i class="fas fa-share-square"></i>
                         {% if request.properties.ceremonie is defined  %}{{ request.properties.ceremonie|capitalize }}{% else %}Aanvraag{% endif %} indienen
                     </a>
                 {% endif %}
-                <a href="{{ path('app_default_cancelrequest') }}" class="btn btn-danger btn-icon" >
+                <a style="margin-left: 12.5% !important;" href="{{ path('app_default_cancelrequest') }}" class="btn btn-danger btn-icon col-md-8">
                     <i class="fas fa-share-square"></i>
                     Annuleer {% if request.properties.ceremonie is defined  %}{{ request.properties.ceremonie }}{% else %}aanvraag{% endif %}
                 </a>
