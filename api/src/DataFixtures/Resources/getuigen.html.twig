@@ -63,7 +63,7 @@
                                             <br><b>Telefoon</b></b> {{ contact.telephones[0].telephone }}
                                         {% endif %}
 
-                                        <a href="{{ path('app_default_unset', {'slug':'getuigen', 'value': 'http://irc.zaakonline.nl/assents/'~assent.id}) }}" class="btn btn-danger btn-icon">Annuleer getuige</a>
+                                        <a href="{{ path('app_default_unset', {'slug':'getuigen', 'value': assent['@id']}) }}" class="btn btn-danger btn-icon">Annuleer getuige</a>
                                     </p>
                                 </div><!-- /.team-profile-name -->
                             </div><!-- /.affa-team-profile -->
