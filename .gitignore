@@ -7,4 +7,6 @@ api/helm/kubeconfig.yaml
 
 .idea/
 
-api/helm/kubeconfig*
+api/helm/kubeconfig-fuga.yaml
+
+api/helm/kubeconfig-digi.yaml
