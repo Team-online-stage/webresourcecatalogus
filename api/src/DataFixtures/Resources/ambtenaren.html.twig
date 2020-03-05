@@ -24,14 +24,14 @@
             {% for product in products["hydra:member"] %}
                 {% if (product.audience == "public") %}
                 <div class="col-sm-6"> <!-- 4 -->
-                    <a href="{{ path('app_default_slug',{'slug':'ambtenaar-kiezen','resource':'https://pdc.zaakonline.nl'~product['@id']}) }}">
+                    <a href="{{ path('app_default_slug',{'slug':'ambtenaar-kiezen','resource':product['@id']}) }}">
                         <div class="affa-testimonial">
                             <div class="testimonial-text" >
                                 {{ product.description|raw }}
                             </div>
                             <div class="testimonial-author">
                                 <h4>{{ product.name|e }}</h4>
-                                {% if  request.properties.ambtenaar is defined and request.properties.ambtenaar == "https://pdc.zaakonline.nl"~product['@id'] %}
+                                {% if  request.properties.ambtenaar is defined and request.properties.ambtenaar == product['@id'] %}
                                     <h5>Door u gekozen</h5>
                                 {% endif %}
                                 <p>Ambtenaar</p>
@@ -44,7 +44,7 @@
             {% endfor %}
             {% if request['@id']  is defined %}
                 <div class="col-sm-6"> <!-- 4 -->
-                    <a href="{{ path('app_default_slug',{'requestType':'https://vtc.zaakonline.nl/request_types/cdd7e88b-1890-425d-a158-7f9ec92c9508','requestParent':'httpss://vrc.zaakonline.nl'~request['@id']}) }}">
+                    <a href="{{ path('app_default_slug',{'requestType':'https://vtc.huwelijksplanner.online/request_types/cdd7e88b-1890-425d-a158-7f9ec92c9508','requestParent':request['@id']}) }}">
                         <div class="affa-testimonial">
                             <div class="testimonial-text" >
                                Ambtenaar voor een dag.
