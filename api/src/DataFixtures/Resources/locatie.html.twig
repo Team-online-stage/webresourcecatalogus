@@ -12,16 +12,16 @@
                         	<h4>Locatie </h4>
                             <h2>{{ resource.name}}</h2>
                         </div>
-                        {{  resource.description|raw }}                        
+                        {{  resource.description|raw }}
                         <br>
                         <br>
                          {% if user is  empty %}
-                         <a href="http://digispoof.zaakonline.nl?responceUrl={{ absolute_url(path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params'))) }}" class="btn btn-login btn-icon">
+                         <a href="http://digispoof.huwelijksplanner.online/responceUrl={{ absolute_url(path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params'))) }}" class="btn btn-login btn-icon">
                          	<i class="fas fa-sign-in-alt"></i>
                          	Log hier in om deze locatie te reserveren
                          </a>
 {% elseif (request is not defined or request is empty) %}
-                         <a href="{{  path('app_default_view',{'slug':'requests'}) }}" class="btn btn-login btn-icon">
+                         <a href="{{  path('app_default_slug',{'slug':'requests'}) }}" class="btn btn-login btn-icon">
                          	<i class="fas fa-sign-in-alt"></i>
                          	Kies hier een verzoek om deze locatie te reserveren
                          </a>
@@ -33,7 +33,7 @@
                          </a>
 
                          {% elseif request.properties.plechtigheid is defined
-                         and (request.properties.plechtigheid == "https://pdc.zaakonline.nl/products/190c3611-010d-4b0e-a31c-60dadf4d1c62" or request.properties.plechtigheid == "https://pdc.zaakonline.nl/products/16353702-4614-42ff-92af-7dd11c8eef9f") %}
+                         and (request.properties.plechtigheid == "https://pdc.huwelijksplanner.online/products/190c3611-010d-4b0e-a31c-60dadf4d1c62" or request.properties.plechtigheid == "https://pdc.huwelijksplanner.online/products/16353702-4614-42ff-92af-7dd11c8eef9f") %}
                              <p>Let op: Het type ceremonie dat u heeft geselecteerd laat geen keuze voor een locatie toe. Alleen bij een uitgebreide ceremonie bestaat de mogelijkheid een locatie te kiezen. Wilt u toch een locatie kunnen kiezen, dan kunt u  <a href="{{ path('app_default_slug',{'slug':'plechtigheid'}) }}">hier</a> uw ceremonie aanpassen.</p>
                          {% elseif (request.properties.locatie == resource['@id']) %}
                              <a href="{{ path('app_default_unset',{'value':resource['@id'],'slug':'locatie'}) }}" class="btn btn-danger btn-icon" >
@@ -41,7 +41,7 @@
                                  Annuleer deze locatie
                              </a>
                          {% else %}
-                             U heeft reeds <a href="{{  path('app_default_view',{'slug':'locatie-kiezen','id':request.properties.locatie}) }}">een locatie</a> gekozen, annuleer deze eerst als u deze locatie wil reserveren.
+                             U heeft reeds <a href="{{  path('app_default_slug',{'slug':'locatie-kiezen','id':request.properties.locatie}) }}">een locatie</a> gekozen, annuleer deze eerst als u deze locatie wil reserveren.
                          {% endif %}
                          <br><br>
                          <a href="{{ path('app_default_slug',{'slug':'getuige'}) }}" class="btn btn-primary btn-icon">
@@ -51,19 +51,19 @@
 
                     </div>
                 </div>
-                <div class="col-sm-12 col-md-6 col-lg-5 col-sm-offset-1 col-md-offset-0 col-lg-offset-1">               	
-                   {% if resource.logo is defined and resource.logo is not empty%}          
+                <div class="col-sm-12 col-md-6 col-lg-5 col-sm-offset-1 col-md-offset-0 col-lg-offset-1">
+                   {% if resource.logo is defined and resource.logo is not empty%}
                         	<figure class="col-img40 margin-bottom40">
-                                <img ng-src="{{resource.logo}}" alt="Image">
+                                <img src="{{resource.logo}}" alt="Image">
                             </figure>
                          {% endif %}
 
                 </div>
 
             </div>
-            <!-- .row end -->        
-            
-            {% if resource.movie is defined and resource.movie is not empty%}              
+            <!-- .row end -->
+
+            {% if resource.movie is defined and resource.movie is not empty%}
             <!-- .row -->
             <div class="row animation" {% if app.session.flashbag.peekall|length> 0 %}data-animation="animation-fade-in" data-delay="3400"{% endif %}>
 
