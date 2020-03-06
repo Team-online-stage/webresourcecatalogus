@@ -14,24 +14,21 @@
             </figure>
         </div>
 
-        <div class="col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-0">
-            <div class="col-text20 margin-bottom20">
-                <div class="post-heading-left">
-                    <h2>Wat is er al gedaan en wat moet er nog gebeuren?</h2>
-                    <p>We kunnen ons goed voorstellen dat er nogal wat op jullie afkomt bij het plannen , daarom hebben
-                        we
-                        alles op een rij gezet voor jullie. Een handig overzicht van wat er moet gebeuren, maar ook wat
-                        er
-                        al is gedaan.</p>
-                    <p><b>Legenda</b><br>
-                        <i style="color: red" class="fa fa-exclamation-triangle"></i> Nog te doen <br>
-                        <i class="fa fas fa-check"></i> Gedaan
-                    </p>
-                </div><!-- /.post-heading-left -->
-                <div class="list-row">
-                    <div class="list-col">
-                        <b>Gedaan:</b>
-                        <ul class="list-icon">
+    <div class="col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-0">
+        <div class="col-text20 margin-bottom20">
+            <div class="post-heading-left">
+                <h2>Wat is er al gedaan en wat moet er nog gebeuren?</h2>
+                <p>We kunnen ons goed voorstellen dat er nogal wat op jullie afkomt bij het plannen , daarom hebben we alles op een rij gezet voor jullie. Een handig overzicht van wat er moet gebeuren, maar ook wat er al is gedaan.</p>
+                <h2>Uw referentie:</h2>
+                <p>{{ request.reference }}</p>
+                <p><b>Legenda</b><br>
+                    <i style="color: red" class="fa fa-exclamation-triangle"></i> Nog te doen <br>
+                    <i class="fa fas fa-check"></i> Gedaan
+                </p>
+            </div><!-- /.post-heading-left -->
+            <div class="list-row"><div class="list-col">
+                    <b>Gedaan:</b>
+                    <ul class="list-icon">
 
                             {% if request.properties.type is defined and request.properties.type is not empty %}
                                 <li><b>Ceremonie</b>
