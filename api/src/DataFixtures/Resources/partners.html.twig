@@ -78,9 +78,10 @@
 
                 <!-- Bijwerken partner 1 -->
                 <div class="affa-feature-icon">
+                {% if (contact1.emails is not defined or contact1.emails is empty or contact1.emails[0].email == "") or (contact1.telephones is not defined or contact1.telephones is empty or contact1.telephones[0].telephone == "")  %}
                     <i class="fas fa-envelope"></i>
                     <div class="feature-text">
-                        {% if (contact1.emails is not defined or contact1.emails is empty or contact1.emails[0].email == "") or (contact1.telephones is not defined or contact1.telephones is empty or contact1.telephones[0].telephone == "")  %}
+
                             <h4>Uw contact gegevens</h4>
                             <p>We willen graag nog een paar dingen van u weten</p>
                             <br/>
@@ -91,21 +92,21 @@
                                 {% if contact1.emails is not defined or contact1.emails is empty or contact1.emails[0].email == "" %}
                                     <label for="partner_email">Email Adres <span class="required">*</span></label>
                                     <input type="text" name="email" placeholder="john@do.nl"
-                                           value="{% if contact1.emails is defined %}{{ contact1.emails[0].email }}{% endif %}"
+                                           value="{% if contact1.emails is defined and contact1.emails is not empty %}{{ contact1.emails[0].email }}{% endif %}"
                                            required/>
                                 {% endif %}
                                 {% if contact1.telephones is not defined or contact1.telephones is empty or contact1.telephones[0].telephone == "" %}
                                     <label for="partner_telefoonnummer">Telefoonnummer</label>
                                     <input type="text" name="telephone" placeholder="+31 6 12345678"
-                                           value="{% if contact1.telephones is defined %}{{ contact1.telephones[0].telephone }}{% endif %}"/>
+                                           value="{% if contact1.telephones is defined and contact1.telephones is not empty %}{{ contact1.telephones[0].telephone }}{% endif %}"/>
                                 {% endif %}
                                 <button type="submit" class="btn btn-success btn-lg btn-block btn-icon"><i
                                         class="far fa-envelope"></i> Opslaan
                                 </button>
                             </form>
-                        {% endif %}
                     </div>
-                </div>
+                {% endif %}
+            </div>
             {% endif %}
         </div>
 
@@ -157,10 +158,11 @@
 
                 <!-- Bijwerken partner 2 -->
                 <div class="affa-feature-icon">
+                {% if contact2.emails is not defined or contact2.emails is empty or contact2.emails[0].email is empty
+                    or contact2.telephones is not defined or contact2.telephones is empty or contact2.telephones[0].telephone is empty %}
                     <i class="fas fa-envelope"></i>
                     <div class="feature-text">
-                        {% if contact2.emails is not defined or contact2.emails is empty or contact2.emails[0].email is empty
-                            or contact2.telephones is not defined or contact2.telephones is empty or contact2.telephones[0].telephone is empty %}
+
                             <h4>Contact gegevens van uw partner</h4>
                             <p>Uiteraard willen we ook uw partner graag kunnen bereiken.</p>
                             <br/>
@@ -183,9 +185,9 @@
                                         class="far fa-envelope"></i> Opslaan
                                 </button>
                             </form>
-                        {% endif %}
                     </div>
-                </div>
+                {% endif %}
+            </div>
             {% else %}
                 <!-- Uitnodigen partner 2 -->
                 <div class="affa-feature-icon"> <!-- 6 -->
