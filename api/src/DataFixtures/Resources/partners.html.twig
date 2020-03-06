@@ -5,36 +5,47 @@
 {% block body %}
 
     {# here we are going to play a small trick but we want to prevent making an commonground call  #}
-    {% if request.properties.partners is defined and request.properties.partners[0] is defined  %}
+    {% if request.properties.partners is defined and request.properties.partners[0] is defined %}
         {% set assent1 = commonground_resource(request.properties.partners.0) %}
         {% set contact1 = commonground_resource(assent1.contact) %}
     {% endif %}
-    {% if request.properties.partners is defined and request.properties.partners[1] is defined  %}
+    {% if request.properties.partners is defined and request.properties.partners[1] is defined %}
         {% set assent2 = commonground_resource(request.properties.partners.1) %}
         {% set contact2 = commonground_resource(assent2.contact) %}
     {% endif %}
     <!-- .row-custom -->
-    <div class="row-custom animation" data-animation="animation-fade-in" data-delay=" {% if app.session.flashbag.peekAll|length > 0 %}3400{%else%}200{% endif %}" >
+    <div class="row-custom animation" data-animation="animation-fade-in"
+         data-delay=" {% if app.session.flashbag.peekAll|length > 0 %}3400{% else %}200{% endif %}">
         <div class="post-heading-center">
             <h2>Uw partner</h2>
         </div>
 
         <div class="col-center">
-            <figure class="margin-bottom40 " >
+            <figure class="margin-bottom40 ">
                 <img src="images/content/elements/MakeItKnown.png"/>
             </figure>
         </div>
 
         <div class="col-left">
-            {% if assent1 is defined and assent1 is not empty  %}
+            {% if assent1 is defined and assent1 is not empty %}
                 <div class="affa-feature-icon"> <!-- 1 -->
-                    <i class="fas fa-user" ></i>
+                    <i class="fas fa-user"></i>
                     <div class="feature-text">
-                        <h4>
-                            {{ contact1.name }}
-                        </h4>
+                        <div class="col-md-2">
+                            {% if contact1.emails is defined and contact1.emails is not empty or contact1.telephones is defined and contact1.telephones is not empty %}
+                                <a class="float-left" href="#editPartnerModal" data-toggle="modal"
+                                   data-target="#editPartnerModal"><i
+                                        style="color: #2A5587; background-color:white;font-size:16px"
+                                        class="fa  fa-edit"></i></a>
+                            {% endif %}
+                        </div>
+                        <div class="col-md-10">
+                            <h4>
+                                {{ contact1.name }}
+                            </h4>
+                        </div>
                         <p>
-                            Status:  {{ assent1.status|trans }}
+                            Status: {{ assent1.status|trans }}
 
 
                             <br><b>Voornaam:</b> {{ contact1.givenName }}
@@ -46,7 +57,7 @@
 
 
                 <div class="affa-feature-icon"> <!-- 2 -->
-                    <i class="fas fa-home " ></i>
+                    <i class="fas fa-home "></i>
                     <div class="feature-text">
                         <h4>Adres en contact</h4>
                         <p>
@@ -57,10 +68,10 @@
                             {% if contact1.emails is defined and contact1.emails is not empty %}
                                 <br><b>Email:</b> {{ contact1.emails[0].email }}
                             {% endif %}
-                            {% if contact1.telephones is defined and contact1.telephones is not empty  %}
+                            {% if contact1.telephones is defined and contact1.telephones is not empty %}
                                 <br><b>Telefoon</b></b> {{ contact1.telephones[0].telephone }}
                             {% endif %}
-                            <br />
+                            <br/>
                         </p>
                     </div>
                 </div>
@@ -73,15 +84,21 @@
                         <p>We willen graag nog een paar dingen van u weten</p>
                         <br/>
 
-                        <form method="post" action="{{ path('app_default_updateassent',{'id':assent1.id}) }}" class="affa-form-contact">
+                        <form method="post" action="{{ path('app_default_updateassent',{'id':assent1.id}) }}"
+                              class="affa-form-contact">
                             <div class="submit-status"></div>
 
                             <label for="partner_email">Email Adres <span class="required">*</span></label>
-                            <input type="text" name="email" placeholder="john@do.nl" value="{% if contact1['_embedded']['emails'] is defined   %}{{ contact1['_embedded']['emails'][0].email }}{% endif %}" required/>
+                            <input type="text" name="email" placeholder="john@do.nl"
+                                   value="{% if contact1['_embedded']['emails'] is defined %}{{ contact1['_embedded']['emails'][0].email }}{% endif %}"
+                                   required/>
                             <label for="partner_telefoonnummer">Telefoonnummer</label>
-                            <input type="text" name="telephone" placeholder="+31 6 12345678" value="{% if contact1['_embedded']['telephones'] is defined   %}{{ contact1['_embedded']['telephones'][0].telephone }}{% endif %}"/>
+                            <input type="text" name="telephone" placeholder="+31 6 12345678"
+                                   value="{% if contact1['_embedded']['telephones'] is defined %}{{ contact1['_embedded']['telephones'][0].telephone }}{% endif %}"/>
 
-                            <button type="submit" class="btn btn-success btn-lg btn-block btn-icon"><i class="far fa-envelope"></i> Opslaan</button>
+                            <button type="submit" class="btn btn-success btn-lg btn-block btn-icon"><i
+                                    class="far fa-envelope"></i> Opslaan
+                            </button>
                         </form>
                     </div>
                 </div>
@@ -90,9 +107,9 @@
 
         <div class="col-right">
             <!-- NAW gegevens partner 2 -->
-            {% if assent2 is defined and assent2 is not empty  %}
+            {% if assent2 is defined and assent2 is not empty %}
                 <div class="affa-feature-icon">
-                    <i class="fas fa-user " ></i>
+                    <i class="fas fa-user "></i>
                     <div class="feature-text">
                         <div class="row">
                             <div class="col-md-10">
@@ -101,11 +118,13 @@
                                 </h4>
                             </div>
                             <div class="col-md-2">
-                                <a class="float-right" href="#editModal" data-toggle="modal" data-target="#editModal"><i style="color: #2A5587; background-color:white;font-size:16px" class="fa  fa-edit"></i></a>
+                                <a class="float-right" href="#editModal" data-toggle="modal" data-target="#editModal"><i
+                                        style="color: #2A5587; background-color:white;font-size:16px"
+                                        class="fa  fa-edit"></i></a>
                             </div>
                         </div>
                         <p>
-                            <b>Status:</b>  {% if assent2.status == "requested" %} aangevraagd {% else %} {{ assent2.status|trans }} {% endif %}
+                            <b>Status:</b> {% if assent2.status == "requested" %} aangevraagd {% else %} {{ assent2.status|trans }} {% endif %}
 
                             <br><b>Voornaam:</b> {{ contact2.givenName }}
                             <br><b>Achternaam:</b> {{ contact2.familyName }}
@@ -115,18 +134,18 @@
                 </div>
 
                 <!-- Overige gegevens partner 2 -->
-                <div class="affa-feature-icon" > <!-- 5 -->
+                <div class="affa-feature-icon"> <!-- 5 -->
                     <i class="fas fa-home"></i>
                     <div class="feature-text">
                         <h4>Adres en contact</h4>
-                        {% if contact2.adresses is defined and contact2.adresses is not empty  %}
+                        {% if contact2.adresses is defined and contact2.adresses is not empty %}
                             <br> {{ contact2.adresses[0].street }}  {{ contact2.adresses[0].houseNumber }}
                             <br> {{ contact2.adresses[0].postalCode }}  {{ contact2.adresses[0].locality }}
                         {% endif %}
-                        {% if contact2.emails is defined and contact2.emails is not empty  %}
+                        {% if contact2.emails is defined and contact2.emails is not empty %}
                             <br><b>Email:</b> {{ contact2.emails[0].email }}
                         {% endif %}
-                        {% if contact2.telephones is defined and contact2.telephones is not empty and contact2.telephones[0].telephone != ""  %}
+                        {% if contact2.telephones is defined and contact2.telephones is not empty and contact2.telephones[0].telephone != "" %}
                             <br><b>Telefoon</b></b> {{ contact2.telephones[0].telephone }}
                         {% endif %}
                     </div>
@@ -138,22 +157,28 @@
                     <div class="feature-text">
                         {% if contact2.emails is not defined or contact2.emails is empty or contact2.emails[0].email is empty
                             or contact2.telephones is not defined or contact2.telephones is empty or contact2.telephones[0].telephone is empty %}
-                        <h4>Contact gegevens van uw partner</h4>
-                        <p>Uiteraard willen we ook uw partner graag kunnen bereiken.</p>
-                        <br/>
+                            <h4>Contact gegevens van uw partner</h4>
+                            <p>Uiteraard willen we ook uw partner graag kunnen bereiken.</p>
+                            <br/>
 
-                        <form method="post" action="{{ path('app_default_updateassent',{'id':assent2.id}) }}" class="affa-form-contact">
-                            <div class="submit-status"></div>
-                            {% if contact2.emails is not defined or contact2.emails is empty or contact2.emails[0].email is empty %}
-                            <label for="partner_email">Email Adres <span class="required">*</span></label>
-                            <input type="email" name="email" placeholder="john@do.nl" value="{% if contact2.emails is defined   %}{{ contact2.emails[0].email }}{% endif %}" required/>
-                            {% endif %}
-                            {% if contact2.telephones is not defined or contact2.telephones is empty or contact2.telephones[0].telephone is empty %}
-                            <label for="partner_telefoonnummer">Telefoonnummer</label>
-                            <input type="text" name="telephone" placeholder="+31 6 12345678" value="{% if contact2.telephones is defined   %}{{ contact2.telephones[0].telephone }}{% endif %}"/>
-                            {% endif %}
-                            <button type="submit" class="btn btn-success btn-lg btn-block btn-icon"><i class="far fa-envelope"></i> Opslaan</button>
-                        </form>
+                            <form method="post" action="{{ path('app_default_updateassent',{'id':assent2.id}) }}"
+                                  class="affa-form-contact">
+                                <div class="submit-status"></div>
+                                {% if contact2.emails is not defined or contact2.emails is empty or contact2.emails[0].email is empty %}
+                                    <label for="partner_email">Email Adres <span class="required">*</span></label>
+                                    <input type="email" name="email" placeholder="john@do.nl"
+                                           value="{% if contact2.emails is defined %}{{ contact2.emails[0].email }}{% endif %}"
+                                           required/>
+                                {% endif %}
+                                {% if contact2.telephones is not defined or contact2.telephones is empty or contact2.telephones[0].telephone is empty %}
+                                    <label for="partner_telefoonnummer">Telefoonnummer</label>
+                                    <input type="text" name="telephone" placeholder="+31 6 12345678"
+                                           value="{% if contact2.telephones is defined %}{{ contact2.telephones[0].telephone }}{% endif %}"/>
+                                {% endif %}
+                                <button type="submit" class="btn btn-success btn-lg btn-block btn-icon"><i
+                                        class="far fa-envelope"></i> Opslaan
+                                </button>
+                            </form>
                         {% endif %}
                     </div>
                 </div>
@@ -162,7 +187,8 @@
                 <div class="affa-feature-icon"> <!-- 6 -->
                     <i class="fas fa-envelope"></i>
                     <div class="feature-text">
-                        <h4>{% if request.properties.type is defined  %}Vraag uw partner ten {{ request.properties.type|capitalize }}{% else %}Nodig uw partner uit{% endif %}.</h4>
+                        <h4>{% if request.properties.type is defined %}Vraag uw partner ten {{ request.properties.type|capitalize }}{% else %}Nodig uw partner uit{% endif %}
+                            .</h4>
                         <p>Want dit doet u natuurlijk samen.</p>
                         {#<p>U kunt via deze knop uw partner laten inloggen om uw verzoek te accepteren.</p>
                         <br/>
@@ -171,10 +197,11 @@
                         #}
                         <p>Of u partner via bericht ten huwelijk vragen.</p>
 
-                        <form method="post" action="{{ path('app_default_post',{'slug':'partner'}) }}" class="affa-form-contact" >
+                        <form method="post" action="{{ path('app_default_post',{'slug':'partner'}) }}"
+                              class="affa-form-contact">
                             <div class="submit-status"></div> <!-- submit status -->
 
-                            <label for="givenName" >Voornaam(en) <span class="required">*</span></label>
+                            <label for="givenName">Voornaam(en) <span class="required">*</span></label>
                             <input type="text" name="givenName" placeholder="John" required/>
                             <label for="familyName">Achternaam <span class="required">*</span></label>
                             <input type="text" name="familyName" placeholder="Do" required/>
@@ -185,7 +212,9 @@
 
                             <br/><br/>
 
-                            <button type="submit" class="btn btn-success btn-lg btn-block btn-icon"><i class="far fa-envelope"></i> Per bericht Uitnodigen</button>
+                            <button type="submit" class="btn btn-success btn-lg btn-block btn-icon"><i
+                                    class="far fa-envelope"></i> Per bericht Uitnodigen
+                            </button>
                         </form>
                     </div>
                 </div>
@@ -195,14 +224,51 @@
 
     </div>
     <!-- .row-custom end -->
-    {% if assent2 is defined and assent2 is not empty  %}
-        <div class="modal fade" style="text-align: center" id="editModal" tabindex="-1"
+
+    {# Modals #}
+
+
+    {% if contact1.emails is defined and contact1.emails is not empty or contact1.telephones is defined and contact1.telephones is not empty %}
+        <div class="modal fade" style="text-align: center" id="editPartnerModal" tabindex="-1"
              role="dialog"
              aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog model-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel"><b>Gegevens  {{ contact2.name }} wijzigen</b></h5>
+                        <h5 class="modal-title" id="exampleModalLabel"><b>Gegevens {{ contact1.name }} wijzigen</b></h5>
+                        <button type="button" class="close" data-dismiss="modal"
+                                aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body p-4">
+                        <form method="post" action="{{ path('app_default_updateassent',{'id':assent1.id}) }}">
+                            <p><b>Email wijzigen:</b></p>
+                            <input class="form-control" type="email" name="email"
+                                   value="{% if contact1.emails is defined and contact1.emails is not empty %}{{ contact1.emails[0].email }}{% endif %}">
+                            {% if contact1.telephones is defined and contact1.telephones is not empty and contact1.telephones[0].telephone is not empty %}
+                                <p><b>Telefoonnummer wijzigen:</b></p>
+                                <input class="form-control" type="text" name="telephone"
+                                       value="{% if contact1.telephones is defined and contact1.telephones is not empty %}{{ contact1.telephones[0].telephone }}{% endif %}">
+                            {% endif %}
+                            <button type="submit" class="btn btn-success mx-auto m-4">
+                                Wijzigen
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+    {% if assent2 is defined and assent2 is not empty %}
+        <div class="modal fade" style="text-align: center" id="editPartner2Modal" tabindex="-1"
+             role="dialog"
+             aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog model-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel"><b>Gegevens {{ contact2.name }} wijzigen</b></h5>
                         <button type="button" class="close" data-dismiss="modal"
                                 aria-label="Close">
                             <span aria-hidden="true">&times;</span>
@@ -218,10 +284,12 @@
                             <input class="form-control" type="text" name="familyName" value="{{ contact2.familyName }}">
 
                             <p><b>Email wijzigen:</b></p>
-                            <input class="form-control" type="email" name="email" value="{% if contact2.emails is defined and contact2.emails is not empty %}{{ contact2.emails[0].email }}{% endif %}">
+                            <input class="form-control" type="email" name="email"
+                                   value="{% if contact2.emails is defined and contact2.emails is not empty %}{{ contact2.emails[0].email }}{% endif %}">
                             {% if contact2.telephones is defined and contact2.telephones is not empty and contact2.telephones[0].telephone is not empty %}
                                 <p><b>Telefoonnummer wijzigen:</b></p>
-                                <input class="form-control" type="text" name="telephone" value="{% if contact2.telephones is defined and contact2.telephones is not empty %}{{ contact2.telephones[0].telephone }}{% endif %}">
+                                <input class="form-control" type="text" name="telephone"
+                                       value="{% if contact2.telephones is defined and contact2.telephones is not empty %}{{ contact2.telephones[0].telephone }}{% endif %}">
                             {% endif %}
                             <button type="submit" class="btn btn-success mx-auto m-4">
                                 Wijzigen
