@@ -18,9 +18,9 @@
             <div class="post-heading-center">
                 <h2>Waar wilt u trouwen?</h2>
 
-                {% if request.properties.plechtigheid is defined and commonground_resource(request.properties.plechtigheid).name == "Gratis Trouwen"  %}
-                    <div style="max-width: 500px; text-align: center; margin: auto;margin-bottom: 20px;margin-top:20px; padding: 10px; border: 1px solid #2A5587; border-radius: 6px" >
-                        Gratis huwelijken vinden altijd plaats op het Stadskantoor.
+                {% if request.properties.plechtigheid is defined and (commonground_resource(request.properties.plechtigheid).name == "Gratis Trouwen" or commonground_resource(request.properties.plechtigheid).name == "Eenvoudig Trouwen") %}
+                    <div style="max-width: 600px; text-align: center; margin: auto;margin-bottom: 20px;margin-top:20px; padding: 10px; border: 1px solid #2A5587; border-radius: 6px" >
+                        Eenvoudige en gratis huwelijken vinden altijd plaats op het Stadskantoor.
                     </div>
                 {% endif %}
 
