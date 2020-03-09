@@ -123,7 +123,7 @@
                                 </h4>
                             </div>
                             <div class="col-md-2">
-                                <a class="float-right" href="#editPartner2Modal" data-toggle="modal" data-target="#editPartner2Modal"><i
+                                <a class="float-right" href="#editModal" data-toggle="modal" data-target="#editModal"><i
                                         style="color: #2A5587; background-color:white;font-size:16px"
                                         class="fa  fa-edit"></i></a>
                             </div>
@@ -179,7 +179,7 @@
                                 {% if contact2.telephones is not defined or contact2.telephones is empty or contact2.telephones[0].telephone is empty %}
                                     <label for="partner_telefoonnummer">Telefoonnummer</label>
                                     <input type="text" name="telephone" placeholder="+31 6 12345678"
-                                           value="{% if contact2.telephones[0].telephone is defined %}{{ contact2.telephones[0].telephone }}{% endif %}"/>
+                                           value="{% if contact2.telephones is defined %}{{ contact2.telephones[0].telephone }}{% endif %}"/>
                                 {% endif %}
                                 <button type="submit" class="btn btn-success btn-lg btn-block btn-icon"><i
                                         class="far fa-envelope"></i> Opslaan
