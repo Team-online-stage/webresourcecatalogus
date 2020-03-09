@@ -17,6 +17,13 @@
         {% else %}
             <div class="post-heading-center">
                 <h2>Waar wilt u trouwen?</h2>
+
+                {% if request.properties.plechtigheid is defined and (commonground_resource(request.properties.plechtigheid).name == "Gratis Trouwen" or commonground_resource(request.properties.plechtigheid).name == "Eenvoudig Trouwen") %}
+                    <div style="max-width: 600px; text-align: center; margin: auto;margin-bottom: 20px;margin-top:20px; padding: 10px; border: 1px solid #2A5587; border-radius: 6px" >
+                        Eenvoudige en gratis huwelijken vinden altijd plaats op het Stadskantoor.
+                    </div>
+                {% endif %}
+
                 <p>Een trouwlocatie; in Utrecht is er voor elk wat wils. De gemeente Utrecht heeft een aantal eigen trouwlocaties; het Stadhuis, het Wijkservicecentrum in Vleuten en het Stadskantoor.  Een keuze voor een van deze trouwlocaties kunt u direct hier doen. </p>
                 <p>Daarnaast zijn er verschillende andere vaste trouwlocaties. Deze trouwlocaties zijn door de gemeente Utrecht al goedgekeurd. Hieronder vindt u het overzicht van deze trouwlocaties. Heeft u een keuze gemaakt uit een van de vaste trouwlocaties? Maak dan eerst een afspraak met de locatie en geef dan aan ons door waar en wanneer u wilt trouwen. </p>
                 <p class="margin-bottom30"> Maar misschien wilt u een heel andere locatie. Bijvoorbeeld het caf� om de hoek, bij u thuis of in uw favoriete restaurant. Zo'n locatie heet een vrije locatie.  Een aanvraag voor een vrije locatie kunt u hier ook doen. </p>
