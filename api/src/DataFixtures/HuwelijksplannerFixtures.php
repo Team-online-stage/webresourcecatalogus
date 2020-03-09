@@ -539,7 +539,33 @@ class HuwelijksplannerFixtures extends Fixture
         $slug->setApplication($application);
         $slug->setSlug('organizations');
         $manager->persist($page);
-
+        
+        // pagina 0
+        $id = Uuid::fromString('2cd41267-4eda-452b-9299-7d6596593f83');
+        $template = new Template();
+        $template->setName('Start ');
+        $template->setDescription('Start pagina voor huwelijks proces');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/pagina0.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        
+        $page = new Page();
+        $page->setTitle('Start');
+        $page->setDescription('Start');
+        $page->setApplication($application);
+        $page->setTemplate($template);
+        $manager->persist($page);
+        
+        $slug = new Slug();
+        $slug->setPage($page);
+        $slug->setApplication($application);
+        $slug->setSlug('start-huwelijk');
+        $manager->persist($page);
+        
         // Getuigen
         $id = Uuid::fromString('da78b8bb-16bf-449c-96e3-3615e9e8e2af');
         $template = new Template();
