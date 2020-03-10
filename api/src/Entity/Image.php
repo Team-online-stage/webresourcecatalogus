@@ -46,9 +46,9 @@ use Symfony\Component\Validator\Constraints as Assert;
  *              }
  *          }
  *     }
- * )s
- * @Gedmo\Loggable
+ * )
  * @ORM\Entity(repositoryClass="App\Repository\ImageRepository")
+ * @Gedmo\Loggable(logEntryClass="App\Entity\ChangeLog")
  * 
  * @ApiFilter(BooleanFilter::class)
  * @ApiFilter(OrderFilter::class)
@@ -76,6 +76,7 @@ class Image
      *
      * @example Flowers
      *
+     * @Gedmo\Versioned
      * @Assert\NotNull
      * @Assert\Length(
      *     max = 255
@@ -90,6 +91,7 @@ class Image
      *
      * @example This is the manucipality of Utrecht
      *
+     * @Gedmo\Versioned
      * @Assert\NotNull
      * @Assert\Length(
      *     max = 255
@@ -104,6 +106,7 @@ class Image
      *
      * @example flowers
      *
+     * @Gedmo\Versioned
      * @Assert\Length(
      *     max = 255
      * )
@@ -117,6 +120,7 @@ class Image
      *
      * @example app_img_flowers
      *
+     * @Gedmo\Versioned
      * @Assert\Length(
      *     max = 255
      * )
@@ -126,6 +130,7 @@ class Image
     private $href;
         
     /**
+     * @Gedmo\Versioned
      * @Groups({"read","write"})
      * @ORM\Column(type="text", nullable=true)
      */

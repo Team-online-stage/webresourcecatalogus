@@ -50,10 +50,9 @@ use App\Entity\Image;
  *              }
  *          }
  *     }
- * )s
- * @Gedmo\Loggable
- * 
+ * )
  * @ORM\Entity(repositoryClass="App\Repository\OrganizationRepository")
+ * @Gedmo\Loggable(logEntryClass="App\Entity\ChangeLog")
  * 
  * @ApiFilter(BooleanFilter::class)
  * @ApiFilter(OrderFilter::class)
@@ -81,6 +80,7 @@ class Organization
 	 *
 	 * @example About
 	 *
+     * @Gedmo\Versioned
 	 * @Assert\NotNull
 	 * @Assert\Length(
 	 *     max = 255
@@ -94,6 +94,7 @@ class Organization
 	 *
 	 * @example About
 	 *
+     * @Gedmo\Versioned
 	 * @Assert\NotNull
 	 * @Assert\Length(
 	 *     max = 255
@@ -107,6 +108,7 @@ class Organization
 	 *
 	 * @example About
 	 *
+     * @Gedmo\Versioned
 	 * @Assert\NotNull
 	 * @Assert\Length(
 	 *     max = 255
@@ -121,6 +123,7 @@ class Organization
 	 *
 	 * @example This is the manucipality of Utrecht
 	 *
+     * @Gedmo\Versioned
 	 * @Assert\NotNull
 	 * @Assert\Length(
 	 *     max = 255

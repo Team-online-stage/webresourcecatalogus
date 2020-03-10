@@ -55,8 +55,8 @@ use App\Controller\DefaultController;
  *          }
  * 		},
  * )
- * @Gedmo\Loggable
  * @ORM\Entity(repositoryClass="App\Repository\TemplateRepository")
+ * @Gedmo\Loggable(logEntryClass="App\Entity\ChangeLog")
  * 
  * @ApiFilter(BooleanFilter::class)
  * @ApiFilter(OrderFilter::class)
@@ -84,6 +84,7 @@ class Template
      *
      * @example webshop menu
      *
+     * @Gedmo\Versioned
      * @Assert\NotNull
      * @Assert\Length(
      *      max = 255
@@ -98,6 +99,7 @@ class Template
      *
      * @example webshop menu
      *
+     * @Gedmo\Versioned
      * @Assert\NotNull
      * @Assert\Length(
      *      max = 255
@@ -112,6 +114,7 @@ class Template
      *
      * @example This page holds info about this application
      *
+     * @Gedmo\Versioned
      * @Assert\NotNull
      * @Assert\Length(
      *     max = 255
@@ -126,6 +129,7 @@ class Template
      *
      * @example A lot of random info over any topic
      *
+     * @Gedmo\Versioned
      * @Assert\NotNull
      * @Groups({"read","write"})
      * @ORM\Column(type="text")
@@ -137,6 +141,7 @@ class Template
      *
      * @example Twig
      *
+     * @Gedmo\Versioned
      * @Assert\NotNull
      * @Assert\Choice({"twig", "md", "rst"})
      * @Groups({"read","write"})

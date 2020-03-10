@@ -47,8 +47,8 @@ use Symfony\Component\Validator\Constraints as Assert;
  *          }
  *     }
  * )
- * @Gedmo\Loggable
  * @ORM\Entity(repositoryClass="App\Repository\ConfigurationRepository")
+ * @Gedmo\Loggable(logEntryClass="App\Entity\ChangeLog")
  * 
  * @ApiFilter(BooleanFilter::class)
  * @ApiFilter(OrderFilter::class)
@@ -88,6 +88,7 @@ class Configuration
     private $organization;
 
     /**
+     * @Gedmo\Versioned
      * @Groups({"read","write"})
      * @ORM\Column(type="json")
      */

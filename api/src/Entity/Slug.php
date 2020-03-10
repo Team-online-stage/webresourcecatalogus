@@ -45,8 +45,8 @@ use Symfony\Component\Validator\Constraints as Assert;
  *          }
  *     }
  * )
- * @Gedmo\Loggable
  * @ORM\Entity(repositoryClass="App\Repository\SlugRepository")
+ * @Gedmo\Loggable(logEntryClass="App\Entity\ChangeLog")
  * 
  * @ApiFilter(BooleanFilter::class)
  * @ApiFilter(OrderFilter::class)
@@ -88,6 +88,7 @@ class Slug
      *
      * @example /about
      *
+     * @Gedmo\Versioned
      * @Assert\NotNull
      * @Assert\Length(
      *     max = 255

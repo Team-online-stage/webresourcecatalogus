@@ -45,8 +45,8 @@ use Symfony\Component\Validator\Constraints as Assert;
  *          }
  *     }
  * )
- * @Gedmo\Loggable
  * @ORM\Entity(repositoryClass="App\Repository\MenuItemRepository")
+ * @Gedmo\Loggable(logEntryClass="App\Entity\ChangeLog")
  * 
  * @ApiFilter(BooleanFilter::class)
  * @ApiFilter(OrderFilter::class)
@@ -74,6 +74,7 @@ class MenuItem
      *
      * @example about-menu-link
      *
+     * @Gedmo\Versioned
      * @Assert\NotNull
      * @Assert\Length(
      *      max = 255
@@ -89,6 +90,7 @@ class MenuItem
      *
      * @example This MenuItem links to the about page
      *
+     * @Gedmo\Versioned
      * @Assert\Length(
      *      max = 2555
      * )
@@ -103,6 +105,7 @@ class MenuItem
      *
      * @example app_home_about
      *
+     * @Gedmo\Versioned
      * @Assert\NotNull
      * @Assert\Length(
      *      max = 2555

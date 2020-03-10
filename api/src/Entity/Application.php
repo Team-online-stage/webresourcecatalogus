@@ -60,7 +60,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *     		}
  *     }
  * )
- * @Gedmo\Loggable
+ * @Gedmo\Loggable(logEntryClass="App\Entity\ChangeLog")
  * @ORM\Entity(repositoryClass="App\Repository\ApplicationRepository")
  * 
  * @ApiFilter(BooleanFilter::class)
@@ -89,6 +89,7 @@ class Application
      *
      * @example Webshop
      *
+     * @Gedmo\Versioned
      * @Assert\NotNull
      * @Assert\Length(
      *      max = 255
@@ -104,6 +105,7 @@ class Application
      *
      * @example Is the best site ever
      *
+     * @Gedmo\Versioned
      * @Assert\NotNull
      * @Assert\Length(
      *      max = 255
@@ -119,6 +121,7 @@ class Application
      *
      * @example https://www.example.org
      *
+     * @Gedmo\Versioned
      * @Assert\NotNull
      * @Assert\Length(
      *      max = 255

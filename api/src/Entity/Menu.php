@@ -47,8 +47,8 @@ use Symfony\Component\Validator\Constraints as Assert;
  *          }
  *     }
  * )
- * @Gedmo\Loggable
  * @ORM\Entity(repositoryClass="App\Repository\MenuRepository")
+ * @Gedmo\Loggable(logEntryClass="App\Entity\ChangeLog")
  * 
  * @ApiFilter(BooleanFilter::class)
  * @ApiFilter(OrderFilter::class)
@@ -76,6 +76,7 @@ class Menu
      *
      * @example webshop menu
      *
+     * @Gedmo\Versioned
      * @Assert\NotNull
      * @Assert\Length(
      *      max = 255
@@ -90,6 +91,7 @@ class Menu
      *
      * @example This menuItems links to the about page
      *
+     * @Gedmo\Versioned
      * @Assert\Length(
      *      max = 2555
      * )
