@@ -46,7 +46,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *              }
  *          }
  *     }
- * )s
+ * )
  * @Gedmo\Loggable
  * @ORM\Entity(repositoryClass="App\Repository\FooterRepository")
  * 

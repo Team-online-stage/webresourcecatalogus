@@ -46,7 +46,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *                  "description"="Gets the audit trail for this resource"
  *              }
  *          }
- *     }
+ *     },
  *     collectionOperations={
  *     		"get",
  *     		"post",
