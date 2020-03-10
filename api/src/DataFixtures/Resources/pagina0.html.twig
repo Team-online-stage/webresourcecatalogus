@@ -7,7 +7,7 @@
     <div class="row animation" data-animation="animation-fade-in"
          data-delay=" {% if app.session.flashbag.peekAll|length > 0 %}3400{% else %}200{% endif %}">
 
-        <div class="col-sm-12 col-md-7 col-sm-offset-1 col-md-offset-0 text-center-sm text-center-xs"
+        <div class="col-sm-12 col-md-8 col-sm-offset-1 col-md-offset-0 text-center-sm text-center-xs"
              style="padding-left: 30px" ng-hide="locatie">
             <div class="margin-bottom40">
                 <div class="post-heading-left text-center-sm text-center-xs" ng-hide="locatie">
@@ -120,64 +120,15 @@
             </div>
         </div>
 
-        <div class="col-sm-12 col-md-5 col-sm-offset-1 col-md-offset-0 text-center-sm text-center-xs" ng-show="locatie">
+        <div class="col-sm-12 col-md-4 col-sm-offset-1 col-md-offset-0 text-center-sm text-center-xs" ng-show="locatie">
             <h2>Checklist</h2>
             <ul style="margin-left: 20px" class="list-icon">
                 <li><h5>{% if request.properties.type is not defined or request.properties.type is empty %}<i
-                        style="color: red; margin-right: 10px;" class="fas fa-exclamation-triangle"></i>{% else %}<i
+                        style="color: red; margin-left: -30px; padding-right: 10px" class="fas fa-exclamation-triangle"></i>{% else %}<i
                         class="fa fas fa-check"></i>{% endif %}Ceremonie</h5>
                     {% if request.properties.type is defined and request.properties.type is not empty %}
                         <ul style="margin-left: -40px !important;" class="list">
                             <li><i class="fa fas fa-check"></i> {{ request.properties.type|capitalize }}</li>
-                        </ul>
-                    {% endif %}
-                </li>
-                <li style="padding-left: 0">
-                    <h5>{% if request.properties.plechtigheid is not defined or request.properties.plechtigheid is empty %}
-                        <i
-                            style="color: red; margin-right: 10px" class="fas fa-exclamation-triangle"></i>{% else %}<i
-                            class="fa fas fa-check"></i>{% endif %}Plechtigheid</h5>
-                    {% if request.properties.plechtigheid is defined and request.properties.plechtigheid is not empty %}
-                        <ul style="margin-left: -40px !important;" class="list">
-                            <li>
-                                <i class="fa fas fa-check"></i> {{ commonground_resource(request.properties.plechtigheid).name|capitalize }}
-                            </li>
-                        </ul>
-                    {% endif %}
-                </li>
-                <li style="padding-left: 0">
-                    <h5>{% if request.properties.datum is not defined or request.properties.datum is empty %}<i
-                        style="color: red; margin-right: 10px" class="fas fa-exclamation-triangle"></i>{% else %}<i
-                        class="fa fas fa-check"></i>{% endif %}Datum</h5>
-                    {% if request.properties.datum is defined and request.properties.datum is not empty %}
-                        <ul style="margin-left: -40px !important;" class="list">
-                            <li>
-                                <i class="fa fas fa-check"></i> {{ request.properties.datum|date("d-m-Y H:i", "Europe/Paris") }}
-                            </li>
-                        </ul>
-                    {% endif %}
-                </li>
-                <li style="padding-left: 0">
-                    <h5>{% if request.properties.ambtenaar is not defined or request.properties.ambtenaar is empty %}<i
-                        style="color: red; margin-right: 10px" class="fas fa-exclamation-triangle"></i>{% else %}<i
-                        class="fa fas fa-check"></i>{% endif %}Trouwambtenaar</h5>
-                    {% if request.properties.ambtenaar is defined and request.properties.ambtenaar is not empty %}
-                        <ul style="margin-left: -40px !important;" class="list">
-                            <li>
-                                <i class="fa fas fa-check"></i> {{ commonground_resource(request.properties.ambtenaar).name }}
-                            </li>
-                        </ul>
-                    {% endif %}
-                </li>
-                <li style="padding-left: 0">
-                    <h5>{% if request.properties.locatie is not defined or request.properties.locatie is empty %}<i
-                        style="color: red; margin-right: 10px" class="fas fa-exclamation-triangle"></i>{% else %}<i
-                        class="fa fas fa-check"></i>{% endif %}Locatie</h5>
-                    {% if request.properties.locatie is defined and request.properties.locatie is not empty %}
-                        <ul style="margin-left: -40px !important;" class="list">
-                            <li>
-                                <i class="fa fas fa-check"></i> {{ commonground_resource(request.properties.locatie).name }}
-                            </li>
                         </ul>
                     {% endif %}
                 </li>
@@ -187,10 +138,8 @@
                     {% for partner in request.properties.partners %}
                         {% set assent = commonground_resource(partner) %}
                         {% set contact = commonground_resource(assent.contact) %}
-                        <li style="padding-left: 0">
-                            <h5 style="padding-left: 25px"><i
-                                    class="fa fas fa-check"></i>Partner: {{ contact.formalName }}</h5>
-                            <ul class="list">
+                        <li><h5><i class="fa {% if assent.status == "granted" %} fas fa-check{% else %}fa-exclamation-triangle{% endif %}"></i>Partner: {{ contact.formalName }}</h5>
+                            <ul style="padding-left: 0" class="list">
                                 <li>
                                     <!-- Partner -->
                                     <i class="fa {% if assent.status == "granted" %}fas fa-check{% else %}fa-exclamation-triangle{% endif %}"></i>Status: {{ assent.status|trans }}
@@ -216,18 +165,63 @@
                     {% endfor %}
 
                 {% else %}
-                    <li style="padding-left: 0">
+
+                    <li>
                         <h5><i style="color: red; margin-right: 10px" class="fas fa-exclamation-triangle"></i>Partners
                         </h5>
                     </li>
                 {% endif %}
+                <li><h5>{% if request.properties.plechtigheid is not defined or request.properties.plechtigheid is empty %}<i
+                            style="color: red; margin-left: -30px; padding-right: 10px" class="fas fa-exclamation-triangle"></i>{% else %}<i
+                            class="fa fas fa-check"></i>{% endif %}Plechtigheid</h5>
+                    {% if request.properties.plechtigheid is defined and request.properties.plechtigheid is not empty %}
+                        <ul style="margin-left: -40px !important;" class="list">
+                            <li>
+                                <i class="fa fas fa-check"></i> {{ commonground_resource(request.properties.plechtigheid).name|capitalize }}
+                            </li>
+                        </ul>
+                    {% endif %}
+                </li>
+                <li><h5>{% if request.properties.datum is not defined or request.properties.datum is empty %}<i
+                        style="color: red; margin-left: -30px; padding-right: 10px" class="fas fa-exclamation-triangle"></i>{% else %}<i
+                        class="fa fas fa-check"></i>{% endif %}Datum</h5>
+                    {% if request.properties.datum is defined and request.properties.datum is not empty %}
+                        <ul style="margin-left: -40px !important;" class="list">
+                            <li>
+                                <i class="fa fas fa-check"></i> {{ request.properties.datum|date("d-m-Y H:i", "Europe/Paris") }}
+                            </li>
+                        </ul>
+                    {% endif %}
+                </li>
+                    <li><h5>{% if request.properties.locatie is not defined or request.properties.locatie is empty %}<i
+                            style="color: red; margin-left: -30px; padding-right: 10px" class="fas fa-exclamation-triangle"></i>{% else %}<i
+                            class="fa fas fa-check"></i>{% endif %}Locatie</h5>
+                        {% if request.properties.locatie is defined and request.properties.locatie is not empty %}
+                            <ul style="margin-left: -40px !important;" class="list">
+                                <li>
+                                    <i class="fa fas fa-check"></i> {{ commonground_resource(request.properties.locatie).name }}
+                                </li>
+                            </ul>
+                        {% endif %}
+                    </li>
+                <li><h5>{% if request.properties.ambtenaar is not defined or request.properties.ambtenaar is empty %}<i
+                        style="color: red; margin-left: -30px; padding-right: 10px" class="fas fa-exclamation-triangle"></i>{% else %}<i
+                        class="fa fas fa-check"></i>{% endif %}Trouwambtenaar</h5>
+                    {% if request.properties.ambtenaar is defined and request.properties.ambtenaar is not empty %}
+                        <ul style="margin-left: -40px !important;" class="list">
+                            <li>
+                                <i class="fa fas fa-check"></i> {{ commonground_resource(request.properties.ambtenaar).name }}
+                            </li>
+                        </ul>
+                    {% endif %}
+                </li>
 
-                <li style="padding-left: 0">
-                    <h5>{% if request.properties.getuigen is not defined or request.properties.getuigen < 2 %}<i
-                        style="color: red; margin-right: 10px" class="fas fa-exclamation-triangle"></i>{% else %}<i
+                <li>
+                    <h5>{% if request.properties.getuigen is not defined or request.properties.getuigen |length < 2 %}<i
+                        style="color: red; margin-left: -30px; padding-right: 10px" class="fas fa-exclamation-triangle"></i>{% else %}<i
                         class="fa fas fa-check"></i>{% endif %}Getuigen</h5>
                     {% if request.properties.getuigen is defined and request.properties.getuigen is not empty %}
-                    <ul style="margin-left: -40px !important;" class="list">
+                    <ul style="padding-left: 0" class="list">
                         {% for getuige in request.properties.getuigen %}
                             {% set assent = commonground_resource(getuige) %}
                             {% set contact = commonground_resource(assent.contact) %}
