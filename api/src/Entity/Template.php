@@ -46,7 +46,7 @@ use App\Controller\DefaultController;
  *              }
  *          },
  *     "get_audit_trail"={
- *              "path"="/templates/{id}/audit_trial",
+ *              "path"="/templates/{id}/audit_trail",
  *              "method"="get",
  *              "swagger_context" = {
  *                  "summary"="Audittrail",
