@@ -187,9 +187,10 @@ class HuwelijksplannerFixtures extends Fixture
         $application = $manager->getRepository('App:Application')->findOneBy(['id'=> $id]);
 
         // Berichten
-        $id = Uuid::fromString('b93e6cdf-ed0c-49e7-9975-e6b31f3ebed2');
+        
+        $id = Uuid::fromString('c20cc285-0246-4bf8-b3d0-781543b03270');
         $template = new Template();
-        $template->setName('Verzoek ontvangen');
+        $template->setName('Bevestiging Melding');
         $template->setDescription('Bericht dat het verzoek ontvangen is');
         $template->setContent('Wij hebben uw verzoek ontvangen');
         $template->setTemplateEngine('twig');
@@ -197,6 +198,28 @@ class HuwelijksplannerFixtures extends Fixture
         $template->setId($id);
         $manager->persist($template);
         $manager->flush();
+        
+        $id = Uuid::fromString('b93e6cdf-ed0c-49e7-9975-e6b31f3ebed2');
+        $template = new Template();
+        $template->setName('Aanvraag ontvangen');
+        $template->setDescription('Bericht dat het verzoek ontvangen is');
+        $template->setContent('Uw aanvraag is ontvangen en word zo spoedig mogelijk beoordeeld. U ontvangt uiterlijk over (x dagen, tijd, etc) een bevestiging van uw reservering.');
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        
+        $id = Uuid::fromString('e773b161-3636-45a1-8fc2-dd0d4140a9f9');
+        $template = new Template();
+        $template->setName('Bevestiging aanvraag');
+        $template->setDescription('Bericht dat het verzoek ontvangen is');
+        $template->setContent('Bevestiging van de daadwerkelijke datum, tijd, locatie, babs etc.');
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush(); 
 
         $id = Uuid::fromString('2d56603e-65b3-4b17-81f7-d88ac8bb4e7f');
         $template = new Template();
