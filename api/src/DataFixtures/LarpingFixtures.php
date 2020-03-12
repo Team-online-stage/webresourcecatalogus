@@ -116,6 +116,7 @@ class LarpingFixtures extends Fixture
     	$id = Uuid::fromString('cc7d0c70-bb59-4d85-9845-863e896e6ee9');
     	$clientMail= new Template();
     	$clientMail->setName('Bestel Bevestiging | Klant | Email');
+    	$clientMail->setTitle(" ");
     	$clientMail->setDescription('Deze email bevestigd een bestelling aan een klant');
 //    	$clientMail->setContent('U heeft iets besteld');
     	$clientMail->setContent('Beste {{ contact.givenName }},<br><br>Tof dat je je hebt ingeschreven voor VA! Op de website kun je alle verdere informatie vinden zoals de eventguide, spelregels en ook de algemene settinginformatie. Daarnaast zijn de terms en conditions terug te vinden op https://larping.eu/terms-of-services.<br><br>Heb je nog spelgerelateerde vragen? Mail dan naar: vortexspelleider@gmail.com<br><br>Heb je nog feedback en kan het �cht niet wachten tot de evaluatie? Mail je feedback dan naar vasecretaris@gmail.com , en dan streven we naar een reactie binnen 2 weken!<br><br>We zien je op het evenement!<br><br>Groetjes,<br>Het VA bestuur');
