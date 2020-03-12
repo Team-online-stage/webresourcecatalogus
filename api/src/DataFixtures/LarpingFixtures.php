@@ -117,38 +117,41 @@ class LarpingFixtures extends Fixture
     	$clientMail= new Template();
     	$clientMail->setName('Bestel Bevestiging | Klant | Email');
     	$clientMail->setTitle(" ");
-    	$clientMail->setDescription('Deze email bevestigd een bestelling aan een klant');
+        $clientMail->setDescription('Deze email bevestigd een bestelling aan een klant');
 //    	$clientMail->setContent('U heeft iets besteld');
-    	$clientMail->setContent('Beste {{ contact.givenName }},<br><br>Tof dat je je hebt ingeschreven voor VA! Op de website kun je alle verdere informatie vinden zoals de eventguide, spelregels en ook de algemene settinginformatie. Daarnaast zijn de terms en conditions terug te vinden op https://larping.eu/terms-of-services.<br><br>Heb je nog spelgerelateerde vragen? Mail dan naar: vortexspelleider@gmail.com<br><br>Heb je nog feedback en kan het �cht niet wachten tot de evaluatie? Mail je feedback dan naar vasecretaris@gmail.com , en dan streven we naar een reactie binnen 2 weken!<br><br>We zien je op het evenement!<br><br>Groetjes,<br>Het VA bestuur');
-    	$clientMail->setTemplateEngine('twig');
-    	$clientMail->setOrganization($larping);
-    	$clientMail->setApplication($application);
-    	$manager->persist($clientMail);
-    	$clientMail->setId($id);
-    	$manager->persist($clientMail);
+        $clientMail->setContent('Beste {{ contact.givenName }},<br><br>Tof dat je je hebt ingeschreven voor VA! Op de website kun je alle verdere informatie vinden zoals de eventguide, spelregels en ook de algemene settinginformatie. Daarnaast zijn de terms en conditions terug te vinden op https://larping.eu/terms-of-services.<br><br>Heb je nog spelgerelateerde vragen? Mail dan naar: vortexspelleider@gmail.com<br><br>Heb je nog feedback en kan het �cht niet wachten tot de evaluatie? Mail je feedback dan naar vasecretaris@gmail.com , en dan streven we naar een reactie binnen 2 weken!<br><br>We zien je op het evenement!<br><br>Groetjes,<br>Het VA bestuur');
+        $clientMail->setTemplateEngine('twig');
+        $clientMail->setOrganization($larping);
+        $clientMail->setApplication($application);
+        $manager->persist($clientMail);
+        $clientMail->setId($id);
+        $manager->persist($clientMail);
 
-    	$id = Uuid::fromString('e287f1f4-704e-49e3-8a33-eab955ff2158');
-    	$organizationSMS= new Template();
-    	$organizationSMS->setName('Bestel Bevestiging | Organisatie | SMS');
-    	$organizationSMS->setDescription('Deze sms bevestigd een bestelling aan een organisatie');
-    	$organizationSMS->setContent('Er is iets besteld');
-    	$organizationSMS->setTemplateEngine('twig');
-    	$organizationSMS->setOrganization($larping);
-    	$organizationSMS->setApplication($application);
-    	$manager->persist($organizationSMS);
+        //$id = Uuid::fromString('db583bf1-22ab-47d5-8656-a6faf95a1f7f');
+        $organizationSMS= new Template();
+        $organizationSMS->setName('Bestel Bevestiging | Organisatie | SMS');
+        $organizationSMS->setDescription('Deze sms bevestigd een bestelling aan een organisatie');
+        $organizationSMS->setContent('Er is iets besteld');
+        $organizationSMS->setTemplateEngine('twig');
+        $organizationSMS->setOrganization($larping);
+        $organizationSMS->setApplication($application);
+        $manager->persist($organizationSMS);
 
-    	//$id = Uuid::fromString('e287f1f4-704e-49e3-8a33-eab955ff2158');
-    	$organizationMail= new Template();
-    	$organizationMail->setName('Bestel Bevestiging | Organisatie | EMAIL');
-    	$organizationMail->setDescription('Deze email bevestigd een bestelling aan een organisatie');
-    	$organizationMail->setContent('Er is iets besteld');
-    	$organizationMail->setTemplateEngine('twig');
-    	$organizationMail->setOrganization($larping);
-    	$organizationMail->setApplication($application);
-    	$manager->persist($organizationMail);
+        $id = Uuid::fromString('e287f1f4-704e-49e3-8a33-eab955ff2158');
+        $organizationMail= new Template();
+        $organizationMail->setName('Bestel Bevestiging | Organisatie | EMAIL');
+        $organizationMail->setTitle(" ");
+        $organizationMail->setDescription('Deze email bevestigd een bestelling aan een organisatie');
+        $organizationMail->setContent('Er is iets besteld');
+        $organizationMail->setTemplateEngine('twig');
+        $organizationMail->setOrganization($larping);
+        $organizationMail->setApplication($application);
+        $manager->persist($organizationMail);
+        $organizationMail->setId($id);
+        $manager->persist($organizationMail);
 
-    	// Larping / Larping Configuration
-    	/*@todo we should take local development into consideration, this only works for online enviroments with a domain*/
+        // Larping / Larping Configuration
+        /*@todo we should take local development into consideration, this only works for online enviroments with a domain*/
     	$env = '';
     	$protocol = 'https://';
     	if($this->params->get('app_env') != "prod"){
