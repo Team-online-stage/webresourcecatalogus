@@ -127,7 +127,7 @@ class LarpingFixtures extends Fixture
     	$clientMail->setId($id);
     	$manager->persist($clientMail);
 
-    	//$id = Uuid::fromString('db583bf1-22ab-47d5-8656-a6faf95a1f7f');
+    	$id = Uuid::fromString('e287f1f4-704e-49e3-8a33-eab955ff2158');
     	$organizationSMS= new Template();
     	$organizationSMS->setName('Bestel Bevestiging | Organisatie | SMS');
     	$organizationSMS->setDescription('Deze sms bevestigd een bestelling aan een organisatie');
