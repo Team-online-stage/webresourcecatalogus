@@ -9699,7 +9699,7 @@ definitions:
       id:
         description: 'The UUID identifier of this resource'
         type: string
-        example: 9b9eea1a-ef04-427d-b8bd-7f5c24801874
+        example: e2984465-190a-4562-829e-a8cca81aa35d
         format: uuid
       name:
         description: 'The name of this application.'
@@ -9758,7 +9758,7 @@ definitions:
       id:
         description: 'The UUID identifier of this resource'
         type: string
-        example: 9b9eea1a-ef04-427d-b8bd-7f5c24801874
+        example: e2984465-190a-4562-829e-a8cca81aa35d
         format: uuid
       configuration: []
       dateCreated:
@@ -9779,7 +9779,7 @@ definitions:
       id:
         description: 'The UUID identifier of this resource'
         type: string
-        example: 9b9eea1a-ef04-427d-b8bd-7f5c24801874
+        example: e2984465-190a-4562-829e-a8cca81aa35d
         format: uuid
       dateCreated:
         description: 'The moment this request was created'
@@ -9800,7 +9800,7 @@ definitions:
       id:
         description: 'The UUID identifier of this resource'
         type: string
-        example: 9b9eea1a-ef04-427d-b8bd-7f5c24801874
+        example: e2984465-190a-4562-829e-a8cca81aa35d
         format: uuid
       dateCreated:
         description: 'The moment this request was created'
@@ -9819,7 +9819,7 @@ definitions:
       id:
         description: 'The UUID identifier of this resource'
         type: string
-        example: 9b9eea1a-ef04-427d-b8bd-7f5c24801874
+        example: e2984465-190a-4562-829e-a8cca81aa35d
         format: uuid
       name:
         description: 'The name of this image'
@@ -9884,7 +9884,7 @@ definitions:
       id:
         description: 'The UUID identifier of this resource'
         type: string
-        example: 9b9eea1a-ef04-427d-b8bd-7f5c24801874
+        example: e2984465-190a-4562-829e-a8cca81aa35d
         format: uuid
       name:
         description: 'The name of this menu'
@@ -9929,7 +9929,7 @@ definitions:
       id:
         description: 'The UUID identifier of this resource'
         type: string
-        example: 9b9eea1a-ef04-427d-b8bd-7f5c24801874
+        example: e2984465-190a-4562-829e-a8cca81aa35d
         format: uuid
       name:
         description: 'The name of this MenuItem'
@@ -9982,7 +9982,7 @@ definitions:
       id:
         description: 'The UUID identifier of this resource'
         type: string
-        example: 9b9eea1a-ef04-427d-b8bd-7f5c24801874
+        example: e2984465-190a-4562-829e-a8cca81aa35d
         format: uuid
       name:
         description: 'The name of this organization.'
@@ -10033,7 +10033,7 @@ definitions:
       id:
         description: 'The UUID identifier of this resource'
         type: string
-        example: 9b9eea1a-ef04-427d-b8bd-7f5c24801874
+        example: e2984465-190a-4562-829e-a8cca81aa35d
         format: uuid
       title:
         description: 'The title of this page.'
@@ -10080,7 +10080,7 @@ definitions:
       id:
         description: 'The UUID identifier of this resource'
         type: string
-        example: 9b9eea1a-ef04-427d-b8bd-7f5c24801874
+        example: e2984465-190a-4562-829e-a8cca81aa35d
         format: uuid
       slug:
         description: 'The actual slug of this slug.'
@@ -10113,7 +10113,7 @@ definitions:
       id:
         description: 'The UUID identifier of this resource'
         type: string
-        example: 9b9eea1a-ef04-427d-b8bd-7f5c24801874
+        example: e2984465-190a-4562-829e-a8cca81aa35d
         format: uuid
       name:
         description: 'The name of this style.'
@@ -10160,7 +10160,7 @@ definitions:
       id:
         description: 'The UUID identifier of this resource'
         type: string
-        example: 9b9eea1a-ef04-427d-b8bd-7f5c24801874
+        example: e2984465-190a-4562-829e-a8cca81aa35d
         format: uuid
       name:
         description: 'The internal name of this menu'
