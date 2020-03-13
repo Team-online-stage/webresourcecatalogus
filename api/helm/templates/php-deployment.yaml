@@ -187,17 +187,17 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: {{ template "fullname" . }}
-                  key: app-commonground-id
+                  key: app_commonground_id
             - name: APP_COMMONGROUND_KEY
               valueFrom:
                 secretKeyRef:
                   name: {{ template "fullname" . }}
-                  key: app-commonground-key
+                  key: app_commonground_key
             - name: APP_APPLICATION_KEY
               valueFrom:
                 secretKeyRef:
                   name: {{ template "fullname" . }}
-                  key: app-application-key
+                  key: app_application_key
             - name: APP_USER_KEY
               valueFrom:
                 secretKeyRef:
