@@ -52,7 +52,7 @@ class LarpingFixtures extends Fixture
     	$application= new Application();
     	$application->setName('Larping.eu');
     	$application->setDescription('orem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor');
-    	$application->setDomain('https://www.larping.eu');
+    	$application->setDomain('larping.eu');
     	$application->setOrganization($larping);
     	$manager->persist($application);
 
