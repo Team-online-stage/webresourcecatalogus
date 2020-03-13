@@ -17,19 +17,19 @@ use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 class HuwelijksplannerFixtures extends Fixture
 {
 	private $params;
-	
+
 	public function __construct(ParameterBagInterface $params)
 	{
 		$this->params = $params;
 	}
-	
+
     public function load(ObjectManager $manager)
     {
     	// Lets make sure we only run these fixtures on huwelijksplanner enviroments
     	if(!in_array("huwelijksplanner.online",$this->params->get('app_domains'))){
     		return false;
     	}
-    	
+
     	// Utrecht
     	$id = Uuid::fromString('68b64145-0740-46df-a65a-9d3259c2fec8');
     	$utrecht = new Organization();
@@ -41,7 +41,7 @@ class HuwelijksplannerFixtures extends Fixture
     	$manager->persist($utrecht);
     	$manager->flush();
     	$utrecht= $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
-    	
+
     	$favicon = new Image();
     	$favicon->setName('VNG Favicon');
     	$favicon->setDescription('Favicon VNG');
@@ -187,9 +187,10 @@ class HuwelijksplannerFixtures extends Fixture
         $application = $manager->getRepository('App:Application')->findOneBy(['id'=> $id]);
 
         // Berichten
-        $id = Uuid::fromString('b93e6cdf-ed0c-49e7-9975-e6b31f3ebed2');
+        
+        $id = Uuid::fromString('c20cc285-0246-4bf8-b3d0-781543b03270');
         $template = new Template();
-        $template->setName('Verzoek ontvangen');
+        $template->setName('Bevestiging Melding');
         $template->setDescription('Bericht dat het verzoek ontvangen is');
         $template->setContent('Wij hebben uw verzoek ontvangen');
         $template->setTemplateEngine('twig');
@@ -197,6 +198,28 @@ class HuwelijksplannerFixtures extends Fixture
         $template->setId($id);
         $manager->persist($template);
         $manager->flush();
+        
+        $id = Uuid::fromString('b93e6cdf-ed0c-49e7-9975-e6b31f3ebed2');
+        $template = new Template();
+        $template->setName('Aanvraag ontvangen');
+        $template->setDescription('Bericht dat het verzoek ontvangen is');
+        $template->setContent('Uw aanvraag is ontvangen en word zo spoedig mogelijk beoordeeld. U ontvangt uiterlijk over (x dagen, tijd, etc) een bevestiging van uw reservering.');
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        
+        $id = Uuid::fromString('e773b161-3636-45a1-8fc2-dd0d4140a9f9');
+        $template = new Template();
+        $template->setName('Bevestiging aanvraag');
+        $template->setDescription('Bericht dat het verzoek ontvangen is');
+        $template->setContent('Bevestiging van de daadwerkelijke datum, tijd, locatie, babs etc.');
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush(); 
 
         $id = Uuid::fromString('2d56603e-65b3-4b17-81f7-d88ac8bb4e7f');
         $template = new Template();
@@ -412,7 +435,7 @@ class HuwelijksplannerFixtures extends Fixture
         $slug->setApplication($application);
         $slug->setSlug('requests');
         $manager->persist($page);
- 
+
         $id = Uuid::fromString('6c749286-1178-453a-ba17-4e922686a4da');
         $template = new Template();
         $template->setName('Verander van Organisatie');
@@ -424,20 +447,20 @@ class HuwelijksplannerFixtures extends Fixture
         $manager->persist($template);
         $manager->flush();
         $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
-        
+
         $page = new Page();
         $page->setTitle('Verander van Organisatie');
         $page->setDescription('Verander van Organisatie');
         $page->setApplication($application);
         $page->setTemplate($template);
         $manager->persist($page);
-        
+
         $slug = new Slug();
         $slug->setPage($page);
         $slug->setApplication($application);
         $slug->setSlug('switch-organisation');
         $manager->persist($page);
-        
+
         $id = Uuid::fromString('e2f9e1f1-c322-48bf-9b18-c822fee32283');
         $template = new Template();
         $template->setName('Verander Applicatie');
@@ -449,19 +472,19 @@ class HuwelijksplannerFixtures extends Fixture
         $manager->persist($template);
         $manager->flush();
         $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
-        
+
         $page = new Page();
         $page->setTitle('Verander Applicatie');
         $page->setDescription('Verander Applicatie');
         $page->setApplication($application);
         $page->setTemplate($template);
         $manager->persist($page);
-        
+
         $slug = new Slug();
         $slug->setPage($page);
         $slug->setApplication($application);
         $slug->setSlug('switch-application');
-        $manager->persist($page);      
+        $manager->persist($page);
 
         $id = Uuid::fromString('5b9fdd2f-273e-49c3-aa8d-2377be792b76');
         $template = new Template();
@@ -539,7 +562,33 @@ class HuwelijksplannerFixtures extends Fixture
         $slug->setApplication($application);
         $slug->setSlug('organizations');
         $manager->persist($page);
-
+        
+        // pagina 0
+        $id = Uuid::fromString('2cd41267-4eda-452b-9299-7d6596593f83');
+        $template = new Template();
+        $template->setName('Start ');
+        $template->setDescription('Start pagina voor huwelijks proces');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/pagina0.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        
+        $page = new Page();
+        $page->setTitle('Start');
+        $page->setDescription('Start');
+        $page->setApplication($application);
+        $page->setTemplate($template);
+        $manager->persist($page);
+        
+        $slug = new Slug();
+        $slug->setPage($page);
+        $slug->setApplication($application);
+        $slug->setSlug('start-huwelijk');
+        $manager->persist($page);
+        
         // Getuigen
         $id = Uuid::fromString('da78b8bb-16bf-449c-96e3-3615e9e8e2af');
         $template = new Template();
@@ -1015,7 +1064,6 @@ class HuwelijksplannerFixtures extends Fixture
         //$template->setId($id);
         $manager->persist($template);
         $manager->flush();
-        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
 
         $page = new Page();
         $page->setTitle('FAQ');

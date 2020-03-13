@@ -4,8 +4,11 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
 use ApiPlatform\Core\Annotation\ApiFilter;
-use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\DateFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\BooleanFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\OrderFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\DateFilter;
+
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -22,7 +25,10 @@ use App\Controller\DefaultController;
 /**
  * Content holds information and photos you want to show on your pages.
  *
- * @ApiResource(itemOperations={
+ * @ApiResource(
+ *     	normalizationContext={"groups"={"read"}, "enable_max_depth"=true},
+ *     	denormalizationContext={"groups"={"write"}, "enable_max_depth"=true},
+ *     itemOperations={
  * 		"get",
  * 	    "put",
  * 	   "delete",
@@ -30,14 +36,32 @@ use App\Controller\DefaultController;
  *         "method"="POST",
  *         "path"="/templates/{id}/render",
  *         "controller"=DefaultController::class,
- *     		}
+ *     		},
+ *     "get_change_logs"={
+ *              "path"="/templates/{id}/change_log",
+ *              "method"="get",
+ *              "swagger_context" = {
+ *                  "summary"="Changelogs",
+ *                  "description"="Gets al the change logs for this resource"
+ *              }
+ *          },
+ *     "get_audit_trail"={
+ *              "path"="/templates/{id}/audit_trail",
+ *              "method"="get",
+ *              "swagger_context" = {
+ *                  "summary"="Audittrail",
+ *                  "description"="Gets the audit trail for this resource"
+ *              }
+ *          }
  * 		},
- *     	normalizationContext={"groups"={"read"}, "enable_max_depth"=true},
- *     	denormalizationContext={"groups"={"write"}, "enable_max_depth"=true},
  * )
- * @ApiFilter(DateFilter::class, properties={"dateCreated","dateModified"})
- * @Gedmo\Loggable
  * @ORM\Entity(repositoryClass="App\Repository\TemplateRepository")
+ * @Gedmo\Loggable(logEntryClass="App\Entity\ChangeLog")
+ * 
+ * @ApiFilter(BooleanFilter::class)
+ * @ApiFilter(OrderFilter::class)
+ * @ApiFilter(DateFilter::class, strategy=DateFilter::EXCLUDE_NULL)
+ * @ApiFilter(SearchFilter::class)
  */
 class Template
 {
@@ -60,6 +84,7 @@ class Template
      *
      * @example webshop menu
      *
+     * @Gedmo\Versioned
      * @Assert\NotNull
      * @Assert\Length(
      *      max = 255
@@ -74,6 +99,7 @@ class Template
      *
      * @example webshop menu
      *
+     * @Gedmo\Versioned
      * @Assert\NotNull
      * @Assert\Length(
      *      max = 255
@@ -88,6 +114,7 @@ class Template
      *
      * @example This page holds info about this application
      *
+     * @Gedmo\Versioned
      * @Assert\NotNull
      * @Assert\Length(
      *     max = 255
@@ -102,6 +129,7 @@ class Template
      *
      * @example A lot of random info over any topic
      *
+     * @Gedmo\Versioned
      * @Assert\NotNull
      * @Groups({"read","write"})
      * @ORM\Column(type="text")
@@ -113,6 +141,7 @@ class Template
      *
      * @example Twig
      *
+     * @Gedmo\Versioned
      * @Assert\NotNull
      * @Assert\Choice({"twig", "md", "rst"})
      * @Groups({"read","write"})
