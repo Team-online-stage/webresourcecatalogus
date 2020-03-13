@@ -77,6 +77,16 @@ spec:
                 configMapKeyRef:
                   name: {{ template "fullname" . }}
                   key: app-demo
+            - name: APP_REPRO
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ template "fullname" . }}
+                  key: app-repro
+            - name: APP_CONTAINER
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ template "fullname" . }}
+                  key: app-container
             - name: APP_DOMAINS
               valueFrom:
                 configMapKeyRef:
@@ -177,22 +187,32 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: {{ template "fullname" . }}
-                  key: app-commonground-id
+                  key: app_commonground_id
             - name: APP_COMMONGROUND_KEY
               valueFrom:
                 secretKeyRef:
                   name: {{ template "fullname" . }}
-                  key: app-commonground-key
+                  key: app_commonground_key
             - name: APP_APPLICATION_KEY
               valueFrom:
                 secretKeyRef:
                   name: {{ template "fullname" . }}
-                  key: app-application-key
+                  key: app_application_key
             - name: APP_USER_KEY
               valueFrom:
                 secretKeyRef:
                   name: {{ template "fullname" . }}
-                  key: app-user-key
+                  key: app_user_key
+            - name: AUTH_PROVIDER_USER
+              valueFrom:
+                secretKeyRef:
+                  name: {{ template "fullname" . }}
+                  key: auth_provider_user
+            - name: AUTH_PROVIDER_APPLICATION
+              valueFrom:
+                secretKeyRef:
+                  name: {{ template "fullname" . }}
+                  key: auth_provider_application
           resources:
 {{ toYaml .Values.resources | indent 12 }}
     {{- if .Values.nodeSelector }}

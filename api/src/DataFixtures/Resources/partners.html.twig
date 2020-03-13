@@ -32,7 +32,7 @@
                     <i class="fas fa-user"></i>
                     <div class="feature-text">
                         <div class="col-md-2">
-                            {% if contact1.emails is defined and contact1.emails is not empty or contact1.telephones is defined and contact1.telephones is not empty %}
+                            {% if (contact1.emails is defined and contact1.emails is not empty and contact1.emails[0].email != "") or (contact1.telephones is defined and contact1.telephones is not empty and contact1.telephones[0].telephone != "") %}
                                 <a class="float-left" href="#editPartnerModal" data-toggle="modal"
                                    data-target="#editPartnerModal"><i
                                         style="color: #2A5587; background-color:white;font-size:16px"
@@ -68,7 +68,7 @@
                             {% if contact1.emails is defined and contact1.emails is not empty %}
                                 <br><b>Email:</b> {{ contact1.emails[0].email }}
                             {% endif %}
-                            {% if contact1.telephones is defined and contact1.telephones is not empty %}
+                            {% if contact1.telephones is defined and contact1.telephones is not empty and contact1.telephones[0].telephone != "" %}
                                 <br><b>Telefoon</b></b> {{ contact1.telephones[0].telephone }}
                             {% endif %}
                             <br/>
@@ -78,29 +78,35 @@
 
                 <!-- Bijwerken partner 1 -->
                 <div class="affa-feature-icon">
-                    <i class="fas fa-envelope"></i>
-                    <div class="feature-text">
-                        <h4>Uw contact gegevens</h4>
-                        <p>We willen graag nog een paar dingen van u weten</p>
-                        <br/>
+                    {% if (contact1.emails is not defined or contact1.emails is empty or contact1.emails[0].email == "") or (contact1.telephones is not defined or contact1.telephones is empty or contact1.telephones[0].telephone == "")  %}
+                        <i class="fas fa-envelope"></i>
+                        <div class="feature-text">
 
-                        <form method="post" action="{{ path('app_default_updateassent',{'id':assent1.id}) }}"
-                              class="affa-form-contact">
-                            <div class="submit-status"></div>
 
-                            <label for="partner_email">Email Adres <span class="required">*</span></label>
-                            <input type="text" name="email" placeholder="john@do.nl"
-                                   value="{% if contact1['_embedded']['emails'] is defined %}{{ contact1['_embedded']['emails'][0].email }}{% endif %}"
-                                   required/>
-                            <label for="partner_telefoonnummer">Telefoonnummer</label>
-                            <input type="text" name="telephone" placeholder="+31 6 12345678"
-                                   value="{% if contact1['_embedded']['telephones'] is defined %}{{ contact1['_embedded']['telephones'][0].telephone }}{% endif %}"/>
+                            <h4>Uw contact gegevens</h4>
+                            <p>We willen graag nog een paar dingen van u weten</p>
+                            <br/>
 
-                            <button type="submit" class="btn btn-success btn-lg btn-block btn-icon"><i
-                                    class="far fa-envelope"></i> Opslaan
-                            </button>
-                        </form>
-                    </div>
+                            <form method="post" action="{{ path('app_default_updateassent',{'id':assent1.id}) }}"
+                                  class="affa-form-contact">
+                                <div class="submit-status"></div>
+                                {% if contact1.emails is not defined or contact1.emails is empty or contact1.emails[0].email == "" %}
+                                    <label for="partner_email">Email Adres <span class="required">*</span></label>
+                                    <input type="text" name="email" placeholder="john@do.nl"
+                                           value="{% if contact1.emails is defined and contact1.emails is not empty %}{{ contact1.emails[0].email }}{% endif %}"
+                                           required/>
+                                {% endif %}
+                                {% if contact1.telephones is not defined or contact1.telephones is empty or contact1.telephones[0].telephone == "" %}
+                                    <label for="partner_telefoonnummer">Telefoonnummer</label>
+                                    <input type="text" name="telephone" placeholder="+31 6 12345678"
+                                           value="{% if contact1.telephones is defined and contact1.telephones is not empty %}{{ contact1.telephones[0].telephone }}{% endif %}"/>
+                                {% endif %}
+                                <button type="submit" class="btn btn-success btn-lg btn-block btn-icon"><i
+                                        class="far fa-envelope"></i> Opslaan
+                                </button>
+                            </form>
+                        </div>
+                    {% endif %}
                 </div>
             {% endif %}
         </div>
@@ -118,7 +124,7 @@
                                 </h4>
                             </div>
                             <div class="col-md-2">
-                                <a class="float-right" href="#editModal" data-toggle="modal" data-target="#editModal"><i
+                                <a class="float-right" href="#editPartner2Modal" data-toggle="modal" data-target="#editPartner2Modal"><i
                                         style="color: #2A5587; background-color:white;font-size:16px"
                                         class="fa  fa-edit"></i></a>
                             </div>
@@ -153,10 +159,11 @@
 
                 <!-- Bijwerken partner 2 -->
                 <div class="affa-feature-icon">
+                {% if contact2.emails is not defined or contact2.emails is empty or contact2.emails[0].email is empty
+                    or contact2.telephones is not defined or contact2.telephones is empty or contact2.telephones[0].telephone is empty %}
                     <i class="fas fa-envelope"></i>
                     <div class="feature-text">
-                        {% if contact2.emails is not defined or contact2.emails is empty or contact2.emails[0].email is empty
-                            or contact2.telephones is not defined or contact2.telephones is empty or contact2.telephones[0].telephone is empty %}
+
                             <h4>Contact gegevens van uw partner</h4>
                             <p>Uiteraard willen we ook uw partner graag kunnen bereiken.</p>
                             <br/>
@@ -173,15 +180,15 @@
                                 {% if contact2.telephones is not defined or contact2.telephones is empty or contact2.telephones[0].telephone is empty %}
                                     <label for="partner_telefoonnummer">Telefoonnummer</label>
                                     <input type="text" name="telephone" placeholder="+31 6 12345678"
-                                           value="{% if contact2.telephones is defined %}{{ contact2.telephones[0].telephone }}{% endif %}"/>
+                                           value="{% if contact2.telephones[0].telephone is defined %}{{ contact2.telephones[0].telephone }}{% endif %}"/>
                                 {% endif %}
                                 <button type="submit" class="btn btn-success btn-lg btn-block btn-icon"><i
                                         class="far fa-envelope"></i> Opslaan
                                 </button>
                             </form>
-                        {% endif %}
                     </div>
-                </div>
+                {% endif %}
+            </div>
             {% else %}
                 <!-- Uitnodigen partner 2 -->
                 <div class="affa-feature-icon"> <!-- 6 -->
