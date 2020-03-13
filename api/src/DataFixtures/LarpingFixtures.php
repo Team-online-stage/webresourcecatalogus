@@ -39,6 +39,7 @@ class LarpingFixtures extends Fixture
     	$larping->setName('Larping.eu');
     	$larping->setDescription('Larping');
     	$larping->setRsin('');
+    	$larping->setContact("https://cc.larping.eu/organizations/27141158-fde5-4e8b-a2b7-07c7765f0c63");
     	$manager->persist($larping);
 
     	// Fix Id (for linked datapurposes)
