@@ -53,7 +53,7 @@ use App\Entity\Image;
  * )
  * @ORM\Entity(repositoryClass="App\Repository\OrganizationRepository")
  * @Gedmo\Loggable(logEntryClass="App\Entity\ChangeLog")
- * 
+ *
  * @ApiFilter(BooleanFilter::class)
  * @ApiFilter(OrderFilter::class)
  * @ApiFilter(DateFilter::class, strategy=DateFilter::EXCLUDE_NULL)
@@ -74,7 +74,7 @@ class Organization
 	 * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
 	 */
 	private $id;
-	
+
 	/**
 	 * @var string The rsin of this organisations.
 	 *
@@ -85,10 +85,11 @@ class Organization
 	 * @Assert\Length(
 	 *     max = 255
 	 * )
+     * @Groups({"read","write"})
 	 * @ORM\Column(type="string", length=255, nullable=true)
 	 */
 	private $rsin;
-	
+
 	/**
 	 * @var string The Chamber of Comerce ID of this organisations.
 	 *
@@ -99,10 +100,11 @@ class Organization
 	 * @Assert\Length(
 	 *     max = 255
 	 * )
+     * @Groups({"read","write"})
 	 * @ORM\Column(type="string", length=255, nullable=true)
 	 */
-	private $chamberOfComerce;	
-	
+	private $chamberOfComerce;
+
 	/**
 	 * @var string The name of this organization.
 	 *
@@ -117,7 +119,7 @@ class Organization
 	 * @ORM\Column(type="string", length=255)
 	 */
 	private $name;
-		
+
 	/**
 	 * @var string The description of this organisation.
 	 *
@@ -148,6 +150,7 @@ class Organization
     private $styles;
 
     /**
+     * @Groups({"read","write"})
      * @MaxDepth(1)
      * @ORM\OneToMany(targetEntity="App\Entity\Application", mappedBy="organization", orphanRemoval=true)
      */
@@ -159,25 +162,27 @@ class Organization
      * @ORM\OneToMany(targetEntity="App\Entity\Image", mappedBy="organization", orphanRemoval=true)
      */
     private $images;
-    
+
     /**
      * @MaxDepth(1)
      * @ORM\OneToMany(targetEntity="App\Entity\Configuration", mappedBy="organization", orphanRemoval=true)
      */
     private $configurations;
-    
+
     /**
+     * @Groups({"read","write"})
      * @MaxDepth(1)
      * @ORM\OneToMany(targetEntity="App\Entity\Template", mappedBy="organization", orphanRemoval=true)
      */
     private $templates;
-    
+
     /**
+     * @Groups({"read","write"})
      * @MaxDepth(1)
      * @ORM\OneToMany(targetEntity="App\Entity\Menu", mappedBy="organization", orphanRemoval=true)
      */
     private $menus;
-    
+
     /**
      * @var Datetime $dateCreated The moment this request was created
      *
@@ -186,7 +191,7 @@ class Organization
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $dateCreated;
-    
+
     /**
      * @var Datetime $dateModified  The moment this request last Modified
      *
@@ -195,6 +200,18 @@ class Organization
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $dateModified;
+
+    /**
+     * @var string The contact for this organization
+     *
+     * @Groups({"read", "write"})
+     * @Assert\Url
+     * @Assert\Length(
+     *     max=255
+     * )
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $contact;
 
     public function __construct()
     {
@@ -209,37 +226,37 @@ class Organization
     {
         return $this->id;
     }
-    
+
     public function setId(Uuid $id): self
     {
     	$this->id = $id;
-    	
+
     	return $this;
     }
-    
+
     public function getRsin(): ?string
     {
     	return $this->rsin;
     }
-    
+
     public function setRsin(string $rsin): self
     {
     	$this->rsin = $rsin;
-    	
+
     	return $this;
-    } 
-    
+    }
+
     public function getChamberOfComerce(): ?string
     {
     	return $this->chamberOfComerce;
     }
-    
+
     public function setChamberOfComerce(string $chamberOfComerce): self
     {
     	$this->chamberOfComerce= $chamberOfComerce;
-    	
+
     	return $this;
-    } 
+    }
 
     public function getName(): ?string
     {
@@ -281,17 +298,17 @@ class Organization
     {
         return $this->styles;
     }
-    
+
     public function addStyle(Style $style): self
     {
     	if (!$this->styles->contains($style)) {
     		$this->styles[] = $style;
     		$style->setOrganization($this);
     	}
-    	
+
     	return $this;
     }
-    
+
     public function removeStyle(Style $style): self
     {
     	if ($this->styles->contains($style)) {
@@ -301,7 +318,7 @@ class Organization
     			$style->setOrganization(null);
     		}
     	}
-    	
+
     	return $this;
     }
 
@@ -309,17 +326,17 @@ class Organization
     {
         return $this->applications;
     }
-    
+
     public function addApplication(Application $application): self
     {
     	if (!$this->applications->contains($application)) {
     		$this->applications[] = $application;
     		$image->setOrganization($this);
     	}
-    	
+
     	return $this;
     }
-    
+
     public function removeApplication(Application $application): self
     {
     	if ($this->applications->contains($application)) {
@@ -329,7 +346,7 @@ class Organization
     			$application->setOrganization(null);
     		}
     	}
-    	
+
     	return $this;
     }
 
@@ -364,7 +381,7 @@ class Organization
 
         return $this;
     }
-    
+
     /**
      * @return Collection|Configuration[]
      */
@@ -372,17 +389,17 @@ class Organization
     {
     	return $this->configurations;
     }
-    
+
     public function addConfiguration(Configuration $configuration): self
     {
     	if (!$this->configurations->contains($configuration)) {
     		$this->configurations[] = $configuration;
     		$configuration->setOrganization($this);
     	}
-    	
+
     	return $this;
     }
-    
+
     public function removeConfiguration(Configuration $configuration): self
     {
     	if ($this->configurations->contains($configuration)) {
@@ -392,12 +409,12 @@ class Organization
     			$configuration->setOrganization(null);
     		}
     	}
-    	
+
     	return $this;
     }
-    
-    
-    
+
+
+
     /**
      * @return Collection|Templates[]
      */
@@ -405,17 +422,17 @@ class Organization
     {
     	return $this->templates;
     }
-    
+
     public function addTemplates(Template $template): self
     {
     	if (!$this->templates->contains($template)) {
     		$this->templates[] = $template;
     		$template->setOrganization($this);
     	}
-    	
+
     	return $this;
     }
-    
+
     public function removeTemplate(Template $template): self
     {
     	if ($this->templates->contains($template)) {
@@ -425,10 +442,10 @@ class Organization
     			$template->setOrganization(null);
     		}
     	}
-    	
+
     	return $this;
     }
-    
+
     /**
      * @return Collection|Menus[]
      */
@@ -436,17 +453,17 @@ class Organization
     {
     	return $this->menus;
     }
-    
+
     public function addMenu(Menu $template): self
     {
     	if (!$this->menus->contains($menu)) {
     		$this->menus[] = $menu;
     		$menu->setOrganization($this);
     	}
-    	
+
     	return $this;
     }
-    
+
     public function removeMenu(Menu $menu): self
     {
     	if ($this->menus->contains($menu)) {
@@ -456,31 +473,43 @@ class Organization
     			$menu->setOrganization(null);
     		}
     	}
-    	
+
     	return $this;
     }
-    
+
     public function getDateCreated(): ?\DateTimeInterface
     {
     	return $this->dateCreated;
     }
-    
+
     public function setDateCreated(\DateTimeInterface $dateCreated): self
     {
     	$this->dateCreated= $dateCreated;
-    	
+
     	return $this;
     }
-    
+
     public function getDateModified(): ?\DateTimeInterface
     {
     	return $this->dateModified;
     }
-    
+
     public function setDateModified(\DateTimeInterface $dateModified): self
     {
     	$this->dateModified = $dateModified;
-    	
+
     	return $this;
+    }
+
+    public function getContact(): ?string
+    {
+        return $this->contact;
+    }
+
+    public function setContact(?string $contact): self
+    {
+        $this->contact = $contact;
+
+        return $this;
     }
 }
