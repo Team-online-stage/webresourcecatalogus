@@ -26,10 +26,10 @@
                         <p>{{ product.description|raw }}<br/></p>
                         <div class="tbl-prc-footer">
                             {% if user is not empty  %}
-	                    	<a href="{{ path('app_default_set',{'value':product['@id'],'slug':'extra'}) }}"  class="btn btn-primary btn-icon  btn-block">Ja dit wil ik!</a>
+	                    	<a href="{{ path('app_default_set',{'value':product.offers[0]['@id'],'slug':'extra'}) }}"  class="btn btn-primary btn-icon  btn-block">Ja dit wil ik!</a>
 							{% endif %}
                     	</div>
-                       
+
                     </div>
                 </div>
                     {%endif%}
