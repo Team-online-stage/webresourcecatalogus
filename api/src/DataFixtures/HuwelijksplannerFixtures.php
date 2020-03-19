@@ -36,6 +36,7 @@ class HuwelijksplannerFixtures extends Fixture
     	$utrecht->setName('Utrecht');
     	$utrecht->setDescription('Gemeente Utrecht');
     	$utrecht->setRsin('');
+    	$utrecht->setContact('https://cc.huwelijksplanner.online/organizations/95c3da92-b7d3-4ea0-b6d4-3bc24944e622');
     	$manager->persist($utrecht);
     	$utrecht->setId($id);
     	$manager->persist($utrecht);
@@ -187,7 +188,7 @@ class HuwelijksplannerFixtures extends Fixture
         $application = $manager->getRepository('App:Application')->findOneBy(['id'=> $id]);
 
         // Berichten
-        
+
         $id = Uuid::fromString('c20cc285-0246-4bf8-b3d0-781543b03270');
         $template = new Template();
         $template->setName('Bevestiging Melding');
@@ -198,7 +199,7 @@ class HuwelijksplannerFixtures extends Fixture
         $template->setId($id);
         $manager->persist($template);
         $manager->flush();
-        
+
         $id = Uuid::fromString('b93e6cdf-ed0c-49e7-9975-e6b31f3ebed2');
         $template = new Template();
         $template->setName('Aanvraag ontvangen');
@@ -209,7 +210,7 @@ class HuwelijksplannerFixtures extends Fixture
         $template->setId($id);
         $manager->persist($template);
         $manager->flush();
-        
+
         $id = Uuid::fromString('e773b161-3636-45a1-8fc2-dd0d4140a9f9');
         $template = new Template();
         $template->setName('Bevestiging aanvraag');
@@ -219,7 +220,7 @@ class HuwelijksplannerFixtures extends Fixture
         $manager->persist($template);
         $template->setId($id);
         $manager->persist($template);
-        $manager->flush(); 
+        $manager->flush();
 
         $id = Uuid::fromString('2d56603e-65b3-4b17-81f7-d88ac8bb4e7f');
         $template = new Template();
@@ -305,6 +306,70 @@ class HuwelijksplannerFixtures extends Fixture
         $slug->setApplication($application);
         $slug->setSlug('trouwen');
         $manager->persist($page);
+        
+        // Babs voor een dag
+        $template = new Template();
+        $template->setName('BABS voor een dag');
+        $template->setDescription('BABS voor een dag');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/babs-voor-een-dag.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        
+        $page = new Page();
+        $page->setTitle('BABS voor een dag');
+        $page->setDescription('BABS voor een dag');
+        $page->setApplication($application);
+        $page->setTemplate($template);
+        $manager->persist($page);
+        
+        $slug = new Slug();
+        $slug->setPage($page);
+        $slug->setApplication($application);
+        $slug->setSlug('babs-voor-een-dag');
+        $manager->persist($page);
+        
+        // Bas andere gemeente
+        $template = new Template();
+        $template->setName('Babs andere gemeente');
+        $template->setDescription('Babs andere gemeente');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/babs-andere-gemeente.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        
+        $page = new Page();
+        $page->setTitle('Babs andere gemeente');
+        $page->setDescription('Babs andere gemeente');
+        $page->setApplication($application);
+        $page->setTemplate($template);
+        $manager->persist($page);
+        
+        $slug = new Slug();
+        $slug->setPage($page);
+        $slug->setApplication($application);
+        $slug->setSlug('babs-andere-gemeente');
+        $manager->persist($page);
+        
+        //afwijkende locatie
+        $template = new Template();
+        $template->setName('Afwijkende trouw locatie');
+        $template->setDescription('Afwijkende trouw locatie');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/afwijkende-trouw-locatie.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        
+        $page = new Page();
+        $page->setTitle('Afwijkende trouw locatie');
+        $page->setDescription('Afwijkende trouw locatie');
+        $page->setApplication($application);
+        $page->setTemplate($template);
+        $manager->persist($page);
+        
+        $slug = new Slug();
+        $slug->setPage($page);
+        $slug->setApplication($application);
+        $slug->setSlug('afwijkende-trouw-locatie');
+        $manager->persist($page);
+        
 
         // indienen
         $id = Uuid::fromString('ed2b2747-2152-456b-8bc3-2524799e1e86');
@@ -562,7 +627,7 @@ class HuwelijksplannerFixtures extends Fixture
         $slug->setApplication($application);
         $slug->setSlug('organizations');
         $manager->persist($page);
-        
+
         // pagina 0
         $id = Uuid::fromString('2cd41267-4eda-452b-9299-7d6596593f83');
         $template = new Template();
@@ -575,20 +640,20 @@ class HuwelijksplannerFixtures extends Fixture
         $manager->persist($template);
         $manager->flush();
         $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
-        
+
         $page = new Page();
         $page->setTitle('Start');
         $page->setDescription('Start');
         $page->setApplication($application);
         $page->setTemplate($template);
         $manager->persist($page);
-        
+
         $slug = new Slug();
         $slug->setPage($page);
         $slug->setApplication($application);
         $slug->setSlug('start-huwelijk');
         $manager->persist($page);
-        
+
         // Getuigen
         $id = Uuid::fromString('da78b8bb-16bf-449c-96e3-3615e9e8e2af');
         $template = new Template();
@@ -1077,8 +1142,32 @@ class HuwelijksplannerFixtures extends Fixture
         $slug->setApplication($application);
         $slug->setSlug('faq');
         $manager->persist($page);
-
         $manager->flush();
+
+        $id = Uuid::fromString('e04defee-0bb3-4e5c-b21d-d6deb76bd1bc');
+        $template = new Template();
+        $template->setName('E-mail instemming');
+        $template->setTitle('E-mail Instemming');
+        $template->setDescription('');
+        $template->setContent('Beste {{ contact.givenName }},<br><br>Uw instemming is gevraagd bij een instemmingsverzoek.<br><br><a href="{{ assent[\'@id\'] }}">Klik hier</a> om op dit verzoek te reageren.<br><br>Met vriendelijke groet,<br><br>Gemeente Utrecht');
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+
+        $id = Uuid::fromString('66e43592-22a2-49c2-8c3e-10d9a00d5487');
+        $template = new Template();
+        $template->setName('E-mail aanvraag');
+        $template->setTitle('E-mail aanvraag');
+        $template->setDescription('');
+        $template->setContent('Beste {{ contact.givenName }},<br><br>U heeft een aanvraag insgestuurd voor een {{ request.name }} bij de gemeente Utrecht.<br><br><a href="">Klik hier</a> om op dit uw aanvraag in te zien<br><br>Met vriendelijke groet,<br><br>Gemeente Utrecht');
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+
 
     }
 }

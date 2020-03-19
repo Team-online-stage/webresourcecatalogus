@@ -201,6 +201,18 @@ class Organization
      */
     private $dateModified;
 
+    /**
+     * @var string The contact for this organization
+     *
+     * @Groups({"read", "write"})
+     * @Assert\Url
+     * @Assert\Length(
+     *     max=255
+     * )
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $contact;
+
     public function __construct()
     {
     	$this->styles= new ArrayCollection();
@@ -487,5 +499,17 @@ class Organization
     	$this->dateModified = $dateModified;
 
     	return $this;
+    }
+
+    public function getContact(): ?string
+    {
+        return $this->contact;
+    }
+
+    public function setContact(?string $contact): self
+    {
+        $this->contact = $contact;
+
+        return $this;
     }
 }

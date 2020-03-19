@@ -14,8 +14,8 @@ settings:
   container: https://hub.docker.com/repository/docker/conduction/wrc-php
   subdomain: wrc  
   domains:
-    - larping.eu
-  domainsJson: ["larping.eu"]
+    - zaakonline.nl
+  domainsJson: ["zaakonline.nl"]
   organisationName: Conduction
   email: info@conduction.nl
   country: Netherlands
