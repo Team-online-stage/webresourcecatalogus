@@ -102,7 +102,7 @@ class HuwelijksplannerFixtures extends Fixture
     	$manager->flush();
     	
     	// VNG
-    	$id = Uuid::fromString('b61326d6-c801-4e73-b341-405a55d99c8a');
+    	$id = Uuid::fromString('26f9657d-b5c7-44a6-b33f-596b657c1bde');
     	$organization= new Organization();
     	$organization->setName('VNG');
     	$organization->setDescription('Vereniging Nederlandse Gemeenten');
