@@ -35,7 +35,7 @@ class HuwelijksplannerFixtures extends Fixture
     	$utrecht = new Organization();
     	$utrecht->setName('Utrecht');
     	$utrecht->setDescription('Gemeente Utrecht');
-    	$utrecht->setRsin('');
+    	$utrecht->setRsin('002220647');
     	$utrecht->setContact('https://cc.huwelijksplanner.online/organizations/95c3da92-b7d3-4ea0-b6d4-3bc24944e622');
     	$manager->persist($utrecht);
     	$utrecht->setId($id);
@@ -100,12 +100,43 @@ class HuwelijksplannerFixtures extends Fixture
     	$manager->persist($style);
 
     	$manager->flush();
-
-    	// Rotterdam
+    	
+    	// VNG
+    	$id = Uuid::fromString('b61326d6-c801-4e73-b341-405a55d99c8a');
+    	$organization= new Organization();
+    	$organization->setName('VNG');
+    	$organization->setDescription('Vereniging Nederlandse Gemeenten');
+    	$organization->setRsin('0000');
+    	$manager->persist($organization);
+    	$organization->setId($id);
+    	$manager->persist($organization);
+    	$manager->flush();
+    	$organization= $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
+    	
+    	
+    	// s-Hertogenbosch
+    	$id = Uuid::fromString('fed9339e-57d5-4f63-ab68-694759705c19');
+    	$organization= new Organization();
+    	$organization->setName('\'s-Hertogenbosch');
+    	$organization->setDescription('Gemeente \'s-Hertogenbosch');
+    	$organization->setRsin('001709124');
+    	$manager->persist($organization);
+    	$organization->setId($id);
+    	$manager->persist($organization);
+    	$manager->flush();
+    	$organization= $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
+    	
+    	// Eindhoven 
+    	$id = Uuid::fromString('1802c00b-c3d9-46a5-848c-5846bca29345');
     	$eindhoven= new Organization();
     	$eindhoven->setName('Eindhoven');
     	$eindhoven->setDescription('Gemeente Eindhoven');
-    	$eindhoven->setRsin('');
+    	$eindhoven->setRsin('001902763');
+    	$manager->persist($organization);
+    	$organization->setId($id);
+    	$manager->persist($organization);
+    	$manager->flush();
+    	$organization= $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
 
     	$favicon = new Image();
     	$favicon->setName('Gemeente Eindhoven Favicon');
