@@ -27,7 +27,7 @@
                     	<div class="tbl-prc-wrap">
                         	<div class="tbl-prc-heading">
                             	<h4>
-                                	{% if request is not empty and request.properties.plechtigheid is defined and request.properties.plechtigheid is not empty and product['@id'] == request.properties.plechtigheid %}
+                                	{% if request is not empty and request.properties.plechtigheid is defined and request.properties.plechtigheid is not empty and product.offers[0]['@id'] == request.properties.plechtigheid %}
     								<i class="fas fa-check"></i>
                                     {%  endif  %}
                                     {{ product.name }}
@@ -45,7 +45,7 @@
 	                            <a href="{{ path('app_default_slug',{'resource':product['@id'],'slug':'plechtigheid-kiezen'}) }}"  class="btn btn-secondary btn-icon  btn-block" >Meer lezen</a>
                                 {% if user is not empty  %}
 	                            <br/><br/>
-	                            <a href="{{ path('app_default_set',{'value': product['@id'],'slug':'plechtigheid'}) }}"  class="btn btn-primary btn-icon  btn-block">Ja dit wil ik!</a>
+	                            <a href="{{ path('app_default_set',{'value': product.offers[0]['@id'],'slug':'plechtigheid'}) }}"  class="btn btn-primary btn-icon  btn-block">Ja dit wil ik!</a>
                                 {% endif %}
                             </div>
                         </div>

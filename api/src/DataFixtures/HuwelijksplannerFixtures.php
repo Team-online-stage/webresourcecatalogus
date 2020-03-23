@@ -344,7 +344,7 @@ class HuwelijksplannerFixtures extends Fixture
         $slug->setApplication($application);
         $slug->setSlug('trouwen');
         $manager->persist($page);
-        
+
         // Babs voor een dag
         $template = new Template();
         $template->setName('BABS voor een dag');
@@ -352,20 +352,20 @@ class HuwelijksplannerFixtures extends Fixture
         $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/babs-voor-een-dag.html.twig', 'r'));
         $template->setTemplateEngine('twig');
         $manager->persist($template);
-        
+
         $page = new Page();
         $page->setTitle('BABS voor een dag');
         $page->setDescription('BABS voor een dag');
         $page->setApplication($application);
         $page->setTemplate($template);
         $manager->persist($page);
-        
+
         $slug = new Slug();
         $slug->setPage($page);
         $slug->setApplication($application);
         $slug->setSlug('babs-voor-een-dag');
         $manager->persist($page);
-        
+
         // Bas andere gemeente
         $template = new Template();
         $template->setName('Babs andere gemeente');
@@ -373,20 +373,20 @@ class HuwelijksplannerFixtures extends Fixture
         $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/babs-andere-gemeente.html.twig', 'r'));
         $template->setTemplateEngine('twig');
         $manager->persist($template);
-        
+
         $page = new Page();
         $page->setTitle('Babs andere gemeente');
         $page->setDescription('Babs andere gemeente');
         $page->setApplication($application);
         $page->setTemplate($template);
         $manager->persist($page);
-        
+
         $slug = new Slug();
         $slug->setPage($page);
         $slug->setApplication($application);
         $slug->setSlug('babs-andere-gemeente');
         $manager->persist($page);
-        
+
         //afwijkende locatie
         $template = new Template();
         $template->setName('Afwijkende trouw locatie');
@@ -394,20 +394,20 @@ class HuwelijksplannerFixtures extends Fixture
         $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/afwijkende-trouw-locatie.html.twig', 'r'));
         $template->setTemplateEngine('twig');
         $manager->persist($template);
-        
+
         $page = new Page();
         $page->setTitle('Afwijkende trouw locatie');
         $page->setDescription('Afwijkende trouw locatie');
         $page->setApplication($application);
         $page->setTemplate($template);
         $manager->persist($page);
-        
+
         $slug = new Slug();
         $slug->setPage($page);
         $slug->setApplication($application);
         $slug->setSlug('afwijkende-trouw-locatie');
         $manager->persist($page);
-        
+
 
         // indienen
         $id = Uuid::fromString('ed2b2747-2152-456b-8bc3-2524799e1e86');
@@ -1199,7 +1199,7 @@ class HuwelijksplannerFixtures extends Fixture
         $template->setName('E-mail aanvraag');
         $template->setTitle('E-mail aanvraag');
         $template->setDescription('');
-        $template->setContent('Beste {{ contact.givenName }},<br><br>U heeft een aanvraag insgestuurd voor een {{ request.name }} bij de gemeente Utrecht.<br><br><a href="">Klik hier</a> om op dit uw aanvraag in te zien<br><br>Met vriendelijke groet,<br><br>Gemeente Utrecht');
+        $template->setContent('Beste {{ contact.givenName }},<br><br>U heeft een aanvraag insgestuurd voor een {{ requestType.name }} bij de gemeente Utrecht.<br><br><a href="https://huwelijksplanner.online/?request={{request[\'@id\']}}">Klik hier</a> om op dit uw aanvraag in te zien<br><br>Met vriendelijke groet,<br><br>Gemeente Utrecht');
         $template->setTemplateEngine('twig');
         $manager->persist($template);
         $template->setId($id);
