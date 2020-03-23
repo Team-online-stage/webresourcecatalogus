@@ -71,10 +71,16 @@ class HuwelijksplannerFixtures extends Fixture
     	$manager->flush();
 
     	// Rotterdam
+    	$id = Uuid::fromString('caf824b3-436a-471c-a703-629cf84ca00d');
     	$rotterdam= new Organization();
     	$rotterdam->setName('Rotterdam');
     	$rotterdam->setDescription('Gemeente Rotterdam');
     	$rotterdam->setRsin('');
+    	$manager->persist($rotterdam);
+    	$rotterdam->setId($id);
+    	$manager->persist($rotterdam);
+    	$manager->flush();
+    	$rotterdam= $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
 
     	$favicon = new Image();
     	$favicon->setName('VNG Favicon');
