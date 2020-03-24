@@ -573,6 +573,7 @@ class HuwelijksplannerFixtures extends Fixture
 
         $page = new Page();
         $page->setTitle('Verander van Organisatie');
+        $page->setName('Verander van Organisatie');
         $page->setDescription('Verander van Organisatie');
         $page->setApplication($application);
         $page->setTemplate($template);
