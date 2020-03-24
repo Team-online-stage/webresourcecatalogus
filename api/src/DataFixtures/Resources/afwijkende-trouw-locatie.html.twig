@@ -2,6 +2,22 @@
 
 {% extends 'base.html.twig' %}
 
-{% block body %}        
-        
+{% block body %}
+    <form method="post" action="{{ path('app_default_post',{'slug':'contact'}) }}"
+          class="affa-form-contact">
+        <div class="submit-status"></div> <!-- submit status -->
+
+        <label for="name">Naam <span class="required">*</span></label>
+        <input type="text" name="name" placeholder="Museum Sonnenborgh" required/>
+        <label for="email">Email Adres <span class="required">*</span></label>
+        <input type="email" name="email" placeholder="john@do.nl" required/>
+        <label for="telephone">Telefoonnummer</label>
+        <input type="tel" name="telephone" placeholder="+31 6 12345678"/>
+
+        <br/><br/>
+
+        <button type="submit" class="btn btn-success btn-lg btn-block btn-icon"><i
+                class="far fa-envelope"></i> Opslaan
+        </button>
+    </form>
 {% endblock %}
