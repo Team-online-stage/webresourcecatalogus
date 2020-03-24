@@ -69,10 +69,25 @@ class Page
      * @ORM\GeneratedValue(strategy="CUSTOM")
      * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
      */
-    private $id;
+	private $id;
+	
+	/**
+	 * @var string The internal name of this page.
+	 *
+	 * @example About page for website
+	 *
+	 * @Gedmo\Versioned
+	 * @Assert\NotNull
+	 * @Assert\Length(
+	 *     max = 255
+	 * )
+	 * @Groups({"read","write"})
+	 * @ORM\Column(type="string", length=255)
+	 */
+	private $name;
 
     /**
-     * @var string The title of this page.
+     * @var string The external title of this page.
      *
      * @example About
      *
@@ -157,6 +172,18 @@ class Page
         $this->id = $id;
 
         return $this;
+    }
+    
+    public function getName(): ?string
+    {
+    	return $this->name;
+    }
+    
+    public function setName(string $title): self
+    {
+    	$this->name = $name;
+    	
+    	return $this;
     }
 
     public function getTitle(): ?string

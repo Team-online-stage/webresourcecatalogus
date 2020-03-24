@@ -187,7 +187,7 @@ class ZaakonlineFixtures extends Fixture
         $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/noodvoorziening-corona.html.twig', 'r'));
         $template->setTemplateEngine('twig');
         $manager->persist($template);
-        
+
         // Hacky
         $template->setId($id);
         $manager->persist($template);
@@ -196,6 +196,7 @@ class ZaakonlineFixtures extends Fixture
 
         $page = new Page();
         $page->setTitle('Noodvoorziening Corona kleine ondernemers');
+        $page->setName('Noodvoorziening Corona kleine ondernemers');
         $page->setDescription('Noodvoorziening Corona kleine ondernemers');
         $page->setApplication($application);
         $page->setTemplate($template);
@@ -205,6 +206,7 @@ class ZaakonlineFixtures extends Fixture
         $slug->setPage($page);
         $slug->setApplication($application);
         $slug->setSlug('noodvoorziening-corona');
+        $slug->setName('noodvoorziening-corona');
         $manager->persist($page);
 
     }
