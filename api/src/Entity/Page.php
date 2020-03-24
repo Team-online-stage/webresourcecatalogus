@@ -49,7 +49,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * )
  * @ORM\Entity(repositoryClass="App\Repository\PageRepository")
  * @Gedmo\Loggable(logEntryClass="App\Entity\ChangeLog")
- * 
+ *
  * @ApiFilter(BooleanFilter::class)
  * @ApiFilter(OrderFilter::class)
  * @ApiFilter(DateFilter::class, strategy=DateFilter::EXCLUDE_NULL)
@@ -70,7 +70,7 @@ class Page
      * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
      */
 	private $id;
-	
+
 	/**
 	 * @var string The internal name of this page.
 	 *
@@ -138,7 +138,7 @@ class Page
      * @MaxDepth(1)
      */
     private $slug;
-    
+
     /**
      * @var Datetime $dateCreated The moment this request was created
      *
@@ -147,7 +147,7 @@ class Page
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $dateCreated;
-    
+
     /**
      * @var Datetime $dateModified  The moment this request last Modified
      *
@@ -173,13 +173,13 @@ class Page
 
         return $this;
     }
-    
+
     public function getName(): ?string
     {
     	return $this->name;
     }
-    
-    public function setName(string $title): self
+
+    public function setName(string $name): self
     {
     	$this->name = $name;
     	
@@ -248,28 +248,28 @@ class Page
 
         return $this;
     }
-    
+
     public function getDateCreated(): ?\DateTimeInterface
     {
     	return $this->dateCreated;
     }
-    
+
     public function setDateCreated(\DateTimeInterface $dateCreated): self
     {
     	$this->dateCreated= $dateCreated;
-    	
+
     	return $this;
     }
-    
+
     public function getDateModified(): ?\DateTimeInterface
     {
     	return $this->dateModified;
     }
-    
+
     public function setDateModified(\DateTimeInterface $dateModified): self
     {
     	$this->dateModified = $dateModified;
-    	
+
     	return $this;
     }
 }
