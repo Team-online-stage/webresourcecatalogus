@@ -412,7 +412,7 @@ class HuwelijksplannerFixtures extends Fixture
         $manager->persist($page);
 
         $slug = new Slug();
-        $slug->setName($page);
+        $slug->setName('afwijkende-trouw-locatie');
         $slug->setPage($page);
         $slug->setApplication($application);
         $slug->setSlug('afwijkende-trouw-locatie');
@@ -441,7 +441,7 @@ class HuwelijksplannerFixtures extends Fixture
         $manager->persist($page);
 
         $slug = new Slug();
-        $slug->setName($page);
+        $slug->setName('overig');
         $slug->setPage($page);
         $slug->setApplication($application);
         $slug->setSlug('overig');
@@ -469,7 +469,7 @@ class HuwelijksplannerFixtures extends Fixture
         $manager->persist($page);
 
         $slug = new Slug();
-        $slug->setName($page);
+        $slug->setName('indienen');
         $slug->setPage($page);
         $slug->setApplication($application);
         $slug->setSlug('indienen');
@@ -556,6 +556,7 @@ class HuwelijksplannerFixtures extends Fixture
         $slug->setPage($page);
         $slug->setApplication($application);
         $slug->setSlug('requests');
+        $slug->setName('requests');
         $manager->persist($page);
 
         $id = Uuid::fromString('6c749286-1178-453a-ba17-4e922686a4da');
