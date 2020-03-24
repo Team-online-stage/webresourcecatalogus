@@ -31,7 +31,7 @@ class ZaakonlineFixtures extends Fixture
     	}
 
     	// Utrecht
-    	$id = Uuid::fromString('68b64145-0740-46df-a65a-9d3259c2fec8');
+    	$id = Uuid::fromString('8fc083b2-b110-4289-af17-c840eb4f5f04');
     	$utrecht = new Organization();
     	$utrecht->setName('Utrecht');
     	$utrecht->setDescription('Gemeente Utrecht');

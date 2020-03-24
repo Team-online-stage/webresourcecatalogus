@@ -67,7 +67,22 @@ class Slug
      * @ORM\GeneratedValue(strategy="CUSTOM")
      * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
      */
-    private $id;
+	private $id;
+	
+	/**
+	 * @var string The internal name of this slug.
+	 *
+	 * @example About page for website
+	 *
+	 * @Gedmo\Versioned
+	 * @Assert\NotNull
+	 * @Assert\Length(
+	 *     max = 255
+	 * )
+	 * @Groups({"read","write"})
+	 * @ORM\Column(type="string", length=255)
+	 */
+	private $name;
 
     /**
      * @Groups({"read","write"})
@@ -126,6 +141,18 @@ class Slug
         $this->id = $id;
 
         return $this;
+    }
+    
+    public function getName(): ?string
+    {
+    	return $this->name;
+    }
+    
+    public function setName(string $title): self
+    {
+    	$this->name = $name;
+    	
+    	return $this;
     }
 
     public function getApplication(): ?Application
