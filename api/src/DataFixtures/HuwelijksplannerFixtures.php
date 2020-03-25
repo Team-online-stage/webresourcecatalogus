@@ -418,6 +418,93 @@ class HuwelijksplannerFixtures extends Fixture
         $slug->setSlug('afwijkende-trouw-locatie');
         $manager->persist($page);
 
+        $template = new Template();
+        $template->setName('Indienen afwijkende trouw locatie');
+        $template->setDescription('Indienen afwijkende trouw locatie');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/indienen-afwijkende-trouw-locatie.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+
+        $page = new Page();
+        $page->setName('Indienen afwijkende trouw locatie');
+        $page->setTitle('Indienen afwijkende trouw locatie');
+        $page->setDescription('Indienen afwijkende trouw locatie');
+        $page->setApplication($application);
+        $page->setTemplate($template);
+        $manager->persist($page);
+
+        $slug = new Slug();
+        $slug->setName('indienen-afwijkende-trouw-locatie');
+        $slug->setPage($page);
+        $slug->setApplication($application);
+        $slug->setSlug('indienen-afwijkende-trouw-locatie');
+        $manager->persist($page);
+
+        $template = new Template();
+        $template->setName('Indienen babs voor een dag');
+        $template->setDescription('Indienen babs voor een dag');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/indienen-babs-voor-een-dag.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+
+        $page = new Page();
+        $page->setName('Indienen babs voor een dag');
+        $page->setTitle('Indienen babs voor een dag');
+        $page->setDescription('Indienen babs voor een dag');
+        $page->setApplication($application);
+        $page->setTemplate($template);
+        $manager->persist($page);
+
+        $slug = new Slug();
+        $slug->setName('indienen-babs-voor-een-dag');
+        $slug->setPage($page);
+        $slug->setApplication($application);
+        $slug->setSlug('indienen-babs-voor-een-dag');
+        $manager->persist($page);
+
+        $template = new Template();
+        $template->setName('Indienen babs andere gemeente');
+        $template->setDescription('Indienen babs andere gemeente');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/indienen-babs-andere-gemeente.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+
+        $page = new Page();
+        $page->setName('Indienen babs andere gemeente');
+        $page->setTitle('Indienen babs andere gemeente');
+        $page->setDescription('Indienen babs andere gemeente');
+        $page->setApplication($application);
+        $page->setTemplate($template);
+        $manager->persist($page);
+
+        $slug = new Slug();
+        $slug->setName('indienen-babs-andere-gemeente');
+        $slug->setPage($page);
+        $slug->setApplication($application);
+        $slug->setSlug('indienen-babs-andere-gemeente');
+        $manager->persist($page);
+
+        $template = new Template();
+        $template->setName('Indienen Melding');
+        $template->setDescription('Indienen Melding');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/indienen-melding.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+
+        $page = new Page();
+        $page->setName('Indienen melding');
+        $page->setTitle('Indienen melding');
+        $page->setDescription('Indienen melding');
+        $page->setApplication($application);
+        $page->setTemplate($template);
+        $manager->persist($page);
+
+        $slug = new Slug();
+        $slug->setName('indienen-melding');
+        $slug->setPage($page);
+        $slug->setApplication($application);
+        $slug->setSlug('indienen-melding');
+        $manager->persist($page);
 
         // indienen
         $id = Uuid::fromString('ed2b2747-2152-456b-8bc3-2524799e1e86');
