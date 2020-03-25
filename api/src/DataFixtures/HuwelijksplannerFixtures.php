@@ -26,9 +26,9 @@ class HuwelijksplannerFixtures extends Fixture
     public function load(ObjectManager $manager)
     {
     	// Lets make sure we only run these fixtures on huwelijksplanner enviroments
-    	if(!in_array("huwelijksplanner.online",$this->params->get('app_domains'))){
-    		return false;
-    	}
+    	// if(!in_array("huwelijksplanner.online",$this->params->get('app_domains'))){
+    	// 	return false;
+    	// }
 
     	// Deze organisaties worden ook buiten het wrc gebruikt
     	// Utrecht
@@ -443,7 +443,7 @@ class HuwelijksplannerFixtures extends Fixture
         $template = new Template();
         $template->setName('Indienen babs voor een dag');
         $template->setDescription('Indienen babs voor een dag');
-        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/indienen-babs-voor-een-dag.twig', 'r'));
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/indienen-babs-voor-een-dag.html.twig', 'r'));
         $template->setTemplateEngine('twig');
         $manager->persist($template);
 
