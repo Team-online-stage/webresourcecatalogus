@@ -49,7 +49,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * )
  * @ORM\Entity(repositoryClass="App\Repository\PageRepository")
  * @Gedmo\Loggable(logEntryClass="App\Entity\ChangeLog")
- * 
+ *
  * @ApiFilter(BooleanFilter::class)
  * @ApiFilter(OrderFilter::class)
  * @ApiFilter(DateFilter::class, strategy=DateFilter::EXCLUDE_NULL)
@@ -69,10 +69,25 @@ class Page
      * @ORM\GeneratedValue(strategy="CUSTOM")
      * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
      */
-    private $id;
+	private $id;
+
+	/**
+	 * @var string The internal name of this page.
+	 *
+	 * @example About page for website
+	 *
+	 * @Gedmo\Versioned
+	 * @Assert\NotNull
+	 * @Assert\Length(
+	 *     max = 255
+	 * )
+	 * @Groups({"read","write"})
+	 * @ORM\Column(type="string", length=255)
+	 */
+	private $name;
 
     /**
-     * @var string The title of this page.
+     * @var string The external title of this page.
      *
      * @example About
      *
@@ -123,7 +138,7 @@ class Page
      * @MaxDepth(1)
      */
     private $slug;
-    
+
     /**
      * @var Datetime $dateCreated The moment this request was created
      *
@@ -132,7 +147,7 @@ class Page
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $dateCreated;
-    
+
     /**
      * @var Datetime $dateModified  The moment this request last Modified
      *
@@ -157,6 +172,18 @@ class Page
         $this->id = $id;
 
         return $this;
+    }
+
+    public function getName(): ?string
+    {
+    	return $this->name;
+    }
+
+    public function setName(string $name): self
+    {
+    	$this->name = $name;
+
+    	return $this;
     }
 
     public function getTitle(): ?string
@@ -221,28 +248,28 @@ class Page
 
         return $this;
     }
-    
+
     public function getDateCreated(): ?\DateTimeInterface
     {
     	return $this->dateCreated;
     }
-    
+
     public function setDateCreated(\DateTimeInterface $dateCreated): self
     {
     	$this->dateCreated= $dateCreated;
-    	
+
     	return $this;
     }
-    
+
     public function getDateModified(): ?\DateTimeInterface
     {
     	return $this->dateModified;
     }
-    
+
     public function setDateModified(\DateTimeInterface $dateModified): self
     {
     	$this->dateModified = $dateModified;
-    	
+
     	return $this;
     }
 }
