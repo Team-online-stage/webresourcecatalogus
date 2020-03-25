@@ -484,6 +484,27 @@ class HuwelijksplannerFixtures extends Fixture
         $slug->setSlug('indienen-babs-andere-gemeente');
         $manager->persist($page);
 
+        $template = new Template();
+        $template->setName('Indienen Melding');
+        $template->setDescription('Indienen Melding');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/indienen-melding.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+
+        $page = new Page();
+        $page->setName('Indienen melding');
+        $page->setTitle('Indienen melding');
+        $page->setDescription('Indienen melding');
+        $page->setApplication($application);
+        $page->setTemplate($template);
+        $manager->persist($page);
+
+        $slug = new Slug();
+        $slug->setName('indienen-melding');
+        $slug->setPage($page);
+        $slug->setApplication($application);
+        $slug->setSlug('indienen-melding');
+        $manager->persist($page);
 
         // indienen
         $id = Uuid::fromString('ed2b2747-2152-456b-8bc3-2524799e1e86');
