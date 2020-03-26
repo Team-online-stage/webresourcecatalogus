@@ -418,6 +418,13 @@ class HuwelijksplannerFixtures extends Fixture
         $slug->setSlug('afwijkende-trouw-locatie');
         $manager->persist($page);
 
+        $slug = new Slug();
+        $slug->setName('contact-afwijkende-trouw-locatie');
+        $slug->setPage($page);
+        $slug->setApplication($application);
+        $slug->setSlug('contact-afwijkende-trouw-locatie');
+        $manager->persist($page);
+
         $template = new Template();
         $template->setName('Indienen afwijkende trouw locatie');
         $template->setDescription('Indienen afwijkende trouw locatie');
