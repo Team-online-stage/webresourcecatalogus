@@ -419,6 +419,28 @@ class HuwelijksplannerFixtures extends Fixture
         $manager->persist($page);
 
         $template = new Template();
+        $template->setName('Afwijkende trouw locatie contact');
+        $template->setDescription('Afwijkende trouw locatie contact');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/afwijkende-trouw-locatie-contact.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+
+        $page = new Page();
+        $page->setName('Afwijkende trouw locatie contact');
+        $page->setTitle('Afwijkende trouw locatie contact');
+        $page->setDescription('Afwijkende trouw locatie contact');
+        $page->setApplication($application);
+        $page->setTemplate($template);
+        $manager->persist($page);
+
+        $slug = new Slug();
+        $slug->setName('afwijkende-trouw-locatie-contact');
+        $slug->setPage($page);
+        $slug->setApplication($application);
+        $slug->setSlug('afwijkende-trouw-locatie-contact');
+        $manager->persist($page);
+
+        $template = new Template();
         $template->setName('Indienen afwijkende trouw locatie');
         $template->setDescription('Indienen afwijkende trouw locatie');
         $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/indienen-afwijkende-trouw-locatie.html.twig', 'r'));
