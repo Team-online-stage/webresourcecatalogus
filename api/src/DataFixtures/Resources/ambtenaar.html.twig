@@ -35,9 +35,9 @@
                     </a>
 
                 {% elseif request.properties.plechtigheid is defined
-                    and (request.properties.plechtigheid == "https://pdc.huwelijksplanner.online/offers/2b9ba0a9-376d-45e2-aa83-809ef07fa104" or request.properties.plechtigheid == "https://pdc.huwelijksplanner.online/offers/bfeb9399-fce6-49b8-a047-70928f3611fb")   %}
+                    and (request.properties.plechtigheid == "https://pdc.huwelijksplanner.online/offers/2b9ba0a9-376d-45e2-aa83-809ef07fa104" or request.properties.plechtigheid == "https://pdc.huwelijksplanner.online/offers/77f6419d-b264-4898-8229-9916d9deccee")   %}
                     <p>Let op: Het type ceremonie dat u heeft geselecteerd laat geen keuze voor een ambtenaar toe. Alleen bij een uitgebreide ceremonie bestaat de mogelijkheid een ambtenaar te kiezen. Wilt u toch een ambtenaar kunnen kiezen, dan kunt u  <a href="{{ path('app_default_slug',{'slug':'plechtigheid'}) }}">hier</a> uw ceremonie aanpassen.</p>
-                {% elseif (request.properties.ambtenaar == resource['@id']) %}
+                {% elseif (request.properties.ambtenaar == resource.offers[0]['@id']) %}
                     <a href="{{ path('app_default_unset',{'value':resource.offers[0]['@id'],'slug':'ambtenaar'}) }}" class="btn btn-danger btn-icon" >
                         <i class="far fa-calendar-times"></i>
                         Annuleer deze ambtenaar
