@@ -29,20 +29,21 @@
 
 
                 {% elseif (request.properties.ambtenaar is not defined or request.properties.ambtenaar is empty) %}
-                    <a href="{{ path('app_default_set',{'value':resource['@id'],'slug':'ambtenaar'}) }}" class="btn btn-success btn-icon" >
+                    <a href="{{ path('app_default_set',{'value':resource.offers[0]['@id'],'slug':'ambtenaar'}) }}" class="btn btn-success btn-icon" >
                         <i class="far fa-calendar-check"></i>
                         Reserveer deze ambtenaar
                     </a>
 
-                {% elseif request.properties.plechtigheid is defined and (request.properties.plechtigheid == "https://pdc.huwelijksplanner.online/resources/190c3611-010d-4b0e-a31c-60dadf4d1c62" or request.properties.plechtigheid == "https://pdc.huwelijksplanner.online/resources/16353702-4614-42ff-92af-7dd11c8eef9f")   %}
+                {% elseif request.properties.plechtigheid is defined
+                    and (request.properties.plechtigheid == "https://pdc.huwelijksplanner.online/offers/2b9ba0a9-376d-45e2-aa83-809ef07fa104" or request.properties.plechtigheid == "https://pdc.huwelijksplanner.online/offers/77f6419d-b264-4898-8229-9916d9deccee")   %}
                     <p>Let op: Het type ceremonie dat u heeft geselecteerd laat geen keuze voor een ambtenaar toe. Alleen bij een uitgebreide ceremonie bestaat de mogelijkheid een ambtenaar te kiezen. Wilt u toch een ambtenaar kunnen kiezen, dan kunt u  <a href="{{ path('app_default_slug',{'slug':'plechtigheid'}) }}">hier</a> uw ceremonie aanpassen.</p>
-                {% elseif (request.properties.ambtenaar == resource['@id']) %}
-                    <a href="{{ path('app_default_unset',{'value':resource['@id'],'slug':'ambtenaar'}) }}" class="btn btn-danger btn-icon" >
+                {% elseif (request.properties.ambtenaar == resource.offers[0]['@id']) %}
+                    <a href="{{ path('app_default_unset',{'value':resource.offers[0]['@id'],'slug':'ambtenaar'}) }}" class="btn btn-danger btn-icon" >
                         <i class="far fa-calendar-times"></i>
                         Annuleer deze ambtenaar
                     </a>
                 {% else %}
-                    U heeft reeds<a href="{{  path('app_default_slug',{'slug':'ambtenaar-kiezen','id':request.properties.ambtenaar}) }}"> een ambtenaar</a> gekozen, annuleer deze eerst als u deze ambtenaar wil reserveren.
+                    U heeft reeds<a href="{{  path('app_default_slug',{'slug':'ambtenaar-kiezen','id':commonground_resource(request.properties.ambtenaar).products[0]['@id']}) }}"> een ambtenaar</a> gekozen, annuleer deze eerst als u deze ambtenaar wil reserveren.
                 {% endif %}
 
                 <br><br>

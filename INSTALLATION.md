@@ -109,6 +109,8 @@ $ helm install --name wrc-stag ./api/helm --kubeconfig="api/helm/kubeconfig.yaml
 $ helm install --name wrc-prod ./api/helm --kubeconfig="api/helm/zaakonline-kubeconfig.yaml" --namespace=prod --set settings.env=prod,settings.debug=0
 ```
 
+kubectl rollout restart deployment/wrc-php --kubeconfig="api/helm/huwelijksplanner-kubeconfig.yaml"  --namespace=dev
+
 Or update if you want to update an existing one
 ```CLI
 $ helm upgrade wrc-dev ./api/helm  --kubeconfig="api/helm/huwelijksplanner-kubeconfig.yaml" --namespace=dev  --set settings.env=dev,settings.debug=1

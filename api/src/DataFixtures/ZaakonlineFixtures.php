@@ -31,7 +31,7 @@ class ZaakonlineFixtures extends Fixture
     	}
 
     	// Utrecht
-    	$id = Uuid::fromString('68b64145-0740-46df-a65a-9d3259c2fec8');
+    	$id = Uuid::fromString('8fc083b2-b110-4289-af17-c840eb4f5f04');
     	$utrecht = new Organization();
     	$utrecht->setName('Utrecht');
     	$utrecht->setDescription('Gemeente Utrecht');
@@ -187,7 +187,7 @@ class ZaakonlineFixtures extends Fixture
         $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/noodvoorziening-corona.html.twig', 'r'));
         $template->setTemplateEngine('twig');
         $manager->persist($template);
-        
+
         // Hacky
         $template->setId($id);
         $manager->persist($template);
@@ -196,6 +196,7 @@ class ZaakonlineFixtures extends Fixture
 
         $page = new Page();
         $page->setTitle('Noodvoorziening Corona kleine ondernemers');
+        $page->setName('Noodvoorziening Corona kleine ondernemers');
         $page->setDescription('Noodvoorziening Corona kleine ondernemers');
         $page->setApplication($application);
         $page->setTemplate($template);
@@ -205,6 +206,7 @@ class ZaakonlineFixtures extends Fixture
         $slug->setPage($page);
         $slug->setApplication($application);
         $slug->setSlug('noodvoorziening-corona');
+        $slug->setName('noodvoorziening-corona');
         $manager->persist($page);
 
     }
