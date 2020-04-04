@@ -9,10 +9,12 @@ settings:
   title: Web Resource Component
   version: V.0.1
   description: '&#039;Naast deze JSON rest API is er ook een [graphql](/graphql) interface beschikbaar.&#039;'
+  type: component
   repro: https://github.com/ConductionNL/webresourcecatalogus
   demo: wrc.v
   container: https://hub.docker.com/repository/docker/conduction/wrc-php
   subdomain: wrc  
+  domain: conduction.nl
   organisationName: Conduction
   email: info@conduction.nl
   country: Netherlands
