@@ -13,17 +13,15 @@ settings:
   demo: wrc.v
   container: https://hub.docker.com/repository/docker/conduction/wrc-php
   subdomain: wrc  
-  domains:
-    - huwelijksplanner.online
-  domainsJson: ["huwelijksplanner.online"]
   organisationName: Conduction
   email: info@conduction.nl
   country: Netherlands
   state: Noord-Holland
   locality: Amsterdam
-  unit: Common-Ground  
+  unit: Common-Ground
   env: dev
   debug: 1
+  cache: 1
   replicaCount: 1
   corsAllowOrigin: ['*']
   trustedHosts: '127.0.0.1$|^(.+\.)?conduction\.nl$|^(.+\.)?huwelijksplanner\.online$|^(.+\.)?larping\.eu$|^(.+\.)?common-ground\.dev$|^(.+\.)?trouwplanner\.online$|^(.+\.)?zaakonline\.nl$|localhost'
