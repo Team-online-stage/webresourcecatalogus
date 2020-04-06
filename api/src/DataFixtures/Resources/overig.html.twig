@@ -93,11 +93,11 @@
                                     id="naamgebruik[{{ request.properties.partners[0] }}]">
                                 <option value="ongewijzigd" selected>ongewijzigd</option>
                                 <option
-                                    value="{{ contact1.givenName }} {{ contact2.givenName }}">{{ contact1.firstName }} {{ contact1.givenName }} {{ contact2.givenName }}</option>
+                                    value="{{ contact1.familyName }} {{ contact2.familyName }}">{{ contact1.familyName }} {{ contact2.familyName }}</option>
                                 <option
-                                    value="{{ contact2.givenName }} {{ contact1.givenName }}">{{ contact1.firstName }} {{ contact2.givenName }} {{ contact1.givenName }}</option>
+                                    value="{{ contact2.familyName }} {{ contact1.familyName }}">{{ contact2.familyName }} {{ contact1.familyName }}</option>
                                 <option
-                                    value="{{ contact2.givenName }}">{{ contact1.firstName }} {{ contact2.givenName }}</option>
+                                    value="{{ contact2.familyName }}">{{ contact2.givenName }}</option>
                             </select>
 
                             <label
@@ -106,11 +106,11 @@
                                     id="naamgebruik[{{ request.properties.partners[1] }}]">
                                 <option value="ongewijzigd" selected>ongewijzigd</option>
                                 <option
-                                    value="{{ contact2.givenName }} {{ contact1.givenName }}">{{ contact2.firstName }} {{ contact2.givenName }} {{ contact1.givenName }}</option>
+                                    value="{{ contact2.familyName }} {{ contact1.familyName }}">{{ contact2.familyName }} {{ contact1.familyName }}</option>
                                 <option
-                                    value="{{ contact1.givenName }} {{ contact2.givenName }}">{{ contact2.firstName }} {{ contact1.givenName }} {{ contact2.givenName }}</option>
+                                    value="{{ contact1.familyName }} {{ contact2.familyName }}">{{ contact1.familyName }} {{ contact2.familyName }}</option>
                                 <option
-                                    value="{{ contact1.givenName }}">{{ contact2.firstName }} {{ contact1.givenName }}</option>
+                                    value="{{ contact1.familyName }}"> {{ contact1.familyName }}</option>
                             </select>
 
                         {% endif %}
