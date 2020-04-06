@@ -1,0 +1,21 @@
+{# templates/home/index.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <ul>>
+    {% for key, property in request.properties  %}
+        {% if property is iterable %}
+            <li><b>{{ key }}:</b>
+            <ul>
+                {% for k, p in property %}
+                <li><b>{{ k }}:</b>: {{ p }}</li>
+                {% endfor %}
+            </ul>>
+        {% else %}
+            <li><b>{{ key }}:</b> {{ property }}</li>
+        {% endif %}
+    {% endfor %}
+    </ul>
+    <a href="{{ path('app_default_index') }}?request={{ request.parent['@id'] }}">Terug naar hoofdverzoek</a>
+{% endblock %}

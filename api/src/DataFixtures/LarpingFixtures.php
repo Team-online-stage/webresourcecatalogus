@@ -28,17 +28,18 @@ class LarpingFixtures extends Fixture
 
     public function load(ObjectManager $manager)
     {
-    	// Lets make sure we only run these fixtures on huwelijksplanner enviroments
-    	if(!in_array("larping.eu",$this->params->get('app_domains'))){
-    		return false;
-    	}
+        // Lets make sure we only run these fixtures on larping enviroment
+        if (strpos($this->params->get('app_domain'), "larping.eu") == false) {
+            return false;
+        }
 
-    	// Larping
+    	// Conduction
         $id = Uuid::fromString('7b863976-0fc3-4f49-a4f7-0bf7d2f2f535');
     	$larping = new Organization();
     	$larping->setName('Larping.eu');
     	$larping->setDescription('Larping');
     	$larping->setRsin('');
+    	$larping->setContact("https://cc.larping.eu/organizations/27141158-fde5-4e8b-a2b7-07c7765f0c63");
     	$manager->persist($larping);
 
     	// Fix Id (for linked datapurposes)
@@ -52,7 +53,7 @@ class LarpingFixtures extends Fixture
     	$application= new Application();
     	$application->setName('Larping.eu');
     	$application->setDescription('orem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor');
-    	$application->setDomain('https://www.larping.eu');
+    	$application->setDomain('larping.eu');
     	$application->setOrganization($larping);
     	$manager->persist($application);
 

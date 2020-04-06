@@ -57,7 +57,7 @@ use App\Controller\DefaultController;
  * )
  * @ORM\Entity(repositoryClass="App\Repository\TemplateRepository")
  * @Gedmo\Loggable(logEntryClass="App\Entity\ChangeLog")
- * 
+ *
  * @ApiFilter(BooleanFilter::class)
  * @ApiFilter(OrderFilter::class)
  * @ApiFilter(DateFilter::class, strategy=DateFilter::EXCLUDE_NULL)
@@ -93,14 +93,13 @@ class Template
      * @ORM\Column(type="string", length=255)
      */
     private $name;
-    
+
     /**
      * @var string $title The external name of this menu
      *
      * @example webshop menu
      *
      * @Gedmo\Versioned
-     * @Assert\NotNull
      * @Assert\Length(
      *      max = 255
      * )
@@ -154,7 +153,7 @@ class Template
      * @MaxDepth(1)
      */
     private $pages;
-    
+
     /**
      * @Groups({"read","write"})
      * @MaxDepth(1)
@@ -162,7 +161,7 @@ class Template
      * @ORM\JoinColumn(nullable=false, nullable=true)
      */
     private $application;
-    
+
     /**
      * @Groups({"read","write"})
      * @MaxDepth(1)
@@ -170,7 +169,7 @@ class Template
      * @ORM\JoinColumn(nullable=false, nullable=true)
      */
     private $organization;
-    
+
     /**
      * @var Datetime $dateCreated The moment this request was created
      *
@@ -179,7 +178,7 @@ class Template
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $dateCreated;
-    
+
     /**
      * @var Datetime $dateModified  The moment this request last Modified
      *
@@ -217,16 +216,16 @@ class Template
 
         return $this;
     }
-    
+
     public function getTitle(): ?string
     {
     	return $this->title;
     }
-    
+
     public function setTitle(string $title): self
     {
     	$this->title = $title;
-    	
+
     	return $this;
     }
 
@@ -296,52 +295,52 @@ class Template
 
         return $this;
     }
-    
+
     public function getApplication(): ?Application
     {
     	return $this->application;
     }
-    
+
     public function setApplication(?Application $application): self
     {
     	$this->application = $application;
-    	
+
     	return $this;
     }
-    
+
     public function getOrganization(): ?Organization
     {
     	return $this->organization;
     }
-    
+
     public function setOrganization(?Organization $organization): self
     {
     	$this->organization = $organization;
-    	
+
     	return $this;
     }
-    
+
     public function getDateCreated(): ?\DateTimeInterface
     {
     	return $this->dateCreated;
     }
-    
+
     public function setDateCreated(\DateTimeInterface $dateCreated): self
     {
     	$this->dateCreated= $dateCreated;
-    	
+
     	return $this;
     }
-    
+
     public function getDateModified(): ?\DateTimeInterface
     {
     	return $this->dateModified;
     }
-    
+
     public function setDateModified(\DateTimeInterface $dateModified): self
     {
     	$this->dateModified = $dateModified;
-    	
+
     	return $this;
     }
 }

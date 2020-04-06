@@ -8,7 +8,7 @@ info:
     - Reference: wrc
     - Enviroment: dev
     - Version: V.0.1
-    - Repository: [online](https://github.com/ConductionNL/webresourcecatalogus) / [zip](https://github.com/ConductionNL/webresourcecatalogus/archive/master.zip)
+    - Repository: [online](https://github.com/ConductionNL/Proto-component-commonground) / [zip](https://github.com/ConductionNL/Proto-component-commonground/archive/master.zip)
     - Docker Image: [online](https://hub.docker.com/repository/docker/conduction/wrc-php) 
     - Datamodel: [postman](/schema/wrc.postman_collection.json) / [oas](/schema/openapi.yaml) / [pdf](/schema/datamodel.pdf) / [mwb](/schema/datamodel.mwb) 
     
@@ -8068,6 +8068,15 @@ paths:
               - asc
               - desc
         -
+          name: 'order[contact]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
           name: 'dateCreated[before]'
           in: query
           required: false
@@ -8219,6 +8228,22 @@ paths:
           required: false
           schema:
             type: string
+        -
+          name: contact
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'contact[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
         -
           name: page
           in: query
@@ -8833,6 +8858,15 @@ paths:
               - asc
               - desc
         -
+          name: 'order[name]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
           name: 'order[title]'
           in: query
           required: false
@@ -8924,6 +8958,22 @@ paths:
             type: string
         -
           name: 'id[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+        -
+          name: name
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'name[]'
           in: query
           required: false
           schema:
@@ -9602,6 +9652,15 @@ paths:
               - asc
               - desc
         -
+          name: 'order[name]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
           name: 'order[slug]'
           in: query
           required: false
@@ -9684,6 +9743,22 @@ paths:
             type: string
         -
           name: 'id[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+        -
+          name: name
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'name[]'
           in: query
           required: false
           schema:
@@ -13474,6 +13549,12 @@ components:
           externalDocs:
             url: 'http://schema.org/identifier'
           type: string
+        rsin:
+          description: 'The rsin of this organisations.'
+          type: string
+        chamberOfComerce:
+          description: 'The Chamber of Comerce ID of this organisations.'
+          type: string
         name:
           description: 'The name of this organization.'
           type: string
@@ -13486,10 +13567,22 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Style-read'
+        applications:
+          type: array
+          items:
+            $ref: '#/components/schemas/Application-read'
         images:
           type: array
           items:
             $ref: '#/components/schemas/Image-read'
+        templates:
+          type: array
+          items:
+            $ref: '#/components/schemas/Template-read'
+        menus:
+          type: array
+          items:
+            $ref: '#/components/schemas/Menu-read'
         dateCreated:
           readOnly: true
           description: 'The moment this request was created'
@@ -13500,16 +13593,31 @@ components:
           description: 'The moment this request last Modified'
           type: string
           format: date-time
+        contact:
+          description: 'The contact for this organization'
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
       required:
+        - rsin
+        - chamberOfComerce
         - name
         - description
     Organization-write:
       type: object
       description: 'An organization as active on commonground.'
       required:
+        - rsin
+        - chamberOfComerce
         - name
         - description
       properties:
+        rsin:
+          description: 'The rsin of this organisations.'
+          type: string
+        chamberOfComerce:
+          description: 'The Chamber of Comerce ID of this organisations.'
+          type: string
         name:
           description: 'The name of this organization.'
           type: string
@@ -13522,10 +13630,27 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Style-write'
+        applications:
+          type: array
+          items:
+            $ref: '#/components/schemas/Application-write'
         images:
           type: array
           items:
             $ref: '#/components/schemas/Image-write'
+        templates:
+          type: array
+          items:
+            $ref: '#/components/schemas/Template-write'
+        menus:
+          type: array
+          items:
+            $ref: '#/components/schemas/Menu-write'
+        contact:
+          description: 'The contact for this organization'
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
     'Organization:jsonld-read':
       type: object
       description: 'An organization as active on commonground.'
@@ -13545,6 +13670,12 @@ components:
           externalDocs:
             url: 'http://schema.org/identifier'
           type: string
+        rsin:
+          description: 'The rsin of this organisations.'
+          type: string
+        chamberOfComerce:
+          description: 'The Chamber of Comerce ID of this organisations.'
+          type: string
         name:
           description: 'The name of this organization.'
           type: string
@@ -13557,10 +13688,22 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Style:jsonld-read'
+        applications:
+          type: array
+          items:
+            $ref: '#/components/schemas/Application:jsonld-read'
         images:
           type: array
           items:
             $ref: '#/components/schemas/Image:jsonld-read'
+        templates:
+          type: array
+          items:
+            $ref: '#/components/schemas/Template:jsonld-read'
+        menus:
+          type: array
+          items:
+            $ref: '#/components/schemas/Menu:jsonld-read'
         dateCreated:
           readOnly: true
           description: 'The moment this request was created'
@@ -13571,13 +13714,22 @@ components:
           description: 'The moment this request last Modified'
           type: string
           format: date-time
+        contact:
+          description: 'The contact for this organization'
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
       required:
+        - rsin
+        - chamberOfComerce
         - name
         - description
     'Organization:jsonld-write':
       type: object
       description: 'An organization as active on commonground.'
       required:
+        - rsin
+        - chamberOfComerce
         - name
         - description
       properties:
@@ -13589,6 +13741,12 @@ components:
           type: string
         '@type':
           readOnly: true
+          type: string
+        rsin:
+          description: 'The rsin of this organisations.'
+          type: string
+        chamberOfComerce:
+          description: 'The Chamber of Comerce ID of this organisations.'
           type: string
         name:
           description: 'The name of this organization.'
@@ -13602,10 +13760,27 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Style:jsonld-write'
+        applications:
+          type: array
+          items:
+            $ref: '#/components/schemas/Application:jsonld-write'
         images:
           type: array
           items:
             $ref: '#/components/schemas/Image:jsonld-write'
+        templates:
+          type: array
+          items:
+            $ref: '#/components/schemas/Template:jsonld-write'
+        menus:
+          type: array
+          items:
+            $ref: '#/components/schemas/Menu:jsonld-write'
+        contact:
+          description: 'The contact for this organization'
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
     Page-read:
       type: object
       description: 'A page holds your content in your application.'
@@ -13616,8 +13791,11 @@ components:
           externalDocs:
             url: 'http://schema.org/identifier'
           type: string
+        name:
+          description: 'The internal name of this page.'
+          type: string
         title:
-          description: 'The title of this page.'
+          description: 'The external title of this page.'
           type: string
         description:
           description: 'The description of this page.'
@@ -13639,17 +13817,22 @@ components:
           type: string
           format: date-time
       required:
+        - name
         - title
         - description
     Page-write:
       type: object
       description: 'A page holds your content in your application.'
       required:
+        - name
         - title
         - description
       properties:
+        name:
+          description: 'The internal name of this page.'
+          type: string
         title:
-          description: 'The title of this page.'
+          description: 'The external title of this page.'
           type: string
         description:
           description: 'The description of this page.'
@@ -13679,8 +13862,11 @@ components:
           externalDocs:
             url: 'http://schema.org/identifier'
           type: string
+        name:
+          description: 'The internal name of this page.'
+          type: string
         title:
-          description: 'The title of this page.'
+          description: 'The external title of this page.'
           type: string
         description:
           description: 'The description of this page.'
@@ -13702,12 +13888,14 @@ components:
           type: string
           format: date-time
       required:
+        - name
         - title
         - description
     'Page:jsonld-write':
       type: object
       description: 'A page holds your content in your application.'
       required:
+        - name
         - title
         - description
       properties:
@@ -13720,8 +13908,11 @@ components:
         '@type':
           readOnly: true
           type: string
+        name:
+          description: 'The internal name of this page.'
+          type: string
         title:
-          description: 'The title of this page.'
+          description: 'The external title of this page.'
           type: string
         description:
           description: 'The description of this page.'
@@ -13742,6 +13933,9 @@ components:
           externalDocs:
             url: 'http://schema.org/identifier'
           type: string
+        name:
+          description: 'The internal name of this slug.'
+          type: string
         application:
           $ref: '#/components/schemas/Application-read'
         page:
@@ -13760,11 +13954,18 @@ components:
           type: string
           format: date-time
       required:
+        - name
         - slug
     Slug-write:
       type: object
       description: 'Your slug connects your application with your pages.'
+      required:
+        - name
+        - slug
       properties:
+        name:
+          description: 'The internal name of this slug.'
+          type: string
         application:
           $ref: '#/components/schemas/Application-write'
         page:
@@ -13772,8 +13973,6 @@ components:
         slug:
           description: 'The actual slug of this slug.'
           type: string
-      required:
-        - slug
     'Slug:jsonld-read':
       type: object
       description: 'Your slug connects your application with your pages.'
@@ -13793,6 +13992,9 @@ components:
           externalDocs:
             url: 'http://schema.org/identifier'
           type: string
+        name:
+          description: 'The internal name of this slug.'
+          type: string
         application:
           $ref: '#/components/schemas/Application:jsonld-read'
         page:
@@ -13811,10 +14013,14 @@ components:
           type: string
           format: date-time
       required:
+        - name
         - slug
     'Slug:jsonld-write':
       type: object
       description: 'Your slug connects your application with your pages.'
+      required:
+        - name
+        - slug
       properties:
         '@context':
           readOnly: true
@@ -13825,6 +14031,9 @@ components:
         '@type':
           readOnly: true
           type: string
+        name:
+          description: 'The internal name of this slug.'
+          type: string
         application:
           $ref: '#/components/schemas/Application:jsonld-write'
         page:
@@ -13832,8 +14041,6 @@ components:
         slug:
           description: 'The actual slug of this slug.'
           type: string
-      required:
-        - slug
     Style-read:
       type: object
       description: 'Your style provides ccs and a favicon for an organisation.'
@@ -14001,7 +14208,6 @@ components:
           format: date-time
       required:
         - name
-        - title
         - description
         - content
         - templateEngine
@@ -14010,7 +14216,6 @@ components:
       description: 'Content holds information and photos you want to show on your pages.'
       required:
         - name
-        - title
         - description
         - content
         - templateEngine
@@ -14084,7 +14289,6 @@ components:
           format: date-time
       required:
         - name
-        - title
         - description
         - content
         - templateEngine
@@ -14093,7 +14297,6 @@ components:
       description: 'Content holds information and photos you want to show on your pages.'
       required:
         - name
-        - title
         - description
         - content
         - templateEngine
@@ -14296,12 +14499,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-03-11 08:02:18'
+        example: '2020-04-04 11:47:47'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-03-11 08:02:18'
+        example: '2020-04-04 11:47:47'
     required: []
   AuditTrail-write:
     properties:
@@ -14349,12 +14552,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-03-11 08:02:18'
+        example: '2020-04-04 11:47:47'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-03-11 08:02:18'
+        example: '2020-04-04 11:47:47'
     required: []
   ChangeLog-write:
     properties:
@@ -14595,6 +14798,16 @@ definitions:
         type: string
         example: e2984465-190a-4562-829e-a8cca81aa35d
         format: uuid
+      rsin:
+        description: 'The rsin of this organisations.'
+        type: string
+        example: About
+        maxLength: 255
+      chamberOfComerce:
+        description: 'The Chamber of Comerce ID of this organisations.'
+        type: string
+        example: About
+        maxLength: 255
       name:
         description: 'The name of this organization.'
         type: string
@@ -14611,9 +14824,17 @@ definitions:
       dateModified:
         description: 'The moment this request last Modified'
         type: \Datetime
+      contact:
+        description: 'The contact for this organization'
+        type: string
+        format: url
+        maxLength: 255
       logo: []
       styles: []
+      applications: []
       images: []
+      templates: []
+      menus: []
     required:
       - rsin
       - chamberOfComerce
@@ -14621,6 +14842,16 @@ definitions:
       - description
   Organization-write:
     properties:
+      rsin:
+        description: 'The rsin of this organisations.'
+        type: string
+        example: About
+        maxLength: 255
+      chamberOfComerce:
+        description: 'The Chamber of Comerce ID of this organisations.'
+        type: string
+        example: About
+        maxLength: 255
       name:
         description: 'The name of this organization.'
         type: string
@@ -14631,9 +14862,17 @@ definitions:
         type: string
         example: 'This is the manucipality of Utrecht'
         maxLength: 255
+      contact:
+        description: 'The contact for this organization'
+        type: string
+        format: url
+        maxLength: 255
       logo: []
       styles: []
+      applications: []
       images: []
+      templates: []
+      menus: []
     required:
       - rsin
       - chamberOfComerce
@@ -14646,8 +14885,13 @@ definitions:
         type: string
         example: e2984465-190a-4562-829e-a8cca81aa35d
         format: uuid
+      name:
+        description: 'The internal name of this page.'
+        type: string
+        example: 'About page for website'
+        maxLength: 255
       title:
-        description: 'The title of this page.'
+        description: 'The external title of this page.'
         type: string
         example: About
         maxLength: 255
@@ -14666,12 +14910,18 @@ definitions:
       application: []
       slug: []
     required:
+      - name
       - title
       - description
   Page-write:
     properties:
+      name:
+        description: 'The internal name of this page.'
+        type: string
+        example: 'About page for website'
+        maxLength: 255
       title:
-        description: 'The title of this page.'
+        description: 'The external title of this page.'
         type: string
         example: About
         maxLength: 255
@@ -14684,6 +14934,7 @@ definitions:
       application: []
       slug: []
     required:
+      - name
       - title
       - description
   Slug-read:
@@ -14693,6 +14944,11 @@ definitions:
         type: string
         example: e2984465-190a-4562-829e-a8cca81aa35d
         format: uuid
+      name:
+        description: 'The internal name of this slug.'
+        type: string
+        example: 'About page for website'
+        maxLength: 255
       slug:
         description: 'The actual slug of this slug.'
         type: string
@@ -14707,9 +14963,15 @@ definitions:
       application: []
       page: []
     required:
+      - name
       - slug
   Slug-write:
     properties:
+      name:
+        description: 'The internal name of this slug.'
+        type: string
+        example: 'About page for website'
+        maxLength: 255
       slug:
         description: 'The actual slug of this slug.'
         type: string
@@ -14718,6 +14980,7 @@ definitions:
       application: []
       page: []
     required:
+      - name
       - slug
   Style-read:
     properties:
@@ -14806,7 +15069,6 @@ definitions:
       organization: []
     required:
       - name
-      - title
       - description
       - content
       - templateEngine
@@ -14839,7 +15101,6 @@ definitions:
       organization: []
     required:
       - name
-      - title
       - description
       - content
       - templateEngine

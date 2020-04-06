@@ -13,6 +13,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Event\GetResponseForControllerResultEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 use Symfony\Component\Serializer\SerializerInterface;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class ApplicationSubscriber implements EventSubscriberInterface
 {
@@ -67,8 +68,11 @@ class ApplicationSubscriber implements EventSubscriberInterface
         }
 
         $application = $this->em->getRepository(Application::class)->findOneBy(['id' => $id]);
-        $slug = $this->em->getRepository(Slug::class)->findOneBy(['application' => $application, 'slug'=>$slug]);
-        $result = $slug->getPage();
+            $slug = $this->em->getRepository(Slug::class)->findOneBy(['application' => $application, 'slug'=>$slug]);
+            if($slug == null){
+                throw new NotFoundHttpException("Page not found");
+            }
+            $result = $slug->getPage();
 
         // now we need to overide the normal subscriber
         $json = $this->serializer->serialize(

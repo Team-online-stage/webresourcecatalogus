@@ -47,7 +47,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * )
  * @ORM\Entity(repositoryClass="App\Repository\SlugRepository")
  * @Gedmo\Loggable(logEntryClass="App\Entity\ChangeLog")
- * 
+ *
  * @ApiFilter(BooleanFilter::class)
  * @ApiFilter(OrderFilter::class)
  * @ApiFilter(DateFilter::class, strategy=DateFilter::EXCLUDE_NULL)
@@ -67,7 +67,22 @@ class Slug
      * @ORM\GeneratedValue(strategy="CUSTOM")
      * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
      */
-    private $id;
+	private $id;
+
+	/**
+	 * @var string The internal name of this slug.
+	 *
+	 * @example About page for website
+	 *
+	 * @Gedmo\Versioned
+	 * @Assert\NotNull
+	 * @Assert\Length(
+	 *     max = 255
+	 * )
+	 * @Groups({"read","write"})
+	 * @ORM\Column(type="string", length=255)
+	 */
+	private $name;
 
     /**
      * @Groups({"read","write"})
@@ -97,7 +112,7 @@ class Slug
      * @ORM\Column(type="string", length=255)
      */
     private $slug;
-    
+
     /**
      * @var Datetime $dateCreated The moment this request was created
      *
@@ -106,7 +121,7 @@ class Slug
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $dateCreated;
-    
+
     /**
      * @var Datetime $dateModified  The moment this request last Modified
      *
@@ -126,6 +141,18 @@ class Slug
         $this->id = $id;
 
         return $this;
+    }
+
+    public function getName(): ?string
+    {
+    	return $this->name;
+    }
+
+    public function setName(string $name): self
+    {
+    	$this->name = $name;
+
+    	return $this;
     }
 
     public function getApplication(): ?Application
@@ -168,28 +195,28 @@ class Slug
 
         return $this;
     }
-    
+
     public function getDateCreated(): ?\DateTimeInterface
     {
     	return $this->dateModified;
     }
-    
+
     public function setDateCreated(\DateTimeInterface $dateCreated): self
     {
     	$this->dateCreated= $dateCreated;
-    	
+
     	return $this;
     }
-    
+
     public function getDateModified(): ?\DateTimeInterface
     {
     	return $this->dateModified;
     }
-    
+
     public function setDateModified(\DateTimeInterface $dateModified): self
     {
     	$this->dateModified = $dateModified;
-    	
+
     	return $this;
     }
 }

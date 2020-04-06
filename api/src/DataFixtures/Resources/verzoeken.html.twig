@@ -29,8 +29,8 @@
                     <tr>
                       <th scope="row">{{ loop.index }}</th>
                       <td>{{ request.reference }}</td>
-                      <td>{{ commonground_resource(request.request_type).name }}</td>
-                      <td>{{ request.date_created}} </td>
+                      <td>{{ commonground_resource(request.requestType).name }}</td>
+                      <td>{{ request.dateCreated}} </td>
                       <td>{{ request.status|trans }}</td>
                       <td><a href="{{ path('app_default_slug',{'request':'http://vrc.huwelijksplanner.online/requests/'~request.id}) }}" class="btn btn-success" role="button">Verder gaan</a></td>
                     </tr>
