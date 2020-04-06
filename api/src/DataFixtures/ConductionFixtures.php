@@ -26,12 +26,11 @@ class ConductionFixtures extends Fixture
     public function load(ObjectManager $manager)
     {
         // Lets make sure we only run these fixtures on larping enviroment
-        if (strpos($this->params->get('app_domain'), "conduction.online") == false) {
+        if (strpos($this->params->get('app_domain'), "conduction.nl") == false) {
             return false;
         }
 
     	// Deze organisaties worden ook buiten het wrc gebruikt
-    	// Utrecht
     	$id = Uuid::fromString('7c9e5618-37ba-47dc-a628-b1b6fe96d69c');
     	$conduction = new Organization();
         $conduction->setName('Utrecht');
