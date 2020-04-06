@@ -33,7 +33,7 @@ class LarpingFixtures extends Fixture
             return false;
         }
 
-    	// Larping
+    	// Conduction
         $id = Uuid::fromString('7b863976-0fc3-4f49-a4f7-0bf7d2f2f535');
     	$larping = new Organization();
     	$larping->setName('Larping.eu');

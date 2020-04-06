@@ -16,13 +16,14 @@ use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 
 class ZaakonlineFixtures extends Fixture
 {
-	private $params;
+    private $params;
+    private $encoder;
 
-	public function __construct(ParameterBagInterface $params)
-	{
-		$this->params = $params;
-	}
-
+    public function __construct(ParameterBagInterface $params, UserPasswordEncoderInterface $encoder)
+    {
+        $this->params = $params;
+        $this->encoder = $encoder;
+    }
     public function load(ObjectManager $manager)
     {
         // Lets make sure we only run these fixtures on larping enviroment
