@@ -16,19 +16,20 @@ use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 
 class ZaakonlineFixtures extends Fixture
 {
-	private $params;
+    private $params;
+    private $encoder;
 
-	public function __construct(ParameterBagInterface $params)
-	{
-		$this->params = $params;
-	}
-
+    public function __construct(ParameterBagInterface $params, UserPasswordEncoderInterface $encoder)
+    {
+        $this->params = $params;
+        $this->encoder = $encoder;
+    }
     public function load(ObjectManager $manager)
     {
-    	// Lets make sure we only run these fixtures on huwelijksplanner enviroments
-    	if(!in_array("huwelijksplanner.online",$this->params->get('app_domains'))){
-    		return false;
-    	}
+        // Lets make sure we only run these fixtures on larping enviroment
+        if (strpos($this->params->get('app_domain'), "zaakonline.nl") == false) {
+            return false;
+        }
 
     	// Utrecht
     	$id = Uuid::fromString('8fc083b2-b110-4289-af17-c840eb4f5f04');

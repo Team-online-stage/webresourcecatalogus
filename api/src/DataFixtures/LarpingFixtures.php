@@ -28,12 +28,12 @@ class LarpingFixtures extends Fixture
 
     public function load(ObjectManager $manager)
     {
-    	// Lets make sure we only run these fixtures on huwelijksplanner enviroments
-    	if(!in_array("larping.eu",$this->params->get('app_domains'))){
-    		return false;
-    	}
+        // Lets make sure we only run these fixtures on larping enviroment
+        if (strpos($this->params->get('app_domain'), "larping.eu") == false) {
+            return false;
+        }
 
-    	// Larping
+    	// Conduction
         $id = Uuid::fromString('7b863976-0fc3-4f49-a4f7-0bf7d2f2f535');
     	$larping = new Organization();
     	$larping->setName('Larping.eu');
