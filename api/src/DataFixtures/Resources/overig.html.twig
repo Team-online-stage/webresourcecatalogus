@@ -3,6 +3,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+
     {# here we are going to play a small trick but we want to prevent making an commonground call  #}
     {% if request.properties.partners is defined and request.properties.partners[0] is defined %}
         {% set assent1 = commonground_resource(request.properties.partners.0) %}
@@ -54,7 +55,7 @@
                         <p> U moet minimaal twee weken voor uw huwelijk melding maken van u huwelijk. Lees <a>hier</a>
                             meer over het doen van een melding </p>
                         <p>
-                            {% if request['@id']  is defined %}
+                            {% if request['@id'] is defined %}
                                 <a href="{{ path('app_default_slug',{'requestType':'https://vtc.huwelijksplanner.online/request_types/146cb7c8-46b9-4911-8ad9-3238bab4313e','requestParent':request['@id']}) }}"
                                    class="btn btn-primary btn-icon">
                                     <i class="fas fa-share-square"></i>
@@ -74,7 +75,7 @@
                     <div class="feature-text">
                         <h4>Aanvullende gegevens</h4>
                         <p>Graag zouden wij nog het volgende van u weten</p>
-                        {% if request.properties.partners[0] is not defined  and request.properties.partners[0] is empty and if request.properties.partners[1] is not defined  and request.properties.partners[1] is empty %}
+                        {% if request.properties.partners[0] is not defined and request.properties.partners[0] is empty and request.properties.partners[1] is not defined  and request.properties.partners[1] is empty %}
 
                             <p>Nodig uw partner uit om uw naamgebruik op te geven.</p>
 
