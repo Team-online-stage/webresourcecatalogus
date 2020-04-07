@@ -1,0 +1,69 @@
+{# templates/home/index.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="wrap-container8040">
+        <div class="container">
+            <div class="post-heading-left">
+                <h2>Contact</h2>
+                <br>
+                <br>
+                <h5 style="color: black">Condution is een ICT bedrijf dat gevestigd is in Amsterdam Zuid, met als adres Van Eeghenstraat 98</h5>
+                <p style="color: black">Vragen? Mail ons! Een keer koffie drinken? Mail ons! Ons e-mail adres is info@conduction.nl.</p>
+                <br>
+
+            </div>
+
+            <div class="margin-top80 flex-s-b">
+
+
+
+
+            </div>
+        </div>
+    </div>
+
+
+    <!-- #contact -->
+    <div id="contact" class="wrap-container80 bg-color">
+
+        <!-- .container -->
+        <div class="container">
+
+            <!-- .row -->
+            <div class="row">
+
+
+                <div class="col-md-6">
+                    <div class="post-heading-center">
+                        <h4>Conduction blauw past bij jouw!</h4>
+                        <h2 style="color: white">Werken of stage bij Conduction?</h2>
+                        <p>Wij zijn altijd op zoek naar goede technische mensen en stagairs. Neem contact met ons op!.</p>
+
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <form action="{{ path('app_team_view') }}" method="post" class="affa-form-contact">
+                        <div class="submit-status"></div> <!-- submit status -->
+                        <input type="text" name="name" placeholder="Your Name" />
+                        <input type="text" name="email" placeholder="Email Address *" />
+                        <textarea name="message" placeholder="Message *"></textarea>
+                        <button type="submit" name="submit" class=" btn-block btn-custom2" style="padding: unset;">Mail ons</button>
+                    </form>
+                </div>
+
+            </div>
+            <!-- .row end -->
+
+        </div>
+        <!-- .container end -->
+
+    </div>
+    <!-- #contact end -->
+
+
+{% endblock %}
+

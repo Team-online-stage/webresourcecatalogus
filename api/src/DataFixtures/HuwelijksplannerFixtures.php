@@ -26,10 +26,10 @@ class HuwelijksplannerFixtures extends Fixture
     public function load(ObjectManager $manager)
     {
         // Lets make sure we only run these fixtures on larping enviroment
-        if (strpos($this->params->get('app_domain'), "uwelijksplanner.online") == false) {
+        if ($this->params->get('app_domain') != "huwelijksplanner.online" && strpos($this->params->get('app_domain'), "huwelijksplanner.online") == false) {
             return false;
         }
-
+        var_dump($this->params->get('app_domain'));
     	// Deze organisaties worden ook buiten het wrc gebruikt
     	// Utrecht
     	$id = Uuid::fromString('68b64145-0740-46df-a65a-9d3259c2fec8');

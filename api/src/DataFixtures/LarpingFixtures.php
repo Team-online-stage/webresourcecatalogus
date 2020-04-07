@@ -29,9 +29,10 @@ class LarpingFixtures extends Fixture
     public function load(ObjectManager $manager)
     {
         // Lets make sure we only run these fixtures on larping enviroment
-        if (strpos($this->params->get('app_domain'), "larping.eu") == false) {
+        if ($this->params->get('app_domain') != "larping.eu" && strpos($this->params->get('app_domain'), "larping.eu") == false) {
             return false;
         }
+        var_dump($this->params->get('app_domain'));
 
     	// Conduction
         $id = Uuid::fromString('7b863976-0fc3-4f49-a4f7-0bf7d2f2f535');
