@@ -17,12 +17,10 @@ use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 class ZaakonlineFixtures extends Fixture
 {
     private $params;
-    private $encoder;
 
-    public function __construct(ParameterBagInterface $params, UserPasswordEncoderInterface $encoder)
+    public function __construct(ParameterBagInterface $params)
     {
         $this->params = $params;
-        $this->encoder = $encoder;
     }
     public function load(ObjectManager $manager)
     {
