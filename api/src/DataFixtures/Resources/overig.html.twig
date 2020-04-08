@@ -82,10 +82,10 @@
                         {% else %}
 
                             {% set assent1 = commonground_resource(request.properties.partners[0]) %}
-                            {% set contact1 = commonground_resource(assent1) %}
+                            {% set contact1 = commonground_resource(assent1.contact) %}
 
                             {% set assent2 = commonground_resource(request.properties.partners[1]) %}
-                            {% set contact2 = commonground_resource(assent2) %}
+                            {% set contact2 = commonground_resource(assent2.contact) %}
 
                             <label
                                 for="naamgebruik[{{ request.properties.partners[0] }}]">Naamgebruik {{ contact1.formalName }}</label>
