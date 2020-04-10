@@ -75,7 +75,7 @@
                     <div class="feature-text">
                         <h4>Aanvullende gegevens</h4>
                         <p>Graag zouden wij nog het volgende van u weten</p>
-                        {% if request.properties.partners[0] is not defined and request.properties.partners[0] is empty and request.properties.partners[1] is not defined  and request.properties.partners[1] is empty %}
+                        {% if request.properties.partners[0] is not defined or request.properties.partners[0] is empty or request.properties.partners[1] is not defined or request.properties.partners[1] is empty %}
 
                             <p>Nodig uw partner uit om uw naamgebruik op te geven.</p>
 
