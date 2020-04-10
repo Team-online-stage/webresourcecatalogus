@@ -82,6 +82,8 @@
                                     </ul>
                                 </li>
                             {% endif %}
+
+
                             {% if request.properties.partners is defined and request.properties.partners is not empty %}
                                 {% for partner in request.properties.partners %}
                                     <li>
@@ -101,14 +103,21 @@
                                                 <!--  Trouwdatum -->
                                                 <i class="fa fas fa-check"></i>Staat niet onder curatele
                                             <li>
+                                            {% if request.properties.partners[0] is not defined or request.properties.partners[0] is empty or request.properties.partners[1] is not defined or request.properties.partners[1] is empty %}
                                             <li>
                                                 <!--  Trouwdatum -->
-                                                <i class="fa fas fa-check"></i>Is geen famillie in de eerste graad
+                                                <i class="fa fa-exclamation-triangle"></i> Er zijn nog geen twee partners opgegeven
+                                            <li>
+                                            {% else %}
+                                            <li>
+                                                <!--  Trouwdatum -->
+                                                <i class="fa fas fa-check"></i> Is geen famillie van andere partner
                                             <li>
                                             <li>
                                                 <!--  Trouwdatum -->
-                                                <i class="fa fas fa-check"></i>Heeft op dit moment geen partner
+                                                <i class="fa fas fa-check"></i> Heeft op dit moment geen partner
                                             <li>
+                                            {% endif %}
                                         </ul>
                                     </li>
                                 {% endfor %}
