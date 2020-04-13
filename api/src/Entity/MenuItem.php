@@ -47,7 +47,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * )
  * @ORM\Entity(repositoryClass="App\Repository\MenuItemRepository")
  * @Gedmo\Loggable(logEntryClass="App\Entity\ChangeLog")
- * 
+ *
  * @ApiFilter(BooleanFilter::class)
  * @ApiFilter(OrderFilter::class)
  * @ApiFilter(DateFilter::class, strategy=DateFilter::EXCLUDE_NULL)
@@ -117,13 +117,12 @@ class MenuItem
     private $href;
 
     /**
-     * @Groups({"read","write"})
      * @ORM\ManyToOne(targetEntity="App\Entity\Menu", inversedBy="menuItems")
      * @ORM\JoinColumn(nullable=false)
      * @MaxDepth(1)
      */
     private $menu;
-    
+
     /**
      * @var Datetime $dateCreated The moment this request was created
      *
@@ -132,7 +131,7 @@ class MenuItem
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $dateCreated;
-    
+
     /**
      * @var Datetime $dateModified  The moment this request last Modified
      *
@@ -201,28 +200,28 @@ class MenuItem
 
         return $this;
     }
-    
+
     public function getDateCreated(): ?\DateTimeInterface
     {
     	return $this->dateModified;
     }
-    
+
     public function setDateCreated(\DateTimeInterface $dateCreated): self
     {
     	$this->dateCreated= $dateCreated;
-    	
+
     	return $this;
     }
-    
+
     public function getDateModified(): ?\DateTimeInterface
     {
     	return $this->dateModified;
     }
-    
+
     public function setDateModified(\DateTimeInterface $dateModified): self
     {
     	$this->dateModified = $dateModified;
-    	
+
     	return $this;
     }
 }

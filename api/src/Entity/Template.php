@@ -136,9 +136,9 @@ class Template
     private $content;
 
     /**
-     * @var string The template engine used to render this template. Schould be either twig (Twig), md (markdown) or rst (reStructuredText)
+     * @var string The template engine used to render this template. Schould be either twig (Twig), md (Markdown) or rst (reStructuredText)
      *
-     * @example Twig
+     * @example twig
      *
      * @Gedmo\Versioned
      * @Assert\NotNull
