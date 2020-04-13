@@ -31,7 +31,6 @@ class HuwelijksplannerFixtures extends Fixture
             return false;
         }
 
-        var_dump($this->params->get('app_domain'));
     	// Deze organisaties worden ook buiten het wrc gebruikt
     	// Utrecht
     	$id = Uuid::fromString('68b64145-0740-46df-a65a-9d3259c2fec8');

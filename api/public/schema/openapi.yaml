@@ -7784,13 +7784,13 @@ paths:
           schema:
             type: string
         -
-          name: id
+          name: application.id
           in: query
           required: false
           schema:
             type: string
         -
-          name: 'id[]'
+          name: 'application.id[]'
           in: query
           required: false
           schema:
@@ -7800,13 +7800,13 @@ paths:
           style: form
           explode: true
         -
-          name: name
+          name: template.id
           in: query
           required: false
           schema:
             type: string
         -
-          name: 'name[]'
+          name: 'template.id[]'
           in: query
           required: false
           schema:
@@ -7815,46 +7815,6 @@ paths:
               type: string
           style: form
           explode: true
-        -
-          name: slug
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'slug[]'
-          in: query
-          required: false
-          schema:
-            type: array
-            items:
-              type: string
-          style: form
-          explode: true
-        -
-          name: dateCreated
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'dateCreated[]'
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: dateModified
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'dateModified[]'
-          in: query
-          required: false
-          schema:
-            type: string
         -
           name: page
           in: query
@@ -12527,12 +12487,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-04-13 20:44:23'
+        example: '2020-04-13 21:00:48'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-04-13 20:44:23'
+        example: '2020-04-13 21:00:48'
     required: []
   AuditTrail-write:
     properties:
@@ -12580,12 +12540,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-04-13 20:44:23'
+        example: '2020-04-13 21:00:48'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-04-13 20:44:23'
+        example: '2020-04-13 21:00:48'
     required: []
   ChangeLog-write:
     properties:
