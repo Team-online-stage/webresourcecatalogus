@@ -218,7 +218,7 @@ class HuwelijksplannerFixtures extends Fixture
         $configuration = new Configuration();
         $configuration->setOrganisation($eindhoven);
         $configuration->setDescription($application);
-        $configuration->setConfiguration([])
+        $configuration->setConfiguration([]);
         $manager->persist($configuration);
 
         // Huwelijksplanner
@@ -238,7 +238,7 @@ class HuwelijksplannerFixtures extends Fixture
         $configuration = new Configuration();
         $configuration->setOrganisation($utrecht);
         $configuration->setDescription($application);
-        $configuration->setConfiguration([])
+        $configuration->setConfiguration([]);
         $manager->persist($configuration);
 
         // Berichten
