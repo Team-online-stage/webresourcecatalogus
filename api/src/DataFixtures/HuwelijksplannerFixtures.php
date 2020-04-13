@@ -2,17 +2,19 @@
 
 namespace App\DataFixtures;
 
+use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Common\Persistence\ObjectManager;
+use Ramsey\Uuid\Uuid;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
+
 use App\Entity\Organization;
+use App\Entity\Configuration;
 use App\Entity\Style;
 use App\Entity\Application;
 use App\Entity\Page;
 use App\Entity\Slug;
 use App\Entity\Template;
 use App\Entity\Image;
-use Doctrine\Bundle\FixturesBundle\Fixture;
-use Doctrine\Common\Persistence\ObjectManager;
-use Ramsey\Uuid\Uuid;
-use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 
 class HuwelijksplannerFixtures extends Fixture
 {
@@ -26,10 +28,11 @@ class HuwelijksplannerFixtures extends Fixture
     public function load(ObjectManager $manager)
     {
         // Lets make sure we only run these fixtures on larping enviroment
-        if (strpos($this->params->get('app_domain'), "uwelijksplanner.online") == false) {
+        if ($this->params->get('app_domain') != "huwelijksplanner.online" && strpos($this->params->get('app_domain'), "huwelijksplanner.online") == false) {
             return false;
         }
 
+        var_dump($this->params->get('app_domain'));
     	// Deze organisaties worden ook buiten het wrc gebruikt
     	// Utrecht
     	$id = Uuid::fromString('68b64145-0740-46df-a65a-9d3259c2fec8');
@@ -120,7 +123,6 @@ class HuwelijksplannerFixtures extends Fixture
     	$manager->flush();
     	$organization= $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
 
-
     	// s-Hertogenbosch
     	$id = Uuid::fromString('fed9339e-57d5-4f63-ab68-694759705c19');
     	$organization= new Organization();
@@ -204,7 +206,7 @@ class HuwelijksplannerFixtures extends Fixture
 
     	$manager->flush();
 
-        // Home
+        // Mijn App
         $application = new Application();
         $application->setName('MijnApp');
         $application->setDescription('MijnApp');
@@ -212,7 +214,14 @@ class HuwelijksplannerFixtures extends Fixture
         $application->setOrganization($eindhoven);
         $manager->persist($application);
 
-        // Home
+        // Configuratie van MijnApp
+        $configuration = new Configuration();
+        $configuration->setOrganisation($eindhoven);
+        $configuration->setDescription($application);
+        $configuration->setConfiguration([])
+        $manager->persist($configuration);
+
+        // Huwelijksplanner
         $id = Uuid::fromString('536bfb73-63a5-4719-b535-d835607b88b2');
         $application = new Application();
         $application->setName('Huwelijksplanner');
@@ -225,8 +234,14 @@ class HuwelijksplannerFixtures extends Fixture
         $manager->flush();
         $application = $manager->getRepository('App:Application')->findOneBy(['id'=> $id]);
 
-        // Berichten
+        // Configuratie van huwelijksplanner
+        $configuration = new Configuration();
+        $configuration->setOrganisation($utrecht);
+        $configuration->setDescription($application);
+        $configuration->setConfiguration([])
+        $manager->persist($configuration);
 
+        // Berichten
         $id = Uuid::fromString('c20cc285-0246-4bf8-b3d0-781543b03270');
         $template = new Template();
         $template->setName('Bevestiging Melding');

@@ -2,6 +2,12 @@
 
 namespace App\DataFixtures;
 
+use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Common\Persistence\ObjectManager;
+use Ramsey\Uuid\Uuid;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
+
+
 use App\Entity\Organization;
 use App\Entity\Style;
 use App\Entity\Application;
@@ -9,10 +15,6 @@ use App\Entity\Page;
 use App\Entity\Slug;
 use App\Entity\Template;
 use App\Entity\Image;
-use Doctrine\Bundle\FixturesBundle\Fixture;
-use Doctrine\Common\Persistence\ObjectManager;
-use Ramsey\Uuid\Uuid;
-use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 
 class ZaakonlineFixtures extends Fixture
 {
@@ -25,9 +27,10 @@ class ZaakonlineFixtures extends Fixture
     public function load(ObjectManager $manager)
     {
         // Lets make sure we only run these fixtures on larping enviroment
-        if (strpos($this->params->get('app_domain'), "zaakonline.nl") == false) {
+        if ($this->params->get('app_domain') != "zaakonline.nl" && strpos($this->params->get('app_domain'), "zaakonline.nl") == false) {
             return false;
         }
+        var_dump($this->params->get('app_domain'));
 
     	// Utrecht
     	$id = Uuid::fromString('8fc083b2-b110-4289-af17-c840eb4f5f04');
