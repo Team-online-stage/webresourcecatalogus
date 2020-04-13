@@ -30,14 +30,14 @@ class ConductionFixtures extends Fixture
         if ($this->params->get('app_domain') != "conduction.nl" && strpos($this->params->get('app_domain'), "conduction.nl") == false) {
             return false;
         }
-        var_dump($this->params->get('app_domain'));
+        //var_dump($this->params->get('app_domain'));
 
     	// Deze organisaties worden ook buiten het wrc gebruikt
-    	$id = Uuid::fromString('7c9e5618-37ba-47dc-a628-b1b6fe96d69c');
+    	$id = Uuid::fromString('6a001c4c-911b-4b29-877d-122e362f519d');
     	$conduction = new Organization();
-        $conduction->setName('Utrecht');
-        $conduction->setDescription('Gemeente Utrecht');
-        $conduction->setRsin('002220647');
+        $conduction->setName('Conduction');
+        $conduction->setDescription('Conduction');
+        $conduction->setRsin('');
     	//$conduction->setContact('https://cc.huwelijksplanner.online/organizations/95c3da92-b7d3-4ea0-b6d4-3bc24944e622');
     	$manager->persist($conduction);
         $conduction->setId($id);
@@ -353,8 +353,6 @@ class ConductionFixtures extends Fixture
         $slug->setName($page->getName());
         $slug->setSlug(''); // Dit komt eigenlijk overeen met de route
         $manager->persist($slug);
-
-
 
         $manager->flush();
 

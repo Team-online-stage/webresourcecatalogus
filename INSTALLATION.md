@@ -104,25 +104,25 @@ $ helm dependency update ./api/helm
 ```
 If you want to create a new instance
 ```CLI
-$ helm install --name wrc-dev ./api/helm  --kubeconfig="api/helm/huwelijksplanner-kubeconfig.yaml" --namespace=dev  --set settings.env=dev,settings.debug=1
-$ helm install --name wrc-stag ./api/helm --kubeconfig="api/helm/kubeconfig.yaml" --namespace=stag --set settings.env=stag,settings.debug=0
-$ helm install --name wrc-prod ./api/helm --kubeconfig="api/helm/zaakonline-kubeconfig.yaml" --namespace=prod --set settings.env=prod,settings.debug=0
+$ helm install --name wrc-dev ./api/helm  --kubeconfig="api/helm/conduction-kubeconfig.yaml" --namespace=dev  --set settings.env=dev,settings.debug=1
+$ helm install --name wrc-stag ./api/helm --kubeconfig="api/helm/conduction-kubeconfig.yaml" --namespace=stag --set settings.env=stag,settings.debug=0
+$ helm install --name wrc-prod ./api/helm --kubeconfig="api/helm/conduction-kubeconfig.yaml" --namespace=prod --set settings.env=prod,settings.debug=0
 ```
 
 kubectl rollout restart deployment/wrc-php --kubeconfig="api/helm/huwelijksplanner-kubeconfig.yaml"  --namespace=dev
 
 Or update if you want to update an existing one
 ```CLI
-$ helm upgrade wrc-dev ./api/helm  --kubeconfig="api/helm/huwelijksplanner-kubeconfig.yaml" --namespace=dev  --set settings.env=dev,settings.debug=1
-$ helm upgrade wrc-stag ./api/helm --kubeconfig="api/helm/kubeconfig-digi.yaml" --namespace=stag --set settings.env=stag,settings.debug=0
-$ helm upgrade wrc-prod ./api/helm --kubeconfig="api/helm/kubeconfig-digi.yaml" --namespace=prod --set settings.env=prod,settings.debug=0
+$ helm upgrade wrc-dev ./api/helm  --kubeconfig="api/helm/conduction-kubeconfig.yaml" --namespace=dev  --set settings.env=dev,settings.debug=1
+$ helm upgrade wrc-stag ./api/helm --kubeconfig="api/helm/conduction-kubeconfig.yaml" --namespace=stag --set settings.env=stag,settings.debug=0
+$ helm upgrade wrc-prod ./api/helm --kubeconfig="api/helm/conduction-kubeconfig.yaml" --namespace=prod --set settings.env=prod,settings.debug=0
 ```
 
 Or del if you want to delete an existing  one
 ```CLI
-$ helm del wrc-dev  --purge --kubeconfig="api/helm/huwelijksplanner-kubeconfig.yaml"
-$ helm del wrc-stag --purge --kubeconfig="api/helm/kubeconfig.yaml" 
-$ helm del wrc-prod --purge --kubeconfig="api/helm/zaakonline-kubeconfig.yaml" 
+$ helm del wrc-dev  --purge --kubeconfig="api/helm/conduction-kubeconfig.yaml"
+$ helm del wrc-stag --purge --kubeconfig="api/helm/conduction-kubeconfig.yaml" 
+$ helm del wrc-prod --purge --kubeconfig="api/helm/conduction-kubeconfig.yaml" 
 
 ```
 
