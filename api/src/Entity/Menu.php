@@ -104,7 +104,7 @@ class Menu
     /**
      * @Groups({"read","write"})
      * @ORM\OneToMany(targetEntity="App\Entity\MenuItem", mappedBy="menu")
-     * @MaxDepth(0)
+     * @MaxDepth(1)
      */
     private $menuItems;
 
@@ -112,7 +112,7 @@ class Menu
      * @Groups({"read","write"})
      * @ORM\ManyToOne(targetEntity="App\Entity\Application", inversedBy="menus")
      * @ORM\JoinColumn(nullable=false)
-     * @MaxDepth(0)
+     * @MaxDepth(1)
      */
     private $application;
 
@@ -120,7 +120,7 @@ class Menu
      * @Groups({"read","write"})
      * @ORM\ManyToOne(targetEntity="App\Entity\Organization", inversedBy="menus")
      * @ORM\JoinColumn(nullable=false)
-     * @MaxDepth(0)
+     * @MaxDepth(1)
      */
     private $organization;
 
