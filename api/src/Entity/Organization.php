@@ -136,49 +136,36 @@ class Organization
 	private $description;
 
     /**
-     * @Groups({"read","write"})
-     * @MaxDepth(1)
      * @ORM\ManyToOne(targetEntity="App\Entity\Image")
      */
     private $logo;
 
     /**
-     * @Groups({"read","write"})
-     * @MaxDepth(1)
      * @ORM\OneToMany(targetEntity="App\Entity\Style", mappedBy="organization", orphanRemoval=true)
      */
     private $styles;
 
     /**
-     * @Groups({"read","write"})
-     * @MaxDepth(1)
      * @ORM\OneToMany(targetEntity="App\Entity\Application", mappedBy="organization", orphanRemoval=true)
      */
     private $applications;
 
     /**
-     * @Groups({"read","write"})
-     * @MaxDepth(1)
      * @ORM\OneToMany(targetEntity="App\Entity\Image", mappedBy="organization", orphanRemoval=true)
      */
     private $images;
 
     /**
-     * @MaxDepth(1)
      * @ORM\OneToMany(targetEntity="App\Entity\Configuration", mappedBy="organization", orphanRemoval=true)
      */
     private $configurations;
 
     /**
-     * @Groups({"read","write"})
-     * @MaxDepth(1)
      * @ORM\OneToMany(targetEntity="App\Entity\Template", mappedBy="organization", orphanRemoval=true)
      */
     private $templates;
 
     /**
-     * @Groups({"read","write"})
-     * @MaxDepth(1)
      * @ORM\OneToMany(targetEntity="App\Entity\Menu", mappedBy="organization", orphanRemoval=true)
      */
     private $menus;

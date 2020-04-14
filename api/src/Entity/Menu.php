@@ -117,14 +117,6 @@ class Menu
     private $application;
 
     /**
-     * @Groups({"read","write"})
-     * @ORM\ManyToOne(targetEntity="App\Entity\Organization", inversedBy="menus")
-     * @ORM\JoinColumn(nullable=false)
-     * @MaxDepth(1)
-     */
-    private $organization;
-
-    /**
      * @var Datetime $dateCreated The moment this request was created
      *
      * @Groups({"read"})
@@ -191,7 +183,7 @@ class Menu
         return $this->menuItems;
     }
 
-    public function addNenuItem(MenuItem $menuItem): self
+    public function addMenuItem(MenuItem $menuItem): self
     {
         if (!$this->menuItems->contains($menuItem)) {
             $this->menuItems[] = $menuItem;
@@ -222,18 +214,6 @@ class Menu
     public function setApplication(?Application $application): self
     {
     	$this->application = $application;
-
-    	return $this;
-    }
-
-    public function getOrganization(): ?Organization
-    {
-    	return $this->organization;
-    }
-
-    public function setOrganization(?Organization $organization): self
-    {
-    	$this->organization = $organization;
 
     	return $this;
     }

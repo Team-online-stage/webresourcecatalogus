@@ -133,7 +133,6 @@ class Application
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Slug", mappedBy="application")
-     * @MaxDepth(1)
      */
     private $slugs;
 
@@ -157,13 +156,11 @@ class Application
     private $defaultConfiguration;
 
     /**
-     * @MaxDepth(1)
      * @ORM\OneToMany(targetEntity="App\Entity\Template", mappedBy="application", orphanRemoval=true)
      */
     private $templates;
 
     /**
-     * @MaxDepth(1)
      * @ORM\OneToMany(targetEntity="App\Entity\Menu", mappedBy="application", orphanRemoval=true)
      */
     private $menus;
