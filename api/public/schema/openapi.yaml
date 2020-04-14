@@ -11443,8 +11443,6 @@ components:
             $ref: '#/components/schemas/MenuItem-read'
         application:
           $ref: '#/components/schemas/Application-read'
-        organization:
-          $ref: '#/components/schemas/Organization-read'
         dateCreated:
           readOnly: true
           description: 'The moment this request was created'
@@ -11475,8 +11473,6 @@ components:
             $ref: '#/components/schemas/MenuItem-write'
         application:
           $ref: '#/components/schemas/Application-write'
-        organization:
-          $ref: '#/components/schemas/Organization-write'
     'Menu:jsonld-read':
       type: object
       description: 'Menu is your way of navigation inside your application.'
@@ -11508,8 +11504,6 @@ components:
             $ref: '#/components/schemas/MenuItem:jsonld-read'
         application:
           $ref: '#/components/schemas/Application:jsonld-read'
-        organization:
-          $ref: '#/components/schemas/Organization:jsonld-read'
         dateCreated:
           readOnly: true
           description: 'The moment this request was created'
@@ -11549,8 +11543,6 @@ components:
             $ref: '#/components/schemas/MenuItem:jsonld-write'
         application:
           $ref: '#/components/schemas/Application:jsonld-write'
-        organization:
-          $ref: '#/components/schemas/Organization:jsonld-write'
     MenuItem-read:
       type: object
       description: 'MenuItem is a part of a menu and can be a link or submenu.'
@@ -11570,8 +11562,6 @@ components:
         href:
           description: 'The href of this MenuItem that links to another page'
           type: string
-        menu:
-          $ref: '#/components/schemas/Menu-read'
         dateCreated:
           readOnly: true
           description: 'The moment this request was created'
@@ -11601,8 +11591,6 @@ components:
         href:
           description: 'The href of this MenuItem that links to another page'
           type: string
-        menu:
-          $ref: '#/components/schemas/Menu-write'
     'MenuItem:jsonld-read':
       type: object
       description: 'MenuItem is a part of a menu and can be a link or submenu.'
@@ -11631,8 +11619,6 @@ components:
         href:
           description: 'The href of this MenuItem that links to another page'
           type: string
-        menu:
-          $ref: '#/components/schemas/Menu:jsonld-read'
         dateCreated:
           readOnly: true
           description: 'The moment this request was created'
@@ -11671,8 +11657,6 @@ components:
         href:
           description: 'The href of this MenuItem that links to another page'
           type: string
-        menu:
-          $ref: '#/components/schemas/Menu:jsonld-write'
     Organization-read:
       type: object
       description: 'An organization as active on commonground.'
@@ -11695,28 +11679,6 @@ components:
         description:
           description: 'The description of this organisation.'
           type: string
-        logo:
-          $ref: '#/components/schemas/Image-read'
-        styles:
-          type: array
-          items:
-            $ref: '#/components/schemas/Style-read'
-        applications:
-          type: array
-          items:
-            $ref: '#/components/schemas/Application-read'
-        images:
-          type: array
-          items:
-            $ref: '#/components/schemas/Image-read'
-        templates:
-          type: array
-          items:
-            $ref: '#/components/schemas/Template-read'
-        menus:
-          type: array
-          items:
-            $ref: '#/components/schemas/Menu-read'
         dateCreated:
           readOnly: true
           description: 'The moment this request was created'
@@ -11758,28 +11720,6 @@ components:
         description:
           description: 'The description of this organisation.'
           type: string
-        logo:
-          $ref: '#/components/schemas/Image-write'
-        styles:
-          type: array
-          items:
-            $ref: '#/components/schemas/Style-write'
-        applications:
-          type: array
-          items:
-            $ref: '#/components/schemas/Application-write'
-        images:
-          type: array
-          items:
-            $ref: '#/components/schemas/Image-write'
-        templates:
-          type: array
-          items:
-            $ref: '#/components/schemas/Template-write'
-        menus:
-          type: array
-          items:
-            $ref: '#/components/schemas/Menu-write'
         contact:
           description: 'The contact for this organization'
           externalDocs:
@@ -11816,28 +11756,6 @@ components:
         description:
           description: 'The description of this organisation.'
           type: string
-        logo:
-          $ref: '#/components/schemas/Image:jsonld-read'
-        styles:
-          type: array
-          items:
-            $ref: '#/components/schemas/Style:jsonld-read'
-        applications:
-          type: array
-          items:
-            $ref: '#/components/schemas/Application:jsonld-read'
-        images:
-          type: array
-          items:
-            $ref: '#/components/schemas/Image:jsonld-read'
-        templates:
-          type: array
-          items:
-            $ref: '#/components/schemas/Template:jsonld-read'
-        menus:
-          type: array
-          items:
-            $ref: '#/components/schemas/Menu:jsonld-read'
         dateCreated:
           readOnly: true
           description: 'The moment this request was created'
@@ -11888,28 +11806,6 @@ components:
         description:
           description: 'The description of this organisation.'
           type: string
-        logo:
-          $ref: '#/components/schemas/Image:jsonld-write'
-        styles:
-          type: array
-          items:
-            $ref: '#/components/schemas/Style:jsonld-write'
-        applications:
-          type: array
-          items:
-            $ref: '#/components/schemas/Application:jsonld-write'
-        images:
-          type: array
-          items:
-            $ref: '#/components/schemas/Image:jsonld-write'
-        templates:
-          type: array
-          items:
-            $ref: '#/components/schemas/Template:jsonld-write'
-        menus:
-          type: array
-          items:
-            $ref: '#/components/schemas/Menu:jsonld-write'
         contact:
           description: 'The contact for this organization'
           externalDocs:
@@ -12182,7 +12078,7 @@ components:
           description: 'The Content of this template.'
           type: string
         templateEngine:
-          description: 'The template engine used to render this template. Schould be either twig (Twig), md (markdown) or rst (reStructuredText)'
+          description: 'The template engine used to render this template. Schould be either twig (Twig), md (Markdown) or rst (reStructuredText)'
           type: string
         application:
           $ref: '#/components/schemas/Application-read'
@@ -12225,7 +12121,7 @@ components:
           description: 'The Content of this template.'
           type: string
         templateEngine:
-          description: 'The template engine used to render this template. Schould be either twig (Twig), md (markdown) or rst (reStructuredText)'
+          description: 'The template engine used to render this template. Schould be either twig (Twig), md (Markdown) or rst (reStructuredText)'
           type: string
         application:
           $ref: '#/components/schemas/Application-write'
@@ -12263,7 +12159,7 @@ components:
           description: 'The Content of this template.'
           type: string
         templateEngine:
-          description: 'The template engine used to render this template. Schould be either twig (Twig), md (markdown) or rst (reStructuredText)'
+          description: 'The template engine used to render this template. Schould be either twig (Twig), md (Markdown) or rst (reStructuredText)'
           type: string
         application:
           $ref: '#/components/schemas/Application:jsonld-read'
@@ -12315,7 +12211,7 @@ components:
           description: 'The Content of this template.'
           type: string
         templateEngine:
-          description: 'The template engine used to render this template. Schould be either twig (Twig), md (markdown) or rst (reStructuredText)'
+          description: 'The template engine used to render this template. Schould be either twig (Twig), md (Markdown) or rst (reStructuredText)'
           type: string
         application:
           $ref: '#/components/schemas/Application:jsonld-write'
@@ -12487,12 +12383,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-04-13 21:00:48'
+        example: '2020-04-14 12:27:30'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-04-13 21:00:48'
+        example: '2020-04-14 12:27:30'
     required: []
   AuditTrail-write:
     properties:
@@ -12540,12 +12436,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-04-13 21:00:48'
+        example: '2020-04-14 12:27:30'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-04-13 21:00:48'
+        example: '2020-04-14 12:27:30'
     required: []
   ChangeLog-write:
     properties:
@@ -12690,7 +12586,6 @@ definitions:
         type: \Datetime
       menuItems: []
       application: []
-      organization: []
     required:
       - name
   Menu-write:
@@ -12707,7 +12602,6 @@ definitions:
         maxLength: 2555
       menuItems: []
       application: []
-      organization: []
     required:
       - name
   MenuItem-read:
@@ -12738,7 +12632,6 @@ definitions:
       dateModified:
         description: 'The moment this request last Modified'
         type: \Datetime
-      menu: []
     required:
       - name
       - href
@@ -12759,6 +12652,11 @@ definitions:
         type: string
         example: app_home_about
         maxLength: 2555
+    required:
+      - name
+      - href
+  MenuItem-wite:
+    properties:
       menu: []
     required:
       - name
@@ -12801,12 +12699,6 @@ definitions:
         type: string
         format: url
         maxLength: 255
-      logo: []
-      styles: []
-      applications: []
-      images: []
-      templates: []
-      menus: []
     required:
       - rsin
       - chamberOfComerce
@@ -12839,12 +12731,6 @@ definitions:
         type: string
         format: url
         maxLength: 255
-      logo: []
-      styles: []
-      applications: []
-      images: []
-      templates: []
-      menus: []
     required:
       - rsin
       - chamberOfComerce
@@ -12969,9 +12855,9 @@ definitions:
         type: string
         example: 'A lot of random info over any topic'
       templateEngine:
-        description: 'The template engine used to render this template. Schould be either twig (Twig), md (markdown) or rst (reStructuredText)'
+        description: 'The template engine used to render this template. Schould be either twig (Twig), md (Markdown) or rst (reStructuredText)'
         type: string
-        example: Twig
+        example: twig
       dateCreated:
         description: 'The moment this request was created'
         type: \Datetime
@@ -13007,9 +12893,9 @@ definitions:
         type: string
         example: 'A lot of random info over any topic'
       templateEngine:
-        description: 'The template engine used to render this template. Schould be either twig (Twig), md (markdown) or rst (reStructuredText)'
+        description: 'The template engine used to render this template. Schould be either twig (Twig), md (Markdown) or rst (reStructuredText)'
         type: string
-        example: Twig
+        example: twig
       application: []
       organization: []
     required:
@@ -13092,6 +12978,7 @@ securityDefinitions:
     scopes:
       read: 'read right to the Template resource'
       write: 'write right to the Template resource'
+      wite: 'wite right to the MenuItem resource'
   JWT-Token:
     type: apiKey
     in: header
@@ -13099,6 +12986,7 @@ securityDefinitions:
     scopes:
       read: 'read right to the Template resource'
       write: 'write right to the Template resource'
+      wite: 'wite right to the MenuItem resource'
 host: irc.zaakonline.nl
 servers:
   -

@@ -110,6 +110,7 @@ class Menu
 
     /**
      * @Groups({"read","write"})
+     * @Assert\NotNull
      * @ORM\ManyToOne(targetEntity="App\Entity\Application", inversedBy="menus")
      * @ORM\JoinColumn(nullable=false)
      * @MaxDepth(1)

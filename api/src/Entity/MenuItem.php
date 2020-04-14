@@ -79,7 +79,6 @@ class MenuItem
      * @Assert\Length(
      *      max = 255
      * )
-     * @Gedmo\Versioned
      * @Groups({"read","write"})
      * @ORM\Column(type="string", length=255)
      */
@@ -101,6 +100,20 @@ class MenuItem
     private $description;
 
     /**
+     * @var string the icon to display with this menu item
+     *
+     * @example fa fa-cart
+     *
+     * @Gedmo\Versioned
+     * @Assert\Length(
+     *      max = 255
+     * )
+     * @Groups({"read","write"})
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $icon;
+
+    /**
      * @var string The href of this MenuItem that links to another page
      *
      * @example app_home_about
@@ -110,14 +123,14 @@ class MenuItem
      * @Assert\Length(
      *      max = 2555
      * )
-     * @Gedmo\Versioned
      * @Groups({"read","write"})
      * @ORM\Column(type="string", length=255)
      */
     private $href;
 
     /**
-     * @Groups({"wite"})
+     * @Groups({"write"})
+     * @Assert\NotNull
      * @ORM\ManyToOne(targetEntity="App\Entity\Menu", inversedBy="menuItems")
      * @ORM\JoinColumn(nullable=false)
      * @MaxDepth(1)
@@ -174,6 +187,18 @@ class MenuItem
     public function setDescription(?string $description): self
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    public function getIcon(): ?string
+    {
+        return $this->icon;
+    }
+
+    public function setIcon(string $icon): self
+    {
+        $this->icon = $icon;
 
         return $this;
     }
