@@ -103,7 +103,7 @@ class Menu
 
     /**
      * @Groups({"read","write"})
-     * @ORM\OneToMany(targetEntity="App\Entity\MenuItem", mappedBy="menu")
+     * @ORM\OneToMany(targetEntity="App\Entity\MenuItem", mappedBy="menu",cascade={"persist"})
      * @MaxDepth(1)
      */
     private $menuItems;

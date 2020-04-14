@@ -117,6 +117,7 @@ class MenuItem
     private $href;
 
     /**
+     * @Groups({"wite"})
      * @ORM\ManyToOne(targetEntity="App\Entity\Menu", inversedBy="menuItems")
      * @ORM\JoinColumn(nullable=false)
      * @MaxDepth(1)
