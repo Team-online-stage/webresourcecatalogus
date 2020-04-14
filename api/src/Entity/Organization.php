@@ -166,11 +166,6 @@ class Organization
     private $templates;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Menu", mappedBy="organization", orphanRemoval=true)
-     */
-    private $menus;
-
-    /**
      * @var Datetime $dateCreated The moment this request was created
      *
      * @Groups({"read"})
@@ -427,37 +422,6 @@ class Organization
     		// set the owning side to null (unless already changed)
     		if ($template->getOrganization() === $this) {
     			$template->setOrganization(null);
-    		}
-    	}
-
-    	return $this;
-    }
-
-    /**
-     * @return Collection|Menus[]
-     */
-    public function getMenus(): Collection
-    {
-    	return $this->menus;
-    }
-
-    public function addMenu(Menu $template): self
-    {
-    	if (!$this->menus->contains($menu)) {
-    		$this->menus[] = $menu;
-    		$menu->setOrganization($this);
-    	}
-
-    	return $this;
-    }
-
-    public function removeMenu(Menu $menu): self
-    {
-    	if ($this->menus->contains($menu)) {
-    		$this->menus->removeElement($menu);
-    		// set the owning side to null (unless already changed)
-    		if ($menu->getOrganization() === $this) {
-    			$menu->setOrganization(null);
     		}
     	}
 
