@@ -338,8 +338,8 @@ class Application
 
     public function addTemplate(Template $template): self
     {
-    	if (!$this->templates->contains($configuration)) {
-    		$this->templates[] = $configuration;
+    	if (!$this->templates->contains($template)) {
+    		$this->templates[] = $template;
     		$template->setApplication($this);
     	}
 
@@ -367,7 +367,7 @@ class Application
     	return $this->menus;
     }
 
-    public function addMenu(Menu $template): self
+    public function addMenu(Menu $menu): self
     {
     	if (!$this->menus->contains($menu)) {
     		$this->menus[] = $menu;
