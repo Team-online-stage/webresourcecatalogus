@@ -5311,6 +5311,15 @@ paths:
               - asc
               - desc
         -
+          name: 'order[icon]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
           name: 'order[href]'
           in: query
           required: false
@@ -5425,6 +5434,22 @@ paths:
             type: string
         -
           name: 'description[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+        -
+          name: icon
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'icon[]'
           in: query
           required: false
           schema:
@@ -11455,11 +11480,13 @@ components:
           format: date-time
       required:
         - name
+        - application
     Menu-write:
       type: object
       description: 'Menu is your way of navigation inside your application.'
       required:
         - name
+        - application
       properties:
         name:
           description: 'The name of this menu'
@@ -11516,11 +11543,13 @@ components:
           format: date-time
       required:
         - name
+        - application
     'Menu:jsonld-write':
       type: object
       description: 'Menu is your way of navigation inside your application.'
       required:
         - name
+        - application
       properties:
         '@context':
           readOnly: true
@@ -11559,6 +11588,9 @@ components:
         description:
           description: 'The description of this MenuItem'
           type: string
+        icon:
+          description: 'the icon to display with this menu item'
+          type: string
         href:
           description: 'The href of this MenuItem that links to another page'
           type: string
@@ -11581,6 +11613,7 @@ components:
       required:
         - name
         - href
+        - menu
       properties:
         name:
           description: 'The name of this MenuItem'
@@ -11588,9 +11621,15 @@ components:
         description:
           description: 'The description of this MenuItem'
           type: string
+        icon:
+          description: 'the icon to display with this menu item'
+          type: string
         href:
           description: 'The href of this MenuItem that links to another page'
           type: string
+        menu:
+          writeOnly: true
+          $ref: '#/components/schemas/Menu-write'
     'MenuItem:jsonld-read':
       type: object
       description: 'MenuItem is a part of a menu and can be a link or submenu.'
@@ -11616,6 +11655,9 @@ components:
         description:
           description: 'The description of this MenuItem'
           type: string
+        icon:
+          description: 'the icon to display with this menu item'
+          type: string
         href:
           description: 'The href of this MenuItem that links to another page'
           type: string
@@ -11638,6 +11680,7 @@ components:
       required:
         - name
         - href
+        - menu
       properties:
         '@context':
           readOnly: true
@@ -11654,9 +11697,15 @@ components:
         description:
           description: 'The description of this MenuItem'
           type: string
+        icon:
+          description: 'the icon to display with this menu item'
+          type: string
         href:
           description: 'The href of this MenuItem that links to another page'
           type: string
+        menu:
+          writeOnly: true
+          $ref: '#/components/schemas/Menu:jsonld-write'
     Organization-read:
       type: object
       description: 'An organization as active on commonground.'
@@ -12383,12 +12432,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-04-14 12:27:30'
+        example: '2020-04-14 19:18:09'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-04-14 12:27:30'
+        example: '2020-04-14 19:18:09'
     required: []
   AuditTrail-write:
     properties:
@@ -12436,12 +12485,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-04-14 12:27:30'
+        example: '2020-04-14 19:18:09'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-04-14 12:27:30'
+        example: '2020-04-14 19:18:09'
     required: []
   ChangeLog-write:
     properties:
@@ -12588,6 +12637,7 @@ definitions:
       application: []
     required:
       - name
+      - application
   Menu-write:
     properties:
       name:
@@ -12604,6 +12654,7 @@ definitions:
       application: []
     required:
       - name
+      - application
   MenuItem-read:
     properties:
       id:
@@ -12621,6 +12672,11 @@ definitions:
         type: string
         example: 'This MenuItem links to the about page'
         maxLength: 2555
+      icon:
+        description: 'the icon to display with this menu item'
+        type: string
+        example: 'fa fa-cart'
+        maxLength: 255
       href:
         description: 'The href of this MenuItem that links to another page'
         type: string
@@ -12647,20 +12703,21 @@ definitions:
         type: string
         example: 'This MenuItem links to the about page'
         maxLength: 2555
+      icon:
+        description: 'the icon to display with this menu item'
+        type: string
+        example: 'fa fa-cart'
+        maxLength: 255
       href:
         description: 'The href of this MenuItem that links to another page'
         type: string
         example: app_home_about
         maxLength: 2555
-    required:
-      - name
-      - href
-  MenuItem-wite:
-    properties:
       menu: []
     required:
       - name
       - href
+      - menu
   Organization-read:
     properties:
       id:
@@ -12978,7 +13035,6 @@ securityDefinitions:
     scopes:
       read: 'read right to the Template resource'
       write: 'write right to the Template resource'
-      wite: 'wite right to the MenuItem resource'
   JWT-Token:
     type: apiKey
     in: header
@@ -12986,7 +13042,6 @@ securityDefinitions:
     scopes:
       read: 'read right to the Template resource'
       write: 'write right to the Template resource'
-      wite: 'wite right to the MenuItem resource'
 host: irc.zaakonline.nl
 servers:
   -
