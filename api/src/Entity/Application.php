@@ -166,13 +166,6 @@ class Application
     private $menus;
 
     /**
-     * @Gedmo\Versioned
-     * @Groups({"read","write"})
-     * @ORM\Column(type="json", nullable=true)
-     */
-    private $configuration = [];
-
-    /**
      * @var Datetime $dateCreated The moment this request was created
      *
      * @Groups({"read"})
@@ -388,18 +381,6 @@ class Application
     	}
 
     	return $this;
-    }
-
-    public function getConfiguration(): ?array
-    {
-        return $this->configuration;
-    }
-
-    public function setConfiguration(array $configuration): self
-    {
-        $this->configuration = $configuration;
-
-        return $this;
     }
 
     public function getDateCreated(): ?\DateTimeInterface

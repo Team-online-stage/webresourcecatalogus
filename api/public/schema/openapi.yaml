@@ -400,6 +400,15 @@ paths:
               - asc
               - desc
         -
+          name: 'order[configuration]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
           name: 'order[dateCreated]'
           in: query
           required: false
@@ -521,6 +530,22 @@ paths:
             type: string
         -
           name: 'domain[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+        -
+          name: configuration
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'configuration[]'
           in: query
           required: false
           schema:
@@ -1456,6 +1481,15 @@ paths:
               - asc
               - desc
         -
+          name: 'order[configuration]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
           name: 'order[dateCreated]'
           in: query
           required: false
@@ -1577,6 +1611,22 @@ paths:
             type: string
         -
           name: 'domain[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+        -
+          name: configuration
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'configuration[]'
           in: query
           required: false
           schema:
@@ -10685,6 +10735,10 @@ components:
           $ref: '#/components/schemas/Organization-read'
         defaultConfiguration:
           readOnly: true
+        configuration:
+          type: array
+          items:
+            $ref: '#/components/schemas/Configuration-read'
         dateCreated:
           readOnly: true
           description: 'The moment this request was created'
@@ -10718,6 +10772,10 @@ components:
           type: string
         organization:
           $ref: '#/components/schemas/Organization-write'
+        configuration:
+          type: array
+          items:
+            $ref: '#/components/schemas/Configuration-write'
     'Application:jsonld-read':
       type: object
       description: 'Application is the project of a website.'
@@ -10750,6 +10808,10 @@ components:
           $ref: '#/components/schemas/Organization:jsonld-read'
         defaultConfiguration:
           readOnly: true
+        configuration:
+          type: array
+          items:
+            $ref: '#/components/schemas/Configuration:jsonld-read'
         dateCreated:
           readOnly: true
           description: 'The moment this request was created'
@@ -10792,6 +10854,10 @@ components:
           type: string
         organization:
           $ref: '#/components/schemas/Organization:jsonld-write'
+        configuration:
+          type: array
+          items:
+            $ref: '#/components/schemas/Configuration:jsonld-write'
     AuditTrail-read:
       type: object
       description: 'An resource representing a log line.'
@@ -12295,6 +12361,7 @@ definitions:
         type: string
         example: 'https://www.example.org'
         maxLength: 255
+      configuration: []
       dateCreated:
         description: 'The moment this request was created'
         type: \Datetime
@@ -12323,6 +12390,7 @@ definitions:
         type: string
         example: 'https://www.example.org'
         maxLength: 255
+      configuration: []
       organization: []
     required:
       - name
@@ -12432,12 +12500,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-04-14 19:18:09'
+        example: '2020-04-15 05:50:53'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-04-14 19:18:09'
+        example: '2020-04-15 05:50:53'
     required: []
   AuditTrail-write:
     properties:
@@ -12485,12 +12553,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-04-14 19:18:09'
+        example: '2020-04-15 05:50:53'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-04-14 19:18:09'
+        example: '2020-04-15 05:50:53'
     required: []
   ChangeLog-write:
     properties:
