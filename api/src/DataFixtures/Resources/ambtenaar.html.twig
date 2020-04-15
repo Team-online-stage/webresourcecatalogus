@@ -43,7 +43,7 @@
                         Annuleer deze ambtenaar
                     </a>
                 {% else %}
-                    U heeft reeds<a href="{{  path('app_default_slug',{'slug':'ambtenaar-kiezen','resource':commonground_resource(request.properties.ambtenaar).products[0]['@id']}) }}"> een ambtenaar</a> gekozen, annuleer deze eerst als u deze ambtenaar wil reserveren.
+                    U heeft reeds <a href="{{  path('app_default_slug',{'slug':'ambtenaar-kiezen','id':commonground_resource(request.properties.ambtenaar).products[0]['@id']}) }}"> een ambtenaar</a> gekozen, annuleer deze eerst als u deze ambtenaar wil reserveren.
                 {% endif %}
 
                 <br><br>

@@ -49,7 +49,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * )
  * @ORM\Entity(repositoryClass="App\Repository\MenuRepository")
  * @Gedmo\Loggable(logEntryClass="App\Entity\ChangeLog")
- * 
+ *
  * @ApiFilter(BooleanFilter::class)
  * @ApiFilter(OrderFilter::class)
  * @ApiFilter(DateFilter::class, strategy=DateFilter::EXCLUDE_NULL)
@@ -85,7 +85,7 @@ class Menu
      * @ORM\Column(type="string", length=255)
      */
     private $name;
-    
+
     /**
      * @var string The description of this menuItems
      *
@@ -103,27 +103,20 @@ class Menu
 
     /**
      * @Groups({"read","write"})
-     * @ORM\OneToMany(targetEntity="App\Entity\MenuItem", mappedBy="menu")
+     * @ORM\OneToMany(targetEntity="App\Entity\MenuItem", mappedBy="menu",cascade={"persist"})
      * @MaxDepth(1)
      */
     private $menuItems;
-    
+
     /**
      * @Groups({"read","write"})
-     * @MaxDepth(1)
+     * @Assert\NotNull
      * @ORM\ManyToOne(targetEntity="App\Entity\Application", inversedBy="menus")
      * @ORM\JoinColumn(nullable=false)
+     * @MaxDepth(1)
      */
     private $application;
-    
-    /**
-     * @Groups({"read","write"})
-     * @MaxDepth(1)
-     * @ORM\ManyToOne(targetEntity="App\Entity\Organization", inversedBy="menus")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $organization;
-    
+
     /**
      * @var Datetime $dateCreated The moment this request was created
      *
@@ -132,7 +125,7 @@ class Menu
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $dateCreated;
-    
+
     /**
      * @var Datetime $dateModified  The moment this request last Modified
      *
@@ -170,16 +163,16 @@ class Menu
 
         return $this;
     }
-    
+
     public function getDescription(): ?string
     {
     	return $this->description;
     }
-    
+
     public function setDescription(?string $description): self
     {
     	$this->description = $description;
-    	
+
     	return $this;
     }
 
@@ -191,7 +184,7 @@ class Menu
         return $this->menuItems;
     }
 
-    public function addNenuItem(MenuItem $menuItem): self
+    public function addMenuItem(MenuItem $menuItem): self
     {
         if (!$this->menuItems->contains($menuItem)) {
             $this->menuItems[] = $menuItem;
@@ -213,52 +206,40 @@ class Menu
 
         return $this;
     }
-    
+
     public function getApplication(): ?Application
     {
     	return $this->application;
     }
-    
+
     public function setApplication(?Application $application): self
     {
     	$this->application = $application;
-    	
+
     	return $this;
     }
-    
-    public function getOrganization(): ?Organization
-    {
-    	return $this->organization;
-    }
-    
-    public function setOrganization(?Organization $organization): self
-    {
-    	$this->organization = $organization;
-    	
-    	return $this;
-    }
-    
+
     public function getDateCreated(): ?\DateTimeInterface
     {
     	return $this->dateModified;
     }
-    
+
     public function setDateCreated(\DateTimeInterface $dateCreated): self
     {
     	$this->dateCreated= $dateCreated;
-    	
+
     	return $this;
     }
-    
+
     public function getDateModified(): ?\DateTimeInterface
     {
     	return $this->dateModified;
     }
-    
+
     public function setDateModified(\DateTimeInterface $dateModified): self
     {
     	$this->dateModified = $dateModified;
-    	
+
     	return $this;
     }
 }
