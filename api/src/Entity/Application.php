@@ -161,7 +161,7 @@ class Application
     /**
      * @Groups({"read","write"})
      * @MaxDepth(1)
-     * @ORM\OneToOne(targetEntity="App\Entity\Style")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Style")
      * @ORM\JoinColumn(nullable=true)
      */
     private $style;
