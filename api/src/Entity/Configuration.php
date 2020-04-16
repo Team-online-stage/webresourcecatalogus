@@ -49,11 +49,11 @@ use Symfony\Component\Validator\Constraints as Assert;
  * )
  * @ORM\Entity(repositoryClass="App\Repository\ConfigurationRepository")
  * @Gedmo\Loggable(logEntryClass="App\Entity\ChangeLog")
- * 
+ *
  * @ApiFilter(BooleanFilter::class)
  * @ApiFilter(OrderFilter::class)
  * @ApiFilter(DateFilter::class, strategy=DateFilter::EXCLUDE_NULL)
- * @ApiFilter(SearchFilter::class, properties={"id": "exact", "application.id": "exact","organization.id": "exact"})
+ * @ApiFilter(SearchFilter::class, properties={"id": "exact", "application.id": "exact","organization.id": "exact", "name": "partial", "description": "partial", "content": "partial"})
  */
 class Configuration
 {
@@ -70,6 +70,38 @@ class Configuration
 	 * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
 	 */
 	private $id;
+
+    /**
+     * @var string The name of this application.
+     *
+     * @example Webshop
+     *
+     * @Gedmo\Versioned
+     * @Assert\NotNull
+     * @Assert\Length(
+     *      max = 255
+     * )
+     * @Gedmo\Versioned
+     * @Groups({"read","write"})
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $name;
+
+    /**
+     * @var string The description of this application.
+     *
+     * @example Is the best site ever
+     *
+     * @Gedmo\Versioned
+     * @Assert\NotNull
+     * @Assert\Length(
+     *      max = 255
+     * )
+     * @Gedmo\Versioned
+     * @Groups({"read","write"})
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $description;
 
     /**
      * @Groups({"write"})
@@ -93,7 +125,7 @@ class Configuration
      * @ORM\Column(type="json")
      */
     private $configuration = [];
-    
+
     /**
      * @var Datetime $dateCreated The moment this request was created
      *
@@ -102,7 +134,7 @@ class Configuration
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $dateCreated;
-    
+
     /**
      * @var Datetime $dateModified  The moment this request last Modified
      *
@@ -111,17 +143,41 @@ class Configuration
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $dateModified;
-    
+
     public function getId(): Uuid
     {
     	return $this->id;
     }
-    
+
     public function setId(Uuid $id): self
     {
     	$this->id = $id;
-    	
+
     	return $this;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): self
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): self
+    {
+        $this->description = $description;
+
+        return $this;
     }
 
     public function getApplication(): ?Application
@@ -159,28 +215,28 @@ class Configuration
 
         return $this;
     }
-    
+
     public function getDateCreated(): ?\DateTimeInterface
     {
     	return $this->dateCreated;
     }
-    
+
     public function setDateCreated(\DateTimeInterface $dateCreated): self
     {
     	$this->dateCreated= $dateCreated;
-    	
+
     	return $this;
     }
-    
+
     public function getDateModified(): ?\DateTimeInterface
     {
     	return $this->dateModified;
     }
-    
+
     public function setDateModified(\DateTimeInterface $dateModified): self
     {
     	$this->dateModified = $dateModified;
-    	
+
     	return $this;
     }
 }

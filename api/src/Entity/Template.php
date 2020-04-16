@@ -61,7 +61,7 @@ use App\Controller\DefaultController;
  * @ApiFilter(BooleanFilter::class)
  * @ApiFilter(OrderFilter::class)
  * @ApiFilter(DateFilter::class, strategy=DateFilter::EXCLUDE_NULL)
- * @ApiFilter(SearchFilter::class)
+ * @ApiFilter(SearchFilter::class, properties={"application.id": "exact", "organization.id": "exact","slugs.id": "exact","templateEngine": "exact","slugs.slug": "exact", "title": "partial", "name": "partial", "description": "partial", "content": "partial"})
  */
 class Template
 {
@@ -136,9 +136,9 @@ class Template
     private $content;
 
     /**
-     * @var string The template engine used to render this template. Schould be either twig (Twig), md (markdown) or rst (reStructuredText)
+     * @var string The template engine used to render this template. Schould be either twig (Twig), md (Markdown) or rst (reStructuredText)
      *
-     * @example Twig
+     * @example twig
      *
      * @Gedmo\Versioned
      * @Assert\NotNull
@@ -149,10 +149,10 @@ class Template
     private $templateEngine;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Page", mappedBy="template")
+     * @ORM\OneToMany(targetEntity="App\Entity\Slug", mappedBy="template")
      * @MaxDepth(1)
      */
-    private $pages;
+    private $slugs;
 
     /**
      * @Groups({"read","write"})
@@ -266,30 +266,30 @@ class Template
     }
 
     /**
-     * @return Collection|Page[]
+     * @return Collection|Slug[]
      */
-    public function getPages(): Collection
+    public function getSlugs(): Collection
     {
-        return $this->pages;
+        return $this->slugs;
     }
 
-    public function addPage(Page $page): self
+    public function addSlug(Slug $slug): self
     {
-        if (!$this->pages->contains($page)) {
-            $this->pages[] = $page;
-            $page->setApplication($this);
+        if (!$this->slugs->contains($page)) {
+            $this->slugs[] = $slug;
+            $slug->setTemplate($this);
         }
 
         return $this;
     }
 
-    public function removePage(Page $page): self
+    public function removeSlug(Slug $slug): self
     {
-        if ($this->pages->contains($page)) {
-            $this->pages->removeElement($page);
+        if ($this->slugs->contains($slug)) {
+            $this->slugs->removeElement($slug);
             // set the owning side to null (unless already changed)
-            if ($page->getApplication() === $this) {
-                $page->setApplication(null);
+            if ($slug->getTemplate() === $this) {
+                $slug->setTemplate(null);
             }
         }
 

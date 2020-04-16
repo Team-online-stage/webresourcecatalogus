@@ -97,6 +97,7 @@ class ConductionFixtures extends Fixture
         $manager->flush();
         $dashboard = $manager->getRepository('App:Application')->findOneBy(['id'=> $id]);
 
+        /*
         // Pages
         $template = new Template();
         $template->setName('Home'); // Naam
@@ -237,8 +238,6 @@ class ConductionFixtures extends Fixture
         $slug->setSlug(''); // Dit komt eigenlijk overeen met de route
         $manager->persist($slug);
 
-
-
         $template = new Template();
         $template->setName('Projecten'); // Naam
         $template->setDescription('Pagina waarop instemming kan worden verleend'); // korte beschrijving
@@ -355,6 +354,7 @@ class ConductionFixtures extends Fixture
         $manager->persist($slug);
 
         $manager->flush();
+        */
 
     }
 }

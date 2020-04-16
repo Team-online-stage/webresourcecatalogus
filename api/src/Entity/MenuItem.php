@@ -47,7 +47,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * )
  * @ORM\Entity(repositoryClass="App\Repository\MenuItemRepository")
  * @Gedmo\Loggable(logEntryClass="App\Entity\ChangeLog")
- * 
+ *
  * @ApiFilter(BooleanFilter::class)
  * @ApiFilter(OrderFilter::class)
  * @ApiFilter(DateFilter::class, strategy=DateFilter::EXCLUDE_NULL)
@@ -79,7 +79,6 @@ class MenuItem
      * @Assert\Length(
      *      max = 255
      * )
-     * @Gedmo\Versioned
      * @Groups({"read","write"})
      * @ORM\Column(type="string", length=255)
      */
@@ -101,6 +100,20 @@ class MenuItem
     private $description;
 
     /**
+     * @var string the icon to display with this menu item
+     *
+     * @example fa fa-cart
+     *
+     * @Gedmo\Versioned
+     * @Assert\Length(
+     *      max = 255
+     * )
+     * @Groups({"read","write"})
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $icon;
+
+    /**
      * @var string The href of this MenuItem that links to another page
      *
      * @example app_home_about
@@ -110,20 +123,20 @@ class MenuItem
      * @Assert\Length(
      *      max = 2555
      * )
-     * @Gedmo\Versioned
      * @Groups({"read","write"})
      * @ORM\Column(type="string", length=255)
      */
     private $href;
 
     /**
-     * @Groups({"read","write"})
+     * @Groups({"write"})
+     * @Assert\NotNull
      * @ORM\ManyToOne(targetEntity="App\Entity\Menu", inversedBy="menuItems")
      * @ORM\JoinColumn(nullable=false)
      * @MaxDepth(1)
      */
     private $menu;
-    
+
     /**
      * @var Datetime $dateCreated The moment this request was created
      *
@@ -132,7 +145,7 @@ class MenuItem
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $dateCreated;
-    
+
     /**
      * @var Datetime $dateModified  The moment this request last Modified
      *
@@ -178,6 +191,18 @@ class MenuItem
         return $this;
     }
 
+    public function getIcon(): ?string
+    {
+        return $this->icon;
+    }
+
+    public function setIcon(string $icon): self
+    {
+        $this->icon = $icon;
+
+        return $this;
+    }
+
     public function getHref(): ?string
     {
         return $this->href;
@@ -201,28 +226,28 @@ class MenuItem
 
         return $this;
     }
-    
+
     public function getDateCreated(): ?\DateTimeInterface
     {
     	return $this->dateModified;
     }
-    
+
     public function setDateCreated(\DateTimeInterface $dateCreated): self
     {
     	$this->dateCreated= $dateCreated;
-    	
+
     	return $this;
     }
-    
+
     public function getDateModified(): ?\DateTimeInterface
     {
     	return $this->dateModified;
     }
-    
+
     public function setDateModified(\DateTimeInterface $dateModified): self
     {
     	$this->dateModified = $dateModified;
-    	
+
     	return $this;
     }
 }

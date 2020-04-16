@@ -11,7 +11,6 @@ use App\Entity\Organization;
 use App\Entity\Configuration;
 use App\Entity\Style;
 use App\Entity\Application;
-use App\Entity\Page;
 use App\Entity\Slug;
 use App\Entity\Template;
 use App\Entity\Image;
@@ -32,7 +31,6 @@ class HuwelijksplannerFixtures extends Fixture
             return false;
         }
 
-        var_dump($this->params->get('app_domain'));
     	// Deze organisaties worden ook buiten het wrc gebruikt
     	// Utrecht
     	$id = Uuid::fromString('68b64145-0740-46df-a65a-9d3259c2fec8');
@@ -216,8 +214,8 @@ class HuwelijksplannerFixtures extends Fixture
 
         // Configuratie van MijnApp
         $configuration = new Configuration();
-        $configuration->setOrganisation($eindhoven);
-        $configuration->setDescription($application);
+        $configuration->setOrganization($eindhoven);
+        $configuration->setApplication($application);
         $configuration->setConfiguration([]);
         $manager->persist($configuration);
 
@@ -236,8 +234,8 @@ class HuwelijksplannerFixtures extends Fixture
 
         // Configuratie van huwelijksplanner
         $configuration = new Configuration();
-        $configuration->setOrganisation($utrecht);
-        $configuration->setDescription($application);
+        $configuration->setOrganization($utrecht);
+        $configuration->setApplication($application);
         $configuration->setConfiguration([]);
         $manager->persist($configuration);
 
@@ -321,20 +319,12 @@ class HuwelijksplannerFixtures extends Fixture
         $manager->flush();
         $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
 
-        $page = new Page();
-        $page->setName('Assent');
-        $page->setTitle('Assent');
-        $page->setDescription('Assent');
-        $page->setApplication($application);
-        $page->setTemplate($template);
-        $manager->persist($page);
-
         $slug = new Slug();
-        $slug->setPage($page);
+        $slug->setTemplate($template);
         $slug->setApplication($application);
         $slug->setName('assent');
         $slug->setSlug('assent');
-        $manager->persist($page);
+        $manager->persist($slug);
 
         // Trouwen (ofwel home)
         $id = Uuid::fromString('20219e4b-4dd0-4dc9-8768-3ecb33cf3d78');
@@ -349,20 +339,12 @@ class HuwelijksplannerFixtures extends Fixture
         $manager->flush();
         $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
 
-        $page = new Page();
-        $page->setName('Trouwen');
-        $page->setTitle('Trouwen');
-        $page->setDescription('trouwen');
-        $page->setApplication($application);
-        $page->setTemplate($template);
-        $manager->persist($page);
-
         $slug = new Slug();
-        $slug->setPage($page);
+        $slug->setTemplate($template);
         $slug->setApplication($application);
         $slug->setName('trouwen');
         $slug->setSlug('trouwen');
-        $manager->persist($page);
+        $manager->persist($slug);
 
         // Babs voor een dag
         $template = new Template();
@@ -372,20 +354,12 @@ class HuwelijksplannerFixtures extends Fixture
         $template->setTemplateEngine('twig');
         $manager->persist($template);
 
-        $page = new Page();
-        $page->setName('BABS voor een dag');
-        $page->setTitle('BABS voor een dag');
-        $page->setDescription('BABS voor een dag');
-        $page->setApplication($application);
-        $page->setTemplate($template);
-        $manager->persist($page);
-
         $slug = new Slug();
-        $slug->setPage($page);
+        $slug->setTemplate($template);
         $slug->setApplication($application);
         $slug->setName('babs-voor-een-dag');
         $slug->setSlug('babs-voor-een-dag');
-        $manager->persist($page);
+        $manager->persist($slug);
 
         // Bas andere gemeente
         $template = new Template();
@@ -395,20 +369,12 @@ class HuwelijksplannerFixtures extends Fixture
         $template->setTemplateEngine('twig');
         $manager->persist($template);
 
-        $page = new Page();
-        $page->setName('Babs andere gemeente');
-        $page->setTitle('Babs andere gemeente');
-        $page->setDescription('Babs andere gemeente');
-        $page->setApplication($application);
-        $page->setTemplate($template);
-        $manager->persist($page);
-
         $slug = new Slug();
-        $slug->setPage($page);
+        $slug->setTemplate($template);
         $slug->setApplication($application);
         $slug->setName('babs-andere-gemeente');
         $slug->setSlug('babs-andere-gemeente');
-        $manager->persist($page);
+        $manager->persist($slug);
 
         //afwijkende locatie
         $template = new Template();
@@ -418,20 +384,12 @@ class HuwelijksplannerFixtures extends Fixture
         $template->setTemplateEngine('twig');
         $manager->persist($template);
 
-        $page = new Page();
-        $page->setName('Afwijkende trouw locatie');
-        $page->setTitle('Afwijkende trouw locatie');
-        $page->setDescription('Afwijkende trouw locatie');
-        $page->setApplication($application);
-        $page->setTemplate($template);
-        $manager->persist($page);
-
         $slug = new Slug();
+        $slug->setTemplate($template);
         $slug->setName('afwijkende-trouw-locatie');
-        $slug->setPage($page);
         $slug->setApplication($application);
         $slug->setSlug('afwijkende-trouw-locatie');
-        $manager->persist($page);
+        $manager->persist($slug);
 
         $template = new Template();
         $template->setName('Afwijkende trouw locatie contact');
@@ -440,20 +398,12 @@ class HuwelijksplannerFixtures extends Fixture
         $template->setTemplateEngine('twig');
         $manager->persist($template);
 
-        $page = new Page();
-        $page->setName('Afwijkende trouw locatie contact');
-        $page->setTitle('Afwijkende trouw locatie contact');
-        $page->setDescription('Afwijkende trouw locatie contact');
-        $page->setApplication($application);
-        $page->setTemplate($template);
-        $manager->persist($page);
-
         $slug = new Slug();
+        $slug->setTemplate($template);
         $slug->setName('afwijkende-trouw-locatie-contact');
-        $slug->setPage($page);
         $slug->setApplication($application);
         $slug->setSlug('afwijkende-trouw-locatie-contact');
-        $manager->persist($page);
+        $manager->persist($slug);
 
         $template = new Template();
         $template->setName('Indienen afwijkende trouw locatie');
@@ -462,20 +412,12 @@ class HuwelijksplannerFixtures extends Fixture
         $template->setTemplateEngine('twig');
         $manager->persist($template);
 
-        $page = new Page();
-        $page->setName('Indienen afwijkende trouw locatie');
-        $page->setTitle('Indienen afwijkende trouw locatie');
-        $page->setDescription('Indienen afwijkende trouw locatie');
-        $page->setApplication($application);
-        $page->setTemplate($template);
-        $manager->persist($page);
-
         $slug = new Slug();
+        $slug->setTemplate($template);
         $slug->setName('indienen-afwijkende-trouw-locatie');
-        $slug->setPage($page);
         $slug->setApplication($application);
         $slug->setSlug('indienen-afwijkende-trouw-locatie');
-        $manager->persist($page);
+        $manager->persist($slug);
 
         $template = new Template();
         $template->setName('Indienen babs voor een dag');
@@ -484,20 +426,12 @@ class HuwelijksplannerFixtures extends Fixture
         $template->setTemplateEngine('twig');
         $manager->persist($template);
 
-        $page = new Page();
-        $page->setName('Indienen babs voor een dag');
-        $page->setTitle('Indienen babs voor een dag');
-        $page->setDescription('Indienen babs voor een dag');
-        $page->setApplication($application);
-        $page->setTemplate($template);
-        $manager->persist($page);
-
         $slug = new Slug();
+        $slug->setTemplate($template);
         $slug->setName('indienen-babs-voor-een-dag');
-        $slug->setPage($page);
         $slug->setApplication($application);
         $slug->setSlug('indienen-babs-voor-een-dag');
-        $manager->persist($page);
+        $manager->persist($slug);
 
         $template = new Template();
         $template->setName('Indienen babs andere gemeente');
@@ -506,20 +440,12 @@ class HuwelijksplannerFixtures extends Fixture
         $template->setTemplateEngine('twig');
         $manager->persist($template);
 
-        $page = new Page();
-        $page->setName('Indienen babs andere gemeente');
-        $page->setTitle('Indienen babs andere gemeente');
-        $page->setDescription('Indienen babs andere gemeente');
-        $page->setApplication($application);
-        $page->setTemplate($template);
-        $manager->persist($page);
-
         $slug = new Slug();
+        $slug->setTemplate($template);
         $slug->setName('indienen-babs-andere-gemeente');
-        $slug->setPage($page);
         $slug->setApplication($application);
         $slug->setSlug('indienen-babs-andere-gemeente');
-        $manager->persist($page);
+        $manager->persist($slug);
 
         $template = new Template();
         $template->setName('Indienen Melding');
@@ -528,20 +454,12 @@ class HuwelijksplannerFixtures extends Fixture
         $template->setTemplateEngine('twig');
         $manager->persist($template);
 
-        $page = new Page();
-        $page->setName('Indienen melding');
-        $page->setTitle('Indienen melding');
-        $page->setDescription('Indienen melding');
-        $page->setApplication($application);
-        $page->setTemplate($template);
-        $manager->persist($page);
-
         $slug = new Slug();
+        $slug->setTemplate($template);
         $slug->setName('indienen-melding');
-        $slug->setPage($page);
         $slug->setApplication($application);
         $slug->setSlug('indienen-melding');
-        $manager->persist($page);
+        $manager->persist($slug);
 
         // indienen
         $id = Uuid::fromString('ed2b2747-2152-456b-8bc3-2524799e1e86');
@@ -556,20 +474,12 @@ class HuwelijksplannerFixtures extends Fixture
         $manager->flush();
         $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
 
-        $page = new Page();
-        $page->setName('Overige vragen');
-        $page->setTitle('Overige vragen');
-        $page->setDescription('overig');
-        $page->setApplication($application);
-        $page->setTemplate($template);
-        $manager->persist($page);
-
         $slug = new Slug();
+        $slug->setTemplate($template);
         $slug->setName('overig');
-        $slug->setPage($page);
         $slug->setApplication($application);
         $slug->setSlug('overig');
-        $manager->persist($page);
+        $manager->persist($slug);
 
         // indienen
         $id = Uuid::fromString('50fe81a3-6723-4b9c-acf1-9a7c30f7cc4f');
@@ -584,20 +494,12 @@ class HuwelijksplannerFixtures extends Fixture
         $manager->flush();
         $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
 
-        $page = new Page();
-        $page->setName('Indienen');
-        $page->setTitle('Indienen');
-        $page->setDescription('Indienen');
-        $page->setApplication($application);
-        $page->setTemplate($template);
-        $manager->persist($page);
-
         $slug = new Slug();
+        $slug->setTemplate($template);
         $slug->setName('indienen');
-        $slug->setPage($page);
         $slug->setApplication($application);
         $slug->setSlug('indienen');
-        $manager->persist($page);
+        $manager->persist($slug);
 
         // flow
         $id = Uuid::fromString('ba71c65e-7a82-449e-af15-947613ca6caa');
@@ -612,20 +514,12 @@ class HuwelijksplannerFixtures extends Fixture
         $manager->flush();
         $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
 
-        $page = new Page();
-        $page->setName('Checklist');
-        $page->setTitle('Checklist');
-        $page->setDescription('Checklist');
-        $page->setApplication($application);
-        $page->setTemplate($template);
-        $manager->persist($page);
-
         $slug = new Slug();
-        $slug->setPage($page);
+        $slug->setTemplate($template);
         $slug->setApplication($application);
         $slug->setName('checklist');
         $slug->setSlug('checklist');
-        $manager->persist($page);
+        $manager->persist($slug);
 
         // flow
         $id = Uuid::fromString('cb0ada5b-185a-4c64-af20-9a21ac4deb3b');
@@ -640,20 +534,12 @@ class HuwelijksplannerFixtures extends Fixture
         $manager->flush();
         $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
 
-        $page = new Page();
-        $page->setName('Flow');
-        $page->setTitle('Flow');
-        $page->setDescription('Flow');
-        $page->setApplication($application);
-        $page->setTemplate($template);
-        $manager->persist($page);
-
         $slug = new Slug();
-        $slug->setPage($page);
+        $slug->setTemplate($template);
         $slug->setApplication($application);
         $slug->setName('flow');
         $slug->setSlug('flow');
-        $manager->persist($page);
+        $manager->persist($slug);
 
         // requests
         $id = Uuid::fromString('1855950c-e4b6-4a11-bfc7-5a2af7101b68');
@@ -668,20 +554,12 @@ class HuwelijksplannerFixtures extends Fixture
         $manager->flush();
         $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
 
-        $page = new Page();
-        $page->setName('Requests');
-        $page->setTitle('Requests');
-        $page->setDescription('Requests');
-        $page->setApplication($application);
-        $page->setTemplate($template);
-        $manager->persist($page);
-
         $slug = new Slug();
-        $slug->setPage($page);
+        $slug->setTemplate($template);
         $slug->setApplication($application);
         $slug->setSlug('requests');
         $slug->setName('requests');
-        $manager->persist($page);
+        $manager->persist($slug);
 
         $id = Uuid::fromString('6c749286-1178-453a-ba17-4e922686a4da');
         $template = new Template();
@@ -695,20 +573,12 @@ class HuwelijksplannerFixtures extends Fixture
         $manager->flush();
         $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
 
-        $page = new Page();
-        $page->setTitle('Verander van Organisatie');
-        $page->setName('Verander van Organisatie');
-        $page->setDescription('Verander van Organisatie');
-        $page->setApplication($application);
-        $page->setTemplate($template);
-        $manager->persist($page);
-
         $slug = new Slug();
-        $slug->setPage($page);
+        $slug->setTemplate($template);
         $slug->setApplication($application);
         $slug->setName('switch-organisation');
         $slug->setSlug('switch-organisation');
-        $manager->persist($page);
+        $manager->persist($slug);
 
         $id = Uuid::fromString('e2f9e1f1-c322-48bf-9b18-c822fee32283');
         $template = new Template();
@@ -722,20 +592,12 @@ class HuwelijksplannerFixtures extends Fixture
         $manager->flush();
         $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
 
-        $page = new Page();
-        $page->setName('Verander Applicatie');
-        $page->setTitle('Verander Applicatie');
-        $page->setDescription('Verander Applicatie');
-        $page->setApplication($application);
-        $page->setTemplate($template);
-        $manager->persist($page);
-
         $slug = new Slug();
-        $slug->setPage($page);
+        $slug->setTemplate($template);
         $slug->setApplication($application);
         $slug->setName('switch-application');
         $slug->setSlug('switch-application');
-        $manager->persist($page);
+        $manager->persist($slug);
 
         $id = Uuid::fromString('5b9fdd2f-273e-49c3-aa8d-2377be792b76');
         $template = new Template();
@@ -749,20 +611,12 @@ class HuwelijksplannerFixtures extends Fixture
         $manager->flush();
         $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
 
-        $page = new Page();
-        $page->setName('Niew verzoek');
-        $page->setTitle('Niew verzoek');
-        $page->setDescription('Niew verzoek');
-        $page->setApplication($application);
-        $page->setTemplate($template);
-        $manager->persist($page);
-
         $slug = new Slug();
-        $slug->setPage($page);
+        $slug->setTemplate($template);
         $slug->setApplication($application);
         $slug->setName('new-request');
         $slug->setSlug('new-request');
-        $manager->persist($page);
+        $manager->persist($slug);
 
 
         $id = Uuid::fromString('d19eb461-284b-4fe0-bd61-2e45ac7fe615');
@@ -777,20 +631,12 @@ class HuwelijksplannerFixtures extends Fixture
         $manager->flush();
         $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
 
-        $page = new Page();
-        $page->setName('Formulier');
-        $page->setTitle('Formulier');
-        $page->setDescription('Formulier');
-        $page->setApplication($application);
-        $page->setTemplate($template);
-        $manager->persist($page);
-
         $slug = new Slug();
-        $slug->setPage($page);
+        $slug->setTemplate($template);
         $slug->setApplication($application);
         $slug->setName('form');
         $slug->setSlug('form');
-        $manager->persist($page);
+        $manager->persist($slug);
 
         // Organizations
         $id = Uuid::fromString('f99412f1-6e44-4a75-bc99-99201d08c4c8');
@@ -805,20 +651,12 @@ class HuwelijksplannerFixtures extends Fixture
         $manager->flush();
         $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
 
-        $page = new Page();
-        $page->setName('Wissel organisatie');
-        $page->setTitle('Wissel organisatie');
-        $page->setDescription('Via deze pagina kan er worden gewizeld van organisatie');
-        $page->setApplication($application);
-        $page->setTemplate($template);
-        $manager->persist($page);
-
         $slug = new Slug();
-        $slug->setPage($page);
+        $slug->setTemplate($template);
         $slug->setApplication($application);
         $slug->setName('organizations');
         $slug->setSlug('organizations');
-        $manager->persist($page);
+        $manager->persist($slug);
 
         // pagina 0
         $id = Uuid::fromString('2cd41267-4eda-452b-9299-7d6596593f83');
@@ -833,20 +671,12 @@ class HuwelijksplannerFixtures extends Fixture
         $manager->flush();
         $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
 
-        $page = new Page();
-        $page->setName('Start');
-        $page->setTitle('Start');
-        $page->setDescription('Start');
-        $page->setApplication($application);
-        $page->setTemplate($template);
-        $manager->persist($page);
-
         $slug = new Slug();
-        $slug->setPage($page);
+        $slug->setTemplate($template);
         $slug->setApplication($application);
         $slug->setName('start-huwelijk');
         $slug->setSlug('start-huwelijk');
-        $manager->persist($page);
+        $manager->persist($slug);
 
         // Getuigen
         $id = Uuid::fromString('da78b8bb-16bf-449c-96e3-3615e9e8e2af');
@@ -861,20 +691,12 @@ class HuwelijksplannerFixtures extends Fixture
         $manager->flush();
         $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
 
-        $page = new Page();
-        $page->setName('Getuigen');
-        $page->setTitle('Getuigen');
-        $page->setDescription('Over getuigen');
-        $page->setApplication($application);
-        $page->setTemplate($template);
-        $manager->persist($page);
-
         $slug = new Slug();
-        $slug->setPage($page);
+        $slug->setTemplate($template);
         $slug->setApplication($application);
         $slug->setName('getuigen-kiezen');
         $slug->setSlug('getuigen-kiezen');
-        $manager->persist($page);
+        $manager->persist($slug);
 
         // Getuigen
         $id = Uuid::fromString('75de9a49-e89a-4a9d-8efc-135be48e98ac');
@@ -889,22 +711,12 @@ class HuwelijksplannerFixtures extends Fixture
         $manager->flush();
         $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
 
-        // tot hier gekomen
-
-        $page = new Page();
-        $page->setName('Getuigen');
-        $page->setTitle('Getuigen');
-        $page->setDescription('Over getuigen');
-        $page->setApplication($application);
-        $page->setTemplate($template);
-        $manager->persist($page);
-
         $slug = new Slug();
-        $slug->setPage($page);
+        $slug->setTemplate($template);
         $slug->setName('getuige');
         $slug->setApplication($application);
         $slug->setSlug('getuige');
-        $manager->persist($page);
+        $manager->persist($slug);
 
         // Naamsgerbuik
         $id = Uuid::fromString('648e2ce2-e157-42ac-8bac-1fa59032bbfc');
@@ -919,20 +731,12 @@ class HuwelijksplannerFixtures extends Fixture
         $manager->flush();
         $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
 
-        $page = new Page();
-        $page->setName('Naamsgebruik');
-        $page->setTitle('Naamsgebruik');
-        $page->setDescription('Over naamsgebruik');
-        $page->setApplication($application);
-        $page->setTemplate($template);
-        $manager->persist($page);
-
         $slug = new Slug();
-        $slug->setPage($page);
+        $slug->setTemplate($template);
         $slug->setName('naamsgebruik');
         $slug->setApplication($application);
         $slug->setSlug('naamsgebruik');
-        $manager->persist($page);
+        $manager->persist($slug);
 
         // Melding
         $id = Uuid::fromString('ea817100-a03d-4fd3-ae7b-3d39b9c577f9');
@@ -947,20 +751,12 @@ class HuwelijksplannerFixtures extends Fixture
         $manager->flush();
         $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
 
-        $page = new Page();
-        $page->setName('Melding');
-        $page->setTitle('Melding');
-        $page->setDescription('Over melding');
-        $page->setApplication($application);
-        $page->setTemplate($template);
-        $manager->persist($page);
-
         $slug = new Slug();
+        $slug->setTemplate($template);
         $slug->setName('melding');
-        $slug->setPage($page);
         $slug->setApplication($application);
         $slug->setSlug('melding');
-        $manager->persist($page);
+        $manager->persist($slug);
 
         // Plechtigheid
         $id = Uuid::fromString('013276cc-1483-46b4-ad5b-1cba5acf6d9f');
@@ -975,20 +771,12 @@ class HuwelijksplannerFixtures extends Fixture
         $manager->flush();
         $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
 
-        $page = new Page();
-        $page->setName('Plechtigheid');
-        $page->setTitle('Plechtigheid');
-        $page->setDescription('Plechtigheid');
-        $page->setApplication($application);
-        $page->setTemplate($template);
-        $manager->persist($page);
-
         $slug = new Slug();
+        $slug->setTemplate($template);
         $slug->setName('plechtigheid');
-        $slug->setPage($page);
         $slug->setApplication($application);
         $slug->setSlug('plechtigheid');
-        $manager->persist($page);
+        $manager->persist($slug);
 
 
         $id = Uuid::fromString('310d1039-abdf-4983-9030-608cd3012306');
@@ -1003,20 +791,12 @@ class HuwelijksplannerFixtures extends Fixture
         $manager->flush();
         $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
 
-        $page = new Page();
-        $page->setName('Plechtigheid');
-        $page->setTitle('Plechtigheid');
-        $page->setDescription('Plechtigheid');
-        $page->setApplication($application);
-        $page->setTemplate($template);
-        $manager->persist($page);
-
         $slug = new Slug();
-        $slug->setPage($page);
+        $slug->setTemplate($template);
         $slug->setApplication($application);
         $slug->setSlug('plechtigheid-kiezen');
         $slug->setName('plechtigheid-kiezen');
-        $manager->persist($page);
+        $manager->persist($slug);
 
         // Ceremonie
         $id = Uuid::fromString('1370d87a-fe90-4826-a210-fd8e1c065576');
@@ -1031,20 +811,12 @@ class HuwelijksplannerFixtures extends Fixture
         $manager->flush();
         $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
 
-        $page = new Page();
-        $page->setName('Ceremonies');
-        $page->setTitle('Ceremonies');
-        $page->setDescription('Ceremonies');
-        $page->setApplication($application);
-        $page->setTemplate($template);
-        $manager->persist($page);
-
         $slug = new Slug();
-        $slug->setPage($page);
+        $slug->setTemplate($template);
         $slug->setApplication($application);
         $slug->setSlug('ceremonie');
         $slug->setName('ceremonie');
-        $manager->persist($page);
+        $manager->persist($slug);
 
         // Partners
         //$id = Uuid::fromString('1370d87a-fe90-4826-a210-fd8e1c065576');
@@ -1059,20 +831,12 @@ class HuwelijksplannerFixtures extends Fixture
         $manager->flush();
         //$template= $manager->getRepository('App:Template')->findOneBy(array('id'=> $id));
 
-        $page = new Page();
-        $page->setTitle('Partners');
-        $page->setName('Partners');
-        $page->setDescription('Partners');
-        $page->setApplication($application);
-        $page->setTemplate($template);
-        $manager->persist($page);
-
         $slug = new Slug();
-        $slug->setPage($page);
+        $slug->setTemplate($template);
         $slug->setApplication($application);
         $slug->setSlug('partner');
         $slug->setName('partner');
-        $manager->persist($page);
+        $manager->persist($slug);
 
         // Datum
         //$id = Uuid::fromString('1370d87a-fe90-4826-a210-fd8e1c065576');
@@ -1087,20 +851,12 @@ class HuwelijksplannerFixtures extends Fixture
         $manager->flush();
         //$template= $manager->getRepository('App:Template')->findOneBy(array('id'=> $id));
 
-        $page = new Page();
-        $page->setTitle('Datum');
-        $page->setName('Datum');
-        $page->setDescription('Datum');
-        $page->setApplication($application);
-        $page->setTemplate($template);
-        $manager->persist($page);
-
         $slug = new Slug();
-        $slug->setPage($page);
+        $slug->setTemplate($template);
         $slug->setApplication($application);
         $slug->setSlug('datum');
         $slug->setName('datum');
-        $manager->persist($page);
+        $manager->persist($slug);
 
         // Betalen
         //$id = Uuid::fromString('1370d87a-fe90-4826-a210-fd8e1c065576');
@@ -1115,20 +871,12 @@ class HuwelijksplannerFixtures extends Fixture
         $manager->flush();
         //$template= $manager->getRepository('App:Template')->findOneBy(array('id'=> $id));
 
-        $page = new Page();
-        $page->setTitle('betalen');
-        $page->setName('betalen');
-        $page->setDescription('betalen');
-        $page->setApplication($application);
-        $page->setTemplate($template);
-        $manager->persist($page);
-
         $slug = new Slug();
-        $slug->setPage($page);
+        $slug->setTemplate($template);
         $slug->setApplication($application);
         $slug->setName('betalen');
         $slug->setSlug('betalen');
-        $manager->persist($page);
+        $manager->persist($slug);
 
         // Products
         $id = Uuid::fromString('14df39f8-46f7-49b4-9b0c-c1c4761bcb2f');
@@ -1143,20 +891,12 @@ class HuwelijksplannerFixtures extends Fixture
         $manager->flush();
         $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
 
-        $page = new Page();
-        $page->setName('Product');
-        $page->setTitle('Product');
-        $page->setDescription('Product');
-        $page->setApplication($application);
-        $page->setTemplate($template);
-        $manager->persist($page);
-
         $slug = new Slug();
-        $slug->setPage($page);
+        $slug->setTemplate($template);
         $slug->setApplication($application);
         $slug->setSlug('product');
         $slug->setName('product');
-        $manager->persist($page);
+        $manager->persist($slug);
 
         $id = Uuid::fromString('b747ea1f-e061-4ec8-8f92-959f6a1e2dd0');
         $template = new Template();
@@ -1170,20 +910,12 @@ class HuwelijksplannerFixtures extends Fixture
         $manager->flush();
         $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
 
-        $page = new Page();
-        $page->setName('Producten');
-        $page->setTitle('Producten');
-        $page->setDescription('Producten');
-        $page->setApplication($application);
-        $page->setTemplate($template);
-        $manager->persist($page);
-
         $slug = new Slug();
-        $slug->setPage($page);
+        $slug->setTemplate($template);
         $slug->setApplication($application);
         $slug->setName('producten');
         $slug->setSlug('producten');
-        $manager->persist($page);
+        $manager->persist($slug);
 
         // Ambtenaren
         $id = Uuid::fromString('28268026-6f82-4b19-8dc7-a325edfeca82');
@@ -1198,20 +930,12 @@ class HuwelijksplannerFixtures extends Fixture
         $manager->flush();
         $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
 
-        $page = new Page();
-        $page->setTitle('Ambtenaar');
-        $page->setName('Ambtenaar');
-        $page->setDescription('Ambtenaar');
-        $page->setApplication($application);
-        $page->setTemplate($template);
-        $manager->persist($page);
-
         $slug = new Slug();
-        $slug->setPage($page);
+        $slug->setTemplate($template);
         $slug->setApplication($application);
         $slug->setSlug('ambtenaar-kiezen');
         $slug->setName('ambtenaar-kiezen');
-        $manager->persist($page);
+        $manager->persist($slug);
 
         $id = Uuid::fromString('3450ae40-3c07-4e09-83c2-f0c54e3b574a');
         $template = new Template();
@@ -1225,20 +949,12 @@ class HuwelijksplannerFixtures extends Fixture
         $manager->flush();
         $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
 
-        $page = new Page();
-        $page->setTitle('Ambtenaren');
-        $page->setName('Ambtenaren');
-        $page->setDescription('Ambtenaren');
-        $page->setApplication($application);
-        $page->setTemplate($template);
-        $manager->persist($page);
-
         $slug = new Slug();
-        $slug->setPage($page);
+        $slug->setTemplate($template);
         $slug->setApplication($application);
         $slug->setName('ambtenaar');
         $slug->setSlug('ambtenaar');
-        $manager->persist($page);
+        $manager->persist($slug);
 
         // Locatie
         $id = Uuid::fromString('e2615a62-95a5-43a4-8ab7-efaa8777ed7f');
@@ -1253,20 +969,12 @@ class HuwelijksplannerFixtures extends Fixture
         $manager->flush();
         $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
 
-        $page = new Page();
-        $page->setTitle('Locatie');
-        $page->setName('Locatie');
-        $page->setDescription('Locatie');
-        $page->setApplication($application);
-        $page->setTemplate($template);
-        $manager->persist($page);
-
         $slug = new Slug();
-        $slug->setPage($page);
+        $slug->setTemplate($template);
         $slug->setApplication($application);
         $slug->setSlug('locatie-kiezen');
         $slug->setName('locatie-kiezen');
-        $manager->persist($page);
+        $manager->persist($slug);
 
         $id = Uuid::fromString('0bd283c4-771c-4ee0-b87f-8ce40dabe6a1');
         $template = new Template();
@@ -1280,20 +988,12 @@ class HuwelijksplannerFixtures extends Fixture
         $manager->flush();
         $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
 
-        $page = new Page();
-        $page->setTitle('Locatie');
-        $page->setName('Locatie');
-        $page->setDescription('Locaties');
-        $page->setApplication($application);
-        $page->setTemplate($template);
-        $manager->persist($page);
-
         $slug = new Slug();
-        $slug->setPage($page);
+        $slug->setTemplate($template);
         $slug->setApplication($application);
         $slug->setSlug('locatie');
         $slug->setName('locatie');
-        $manager->persist($page);
+        $manager->persist($slug);
 
         // Extras
         //$id = Uuid::fromString('50409369-6f28-4f9e-b074-2fa638d1b25a');
@@ -1308,20 +1008,12 @@ class HuwelijksplannerFixtures extends Fixture
         $manager->flush();
         //$template= $manager->getRepository('App:Template')->findOneBy(array('id'=> $id));
 
-        $page = new Page();
-        $page->setTitle('Extra');
-        $page->setName('Extra');
-        $page->setDescription('Extra');
-        $page->setApplication($application);
-        $page->setTemplate($template);
-        $manager->persist($page);
-
         $slug = new Slug();
-        $slug->setPage($page);
+        $slug->setTemplate($template);
         $slug->setApplication($application);
         $slug->setSlug('extra-kiezen');
         $slug->setName('extra-kiezen');
-        $manager->persist($page);
+        $manager->persist($slug);
 
         $id = Uuid::fromString('50409369-6f28-4f9e-b074-2fa638d1b25a');
         $template = new Template();
@@ -1335,20 +1027,12 @@ class HuwelijksplannerFixtures extends Fixture
         $manager->flush();
         $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
 
-        $page = new Page();
-        $page->setTitle('Extras');
-        $page->setName('Extras');
-        $page->setDescription('Extras');
-        $page->setApplication($application);
-        $page->setTemplate($template);
-        $manager->persist($page);
-
         $slug = new Slug();
-        $slug->setPage($page);
+        $slug->setTemplate($template);
         $slug->setApplication($application);
         $slug->setSlug('extra');
         $slug->setName('extra');
-        $manager->persist($page);
+        $manager->persist($slug);
 
         $manager->flush();
 
@@ -1362,21 +1046,12 @@ class HuwelijksplannerFixtures extends Fixture
         $manager->persist($template);
         $manager->flush();
 
-        $page = new Page();
-        $page->setTitle('FAQ');
-        $page->setName('FAQ');
-        $page->setDescription('Frequently Asked Questions');
-        $page->setApplication($application);
-        $page->setTemplate($template);
-        $manager->persist($page);
-
         $slug = new Slug();
-        $slug->setPage($page);
+        $slug->setTemplate($template);
         $slug->setApplication($application);
         $slug->setSlug('faq');
         $slug->setName('faq');
-        $manager->persist($page);
-        $manager->flush();
+        $manager->persist($slug);
 
         $id = Uuid::fromString('e04defee-0bb3-4e5c-b21d-d6deb76bd1bc');
         $template = new Template();
@@ -1401,7 +1076,5 @@ class HuwelijksplannerFixtures extends Fixture
         $template->setId($id);
         $manager->persist($template);
         $manager->flush();
-
-
     }
 }
