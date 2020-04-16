@@ -105,6 +105,7 @@ class Configuration
 
     /**
      * @Groups({"write"})
+     * @Assert\NotNull
      * @MaxDepth(1)
      * @ORM\ManyToOne(targetEntity="App\Entity\Application", inversedBy="configurations")
      * @ORM\JoinColumn(nullable=false)
@@ -113,6 +114,7 @@ class Configuration
 
     /**
      * @Groups({"write"})
+     * @Assert\NotNull
      * @MaxDepth(1)
      * @ORM\ManyToOne(targetEntity="App\Entity\Organization", inversedBy="configurations")
      * @ORM\JoinColumn(nullable=false)

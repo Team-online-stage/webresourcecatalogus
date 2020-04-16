@@ -151,7 +151,10 @@ class Application
     private $configurations;
 
     /**
-     * @Groups({"read"})
+     * @Groups({"read","write"})
+     * @MaxDepth(1)
+     * @ORM\OneToOne(targetEntity="App\Entity\Configuration")
+     * @ORM\JoinColumn(nullable=true)
      */
     private $defaultConfiguration;
 
@@ -191,12 +194,17 @@ class Application
         $this->templates = new ArrayCollection();
     }
 
-    public function getDefaultConfiguration(){
 
-    	$criteria = Criteria::create()
-    	->andWhere(Criteria::expr()->eq('organization', $this->getOrganization()));
+    public function setDefaultConfiguration(Configuration $configuration): self
+    {
+        $this->defaultConfiguration = $configuration;
 
-    	return $this->getConfigurations()->matching($criteria)->first();
+        return $this;
+    }
+
+    public function getDefaultConfiguration(): Configuration
+    {
+        return $this->defaultConfiguration;
     }
 
     public function getId(): Uuid
