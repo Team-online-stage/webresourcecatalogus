@@ -159,6 +159,14 @@ class Application
     private $defaultConfiguration;
 
     /**
+     * @Groups({"read","write"})
+     * @MaxDepth(1)
+     * @ORM\OneToOne(targetEntity="App\Entity\Style")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $style;
+
+    /**
      * @ORM\OneToMany(targetEntity="App\Entity\Template", mappedBy="application", orphanRemoval=true)
      */
     private $templates;
@@ -205,6 +213,18 @@ class Application
     public function getDefaultConfiguration(): Configuration
     {
         return $this->defaultConfiguration;
+    }
+
+    public function setStyle(Style $style): self
+    {
+        $this->style = $style;
+
+        return $this;
+    }
+
+    public function getStyle(): Style
+    {
+        return $this->style;
     }
 
     public function getId(): Uuid
