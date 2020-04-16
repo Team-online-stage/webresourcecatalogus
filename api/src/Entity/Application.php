@@ -153,14 +153,16 @@ class Application
     /**
      * @Groups({"read","write"})
      * @MaxDepth(1)
-     * @ORM\OneToOne(targetEntity="App\Entity\Configuration", nullable=true)
+     * @ORM\OneToOne(targetEntity="App\Entity\Configuration")
+     * @ORM\JoinColumn(nullable=true)
      */
     private $defaultConfiguration;
 
     /**
      * @Groups({"read","write"})
      * @MaxDepth(1)
-     * @ORM\OneToOne(targetEntity="App\Entity\Style", nullable=true)
+     * @ORM\OneToOne(targetEntity="App\Entity\Style")
+     * @ORM\JoinColumn(nullable=true)
      */
     private $style;
 
@@ -208,7 +210,7 @@ class Application
         return $this;
     }
 
-    public function getDefaultConfiguration(): Configuration
+    public function getDefaultConfiguration()
     {
         return $this->defaultConfiguration;
     }
@@ -220,7 +222,7 @@ class Application
         return $this;
     }
 
-    public function getStyle(): Style
+    public function getStyle()
     {
         return $this->style;
     }

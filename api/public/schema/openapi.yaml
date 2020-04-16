@@ -3836,6 +3836,18 @@ paths:
           style: form
           explode: true
         -
+          name: name
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: description
+          in: query
+          required: false
+          schema:
+            type: string
+        -
           name: page
           in: query
           required: false
@@ -6212,57 +6224,29 @@ paths:
           style: form
           explode: true
         -
+          name: application.id
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'application.id[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+        -
           name: name
           in: query
           required: false
           schema:
             type: string
         -
-          name: 'name[]'
-          in: query
-          required: false
-          schema:
-            type: array
-            items:
-              type: string
-          style: form
-          explode: true
-        -
           name: description
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'description[]'
-          in: query
-          required: false
-          schema:
-            type: array
-            items:
-              type: string
-          style: form
-          explode: true
-        -
-          name: dateCreated
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'dateCreated[]'
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: dateModified
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'dateModified[]'
           in: query
           required: false
           schema:
@@ -7841,6 +7825,28 @@ paths:
           style: form
           explode: true
         -
+          name: slug
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'slug[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+        -
+          name: name
+          in: query
+          required: false
+          schema:
+            type: string
+        -
           name: page
           in: query
           required: false
@@ -8809,21 +8815,11 @@ paths:
           schema:
             type: string
         -
-          name: id
+          name: css
           in: query
           required: false
           schema:
             type: string
-        -
-          name: 'id[]'
-          in: query
-          required: false
-          schema:
-            type: array
-            items:
-              type: string
-          style: form
-          explode: true
         -
           name: name
           in: query
@@ -8831,67 +8827,7 @@ paths:
           schema:
             type: string
         -
-          name: 'name[]'
-          in: query
-          required: false
-          schema:
-            type: array
-            items:
-              type: string
-          style: form
-          explode: true
-        -
           name: description
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'description[]'
-          in: query
-          required: false
-          schema:
-            type: array
-            items:
-              type: string
-          style: form
-          explode: true
-        -
-          name: css
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'css[]'
-          in: query
-          required: false
-          schema:
-            type: array
-            items:
-              type: string
-          style: form
-          explode: true
-        -
-          name: dateCreated
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'dateCreated[]'
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: dateModified
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'dateModified[]'
           in: query
           required: false
           schema:
@@ -9621,13 +9557,13 @@ paths:
           schema:
             type: string
         -
-          name: id
+          name: application.id
           in: query
           required: false
           schema:
             type: string
         -
-          name: 'id[]'
+          name: 'application.id[]'
           in: query
           required: false
           schema:
@@ -9637,13 +9573,13 @@ paths:
           style: form
           explode: true
         -
-          name: name
+          name: organization.id
           in: query
           required: false
           schema:
             type: string
         -
-          name: 'name[]'
+          name: 'organization.id[]'
           in: query
           required: false
           schema:
@@ -9653,45 +9589,13 @@ paths:
           style: form
           explode: true
         -
-          name: title
+          name: slugs.id
           in: query
           required: false
           schema:
             type: string
         -
-          name: 'title[]'
-          in: query
-          required: false
-          schema:
-            type: array
-            items:
-              type: string
-          style: form
-          explode: true
-        -
-          name: description
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'description[]'
-          in: query
-          required: false
-          schema:
-            type: array
-            items:
-              type: string
-          style: form
-          explode: true
-        -
-          name: content
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'content[]'
+          name: 'slugs.id[]'
           in: query
           required: false
           schema:
@@ -9717,25 +9621,41 @@ paths:
           style: form
           explode: true
         -
-          name: dateCreated
+          name: slugs.slug
           in: query
           required: false
           schema:
             type: string
         -
-          name: 'dateCreated[]'
+          name: 'slugs.slug[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+        -
+          name: title
           in: query
           required: false
           schema:
             type: string
         -
-          name: dateModified
+          name: name
           in: query
           required: false
           schema:
             type: string
         -
-          name: 'dateModified[]'
+          name: description
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: content
           in: query
           required: false
           schema:
@@ -10684,7 +10604,9 @@ components:
         organization:
           $ref: '#/components/schemas/Organization-read'
         defaultConfiguration:
-          readOnly: true
+          $ref: '#/components/schemas/Configuration-read'
+        style:
+          $ref: '#/components/schemas/Style-read'
         dateCreated:
           readOnly: true
           description: 'The moment this request was created'
@@ -10718,6 +10640,10 @@ components:
           type: string
         organization:
           $ref: '#/components/schemas/Organization-write'
+        defaultConfiguration:
+          $ref: '#/components/schemas/Configuration-write'
+        style:
+          $ref: '#/components/schemas/Style-write'
     'Application:jsonld-read':
       type: object
       description: 'Application is the project of a website.'
@@ -10749,7 +10675,9 @@ components:
         organization:
           $ref: '#/components/schemas/Organization:jsonld-read'
         defaultConfiguration:
-          readOnly: true
+          $ref: '#/components/schemas/Configuration:jsonld-read'
+        style:
+          $ref: '#/components/schemas/Style:jsonld-read'
         dateCreated:
           readOnly: true
           description: 'The moment this request was created'
@@ -10792,6 +10720,10 @@ components:
           type: string
         organization:
           $ref: '#/components/schemas/Organization:jsonld-write'
+        defaultConfiguration:
+          $ref: '#/components/schemas/Configuration:jsonld-write'
+        style:
+          $ref: '#/components/schemas/Style:jsonld-write'
     AuditTrail-read:
       type: object
       description: 'An resource representing a log line.'
@@ -11213,6 +11145,8 @@ components:
       required:
         - name
         - description
+        - application
+        - organization
       properties:
         name:
           description: 'The name of this application.'
@@ -11278,6 +11212,8 @@ components:
       required:
         - name
         - description
+        - application
+        - organization
       properties:
         '@context':
           readOnly: true
@@ -12302,6 +12238,8 @@ definitions:
         description: 'The moment this request last Modified'
         type: \Datetime
       organization: []
+      defaultConfiguration: []
+      style: []
     required:
       - name
       - description
@@ -12324,6 +12262,8 @@ definitions:
         example: 'https://www.example.org'
         maxLength: 255
       organization: []
+      defaultConfiguration: []
+      style: []
     required:
       - name
       - description
@@ -12432,12 +12372,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-04-15 06:40:18'
+        example: '2020-04-16 05:35:42'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-04-15 06:40:18'
+        example: '2020-04-16 05:35:42'
     required: []
   AuditTrail-write:
     properties:
@@ -12485,12 +12425,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-04-15 06:40:18'
+        example: '2020-04-16 05:35:42'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-04-15 06:40:18'
+        example: '2020-04-16 05:35:42'
     required: []
   ChangeLog-write:
     properties:
@@ -12545,6 +12485,8 @@ definitions:
     required:
       - name
       - description
+      - application
+      - organization
   Image-read:
     properties:
       id:
