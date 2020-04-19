@@ -207,7 +207,7 @@ class MenuItem
         return $this;
     }
 
-    public function getOrder(): ?order
+    public function getOrder(): ?int
     {
         return $this->order;
     }
