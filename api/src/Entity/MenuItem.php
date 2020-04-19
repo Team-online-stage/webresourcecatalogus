@@ -111,7 +111,7 @@ class MenuItem
      *      max = 3
      * )
      * @Groups({"read","write"})
-     * @ORM\Column(name="menu_order", type="integer", length=3)
+     * @ORM\Column(name="menu_order", type="integer", length=3, nullable=true)
      */
     private $order;
 
