@@ -124,6 +124,15 @@ class Template
     private $description;
 
     /**
+     * @var boolean Whether to auto create a slug on creation of this template
+     *
+     * @example true
+     *
+     * @Groups({"write"})
+     */
+    private $slug;
+
+    /**
      * @var string The Content of this template.
      *
      * @example A lot of random info over any topic
@@ -149,7 +158,7 @@ class Template
     private $templateEngine;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Slug", mappedBy="template")
+     * @ORM\OneToMany(targetEntity="App\Entity\Slug", mappedBy="template", cascade={"persist"})
      * @MaxDepth(1)
      */
     private $slugs;
@@ -191,6 +200,7 @@ class Template
     public function __construct()
     {
         $this->image = new ArrayCollection();
+        $this->slugs = new ArrayCollection();
     }
 
     public function getId(): Uuid
@@ -241,6 +251,18 @@ class Template
         return $this;
     }
 
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(bool $slug): self
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
     public function getContent(): ?string
     {
         return $this->content;
@@ -275,7 +297,7 @@ class Template
 
     public function addSlug(Slug $slug): self
     {
-        if (!$this->slugs->contains($page)) {
+        if (!$this->slugs->contains($slug)) {
             $this->slugs[] = $slug;
             $slug->setTemplate($this);
         }

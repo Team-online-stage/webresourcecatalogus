@@ -100,6 +100,21 @@ class MenuItem
     private $description;
 
     /**
+     * @var integer The order in wichs this menu item is shown in relation to other items of the same menu
+     *
+     * @example 1
+     *
+     * @Gedmo\Versioned
+     * @Assert\NotNull
+     * @Assert\Length(
+     *      max = 3
+     * )
+     * @Groups({"read","write"})
+     * @ORM\Column(type="integer", length=3)
+     */
+    private $order;
+
+    /**
      * @var string the icon to display with this menu item
      *
      * @example fa fa-cart
@@ -187,6 +202,18 @@ class MenuItem
     public function setDescription(?string $description): self
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    public function getOrder(): ?order
+    {
+        return $this->order;
+    }
+
+    public function setOrder(int $order): self
+    {
+        $this->order = $order;
 
         return $this;
     }

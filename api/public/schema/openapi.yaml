@@ -5323,6 +5323,15 @@ paths:
               - asc
               - desc
         -
+          name: 'order[order]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
           name: 'order[icon]'
           in: query
           required: false
@@ -5452,6 +5461,22 @@ paths:
             type: array
             items:
               type: string
+          style: form
+          explode: true
+        -
+          name: order
+          in: query
+          required: false
+          schema:
+            type: integer
+        -
+          name: 'order[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: integer
           style: form
           explode: true
         -
@@ -11524,6 +11549,9 @@ components:
         description:
           description: 'The description of this MenuItem'
           type: string
+        order:
+          description: 'The order in wichs this menu item is shown in relation to other items of the same menu'
+          type: integer
         icon:
           description: 'the icon to display with this menu item'
           type: string
@@ -11542,12 +11570,14 @@ components:
           format: date-time
       required:
         - name
+        - order
         - href
     MenuItem-write:
       type: object
       description: 'MenuItem is a part of a menu and can be a link or submenu.'
       required:
         - name
+        - order
         - href
         - menu
       properties:
@@ -11557,6 +11587,9 @@ components:
         description:
           description: 'The description of this MenuItem'
           type: string
+        order:
+          description: 'The order in wichs this menu item is shown in relation to other items of the same menu'
+          type: integer
         icon:
           description: 'the icon to display with this menu item'
           type: string
@@ -11591,6 +11624,9 @@ components:
         description:
           description: 'The description of this MenuItem'
           type: string
+        order:
+          description: 'The order in wichs this menu item is shown in relation to other items of the same menu'
+          type: integer
         icon:
           description: 'the icon to display with this menu item'
           type: string
@@ -11609,12 +11645,14 @@ components:
           format: date-time
       required:
         - name
+        - order
         - href
     'MenuItem:jsonld-write':
       type: object
       description: 'MenuItem is a part of a menu and can be a link or submenu.'
       required:
         - name
+        - order
         - href
         - menu
       properties:
@@ -11633,6 +11671,9 @@ components:
         description:
           description: 'The description of this MenuItem'
           type: string
+        order:
+          description: 'The order in wichs this menu item is shown in relation to other items of the same menu'
+          type: integer
         icon:
           description: 'the icon to display with this menu item'
           type: string
@@ -11814,7 +11855,7 @@ components:
         template:
           $ref: '#/components/schemas/Template-read'
         slug:
-          description: 'The actual slug of this slug.'
+          description: 'The actual slug of this slug without a pre / e.g. about not about'
           type: string
         dateCreated:
           readOnly: true
@@ -11844,7 +11885,7 @@ components:
         template:
           $ref: '#/components/schemas/Template-write'
         slug:
-          description: 'The actual slug of this slug.'
+          description: 'The actual slug of this slug without a pre / e.g. about not about'
           type: string
     'Slug:jsonld-read':
       type: object
@@ -11873,7 +11914,7 @@ components:
         template:
           $ref: '#/components/schemas/Template:jsonld-read'
         slug:
-          description: 'The actual slug of this slug.'
+          description: 'The actual slug of this slug without a pre / e.g. about not about'
           type: string
         dateCreated:
           readOnly: true
@@ -11912,7 +11953,7 @@ components:
         template:
           $ref: '#/components/schemas/Template:jsonld-write'
         slug:
-          description: 'The actual slug of this slug.'
+          description: 'The actual slug of this slug without a pre / e.g. about not about'
           type: string
     Style-read:
       type: object
@@ -11934,8 +11975,6 @@ components:
           type: string
         favicon:
           $ref: '#/components/schemas/Image-read'
-        organization:
-          $ref: '#/components/schemas/Organization-read'
         dateCreated:
           readOnly: true
           description: 'The moment this request was created'
@@ -11967,6 +12006,7 @@ components:
         favicon:
           $ref: '#/components/schemas/Image-write'
         organization:
+          writeOnly: true
           $ref: '#/components/schemas/Organization-write'
     'Style:jsonld-read':
       type: object
@@ -11997,8 +12037,6 @@ components:
           type: string
         favicon:
           $ref: '#/components/schemas/Image:jsonld-read'
-        organization:
-          $ref: '#/components/schemas/Organization:jsonld-read'
         dateCreated:
           readOnly: true
           description: 'The moment this request was created'
@@ -12039,6 +12077,7 @@ components:
         favicon:
           $ref: '#/components/schemas/Image:jsonld-write'
         organization:
+          writeOnly: true
           $ref: '#/components/schemas/Organization:jsonld-write'
     Template-read:
       type: object
@@ -12102,6 +12141,10 @@ components:
         description:
           description: 'The description of this page.'
           type: string
+        slug:
+          writeOnly: true
+          description: 'Whether to auto create a slug on creation of this template'
+          type: boolean
         content:
           description: 'The Content of this template.'
           type: string
@@ -12192,6 +12235,10 @@ components:
         description:
           description: 'The description of this page.'
           type: string
+        slug:
+          writeOnly: true
+          description: 'Whether to auto create a slug on creation of this template'
+          type: boolean
         content:
           description: 'The Content of this template.'
           type: string
@@ -12372,12 +12419,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-04-16 05:35:42'
+        example: '2020-04-19 08:07:38'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-04-16 05:35:42'
+        example: '2020-04-19 08:07:38'
     required: []
   AuditTrail-write:
     properties:
@@ -12425,12 +12472,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-04-16 05:35:42'
+        example: '2020-04-19 08:07:38'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-04-16 05:35:42'
+        example: '2020-04-19 08:07:38'
     required: []
   ChangeLog-write:
     properties:
@@ -12614,6 +12661,11 @@ definitions:
         type: string
         example: 'This MenuItem links to the about page'
         maxLength: 2555
+      order:
+        description: 'The order in wichs this menu item is shown in relation to other items of the same menu'
+        type: int
+        example: '1'
+        maxLength: 3
       icon:
         description: 'the icon to display with this menu item'
         type: string
@@ -12632,6 +12684,7 @@ definitions:
         type: \Datetime
     required:
       - name
+      - order
       - href
   MenuItem-write:
     properties:
@@ -12645,6 +12698,11 @@ definitions:
         type: string
         example: 'This MenuItem links to the about page'
         maxLength: 2555
+      order:
+        description: 'The order in wichs this menu item is shown in relation to other items of the same menu'
+        type: int
+        example: '1'
+        maxLength: 3
       icon:
         description: 'the icon to display with this menu item'
         type: string
@@ -12658,6 +12716,7 @@ definitions:
       menu: []
     required:
       - name
+      - order
       - href
       - menu
   Organization-read:
@@ -12748,9 +12807,9 @@ definitions:
         example: 'About page for website'
         maxLength: 255
       slug:
-        description: 'The actual slug of this slug.'
+        description: 'The actual slug of this slug without a pre / e.g. about not about'
         type: string
-        example: /about
+        example: about
         maxLength: 255
       dateCreated:
         description: 'The moment this request was created'
@@ -12771,9 +12830,9 @@ definitions:
         example: 'About page for website'
         maxLength: 255
       slug:
-        description: 'The actual slug of this slug.'
+        description: 'The actual slug of this slug without a pre / e.g. about not about'
         type: string
-        example: /about
+        example: about
         maxLength: 255
       application: []
       template: []
@@ -12805,7 +12864,6 @@ definitions:
         description: 'The moment this request last Modified'
         type: \Datetime
       favicon: []
-      organization: []
     required:
       - name
       - description
