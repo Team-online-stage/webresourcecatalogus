@@ -54,6 +54,7 @@ class TemplateSlugSubscriber implements EventSubscriberInterface
     	$slug = New Slug;
         $slug->setName($result->getName());
         $slug->setTemplate($result);
+        $slug->setSlug(urlencode(str_replace(" ","-",$result->getName())));
         $slug->setApplication($result->getApplication());
 
         $result->addSlug($slug);
