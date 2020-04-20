@@ -103,7 +103,6 @@ class Slug
      *
      * @example about
      *
-     * @Gedmo\Slug(fields={"name"})
      * @Gedmo\Versioned
      * @Assert\NotNull
      * @Assert\Length(
