@@ -166,6 +166,11 @@ class Organization
     private $templates;
 
     /**
+     * @ORM\OneToMany(targetEntity="App\Entity\TemplateGroup", mappedBy="organization", orphanRemoval=true)
+     */
+    private $templateGroups;
+
+    /**
      * @var Datetime $dateCreated The moment this request was created
      *
      * @Groups({"read"})

@@ -23,7 +23,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 use App\Controller\DefaultController;
 
 /**
- * Content holds information and photos you want to show on your pages.
+ * Templates holds information your pages or include in messages.
  *
  * @ApiResource(
  *     	normalizationContext={"groups"={"read"}, "enable_max_depth"=true},
@@ -180,6 +180,13 @@ class Template
     private $organization;
 
     /**
+     * @Groups({"read","write"})
+     * @MaxDepth(1)
+     * @ORM\ManyToMany(targetEntity="App\Entity\TemplateGroup", inversedBy="templates")
+     */
+    private $templateGroups;
+
+    /**
      * @var Datetime $dateCreated The moment this request was created
      *
      * @Groups({"read"})
@@ -201,6 +208,7 @@ class Template
     {
         $this->image = new ArrayCollection();
         $this->slugs = new ArrayCollection();
+        $this->templateGroups = new ArrayCollection();
     }
 
     public function getId(): Uuid
@@ -340,6 +348,32 @@ class Template
     	$this->organization = $organization;
 
     	return $this;
+    }
+
+    /**
+     * @return Collection|TemplateGroup[]
+     */
+    public function getTemplateGroups(): Collection
+    {
+        return $this->templateGroups;
+    }
+
+    public function addTemplateGroup(TemplateGroup $templateGroup): self
+    {
+        if (!$this->templateGroups->contains($templateGroup)) {
+            $this->templateGroups[] = $templateGroup;
+        }
+
+        return $this;
+    }
+
+    public function removeTemplateGroup(TemplateGroup $templateGroup): self
+    {
+        if ($this->templateGroups->contains($templateGroup)) {
+            $this->templateGroups->removeElement($templateGroup);
+        }
+
+        return $this;
     }
 
     public function getDateCreated(): ?\DateTimeInterface

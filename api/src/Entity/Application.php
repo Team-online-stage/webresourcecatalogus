@@ -137,6 +137,7 @@ class Application
     private $slugs;
 
     /**
+     * @Assert\NotNull
      * @Groups({"read","write"})
      * @MaxDepth(1)
      * @ORM\ManyToOne(targetEntity="App\Entity\Organization", inversedBy="applications")
@@ -170,6 +171,11 @@ class Application
      * @ORM\OneToMany(targetEntity="App\Entity\Template", mappedBy="application", orphanRemoval=true)
      */
     private $templates;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\TemplateGroup", mappedBy="application", orphanRemoval=true)
+     */
+    private $templateGroups;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Menu", mappedBy="application", orphanRemoval=true)
