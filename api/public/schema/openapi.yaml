@@ -5341,6 +5341,15 @@ paths:
               - asc
               - desc
         -
+          name: 'order[type]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
           name: 'order[href]'
           in: query
           required: false
@@ -5487,6 +5496,22 @@ paths:
             type: string
         -
           name: 'icon[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+        -
+          name: type
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'type[]'
           in: query
           required: false
           schema:
@@ -12562,6 +12587,9 @@ components:
         icon:
           description: 'the icon to display with this menu item'
           type: string
+        type:
+          description: 'the type of the menu item'
+          type: string
         href:
           description: 'The href of this MenuItem that links to another page'
           type: string
@@ -12600,6 +12628,9 @@ components:
         icon:
           description: 'the icon to display with this menu item'
           type: string
+        type:
+          description: 'the type of the menu item'
+          type: string
         href:
           description: 'The href of this MenuItem that links to another page'
           type: string
@@ -12636,6 +12667,9 @@ components:
           type: integer
         icon:
           description: 'the icon to display with this menu item'
+          type: string
+        type:
+          description: 'the type of the menu item'
           type: string
         href:
           description: 'The href of this MenuItem that links to another page'
@@ -12683,6 +12717,9 @@ components:
           type: integer
         icon:
           description: 'the icon to display with this menu item'
+          type: string
+        type:
+          description: 'the type of the menu item'
           type: string
         href:
           description: 'The href of this MenuItem that links to another page'
@@ -13115,6 +13152,10 @@ components:
           $ref: '#/components/schemas/Application-read'
         organization:
           $ref: '#/components/schemas/Organization-read'
+        templateGroups:
+          type: array
+          items:
+            $ref: '#/components/schemas/TemplateGroup-read'
         dateCreated:
           readOnly: true
           description: 'The moment this request was created'
@@ -13162,6 +13203,10 @@ components:
           $ref: '#/components/schemas/Application-write'
         organization:
           $ref: '#/components/schemas/Organization-write'
+        templateGroups:
+          type: array
+          items:
+            $ref: '#/components/schemas/TemplateGroup-write'
     'Template:jsonld-read':
       type: object
       description: 'Templates holds information your pages or include in messages.'
@@ -13200,6 +13245,10 @@ components:
           $ref: '#/components/schemas/Application:jsonld-read'
         organization:
           $ref: '#/components/schemas/Organization:jsonld-read'
+        templateGroups:
+          type: array
+          items:
+            $ref: '#/components/schemas/TemplateGroup:jsonld-read'
         dateCreated:
           readOnly: true
           description: 'The moment this request was created'
@@ -13256,6 +13305,10 @@ components:
           $ref: '#/components/schemas/Application:jsonld-write'
         organization:
           $ref: '#/components/schemas/Organization:jsonld-write'
+        templateGroups:
+          type: array
+          items:
+            $ref: '#/components/schemas/TemplateGroup:jsonld-write'
     TemplateGroup-read:
       type: object
       description: 'Groups are a way of orginzing templates'
@@ -13272,10 +13325,6 @@ components:
         description:
           description: 'The description of this page.'
           type: string
-        templates:
-          type: array
-          items:
-            $ref: '#/components/schemas/Template-read'
         application:
           $ref: '#/components/schemas/Application-read'
         organization:
@@ -13307,6 +13356,7 @@ components:
           description: 'The description of this page.'
           type: string
         templates:
+          writeOnly: true
           type: array
           items:
             $ref: '#/components/schemas/Template-write'
@@ -13339,10 +13389,6 @@ components:
         description:
           description: 'The description of this page.'
           type: string
-        templates:
-          type: array
-          items:
-            $ref: '#/components/schemas/Template:jsonld-read'
         application:
           $ref: '#/components/schemas/Application:jsonld-read'
         organization:
@@ -13383,6 +13429,7 @@ components:
           description: 'The description of this page.'
           type: string
         templates:
+          writeOnly: true
           type: array
           items:
             $ref: '#/components/schemas/Template:jsonld-write'
@@ -13562,12 +13609,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-04-21 05:21:46'
+        example: '2020-04-22 07:04:26'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-04-21 05:21:46'
+        example: '2020-04-22 07:04:26'
     required: []
   AuditTrail-write:
     properties:
@@ -13615,12 +13662,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-04-21 05:21:46'
+        example: '2020-04-22 07:04:26'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-04-21 05:21:46'
+        example: '2020-04-22 07:04:26'
     required: []
   ChangeLog-write:
     properties:
@@ -13814,6 +13861,11 @@ definitions:
         type: string
         example: 'fa fa-cart'
         maxLength: 255
+      type:
+        description: 'the type of the menu item'
+        type: string
+        example: slug
+        maxLength: 255
       href:
         description: 'The href of this MenuItem that links to another page'
         type: string
@@ -13850,6 +13902,11 @@ definitions:
         description: 'the icon to display with this menu item'
         type: string
         example: 'fa fa-cart'
+        maxLength: 255
+      type:
+        description: 'the type of the menu item'
+        type: string
+        example: slug
         maxLength: 255
       href:
         description: 'The href of this MenuItem that links to another page'
@@ -14066,6 +14123,7 @@ definitions:
         type: \Datetime
       application: []
       organization: []
+      templateGroups: []
     required:
       - name
       - description
@@ -14098,6 +14156,7 @@ definitions:
         example: twig
       application: []
       organization: []
+      templateGroups: []
     required:
       - name
       - description
@@ -14126,7 +14185,6 @@ definitions:
       dateModified:
         description: 'The moment this request last Modified'
         type: \Datetime
-      templates: []
       application: []
       organization: []
     required:
