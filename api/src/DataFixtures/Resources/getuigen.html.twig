@@ -29,16 +29,14 @@
             	{% endif %}">
         <div class="row">
             {% if request.properties.getuigen is defined %}
-                {% for partner in request.properties.partners %}
                     <h3 class="col-md-12 text-center">Getuigen
                         van {{ commonground_resource(commonground_resource(partner).contact).name }} </h3>
                     {% for getuige in request.properties.getuigen %}
                         {% set assent = commonground_resource(getuige) %}
                         {% set contact = commonground_resource(assent.contact) %}
-                        {% if assent.requester == commonground_resource(partner)['@id'] %}
+                        <div style="margin-bottom: 20px" class="col-md-6"> <!-- 1 -->
+                            <div class="affa-team-profile">
 
-                            <div style="margin-bottom: 20px" class="col-md-6"> <!-- 1 -->
-                                <div class="affa-team-profile">
                                     {#                                <figure class="team-profile-img animation" data-animation="animation-fade-in-down">#}
                                     {#                                    <div class="team-profile-socials">#}
                                     {#                                        <!--#}
@@ -75,8 +73,6 @@
                                     </div><!-- /.team-profile-name -->
                                 </div><!-- /.affa-team-profile -->
                             </div><!-- /.col-md-6 -->
-                        {% endif %}
-                    {% endfor %}
                 {% endfor %}
             {% endif %}
         </div><!-- /.row -->
@@ -89,15 +85,6 @@
                   class="affa-form-contact">
                 <h3>Toevoegen</h3>
                 <br/>
-                {% if request.properties.partners is defined %}
-                    <label for="getuige_voornamen">Voor partner</label>
-                    <select name="partner" id="partner">
-                        {% for partner in request.properties.partners %}
-                            <option
-                                    value="{{ partner }}">{{ commonground_resource(commonground_resource(partner).contact).formalName }} </option>
-                        {% endfor %}
-                    </select>
-                {% endif %}
                 <label for="givenName">Voornaam(en)</label>
                 <input type="text" name="givenName" placeholder="John" ng-disabled="loading" required/>
                 <label for="familyName">Achternaam</label>
