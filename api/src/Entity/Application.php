@@ -137,6 +137,7 @@ class Application
     private $slugs;
 
     /**
+     * @Assert\NotNull
      * @Groups({"read","write"})
      * @MaxDepth(1)
      * @ORM\ManyToOne(targetEntity="App\Entity\Organization", inversedBy="applications")
@@ -151,14 +152,30 @@ class Application
     private $configurations;
 
     /**
-     * @Groups({"read"})
+     * @Groups({"read","write"})
+     * @MaxDepth(1)
+     * @ORM\OneToOne(targetEntity="App\Entity\Configuration")
+     * @ORM\JoinColumn(nullable=true)
      */
     private $defaultConfiguration;
+
+    /**
+     * @Groups({"read","write"})
+     * @MaxDepth(1)
+     * @ORM\ManyToOne(targetEntity="App\Entity\Style")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $style;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Template", mappedBy="application", orphanRemoval=true)
      */
     private $templates;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\TemplateGroup", mappedBy="application", orphanRemoval=true)
+     */
+    private $templateGroups;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Menu", mappedBy="application", orphanRemoval=true)
@@ -191,12 +208,29 @@ class Application
         $this->templates = new ArrayCollection();
     }
 
-    public function getDefaultConfiguration(){
 
-    	$criteria = Criteria::create()
-    	->andWhere(Criteria::expr()->eq('organization', $this->getOrganization()));
+    public function setDefaultConfiguration(Configuration $configuration): self
+    {
+        $this->defaultConfiguration = $configuration;
 
-    	return $this->getConfigurations()->matching($criteria)->first();
+        return $this;
+    }
+
+    public function getDefaultConfiguration()
+    {
+        return $this->defaultConfiguration;
+    }
+
+    public function setStyle(Style $style): self
+    {
+        $this->style = $style;
+
+        return $this;
+    }
+
+    public function getStyle()
+    {
+        return $this->style;
     }
 
     public function getId(): Uuid

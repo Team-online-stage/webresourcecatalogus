@@ -99,9 +99,9 @@ class Slug
     private $template;
 
     /**
-     * @var string The actual slug of this slug.
+     * @var string The actual slug of this slug without a pre / e.g. about not about
      *
-     * @example /about
+     * @example about
      *
      * @Gedmo\Versioned
      * @Assert\NotNull

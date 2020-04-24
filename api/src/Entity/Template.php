@@ -23,7 +23,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 use App\Controller\DefaultController;
 
 /**
- * Content holds information and photos you want to show on your pages.
+ * Templates holds information your pages or include in messages.
  *
  * @ApiResource(
  *     	normalizationContext={"groups"={"read"}, "enable_max_depth"=true},
@@ -124,6 +124,15 @@ class Template
     private $description;
 
     /**
+     * @var boolean Whether to auto create a slug on creation of this template
+     *
+     * @example true
+     *
+     * @Groups({"write"})
+     */
+    private $slug;
+
+    /**
      * @var string The Content of this template.
      *
      * @example A lot of random info over any topic
@@ -149,7 +158,7 @@ class Template
     private $templateEngine;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Slug", mappedBy="template")
+     * @ORM\OneToMany(targetEntity="App\Entity\Slug", mappedBy="template", cascade={"persist"})
      * @MaxDepth(1)
      */
     private $slugs;
@@ -169,6 +178,13 @@ class Template
      * @ORM\JoinColumn(nullable=false, nullable=true)
      */
     private $organization;
+
+    /**
+     * @Groups({"read","write"})
+     * @MaxDepth(1)
+     * @ORM\ManyToMany(targetEntity="App\Entity\TemplateGroup", inversedBy="templates")
+     */
+    private $templateGroups;
 
     /**
      * @var Datetime $dateCreated The moment this request was created
@@ -191,6 +207,8 @@ class Template
     public function __construct()
     {
         $this->image = new ArrayCollection();
+        $this->slugs = new ArrayCollection();
+        $this->templateGroups = new ArrayCollection();
     }
 
     public function getId(): Uuid
@@ -241,6 +259,18 @@ class Template
         return $this;
     }
 
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(bool $slug): self
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
     public function getContent(): ?string
     {
         return $this->content;
@@ -275,7 +305,7 @@ class Template
 
     public function addSlug(Slug $slug): self
     {
-        if (!$this->slugs->contains($page)) {
+        if (!$this->slugs->contains($slug)) {
             $this->slugs[] = $slug;
             $slug->setTemplate($this);
         }
@@ -318,6 +348,32 @@ class Template
     	$this->organization = $organization;
 
     	return $this;
+    }
+
+    /**
+     * @return Collection|TemplateGroup[]
+     */
+    public function getTemplateGroups(): Collection
+    {
+        return $this->templateGroups;
+    }
+
+    public function addTemplateGroup(TemplateGroup $templateGroup): self
+    {
+        if (!$this->templateGroups->contains($templateGroup)) {
+            $this->templateGroups[] = $templateGroup;
+        }
+
+        return $this;
+    }
+
+    public function removeTemplateGroup(TemplateGroup $templateGroup): self
+    {
+        if ($this->templateGroups->contains($templateGroup)) {
+            $this->templateGroups->removeElement($templateGroup);
+        }
+
+        return $this;
     }
 
     public function getDateCreated(): ?\DateTimeInterface

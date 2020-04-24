@@ -9,6 +9,8 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\OrderFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\DateFilter;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Ramsey\Uuid\Uuid;
@@ -17,44 +19,44 @@ use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Serializer\Annotation\MaxDepth;
 use Symfony\Component\Validator\Constraints as Assert;
 
+
 /**
- * MenuItem is a part of a menu and can be a link or submenu.
+ * Groups are a way of orginzing templates
  *
  * @ApiResource(
- *     attributes={"order"={"order"="ASC"}},
- *     normalizationContext={"groups"={"read"}, "enable_max_depth"=true},
- *     denormalizationContext={"groups"={"write"}, "enable_max_depth"=true},
+ *     	normalizationContext={"groups"={"read"}, "enable_max_depth"=true},
+ *     	denormalizationContext={"groups"={"write"}, "enable_max_depth"=true},
  *     itemOperations={
- *          "get",
- *          "put",
- *          "delete",
- *          "get_change_logs"={
- *              "path"="/adresses/{id}/change_log",
+ * 		"get",
+ * 	    "put",
+ * 	   "delete",
+ *     "get_change_logs"={
+ *              "path"="/template_groups/{id}/change_log",
  *              "method"="get",
  *              "swagger_context" = {
  *                  "summary"="Changelogs",
  *                  "description"="Gets al the change logs for this resource"
  *              }
  *          },
- *          "get_audit_trail"={
- *              "path"="/adresses/{id}/audit_trail",
+ *     "get_audit_trail"={
+ *              "path"="/template_groups/{id}/audit_trail",
  *              "method"="get",
  *              "swagger_context" = {
  *                  "summary"="Audittrail",
  *                  "description"="Gets the audit trail for this resource"
  *              }
  *          }
- *     }
+ * 		},
  * )
- * @ORM\Entity(repositoryClass="App\Repository\MenuItemRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\TemplateGroupRepository")
  * @Gedmo\Loggable(logEntryClass="App\Entity\ChangeLog")
  *
  * @ApiFilter(BooleanFilter::class)
  * @ApiFilter(OrderFilter::class)
  * @ApiFilter(DateFilter::class, strategy=DateFilter::EXCLUDE_NULL)
- * @ApiFilter(SearchFilter::class)
+ * @ApiFilter(SearchFilter::class, properties={"application.id": "exact", "organization.id": "exact", "name": "partial", "description": "partial"})
  */
-class MenuItem
+class TemplateGroup
 {
     /**
      * @var UuidInterface The UUID identifier of this resource
@@ -71,9 +73,9 @@ class MenuItem
     private $id;
 
     /**
-     * @var string The name of this MenuItem
+     * @var string The internal name of this menu
      *
-     * @example about-menu-link
+     * @example webshop menu
      *
      * @Gedmo\Versioned
      * @Assert\NotNull
@@ -86,86 +88,42 @@ class MenuItem
     private $name;
 
     /**
-     * @var string The description of this MenuItem
+     * @var string The description of this page.
      *
-     * @example This MenuItem links to the about page
+     * @example This page holds info about this application
      *
      * @Gedmo\Versioned
+     * @Assert\NotNull
      * @Assert\Length(
-     *      max = 2555
+     *     max = 255
      * )
-     * @Gedmo\Versioned
      * @Groups({"read","write"})
-     * @ORM\Column(type="text", nullable=true)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $description;
 
     /**
-     * @var integer The order in wichs this menu item is shown in relation to other items of the same menu
-     *
-     * @example 1
-     *
-     * @Gedmo\Versioned
-     * @Assert\NotNull
-     * @Assert\Length(
-     *      max = 3
-     * )
-     * @Groups({"read","write"})
-     * @ORM\Column(name="menu_order", type="integer", length=3, nullable=true)
-     */
-    private $order;
-
-    /**
-     * @var string the icon to display with this menu item
-     *
-     * @example fa fa-cart
-     *
-     * @Gedmo\Versioned
-     * @Assert\Length(
-     *      max = 255
-     * )
-     * @Groups({"read","write"})
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $icon;
-
-    /**
-     * @var string the type of the menu item
-     *
-     * @example slug
-     *
-     * @Gedmo\Versioned
-     * @Assert\Length(
-     *      max = 255
-     * )
-     * @Groups({"read","write"})
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $type;
-
-    /**
-     * @var string The href of this MenuItem that links to another page
-     *
-     * @example app_home_about
-     *
-     * @Gedmo\Versioned
-     * @Assert\NotNull
-     * @Assert\Length(
-     *      max = 2555
-     * )
-     * @Groups({"read","write"})
-     * @ORM\Column(type="string", length=255)
-     */
-    private $href;
-
-    /**
      * @Groups({"write"})
-     * @Assert\NotNull
-     * @ORM\ManyToOne(targetEntity="App\Entity\Menu", inversedBy="menuItems")
-     * @ORM\JoinColumn(nullable=false)
      * @MaxDepth(1)
+     * @ORM\ManyToMany(targetEntity="App\Entity\Template", mappedBy="templateGroups")
      */
-    private $menu;
+    private $templates;
+
+    /**
+     * @Groups({"read","write"})
+     * @MaxDepth(1)
+     * @ORM\ManyToOne(targetEntity="App\Entity\Application", inversedBy="templateGroups")
+     * @ORM\JoinColumn(nullable=false, nullable=true)
+     */
+    private $application;
+
+    /**
+     * @Groups({"read","write"})
+     * @MaxDepth(1)
+     * @ORM\ManyToOne(targetEntity="App\Entity\Organization", inversedBy="templateGroups")
+     * @ORM\JoinColumn(nullable=false, nullable=true)
+     */
+    private $organization;
 
     /**
      * @var Datetime $dateCreated The moment this request was created
@@ -184,6 +142,11 @@ class MenuItem
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $dateModified;
+
+    public function __construct()
+    {
+        $this->templates = new ArrayCollection();
+    }
 
     public function getId(): Uuid
     {
@@ -214,94 +177,87 @@ class MenuItem
         return $this->description;
     }
 
-    public function setDescription(?string $description): self
+    public function setDescription(string $description): self
     {
         $this->description = $description;
 
         return $this;
     }
 
-    public function getOrder(): ?int
+    /**
+     * @return Collection|Template[]
+     */
+
+    public function getTemplates(): Collection
     {
-        return $this->order;
+        return $this->templates;
     }
 
-    public function setOrder(int $order): self
+    public function addTemplate(Template $template): self
     {
-        $this->order = $order;
+        if (!$this->templates->contains($template)) {
+            $this->templates[] = $template;
+            $template->addTemplateGroup($this);
+        }
 
         return $this;
     }
 
-    public function getIcon(): ?string
+    public function removeTemplate(Template $template): self
     {
-        return $this->icon;
-    }
-
-    public function setIcon(string $icon): self
-    {
-        $this->icon = $icon;
+        if ($this->templates->contains($template)) {
+            $this->templates->removeElement($template);
+            $template->removeTemplateGroup($this);
+        }
 
         return $this;
     }
 
-    public function getType(): ?string
+    public function getApplication(): ?Application
     {
-        return $this->type;
+        return $this->application;
     }
 
-    public function setType(string $type): self
+    public function setApplication(?Application $application): self
     {
-        $this->type = $type;
+        $this->application = $application;
 
         return $this;
     }
 
-    public function getHref(): ?string
+    public function getOrganization(): ?Organization
     {
-        return $this->href;
+        return $this->organization;
     }
 
-    public function setHref(string $href): self
+    public function setOrganization(?Organization $organization): self
     {
-        $this->href = $href;
-
-        return $this;
-    }
-
-    public function getMenu(): ?Menu
-    {
-        return $this->menu;
-    }
-
-    public function setMenu(?Menu $menu): self
-    {
-        $this->menu = $menu;
+        $this->organization = $organization;
 
         return $this;
     }
 
     public function getDateCreated(): ?\DateTimeInterface
     {
-    	return $this->dateModified;
+        return $this->dateCreated;
     }
 
     public function setDateCreated(\DateTimeInterface $dateCreated): self
     {
-    	$this->dateCreated= $dateCreated;
+        $this->dateCreated= $dateCreated;
 
-    	return $this;
+        return $this;
     }
 
     public function getDateModified(): ?\DateTimeInterface
     {
-    	return $this->dateModified;
+        return $this->dateModified;
     }
 
     public function setDateModified(\DateTimeInterface $dateModified): self
     {
-    	$this->dateModified = $dateModified;
+        $this->dateModified = $dateModified;
 
-    	return $this;
+        return $this;
     }
 }
