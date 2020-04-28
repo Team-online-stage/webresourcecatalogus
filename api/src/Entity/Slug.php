@@ -28,7 +28,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *          "put",
  *          "delete",
  *          "get_change_logs"={
- *              "path"="/adresses/{id}/change_log",
+ *              "path"="/slugs/{id}/change_log",
  *              "method"="get",
  *              "swagger_context" = {
  *                  "summary"="Changelogs",
@@ -36,7 +36,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *              }
  *          },
  *          "get_audit_trail"={
- *              "path"="/adresses/{id}/audit_trail",
+ *              "path"="/slugs/{id}/audit_trail",
  *              "method"="get",
  *              "swagger_context" = {
  *                  "summary"="Audittrail",
@@ -51,7 +51,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ApiFilter(BooleanFilter::class)
  * @ApiFilter(OrderFilter::class)
  * @ApiFilter(DateFilter::class, strategy=DateFilter::EXCLUDE_NULL)
- * @ApiFilter(SearchFilter::class)
+ * @ApiFilter(SearchFilter::class, properties={"application.id": "exact", "template.id": "exact", "slug": "exact", "name": "partial"})
  */
 class Slug
 {
@@ -93,15 +93,15 @@ class Slug
 
     /**
      * @Groups({"read","write"})
-     * @ORM\OneToOne(targetEntity="App\Entity\Page", mappedBy="slug", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity="App\Entity\Template", inversedBy="slugs")
      * @MaxDepth(1)
      */
-    private $page;
+    private $template;
 
     /**
-     * @var string The actual slug of this slug.
+     * @var string The actual slug of this slug without a pre / e.g. about not about
      *
-     * @example /about
+     * @example about
      *
      * @Gedmo\Versioned
      * @Assert\NotNull
@@ -167,19 +167,17 @@ class Slug
         return $this;
     }
 
-    public function getPage(): ?Page
+    /**
+     * @return Template[]
+     */
+    public function getTemplate(): Template
     {
-        return $this->page;
+        return $this->template;
     }
 
-    public function setPage(Page $page): self
+    public function setTemplate(Template $template): self
     {
-        $this->page = $page;
-
-        // set the owning side of the relation if necessary
-        if ($this !== $page->getSlug()) {
-            $page->setSlug($this);
-        }
+        $this->template = $template;
 
         return $this;
     }

@@ -72,12 +72,12 @@ class ApplicationSubscriber implements EventSubscriberInterface
             if($slug == null){
                 throw new NotFoundHttpException("Page not found");
             }
-            $result = $slug->getPage();
+            $result = $slug->getTemplate();
 
         // now we need to overide the normal subscriber
         $json = $this->serializer->serialize(
-                $result,
-                $renderType, ['enable_max_depth' => true]
+            $result,
+            $renderType, ['enable_max_depth' => true]
         );
 
         $response = new Response(

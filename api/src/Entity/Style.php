@@ -48,11 +48,11 @@ use Symfony\Component\Validator\Constraints as Assert;
  * )
  * @ORM\Entity(repositoryClass="App\Repository\StyleRepository")
  * @Gedmo\Loggable(logEntryClass="App\Entity\ChangeLog")
- * 
+ *
  * @ApiFilter(BooleanFilter::class)
  * @ApiFilter(OrderFilter::class)
  * @ApiFilter(DateFilter::class, strategy=DateFilter::EXCLUDE_NULL)
- * @ApiFilter(SearchFilter::class)
+ * @ApiFilter(SearchFilter::class, properties={"application.id": "exact", "template.id": "exact", "css": "partial", "name": "partial", "description": "partial"})
  */
 class Style
 {
@@ -69,7 +69,7 @@ class Style
 	 * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
 	 */
 	private $id;
-	
+
 	/**
 	 * @var string The name of this style.
 	 *
@@ -84,7 +84,7 @@ class Style
 	 * @ORM\Column(type="string", length=255)
 	 */
 	private $name;
-		
+
 	/**
 	 * @var string The description of this style.
 	 *
@@ -114,15 +114,15 @@ class Style
      * @ORM\JoinColumn(nullable=false)
      */
     private $favicon;
-    
+
     /**
-     * @Groups({"read","write"})
+     * @Groups({"write"})
      * @MaxDepth(1)
      * @ORM\ManyToOne(targetEntity="App\Entity\Organization", inversedBy="styles")
      * @ORM\JoinColumn(nullable=false)
      */
     private $organization;
-    
+
     /**
      * @var Datetime $dateCreated The moment this request was created
      *
@@ -131,7 +131,7 @@ class Style
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $dateCreated;
-    
+
     /**
      * @var Datetime $dateModified  The moment this request last Modified
      *
@@ -193,40 +193,40 @@ class Style
 
         return $this;
     }
-    
+
     public function getOrganization(): ?Organization
     {
     	return $this->organization;
     }
-    
+
     public function setOrganization(?Organization $organization): self
     {
     	$this->organization = $organization;
-    	
+
     	return $this;
     }
-    
+
     public function getDateCreated(): ?\DateTimeInterface
     {
     	return $this->dateCreated;
     }
-    
+
     public function setDateCreated(\DateTimeInterface $dateCreated): self
     {
     	$this->dateCreated= $dateCreated;
-    	
+
     	return $this;
     }
-    
+
     public function getDateModified(): ?\DateTimeInterface
     {
     	return $this->dateModified;
     }
-    
+
     public function setDateModified(\DateTimeInterface $dateModified): self
     {
     	$this->dateModified = $dateModified;
-    	
+
     	return $this;
     }
 }

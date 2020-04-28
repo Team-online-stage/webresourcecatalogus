@@ -31,7 +31,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *          "put",
  *          "delete",
  *          "get_change_logs"={
- *              "path"="/adresses/{id}/change_log",
+ *              "path"="/applications/{id}/change_log",
  *              "method"="get",
  *              "swagger_context" = {
  *                  "summary"="Changelogs",
@@ -39,7 +39,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *              }
  *          },
  *          "get_audit_trail"={
- *              "path"="/adresses/{id}/audit_trail",
+ *              "path"="/applications/{id}/audit_trail",
  *              "method"="get",
  *              "swagger_context" = {
  *                  "summary"="Audittrail",
@@ -62,7 +62,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * )
  * @Gedmo\Loggable(logEntryClass="App\Entity\ChangeLog")
  * @ORM\Entity(repositoryClass="App\Repository\ApplicationRepository")
- * 
+ *
  * @ApiFilter(BooleanFilter::class)
  * @ApiFilter(OrderFilter::class)
  * @ApiFilter(DateFilter::class, strategy=DateFilter::EXCLUDE_NULL)
@@ -132,62 +132,56 @@ class Application
     private $domain;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Page", mappedBy="application")
-     * @MaxDepth(1)
-     */
-    private $pages;
-
-    /**
-     * @Groups({"read","write"})
-     * @ORM\OneToOne(targetEntity="App\Entity\Header", inversedBy="application", cascade={"persist", "remove"})
-     * @MaxDepth(1)
-     */
-    private $header;
-
-    /**
-     * @Groups({"read","write"})
-     * @ORM\OneToOne(targetEntity="App\Entity\Footer", inversedBy="application", cascade={"persist", "remove"})
-     * @MaxDepth(1)
-     */
-    private $footer;
-
-    /**
      * @ORM\OneToMany(targetEntity="App\Entity\Slug", mappedBy="application")
-     * @MaxDepth(1)
      */
     private $slugs;
-    
+
     /**
+     * @Assert\NotNull
      * @Groups({"read","write"})
      * @MaxDepth(1)
      * @ORM\ManyToOne(targetEntity="App\Entity\Organization", inversedBy="applications")
      * @ORM\JoinColumn(nullable=false)
      */
     private $organization;
-    
+
     /**
      * @MaxDepth(1)
      * @ORM\OneToMany(targetEntity="App\Entity\Configuration", mappedBy="application", orphanRemoval=true)
      */
     private $configurations;
-    
+
     /**
-     * @Groups({"read"})
+     * @Groups({"read","write"})
+     * @MaxDepth(1)
+     * @ORM\OneToOne(targetEntity="App\Entity\Configuration")
+     * @ORM\JoinColumn(nullable=true)
      */
     private $defaultConfiguration;
-    
+
     /**
+     * @Groups({"read","write"})
      * @MaxDepth(1)
+     * @ORM\ManyToOne(targetEntity="App\Entity\Style")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $style;
+
+    /**
      * @ORM\OneToMany(targetEntity="App\Entity\Template", mappedBy="application", orphanRemoval=true)
      */
     private $templates;
-    
+
     /**
-     * @MaxDepth(1)
+     * @ORM\OneToMany(targetEntity="App\Entity\TemplateGroup", mappedBy="application", orphanRemoval=true)
+     */
+    private $templateGroups;
+
+    /**
      * @ORM\OneToMany(targetEntity="App\Entity\Menu", mappedBy="application", orphanRemoval=true)
      */
     private $menus;
-    
+
     /**
      * @var Datetime $dateCreated The moment this request was created
      *
@@ -196,7 +190,7 @@ class Application
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $dateCreated;
-    
+
     /**
      * @var Datetime $dateModified  The moment this request last Modified
      *
@@ -213,13 +207,30 @@ class Application
         $this->configurations = new ArrayCollection();
         $this->templates = new ArrayCollection();
     }
-    
-    public function getDefaultConfiguration(){
-    	
-    	$criteria = Criteria::create()
-    	->andWhere(Criteria::expr()->eq('organization', $this->getOrganization()));
-    	
-    	return $this->getConfigurations()->matching($criteria)->first();
+
+
+    public function setDefaultConfiguration(Configuration $configuration): self
+    {
+        $this->defaultConfiguration = $configuration;
+
+        return $this;
+    }
+
+    public function getDefaultConfiguration()
+    {
+        return $this->defaultConfiguration;
+    }
+
+    public function setStyle(Style $style): self
+    {
+        $this->style = $style;
+
+        return $this;
+    }
+
+    public function getStyle()
+    {
+        return $this->style;
     }
 
     public function getId(): Uuid
@@ -271,61 +282,6 @@ class Application
     }
 
     /**
-     * @return Collection|Page[]
-     */
-    public function getPages(): Collection
-    {
-        return $this->pages;
-    }
-
-    public function addPage(Page $page): self
-    {
-        if (!$this->pages->contains($page)) {
-            $this->pages[] = $page;
-            $page->setApplication($this);
-        }
-
-        return $this;
-    }
-
-    public function removePage(Page $page): self
-    {
-        if ($this->pages->contains($page)) {
-            $this->pages->removeElement($page);
-            // set the owning side to null (unless already changed)
-            if ($page->getApplication() === $this) {
-                $page->setApplication(null);
-            }
-        }
-
-        return $this;
-    }
-
-    public function getHeader(): ?Header
-    {
-        return $this->header;
-    }
-
-    public function setHeader(?Header $header): self
-    {
-        $this->header = $header;
-
-        return $this;
-    }
-
-    public function getFooter(): ?Footer
-    {
-        return $this->footer;
-    }
-
-    public function setFooter(?Footer $footer): self
-    {
-        $this->footer = $footer;
-
-        return $this;
-    }
-
-    /**
      * @return Collection|Slug[]
      */
     public function getSlugs(): Collection
@@ -355,19 +311,19 @@ class Application
 
         return $this;
     }
-    
+
     public function getOrganization(): ?Organization
     {
     	return $this->organization;
     }
-    
+
     public function setOrganization(?Organization $organization): self
     {
     	$this->organization = $organization;
-    	
+
     	return $this;
     }
-    
+
     /**
      * @return Collection|Configuration[]
      */
@@ -375,17 +331,17 @@ class Application
     {
     	return $this->configurations;
     }
-    
+
     public function addConfiguration(Configuration $configuration): self
     {
     	if (!$this->configurations->contains($configuration)) {
     		$this->configurations[] = $configuration;
     		$configuration->setApplication($this);
     	}
-    	
+
     	return $this;
     }
-    
+
     public function removeConfiguration(Configuration $configuration): self
     {
     	if ($this->configurations->contains($configuration)) {
@@ -395,10 +351,10 @@ class Application
     			$configuration->setApplication(null);
     		}
     	}
-    	
+
     	return $this;
     }
-    
+
     /**
      * @return Collection|Templates[]
      */
@@ -406,17 +362,17 @@ class Application
     {
     	return $this->templates;
     }
-    
+
     public function addTemplate(Template $template): self
     {
-    	if (!$this->templates->contains($configuration)) {
-    		$this->templates[] = $configuration;
+    	if (!$this->templates->contains($template)) {
+    		$this->templates[] = $template;
     		$template->setApplication($this);
     	}
-    	
+
     	return $this;
     }
-    
+
     public function removeTemplate(Template $template): self
     {
     	if ($this->templates->contains($template)) {
@@ -426,10 +382,10 @@ class Application
     			$template->setApplication(null);
     		}
     	}
-    	
+
     	return $this;
     }
-    
+
     /**
      * @return Collection|Menus[]
      */
@@ -437,17 +393,17 @@ class Application
     {
     	return $this->menus;
     }
-    
-    public function addMenu(Menu $template): self
+
+    public function addMenu(Menu $menu): self
     {
     	if (!$this->menus->contains($menu)) {
     		$this->menus[] = $menu;
     		$menu->setApplication($this);
     	}
-    	
+
     	return $this;
     }
-    
+
     public function removeMenu(Menu $menu): self
     {
     	if ($this->menus->contains($menu)) {
@@ -457,31 +413,31 @@ class Application
     			$menu->setApplication(null);
     		}
     	}
-    	
+
     	return $this;
     }
-    
+
     public function getDateCreated(): ?\DateTimeInterface
     {
     	return $this->dateCreated;
     }
-    
+
     public function setDateCreated(\DateTimeInterface $dateCreated): self
     {
     	$this->dateCreated= $dateCreated;
-    	
+
     	return $this;
     }
-    
+
     public function getDateModified(): ?\DateTimeInterface
     {
     	return $this->dateModified;
     }
-    
+
     public function setDateModified(\DateTimeInterface $dateModified): self
     {
     	$this->dateModified = $dateModified;
-    	
+
     	return $this;
     }
 }

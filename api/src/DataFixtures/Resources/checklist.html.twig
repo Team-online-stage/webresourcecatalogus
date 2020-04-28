@@ -85,29 +85,45 @@
                                     </ul>
                                 </li>
                             {% endif %}
-                            {% if request.properties.partners[0] is defined and request.properties.partners[0] is not empty %}
-                                <li>
-                                    {% set assent1 = commonground_resource(request.properties.partners[0]) %}
-                                    {% set contact1 = commonground_resource(assent1.contact) %}
-                                    <b>Partner: {{ contact1.formalName }}</b>
-                                    <ul class="list-icon">
-                                        <li>
-                                            <i class="fa fas fa-check"></i>Leeftijd is gecontroleerd
-                                        <li>
-                                        <li>
-                                            <i class="fa fas fa-check"></i>Staat niet onder curatele
-                                        <li>
-                                            {% if request.properties.partners[1] is not defined and request.properties.partners[1] is empty %}
-                                        <li>
-                                            <i style="color: red" class="fa fa-exclamation-triangle"></i>U hebt nog een partner uitgenodigd
-                                        <li>
+
+
+                            {% if request.properties.partners is defined and request.properties.partners is not empty %}
+                                {% for partner in request.properties.partners %}
+                                    <li>
+                                        {% set assent = commonground_resource(partner) %}
+                                        {% set contact = commonground_resource(assent.contact) %}
+                                        <b>Partner: {{ contact.formalName }}</b>
+                                        <ul class="list-icon">
+                                            <li>
+                                                <!-- Partner -->
+                                                <i class="fa {% if assent.status == "granted" %}fas fa-check{% else %}fa-exclamation-triangle{% endif %}"></i>Status: {{ assent.status|trans }}
+                                            <li>
+                                            <li>
+                                                <!--  Trouwdatum -->
+                                                <i class="fa fas fa-check"></i>Leeftijd is gecontroleerd
+                                            <li>
+                                            <li>
+                                                <!--  Trouwdatum -->
+                                                <i class="fa fas fa-check"></i>Staat niet onder curatele
+                                            <li>
+                                            {% if request.properties.partners[0] is not defined or request.properties.partners[0] is empty or request.properties.partners[1] is not defined or request.properties.partners[1] is empty %}
+                                            <li>
+                                                <!--  Trouwdatum -->
+                                                <i class="fa fa-exclamation-triangle"></i> Er zijn nog geen twee partners opgegeven
+                                            <li>
                                             {% else %}
-                                        <li>
-                                            <i class="fa fas fa-check"></i>Partner is geen familie in de eerste graad
-                                        <li>
+                                            <li>
+                                                <!--  Trouwdatum -->
+                                                <i class="fa fas fa-check"></i> Is geen famillie van andere partner
+                                            <li>
+                                            <li>
+                                                <!--  Trouwdatum -->
+                                                <i class="fa fas fa-check"></i> Heeft op dit moment geen partner
+                                            <li>
                                             {% endif %}
-                                    </ul>
-                                </li>
+                                        </ul>
+                                    </li>
+                                {% endfor %}
                             {% endif %}
                             {% if request.properties.partners[1] is defined and request.properties.partners[1] is not empty %}
                                 <li>

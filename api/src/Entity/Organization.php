@@ -136,52 +136,39 @@ class Organization
 	private $description;
 
     /**
-     * @Groups({"read","write"})
-     * @MaxDepth(1)
      * @ORM\ManyToOne(targetEntity="App\Entity\Image")
      */
     private $logo;
 
     /**
-     * @Groups({"read","write"})
-     * @MaxDepth(1)
      * @ORM\OneToMany(targetEntity="App\Entity\Style", mappedBy="organization", orphanRemoval=true)
      */
     private $styles;
 
     /**
-     * @Groups({"read","write"})
-     * @MaxDepth(1)
      * @ORM\OneToMany(targetEntity="App\Entity\Application", mappedBy="organization", orphanRemoval=true)
      */
     private $applications;
 
     /**
-     * @Groups({"read","write"})
-     * @MaxDepth(1)
      * @ORM\OneToMany(targetEntity="App\Entity\Image", mappedBy="organization", orphanRemoval=true)
      */
     private $images;
 
     /**
-     * @MaxDepth(1)
      * @ORM\OneToMany(targetEntity="App\Entity\Configuration", mappedBy="organization", orphanRemoval=true)
      */
     private $configurations;
 
     /**
-     * @Groups({"read","write"})
-     * @MaxDepth(1)
      * @ORM\OneToMany(targetEntity="App\Entity\Template", mappedBy="organization", orphanRemoval=true)
      */
     private $templates;
 
     /**
-     * @Groups({"read","write"})
-     * @MaxDepth(1)
-     * @ORM\OneToMany(targetEntity="App\Entity\Menu", mappedBy="organization", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\TemplateGroup", mappedBy="organization", orphanRemoval=true)
      */
-    private $menus;
+    private $templateGroups;
 
     /**
      * @var Datetime $dateCreated The moment this request was created
@@ -440,37 +427,6 @@ class Organization
     		// set the owning side to null (unless already changed)
     		if ($template->getOrganization() === $this) {
     			$template->setOrganization(null);
-    		}
-    	}
-
-    	return $this;
-    }
-
-    /**
-     * @return Collection|Menus[]
-     */
-    public function getMenus(): Collection
-    {
-    	return $this->menus;
-    }
-
-    public function addMenu(Menu $template): self
-    {
-    	if (!$this->menus->contains($menu)) {
-    		$this->menus[] = $menu;
-    		$menu->setOrganization($this);
-    	}
-
-    	return $this;
-    }
-
-    public function removeMenu(Menu $menu): self
-    {
-    	if ($this->menus->contains($menu)) {
-    		$this->menus->removeElement($menu);
-    		// set the owning side to null (unless already changed)
-    		if ($menu->getOrganization() === $this) {
-    			$menu->setOrganization(null);
     		}
     	}
 
