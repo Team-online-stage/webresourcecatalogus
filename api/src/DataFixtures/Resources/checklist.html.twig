@@ -23,8 +23,11 @@
                     <p>We kunnen ons goed voorstellen dat er nogal wat op jullie afkomt bij het plannen , daarom hebben
                         we alles op een rij gezet voor jullie. Een handig overzicht van wat er moet gebeuren, maar ook
                         wat er al is gedaan.</p>
-                    <h2>Uw referentie:</h2>
-                    <p>{{ request.reference }}</p>
+
+                    {% if request.reference is defined and request.reference is not empty %}
+                        <br>
+                    <h4>Uw referentie: {{ request.reference }}</h4>
+                    {% endif %}
                     <p><b>Legenda</b><br>
                         <i style="color: red" class="fa fa-exclamation-triangle"></i> Nog te doen <br>
                         <i class="fa fas fa-check"></i> Gedaan
