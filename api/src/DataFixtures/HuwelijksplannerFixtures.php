@@ -718,6 +718,26 @@ class HuwelijksplannerFixtures extends Fixture
         $slug->setSlug('getuige');
         $manager->persist($slug);
 
+        // Getuigen
+        $id = Uuid::fromString('296e1f09-3b03-40de-8d8d-b5ff2aca240f');
+        $template = new Template();
+        $template->setName('Getuigen');
+        $template->setDescription('Pagina waarop getuigen kunnen worden toegevoegd aan een melding voorgenomen huwelijk');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/getuigen-melding.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setName('getuige-melding');
+        $slug->setApplication($application);
+        $slug->setSlug('getuige-melding');
+        $manager->persist($slug);
+
         // Naamsgerbuik
         $id = Uuid::fromString('648e2ce2-e157-42ac-8bac-1fa59032bbfc');
         $template = new Template();
@@ -838,6 +858,26 @@ class HuwelijksplannerFixtures extends Fixture
         $slug->setName('partner');
         $manager->persist($slug);
 
+        // Partners
+        //$id = Uuid::fromString('1370d87a-fe90-4826-a210-fd8e1c065576');
+        $template = new Template();
+        $template->setName('Partners');
+        $template->setDescription('De pagina waarop je partners kan toevoegen aan een melding voorgenomen huwelijk');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/partners-melding.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        //$manager->persist($template);
+        //$template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        //$template= $manager->getRepository('App:Template')->findOneBy(array('id'=> $id));
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setSlug('partner-melding');
+        $slug->setName('partner-melding');
+        $manager->persist($slug);
+
         // Datum
         //$id = Uuid::fromString('1370d87a-fe90-4826-a210-fd8e1c065576');
         $template = new Template();
@@ -856,6 +896,26 @@ class HuwelijksplannerFixtures extends Fixture
         $slug->setApplication($application);
         $slug->setSlug('datum');
         $slug->setName('datum');
+        $manager->persist($slug);
+
+        // Datum
+        //$id = Uuid::fromString('1370d87a-fe90-4826-a210-fd8e1c065576');
+        $template = new Template();
+        $template->setName('Datum');
+        $template->setDescription('De pagina waarop je een datum kan selecteren bij de melding voorgenomen huwelijk');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/datum-melding.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        //$manager->persist($template);
+        //$template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        //$template= $manager->getRepository('App:Template')->findOneBy(array('id'=> $id));
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setSlug('datum-melding');
+        $slug->setName('datum-melding');
         $manager->persist($slug);
 
         // Betalen
