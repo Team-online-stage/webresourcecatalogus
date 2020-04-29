@@ -23,10 +23,10 @@
                         	<h4>{{ product.name }}</h4>
                             <p>{{ product.price }}</p>
                         </div>
-                        <p>{{ product.description|raw }}<br/></p>
+                        <p style="height: 60px;display: block">{{ product.description|raw }}<br/></p>
                         <div class="tbl-prc-footer">
                             {% if user is not empty  %}
-	                    	<a href="{{ path('app_default_set',{'value':product.offers[0]['@id'],'slug':'extra'}) }}"  class="btn btn-primary btn-icon  btn-block">Ja dit wil ik!</a>
+	                    	<a href="{{ path('app_default_set',{'value':product.offers[0]['@id'],'slug':'extra'}) }}" class="btn btn-primary btn-icon btn-block">Ja dit wil ik!</a>
 							{% endif %}
                     	</div>
 
