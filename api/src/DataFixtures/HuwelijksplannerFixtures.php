@@ -917,7 +917,7 @@ class HuwelijksplannerFixtures extends Fixture
         $slug->setSlug('datum-melding');
         $slug->setName('datum-melding');
         $manager->persist($slug);
-
+        $manager->flush();
         // Betalen
         //$id = Uuid::fromString('1370d87a-fe90-4826-a210-fd8e1c065576');
         $template = new Template();
