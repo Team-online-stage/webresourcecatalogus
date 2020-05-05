@@ -89,26 +89,26 @@
                                 for="naamgebruik[{{ request.properties.partners[0] }}]">Naamgebruik {{ contact1.formalName }}</label>
                             <select name="naamgebruik[{{ request.properties.partners[0] }}]"
                                     id="naamgebruik[{{ request.properties.partners[0] }}]">
-                                <option value="ongewijzigd" {%  if request.properties.overig.naamgebruik[assent1['@id']] == "ongewijzigd" %} selected {% endif %}>ongewijzigd</option>
+                                <option value="ongewijzigd" {%  if request.properties.overig is defined and request.properties.overig.naamgebruik[assent1['@id']] == "ongewijzigd" %} selected {% endif %}>ongewijzigd</option>
                                 <option
-                                    value="{{ contact1.familyName }} {{ contact2.familyName }}"{%  if request.properties.overig.naamgebruik[assent1['@id']] == contact1.familyName ~ " " ~ contact2.familyName  %} selected {% endif %}>{{ contact1.familyName }} {{ contact2.familyName }}</option>
+                                    value="{{ contact1.familyName }} {{ contact2.familyName }}"{%  if request.properties.overig is defined and  request.properties.overig.naamgebruik[assent1['@id']] == contact1.familyName ~ " " ~ contact2.familyName  %} selected {% endif %}>{{ contact1.familyName }} {{ contact2.familyName }}</option>
                                 <option
-                                    value="{{ contact2.familyName }} {{ contact1.familyName }}"{%  if request.properties.overig.naamgebruik[assent1['@id']] == contact2.familyName ~ " " ~ contact1.familyName  %} selected {% endif %}>{{ contact2.familyName }} {{ contact1.familyName }}</option>
+                                    value="{{ contact2.familyName }} {{ contact1.familyName }}"{%  if request.properties.overig is defined and  request.properties.overig.naamgebruik[assent1['@id']] == contact2.familyName ~ " " ~ contact1.familyName  %} selected {% endif %}>{{ contact2.familyName }} {{ contact1.familyName }}</option>
                                 <option
-                                    value="{{ contact2.familyName }}" {%  if request.properties.overig.naamgebruik[assent1['@id']] == contact2.familyName  %} selected {% endif %}>{{ contact2.familyName }}</option>
+                                    value="{{ contact2.familyName }}" {%  if request.properties.overig is defined and  request.properties.overig.naamgebruik[assent1['@id']] == contact2.familyName  %} selected {% endif %}>{{ contact2.familyName }}</option>
                             </select>
 
                             <label
                                 for="naamgebruik[{{ request.properties.partners[1] }}]">Naamgebruik {{ contact2.formalName }}</label>
                             <select name="naamgebruik[{{ request.properties.partners[1] }}]"
                                     id="naamgebruik[{{ request.properties.partners[1] }}]">
-                                <option value="ongewijzigd" {%  if request.properties.overig.naamgebruik[assent2['@id']] == "ongewijzigd"  %} selected {% endif %}>ongewijzigd</option>
+                                <option value="ongewijzigd" {%  if request.properties.overig is defined and  request.properties.overig is defined and  request.properties.overig.naamgebruik[assent2['@id']] == "ongewijzigd"  %} selected {% endif %}>ongewijzigd</option>
                                 <option
-                                    value="{{ contact2.familyName }} {{ contact1.familyName }}"{%  if request.properties.overig.naamgebruik[assent2['@id']] == contact2.familyName ~ " " ~ contact1.familyName  %} selected {% endif %}>{{ contact2.familyName }} {{ contact1.familyName }}</option>
+                                    value="{{ contact2.familyName }} {{ contact1.familyName }}"{%  if request.properties.overig is defined and  request.properties.overig is defined and  request.properties.overig.naamgebruik[assent2['@id']] == contact2.familyName ~ " " ~ contact1.familyName  %} selected {% endif %}>{{ contact2.familyName }} {{ contact1.familyName }}</option>
                                 <option
-                                    value="{{ contact1.familyName }} {{ contact2.familyName }}"{%  if request.properties.overig.naamgebruik[assent2['@id']] == contact1.familyName ~ " " ~ contact2.familyName  %} selected {% endif %}>{{ contact1.familyName }} {{ contact2.familyName }}</option>
+                                    value="{{ contact1.familyName }} {{ contact2.familyName }}"{%  if request.properties.overig is defined and  request.properties.overig is defined and  request.properties.overig.naamgebruik[assent2['@id']] == contact1.familyName ~ " " ~ contact2.familyName  %} selected {% endif %}>{{ contact1.familyName }} {{ contact2.familyName }}</option>
                                 <option
-                                    value="{{ contact1.familyName }}"{%  if request.properties.overig.naamgebruik[assent1['@id']] == contact1.familyName %} selected {% endif %}> {{ contact1.familyName }}</option>
+                                    value="{{ contact1.familyName }}"{%  if request.properties.overig is defined and  request.properties.overig is defined and  request.properties.overig.naamgebruik[assent1['@id']] == contact1.familyName %} selected {% endif %}> {{ contact1.familyName }}</option>
                             </select>
 
                         {% endif %}
