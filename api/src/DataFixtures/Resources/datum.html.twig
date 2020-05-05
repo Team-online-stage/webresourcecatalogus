@@ -48,28 +48,28 @@
                         <select name="tijd">
                             {% if plechtigheid.id == "77f6419d-b264-4898-8229-9916d9deccee" %}
                                 <option
-                                    value="10:00" {% if request.properties.datum is defined and request.properties.datum is not empty and "10:00" == request.properties.datum|date("H:i", "Europe/Paris") %} selected {% endif %}>
+                                    value="10:00" {% if request.properties.datum is defined and request.properties.datum is not empty and "10:00" == request.properties.datum|date("H:i") %} selected {% endif %}>
                                     10:00
                                 </option>
                                 <option
-                                    value="12:00" {% if request.properties.datum is defined and request.properties.datum is not empty and "12:00" == request.properties.datum|date("H:i", "Europe/Paris") %} selected {% endif %}>
+                                    value="12:00" {% if request.properties.datum is defined and request.properties.datum is not empty and "12:00" == request.properties.datum|date("H:i") %} selected {% endif %}>
                                     12:00
                                 </option>
                             {% elseif plechtigheid.id == "2b9ba0a9-376d-45e2-aa83-809ef07fa104" %}
                                 <option
-                                    value="10:00" {% if request.properties.datum is defined and request.properties.datum is not empty and "10:00" == request.properties.datum|date("H:i", "Europe/Paris") %} selected {% endif %}>
+                                    value="10:00" {% if request.properties.datum is defined and request.properties.datum is not empty and "10:00" == request.properties.datum|date("H:i") %} selected {% endif %}>
                                     10:00
                                 </option>
                                 <option
-                                    value="12:00" {% if request.properties.datum is defined and request.properties.datum is not empty and "12:00" == request.properties.datum|date("H:i", "Europe/Paris") %} selected {% endif %}>
+                                    value="12:00" {% if request.properties.datum is defined and request.properties.datum is not empty and "12:00" == request.properties.datum|date("H:i") %} selected {% endif %}>
                                     12:00
                                 </option>
                                 <option
-                                    value="14:00" {% if request.properties.datum is defined and request.properties.datum is not empty and "14:00" == request.properties.datum|date("H:i", "Europe/Paris") %} selected {% endif %}>
+                                    value="14:00" {% if request.properties.datum is defined and request.properties.datum is not empty and "14:00" == request.properties.datum|date("H:i") %} selected {% endif %}>
                                     14:00
                                 </option>
                                 <option
-                                    value="16:00" {% if request.properties.datum is defined and request.properties.datum is not empty and "16:00" == request.properties.datum|date("H:i", "Europe/Paris") %} selected {% endif %}>
+                                    value="16:00" {% if request.properties.datum is defined and request.properties.datum is not empty and "16:00" == request.properties.datum|date("H:i") %} selected {% endif %}>
                                     16:00
                                 </option>
                             {% endif %}
@@ -79,7 +79,7 @@
                     {% if plechtigheid.id == "bfeb9399-fce6-49b8-a047-70928f3611fb" %}
                         <label for="tijd">Voer uw gewenste tijdstip in als bijvoorbeeld: "12:30"</label>
                         <input id="tijd" name="tijd"
-                               type="time" {% if request.properties.datum is defined and request.properties.datum is not empty %} value="{{ request.properties.datum|date("H:i", "Europe/Paris") }}" {% endif %}
+                               type="time" {% if request.properties.datum is defined and request.properties.datum is not empty %} value="{{ request.properties.datum|date("H:i") }}" {% endif %}
                                required>
                     {% endif %}
 
@@ -92,6 +92,7 @@
                            style="background: transparent; border: transparent; color: transparent;">
                     <br><br>
                     <span ng-hide="defaultDate">Kies een datum om door te gaan</span>
+
 
                 </form>
 
