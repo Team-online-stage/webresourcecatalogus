@@ -61,7 +61,7 @@ use App\Controller\DefaultController;
  * @ApiFilter(BooleanFilter::class)
  * @ApiFilter(OrderFilter::class)
  * @ApiFilter(DateFilter::class, strategy=DateFilter::EXCLUDE_NULL)
- * @ApiFilter(SearchFilter::class, properties={"application.id": "exact", "organization.id": "exact","slugs.id": "exact","templateEngine": "exact","slugs.slug": "exact", "title": "partial", "name": "partial", "description": "partial", "content": "partial"})
+ * @ApiFilter(SearchFilter::class, properties={"application.id": "exact", "organization.id": "exact","slugs.id": "exact","templateEngine": "exact","slugs.slug": "exact", "title": "partial", "name": "partial", "description": "partial", "content": "partial", "templateGroup.name": "partial", "templateGroup.id": "exact"})
  */
 class Template
 {
