@@ -79,7 +79,7 @@
                     {% if plechtigheid.id == "bfeb9399-fce6-49b8-a047-70928f3611fb" %}
                         <label for="tijd">Voer uw gewenste tijdstip in als bijvoorbeeld: "12:30"</label>
                         <input id="tijd" name="tijd"
-                               type="text" {% if request.properties.datum is defined and request.properties.datum is not empty %} value="{{ request.properties.datum|date("H:i", "Europe/Paris") }}" {% endif %}
+                               type="time" {% if request.properties.datum is defined and request.properties.datum is not empty %} value="{{ request.properties.datum|date("H:i", "Europe/Paris") }}" {% endif %}
                                required>
                     {% endif %}
 
