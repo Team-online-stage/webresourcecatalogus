@@ -52,25 +52,17 @@
                                     10:00
                                 </option>
                                 <option
-                                    value="10:30" {% if request.properties.datum is defined and request.properties.datum is not empty and "10:30" == request.properties.datum|date("H:i", "Europe/Paris") %} selected {% endif %}>
-                                    10:30
-                                </option>
-                                <option
-                                    value="11:00" {% if request.properties.datum is defined and request.properties.datum is not empty and "11:00" == request.properties.datum|date("H:i", "Europe/Paris") %} selected {% endif %}>
-                                    11:00
-                                </option>
-                                <option
-                                    value="11:30" {% if request.properties.datum is defined and request.properties.datum is not empty and "11:30" == request.properties.datum|date("H:i", "Europe/Paris") %} selected {% endif %}>
-                                    11:30
+                                    value="12:00" {% if request.properties.datum is defined and request.properties.datum is not empty and "12:00" == request.properties.datum|date("H:i", "Europe/Paris") %} selected {% endif %}>
+                                    12:00
                                 </option>
                             {% elseif plechtigheid.id == "77f6419d-b264-4898-8229-9916d9deccee" %}
                                 <option
-                                    value="10:00" {% if request.properties.datum is defined and request.properties.datum is not empty and "10:00" == request.properties.datum|date("H:i", "Europe/Paris") %} selected {% endif %}>
-                                    10:00
+                                    value="14:00" {% if request.properties.datum is defined and request.properties.datum is not empty and "14:00" == request.properties.datum|date("H:i", "Europe/Paris") %} selected {% endif %}>
+                                    14:00
                                 </option>
                                 <option
-                                    value="10:30" {% if request.properties.datum is defined and request.properties.datum is not empty and "10:30" == request.properties.datum|date("H:i", "Europe/Paris") %} selected {% endif %}>
-                                    10:30
+                                    value="16:00" {% if request.properties.datum is defined and request.properties.datum is not empty and "16:00" == request.properties.datum|date("H:i", "Europe/Paris") %} selected {% endif %}>
+                                    16:00
                                 </option>
                             {% endif %}
                         </select>
