@@ -197,7 +197,7 @@ class ZaakonlineFixtures extends Fixture
         $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
 
         $slug = new Slug();
-        $slug->setPage($page);
+        $slug->setTemplate($template);
         $slug->setApplication($application);
         $slug->setSlug('noodvoorziening-corona');
         $slug->setName('noodvoorziening-corona');
