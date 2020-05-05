@@ -46,7 +46,7 @@
 
                     {% if plechtigheid.id == "2b9ba0a9-376d-45e2-aa83-809ef07fa104" or plechtigheid.id == "77f6419d-b264-4898-8229-9916d9deccee" %}
                         <select name="tijd">
-                            {% if plechtigheid.id == "2b9ba0a9-376d-45e2-aa83-809ef07fa104" %}
+                            {% if plechtigheid.id == "77f6419d-b264-4898-8229-9916d9deccee" %}
                                 <option
                                     value="10:00" {% if request.properties.datum is defined and request.properties.datum is not empty and "10:00" == request.properties.datum|date("H:i", "Europe/Paris") %} selected {% endif %}>
                                     10:00
@@ -55,7 +55,15 @@
                                     value="12:00" {% if request.properties.datum is defined and request.properties.datum is not empty and "12:00" == request.properties.datum|date("H:i", "Europe/Paris") %} selected {% endif %}>
                                     12:00
                                 </option>
-                            {% elseif plechtigheid.id == "77f6419d-b264-4898-8229-9916d9deccee" %}
+                            {% elseif plechtigheid.id == "2b9ba0a9-376d-45e2-aa83-809ef07fa104" %}
+                                <option
+                                    value="10:00" {% if request.properties.datum is defined and request.properties.datum is not empty and "10:00" == request.properties.datum|date("H:i", "Europe/Paris") %} selected {% endif %}>
+                                    10:00
+                                </option>
+                                <option
+                                    value="12:00" {% if request.properties.datum is defined and request.properties.datum is not empty and "12:00" == request.properties.datum|date("H:i", "Europe/Paris") %} selected {% endif %}>
+                                    12:00
+                                </option>
                                 <option
                                     value="14:00" {% if request.properties.datum is defined and request.properties.datum is not empty and "14:00" == request.properties.datum|date("H:i", "Europe/Paris") %} selected {% endif %}>
                                     14:00
