@@ -111,7 +111,7 @@ class ZaakonlineFixtures extends Fixture
         $application->setDescription('ZaakOnline');
         $application->setDomain('zaakonline.nl');
         $application->setOrganization($utrecht);
-        $manager->persist($utrecht);
+        $manager->persist($application);
 
         // Berichten
 
@@ -196,20 +196,12 @@ class ZaakonlineFixtures extends Fixture
         $manager->flush();
         $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
 
-        $page = new Page();
-        $page->setTitle('Noodvoorziening Corona kleine ondernemers');
-        $page->setName('Noodvoorziening Corona kleine ondernemers');
-        $page->setDescription('Noodvoorziening Corona kleine ondernemers');
-        $page->setApplication($application);
-        $page->setTemplate($template);
-        $manager->persist($page);
-
         $slug = new Slug();
-        $slug->setPage($page);
+        $slug->setTemplate($template);
         $slug->setApplication($application);
         $slug->setSlug('noodvoorziening-corona');
         $slug->setName('noodvoorziening-corona');
-        $manager->persist($page);
+        $manager->persist($slug);
 
     }
 }

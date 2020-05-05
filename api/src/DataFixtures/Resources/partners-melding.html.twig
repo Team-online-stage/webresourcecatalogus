@@ -190,47 +190,41 @@
                 {% endif %}
             </div>
             {% else %}
+                <!-- Uitnodigen partner 2 -->
+                <div class="affa-feature-icon"> <!-- 6 -->
+                    <i class="fas fa-envelope"></i>
+                    <div class="feature-text">
+                        <h4>{% if request.properties.type is defined %}Vraag uw partner ten {{ request.properties.type|capitalize }}{% else %}Nodig uw partner uit{% endif %}
+                            .</h4>
+                        <p>Want dit doet u natuurlijk samen.</p>
+                        {#<p>U kunt via deze knop uw partner laten inloggen om uw verzoek te accepteren.</p>
+                        <br/>
+                        <a href="{{ path('app_default_set',{'slug':'partner','value':null,'forceAssent':true}) }}" class="btn btn-success btn-lg btn-block btn-icon"><i class="far fa-lock"></i> Uw partner laten inloggen</a>
+                        <br/>
+                        #}
+                        <p>Of u partner via bericht ten huwelijk vragen.</p>
 
-                    <!-- Uitnodigen partner 2 -->
-                    <div class="affa-feature-icon"> <!-- 6 -->
-                        <i class="fas fa-envelope"></i>
-                        <div class="feature-text">
-                            <h4>{% if request.properties.type is defined %}Vraag uw partner ten {{ request.properties.type|capitalize }}{% else %}Nodig uw partner uit{% endif %}
-                                .</h4>
-                            <p>Want dit doet u natuurlijk samen.</p>
-                            {% if contact1.emails is defined and contact1.emails is not empty %}
-                            {#<p>U kunt via deze knop uw partner laten inloggen om uw verzoek te accepteren.</p>
-                            <br/>
-                            <a href="{{ path('app_default_set',{'slug':'partner','value':null,'forceAssent':true}) }}" class="btn btn-success btn-lg btn-block btn-icon"><i class="far fa-lock"></i> Uw partner laten inloggen</a>
-                            <br/>
-                            #}
-                            <p>Of u partner via bericht ten huwelijk vragen.</p>
+                        <form method="post" action="{{ path('app_default_post',{'slug':'partner'}) }}"
+                              class="affa-form-contact">
+                            <div class="submit-status"></div> <!-- submit status -->
 
-                            <form method="post" action="{{ path('app_default_post',{'slug':'partner'}) }}"
-                                  class="affa-form-contact">
-                                <div class="submit-status"></div> <!-- submit status -->
+                            <label for="givenName">Voornaam(en) <span class="required">*</span></label>
+                            <input type="text" name="givenName" placeholder="John" required/>
+                            <label for="familyName">Achternaam <span class="required">*</span></label>
+                            <input type="text" name="familyName" placeholder="Do" required/>
+                            <label for="email">Email Adres <span class="required">*</span></label>
+                            <input type="email" name="email" placeholder="john@do.nl" required/>
+                            <label for="telephone">Telefoonnummer</label>
+                            <input type="tel" name="telephone" placeholder="+31 6 12345678"/>
 
-                                <label for="givenName">Voornaam(en) <span class="required">*</span></label>
-                                <input type="text" name="givenName" placeholder="John" required/>
-                                <label for="familyName">Achternaam <span class="required">*</span></label>
-                                <input type="text" name="familyName" placeholder="Do" required/>
-                                <label for="email">Email Adres <span class="required">*</span></label>
-                                <input type="email" name="email" placeholder="john@do.nl" required/>
-                                <label for="telephone">Telefoonnummer</label>
-                                <input type="tel" name="telephone" placeholder="+31 6 12345678"/>
+                            <br/><br/>
 
-                                <br/><br/>
-
-                                <button type="submit" class="btn btn-success btn-lg btn-block btn-icon"><i
-                                        class="far fa-envelope"></i> Per bericht Uitnodigen
-                                </button>
-                            </form>
-                            {% else %}
-                            <p>U moet eerst uw eigen e-mail adres opgeven voordat u uw partner kunt uitnodigen</p>
-                            {% endif %}
-                        </div>
+                            <button type="submit" class="btn btn-success btn-lg btn-block btn-icon"><i
+                                    class="far fa-envelope"></i> Per bericht Uitnodigen
+                            </button>
+                        </form>
                     </div>
-
+                </div>
             {% endif %}
 
         </div>

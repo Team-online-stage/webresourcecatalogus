@@ -20,15 +20,21 @@
             <div class="col-text20 margin-bottom20">
                 <div class="post-heading-left">
                     <h2>Wat is er al gedaan en wat moet er nog gebeuren?</h2>
-                    <p>We kunnen ons goed voorstellen dat er nogal wat op jullie afkomt bij het plannen , daarom hebben we alles op een rij gezet voor jullie. Een handig overzicht van wat er moet gebeuren, maar ook wat er al is gedaan.</p>
-                    <h2>Uw referentie:</h2>
-                    <p>{{ request.reference }}</p>
+                    <p>We kunnen ons goed voorstellen dat er nogal wat op jullie afkomt bij het plannen , daarom hebben
+                        we alles op een rij gezet voor jullie. Een handig overzicht van wat er moet gebeuren, maar ook
+                        wat er al is gedaan.</p>
+
+                    {% if request.reference is defined and request.reference is not empty %}
+                        <br>
+                    <h4>Uw referentie: {{ request.reference }}</h4>
+                    {% endif %}
                     <p><b>Legenda</b><br>
                         <i style="color: red" class="fa fa-exclamation-triangle"></i> Nog te doen <br>
                         <i class="fa fas fa-check"></i> Gedaan
                     </p>
                 </div><!-- /.post-heading-left -->
-                <div class="list-row"><div class="list-col">
+                <div class="list-row">
+                    <div class="list-col">
                         <b>Gedaan:</b>
                         <ul class="list-icon">
 
@@ -121,6 +127,35 @@
                                         </ul>
                                     </li>
                                 {% endfor %}
+                            {% endif %}
+                            {% if request.properties.partners[1] is defined and request.properties.partners[1] is not empty %}
+                                <li>
+                                    {% set assent2 = commonground_resource(request.properties.partners[1]) %}
+                                    {% set contact2 = commonground_resource(assent2.contact) %}
+                                    <b>Partner: {{ contact2.formalName }}</b>
+                                    <ul class="list-icon">
+                                        <li>
+                                            <!-- Partner -->
+                                            <i class="fa {% if assent2.status == "granted" %}fas fa-check{% else %}fa-exclamation-triangle{% endif %}"></i>Status: {{ assent2.status|trans }}
+                                        <li>
+                                        <li>
+                                            <i class="fa fas fa-check"></i>Leeftijd is gecontroleerd
+                                        <li>
+                                        <li>
+                                            <i class="fa fas fa-check"></i>Staat niet onder curatele
+                                        <li>
+                                            {% if request.properties.partners[0] is not defined and request.properties.partners[0] is empty %}
+                                        <li>
+                                            <i style="color: red" class="fa fa-exclamation-triangle"></i>Heeft op dit
+                                            moment geen partner
+                                        <li>
+                                            {% else %}
+                                        <li>
+                                            <i class="fa fas fa-check"></i>Partner is geen familie in de eerste graad
+                                        <li>
+                                            {% endif %}
+                                    </ul>
+                                </li>
                             {% endif %}
                             {% if request.properties.getuigen is defined and request.properties.getuigen is not empty %}
                                 <li>
