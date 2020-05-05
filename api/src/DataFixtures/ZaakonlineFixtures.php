@@ -201,7 +201,7 @@ class ZaakonlineFixtures extends Fixture
         $slug->setApplication($application);
         $slug->setSlug('noodvoorziening-corona');
         $slug->setName('noodvoorziening-corona');
-        $manager->persist($page);
+        $manager->persist($slug);
 
     }
 }
