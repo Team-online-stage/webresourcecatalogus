@@ -111,7 +111,7 @@ class ZaakonlineFixtures extends Fixture
         $application->setDescription('ZaakOnline');
         $application->setDomain('zaakonline.nl');
         $application->setOrganization($utrecht);
-        $manager->persist($utrecht);
+        $manager->persist($application);
 
         // Berichten
 
