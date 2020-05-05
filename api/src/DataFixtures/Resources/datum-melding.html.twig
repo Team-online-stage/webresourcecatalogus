@@ -35,8 +35,8 @@
                     <md-datepicker  ng-model="defaultDate" md-placeholder="Voer datum in" md-open-on-focus="" md-date-filter="availabledates" md-date-locale="dutchDates" md-min-date = "minDate"></md-datepicker>
                 </div>
                 <select name="tijd">
-                    <option value="10:00" {% if request.properties.datum is defined and request.properties.datum is not empty and "10:00" == request.properties.datum|date("H:i", "Europe/Paris") %} selected {% endif %}>10:00</option>
-                    <option value="10:30" {% if request.properties.datum is defined and request.properties.datum is not empty and "10:30" == request.properties.datum|date("H:i", "Europe/Paris") %} selected {% endif %}>10:30</option>
+                    <option value="10:00" {% if request.properties.datum is defined and request.properties.datum is not empty and "10:00" == request.properties.datum|date("H:i") %} selected {% endif %}>10:00</option>
+                    <option value="10:30" {% if request.properties.datum is defined and request.properties.datum is not empty and "10:30" == request.properties.datum|date("H:i") %} selected {% endif %}>10:30</option>
                 </select>
 
                 <button type="submit" class="btn btn-primary btn-icon  btn-block btn-icon" ><i class="fas fa-save"></i> Sla datum op</button>
