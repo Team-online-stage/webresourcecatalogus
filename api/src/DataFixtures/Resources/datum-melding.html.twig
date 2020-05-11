@@ -1,0 +1,97 @@
+{# templates/home/index.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <!-- .row -->
+    <div class="row animation" data-animation="animation-fade-in" data-delay=" {% if app.session.flashbag.peekAll|length > 0 %}3400{%else%}200{% endif %}" >
+
+        <div class="post-heading-center ">
+            <h2>Wanneer wilt u trouwen?</h2>
+        </div>
+
+
+        <div class="col-sm-10 col-md-6 col-sm-offset-1 col-md-offset-0 text-center-sm text-center-xs">
+            <div class="margin-bottom40">
+                <figure class="col-img40 margin-bottom40">
+                    <img src="images/content/elements/Bank.png" alt="Image">
+                </figure>
+            </div>
+        </div>
+
+
+
+        <div class="col-sm-10 col-md-6 col-lg-5 col-sm-offset-1 col-md-offset-0 col-lg-offset-1">
+
+            <div style="background: red; border-radius: 25px; width: 7.5px; height: 7.5px; display: inline-block; margin-top: -3px"></div> Onbeschikbaar <br>
+
+            <div style="background: mediumblue; border-radius: 25px; width: 7.5px; height: 7.5px; display: inline-block; margin-top: -3px"></div> Beschikbaar <br><br>
+
+
+
+            <form method="post" action="{{ path('app_default_post',{'slug':'datum-melding'}) }}" class="affa-form-contact">
+                <div class="submit-status"></div> <!-- submit status -->
+                <div class="dateholder">
+                    <md-datepicker  ng-model="defaultDate" md-placeholder="Voer datum in" md-open-on-focus="" md-date-filter="availabledates" md-date-locale="dutchDates" md-min-date = "minDate"></md-datepicker>
+                </div>
+                <select name="tijd">
+                    <option value="10:00" {% if request.properties.datum is defined and request.properties.datum is not empty and "10:00" == request.properties.datum|date("H:i") %} selected {% endif %}>10:00</option>
+                    <option value="10:30" {% if request.properties.datum is defined and request.properties.datum is not empty and "10:30" == request.properties.datum|date("H:i") %} selected {% endif %}>10:30</option>
+                </select>
+
+                <button type="submit" class="btn btn-primary btn-icon  btn-block btn-icon" ><i class="fas fa-save"></i> Sla datum op</button>
+
+                <input type="text" name="datum" ng-model="defaultDate"  style="background: transparent; border: transparent; color: transparent;">
+                <br><br>
+                <span ng-hide="defaultDate">Kies een datum om door te gaan</span>
+            </form>
+        </div>
+
+    </div>
+    <!-- .row end -->
+
+
+{% endblock %}
+
+{% block javascript %}
+<script>
+angular.module('MyApp',['ngMaterial', 'ngMessages', 'material.svgAssetsCache']).config(function($mdDateLocaleProvider) {
+    $mdDateLocaleProvider.firstDayOfWeek = 1;
+    $mdDateLocaleProvider.months = ['januari', 'februari', 'maart','april','mei','juni','juli','augustus','september','oktober','november','december'];
+    $mdDateLocaleProvider.shortMonths = ['jan', 'feb', 'mar', 'apr', 'mei','jun','jul','aug','sep','okt','nov','dec'];
+    $mdDateLocaleProvider.days = ['zondag','maandag', 'dinsdag', 'woensdag','donderdag','vrijdag','zaterdag'];
+    $mdDateLocaleProvider.shortDays = ['Zo','Ma', 'Di', 'Wo','Do','Vr','Za',];
+    $mdDateLocaleProvider.minDate = '2020-01-30';
+    $mdDateLocaleProvider.formatDate = function(date) {
+        return moment(date).format('DD-MM-YYYY');
+    };
+
+}).controller('AppCtrl', ['$mdDateLocale','$scope', function($mdDateLocale,$scope) {
+    $scope.today = new Date();
+    $scope.minDate = new Date(
+        $scope.today.getFullYear(),
+        $scope.today.getMonth(),
+        $scope.today.getDate()
+    );
+{% if request.properties.datum is defined and request.properties.datum is not empty %}
+$scope.defaultDate = new Date({{ request.properties.datum | date("Y, m, d") }});
+$scope.defaultDate = new Date(
+$scope.defaultDate.getFullYear(),
+$scope.defaultDate.getMonth()-1,
+$scope.defaultDate.getDate()
+)
+{%endif%}
+        	// Excluding dates
+        	//$scope.availabledates = function(date) {
+        	//    var day = date.getDay();
+        	//    return day === 1 || day === 2 || day === 3|| day === 4 ||  day === 5;
+        	//  };
+        }]);
+
+
+        /**
+        Copyright 2016 Google Inc. All Rights Reserved.
+        Use of this source code is governed by an MIT-style license that can be foundin the LICENSE file at https://material.angularjs.org/HEAD/license.
+        **/
+        </script>
+{% endblock %}

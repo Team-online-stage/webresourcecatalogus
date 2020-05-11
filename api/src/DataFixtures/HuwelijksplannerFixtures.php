@@ -13,6 +13,7 @@ use App\Entity\Style;
 use App\Entity\Application;
 use App\Entity\Slug;
 use App\Entity\Template;
+use App\Entity\TemplateGroup;
 use App\Entity\Image;
 
 class HuwelijksplannerFixtures extends Fixture
@@ -238,6 +239,42 @@ class HuwelijksplannerFixtures extends Fixture
         $configuration->setApplication($application);
         $configuration->setConfiguration([]);
         $manager->persist($configuration);
+        // Template groups
+        $id = Uuid::fromString('c434d395-edf1-4614-bf48-58a819f9ac55');
+        $groupPages = new TemplateGroup();
+        $groupPages->setOrganization($utrecht);
+        $groupPages->setApplication($application);
+        $groupPages->setName('Pages');
+        $groupPages->setDescription('Webpages that are presented to visitors');
+        $manager->persist($groupPages);
+        $groupPages->setId($id);
+        $manager->persist($groupPages);
+        $manager->flush();
+        $groupPages = $manager->getRepository('App:TemplateGroup')->findOneBy(['id'=> $id]);
+
+        $id = Uuid::fromString('4849533e-91de-4053-b14e-5aa9f41f58a1');
+        $groupEmails = new TemplateGroup();
+        $groupEmails->setOrganization($utrecht);
+        $groupEmails->setApplication($application);
+        $groupEmails->setName('E-Mails');
+        $groupEmails->setDescription('E-Mails that are send out');
+        $manager->persist($groupEmails);
+        $groupEmails->setId($id);
+        $manager->persist($groupEmails);
+        $manager->flush();
+        $groupEmails = $manager->getRepository('App:TemplateGroup')->findOneBy(['id'=> $id]);
+
+        $id = Uuid::fromString('0608ecac-e1c0-4972-aff3-795136fa0b91');
+        $groupTexts = new TemplateGroup();
+        $groupTexts->setOrganization($utrecht);
+        $groupTexts->setApplication($application);
+        $groupTexts->setName('Texts');
+        $groupTexts->setDescription('Text messages that are send out');
+        $manager->persist($groupTexts);
+        $groupTexts->setId($id);
+        $manager->persist($groupTexts);
+        $manager->flush();
+        $groupTexts = $manager->getRepository('App:TemplateGroup')->findOneBy(['id'=> $id]);
 
         // Berichten
         $id = Uuid::fromString('c20cc285-0246-4bf8-b3d0-781543b03270');
@@ -261,6 +298,10 @@ class HuwelijksplannerFixtures extends Fixture
         $template->setId($id);
         $manager->persist($template);
         $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupTexts);
+        $manager->persist($template);
+        $manager->flush();
 
         $id = Uuid::fromString('e773b161-3636-45a1-8fc2-dd0d4140a9f9');
         $template = new Template();
@@ -270,6 +311,10 @@ class HuwelijksplannerFixtures extends Fixture
         $template->setTemplateEngine('twig');
         $manager->persist($template);
         $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupTexts);
         $manager->persist($template);
         $manager->flush();
 
@@ -283,6 +328,10 @@ class HuwelijksplannerFixtures extends Fixture
         $template->setId($id);
         $manager->persist($template);
         $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupTexts);
+        $manager->persist($template);
+        $manager->flush();
 
         $id = Uuid::fromString('a36433e4-3c9b-4df5-bf85-1a80bd2ae2ce');
         $template = new Template();
@@ -294,6 +343,10 @@ class HuwelijksplannerFixtures extends Fixture
         $template->setId($id);
         $manager->persist($template);
         $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupTexts);
+        $manager->persist($template);
+        $manager->flush();
 
         $id = Uuid::fromString('88fefee9-474c-4713-a55c-0ca460882d8d');
         $template = new Template();
@@ -303,6 +356,10 @@ class HuwelijksplannerFixtures extends Fixture
         $template->setTemplateEngine('twig');
         $manager->persist($template);
         $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupTexts);
         $manager->persist($template);
         $manager->flush();
 
@@ -318,6 +375,9 @@ class HuwelijksplannerFixtures extends Fixture
         $manager->persist($template);
         $manager->flush();
         $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
 
         $slug = new Slug();
         $slug->setTemplate($template);
@@ -338,6 +398,13 @@ class HuwelijksplannerFixtures extends Fixture
         $manager->persist($template);
         $manager->flush();
         $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
 
         $slug = new Slug();
         $slug->setTemplate($template);
@@ -347,6 +414,7 @@ class HuwelijksplannerFixtures extends Fixture
         $manager->persist($slug);
 
         // Babs voor een dag
+        ///
         $template = new Template();
         $template->setName('BABS voor een dag');
         $template->setDescription('BABS voor een dag');
@@ -473,6 +541,9 @@ class HuwelijksplannerFixtures extends Fixture
         $manager->persist($template);
         $manager->flush();
         $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
 
         $slug = new Slug();
         $slug->setTemplate($template);
@@ -493,6 +564,9 @@ class HuwelijksplannerFixtures extends Fixture
         $manager->persist($template);
         $manager->flush();
         $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
 
         $slug = new Slug();
         $slug->setTemplate($template);
@@ -513,6 +587,9 @@ class HuwelijksplannerFixtures extends Fixture
         $manager->persist($template);
         $manager->flush();
         $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
 
         $slug = new Slug();
         $slug->setTemplate($template);
@@ -533,6 +610,9 @@ class HuwelijksplannerFixtures extends Fixture
         $manager->persist($template);
         $manager->flush();
         $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
 
         $slug = new Slug();
         $slug->setTemplate($template);
@@ -553,6 +633,9 @@ class HuwelijksplannerFixtures extends Fixture
         $manager->persist($template);
         $manager->flush();
         $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
 
         $slug = new Slug();
         $slug->setTemplate($template);
@@ -572,6 +655,9 @@ class HuwelijksplannerFixtures extends Fixture
         $manager->persist($template);
         $manager->flush();
         $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
 
         $slug = new Slug();
         $slug->setTemplate($template);
@@ -591,6 +677,9 @@ class HuwelijksplannerFixtures extends Fixture
         $manager->persist($template);
         $manager->flush();
         $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
 
         $slug = new Slug();
         $slug->setTemplate($template);
@@ -610,6 +699,9 @@ class HuwelijksplannerFixtures extends Fixture
         $manager->persist($template);
         $manager->flush();
         $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
 
         $slug = new Slug();
         $slug->setTemplate($template);
@@ -630,6 +722,9 @@ class HuwelijksplannerFixtures extends Fixture
         $manager->persist($template);
         $manager->flush();
         $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
 
         $slug = new Slug();
         $slug->setTemplate($template);
@@ -650,6 +745,9 @@ class HuwelijksplannerFixtures extends Fixture
         $manager->persist($template);
         $manager->flush();
         $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
 
         $slug = new Slug();
         $slug->setTemplate($template);
@@ -670,6 +768,9 @@ class HuwelijksplannerFixtures extends Fixture
         $manager->persist($template);
         $manager->flush();
         $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
 
         $slug = new Slug();
         $slug->setTemplate($template);
@@ -690,6 +791,9 @@ class HuwelijksplannerFixtures extends Fixture
         $manager->persist($template);
         $manager->flush();
         $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
 
         $slug = new Slug();
         $slug->setTemplate($template);
@@ -710,12 +814,38 @@ class HuwelijksplannerFixtures extends Fixture
         $manager->persist($template);
         $manager->flush();
         $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
 
         $slug = new Slug();
         $slug->setTemplate($template);
         $slug->setName('getuige');
         $slug->setApplication($application);
         $slug->setSlug('getuige');
+        $manager->persist($slug);
+
+        // Getuigen
+        $id = Uuid::fromString('296e1f09-3b03-40de-8d8d-b5ff2aca240f');
+        $template = new Template();
+        $template->setName('Getuigen');
+        $template->setDescription('Pagina waarop getuigen kunnen worden toegevoegd aan een melding voorgenomen huwelijk');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/getuigen-melding.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setName('getuige-melding');
+        $slug->setApplication($application);
+        $slug->setSlug('getuige-melding');
         $manager->persist($slug);
 
         // Naamsgerbuik
@@ -730,6 +860,9 @@ class HuwelijksplannerFixtures extends Fixture
         $manager->persist($template);
         $manager->flush();
         $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
 
         $slug = new Slug();
         $slug->setTemplate($template);
@@ -750,6 +883,9 @@ class HuwelijksplannerFixtures extends Fixture
         $manager->persist($template);
         $manager->flush();
         $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
 
         $slug = new Slug();
         $slug->setTemplate($template);
@@ -770,6 +906,9 @@ class HuwelijksplannerFixtures extends Fixture
         $manager->persist($template);
         $manager->flush();
         $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
 
         $slug = new Slug();
         $slug->setTemplate($template);
@@ -790,6 +929,9 @@ class HuwelijksplannerFixtures extends Fixture
         $manager->persist($template);
         $manager->flush();
         $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
 
         $slug = new Slug();
         $slug->setTemplate($template);
@@ -810,6 +952,9 @@ class HuwelijksplannerFixtures extends Fixture
         $manager->persist($template);
         $manager->flush();
         $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
 
         $slug = new Slug();
         $slug->setTemplate($template);
@@ -838,6 +983,26 @@ class HuwelijksplannerFixtures extends Fixture
         $slug->setName('partner');
         $manager->persist($slug);
 
+        // Partners
+        //$id = Uuid::fromString('1370d87a-fe90-4826-a210-fd8e1c065576');
+        $template = new Template();
+        $template->setName('Partners');
+        $template->setDescription('De pagina waarop je partners kan toevoegen aan een melding voorgenomen huwelijk');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/partners-melding.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        //$manager->persist($template);
+        //$template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        //$template= $manager->getRepository('App:Template')->findOneBy(array('id'=> $id));
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setSlug('partner-melding');
+        $slug->setName('partner-melding');
+        $manager->persist($slug);
+
         // Datum
         //$id = Uuid::fromString('1370d87a-fe90-4826-a210-fd8e1c065576');
         $template = new Template();
@@ -858,6 +1023,26 @@ class HuwelijksplannerFixtures extends Fixture
         $slug->setName('datum');
         $manager->persist($slug);
 
+        // Datum
+        //$id = Uuid::fromString('1370d87a-fe90-4826-a210-fd8e1c065576');
+        $template = new Template();
+        $template->setName('Datum');
+        $template->setDescription('De pagina waarop je een datum kan selecteren bij de melding voorgenomen huwelijk');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/datum-melding.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        //$manager->persist($template);
+        //$template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        //$template= $manager->getRepository('App:Template')->findOneBy(array('id'=> $id));
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setSlug('datum-melding');
+        $slug->setName('datum-melding');
+        $manager->persist($slug);
+        $manager->flush();
         // Betalen
         //$id = Uuid::fromString('1370d87a-fe90-4826-a210-fd8e1c065576');
         $template = new Template();
@@ -890,6 +1075,9 @@ class HuwelijksplannerFixtures extends Fixture
         $manager->persist($template);
         $manager->flush();
         $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
 
         $slug = new Slug();
         $slug->setTemplate($template);
@@ -909,6 +1097,9 @@ class HuwelijksplannerFixtures extends Fixture
         $manager->persist($template);
         $manager->flush();
         $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
 
         $slug = new Slug();
         $slug->setTemplate($template);
@@ -929,6 +1120,9 @@ class HuwelijksplannerFixtures extends Fixture
         $manager->persist($template);
         $manager->flush();
         $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
 
         $slug = new Slug();
         $slug->setTemplate($template);
@@ -948,6 +1142,9 @@ class HuwelijksplannerFixtures extends Fixture
         $manager->persist($template);
         $manager->flush();
         $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
 
         $slug = new Slug();
         $slug->setTemplate($template);
@@ -968,6 +1165,9 @@ class HuwelijksplannerFixtures extends Fixture
         $manager->persist($template);
         $manager->flush();
         $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
 
         $slug = new Slug();
         $slug->setTemplate($template);
@@ -987,6 +1187,9 @@ class HuwelijksplannerFixtures extends Fixture
         $manager->persist($template);
         $manager->flush();
         $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
 
         $slug = new Slug();
         $slug->setTemplate($template);
@@ -1026,6 +1229,9 @@ class HuwelijksplannerFixtures extends Fixture
         $manager->persist($template);
         $manager->flush();
         $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
 
         $slug = new Slug();
         $slug->setTemplate($template);
@@ -1058,10 +1264,14 @@ class HuwelijksplannerFixtures extends Fixture
         $template->setName('E-mail instemming');
         $template->setTitle('Instemming voor een huwelijk');
         $template->setDescription('');
-        $template->setContent('Beste {{ contact.givenName }},<br><br>Uw instemming is gevraagd bij een instemmingsverzoek.<br><br><a href="https://irc-ui.huwelijksplanner.online/assents/{{ assent[\'id\'] }}">Klik hier</a> om op dit verzoek te reageren.<br><br>Met vriendelijke groet,<br><br>Gemeente Utrecht');
+        $template->setContent('Beste {{ contact.givenName }},<br><br>Uw instemming is gevraagd bij een instemmingsverzoek.<br><br><a href="https://irc-ui.dev.huwelijksplanner.online/assents/{{ assent[\'id\'] }}">Klik hier</a> om op dit verzoek te reageren.<br><br>Met vriendelijke groet,<br><br>Gemeente Utrecht');
         $template->setTemplateEngine('twig');
         $manager->persist($template);
         $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupEmails);
         $manager->persist($template);
         $manager->flush();
 
@@ -1074,6 +1284,10 @@ class HuwelijksplannerFixtures extends Fixture
         $template->setTemplateEngine('twig');
         $manager->persist($template);
         $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupEmails);
         $manager->persist($template);
         $manager->flush();
     }
