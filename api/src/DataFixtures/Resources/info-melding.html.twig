@@ -1,0 +1,87 @@
+{# templates/home/index.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <!-- .row -->
+    <div class="row animation" data-animation="animation-fade-in"
+         data-delay=" {% if app.session.flashbag.peekAll|length > 0 %}3400{% else %}200{% endif %}">
+
+        <div class="col-sm-12 col-md-8 col-sm-offset-1 col-md-offset-0 text-center-sm text-center-xs"
+             style="padding-left: 30px" ng-hide="locatie">
+            <div class="margin-bottom40">
+
+                <form action="{{ path('app_default_slug') }}" method="post">
+
+                    <div class="post-heading-left text-center-sm text-center-xs" ng-hide="locatie">
+                        <h2>Melding voorgenomen huwelijk</h2>
+                    </div>
+
+                    <ul>
+                        <li>Goed om te weten: alles op deze pagina over trouwen/huwelijk, geldt ook voor geregistreerd
+                            partnerschap.
+                        </li>
+
+                        <li>Om te trouwen of uw partnerschap te registreren, moet u eerst uw voorgenomen huwelijk
+                            melden (vroeger
+                            ‘ondertrouw’ genoemd). U doet dit bij de gemeente waar u wilt trouwen. Tussen de melding en
+                            het huwelijk
+                            moet minimaal 14 dagen en mag maximaal 1 jaar zitten. Zorg dus dat u uw huwelijk ruim op
+                            tijd meldt.
+                        </li>
+
+                        <li>Is de melding van uw voorgenomen huwelijk in orde, dan ontvangt u van ons per mail een
+                            bericht.
+                            Is de online melding niet volledig? Dan nemen wij contact met u op. We vertellen u dan wat u
+                            nog moet doen.
+                        </li>
+
+                        <li>Er zijn een aantal voorwaarden waar u en uw partner aan moeten voldoen om een Melding
+                            Voorgenomen Huwelijk
+                            goed te laten keuren. Door u melding te doen verklaart u het volgende:
+
+                            <input type="checkbox" id="inNetherlands" required>
+                            <label for="inNetherlands">Ik en/of mijn partner wonen minimaal een half jaar in
+                                Nederland.</label>
+
+                            <input type="checkbox" id="areAdults" required>
+                            <label for="areAdults">Ik verklaar dat ik en mijn partner allebei 18 jaar of ouder zijn op
+                                het moment van trouwen of registreren partnerschap.</label>
+
+                            <input type="checkbox" id="notMarried" required>
+                            <label for="notMarried">Ik verklaar niet al getrouwd te zijn of een geregistreerd
+                                partnerschap te hebben.</label>
+
+                            <input type="checkbox" id="notFamily" required>
+                            <label for="notFamily">Ik verklaar geen directe familie te zijn van mijn partner.</label>
+
+                            <input type="checkbox" id="noMisuse" required>
+                            <label for="nomisuse">Ik verklaar dat ik niet trouw om een verblijfsvergunning te
+                                verkrijgen.</label>
+
+                            <input type="checkbox" id="noReceivership" required>
+                            <label for="noReceivership">Ik verklaar dat ik of mijn partner niet onder curatele
+                                staan.</label>
+                        </li>
+
+                        <li>Kunt u niet aan één of meerder van bovenstaande eisen voldoen en wilt u toch uw melding
+                            voorgenomen
+                            huwelijk doen? Belt u dan met onze servicebalie: 14030.
+                        </li>
+                    </ul>
+
+
+                    <button class="btn btn-succes btn-icon col-md-6" name="meetsRequirements" value="true"
+                            type="submit">
+                        <i class="fas fa-share-square"></i>
+                        Doorgaan
+                    </button>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

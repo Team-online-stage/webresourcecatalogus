@@ -1043,6 +1043,24 @@ class HuwelijksplannerFixtures extends Fixture
         $slug->setName('datum-melding');
         $manager->persist($slug);
         $manager->flush();
+
+        //  Info melding indienen
+        $template = new Template();
+        $template->setName('Info');
+        $template->setDescription('Template waar informate over het indienen van een melding wordt weergeven.');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/info-melding.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setSlug('info-melding');
+        $slug->setName('info-melding');
+        $manager->persist($slug);
+        $manager->flush();
+
         // Betalen
         //$id = Uuid::fromString('1370d87a-fe90-4826-a210-fd8e1c065576');
         $template = new Template();
