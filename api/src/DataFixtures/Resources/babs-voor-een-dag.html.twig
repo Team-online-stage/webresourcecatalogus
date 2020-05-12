@@ -6,15 +6,18 @@
     <form method="post" action="{{ path('app_default_post',{'slug':'babs-voor-een-dag'}) }}"
           class="affa-form-contact">
         <div class="submit-status"></div> <!-- submit status -->
-
+        {% if request is defined and request is not null and request.properties.gegevens is defined and request.properties.gegevens is not null %}
+            {% set assent = commonground_resource(request.properties.gegevens.0) %}
+            {% set contact = commonground_resource(assent.contact) %}
+        {% endif %}
         <label for="givenName">Naam <span class="required">*</span></label>
-        <input type="text" name="givenName" placeholder="John" required/>
+        <input type="text" name="givenName" placeholder="John" required {% if contact is defined and contact is not null and contact.givenName is defined %}value="{{ contact.givenName }}"{% endif %} />
         <label for="familyName">Achternaam <span class="required">*</span></label>
-        <input type="text" name="familyName" placeholder="Do" required/>
+        <input type="text" name="familyName" placeholder="Do" required {% if contact is defined and contact is not null and contact.givenName is defined %}value="{{ contact.familyName }}"{% endif %}/>
         <label for="email">Email Adres <span class="required">*</span></label>
-        <input type="email" name="email" placeholder="john@do.nl" required/>
+        <input type="email" name="email" placeholder="john@do.nl" required {% if contact is defined and contact is not null and contact.emails.0 is defined and contact.emails.0 is not null %}value="{{ contact.emails.0.email }}"{% endif %}/>
         <label for="telephone">Telefoonnummer</label>
-        <input type="tel" name="telephone" placeholder="+31 6 12345678"/>
+        <input type="tel" name="telephone" placeholder="+31 6 12345678" {% if contact is defined and contact is not null and contact.telephones.0 is defined and contact.telephones.0 is not null %}value="{{ contact.telephones.0.telphone }}"{% endif %}/>
 
         <br/><br/>
 
