@@ -1,5 +1,7 @@
 {# templates/home/index.html.twig #}
 
+{# id template: ba71c65e-7a82-449e-af15-947613ca6caa #}
+
 {% extends 'base.html.twig' %}
 
 {% block body %}
@@ -355,7 +357,8 @@
                                     indienen
                                 </a>
                             {% endif %}
-                            <a style="margin-left: 12.5% !important;" href="{{ path('app_default_cancelrequest') }}"
+                            <a style="margin-left: 12.5% !important;" href="#annuleerVerzoek" data-toggle="modal"
+                               data-target="#annuleerVerzoek"
                                class="btn btn-danger btn-icon col-md-8">
                                 <i class="fas fa-share-square"></i>
                                 Annuleer {% if request.properties.ceremonie is defined %}{{ request.properties.ceremonie }}{% else %}aanvraag{% endif %}
@@ -367,5 +370,32 @@
 
         </div><!-- /.col -->
     </div><!-- /.row -->
+
+    {# Modals #}
+
+    <div class="modal fade" style="text-align: center" id="annuleerVerzoek" tabindex="-1"
+         role="dialog"
+         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog model-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel"><b>Verzoek annuleren</b></h5>
+                    <button type="button" class="close" data-dismiss="modal"
+                            aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body p-4">
+                    <form method="post" action="{{ path('app_default_cancelrequest') }}">
+                        <p><b>Weet u zeker dat u uw verzoek wilt annuleren?</b></p>
+                        <p style="color:lightgray">Niet ingediende verzoeken worden definitief verwijderd.</p>
+                        <button type="submit" class="btn btn-danger mx-auto m-4">
+                            Annuleren
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
 {% endblock %}

@@ -13,36 +13,34 @@
 
             <h3>Gegevens locatie eigenaar:</h3>
 
-            <label for="name">Voornaam <span class="required">*</span></label>
-            <input type="text" name="firstName" placeholder="Museum Sonnenborgh" required/>
-
-            <label for="name">Achternaam <span class="required">*</span></label>
-            <input type="text" name="firstName" placeholder="Museum Sonnenborgh" required/>
-
+            <label for="givenName">Naam <span class="required">*</span></label>
+            <input type="text" name="givenName" placeholder="John" required {% if request.properties.gegevens is defined and request.properties.gegevens is not null and request.properties.gegevens.firstName is defined %}value="{{ request.properties.gegevens.firstName }}"{% endif %} />
+            <label for="familyName">Achternaam <span class="required">*</span></label>
+            <input type="text" name="familyName" placeholder="Do" required {% if request.properties.gegevens is defined and request.properties.gegevens is not null and request.properties.gegevens.givenName is defined %}value="{{ request.properties.gegevens.familyName }}"{% endif %}/>
             <label for="email">Email Adres <span class="required">*</span></label>
-            <input type="email" name="email" placeholder="john@do.nl" required/>
-
+            <input type="email" name="email" placeholder="john@do.nl" required {% if request.properties.gegevens is defined and request.properties.gegevens is not null and request.properties.gegevens.email is defined and request.properties.gegevens.email is not null %}value="{{ request.properties.gegevens.email }}"{% endif %}/>
             <label for="telephone">Telefoonnummer</label>
-            <input type="tel" name="telephone" placeholder="+31 6 12345678"/>
+            <input type="tel" name="telephone" placeholder="+31 6 12345678" {% if request.properties.gegevens is defined and request.properties.gegevens is not null and request.properties.gegevens.telephone is defined and request.properties.gegevens.telephone is not null %}value="{{ request.properties.gegevens.telephone }}"{% endif %}/>
+
 
             <br>
 
             <h3>Gegevens locatie</h3>
 
             <label for="street">Straat<span class="required">*</span></label>
-            <input type="text" name="street" placeholder="Appelstraat" required/>
+            <input type="text" name="street" placeholder="Appelstraat" required {% if request.properties.gegevens is defined and request.properties.gegevens is not null and request.properties.gegevens.street is defined %}value="{{ request.properties.gegevens.street }}"{% endif %}/>
 
             <label for="houseNumber">Nummer<span class="required">*</span></label>
-            <input type="text" name="houseNumber" placeholder="7" required/>
+            <input type="text" name="houseNumber" placeholder="7" required {% if request.properties.gegevens is defined and request.properties.gegevens is not null and request.properties.gegevens.houseNumber is defined %}value="{{ request.properties.gegevens.houseNumber }}"{% endif %}/>
 
             <label for="houseNumberSuffix">Toevoeging</label>
-            <input type="text" name="houseNumberSuffix" placeholder="A"/>
+            <input type="text" name="houseNumberSuffix" placeholder="A" {% if request.properties.gegevens is defined and request.properties.gegevens is not null and request.properties.gegevens.houseNumberSuffix is defined %}value="{{ request.properties.gegevens.houseNumberSuffix }}"{% endif %}/>
 
             <label for="locality">Plaats<span class="required">*</span></label>
-            <input type="text" name="locality" placeholder="Utrecht" required/>
+            <input type="text" name="locality" placeholder="Utrecht" required {% if request.properties.gegevens is defined and request.properties.gegevens is not null and request.properties.gegevens.locality is defined %}value="{{ request.properties.gegevens.locality }}"{% endif %}/>
 
             <label for="postalCode">Postcode<span class="required">*</span></label>
-            <input type="text" name="postalCode" placeholder="1234AB" required/>
+            <input type="text" name="postalCode" placeholder="1234AB" required {% if request.properties.gegevens is defined and request.properties.gegevens is not null and request.properties.gegevens.postalCode is defined %}value="{{ request.properties.gegevens.postalCode }}"{% endif %}/>
 
             <button type="submit" class="btn btn-success btn-lg btn-block btn-icon"><i
                     class="far fa-envelope"></i> Opslaan
