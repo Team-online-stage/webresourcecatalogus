@@ -1,4 +1,4 @@
-{# templates/home/index.html.twig id: e4bb2984-ae8c-4fd7-a1ae-03256d20b3ab #}
+{# templates/home/index.html.twig id: ed2aa2c4-abd5-41fa-ac5d-e30408e7f466 #}
 
 {% extends 'base.html.twig' %}
 
@@ -75,6 +75,17 @@
             <b>Gedaan:</b>
             <ul class="list-icon">
 
+                {% if request.properties.info.meetsRequirements is defined and request.properties.info.meetsRequirements is not empty %}
+                    <li><b>Voorwaarden</b>
+                        <ul class="list-icon">
+                            <li>
+                                <!--  Trouwdatum -->
+                                <i class="fa fas fa-check"></i> Geaccepteerd
+                            </li>
+                        </ul>
+                    </li>
+                {% endif %}
+
                 {% if request.properties.datum is defined and request.properties.datum is not empty %}
                     <li><b>Datum</b>
                         <ul class="list-icon">
@@ -120,6 +131,20 @@
         <div class="list-col">
             <b>Nog te doen:</b>
             <ul class="list-icon">
+
+                {% if request.properties.info.meetsRequirements is not defined or request.properties.info.meetsRequirements is empty %}
+                    <li><b>Voorwaarden</b>
+                        <ul class="list-icon">
+                            <li>
+                                <!--  Trouwdatum -->
+                                <i style="color: red" class="fas fa-exclamation-triangle"></i> Voorwaarden nog niet geaccepteerd, u
+                                kunt deze <a
+                                    href="{{ path('app_default_slug',{'slug':'datum-melding'}) }} ">hier</a>
+                                lezen en accpeteren.
+                            </li>
+                        </ul>
+                    </li>
+                {% endif %}
 
                 {% if request.properties.datum is not defined or request.properties.datum is empty %}
                     <li><b>Datum</b>

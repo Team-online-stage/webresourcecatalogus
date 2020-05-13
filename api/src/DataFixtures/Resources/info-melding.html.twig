@@ -1,4 +1,4 @@
-{# templates/home/index.html.twig #}
+{# templates/home/index.html.twig id: a22e107c-03fd-4673-adc5-802e0d7cf69e #}
 
 {% extends 'base.html.twig' %}
 
@@ -7,11 +7,11 @@
     <div class="row animation" data-animation="animation-fade-in"
          data-delay=" {% if app.session.flashbag.peekAll|length > 0 %}3400{% else %}200{% endif %}">
 
-        <div class="col-sm-12 col-md-8 col-sm-offset-1 col-md-offset-0 text-center-sm text-center-xs"
+        <div class="col-sm-12 col-md-12 col-sm-offset-1 col-md-offset-0 text-center-sm text-center-xs"
              style="padding-left: 30px" ng-hide="locatie">
             <div class="margin-bottom40">
 
-                <form action="{{ path('app_default_slug') }}" method="post">
+                <form action="{{ path('app_default_post',{'slug':'info-melding'}) }}" method="post">
 
                     <div class="post-heading-left text-center-sm text-center-xs" ng-hide="locatie">
                         <h2>Melding voorgenomen huwelijk</h2>
@@ -22,6 +22,8 @@
                             partnerschap.
                         </li>
 
+                        <br>
+
                         <li>Om te trouwen of uw partnerschap te registreren, moet u eerst uw voorgenomen huwelijk
                             melden (vroeger
                             ‘ondertrouw’ genoemd). U doet dit bij de gemeente waar u wilt trouwen. Tussen de melding en
@@ -30,39 +32,45 @@
                             tijd meldt.
                         </li>
 
+                        <br>
+
                         <li>Is de melding van uw voorgenomen huwelijk in orde, dan ontvangt u van ons per mail een
                             bericht.
                             Is de online melding niet volledig? Dan nemen wij contact met u op. We vertellen u dan wat u
                             nog moet doen.
                         </li>
 
+                        <br>
+
                         <li>Er zijn een aantal voorwaarden waar u en uw partner aan moeten voldoen om een Melding
                             Voorgenomen Huwelijk
-                            goed te laten keuren. Door u melding te doen verklaart u het volgende:
+                            goed te laten keuren. Door u melding te doen verklaart u het volgende:<br>
 
-                            <input type="checkbox" id="inNetherlands" required>
-                            <label for="inNetherlands">Ik en/of mijn partner wonen minimaal een half jaar in
-                                Nederland.</label>
 
-                            <input type="checkbox" id="areAdults" required>
-                            <label for="areAdults">Ik verklaar dat ik en mijn partner allebei 18 jaar of ouder zijn op
-                                het moment van trouwen of registreren partnerschap.</label>
+                            <label for="inNetherlands"><input type="checkbox" id="inNetherlands" required {% if request.properties.info.meetsRequirements is defined %} checked {% endif %}> Ik en/of mijn partner wonen minimaal een half jaar in
+                                Nederland.</label><br>
 
-                            <input type="checkbox" id="notMarried" required>
-                            <label for="notMarried">Ik verklaar niet al getrouwd te zijn of een geregistreerd
-                                partnerschap te hebben.</label>
 
-                            <input type="checkbox" id="notFamily" required>
-                            <label for="notFamily">Ik verklaar geen directe familie te zijn van mijn partner.</label>
+                            <label for="areAdults"><input type="checkbox" id="areAdults" required {% if request.properties.info.meetsRequirements is defined %} checked {% endif %}> Ik verklaar dat ik en mijn partner allebei 18 jaar of ouder zijn op
+                                het moment van trouwen of registreren partnerschap.</label><br>
 
-                            <input type="checkbox" id="noMisuse" required>
-                            <label for="nomisuse">Ik verklaar dat ik niet trouw om een verblijfsvergunning te
-                                verkrijgen.</label>
 
-                            <input type="checkbox" id="noReceivership" required>
-                            <label for="noReceivership">Ik verklaar dat ik of mijn partner niet onder curatele
+                            <label for="notMarried"><input type="checkbox" id="notMarried" required {% if request.properties.info.meetsRequirements is defined %} checked {% endif %}> Ik verklaar niet al getrouwd te zijn of een geregistreerd
+                                partnerschap te hebben.</label><br>
+
+
+                            <label for="notFamily"><input type="checkbox" id="notFamily" required {% if request.properties.info.meetsRequirements is defined %} checked {% endif %}> Ik verklaar geen directe familie te zijn van mijn partner.</label><br>
+
+
+                            <label for="nomisuse"><input type="checkbox" id="noMisuse" required {% if request.properties.info.meetsRequirements is defined %} checked {% endif %}> Ik verklaar dat ik niet trouw om een verblijfsvergunning te
+                                verkrijgen.</label><br>
+
+
+                            <label for="noReceivership"><input type="checkbox" id="noReceivership" required {% if request.properties.info.meetsRequirements is defined %} checked {% endif %}> Ik verklaar dat ik of mijn partner niet onder curatele
                                 staan.</label>
                         </li>
+
+                        <br>
 
                         <li>Kunt u niet aan één of meerder van bovenstaande eisen voldoen en wilt u toch uw melding
                             voorgenomen
@@ -70,8 +78,9 @@
                         </li>
                     </ul>
 
+                    <br>
 
-                    <button class="btn btn-succes btn-icon col-md-6" name="meetsRequirements" value="true"
+                    <button class="btn btn-succes btn-icon col-md-6 col-md-offset-3" name="meetsRequirements" value="true"
                             type="submit">
                         <i class="fas fa-share-square"></i>
                         Doorgaan
