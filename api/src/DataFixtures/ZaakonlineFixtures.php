@@ -45,6 +45,19 @@ class ZaakonlineFixtures extends Fixture
     	$manager->flush();
     	$utrecht= $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
 
+    	// Utrecht
+    	$id = Uuid::fromString('4f387d0e-a2e5-44c0-9902-c31b63a8ee36');
+    	$utrecht = new Organization();
+    	$utrecht->setName('\'s-Hertogenbosch');
+    	$utrecht->setDescription('Gemeente \'s-Hertogenbosch');
+    	$utrecht->setRsin('');
+    	$utrecht->setContact('https://cc.zaakonline.nl/organizations/95c3da92-b7d3-4ea0-b6d4-3bc24944e622');
+    	$manager->persist($utrecht);
+    	$utrecht->setId($id);
+    	$manager->persist($utrecht);
+    	$manager->flush();
+    	$utrecht= $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
+
     	$favicon = new Image();
     	$favicon->setName('VNG Favicon');
     	$favicon->setDescription('Favicon VNG');
