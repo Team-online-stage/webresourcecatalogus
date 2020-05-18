@@ -186,53 +186,73 @@ parameters:
     # LocatieComponent
     env(APP_COMMONGROUND_LC_LOCATION): 'https://lc.%env(APP_DOMAIN)%'
     env(APP_COMMONGROUND_LC_APIKEY): '%env(APP_COMMONGROUND_KEY)%'
+    
     # VerzoekTypeComponent
     env(APP_COMMONGROUND_VTC_LOCATION): 'https://vtc.%env(APP_DOMAIN)%'
     env(APP_COMMONGROUND_VTC_APIKEY): '%env(APP_COMMONGROUND_KEY)%'
+    
     # VerzoekRegistratieComponent
     env(APP_COMMONGROUND_VRC_LOCATION): 'https://vrc.%env(APP_DOMAIN)%'
     env(APP_COMMONGROUND_VRC_APIKEY): '%env(APP_COMMONGROUND_KEY)%'
+    
     # BetaalService
     env(APP_COMMONGROUND_BC_LOCATION): 'https://bc.%env(APP_DOMAIN)%'
     env(APP_COMMONGROUND_BC_APIKEY): '%env(APP_COMMONGROUND_KEY)%'
+    
     # BasisRegistratiePersonen
     env(APP_COMMONGROUND_BRP_LOCATION): 'https://brp.%env(APP_DOMAIN)%'
     env(APP_COMMONGROUND_BRP_APIKEY): '%env(APP_COMMONGROUND_KEY)%'
+    
     # BasisAdressenGemeenten
     env(APP_COMMONGROUND_BAG_LOCATION): 'https://bag.basisregistraties.overheid.nl/api/v1/'
     env(APP_COMMONGROUND_BAG_APIKEY): '%env(APP_COMMONGROUND_KEY)%'
+    
     # KamerVanKoophandel
     env(APP_COMMONGROUND_KVK_LOCATION): 'https://kvk.%env(APP_DOMAIN)%'
     env(APP_COMMONGROUND_KVK_APIKEY): '%env(APP_COMMONGROUND_KEY)%'
     common_ground.kvk.location: '%env(APP_COMMONGROUND_KVK_LOCATION)%'
     common_ground.kvk.apikey: '%env(APP_COMMONGROUND_KVK_APIKEY)%'
+    
     # DienstWegverkeer
     env(APP_COMMONGROUND_RDW_LOCATION): 'https://rdw.%env(APP_DOMAIN)%'
     env(APP_COMMONGROUND_RDW_APIKEY): '%env(APP_COMMONGROUND_KEY)%'
+    
     # BerichtenService
     env(APP_COMMONGROUND_BS_LOCATION): 'https://bs.%env(APP_DOMAIN)%'
     env(APP_COMMONGROUND_BS_APIKEY): '%env(APP_COMMONGROUND_KEY)%'
+    
     # DashboardComponent
     env(APP_COMMONGROUND_DB_LOCATION): 'https://db.%env(APP_DOMAIN)%'
     env(APP_COMMONGROUND_DB_APIKEY): '%env(APP_COMMONGROUND_KEY)%'
+    
     # ZaakAfhandelComponent
     env(APP_COMMONGROUND_ZAC_LOCATION): 'https://zac.%env(APP_DOMAIN)%'
     env(APP_COMMONGROUND_ZAC_APIKEY): '%env(APP_COMMONGROUND_KEY)%'
+    
     # ProcesComponent
     env(APP_COMMONGROUND_PC_LOCATION): 'https://pc.%env(APP_DOMAIN)%'
     env(APP_COMMONGROUND_PC_APIKEY): '%env(APP_COMMONGROUND_KEY)%'
+    
     # UserInterface
-    env(APP_COMMONGROUND_UI_LOCATION): 'https://ui.%env(APP_DOMAIN)%'
+    env(APP_COMMONGROUND_UI_LOCATION): 'https://%env(APP_DOMAIN)%'
     env(APP_COMMONGROUND_UI_APIKEY): '%env(APP_COMMONGROUND_KEY)%'
+    
+    # UserInterface
+    env(APP_COMMONGROUND_IRC_UI_LOCATION): 'https://irc-ui.%env(APP_DOMAIN)%'
+    env(APP_COMMONGROUND_IRC_UI_APIKEY): '%env(APP_COMMONGROUND_KEY)%'
+    
     #a AuthenticatieComponent
     env(APP_COMMONGROUND_AUTH_LOCATION): 'https://auth.%env(APP_DOMAIN)%'
     env(APP_COMMONGROUND_AUTH_APIKEY): '%env(APP_COMMONGROUND_KEY)%'
+    
     # DocumentManagmentService
     env(APP_COMMONGROUND_DMS_LOCATION): 'https://dms.%env(APP_DOMAIN)%'
     env(APP_COMMONGROUND_DMS_APIKEY): '%env(APP_COMMONGROUND_KEY)%'
+    
     #n nlx-in
     env(APP_COMMONGROUND_NLX_IN_LOCATION): 'https://nlx-in.%env(APP_DOMAIN)%'
     env(APP_COMMONGROUND_NLX_IN_APIKEY): '%env(APP_COMMONGROUND_KEY)%'
+    
     # nlx-out
     env(APP_COMMONGROUND_NLX_OUT_LOCATION): 'https://nlx-out.%env(APP_DOMAIN)%'
     env(APP_COMMONGROUND_NLX_OUT_APIKEY): '%env(APP_COMMONGROUND_KEY)%'
@@ -346,6 +366,9 @@ parameters:
         irc:
             location: '%env(APP_COMMONGROUND_IRC_LOCATION)%'
             apikey: '%env(APP_COMMONGROUND_IRC_APIKEY)%'
+        irc-ui:
+            location: '%env(APP_COMMONGROUND_IRC_UI_LOCATION)%'
+            apikey: '%env(APP_COMMONGROUND_IRC_UI_APIKEY)%'
         mrc:
             location: '%env(APP_COMMONGROUND_MRC_LOCATION)%'
             apikey: '%env(APP_COMMONGROUND_MRC_APIKEY)%'            
