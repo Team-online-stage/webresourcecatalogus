@@ -56,7 +56,7 @@ use App\Controller\DefaultController;
  * 		},
  * )
  * @ORM\Entity(repositoryClass="App\Repository\TemplateRepository")
- * @Gedmo\Loggable(logEntryClass="App\Entity\ChangeLog")
+ * @Gedmo\Loggable(logEntryClass="Conduction\CommonGroundBundle\Entity\ChangeLog")
  *
  * @ApiFilter(BooleanFilter::class)
  * @ApiFilter(OrderFilter::class)
