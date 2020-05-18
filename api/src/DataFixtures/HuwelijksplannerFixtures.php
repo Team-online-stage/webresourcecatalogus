@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use Conduction\CommonGroundBundle\Service\CommonGroundService;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Ramsey\Uuid\Uuid;
@@ -20,8 +21,9 @@ class HuwelijksplannerFixtures extends Fixture
 {
 	private $params;
 
-	public function __construct(ParameterBagInterface $params)
+	public function __construct(ParameterBagInterface $params, CommonGroundService $commonGroundService)
 	{
+	    $this->commonGroundService = $commonGroundService;
 		$this->params = $params;
 	}
 
@@ -1282,7 +1284,7 @@ class HuwelijksplannerFixtures extends Fixture
         $template->setName('E-mail instemming');
         $template->setTitle('Instemming voor een huwelijk');
         $template->setDescription('');
-        $template->setContent('Beste {{ contact.givenName }},<br><br>Uw instemming is gevraagd bij een instemmingsverzoek.<br><br><a href="https://irc-ui.dev.huwelijksplanner.online/assents/{{ assent[\'id\'] }}">Klik hier</a> om op dit verzoek te reageren.<br><br>Met vriendelijke groet,<br><br>Gemeente Utrecht');
+        $template->setContent("Beste {{ contact.givenName }},<br><br>Uw instemming is gevraagd bij een instemmingsverzoek.<br><br><a href='{$this->commonGroundService->getComponent('irc-ui')['location']}/assents/{{ assent[\"id\"] }}'>Klik hier</a> om op dit verzoek te reageren.<br><br>Met vriendelijke groet,<br><br>Gemeente Utrecht");
         $template->setTemplateEngine('twig');
         $manager->persist($template);
         $template->setId($id);
@@ -1298,7 +1300,7 @@ class HuwelijksplannerFixtures extends Fixture
         $template->setName('E-mail aanvraag');
         $template->setTitle('Aanvraag huwelijksplanner');
         $template->setDescription('');
-        $template->setContent('Beste {{ contact.givenName }},<br><br>U heeft een aanvraag insgestuurd voor een {{ requestType.name }} bij de gemeente Utrecht.<br><br><a href="https://huwelijksplanner.online/?request={{ request[\'@id\'] }}">Klik hier</a> om op dit uw aanvraag in te zien<br><br>Met vriendelijke groet,<br><br>Gemeente Utrecht');
+        $template->setContent("Beste {{ contact.givenName }},<br><br>U heeft een aanvraag insgestuurd voor een {{ requestType.name }} bij de gemeente Utrecht.<br><br><a href='{$this->commonGroundService->getComponent('hpui')['location']}/?request={{ request[\"@id\"] }}'>Klik hier</a> om op dit uw aanvraag in te zien<br><br>Met vriendelijke groet,<br><br>Gemeente Utrecht");
         $template->setTemplateEngine('twig');
         $manager->persist($template);
         $template->setId($id);
