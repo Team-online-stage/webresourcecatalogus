@@ -11645,31 +11645,39 @@ components:
           externalDocs:
             url: 'http://schema.org/identifier'
           type: string
+          format: uuid
         name:
           description: 'The name of this application.'
           type: string
         description:
           description: 'The description of this application.'
           type: string
+          nullable: true
         domain:
           description: 'The domain of this application.'
           type: string
         organization:
           $ref: '#/components/schemas/Organization-read'
         defaultConfiguration:
-          $ref: '#/components/schemas/Configuration-read'
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Configuration-read'
         style:
-          $ref: '#/components/schemas/Style-read'
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Style-read'
         dateCreated:
-          readOnly: true
           description: 'The moment this request was created'
           type: string
           format: date-time
+          nullable: true
         dateModified:
-          readOnly: true
           description: 'The moment this request last Modified'
           type: string
           format: date-time
+          nullable: true
       required:
         - name
         - description
@@ -11690,15 +11698,22 @@ components:
         description:
           description: 'The description of this application.'
           type: string
+          nullable: true
         domain:
           description: 'The domain of this application.'
           type: string
         organization:
           $ref: '#/components/schemas/Organization-write'
         defaultConfiguration:
-          $ref: '#/components/schemas/Configuration-write'
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Configuration-write'
         style:
-          $ref: '#/components/schemas/Style-write'
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Style-write'
     'Application:jsonld-read':
       type: object
       description: 'Application is the project of a website.'
@@ -11718,31 +11733,39 @@ components:
           externalDocs:
             url: 'http://schema.org/identifier'
           type: string
+          format: uuid
         name:
           description: 'The name of this application.'
           type: string
         description:
           description: 'The description of this application.'
           type: string
+          nullable: true
         domain:
           description: 'The domain of this application.'
           type: string
         organization:
           $ref: '#/components/schemas/Organization:jsonld-read'
         defaultConfiguration:
-          $ref: '#/components/schemas/Configuration:jsonld-read'
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Configuration:jsonld-read'
         style:
-          $ref: '#/components/schemas/Style:jsonld-read'
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Style:jsonld-read'
         dateCreated:
-          readOnly: true
           description: 'The moment this request was created'
           type: string
           format: date-time
+          nullable: true
         dateModified:
-          readOnly: true
           description: 'The moment this request last Modified'
           type: string
           format: date-time
+          nullable: true
       required:
         - name
         - description
@@ -11772,15 +11795,22 @@ components:
         description:
           description: 'The description of this application.'
           type: string
+          nullable: true
         domain:
           description: 'The domain of this application.'
           type: string
         organization:
           $ref: '#/components/schemas/Organization:jsonld-write'
         defaultConfiguration:
-          $ref: '#/components/schemas/Configuration:jsonld-write'
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Configuration:jsonld-write'
         style:
-          $ref: '#/components/schemas/Style:jsonld-write'
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Style:jsonld-write'
     AuditTrail-read:
       type: object
       description: 'An resource representing a log line.'
@@ -11791,114 +11821,114 @@ components:
           externalDocs:
             url: 'http://schema.org/identifier'
           type: string
+          format: uuid
+        application:
+          writeOnly: true
+          description: 'The application that made the request'
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
+          nullable: true
         request:
-          readOnly: true
           description: 'The id of the request within that application'
           externalDocs:
             url: 'http://schema.org/url'
           type: string
+          nullable: true
         user:
-          readOnly: true
           description: 'The user on behalf of wich the request was made'
           externalDocs:
             url: 'http://schema.org/url'
           type: string
+          nullable: true
         subject:
-          readOnly: true
           description: '???'
           type: string
+          nullable: true
         process:
-          readOnly: true
           description: 'The procces on behalf of wich the request was made'
           type: string
+          nullable: true
         dataElements:
-          readOnly: true
           description: 'The moment this request was created'
           type: array
           items:
             type: string
+          nullable: true
         dataSubjects:
-          readOnly: true
           description: 'The moment this request was created'
           type: array
           items:
             type: string
+          nullable: true
         resource:
-          readOnly: true
           description: 'The resource that was requested'
           type: string
+          nullable: true
         resourceType:
-          readOnly: true
           description: 'The type of the resource that was requested'
           type: string
+          nullable: true
         route:
-          readOnly: true
           description: 'The moment this request was created'
           type: string
         endpoint:
-          readOnly: true
           description: 'The endpoint that the request was made to'
           type: string
         method:
-          readOnly: true
           description: 'The method that was used'
           type: string
         accept:
-          readOnly: true
           description: 'The contentType that was reqousted'
           type: string
         contentType:
-          readOnly: true
           description: 'The contentType that was suplieds'
           type: string
         content:
-          readOnly: true
           description: 'The moment this request was created'
           type: string
+          nullable: true
         ip:
-          readOnly: true
           description: 'The moment this request was created'
           type: string
         session:
-          readOnly: true
           description: 'The moment this request was created'
           type: string
         headers:
-          readOnly: true
           description: 'The headers supplied by client'
           type: array
           items:
             type: string
         statusCode:
-          readOnly: true
           description: 'The status code returned to client'
           type: integer
+          nullable: true
         notFound:
-          readOnly: true
           description: 'Whether or not the reqousted endpoint was found'
           type: boolean
+          nullable: true
         forbidden:
-          readOnly: true
           description: 'Whether or not the client was allowed to the reqousted endpoint'
           type: boolean
+          nullable: true
         ok:
-          readOnly: true
           description: 'Whether or not there where any problems'
           type: boolean
+          nullable: true
         dateCreated:
-          readOnly: true
           description: 'The moment this request was created'
           externalDocs:
             url: 'http://schema.org/DateTime'
           type: string
           format: date-time
+          nullable: true
         dateModified:
-          readOnly: true
           description: 'The moment this request last Modified'
           externalDocs:
             url: 'http://schema.org/DateTime'
           type: string
           format: date-time
+          nullable: true
     AuditTrail-write:
       type: object
       description: 'An resource representing a log line.'
@@ -11921,114 +11951,114 @@ components:
           externalDocs:
             url: 'http://schema.org/identifier'
           type: string
+          format: uuid
+        application:
+          writeOnly: true
+          description: 'The application that made the request'
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
+          nullable: true
         request:
-          readOnly: true
           description: 'The id of the request within that application'
           externalDocs:
             url: 'http://schema.org/url'
           type: string
+          nullable: true
         user:
-          readOnly: true
           description: 'The user on behalf of wich the request was made'
           externalDocs:
             url: 'http://schema.org/url'
           type: string
+          nullable: true
         subject:
-          readOnly: true
           description: '???'
           type: string
+          nullable: true
         process:
-          readOnly: true
           description: 'The procces on behalf of wich the request was made'
           type: string
+          nullable: true
         dataElements:
-          readOnly: true
           description: 'The moment this request was created'
           type: array
           items:
             type: string
+          nullable: true
         dataSubjects:
-          readOnly: true
           description: 'The moment this request was created'
           type: array
           items:
             type: string
+          nullable: true
         resource:
-          readOnly: true
           description: 'The resource that was requested'
           type: string
+          nullable: true
         resourceType:
-          readOnly: true
           description: 'The type of the resource that was requested'
           type: string
+          nullable: true
         route:
-          readOnly: true
           description: 'The moment this request was created'
           type: string
         endpoint:
-          readOnly: true
           description: 'The endpoint that the request was made to'
           type: string
         method:
-          readOnly: true
           description: 'The method that was used'
           type: string
         accept:
-          readOnly: true
           description: 'The contentType that was reqousted'
           type: string
         contentType:
-          readOnly: true
           description: 'The contentType that was suplieds'
           type: string
         content:
-          readOnly: true
           description: 'The moment this request was created'
           type: string
+          nullable: true
         ip:
-          readOnly: true
           description: 'The moment this request was created'
           type: string
         session:
-          readOnly: true
           description: 'The moment this request was created'
           type: string
         headers:
-          readOnly: true
           description: 'The headers supplied by client'
           type: array
           items:
             type: string
         statusCode:
-          readOnly: true
           description: 'The status code returned to client'
           type: integer
+          nullable: true
         notFound:
-          readOnly: true
           description: 'Whether or not the reqousted endpoint was found'
           type: boolean
+          nullable: true
         forbidden:
-          readOnly: true
           description: 'Whether or not the client was allowed to the reqousted endpoint'
           type: boolean
+          nullable: true
         ok:
-          readOnly: true
           description: 'Whether or not there where any problems'
           type: boolean
+          nullable: true
         dateCreated:
-          readOnly: true
           description: 'The moment this request was created'
           externalDocs:
             url: 'http://schema.org/DateTime'
           type: string
           format: date-time
+          nullable: true
         dateModified:
-          readOnly: true
           description: 'The moment this request last Modified'
           externalDocs:
             url: 'http://schema.org/DateTime'
           type: string
           format: date-time
+          nullable: true
     'AuditTrail:jsonld-write':
       type: object
       description: 'An resource representing a log line.'
@@ -12052,44 +12082,42 @@ components:
           externalDocs:
             url: 'http://schema.org/identifier'
           type: string
+          format: uuid
         action:
-          readOnly: true
           type: string
         objectId:
-          readOnly: true
           type: string
+          nullable: true
         objectClass:
-          readOnly: true
           type: string
         version:
-          readOnly: true
           type: integer
         data:
-          readOnly: true
           type: array
           items:
             type: string
+          nullable: true
         username:
-          readOnly: true
           type: string
+          nullable: true
         session:
-          readOnly: true
           description: 'The moment this request was created'
           type: string
+          nullable: true
         dateCreated:
-          readOnly: true
           description: 'The moment this request was created'
           externalDocs:
             url: 'http://schema.org/DateTime'
           type: string
           format: date-time
+          nullable: true
         dateModified:
-          readOnly: true
           description: 'The moment this request last Modified'
           externalDocs:
             url: 'http://schema.org/DateTime'
           type: string
           format: date-time
+          nullable: true
     ChangeLog-write:
       type: object
       description: 'An resource representing a log line.'
@@ -12112,44 +12140,42 @@ components:
           externalDocs:
             url: 'http://schema.org/identifier'
           type: string
+          format: uuid
         action:
-          readOnly: true
           type: string
         objectId:
-          readOnly: true
           type: string
+          nullable: true
         objectClass:
-          readOnly: true
           type: string
         version:
-          readOnly: true
           type: integer
         data:
-          readOnly: true
           type: array
           items:
             type: string
+          nullable: true
         username:
-          readOnly: true
           type: string
+          nullable: true
         session:
-          readOnly: true
           description: 'The moment this request was created'
           type: string
+          nullable: true
         dateCreated:
-          readOnly: true
           description: 'The moment this request was created'
           externalDocs:
             url: 'http://schema.org/DateTime'
           type: string
           format: date-time
+          nullable: true
         dateModified:
-          readOnly: true
           description: 'The moment this request last Modified'
           externalDocs:
             url: 'http://schema.org/DateTime'
           type: string
           format: date-time
+          nullable: true
     'ChangeLog:jsonld-write':
       type: object
       description: 'An resource representing a log line.'
@@ -12173,26 +12199,29 @@ components:
           externalDocs:
             url: 'http://schema.org/identifier'
           type: string
+          format: uuid
         name:
           description: 'The name of this application.'
           type: string
+          nullable: true
         description:
           description: 'The description of this application.'
           type: string
+          nullable: true
         configuration:
           type: array
           items:
             type: string
         dateCreated:
-          readOnly: true
           description: 'The moment this request was created'
           type: string
           format: date-time
+          nullable: true
         dateModified:
-          readOnly: true
           description: 'The moment this request last Modified'
           type: string
           format: date-time
+          nullable: true
       required:
         - name
         - description
@@ -12208,14 +12237,14 @@ components:
         name:
           description: 'The name of this application.'
           type: string
+          nullable: true
         description:
           description: 'The description of this application.'
           type: string
+          nullable: true
         application:
-          writeOnly: true
           $ref: '#/components/schemas/Application-write'
         organization:
-          writeOnly: true
           $ref: '#/components/schemas/Organization-write'
         configuration:
           type: array
@@ -12240,26 +12269,29 @@ components:
           externalDocs:
             url: 'http://schema.org/identifier'
           type: string
+          format: uuid
         name:
           description: 'The name of this application.'
           type: string
+          nullable: true
         description:
           description: 'The description of this application.'
           type: string
+          nullable: true
         configuration:
           type: array
           items:
             type: string
         dateCreated:
-          readOnly: true
           description: 'The moment this request was created'
           type: string
           format: date-time
+          nullable: true
         dateModified:
-          readOnly: true
           description: 'The moment this request last Modified'
           type: string
           format: date-time
+          nullable: true
       required:
         - name
         - description
@@ -12284,14 +12316,14 @@ components:
         name:
           description: 'The name of this application.'
           type: string
+          nullable: true
         description:
           description: 'The description of this application.'
           type: string
+          nullable: true
         application:
-          writeOnly: true
           $ref: '#/components/schemas/Application:jsonld-write'
         organization:
-          writeOnly: true
           $ref: '#/components/schemas/Organization:jsonld-write'
         configuration:
           type: array
@@ -12307,6 +12339,7 @@ components:
           externalDocs:
             url: 'http://schema.org/identifier'
           type: string
+          format: uuid
         name:
           description: 'The name of this image'
           type: string
@@ -12316,23 +12349,26 @@ components:
         alt:
           description: 'The alt of of this image for people with poor eyesight'
           type: string
+          nullable: true
         href:
           description: 'The href of this image'
           type: string
+          nullable: true
         base64:
           type: string
+          nullable: true
         organization:
           $ref: '#/components/schemas/Organization-read'
         dateCreated:
-          readOnly: true
           description: 'The moment this request was created'
           type: string
           format: date-time
+          nullable: true
         dateModified:
-          readOnly: true
           description: 'The moment this request last Modified'
           type: string
           format: date-time
+          nullable: true
       required:
         - name
         - description
@@ -12352,11 +12388,14 @@ components:
         alt:
           description: 'The alt of of this image for people with poor eyesight'
           type: string
+          nullable: true
         href:
           description: 'The href of this image'
           type: string
+          nullable: true
         base64:
           type: string
+          nullable: true
         organization:
           $ref: '#/components/schemas/Organization-write'
     'Image:jsonld-read':
@@ -12378,6 +12417,7 @@ components:
           externalDocs:
             url: 'http://schema.org/identifier'
           type: string
+          format: uuid
         name:
           description: 'The name of this image'
           type: string
@@ -12387,23 +12427,26 @@ components:
         alt:
           description: 'The alt of of this image for people with poor eyesight'
           type: string
+          nullable: true
         href:
           description: 'The href of this image'
           type: string
+          nullable: true
         base64:
           type: string
+          nullable: true
         organization:
           $ref: '#/components/schemas/Organization:jsonld-read'
         dateCreated:
-          readOnly: true
           description: 'The moment this request was created'
           type: string
           format: date-time
+          nullable: true
         dateModified:
-          readOnly: true
           description: 'The moment this request last Modified'
           type: string
           format: date-time
+          nullable: true
       required:
         - name
         - description
@@ -12432,11 +12475,14 @@ components:
         alt:
           description: 'The alt of of this image for people with poor eyesight'
           type: string
+          nullable: true
         href:
           description: 'The href of this image'
           type: string
+          nullable: true
         base64:
           type: string
+          nullable: true
         organization:
           $ref: '#/components/schemas/Organization:jsonld-write'
     Menu-read:
@@ -12449,12 +12495,14 @@ components:
           externalDocs:
             url: 'http://schema.org/identifier'
           type: string
+          format: uuid
         name:
           description: 'The name of this menu'
           type: string
         description:
           description: 'The description of this menuItems'
           type: string
+          nullable: true
         menuItems:
           type: array
           items:
@@ -12462,15 +12510,15 @@ components:
         application:
           $ref: '#/components/schemas/Application-read'
         dateCreated:
-          readOnly: true
           description: 'The moment this request was created'
           type: string
           format: date-time
+          nullable: true
         dateModified:
-          readOnly: true
           description: 'The moment this request last Modified'
           type: string
           format: date-time
+          nullable: true
       required:
         - name
         - application
@@ -12487,6 +12535,7 @@ components:
         description:
           description: 'The description of this menuItems'
           type: string
+          nullable: true
         menuItems:
           type: array
           items:
@@ -12512,12 +12561,14 @@ components:
           externalDocs:
             url: 'http://schema.org/identifier'
           type: string
+          format: uuid
         name:
           description: 'The name of this menu'
           type: string
         description:
           description: 'The description of this menuItems'
           type: string
+          nullable: true
         menuItems:
           type: array
           items:
@@ -12525,15 +12576,15 @@ components:
         application:
           $ref: '#/components/schemas/Application:jsonld-read'
         dateCreated:
-          readOnly: true
           description: 'The moment this request was created'
           type: string
           format: date-time
+          nullable: true
         dateModified:
-          readOnly: true
           description: 'The moment this request last Modified'
           type: string
           format: date-time
+          nullable: true
       required:
         - name
         - application
@@ -12559,6 +12610,7 @@ components:
         description:
           description: 'The description of this menuItems'
           type: string
+          nullable: true
         menuItems:
           type: array
           items:
@@ -12575,34 +12627,39 @@ components:
           externalDocs:
             url: 'http://schema.org/identifier'
           type: string
+          format: uuid
         name:
           description: 'The name of this MenuItem'
           type: string
         description:
           description: 'The description of this MenuItem'
           type: string
+          nullable: true
         order:
           description: 'The order in wichs this menu item is shown in relation to other items of the same menu'
           type: integer
+          nullable: true
         icon:
           description: 'the icon to display with this menu item'
           type: string
+          nullable: true
         type:
           description: 'the type of the menu item'
           type: string
+          nullable: true
         href:
           description: 'The href of this MenuItem that links to another page'
           type: string
         dateCreated:
-          readOnly: true
           description: 'The moment this request was created'
           type: string
           format: date-time
+          nullable: true
         dateModified:
-          readOnly: true
           description: 'The moment this request last Modified'
           type: string
           format: date-time
+          nullable: true
       required:
         - name
         - order
@@ -12622,20 +12679,23 @@ components:
         description:
           description: 'The description of this MenuItem'
           type: string
+          nullable: true
         order:
           description: 'The order in wichs this menu item is shown in relation to other items of the same menu'
           type: integer
+          nullable: true
         icon:
           description: 'the icon to display with this menu item'
           type: string
+          nullable: true
         type:
           description: 'the type of the menu item'
           type: string
+          nullable: true
         href:
           description: 'The href of this MenuItem that links to another page'
           type: string
         menu:
-          writeOnly: true
           $ref: '#/components/schemas/Menu-write'
     'MenuItem:jsonld-read':
       type: object
@@ -12656,34 +12716,39 @@ components:
           externalDocs:
             url: 'http://schema.org/identifier'
           type: string
+          format: uuid
         name:
           description: 'The name of this MenuItem'
           type: string
         description:
           description: 'The description of this MenuItem'
           type: string
+          nullable: true
         order:
           description: 'The order in wichs this menu item is shown in relation to other items of the same menu'
           type: integer
+          nullable: true
         icon:
           description: 'the icon to display with this menu item'
           type: string
+          nullable: true
         type:
           description: 'the type of the menu item'
           type: string
+          nullable: true
         href:
           description: 'The href of this MenuItem that links to another page'
           type: string
         dateCreated:
-          readOnly: true
           description: 'The moment this request was created'
           type: string
           format: date-time
+          nullable: true
         dateModified:
-          readOnly: true
           description: 'The moment this request last Modified'
           type: string
           format: date-time
+          nullable: true
       required:
         - name
         - order
@@ -12712,20 +12777,23 @@ components:
         description:
           description: 'The description of this MenuItem'
           type: string
+          nullable: true
         order:
           description: 'The order in wichs this menu item is shown in relation to other items of the same menu'
           type: integer
+          nullable: true
         icon:
           description: 'the icon to display with this menu item'
           type: string
+          nullable: true
         type:
           description: 'the type of the menu item'
           type: string
+          nullable: true
         href:
           description: 'The href of this MenuItem that links to another page'
           type: string
         menu:
-          writeOnly: true
           $ref: '#/components/schemas/Menu:jsonld-write'
     Organization-read:
       type: object
@@ -12737,12 +12805,15 @@ components:
           externalDocs:
             url: 'http://schema.org/identifier'
           type: string
+          format: uuid
         rsin:
           description: 'The rsin of this organisations.'
           type: string
+          nullable: true
         chamberOfComerce:
           description: 'The Chamber of Comerce ID of this organisations.'
           type: string
+          nullable: true
         name:
           description: 'The name of this organization.'
           type: string
@@ -12750,20 +12821,21 @@ components:
           description: 'The description of this organisation.'
           type: string
         dateCreated:
-          readOnly: true
           description: 'The moment this request was created'
           type: string
           format: date-time
+          nullable: true
         dateModified:
-          readOnly: true
           description: 'The moment this request last Modified'
           type: string
           format: date-time
+          nullable: true
         contact:
           description: 'The contact for this organization'
           externalDocs:
             url: 'http://schema.org/url'
           type: string
+          nullable: true
       required:
         - rsin
         - chamberOfComerce
@@ -12781,9 +12853,11 @@ components:
         rsin:
           description: 'The rsin of this organisations.'
           type: string
+          nullable: true
         chamberOfComerce:
           description: 'The Chamber of Comerce ID of this organisations.'
           type: string
+          nullable: true
         name:
           description: 'The name of this organization.'
           type: string
@@ -12795,6 +12869,7 @@ components:
           externalDocs:
             url: 'http://schema.org/url'
           type: string
+          nullable: true
     'Organization:jsonld-read':
       type: object
       description: 'An organization as active on commonground.'
@@ -12814,12 +12889,15 @@ components:
           externalDocs:
             url: 'http://schema.org/identifier'
           type: string
+          format: uuid
         rsin:
           description: 'The rsin of this organisations.'
           type: string
+          nullable: true
         chamberOfComerce:
           description: 'The Chamber of Comerce ID of this organisations.'
           type: string
+          nullable: true
         name:
           description: 'The name of this organization.'
           type: string
@@ -12827,20 +12905,21 @@ components:
           description: 'The description of this organisation.'
           type: string
         dateCreated:
-          readOnly: true
           description: 'The moment this request was created'
           type: string
           format: date-time
+          nullable: true
         dateModified:
-          readOnly: true
           description: 'The moment this request last Modified'
           type: string
           format: date-time
+          nullable: true
         contact:
           description: 'The contact for this organization'
           externalDocs:
             url: 'http://schema.org/url'
           type: string
+          nullable: true
       required:
         - rsin
         - chamberOfComerce
@@ -12867,9 +12946,11 @@ components:
         rsin:
           description: 'The rsin of this organisations.'
           type: string
+          nullable: true
         chamberOfComerce:
           description: 'The Chamber of Comerce ID of this organisations.'
           type: string
+          nullable: true
         name:
           description: 'The name of this organization.'
           type: string
@@ -12881,6 +12962,7 @@ components:
           externalDocs:
             url: 'http://schema.org/url'
           type: string
+          nullable: true
     Slug-read:
       type: object
       description: 'Your slug connects your application with your pages.'
@@ -12891,26 +12973,33 @@ components:
           externalDocs:
             url: 'http://schema.org/identifier'
           type: string
+          format: uuid
         name:
           description: 'The internal name of this slug.'
           type: string
         application:
-          $ref: '#/components/schemas/Application-read'
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Application-read'
         template:
-          $ref: '#/components/schemas/Template-read'
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Template-read'
         slug:
           description: 'The actual slug of this slug without a pre / e.g. about not about'
           type: string
         dateCreated:
-          readOnly: true
           description: 'The moment this request was created'
           type: string
           format: date-time
+          nullable: true
         dateModified:
-          readOnly: true
           description: 'The moment this request last Modified'
           type: string
           format: date-time
+          nullable: true
       required:
         - name
         - slug
@@ -12925,9 +13014,15 @@ components:
           description: 'The internal name of this slug.'
           type: string
         application:
-          $ref: '#/components/schemas/Application-write'
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Application-write'
         template:
-          $ref: '#/components/schemas/Template-write'
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Template-write'
         slug:
           description: 'The actual slug of this slug without a pre / e.g. about not about'
           type: string
@@ -12950,26 +13045,33 @@ components:
           externalDocs:
             url: 'http://schema.org/identifier'
           type: string
+          format: uuid
         name:
           description: 'The internal name of this slug.'
           type: string
         application:
-          $ref: '#/components/schemas/Application:jsonld-read'
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Application:jsonld-read'
         template:
-          $ref: '#/components/schemas/Template:jsonld-read'
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Template:jsonld-read'
         slug:
           description: 'The actual slug of this slug without a pre / e.g. about not about'
           type: string
         dateCreated:
-          readOnly: true
           description: 'The moment this request was created'
           type: string
           format: date-time
+          nullable: true
         dateModified:
-          readOnly: true
           description: 'The moment this request last Modified'
           type: string
           format: date-time
+          nullable: true
       required:
         - name
         - slug
@@ -12993,9 +13095,15 @@ components:
           description: 'The internal name of this slug.'
           type: string
         application:
-          $ref: '#/components/schemas/Application:jsonld-write'
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Application:jsonld-write'
         template:
-          $ref: '#/components/schemas/Template:jsonld-write'
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Template:jsonld-write'
         slug:
           description: 'The actual slug of this slug without a pre / e.g. about not about'
           type: string
@@ -13009,6 +13117,7 @@ components:
           externalDocs:
             url: 'http://schema.org/identifier'
           type: string
+          format: uuid
         name:
           description: 'The name of this style.'
           type: string
@@ -13020,15 +13129,15 @@ components:
         favicon:
           $ref: '#/components/schemas/Image-read'
         dateCreated:
-          readOnly: true
           description: 'The moment this request was created'
           type: string
           format: date-time
+          nullable: true
         dateModified:
-          readOnly: true
           description: 'The moment this request last Modified'
           type: string
           format: date-time
+          nullable: true
       required:
         - name
         - description
@@ -13050,7 +13159,6 @@ components:
         favicon:
           $ref: '#/components/schemas/Image-write'
         organization:
-          writeOnly: true
           $ref: '#/components/schemas/Organization-write'
     'Style:jsonld-read':
       type: object
@@ -13071,6 +13179,7 @@ components:
           externalDocs:
             url: 'http://schema.org/identifier'
           type: string
+          format: uuid
         name:
           description: 'The name of this style.'
           type: string
@@ -13082,15 +13191,15 @@ components:
         favicon:
           $ref: '#/components/schemas/Image:jsonld-read'
         dateCreated:
-          readOnly: true
           description: 'The moment this request was created'
           type: string
           format: date-time
+          nullable: true
         dateModified:
-          readOnly: true
           description: 'The moment this request last Modified'
           type: string
           format: date-time
+          nullable: true
       required:
         - name
         - description
@@ -13121,7 +13230,6 @@ components:
         favicon:
           $ref: '#/components/schemas/Image:jsonld-write'
         organization:
-          writeOnly: true
           $ref: '#/components/schemas/Organization:jsonld-write'
     Template-read:
       type: object
@@ -13133,15 +13241,18 @@ components:
           externalDocs:
             url: 'http://schema.org/identifier'
           type: string
+          format: uuid
         name:
           description: 'The internal name of this menu'
           type: string
         title:
           description: 'The external name of this menu'
           type: string
+          nullable: true
         description:
           description: 'The description of this page.'
           type: string
+          nullable: true
         content:
           description: 'The Content of this template.'
           type: string
@@ -13149,23 +13260,29 @@ components:
           description: 'The template engine used to render this template. Schould be either twig (Twig), md (Markdown) or rst (reStructuredText)'
           type: string
         application:
-          $ref: '#/components/schemas/Application-read'
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Application-read'
         organization:
-          $ref: '#/components/schemas/Organization-read'
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Organization-read'
         templateGroups:
           type: array
           items:
             $ref: '#/components/schemas/TemplateGroup-read'
         dateCreated:
-          readOnly: true
           description: 'The moment this request was created'
           type: string
           format: date-time
+          nullable: true
         dateModified:
-          readOnly: true
           description: 'The moment this request last Modified'
           type: string
           format: date-time
+          nullable: true
       required:
         - name
         - description
@@ -13186,11 +13303,12 @@ components:
         title:
           description: 'The external name of this menu'
           type: string
+          nullable: true
         description:
           description: 'The description of this page.'
           type: string
+          nullable: true
         slug:
-          writeOnly: true
           description: 'Whether to auto create a slug on creation of this template'
           type: boolean
         content:
@@ -13200,9 +13318,15 @@ components:
           description: 'The template engine used to render this template. Schould be either twig (Twig), md (Markdown) or rst (reStructuredText)'
           type: string
         application:
-          $ref: '#/components/schemas/Application-write'
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Application-write'
         organization:
-          $ref: '#/components/schemas/Organization-write'
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Organization-write'
         templateGroups:
           type: array
           items:
@@ -13226,15 +13350,18 @@ components:
           externalDocs:
             url: 'http://schema.org/identifier'
           type: string
+          format: uuid
         name:
           description: 'The internal name of this menu'
           type: string
         title:
           description: 'The external name of this menu'
           type: string
+          nullable: true
         description:
           description: 'The description of this page.'
           type: string
+          nullable: true
         content:
           description: 'The Content of this template.'
           type: string
@@ -13242,23 +13369,29 @@ components:
           description: 'The template engine used to render this template. Schould be either twig (Twig), md (Markdown) or rst (reStructuredText)'
           type: string
         application:
-          $ref: '#/components/schemas/Application:jsonld-read'
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Application:jsonld-read'
         organization:
-          $ref: '#/components/schemas/Organization:jsonld-read'
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Organization:jsonld-read'
         templateGroups:
           type: array
           items:
             $ref: '#/components/schemas/TemplateGroup:jsonld-read'
         dateCreated:
-          readOnly: true
           description: 'The moment this request was created'
           type: string
           format: date-time
+          nullable: true
         dateModified:
-          readOnly: true
           description: 'The moment this request last Modified'
           type: string
           format: date-time
+          nullable: true
       required:
         - name
         - description
@@ -13288,11 +13421,12 @@ components:
         title:
           description: 'The external name of this menu'
           type: string
+          nullable: true
         description:
           description: 'The description of this page.'
           type: string
+          nullable: true
         slug:
-          writeOnly: true
           description: 'Whether to auto create a slug on creation of this template'
           type: boolean
         content:
@@ -13302,9 +13436,15 @@ components:
           description: 'The template engine used to render this template. Schould be either twig (Twig), md (Markdown) or rst (reStructuredText)'
           type: string
         application:
-          $ref: '#/components/schemas/Application:jsonld-write'
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Application:jsonld-write'
         organization:
-          $ref: '#/components/schemas/Organization:jsonld-write'
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Organization:jsonld-write'
         templateGroups:
           type: array
           items:
@@ -13319,26 +13459,34 @@ components:
           externalDocs:
             url: 'http://schema.org/identifier'
           type: string
+          format: uuid
         name:
           description: 'The internal name of this menu'
           type: string
         description:
           description: 'The description of this page.'
           type: string
+          nullable: true
         application:
-          $ref: '#/components/schemas/Application-read'
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Application-read'
         organization:
-          $ref: '#/components/schemas/Organization-read'
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Organization-read'
         dateCreated:
-          readOnly: true
           description: 'The moment this request was created'
           type: string
           format: date-time
+          nullable: true
         dateModified:
-          readOnly: true
           description: 'The moment this request last Modified'
           type: string
           format: date-time
+          nullable: true
       required:
         - name
         - description
@@ -13355,15 +13503,21 @@ components:
         description:
           description: 'The description of this page.'
           type: string
+          nullable: true
         templates:
-          writeOnly: true
           type: array
           items:
             $ref: '#/components/schemas/Template-write'
         application:
-          $ref: '#/components/schemas/Application-write'
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Application-write'
         organization:
-          $ref: '#/components/schemas/Organization-write'
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Organization-write'
     'TemplateGroup:jsonld-read':
       type: object
       description: 'Groups are a way of orginzing templates'
@@ -13383,26 +13537,34 @@ components:
           externalDocs:
             url: 'http://schema.org/identifier'
           type: string
+          format: uuid
         name:
           description: 'The internal name of this menu'
           type: string
         description:
           description: 'The description of this page.'
           type: string
+          nullable: true
         application:
-          $ref: '#/components/schemas/Application:jsonld-read'
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Application:jsonld-read'
         organization:
-          $ref: '#/components/schemas/Organization:jsonld-read'
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Organization:jsonld-read'
         dateCreated:
-          readOnly: true
           description: 'The moment this request was created'
           type: string
           format: date-time
+          nullable: true
         dateModified:
-          readOnly: true
           description: 'The moment this request last Modified'
           type: string
           format: date-time
+          nullable: true
       required:
         - name
         - description
@@ -13428,15 +13590,21 @@ components:
         description:
           description: 'The description of this page.'
           type: string
+          nullable: true
         templates:
-          writeOnly: true
           type: array
           items:
             $ref: '#/components/schemas/Template:jsonld-write'
         application:
-          $ref: '#/components/schemas/Application:jsonld-write'
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Application:jsonld-write'
         organization:
-          $ref: '#/components/schemas/Organization:jsonld-write'
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Organization:jsonld-write'
   securitySchemes:
     apiKey:
       type: apiKey
@@ -13505,178 +13673,81 @@ definitions:
       - description
       - domain
       - organization
-  AuditTrail-read:
+  Organization-read:
     properties:
       id:
-        description: 'The UUID identifier of this object'
+        description: 'The UUID identifier of this resource'
         type: string
         example: e2984465-190a-4562-829e-a8cca81aa35d
         format: uuid
-      note:
-        description: 'A note conserning this log lin'
+      rsin:
+        description: 'The rsin of this organisations.'
         type: string
-        example: 'This log line looks suspicius'
-        maxLength: 2555
-      application:
-        description: 'The application that made the request'
+        example: About
+        maxLength: 255
+      chamberOfComerce:
+        description: 'The Chamber of Comerce ID of this organisations.'
         type: string
-        format: url
+        example: About
         maxLength: 255
-      request:
-        description: 'The id of the request within that application'
+      name:
+        description: 'The name of this organization.'
         type: string
-        format: url
+        example: About
         maxLength: 255
-      user:
-        description: 'The user on behalf of wich the request was made'
+      description:
+        description: 'The description of this organisation.'
         type: string
-        format: url
-        maxLength: 255
-      subject:
-        description: '???'
-        type: \sting
-        maxLength: 255
-      process:
-        description: 'The procces on behalf of wich the request was made'
-        type: \sting
-        maxLength: 255
-      dataElements:
-        description: 'The moment this request was created'
-        type: array
-      dataSubjects:
-        description: 'The moment this request was created'
-        type: array
-      resource:
-        description: 'The resource that was requested'
-        type: \sting
-        maxLength: 255
-      resourceType:
-        description: 'The type of the resource that was requested'
-        type: \sting
-        maxLength: 255
-      route:
-        description: 'The moment this request was created'
-        type: \sting
-        maxLength: 255
-      endpoint:
-        description: 'The endpoint that the request was made to'
-        type: \sting
-        maxLength: 255
-      method:
-        description: 'The method that was used'
-        type: \sting
-        maxLength: 255
-      accept:
-        description: 'The contentType that was reqousted'
-        type: \sting
-        maxLength: 255
-      contentType:
-        description: 'The contentType that was suplieds'
-        type: \sting
-        maxLength: 255
-      content:
-        description: 'The moment this request was created'
-        type: \sting
-        maxLength: 2555
-      ip:
-        description: 'The moment this request was created'
-        type: \sting
-        maxLength: 255
-      session:
-        description: 'The moment this request was created'
-        type: string
-        maxLength: 255
-      headers:
-        description: 'The headers supplied by client'
-        type: array
-      statusCode:
-        description: 'The status code returned to client'
-        type: int
-        example: '200'
-      notFound:
-        description: 'Whether or not the reqousted endpoint was found'
-        type: bool
-        example: 'false'
-      forbidden:
-        description: 'Whether or not the client was allowed to the reqousted endpoint'
-        type: bool
-        example: 'false'
-      ok:
-        description: 'Whether or not there where any problems'
-        type: bool
-        example: 'true'
-      dateCreated:
-        description: 'The moment this request was created'
-        type: string
-        format: date-time
-        example: '2020-05-05 18:53:05'
-      dateModified:
-        description: 'The moment this request last Modified'
-        type: string
-        format: date-time
-        example: '2020-05-05 18:53:05'
-    required: []
-  AuditTrail-write:
-    properties:
-      note:
-        description: 'A note conserning this log lin'
-        type: string
-        example: 'This log line looks suspicius'
-        maxLength: 2555
-    required: []
-  ChangeLog-read:
-    properties:
-      id:
-        description: 'The UUID identifier of this object'
-        type: string
-        example: e2984465-190a-4562-829e-a8cca81aa35d
-        format: uuid
-      note:
-        description: 'A note conserning this log lin'
-        type: string
-        example: 'This log line is suspicius'
-        maxLength: 2555
-      action:
-        description: ''
-        type: string
-      objectId:
-        description: ''
-        type: string
-      objectClass:
-        description: ''
-        type: string
-      version:
-        description: ''
-        type: int
-      data:
-        description: ''
-        type: array
-      username:
-        description: ''
-        type: string
-      session:
-        description: 'The moment this request was created'
-        type: \sting
+        example: 'This is the manucipality of Utrecht'
         maxLength: 255
       dateCreated:
         description: 'The moment this request was created'
-        type: string
-        format: date-time
-        example: '2020-05-05 18:53:05'
+        type: \Datetime
       dateModified:
         description: 'The moment this request last Modified'
+        type: \Datetime
+      contact:
+        description: 'The contact for this organization'
         type: string
-        format: date-time
-        example: '2020-05-05 18:53:05'
-    required: []
-  ChangeLog-write:
+        format: url
+        maxLength: 255
+    required:
+      - rsin
+      - chamberOfComerce
+      - name
+      - description
+  Organization-write:
     properties:
-      note:
-        description: 'A note conserning this log lin'
+      rsin:
+        description: 'The rsin of this organisations.'
         type: string
-        example: 'This log line is suspicius'
-        maxLength: 2555
-    required: []
+        example: About
+        maxLength: 255
+      chamberOfComerce:
+        description: 'The Chamber of Comerce ID of this organisations.'
+        type: string
+        example: About
+        maxLength: 255
+      name:
+        description: 'The name of this organization.'
+        type: string
+        example: About
+        maxLength: 255
+      description:
+        description: 'The description of this organisation.'
+        type: string
+        example: 'This is the manucipality of Utrecht'
+        maxLength: 255
+      contact:
+        description: 'The contact for this organization'
+        type: string
+        format: url
+        maxLength: 255
+    required:
+      - rsin
+      - chamberOfComerce
+      - name
+      - description
   Configuration-read:
     properties:
       id:
@@ -13724,6 +13795,52 @@ definitions:
       - description
       - application
       - organization
+  Style-read:
+    properties:
+      id:
+        description: 'The UUID identifier of this resource'
+        type: string
+        example: e2984465-190a-4562-829e-a8cca81aa35d
+        format: uuid
+      name:
+        description: 'The name of this style.'
+        type: string
+        example: About
+        maxLength: 255
+      description:
+        description: 'The description of this style.'
+        type: string
+        example: 'This page holds info about this style'
+        maxLength: 255
+      css: []
+      dateCreated:
+        description: 'The moment this request was created'
+        type: \Datetime
+      dateModified:
+        description: 'The moment this request last Modified'
+        type: \Datetime
+      favicon: []
+    required:
+      - name
+      - description
+  Style-write:
+    properties:
+      name:
+        description: 'The name of this style.'
+        type: string
+        example: About
+        maxLength: 255
+      description:
+        description: 'The description of this style.'
+        type: string
+        example: 'This page holds info about this style'
+        maxLength: 255
+      css: []
+      favicon: []
+      organization: []
+    required:
+      - name
+      - description
   Image-read:
     properties:
       id:
@@ -13785,6 +13902,174 @@ definitions:
         example: app_img_flowers
         maxLength: 255
       base64: []
+      organization: []
+    required:
+      - name
+      - description
+  Slug-read:
+    properties:
+      id:
+        description: 'The UUID identifier of this resource'
+        type: string
+        example: e2984465-190a-4562-829e-a8cca81aa35d
+        format: uuid
+      name:
+        description: 'The internal name of this slug.'
+        type: string
+        example: 'About page for website'
+        maxLength: 255
+      slug:
+        description: 'The actual slug of this slug without a pre / e.g. about not about'
+        type: string
+        example: about
+        maxLength: 255
+      dateCreated:
+        description: 'The moment this request was created'
+        type: \Datetime
+      dateModified:
+        description: 'The moment this request last Modified'
+        type: \Datetime
+      application: []
+      template: []
+    required:
+      - name
+      - slug
+  Slug-write:
+    properties:
+      name:
+        description: 'The internal name of this slug.'
+        type: string
+        example: 'About page for website'
+        maxLength: 255
+      slug:
+        description: 'The actual slug of this slug without a pre / e.g. about not about'
+        type: string
+        example: about
+        maxLength: 255
+      application: []
+      template: []
+    required:
+      - name
+      - slug
+  Template-read:
+    properties:
+      id:
+        description: 'The UUID identifier of this resource'
+        type: string
+        example: e2984465-190a-4562-829e-a8cca81aa35d
+        format: uuid
+      name:
+        description: 'The internal name of this menu'
+        type: string
+        example: 'webshop menu'
+        maxLength: 255
+      title:
+        description: 'The external name of this menu'
+        type: string
+        example: 'webshop menu'
+        maxLength: 255
+      description:
+        description: 'The description of this page.'
+        type: string
+        example: 'This page holds info about this application'
+        maxLength: 255
+      content:
+        description: 'The Content of this template.'
+        type: string
+        example: 'A lot of random info over any topic'
+      templateEngine:
+        description: 'The template engine used to render this template. Schould be either twig (Twig), md (Markdown) or rst (reStructuredText)'
+        type: string
+        example: twig
+      dateCreated:
+        description: 'The moment this request was created'
+        type: \Datetime
+      dateModified:
+        description: 'The moment this request last Modified'
+        type: \Datetime
+      application: []
+      organization: []
+      templateGroups: []
+    required:
+      - name
+      - description
+      - content
+      - templateEngine
+  Template-write:
+    properties:
+      name:
+        description: 'The internal name of this menu'
+        type: string
+        example: 'webshop menu'
+        maxLength: 255
+      title:
+        description: 'The external name of this menu'
+        type: string
+        example: 'webshop menu'
+        maxLength: 255
+      description:
+        description: 'The description of this page.'
+        type: string
+        example: 'This page holds info about this application'
+        maxLength: 255
+      content:
+        description: 'The Content of this template.'
+        type: string
+        example: 'A lot of random info over any topic'
+      templateEngine:
+        description: 'The template engine used to render this template. Schould be either twig (Twig), md (Markdown) or rst (reStructuredText)'
+        type: string
+        example: twig
+      application: []
+      organization: []
+      templateGroups: []
+    required:
+      - name
+      - description
+      - content
+      - templateEngine
+  TemplateGroup-read:
+    properties:
+      id:
+        description: 'The UUID identifier of this resource'
+        type: string
+        example: e2984465-190a-4562-829e-a8cca81aa35d
+        format: uuid
+      name:
+        description: 'The internal name of this menu'
+        type: string
+        example: 'webshop menu'
+        maxLength: 255
+      description:
+        description: 'The description of this page.'
+        type: string
+        example: 'This page holds info about this application'
+        maxLength: 255
+      dateCreated:
+        description: 'The moment this request was created'
+        type: \Datetime
+      dateModified:
+        description: 'The moment this request last Modified'
+        type: \Datetime
+      application: []
+      organization: []
+    required:
+      - name
+      - description
+  TemplateGroup-write:
+    properties:
+      name:
+        description: 'The internal name of this menu'
+        type: string
+        example: 'webshop menu'
+        maxLength: 255
+      description:
+        description: 'The description of this page.'
+        type: string
+        example: 'This page holds info about this application'
+        maxLength: 255
+      templates: []
+      application: []
       organization: []
     required:
       - name
@@ -13919,295 +14204,178 @@ definitions:
       - order
       - href
       - menu
-  Organization-read:
+  ChangeLog-read:
     properties:
       id:
-        description: 'The UUID identifier of this resource'
+        description: 'The UUID identifier of this object'
         type: string
         example: e2984465-190a-4562-829e-a8cca81aa35d
         format: uuid
-      rsin:
-        description: 'The rsin of this organisations.'
+      note:
+        description: 'A note conserning this log lin'
         type: string
-        example: About
-        maxLength: 255
-      chamberOfComerce:
-        description: 'The Chamber of Comerce ID of this organisations.'
+        example: 'This log line is suspicius'
+        maxLength: 2555
+      action:
+        description: ''
         type: string
-        example: About
-        maxLength: 255
-      name:
-        description: 'The name of this organization.'
+      objectId:
+        description: ''
         type: string
-        example: About
-        maxLength: 255
-      description:
-        description: 'The description of this organisation.'
+      objectClass:
+        description: ''
         type: string
-        example: 'This is the manucipality of Utrecht'
+      version:
+        description: ''
+        type: int
+      data:
+        description: ''
+        type: array
+      username:
+        description: ''
+        type: string
+      session:
+        description: 'The moment this request was created'
+        type: string
         maxLength: 255
       dateCreated:
         description: 'The moment this request was created'
-        type: \Datetime
+        type: string
+        format: date-time
+        example: '2020-05-18 13:09:07'
       dateModified:
         description: 'The moment this request last Modified'
-        type: \Datetime
-      contact:
-        description: 'The contact for this organization'
+        type: string
+        format: date-time
+        example: '2020-05-18 13:09:07'
+    required: []
+  ChangeLog-write:
+    properties:
+      note:
+        description: 'A note conserning this log lin'
+        type: string
+        example: 'This log line is suspicius'
+        maxLength: 2555
+    required: []
+  AuditTrail-read:
+    properties:
+      id:
+        description: 'The UUID identifier of this object'
+        type: string
+        example: e2984465-190a-4562-829e-a8cca81aa35d
+        format: uuid
+      note:
+        description: 'A note conserning this log lin'
+        type: string
+        example: 'This log line looks suspicius'
+        maxLength: 2555
+      application:
+        description: 'The application that made the request'
         type: string
         format: url
         maxLength: 255
-    required:
-      - rsin
-      - chamberOfComerce
-      - name
-      - description
-  Organization-write:
-    properties:
-      rsin:
-        description: 'The rsin of this organisations.'
-        type: string
-        example: About
-        maxLength: 255
-      chamberOfComerce:
-        description: 'The Chamber of Comerce ID of this organisations.'
-        type: string
-        example: About
-        maxLength: 255
-      name:
-        description: 'The name of this organization.'
-        type: string
-        example: About
-        maxLength: 255
-      description:
-        description: 'The description of this organisation.'
-        type: string
-        example: 'This is the manucipality of Utrecht'
-        maxLength: 255
-      contact:
-        description: 'The contact for this organization'
+      request:
+        description: 'The id of the request within that application'
         type: string
         format: url
         maxLength: 255
-    required:
-      - rsin
-      - chamberOfComerce
-      - name
-      - description
-  Slug-read:
-    properties:
-      id:
-        description: 'The UUID identifier of this resource'
+      user:
+        description: 'The user on behalf of wich the request was made'
         type: string
-        example: e2984465-190a-4562-829e-a8cca81aa35d
-        format: uuid
-      name:
-        description: 'The internal name of this slug.'
-        type: string
-        example: 'About page for website'
+        format: url
         maxLength: 255
-      slug:
-        description: 'The actual slug of this slug without a pre / e.g. about not about'
+      subject:
+        description: '???'
         type: string
-        example: about
         maxLength: 255
-      dateCreated:
+      process:
+        description: 'The procces on behalf of wich the request was made'
+        type: string
+        maxLength: 255
+      dataElements:
         description: 'The moment this request was created'
-        type: \Datetime
-      dateModified:
-        description: 'The moment this request last Modified'
-        type: \Datetime
-      application: []
-      template: []
-    required:
-      - name
-      - slug
-  Slug-write:
-    properties:
-      name:
-        description: 'The internal name of this slug.'
-        type: string
-        example: 'About page for website'
-        maxLength: 255
-      slug:
-        description: 'The actual slug of this slug without a pre / e.g. about not about'
-        type: string
-        example: about
-        maxLength: 255
-      application: []
-      template: []
-    required:
-      - name
-      - slug
-  Style-read:
-    properties:
-      id:
-        description: 'The UUID identifier of this resource'
-        type: string
-        example: e2984465-190a-4562-829e-a8cca81aa35d
-        format: uuid
-      name:
-        description: 'The name of this style.'
-        type: string
-        example: About
-        maxLength: 255
-      description:
-        description: 'The description of this style.'
-        type: string
-        example: 'This page holds info about this style'
-        maxLength: 255
-      css: []
-      dateCreated:
+        type: array
+      dataSubjects:
         description: 'The moment this request was created'
-        type: \Datetime
-      dateModified:
-        description: 'The moment this request last Modified'
-        type: \Datetime
-      favicon: []
-    required:
-      - name
-      - description
-  Style-write:
-    properties:
-      name:
-        description: 'The name of this style.'
+        type: array
+      resource:
+        description: 'The resource that was requested'
         type: string
-        example: About
         maxLength: 255
-      description:
-        description: 'The description of this style.'
+      resourceType:
+        description: 'The type of the resource that was requested'
         type: string
-        example: 'This page holds info about this style'
         maxLength: 255
-      css: []
-      favicon: []
-      organization: []
-    required:
-      - name
-      - description
-  Template-read:
-    properties:
-      id:
-        description: 'The UUID identifier of this resource'
+      route:
+        description: 'The moment this request was created'
         type: string
-        example: e2984465-190a-4562-829e-a8cca81aa35d
-        format: uuid
-      name:
-        description: 'The internal name of this menu'
-        type: string
-        example: 'webshop menu'
         maxLength: 255
-      title:
-        description: 'The external name of this menu'
+      endpoint:
+        description: 'The endpoint that the request was made to'
         type: string
-        example: 'webshop menu'
         maxLength: 255
-      description:
-        description: 'The description of this page.'
+      method:
+        description: 'The method that was used'
         type: string
-        example: 'This page holds info about this application'
+        maxLength: 255
+      accept:
+        description: 'The contentType that was reqousted'
+        type: string
+        maxLength: 255
+      contentType:
+        description: 'The contentType that was suplieds'
+        type: string
         maxLength: 255
       content:
-        description: 'The Content of this template.'
+        description: 'The moment this request was created'
         type: string
-        example: 'A lot of random info over any topic'
-      templateEngine:
-        description: 'The template engine used to render this template. Schould be either twig (Twig), md (Markdown) or rst (reStructuredText)'
+        maxLength: 2555
+      ip:
+        description: 'The moment this request was created'
         type: string
-        example: twig
+        maxLength: 255
+      session:
+        description: 'The moment this request was created'
+        type: string
+        maxLength: 255
+      headers:
+        description: 'The headers supplied by client'
+        type: array
+      statusCode:
+        description: 'The status code returned to client'
+        type: int
+        example: '200'
+      notFound:
+        description: 'Whether or not the reqousted endpoint was found'
+        type: bool
+        example: 'false'
+      forbidden:
+        description: 'Whether or not the client was allowed to the reqousted endpoint'
+        type: bool
+        example: 'false'
+      ok:
+        description: 'Whether or not there where any problems'
+        type: bool
+        example: 'true'
       dateCreated:
         description: 'The moment this request was created'
-        type: \Datetime
+        type: string
+        format: date-time
+        example: '2020-05-18 13:09:07'
       dateModified:
         description: 'The moment this request last Modified'
-        type: \Datetime
-      application: []
-      organization: []
-      templateGroups: []
-    required:
-      - name
-      - description
-      - content
-      - templateEngine
-  Template-write:
+        type: string
+        format: date-time
+        example: '2020-05-18 13:09:07'
+    required: []
+  AuditTrail-write:
     properties:
-      name:
-        description: 'The internal name of this menu'
+      note:
+        description: 'A note conserning this log lin'
         type: string
-        example: 'webshop menu'
-        maxLength: 255
-      title:
-        description: 'The external name of this menu'
-        type: string
-        example: 'webshop menu'
-        maxLength: 255
-      description:
-        description: 'The description of this page.'
-        type: string
-        example: 'This page holds info about this application'
-        maxLength: 255
-      content:
-        description: 'The Content of this template.'
-        type: string
-        example: 'A lot of random info over any topic'
-      templateEngine:
-        description: 'The template engine used to render this template. Schould be either twig (Twig), md (Markdown) or rst (reStructuredText)'
-        type: string
-        example: twig
-      application: []
-      organization: []
-      templateGroups: []
-    required:
-      - name
-      - description
-      - content
-      - templateEngine
-  TemplateGroup-read:
-    properties:
-      id:
-        description: 'The UUID identifier of this resource'
-        type: string
-        example: e2984465-190a-4562-829e-a8cca81aa35d
-        format: uuid
-      name:
-        description: 'The internal name of this menu'
-        type: string
-        example: 'webshop menu'
-        maxLength: 255
-      description:
-        description: 'The description of this page.'
-        type: string
-        example: 'This page holds info about this application'
-        maxLength: 255
-      dateCreated:
-        description: 'The moment this request was created'
-        type: \Datetime
-      dateModified:
-        description: 'The moment this request last Modified'
-        type: \Datetime
-      application: []
-      organization: []
-    required:
-      - name
-      - description
-  TemplateGroup-write:
-    properties:
-      name:
-        description: 'The internal name of this menu'
-        type: string
-        example: 'webshop menu'
-        maxLength: 255
-      description:
-        description: 'The description of this page.'
-        type: string
-        example: 'This page holds info about this application'
-        maxLength: 255
-      templates: []
-      application: []
-      organization: []
-    required:
-      - name
-      - description
+        example: 'This log line looks suspicius'
+        maxLength: 2555
+    required: []
 tags:
   -
     name: Application
@@ -14216,17 +14384,11 @@ tags:
       
       
   -
-    name: AuditTrail
+    name: Organization
     description: |
-      An resource representing a log line.
+      An organization as active on commonground.
       
-      This entity represents a product that can be ordered via the OrderRegistratieComponent.
-  -
-    name: ChangeLog
-    description: |
-      An resource representing a log line.
       
-      This entity represents a product that can be ordered via the OrderRegistratieComponent.
   -
     name: Configuration
     description: |
@@ -14234,9 +14396,33 @@ tags:
       
       
   -
+    name: Style
+    description: |
+      Your style provides ccs and a favicon for an organisation.
+      
+      
+  -
     name: Image
     description: |
       Image speaks for itself.
+      
+      
+  -
+    name: Slug
+    description: |
+      Your slug connects your application with your pages.
+      
+      
+  -
+    name: Template
+    description: |
+      Templates holds information your pages or include in messages.
+      
+      
+  -
+    name: TemplateGroup
+    description: |
+      Groups are a way of orginzing templates
       
       
   -
@@ -14252,55 +14438,37 @@ tags:
       
       
   -
-    name: Organization
+    name: ChangeLog
     description: |
-      An organization as active on commonground.
+      An resource representing a log line.
       
-      
+      This entity represents a product that can be ordered via the OrderRegistratieComponent.
   -
-    name: Slug
+    name: AuditTrail
     description: |
-      Your slug connects your application with your pages.
+      An resource representing a log line.
       
-      
-  -
-    name: Style
-    description: |
-      Your style provides ccs and a favicon for an organisation.
-      
-      
-  -
-    name: Template
-    description: |
-      Templates holds information your pages or include in messages.
-      
-      
-  -
-    name: TemplateGroup
-    description: |
-      Groups are a way of orginzing templates
-      
-      
+      This entity represents a product that can be ordered via the OrderRegistratieComponent.
 securityDefinitions:
   JWT-Oauth:
     type: oauth2
     authorizationUrl: 'http://petstore.swagger.io/api/oauth/dialog'
     flow: implicit
     scopes:
-      read: 'read right to the TemplateGroup resource'
-      write: 'write right to the TemplateGroup resource'
+      read: 'read right to the AuditTrail resource'
+      write: 'write right to the AuditTrail resource'
   JWT-Token:
     type: apiKey
     in: header
     name: Authorization
     scopes:
-      read: 'read right to the TemplateGroup resource'
-      write: 'write right to the TemplateGroup resource'
+      read: 'read right to the AuditTrail resource'
+      write: 'write right to the AuditTrail resource'
 host: irc.zaakonline.nl
 servers:
   -
-    description: 'Demo Omgeving'
-    url: 'http://proto.demo.common-ground.dev'
+    name: huwelijksplanner.online
+    url: wrc.dev.huwelijksplanner.online
 externalDocs:
   -
     description: 'OAS Documentatie'
