@@ -140,7 +140,7 @@ class Application
      * @Assert\NotNull
      * @Groups({"read","write"})
      * @MaxDepth(1)
-     * @ORM\ManyToOne(targetEntity="App\Entity\Organization", inversedBy="applications")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Organization", inversedBy="applications", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $organization;

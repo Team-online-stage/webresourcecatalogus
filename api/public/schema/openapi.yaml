@@ -14308,12 +14308,20 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
+<<<<<<< HEAD
         example: '2020-05-25 12:17:23'
+=======
+        example: '2020-05-26 12:33:40'
+>>>>>>> dev-gino
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
+<<<<<<< HEAD
         example: '2020-05-25 12:17:23'
+=======
+        example: '2020-05-26 12:33:40'
+>>>>>>> dev-gino
     required: []
   AuditTrail-write:
     properties:
@@ -14361,12 +14369,20 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
+<<<<<<< HEAD
         example: '2020-05-25 12:17:23'
+=======
+        example: '2020-05-26 12:33:40'
+>>>>>>> dev-gino
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
+<<<<<<< HEAD
         example: '2020-05-25 12:17:23'
+=======
+        example: '2020-05-26 12:33:40'
+>>>>>>> dev-gino
     required: []
   ChangeLog-write:
     properties:
