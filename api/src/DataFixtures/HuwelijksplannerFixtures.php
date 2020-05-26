@@ -153,6 +153,19 @@ class HuwelijksplannerFixtures extends Fixture
     	$manager->flush();
     	$organization= $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
 
+        $style = new Style();
+        $style->setName('VNG');
+        $style->setDescription('Huistlijl VNG');
+        $style->setCss(':root {--primary: white;--primary2: #233A79;--secondary: #004488;--secondary2: #0277BD;}
+        .main-title {color: var(--primary2) !important;}.logo-header {background: var(--primary);}.navbar-header 
+        {background: var(--primary);}.bg-primary-gradient {background: linear-gradient(-45deg, var(--secondary), var(--secondary2)) !important;}');
+        $style->setOrganization($organization);
+
+        $manager->persist($organization);
+        $manager->persist($style);
+
+        $manager->flush();
+
     	// -Hertogenbosch
     	$id = Uuid::fromString('fed9339e-57d5-4f63-ab68-694759705c19');
     	$organization= new Organization();

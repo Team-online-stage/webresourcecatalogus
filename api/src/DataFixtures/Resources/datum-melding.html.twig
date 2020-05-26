@@ -27,7 +27,7 @@
                 <div class="dateholder">
                     <md-datepicker ng-model="defaultDate" md-placeholder="Voer datum in" md-open-on-focus=""
                                    md-date-filter="availabledates" md-date-locale="dutchDates"
-                                   md-min-date="minDate"></md-datepicker>
+                                   md-min-date="minDate" md-max-date="endDate"></md-datepicker>
                 </div>
                 <select name="tijd">
                     <option
@@ -82,6 +82,11 @@ angular.module('MyApp', ['ngMaterial', 'ngMessages', 'material.svgAssetsCache'])
     $scope.today = new Date();
     $scope.minDate = new Date(
         $scope.today.getFullYear(),
+        $scope.today.getMonth(),
+        $scope.today.getDate()
+    );
+    $scope.endDate = new Date(
+        $scope.today.getFullYear() +1,
         $scope.today.getMonth(),
         $scope.today.getDate()
     );
