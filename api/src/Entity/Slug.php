@@ -167,15 +167,13 @@ class Slug
         return $this;
     }
 
-    /**
-     * @return Template[]
-     */
-    public function getTemplate(): Template
+
+    public function getTemplate(): ?Template
     {
         return $this->template;
     }
 
-    public function setTemplate(Template $template): self
+    public function setTemplate(?Template $template): self
     {
         $this->template = $template;
 

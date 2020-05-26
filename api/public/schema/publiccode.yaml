@@ -6,7 +6,11 @@ url: "https://github.com/ConductionNL/webresourcecatalogus"
 landingURL: "wrc.zaakonline.nl" 
 isBasedOn: "https://github.com/ConductionNL/Proto-component-commonground.git" 
 softwareVersion: "V.0.1"
+<<<<<<< HEAD
 releaseDate: "2020-25-05"
+=======
+releaseDate: "2020-26-05"
+>>>>>>> dev-gino
 logo: wrc.zaakonline.nl 
 monochromeLogo: img/logo-mono.svg
 
