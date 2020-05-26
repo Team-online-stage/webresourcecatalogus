@@ -62,7 +62,9 @@ class HuwelijksplannerFixtures extends Fixture
     	$style = new Style();
     	$style->setName('Utrecht');
     	$style->setDescription('Huistlijl Gemeente Utrecht');
-    	$style->setCss('');
+    	$style->setCss(':root {--primary: #CC0000;--secondary: #06418E;--secondary2: #2A5587;}.logo-header 
+    	{background: var(--primary);}.main-title {color: white !important;}.navbar-header {background: var(--primary);}
+    	.bg-primary-gradient {@include linear-gradient(-45deg, var(--secondary), var(--secondary2);}');
     	$style->setfavicon($favicon);
     	$style->setOrganization($utrecht);
 
@@ -113,6 +115,32 @@ class HuwelijksplannerFixtures extends Fixture
 
     	$manager->flush();
 
+        // West-Friesland
+        $id = Uuid::fromString('d280c4d3-6310-46db-9934-5285ec7d0d5e');
+        $westfriesland= new Organization();
+        $westfriesland->setName('West-Friesland');
+        $westfriesland->setDescription('Gemeente West-Friesland');
+        $westfriesland->setRsin('1234');
+        $manager->persist($westfriesland);
+        $westfriesland->setId($id);
+        $manager->persist($westfriesland);
+        $manager->flush();
+        $westfriesland = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
+
+        $style = new Style();
+        $style->setName('West-Friesland');
+        $style->setDescription('Huistlijl Gemeente West-Friesland');
+        $style->setCss(':root {--primary: #233A79;--primary2: white;--secondary: #FFC926;--secondary2: #FFC926;}
+        .main-title {color: var(--primary2) !important;}.logo-header {background: var(--primary);}.navbar-header 
+        {background: var(--primary);}.bg-primary-gradient {background: linear-gradient(-45deg, var(--secondary),
+         var(--secondary2)) !important;}');
+        $style->setOrganization($westfriesland);
+
+        $manager->persist($westfriesland);
+        $manager->persist($style);
+
+        $manager->flush();
+
     	// VNG
     	$id = Uuid::fromString('26f9657d-b5c7-44a6-b33f-596b657c1bde');
     	$organization= new Organization();
@@ -125,7 +153,7 @@ class HuwelijksplannerFixtures extends Fixture
     	$manager->flush();
     	$organization= $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
 
-    	// s-Hertogenbosch
+    	// -Hertogenbosch
     	$id = Uuid::fromString('fed9339e-57d5-4f63-ab68-694759705c19');
     	$organization= new Organization();
     	$organization->setName('\'s-Hertogenbosch');
@@ -137,7 +165,20 @@ class HuwelijksplannerFixtures extends Fixture
     	$manager->flush();
     	$organization= $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
 
-    	// Eindhoven
+        $style = new Style();
+        $style->setName('Gemeente \'s-Hertogenbosch');
+        $style->setDescription('Huistlijl Gemeente \'s-Hertogenbosch');
+        $style->setCss(':root {--primary: #AD9156;--secondary: #00205C;--secondary2: #2A5587;}.main-title 
+        {color: white !important;}.logo-header {background: var(--primary);}.navbar-header {background: var(--primary);}
+        .bg-primary-gradient {background: linear-gradient(-45deg, var(--secondary), var(--secondary2)) !important;}');
+        $style->setOrganization($organization);
+
+        $manager->persist($style);
+        $manager->flush();
+
+
+        // Eindhoven
+
     	$id = Uuid::fromString('1802c00b-c3d9-46a5-848c-5846bca29345');
     	$eindhoven= new Organization();
     	$eindhoven->setName('Eindhoven');
@@ -162,7 +203,9 @@ class HuwelijksplannerFixtures extends Fixture
     	$style = new Style();
     	$style->setName('Gemeente Eindhoven');
     	$style->setDescription('Huistlijl Gemeente Eindhoven');
-    	$style->setCss('');
+    	$style->setCss(':root {--primary: white;--primary2: #EF4433;--secondary: #464646;--secondary2: #464646;}.main-title 
+    	{color: var(--primary2) !important;}.logo-header {background: var(--primary);}.navbar-header {background: var(--primary);}
+    	.bg-primary-gradient {background: linear-gradient(-45deg, var(--secondary), var(--secondary2)) !important;}');
     	$style->setfavicon($favicon);
     	$style->setOrganization($eindhoven);
 
@@ -193,7 +236,7 @@ class HuwelijksplannerFixtures extends Fixture
     	$logo->setOrganization($vng);
 
     	$style = new Style();
-    	$style->setName('Utrecht');
+    	$style->setName('VNG');
     	$style->setDescription('Huistlijl Gemeente Utrecht');
     	$style->setCss('');
     	$style->setfavicon($favicon);
