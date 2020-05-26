@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use Conduction\CommonGroundBundle\Service\CommonGroundService;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Ramsey\Uuid\Uuid;
@@ -19,9 +20,11 @@ use App\Entity\Image;
 class HuwelijksplannerFixtures extends Fixture
 {
 	private $params;
+	private $commonGroundService;
 
-	public function __construct(ParameterBagInterface $params)
+	public function __construct(ParameterBagInterface $params, CommonGroundService $commonGroundService)
 	{
+	    $this->commonGroundService = $commonGroundService;
 		$this->params = $params;
 	}
 
@@ -59,7 +62,9 @@ class HuwelijksplannerFixtures extends Fixture
     	$style = new Style();
     	$style->setName('Utrecht');
     	$style->setDescription('Huistlijl Gemeente Utrecht');
-    	$style->setCss('');
+    	$style->setCss(':root {--primary: #CC0000;--secondary: #06418E;--secondary2: #2A5587;}.logo-header 
+    	{background: var(--primary);}.main-title {color: white !important;}.navbar-header {background: var(--primary);}
+    	.bg-primary-gradient {@include linear-gradient(-45deg, var(--secondary), var(--secondary2);}');
     	$style->setfavicon($favicon);
     	$style->setOrganization($utrecht);
 
@@ -110,6 +115,32 @@ class HuwelijksplannerFixtures extends Fixture
 
     	$manager->flush();
 
+        // West-Friesland
+        $id = Uuid::fromString('d280c4d3-6310-46db-9934-5285ec7d0d5e');
+        $westfriesland= new Organization();
+        $westfriesland->setName('West-Friesland');
+        $westfriesland->setDescription('Gemeente West-Friesland');
+        $westfriesland->setRsin('1234');
+        $manager->persist($westfriesland);
+        $westfriesland->setId($id);
+        $manager->persist($westfriesland);
+        $manager->flush();
+        $westfriesland = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
+
+        $style = new Style();
+        $style->setName('West-Friesland');
+        $style->setDescription('Huistlijl Gemeente West-Friesland');
+        $style->setCss(':root {--primary: #233A79;--primary2: white;--secondary: #FFC926;--secondary2: #FFC926;}
+        .main-title {color: var(--primary2) !important;}.logo-header {background: var(--primary);}.navbar-header 
+        {background: var(--primary);}.bg-primary-gradient {background: linear-gradient(-45deg, var(--secondary),
+         var(--secondary2)) !important;}');
+        $style->setOrganization($westfriesland);
+
+        $manager->persist($westfriesland);
+        $manager->persist($style);
+
+        $manager->flush();
+
     	// VNG
     	$id = Uuid::fromString('26f9657d-b5c7-44a6-b33f-596b657c1bde');
     	$organization= new Organization();
@@ -122,7 +153,7 @@ class HuwelijksplannerFixtures extends Fixture
     	$manager->flush();
     	$organization= $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
 
-    	// s-Hertogenbosch
+    	// -Hertogenbosch
     	$id = Uuid::fromString('fed9339e-57d5-4f63-ab68-694759705c19');
     	$organization= new Organization();
     	$organization->setName('\'s-Hertogenbosch');
@@ -134,7 +165,20 @@ class HuwelijksplannerFixtures extends Fixture
     	$manager->flush();
     	$organization= $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
 
-    	// Eindhoven
+        $style = new Style();
+        $style->setName('Gemeente \'s-Hertogenbosch');
+        $style->setDescription('Huistlijl Gemeente \'s-Hertogenbosch');
+        $style->setCss(':root {--primary: #AD9156;--secondary: #00205C;--secondary2: #2A5587;}.main-title 
+        {color: white !important;}.logo-header {background: var(--primary);}.navbar-header {background: var(--primary);}
+        .bg-primary-gradient {background: linear-gradient(-45deg, var(--secondary), var(--secondary2)) !important;}');
+        $style->setOrganization($organization);
+
+        $manager->persist($style);
+        $manager->flush();
+
+
+        // Eindhoven
+
     	$id = Uuid::fromString('1802c00b-c3d9-46a5-848c-5846bca29345');
     	$eindhoven= new Organization();
     	$eindhoven->setName('Eindhoven');
@@ -159,7 +203,9 @@ class HuwelijksplannerFixtures extends Fixture
     	$style = new Style();
     	$style->setName('Gemeente Eindhoven');
     	$style->setDescription('Huistlijl Gemeente Eindhoven');
-    	$style->setCss('');
+    	$style->setCss(':root {--primary: white;--primary2: #EF4433;--secondary: #464646;--secondary2: #464646;}.main-title 
+    	{color: var(--primary2) !important;}.logo-header {background: var(--primary);}.navbar-header {background: var(--primary);}
+    	.bg-primary-gradient {background: linear-gradient(-45deg, var(--secondary), var(--secondary2)) !important;}');
     	$style->setfavicon($favicon);
     	$style->setOrganization($eindhoven);
 
@@ -190,7 +236,7 @@ class HuwelijksplannerFixtures extends Fixture
     	$logo->setOrganization($vng);
 
     	$style = new Style();
-    	$style->setName('Utrecht');
+    	$style->setName('VNG');
     	$style->setDescription('Huistlijl Gemeente Utrecht');
     	$style->setCss('');
     	$style->setfavicon($favicon);
@@ -1282,7 +1328,7 @@ class HuwelijksplannerFixtures extends Fixture
         $template->setName('E-mail instemming');
         $template->setTitle('Instemming voor een huwelijk');
         $template->setDescription('');
-        $template->setContent('Beste {{ contact.givenName }},<br><br>Uw instemming is gevraagd bij een instemmingsverzoek.<br><br><a href="https://irc-ui.dev.huwelijksplanner.online/assents/{{ assent[\'id\'] }}">Klik hier</a> om op dit verzoek te reageren.<br><br>Met vriendelijke groet,<br><br>Gemeente Utrecht');
+        $template->setContent("Beste {{ contact.givenName }},<br><br>Uw instemming is gevraagd bij een instemmingsverzoek.<br><br><a href='{$this->commonGroundService->cleanUrl($this->commonGroundService->getComponent('irc-ui')['location'])}/assents/{{ assent[\"id\"] }}'>Klik hier</a> om op dit verzoek te reageren.<br><br>Met vriendelijke groet,<br><br>Gemeente Utrecht");
         $template->setTemplateEngine('twig');
         $manager->persist($template);
         $template->setId($id);
@@ -1298,7 +1344,7 @@ class HuwelijksplannerFixtures extends Fixture
         $template->setName('E-mail aanvraag');
         $template->setTitle('Aanvraag huwelijksplanner');
         $template->setDescription('');
-        $template->setContent('Beste {{ contact.givenName }},<br><br>U heeft een aanvraag insgestuurd voor een {{ requestType.name }} bij de gemeente Utrecht.<br><br><a href="https://huwelijksplanner.online/?request={{ request[\'@id\'] }}">Klik hier</a> om op dit uw aanvraag in te zien<br><br>Met vriendelijke groet,<br><br>Gemeente Utrecht');
+        $template->setContent("Beste {{ contact.givenName }},<br><br>U heeft een aanvraag insgestuurd voor een {{ requestType.name }} bij de gemeente Utrecht.<br><br><a href='{$this->commonGroundService->cleanUrl($this->commonGroundService->getComponent('ui')['location'])}/?request={{ request[\"@id\"] }}'>Klik hier</a> om op dit uw aanvraag in te zien<br><br>Met vriendelijke groet,<br><br>Gemeente Utrecht");
         $template->setTemplateEngine('twig');
         $manager->persist($template);
         $template->setId($id);

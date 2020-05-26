@@ -48,8 +48,8 @@ use Symfony\Component\Validator\Constraints as Assert;
  *     }
  * )
  * @ORM\Entity(repositoryClass="App\Repository\ImageRepository")
- * @Gedmo\Loggable(logEntryClass="App\Entity\ChangeLog")
- * 
+ * @Gedmo\Loggable(logEntryClass="Conduction\CommonGroundBundle\Entity\ChangeLog")
+ *
  * @ApiFilter(BooleanFilter::class)
  * @ApiFilter(OrderFilter::class)
  * @ApiFilter(DateFilter::class, strategy=DateFilter::EXCLUDE_NULL)
@@ -85,7 +85,7 @@ class Image
      * @ORM\Column(type="string", length=255)
      */
     private $name;
-    
+
     /**
      * @var string The description of this organisation.
      *
@@ -128,7 +128,7 @@ class Image
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $href;
-        
+
     /**
      * @Gedmo\Versioned
      * @Groups({"read","write"})
@@ -142,7 +142,7 @@ class Image
      * @ORM\JoinColumn(nullable=false)
      */
     private $organization;
-    
+
     /**
      * @var Datetime $dateCreated The moment this request was created
      *
@@ -151,7 +151,7 @@ class Image
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $dateCreated;
-    
+
     /**
      * @var Datetime $dateModified  The moment this request last Modified
      *
@@ -189,16 +189,16 @@ class Image
 
         return $this;
     }
-    
+
     public function getDescription(): ?string
     {
     	return $this->description;
     }
-    
+
     public function setDescription(?string $description): self
     {
     	$this->description = $description;
-    	
+
     	return $this;
     }
 
@@ -225,16 +225,16 @@ class Image
 
         return $this;
     }
-    
+
     public function getBase64(): ?string
     {
     	return $this->base64;
     }
-    
+
     public function setBase64(?string $base64): self
     {
     	$this->base64 = $base64;
-    	
+
     	return $this;
     }
 
@@ -249,28 +249,28 @@ class Image
 
         return $this;
     }
-    
+
     public function getDateCreated(): ?\DateTimeInterface
     {
     	return $this->dateModified;
     }
-    
+
     public function setDateCreated(\DateTimeInterface $dateCreated): self
     {
     	$this->dateCreated= $dateCreated;
-    	
+
     	return $this;
     }
-    
+
     public function getDateModified(): ?\DateTimeInterface
     {
     	return $this->dateModified;
     }
-    
+
     public function setDateModified(\DateTimeInterface $dateModified): self
     {
     	$this->dateModified = $dateModified;
-    	
+
     	return $this;
     }
 }

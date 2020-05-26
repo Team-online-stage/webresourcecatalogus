@@ -64,7 +64,7 @@
                                         </div>
 
                                         <a style="margin-top: 10px"
-                                           href="{{ path('app_default_unset', {'slug':'getuigen', 'value': 'http://irc.zaakonline.nl/assents/'~assent.id}) }}"
+                                           href="{{ path('app_default_unset', {'slug':'getuige', 'value': assent['@id']}) }}"
                                            class="btn btn-danger btn-icon col-md-8 col-md-offset-2">Annuleer
                                             getuige</a>
                                         </p>
