@@ -2,122 +2,121 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Application;
+use App\Entity\Configuration;
+use App\Entity\Image;
+use App\Entity\Organization;
+use App\Entity\Slug;
+use App\Entity\Style;
+use App\Entity\Template;
+use App\Entity\TemplateGroup;
 use Conduction\CommonGroundBundle\Service\CommonGroundService;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Ramsey\Uuid\Uuid;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 
-use App\Entity\Organization;
-use App\Entity\Configuration;
-use App\Entity\Style;
-use App\Entity\Application;
-use App\Entity\Slug;
-use App\Entity\Template;
-use App\Entity\TemplateGroup;
-use App\Entity\Image;
-
 class HuwelijksplannerFixtures extends Fixture
 {
-	private $params;
-	private $commonGroundService;
+    private $params;
+    private $commonGroundService;
 
-	public function __construct(ParameterBagInterface $params, CommonGroundService $commonGroundService)
-	{
-	    $this->commonGroundService = $commonGroundService;
-		$this->params = $params;
-	}
+    public function __construct(ParameterBagInterface $params, CommonGroundService $commonGroundService)
+    {
+        $this->commonGroundService = $commonGroundService;
+        $this->params = $params;
+    }
 
     public function load(ObjectManager $manager)
     {
         // Lets make sure we only run these fixtures on larping enviroment
-        if ($this->params->get('app_domain') != "huwelijksplanner.online" && strpos($this->params->get('app_domain'), "huwelijksplanner.online") == false) {
+        if ($this->params->get('app_domain') != 'huwelijksplanner.online' && strpos($this->params->get('app_domain'), 'huwelijksplanner.online') == false) {
             return false;
         }
 
-    	// Deze organisaties worden ook buiten het wrc gebruikt
-    	// Utrecht
-    	$id = Uuid::fromString('68b64145-0740-46df-a65a-9d3259c2fec8');
-    	$utrecht = new Organization();
-    	$utrecht->setName('Utrecht');
-    	$utrecht->setDescription('Gemeente Utrecht');
-    	$utrecht->setRsin('002220647');
-    	$utrecht->setContact('https://cc.huwelijksplanner.online/organizations/95c3da92-b7d3-4ea0-b6d4-3bc24944e622');
-    	$manager->persist($utrecht);
-    	$utrecht->setId($id);
-    	$manager->persist($utrecht);
-    	$manager->flush();
-    	$utrecht= $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
+        // Deze organisaties worden ook buiten het wrc gebruikt
+        // Utrecht
+        $id = Uuid::fromString('68b64145-0740-46df-a65a-9d3259c2fec8');
+        $utrecht = new Organization();
+        $utrecht->setName('Utrecht');
+        $utrecht->setDescription('Gemeente Utrecht');
+        $utrecht->setRsin('002220647');
+        $utrecht->setContact('https://cc.huwelijksplanner.online/organizations/95c3da92-b7d3-4ea0-b6d4-3bc24944e622');
+        $manager->persist($utrecht);
+        $utrecht->setId($id);
+        $manager->persist($utrecht);
+        $manager->flush();
+        $utrecht = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
 
-    	$favicon = new Image();
-    	$favicon->setName('VNG Favicon');
-    	$favicon->setDescription('Favicon VNG');
-    	$favicon->setOrganization($utrecht);
+        $favicon = new Image();
+        $favicon->setName('VNG Favicon');
+        $favicon->setDescription('Favicon VNG');
+        $favicon->setOrganization($utrecht);
 
-    	$logo = new Image();
-    	$logo->setName('VNG Logo');
-    	$logo->setDescription('Logo VNG');
-    	$logo->setOrganization($utrecht);
+        $logo = new Image();
+        $logo->setName('VNG Logo');
+        $logo->setDescription('Logo VNG');
+        $logo->setOrganization($utrecht);
 
-    	$style = new Style();
-    	$style->setName('Utrecht');
-    	$style->setDescription('Huistlijl Gemeente Utrecht');
-    	$style->setCss(':root {--primary: #CC0000;--secondary: #06418E;--secondary2: #2A5587;}.logo-header
+        $style = new Style();
+        $style->setName('Utrecht');
+        $style->setDescription('Huistlijl Gemeente Utrecht');
+        $style->setCss(':root {--primary: #CC0000;--secondary: #06418E;--secondary2: #2A5587;}.logo-header
     	{background: var(--primary);}.main-title {color: white !important;}.navbar-header {background: var(--primary);}
     	.bg-primary-gradient {@include linear-gradient(-45deg, var(--secondary), var(--secondary2);}');
-    	$style->setfavicon($favicon);
-    	$style->setOrganization($utrecht);
+        $style->setfavicon($favicon);
+        $style->setOrganization($utrecht);
 
-    	$utrecht->setLogo($logo);
+        $utrecht->setLogo($logo);
 
-    	$manager->persist($utrecht);
-    	$manager->persist($favicon);
-    	$manager->persist($logo);
-    	$manager->persist($style);
+        $manager->persist($utrecht);
+        $manager->persist($favicon);
+        $manager->persist($logo);
+        $manager->persist($style);
 
-    	$manager->flush();
+        $manager->flush();
 
-    	// Rotterdam
-    	$id = Uuid::fromString('caf824b3-436a-471c-a703-629cf84ca00d');
-    	$rotterdam= new Organization();
-    	$rotterdam->setName('Rotterdam');
-    	$rotterdam->setDescription('Gemeente Rotterdam');
-    	$rotterdam->setRsin('');
-    	$manager->persist($rotterdam);
-    	$rotterdam->setId($id);
-    	$manager->persist($rotterdam);
-    	$manager->flush();
-    	$rotterdam= $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
+        // Rotterdam
+        $id = Uuid::fromString('caf824b3-436a-471c-a703-629cf84ca00d');
+        $rotterdam = new Organization();
+        $rotterdam->setName('Rotterdam');
+        $rotterdam->setDescription('Gemeente Rotterdam');
+        $rotterdam->setRsin('');
+        $manager->persist($rotterdam);
+        $rotterdam->setId($id);
+        $manager->persist($rotterdam);
+        $manager->flush();
+        $rotterdam = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
 
-    	$favicon = new Image();
-    	$favicon->setName('VNG Favicon');
-    	$favicon->setDescription('Favicon VNG');
-    	$favicon->setOrganization($rotterdam);
+        $favicon = new Image();
+        $favicon->setName('VNG Favicon');
+        $favicon->setDescription('Favicon VNG');
+        $favicon->setOrganization($rotterdam);
 
-    	$logo = new Image();
-    	$logo->setName('VNG Logo');
-    	$logo->setDescription('Logo VNG');
-    	$logo->setOrganization($rotterdam);
+        $logo = new Image();
+        $logo->setName('VNG Logo');
+        $logo->setDescription('Logo VNG');
+        $logo->setOrganization($rotterdam);
 
-    	$style = new Style();
-    	$style->setName('Utrecht');
-    	$style->setDescription('Huistlijl Gemeente Utrecht');
-    	$style->setCss('');
-    	$style->setfavicon($favicon);
-    	$style->setOrganization($rotterdam);
+        $style = new Style();
+        $style->setName('Utrecht');
+        $style->setDescription('Huistlijl Gemeente Utrecht');
+        $style->setCss('');
+        $style->setfavicon($favicon);
+        $style->setOrganization($rotterdam);
 
-    	$rotterdam->setLogo($logo);
+        $rotterdam->setLogo($logo);
 
-    	$manager->persist($rotterdam);
-    	$manager->persist($favicon);
-    	$manager->persist($logo);
-    	$manager->persist($style);
+        $manager->persist($rotterdam);
+        $manager->persist($favicon);
+        $manager->persist($logo);
+        $manager->persist($style);
 
-    	$manager->flush();
+        $manager->flush();
 
         // West-Friesland
         $id = Uuid::fromString('d280c4d3-6310-46db-9934-5285ec7d0d5e');
-        $westfriesland= new Organization();
+        $westfriesland = new Organization();
         $westfriesland->setName('West-Friesland');
         $westfriesland->setDescription('Gemeente West-Friesland');
         $westfriesland->setRsin('1234');
@@ -146,6 +145,7 @@ class HuwelijksplannerFixtures extends Fixture
          var(--secondary2)) !important;}');
         $style->setfavicon($favicon);
         $style->setOrganization($westfriesland);
+        $style->setfavicon($favicon);
 
         $manager->persist($westfriesland);
         $manager->persist($favicon);
@@ -154,29 +154,42 @@ class HuwelijksplannerFixtures extends Fixture
 
         $manager->flush();
 
-    	// VNG
-    	$id = Uuid::fromString('26f9657d-b5c7-44a6-b33f-596b657c1bde');
-    	$organization= new Organization();
-    	$organization->setName('VNG');
-    	$organization->setDescription('Vereniging Nederlandse Gemeenten');
-    	$organization->setRsin('0000');
-    	$manager->persist($organization);
-    	$organization->setId($id);
-    	$manager->persist($organization);
-    	$manager->flush();
-    	$organization= $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
+        // VNG
+        $id = Uuid::fromString('26f9657d-b5c7-44a6-b33f-596b657c1bde');
+        $organization = new Organization();
+        $organization->setName('VNG');
+        $organization->setDescription('Vereniging Nederlandse Gemeenten');
+        $organization->setRsin('0000');
+        $manager->persist($organization);
+        $organization->setId($id);
+        $manager->persist($organization);
+        $manager->flush();
+        $organization = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
 
-    	// -Hertogenbosch
-    	$id = Uuid::fromString('fed9339e-57d5-4f63-ab68-694759705c19');
-    	$sHertogenbosch= new Organization();
+        $style = new Style();
+        $style->setName('VNG');
+        $style->setDescription('Huistlijl VNG');
+        $style->setCss(':root {--primary: white;--primary2: #233A79;--secondary: #004488;--secondary2: #0277BD;}
+        .main-title {color: var(--primary2) !important;}.logo-header {background: var(--primary);}.navbar-header
+        {background: var(--primary);}.bg-primary-gradient {background: linear-gradient(-45deg, var(--secondary), var(--secondary2)) !important;}');
+        $style->setOrganization($organization);
+        $style->setfavicon($favicon);
+        $manager->persist($organization);
+        $manager->persist($style);
+
+        $manager->flush();
+
+        // -Hertogenbosch
+        $id = Uuid::fromString('fed9339e-57d5-4f63-ab68-694759705c19');
+        $sHertogenbosch = new Organization();
         $sHertogenbosch->setName('\'s-Hertogenbosch');
         $sHertogenbosch->setDescription('Gemeente \'s-Hertogenbosch');
         $sHertogenbosch->setRsin('001709124');
-    	$manager->persist($sHertogenbosch);
+        $manager->persist($sHertogenbosch);
         $sHertogenbosch->setId($id);
-    	$manager->persist($sHertogenbosch);
-    	$manager->flush();
-        $sHertogenbosch= $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
+        $manager->persist($sHertogenbosch);
+        $manager->flush();
+        $sHertogenbosch = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
 
         $favicon = new Image();
         $favicon->setName('\'s-Hertogenbosch Favicon');
@@ -202,85 +215,83 @@ class HuwelijksplannerFixtures extends Fixture
         $manager->persist($style);
         $manager->flush();
 
-
         // Eindhoven
 
-    	$id = Uuid::fromString('1802c00b-c3d9-46a5-848c-5846bca29345');
-    	$eindhoven= new Organization();
-    	$eindhoven->setName('Eindhoven');
-    	$eindhoven->setDescription('Gemeente Eindhoven');
-    	$eindhoven->setRsin('001902763');
-    	$manager->persist($eindhoven);
+        $id = Uuid::fromString('1802c00b-c3d9-46a5-848c-5846bca29345');
+        $eindhoven = new Organization();
+        $eindhoven->setName('Eindhoven');
+        $eindhoven->setDescription('Gemeente Eindhoven');
+        $eindhoven->setRsin('001902763');
+        $manager->persist($eindhoven);
         $eindhoven->setId($id);
-    	$manager->persist($eindhoven);
-    	$manager->flush();
-        $eindhoven= $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
+        $manager->persist($eindhoven);
+        $manager->flush();
+        $eindhoven = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
 
-    	$favicon = new Image();
-    	$favicon->setName('Gemeente Eindhoven Favicon');
-    	$favicon->setDescription('Favicon Gemeente Eindhoven');
-    	$favicon->setOrganization($eindhoven);
+        $favicon = new Image();
+        $favicon->setName('Gemeente Eindhoven Favicon');
+        $favicon->setDescription('Favicon Gemeente Eindhoven');
+        $favicon->setOrganization($eindhoven);
 
-    	$logo = new Image();
-    	$logo->setName('Gemeente Eindhoven Logo');
-    	$logo->setDescription('Logo Gemeente Eindhoven');
-    	$logo->setOrganization($eindhoven);
+        $logo = new Image();
+        $logo->setName('Gemeente Eindhoven Logo');
+        $logo->setDescription('Logo Gemeente Eindhoven');
+        $logo->setOrganization($eindhoven);
 
-    	$style = new Style();
-    	$style->setName('Gemeente Eindhoven');
-    	$style->setDescription('Huistlijl Gemeente Eindhoven');
-    	$style->setCss(':root {--primary: white;--primary2: #EF4433;--secondary: #464646;--secondary2: #464646;}.main-title
+        $style = new Style();
+        $style->setName('Gemeente Eindhoven');
+        $style->setDescription('Huistlijl Gemeente Eindhoven');
+        $style->setCss(':root {--primary: white;--primary2: #EF4433;--secondary: #464646;--secondary2: #464646;}.main-title
     	{color: var(--primary2) !important;}.logo-header {background: var(--primary);}.navbar-header {background: var(--primary);}
     	.bg-primary-gradient {background: linear-gradient(-45deg, var(--secondary), var(--secondary2)) !important;}');
-    	$style->setfavicon($favicon);
-    	$style->setOrganization($eindhoven);
+        $style->setfavicon($favicon);
+        $style->setOrganization($eindhoven);
+        $eindhoven->setLogo($logo);
 
-    	$eindhoven->setLogo($logo);
+        $manager->persist($eindhoven);
+        $manager->persist($favicon);
+        $manager->persist($logo);
+        $manager->persist($style);
 
-    	$manager->persist($eindhoven);
-    	$manager->persist($favicon);
-    	$manager->persist($logo);
-    	$manager->persist($style);
+        $manager->flush();
 
-    	$manager->flush();
-
-    	// VNG
+        // VNG
         $id = Uuid::fromString('6d879677-79e3-4daa-a50d-a29762b0064c');
-    	$vng = new Organization();
-    	$vng->setName('VNG');
-    	$vng->setDescription('Vereniging Nederlandse Gemeente');
-    	$vng->setRsin('');
+        $vng = new Organization();
+        $vng->setName('VNG');
+        $vng->setDescription('Vereniging Nederlandse Gemeente');
+        $vng->setRsin('');
         $manager->persist($vng);
         $vng->setId($id);
         $manager->persist($vng);
         $manager->flush();
-        $vng= $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
+        $vng = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
 
-    	$favicon = new Image();
-    	$favicon->setName('VNG Favicon');
-    	$favicon->setDescription('Favicon VNG');
-    	$favicon->setOrganization($vng);
+        $favicon = new Image();
+        $favicon->setName('VNG Favicon');
+        $favicon->setDescription('Favicon VNG');
+        $favicon->setOrganization($vng);
 
-    	$logo = new Image();
-    	$logo->setName('VNG Logo');
-    	$logo->setDescription('Logo VNG');
-    	$logo->setOrganization($vng);
+        $logo = new Image();
+        $logo->setName('VNG Logo');
+        $logo->setDescription('Logo VNG');
+        $logo->setOrganization($vng);
 
-    	$style = new Style();
-    	$style->setName('VNG');
-    	$style->setDescription('Huistlijl Gemeente Utrecht');
-    	$style->setCss('');
-    	$style->setfavicon($favicon);
-    	$style->setOrganization($vng);
+        $style = new Style();
+        $style->setName('VNG');
+        $style->setDescription('Huistlijl Gemeente Utrecht');
+        $style->setCss('');
+        $style->setfavicon($favicon);
+        $style->setOrganization($vng);
 
-    	$vng->setLogo($logo);
+        $vng->setLogo($logo);
 
-    	$manager->persist($vng);
-    	$manager->persist($favicon);
-    	$manager->persist($logo);
-    	$manager->persist($style);
+        $manager->persist($vng);
+        $manager->persist($favicon);
+        $manager->persist($logo);
+        $manager->persist($style);
 
-    	$manager->flush();
+        $manager->flush();
 
         // Mijn App
         $application = new Application();
@@ -787,7 +798,6 @@ class HuwelijksplannerFixtures extends Fixture
         $slug->setSlug('new-request');
         $manager->persist($slug);
 
-
         $id = Uuid::fromString('d19eb461-284b-4fe0-bd61-2e45ac7fe615');
         $template = new Template();
         $template->setName('Formulier');
@@ -993,7 +1003,6 @@ class HuwelijksplannerFixtures extends Fixture
         $slug->setApplication($application);
         $slug->setSlug('plechtigheid');
         $manager->persist($slug);
-
 
         $id = Uuid::fromString('310d1039-abdf-4983-9030-608cd3012306');
         $template = new Template();
