@@ -2,19 +2,16 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Application;
+use App\Entity\Image;
+use App\Entity\Organization;
+use App\Entity\Slug;
+use App\Entity\Style;
+use App\Entity\Template;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Ramsey\Uuid\Uuid;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
-
-
-use App\Entity\Organization;
-use App\Entity\Style;
-use App\Entity\Application;
-use App\Entity\Page;
-use App\Entity\Slug;
-use App\Entity\Template;
-use App\Entity\Image;
 
 class ZaakonlineFixtures extends Fixture
 {
@@ -24,99 +21,99 @@ class ZaakonlineFixtures extends Fixture
     {
         $this->params = $params;
     }
+
     public function load(ObjectManager $manager)
     {
         // Lets make sure we only run these fixtures on larping enviroment
-        if ($this->params->get('app_domain') != "zaakonline.nl" && strpos($this->params->get('app_domain'), "zaakonline.nl") == false) {
+        if ($this->params->get('app_domain') != 'zaakonline.nl' && strpos($this->params->get('app_domain'), 'zaakonline.nl') == false) {
             return false;
         }
         var_dump($this->params->get('app_domain'));
 
-    	// Utrecht
-    	$id = Uuid::fromString('8fc083b2-b110-4289-af17-c840eb4f5f04');
-    	$utrecht = new Organization();
-    	$utrecht->setName('Utrecht');
-    	$utrecht->setDescription('Gemeente Utrecht');
-    	$utrecht->setRsin('');
-    	$utrecht->setContact('https://cc.zaakonline.nl/organizations/95c3da92-b7d3-4ea0-b6d4-3bc24944e622');
-    	$manager->persist($utrecht);
-    	$utrecht->setId($id);
-    	$manager->persist($utrecht);
-    	$manager->flush();
-    	$utrecht= $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
+        // Utrecht
+        $id = Uuid::fromString('8fc083b2-b110-4289-af17-c840eb4f5f04');
+        $utrecht = new Organization();
+        $utrecht->setName('Utrecht');
+        $utrecht->setDescription('Gemeente Utrecht');
+        $utrecht->setRsin('');
+        $utrecht->setContact('https://cc.zaakonline.nl/organizations/95c3da92-b7d3-4ea0-b6d4-3bc24944e622');
+        $manager->persist($utrecht);
+        $utrecht->setId($id);
+        $manager->persist($utrecht);
+        $manager->flush();
+        $utrecht = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
 
-    	// Utrecht
-    	$id = Uuid::fromString('4f387d0e-a2e5-44c0-9902-c31b63a8ee36');
-    	$utrecht = new Organization();
-    	$utrecht->setName('\'s-Hertogenbosch');
-    	$utrecht->setDescription('Gemeente \'s-Hertogenbosch');
-    	$utrecht->setRsin('');
-    	$utrecht->setContact('https://cc.zaakonline.nl/organizations/95c3da92-b7d3-4ea0-b6d4-3bc24944e622');
-    	$manager->persist($utrecht);
-    	$utrecht->setId($id);
-    	$manager->persist($utrecht);
-    	$manager->flush();
-    	$utrecht= $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
+        // Utrecht
+        $id = Uuid::fromString('4f387d0e-a2e5-44c0-9902-c31b63a8ee36');
+        $utrecht = new Organization();
+        $utrecht->setName('\'s-Hertogenbosch');
+        $utrecht->setDescription('Gemeente \'s-Hertogenbosch');
+        $utrecht->setRsin('');
+        $utrecht->setContact('https://cc.zaakonline.nl/organizations/95c3da92-b7d3-4ea0-b6d4-3bc24944e622');
+        $manager->persist($utrecht);
+        $utrecht->setId($id);
+        $manager->persist($utrecht);
+        $manager->flush();
+        $utrecht = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
 
-    	$favicon = new Image();
-    	$favicon->setName('VNG Favicon');
-    	$favicon->setDescription('Favicon VNG');
-    	$favicon->setOrganization($utrecht);
+        $favicon = new Image();
+        $favicon->setName('VNG Favicon');
+        $favicon->setDescription('Favicon VNG');
+        $favicon->setOrganization($utrecht);
 
-    	$logo = new Image();
-    	$logo->setName('VNG Logo');
-    	$logo->setDescription('Logo VNG');
-    	$logo->setOrganization($utrecht);
+        $logo = new Image();
+        $logo->setName('VNG Logo');
+        $logo->setDescription('Logo VNG');
+        $logo->setOrganization($utrecht);
 
-    	$style = new Style();
-    	$style->setName('Utrecht');
-    	$style->setDescription('Huistlijl Gemeente Utrecht');
-    	$style->setCss('');
-    	$style->setfavicon($favicon);
-    	$style->setOrganization($utrecht);
+        $style = new Style();
+        $style->setName('Utrecht');
+        $style->setDescription('Huistlijl Gemeente Utrecht');
+        $style->setCss('');
+        $style->setfavicon($favicon);
+        $style->setOrganization($utrecht);
 
-    	$utrecht->setLogo($logo);
+        $utrecht->setLogo($logo);
 
-    	$manager->persist($utrecht);
-    	$manager->persist($favicon);
-    	$manager->persist($logo);
-    	$manager->persist($style);
+        $manager->persist($utrecht);
+        $manager->persist($favicon);
+        $manager->persist($logo);
+        $manager->persist($style);
 
-    	$manager->flush();
+        $manager->flush();
 
+        // VNG
+        $vng = new Organization();
+        $vng->setName('VNG');
+        $vng->setDescription('Vereniging Nederlandse Gemeente');
+        $vng->setRsin('');
+        $manager->persist($vng);
 
-    	// VNG
-    	$vng = new Organization();
-    	$vng->setName('VNG');
-    	$vng->setDescription('Vereniging Nederlandse Gemeente');
-    	$vng->setRsin('');
-    	$manager->persist($vng);
+        $favicon = new Image();
+        $favicon->setName('VNG Favicon');
+        $favicon->setDescription('Favicon VNG');
+        $favicon->setOrganization($vng);
 
-    	$favicon = new Image();
-    	$favicon->setName('VNG Favicon');
-    	$favicon->setDescription('Favicon VNG');
-    	$favicon->setOrganization($vng);
+        $logo = new Image();
+        $logo->setName('VNG Logo');
+        $logo->setDescription('Logo VNG');
+        $logo->setOrganization($vng);
 
-    	$logo = new Image();
-    	$logo->setName('VNG Logo');
-    	$logo->setDescription('Logo VNG');
-    	$logo->setOrganization($vng);
+        $style = new Style();
+        $style->setName('Utrecht');
+        $style->setDescription('Huistlijl Gemeente Utrecht');
+        $style->setCss('');
+        $style->setfavicon($favicon);
+        $style->setOrganization($vng);
 
-    	$style = new Style();
-    	$style->setName('Utrecht');
-    	$style->setDescription('Huistlijl Gemeente Utrecht');
-    	$style->setCss('');
-    	$style->setfavicon($favicon);
-    	$style->setOrganization($vng);
+        $vng->setLogo($logo);
 
-    	$vng->setLogo($logo);
+        $manager->persist($vng);
+        $manager->persist($favicon);
+        $manager->persist($logo);
+        $manager->persist($style);
 
-    	$manager->persist($vng);
-    	$manager->persist($favicon);
-    	$manager->persist($logo);
-    	$manager->persist($style);
-
-    	$manager->flush();
+        $manager->flush();
 
         // Home
         $application = new Application();
@@ -215,6 +212,5 @@ class ZaakonlineFixtures extends Fixture
         $slug->setSlug('noodvoorziening-corona');
         $slug->setName('noodvoorziening-corona');
         $manager->persist($slug);
-
     }
 }
