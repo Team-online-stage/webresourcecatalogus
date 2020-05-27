@@ -10,7 +10,7 @@ info:
     - Version: V.0.1
     - Repository: [online](https://github.com/ConductionNL/webresourcecatalogus) / [zip](https://github.com/ConductionNL/webresourcecatalogus/archive/master.zip)
     - Docker Image: [online](https://hub.docker.com/repository/docker/conduction/wrc-php) 
-    - Datamodel: [postman](/schema/wrc.postman_collection.json) / [oas](/schema/openapi.yaml) / [pdf](/schema/datamodel.pdf) / [mwb](/schema/datamodel.mwb) 
+    - Datamodel: [postman](/schema/wrc.postman_collection.json) / [oas](/schema/openapi.yaml) / [pdf](/schema/datamodel.pdf) / [modelio (zip)](/schema/Datamodel_Modelio.zip) 
     
     'Naast deze JSON rest API is er ook een [graphql](/graphql) interface beschikbaar.'         
     
@@ -14308,20 +14308,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-<<<<<<< HEAD
-        example: '2020-05-25 12:17:23'
-=======
-        example: '2020-05-26 12:33:40'
->>>>>>> dev-gino
+        example: '2020-05-27 06:12:53'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-<<<<<<< HEAD
-        example: '2020-05-25 12:17:23'
-=======
-        example: '2020-05-26 12:33:40'
->>>>>>> dev-gino
+        example: '2020-05-27 06:12:53'
     required: []
   AuditTrail-write:
     properties:
@@ -14369,20 +14361,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-<<<<<<< HEAD
-        example: '2020-05-25 12:17:23'
-=======
-        example: '2020-05-26 12:33:40'
->>>>>>> dev-gino
+        example: '2020-05-27 06:12:53'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-<<<<<<< HEAD
-        example: '2020-05-25 12:17:23'
-=======
-        example: '2020-05-26 12:33:40'
->>>>>>> dev-gino
+        example: '2020-05-27 06:12:53'
     required: []
   ChangeLog-write:
     properties:
