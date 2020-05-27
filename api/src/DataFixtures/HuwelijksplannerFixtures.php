@@ -127,6 +127,16 @@ class HuwelijksplannerFixtures extends Fixture
         $manager->flush();
         $westfriesland = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
 
+        $favicon = new Image();
+        $favicon->setName('VNG Favicon');
+        $favicon->setDescription('Favicon VNG');
+        $favicon->setOrganization($rotterdam);
+
+        $logo = new Image();
+        $logo->setName('VNG Logo');
+        $logo->setDescription('Logo VNG');
+        $logo->setOrganization($rotterdam);
+
         $style = new Style();
         $style->setName('West-Friesland');
         $style->setDescription('Huistlijl Gemeente West-Friesland');
@@ -136,7 +146,10 @@ class HuwelijksplannerFixtures extends Fixture
          var(--secondary2)) !important;}');
         $style->setOrganization($westfriesland);
         $style->setfavicon($favicon);
+
         $manager->persist($westfriesland);
+        $manager->persist($favicon);
+        $manager->persist($logo);
         $manager->persist($style);
 
         $manager->flush();
@@ -221,7 +234,6 @@ class HuwelijksplannerFixtures extends Fixture
     	.bg-primary-gradient {background: linear-gradient(-45deg, var(--secondary), var(--secondary2)) !important;}');
     	$style->setfavicon($favicon);
     	$style->setOrganization($eindhoven);
-
     	$eindhoven->setLogo($logo);
 
     	$manager->persist($eindhoven);
