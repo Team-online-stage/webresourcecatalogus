@@ -62,7 +62,7 @@ class HuwelijksplannerFixtures extends Fixture
     	$style = new Style();
     	$style->setName('Utrecht');
     	$style->setDescription('Huistlijl Gemeente Utrecht');
-    	$style->setCss(':root {--primary: #CC0000;--secondary: #06418E;--secondary2: #2A5587;}.logo-header 
+    	$style->setCss(':root {--primary: #CC0000;--secondary: #06418E;--secondary2: #2A5587;}.logo-header
     	{background: var(--primary);}.main-title {color: white !important;}.navbar-header {background: var(--primary);}
     	.bg-primary-gradient {@include linear-gradient(-45deg, var(--secondary), var(--secondary2);}');
     	$style->setfavicon($favicon);
@@ -131,11 +131,11 @@ class HuwelijksplannerFixtures extends Fixture
         $style->setName('West-Friesland');
         $style->setDescription('Huistlijl Gemeente West-Friesland');
         $style->setCss(':root {--primary: #233A79;--primary2: white;--secondary: #FFC926;--secondary2: #FFC926;}
-        .main-title {color: var(--primary2) !important;}.logo-header {background: var(--primary);}.navbar-header 
+        .main-title {color: var(--primary2) !important;}.logo-header {background: var(--primary);}.navbar-header
         {background: var(--primary);}.bg-primary-gradient {background: linear-gradient(-45deg, var(--secondary),
          var(--secondary2)) !important;}');
         $style->setOrganization($westfriesland);
-
+        $style->setfavicon($favicon);
         $manager->persist($westfriesland);
         $manager->persist($style);
 
@@ -157,10 +157,10 @@ class HuwelijksplannerFixtures extends Fixture
         $style->setName('VNG');
         $style->setDescription('Huistlijl VNG');
         $style->setCss(':root {--primary: white;--primary2: #233A79;--secondary: #004488;--secondary2: #0277BD;}
-        .main-title {color: var(--primary2) !important;}.logo-header {background: var(--primary);}.navbar-header 
+        .main-title {color: var(--primary2) !important;}.logo-header {background: var(--primary);}.navbar-header
         {background: var(--primary);}.bg-primary-gradient {background: linear-gradient(-45deg, var(--secondary), var(--secondary2)) !important;}');
         $style->setOrganization($organization);
-
+        $style->setfavicon($favicon);
         $manager->persist($organization);
         $manager->persist($style);
 
@@ -181,11 +181,11 @@ class HuwelijksplannerFixtures extends Fixture
         $style = new Style();
         $style->setName('Gemeente \'s-Hertogenbosch');
         $style->setDescription('Huistlijl Gemeente \'s-Hertogenbosch');
-        $style->setCss(':root {--primary: #AD9156;--secondary: #00205C;--secondary2: #2A5587;}.main-title 
+        $style->setCss(':root {--primary: #AD9156;--secondary: #00205C;--secondary2: #2A5587;}.main-title
         {color: white !important;}.logo-header {background: var(--primary);}.navbar-header {background: var(--primary);}
         .bg-primary-gradient {background: linear-gradient(-45deg, var(--secondary), var(--secondary2)) !important;}');
         $style->setOrganization($organization);
-
+        $style->setfavicon($favicon);
         $manager->persist($style);
         $manager->flush();
 
@@ -216,7 +216,7 @@ class HuwelijksplannerFixtures extends Fixture
     	$style = new Style();
     	$style->setName('Gemeente Eindhoven');
     	$style->setDescription('Huistlijl Gemeente Eindhoven');
-    	$style->setCss(':root {--primary: white;--primary2: #EF4433;--secondary: #464646;--secondary2: #464646;}.main-title 
+    	$style->setCss(':root {--primary: white;--primary2: #EF4433;--secondary: #464646;--secondary2: #464646;}.main-title
     	{color: var(--primary2) !important;}.logo-header {background: var(--primary);}.navbar-header {background: var(--primary);}
     	.bg-primary-gradient {background: linear-gradient(-45deg, var(--secondary), var(--secondary2)) !important;}');
     	$style->setfavicon($favicon);
