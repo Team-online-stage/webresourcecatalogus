@@ -3,31 +3,25 @@
 namespace App\Subscriber;
 
 use ApiPlatform\Core\EventListener\EventPriorities;
-use Doctrine\Common\Annotations\Reader;
+use App\Entity\Slug;
+use App\Entity\Template;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\GetResponseForControllerResultEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
-use Symfony\Component\Serializer\SerializerInterface;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Request;
-
 use Twig_Environment as Environment;
-
-use App\Entity\Template;
-use App\Entity\Slug;
 
 //use App\Service\MailService;
 //use App\Service\MessageService;
 
 class TemplateSlugSubscriber implements EventSubscriberInterface
 {
-	private $params;
-	private $em;
-	private $templating;
+    private $params;
+    private $em;
+    private $templating;
 
-	public function __construct(ParameterBagInterface $params, EntityManagerInterface $em, Environment $twig)
+    public function __construct(ParameterBagInterface $params, EntityManagerInterface $em, Environment $twig)
     {
         $this->params = $params;
         $this->em = $em;
@@ -43,22 +37,22 @@ class TemplateSlugSubscriber implements EventSubscriberInterface
 
     public function template(GetResponseForControllerResultEvent $event)
     {
-    	$result = $event->getControllerResult();
-    	$method = $event->getRequest()->getMethod();
-    	$route = $event->getRequest()->attributes->get('_route');
+        $result = $event->getControllerResult();
+        $method = $event->getRequest()->getMethod();
+        $route = $event->getRequest()->attributes->get('_route');
 
-    	if (!$result instanceof Template || $route != 'api_templates_post_collection' || $method != 'POST' || !$result->getApplication()){
-    		return;
-    	}
+        if (!$result instanceof Template || $route != 'api_templates_post_collection' || $method != 'POST' || !$result->getApplication()) {
+            return;
+        }
 
-    	$slug = New Slug;
+        $slug = new Slug();
         $slug->setName($result->getName());
         $slug->setTemplate($result);
-        $slug->setSlug(urlencode(str_replace(" ","-",$result->getName())));
+        $slug->setSlug(urlencode(str_replace(' ', '-', $result->getName())));
         $slug->setApplication($result->getApplication());
 
         $result->addSlug($slug);
 
-    	return $result;
+        return $result;
     }
 }

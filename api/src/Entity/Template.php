@@ -2,13 +2,13 @@
 
 namespace App\Entity;
 
-use ApiPlatform\Core\Annotation\ApiResource;
 use ApiPlatform\Core\Annotation\ApiFilter;
+use ApiPlatform\Core\Annotation\ApiResource;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\BooleanFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\DateFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\OrderFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
-use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\DateFilter;
-
+use App\Controller\DefaultController;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -18,9 +18,6 @@ use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Serializer\Annotation\MaxDepth;
 use Symfony\Component\Validator\Constraints as Assert;
-
-
-use App\Controller\DefaultController;
 
 /**
  * Templates holds information your pages or include in messages.
@@ -95,7 +92,7 @@ class Template
     private $name;
 
     /**
-     * @var string $title The external name of this menu
+     * @var string The external name of this menu
      *
      * @example webshop menu
      *
@@ -124,7 +121,7 @@ class Template
     private $description;
 
     /**
-     * @var boolean Whether to auto create a slug on creation of this template
+     * @var bool Whether to auto create a slug on creation of this template
      *
      * @example true
      *
@@ -187,7 +184,7 @@ class Template
     private $templateGroups;
 
     /**
-     * @var Datetime $dateCreated The moment this request was created
+     * @var Datetime The moment this request was created
      *
      * @Groups({"read"})
      * @Gedmo\Timestampable(on="create")
@@ -196,7 +193,7 @@ class Template
     private $dateCreated;
 
     /**
-     * @var Datetime $dateModified  The moment this request last Modified
+     * @var Datetime The moment this request last Modified
      *
      * @Groups({"read"})
      * @Gedmo\Timestampable(on="create")
@@ -237,14 +234,14 @@ class Template
 
     public function getTitle(): ?string
     {
-    	return $this->title;
+        return $this->title;
     }
 
     public function setTitle(string $title): self
     {
-    	$this->title = $title;
+        $this->title = $title;
 
-    	return $this;
+        return $this;
     }
 
     public function getDescription(): ?string
@@ -328,26 +325,26 @@ class Template
 
     public function getApplication(): ?Application
     {
-    	return $this->application;
+        return $this->application;
     }
 
     public function setApplication(?Application $application): self
     {
-    	$this->application = $application;
+        $this->application = $application;
 
-    	return $this;
+        return $this;
     }
 
     public function getOrganization(): ?Organization
     {
-    	return $this->organization;
+        return $this->organization;
     }
 
     public function setOrganization(?Organization $organization): self
     {
-    	$this->organization = $organization;
+        $this->organization = $organization;
 
-    	return $this;
+        return $this;
     }
 
     /**
@@ -378,25 +375,25 @@ class Template
 
     public function getDateCreated(): ?\DateTimeInterface
     {
-    	return $this->dateCreated;
+        return $this->dateCreated;
     }
 
     public function setDateCreated(\DateTimeInterface $dateCreated): self
     {
-    	$this->dateCreated= $dateCreated;
+        $this->dateCreated = $dateCreated;
 
-    	return $this;
+        return $this;
     }
 
     public function getDateModified(): ?\DateTimeInterface
     {
-    	return $this->dateModified;
+        return $this->dateModified;
     }
 
     public function setDateModified(\DateTimeInterface $dateModified): self
     {
-    	$this->dateModified = $dateModified;
+        $this->dateModified = $dateModified;
 
-    	return $this;
+        return $this;
     }
 }
