@@ -2,13 +2,12 @@
 
 namespace App\Entity;
 
-use ApiPlatform\Core\Annotation\ApiResource;
 use ApiPlatform\Core\Annotation\ApiFilter;
+use ApiPlatform\Core\Annotation\ApiResource;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\BooleanFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\DateFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\OrderFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
-use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\DateFilter;
-
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -19,9 +18,8 @@ use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Serializer\Annotation\MaxDepth;
 use Symfony\Component\Validator\Constraints as Assert;
 
-
 /**
- * Groups are a way of orginzing templates
+ * Groups are a way of orginzing templates.
  *
  * @ApiResource(
  *     	normalizationContext={"groups"={"read"}, "enable_max_depth"=true},
@@ -126,7 +124,7 @@ class TemplateGroup
     private $organization;
 
     /**
-     * @var Datetime $dateCreated The moment this request was created
+     * @var Datetime The moment this request was created
      *
      * @Groups({"read"})
      * @Gedmo\Timestampable(on="create")
@@ -135,7 +133,7 @@ class TemplateGroup
     private $dateCreated;
 
     /**
-     * @var Datetime $dateModified  The moment this request last Modified
+     * @var Datetime The moment this request last Modified
      *
      * @Groups({"read"})
      * @Gedmo\Timestampable(on="create")
@@ -187,7 +185,6 @@ class TemplateGroup
     /**
      * @return Collection|Template[]
      */
-
     public function getTemplates(): Collection
     {
         return $this->templates;
@@ -244,7 +241,7 @@ class TemplateGroup
 
     public function setDateCreated(\DateTimeInterface $dateCreated): self
     {
-        $this->dateCreated= $dateCreated;
+        $this->dateCreated = $dateCreated;
 
         return $this;
     }

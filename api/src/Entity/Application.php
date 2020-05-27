@@ -2,14 +2,12 @@
 
 namespace App\Entity;
 
-use ApiPlatform\Core\Annotation\ApiResource;
 use ApiPlatform\Core\Annotation\ApiFilter;
+use ApiPlatform\Core\Annotation\ApiResource;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\BooleanFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\DateFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\OrderFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
-use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\DateFilter;
-
-use Doctrine\Common\Collections\Criteria;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -183,7 +181,7 @@ class Application
     private $menus;
 
     /**
-     * @var Datetime $dateCreated The moment this request was created
+     * @var Datetime The moment this request was created
      *
      * @Groups({"read"})
      * @Gedmo\Timestampable(on="create")
@@ -192,7 +190,7 @@ class Application
     private $dateCreated;
 
     /**
-     * @var Datetime $dateModified  The moment this request last Modified
+     * @var Datetime The moment this request last Modified
      *
      * @Groups({"read"})
      * @Gedmo\Timestampable(on="create")
@@ -207,7 +205,6 @@ class Application
         $this->configurations = new ArrayCollection();
         $this->templates = new ArrayCollection();
     }
-
 
     public function setDefaultConfiguration(Configuration $configuration): self
     {
@@ -314,14 +311,14 @@ class Application
 
     public function getOrganization(): ?Organization
     {
-    	return $this->organization;
+        return $this->organization;
     }
 
     public function setOrganization(?Organization $organization): self
     {
-    	$this->organization = $organization;
+        $this->organization = $organization;
 
-    	return $this;
+        return $this;
     }
 
     /**
@@ -329,30 +326,30 @@ class Application
      */
     public function getConfigurations(): Collection
     {
-    	return $this->configurations;
+        return $this->configurations;
     }
 
     public function addConfiguration(Configuration $configuration): self
     {
-    	if (!$this->configurations->contains($configuration)) {
-    		$this->configurations[] = $configuration;
-    		$configuration->setApplication($this);
-    	}
+        if (!$this->configurations->contains($configuration)) {
+            $this->configurations[] = $configuration;
+            $configuration->setApplication($this);
+        }
 
-    	return $this;
+        return $this;
     }
 
     public function removeConfiguration(Configuration $configuration): self
     {
-    	if ($this->configurations->contains($configuration)) {
-    		$this->configurations->removeElement($configuration);
-    		// set the owning side to null (unless already changed)
-    		if ($configuration->getApplication() === $this) {
-    			$configuration->setApplication(null);
-    		}
-    	}
+        if ($this->configurations->contains($configuration)) {
+            $this->configurations->removeElement($configuration);
+            // set the owning side to null (unless already changed)
+            if ($configuration->getApplication() === $this) {
+                $configuration->setApplication(null);
+            }
+        }
 
-    	return $this;
+        return $this;
     }
 
     /**
@@ -360,30 +357,30 @@ class Application
      */
     public function getTemplates(): Collection
     {
-    	return $this->templates;
+        return $this->templates;
     }
 
     public function addTemplate(Template $template): self
     {
-    	if (!$this->templates->contains($template)) {
-    		$this->templates[] = $template;
-    		$template->setApplication($this);
-    	}
+        if (!$this->templates->contains($template)) {
+            $this->templates[] = $template;
+            $template->setApplication($this);
+        }
 
-    	return $this;
+        return $this;
     }
 
     public function removeTemplate(Template $template): self
     {
-    	if ($this->templates->contains($template)) {
-    		$this->templates->removeElement($template);
-    		// set the owning side to null (unless already changed)
-    		if ($template->getApplication() === $this) {
-    			$template->setApplication(null);
-    		}
-    	}
+        if ($this->templates->contains($template)) {
+            $this->templates->removeElement($template);
+            // set the owning side to null (unless already changed)
+            if ($template->getApplication() === $this) {
+                $template->setApplication(null);
+            }
+        }
 
-    	return $this;
+        return $this;
     }
 
     /**
@@ -391,53 +388,53 @@ class Application
      */
     public function getMenus(): Collection
     {
-    	return $this->menus;
+        return $this->menus;
     }
 
     public function addMenu(Menu $menu): self
     {
-    	if (!$this->menus->contains($menu)) {
-    		$this->menus[] = $menu;
-    		$menu->setApplication($this);
-    	}
+        if (!$this->menus->contains($menu)) {
+            $this->menus[] = $menu;
+            $menu->setApplication($this);
+        }
 
-    	return $this;
+        return $this;
     }
 
     public function removeMenu(Menu $menu): self
     {
-    	if ($this->menus->contains($menu)) {
-    		$this->menus->removeElement($menu);
-    		// set the owning side to null (unless already changed)
-    		if ($menu->getApplication() === $this) {
-    			$menu->setApplication(null);
-    		}
-    	}
+        if ($this->menus->contains($menu)) {
+            $this->menus->removeElement($menu);
+            // set the owning side to null (unless already changed)
+            if ($menu->getApplication() === $this) {
+                $menu->setApplication(null);
+            }
+        }
 
-    	return $this;
+        return $this;
     }
 
     public function getDateCreated(): ?\DateTimeInterface
     {
-    	return $this->dateCreated;
+        return $this->dateCreated;
     }
 
     public function setDateCreated(\DateTimeInterface $dateCreated): self
     {
-    	$this->dateCreated= $dateCreated;
+        $this->dateCreated = $dateCreated;
 
-    	return $this;
+        return $this;
     }
 
     public function getDateModified(): ?\DateTimeInterface
     {
-    	return $this->dateModified;
+        return $this->dateModified;
     }
 
     public function setDateModified(\DateTimeInterface $dateModified): self
     {
-    	$this->dateModified = $dateModified;
+        $this->dateModified = $dateModified;
 
-    	return $this;
+        return $this;
     }
 }
