@@ -62,7 +62,7 @@ class HuwelijksplannerFixtures extends Fixture
     	$style = new Style();
     	$style->setName('Utrecht');
     	$style->setDescription('Huistlijl Gemeente Utrecht');
-    	$style->setCss(':root {--primary: #CC0000;--secondary: #06418E;--secondary2: #2A5587;}.logo-header 
+    	$style->setCss(':root {--primary: #CC0000;--secondary: #06418E;--secondary2: #2A5587;}.logo-header
     	{background: var(--primary);}.main-title {color: white !important;}.navbar-header {background: var(--primary);}
     	.bg-primary-gradient {@include linear-gradient(-45deg, var(--secondary), var(--secondary2);}');
     	$style->setfavicon($favicon);
@@ -127,16 +127,29 @@ class HuwelijksplannerFixtures extends Fixture
         $manager->flush();
         $westfriesland = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
 
+        $favicon = new Image();
+        $favicon->setName('West-Friesland Favicon');
+        $favicon->setDescription('West-Friesland VNG');
+        $favicon->setOrganization($westfriesland);
+
+        $logo = new Image();
+        $logo->setName('West-Friesland Logo');
+        $logo->setDescription('West-Friesland VNG');
+        $logo->setOrganization($westfriesland);
+
         $style = new Style();
         $style->setName('West-Friesland');
         $style->setDescription('Huistlijl Gemeente West-Friesland');
         $style->setCss(':root {--primary: #233A79;--primary2: white;--secondary: #FFC926;--secondary2: #FFC926;}
-        .main-title {color: var(--primary2) !important;}.logo-header {background: var(--primary);}.navbar-header 
+        .main-title {color: var(--primary2) !important;}.logo-header {background: var(--primary);}.navbar-header
         {background: var(--primary);}.bg-primary-gradient {background: linear-gradient(-45deg, var(--secondary),
          var(--secondary2)) !important;}');
+        $style->setfavicon($favicon);
         $style->setOrganization($westfriesland);
 
         $manager->persist($westfriesland);
+        $manager->persist($favicon);
+        $manager->persist($logo);
         $manager->persist($style);
 
         $manager->flush();
@@ -155,24 +168,37 @@ class HuwelijksplannerFixtures extends Fixture
 
     	// -Hertogenbosch
     	$id = Uuid::fromString('fed9339e-57d5-4f63-ab68-694759705c19');
-    	$organization= new Organization();
-    	$organization->setName('\'s-Hertogenbosch');
-    	$organization->setDescription('Gemeente \'s-Hertogenbosch');
-    	$organization->setRsin('001709124');
-    	$manager->persist($organization);
-    	$organization->setId($id);
-    	$manager->persist($organization);
+    	$sHertogenbosch= new Organization();
+        $sHertogenbosch->setName('\'s-Hertogenbosch');
+        $sHertogenbosch->setDescription('Gemeente \'s-Hertogenbosch');
+        $sHertogenbosch->setRsin('001709124');
+    	$manager->persist($sHertogenbosch);
+        $sHertogenbosch->setId($id);
+    	$manager->persist($sHertogenbosch);
     	$manager->flush();
-    	$organization= $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
+        $sHertogenbosch= $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
+
+        $favicon = new Image();
+        $favicon->setName('\'s-Hertogenbosch Favicon');
+        $favicon->setDescription('\'s-Hertogenbosch VNG');
+        $favicon->setOrganization($sHertogenbosch);
+
+        $logo = new Image();
+        $logo->setName('\'s-Hertogenbosch Logo');
+        $logo->setDescription('\'s-Hertogenbosch VNG');
+        $logo->setOrganization($sHertogenbosch);
 
         $style = new Style();
         $style->setName('Gemeente \'s-Hertogenbosch');
         $style->setDescription('Huistlijl Gemeente \'s-Hertogenbosch');
-        $style->setCss(':root {--primary: #AD9156;--secondary: #00205C;--secondary2: #2A5587;}.main-title 
+        $style->setCss(':root {--primary: #AD9156;--secondary: #00205C;--secondary2: #2A5587;}.main-title
         {color: white !important;}.logo-header {background: var(--primary);}.navbar-header {background: var(--primary);}
         .bg-primary-gradient {background: linear-gradient(-45deg, var(--secondary), var(--secondary2)) !important;}');
-        $style->setOrganization($organization);
+        $style->setfavicon($favicon);
+        $style->setOrganization($sHertogenbosch);
 
+        $manager->persist($favicon);
+        $manager->persist($logo);
         $manager->persist($style);
         $manager->flush();
 
@@ -184,11 +210,11 @@ class HuwelijksplannerFixtures extends Fixture
     	$eindhoven->setName('Eindhoven');
     	$eindhoven->setDescription('Gemeente Eindhoven');
     	$eindhoven->setRsin('001902763');
-    	$manager->persist($organization);
-    	$organization->setId($id);
-    	$manager->persist($organization);
+    	$manager->persist($eindhoven);
+        $eindhoven->setId($id);
+    	$manager->persist($eindhoven);
     	$manager->flush();
-    	$organization= $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
+        $eindhoven= $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
 
     	$favicon = new Image();
     	$favicon->setName('Gemeente Eindhoven Favicon');
@@ -203,7 +229,7 @@ class HuwelijksplannerFixtures extends Fixture
     	$style = new Style();
     	$style->setName('Gemeente Eindhoven');
     	$style->setDescription('Huistlijl Gemeente Eindhoven');
-    	$style->setCss(':root {--primary: white;--primary2: #EF4433;--secondary: #464646;--secondary2: #464646;}.main-title 
+    	$style->setCss(':root {--primary: white;--primary2: #EF4433;--secondary: #464646;--secondary2: #464646;}.main-title
     	{color: var(--primary2) !important;}.logo-header {background: var(--primary);}.navbar-header {background: var(--primary);}
     	.bg-primary-gradient {background: linear-gradient(-45deg, var(--secondary), var(--secondary2)) !important;}');
     	$style->setfavicon($favicon);
@@ -219,11 +245,16 @@ class HuwelijksplannerFixtures extends Fixture
     	$manager->flush();
 
     	// VNG
+        $id = Uuid::fromString('6d879677-79e3-4daa-a50d-a29762b0064c');
     	$vng = new Organization();
     	$vng->setName('VNG');
     	$vng->setDescription('Vereniging Nederlandse Gemeente');
     	$vng->setRsin('');
-    	$manager->persist($vng);
+        $manager->persist($vng);
+        $vng->setId($id);
+        $manager->persist($vng);
+        $manager->flush();
+        $vng= $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
 
     	$favicon = new Image();
     	$favicon->setName('VNG Favicon');
