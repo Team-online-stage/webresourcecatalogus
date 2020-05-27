@@ -7,14 +7,20 @@
           class="affa-form-contact">
         <div class="submit-status"></div> <!-- submit status -->
 
-        <label for="name">Naam <span class="required">*</span></label>
-        <input type="text" name="name" placeholder="Museum Sonnenborgh" required/>
-        <label for="email">Email Adres <span class="required">*</span></label>
-        <input type="email" name="email" placeholder="john@do.nl" required/>
-        <label for="telephone">Telefoonnummer</label>
-        <input type="tel" name="telephone" placeholder="+31 6 12345678"/>
+        <h3>Gegevens locatie</h3>
 
-        <br/><br/>
+        <label for="street">Naam<span class="required">*</span></label>
+        <input type="text" name="locatieNaam" id="locatieNaam"  placeholder="De naam van de locatie" required/>
+
+        <label for="houseNumber">Omschrijving<span class="required">*</span></label>
+        <input type="text" name="locatieOmschrijving" id="locatieOmschrijving"  placeholder="7De omschrijving van de locatie" />
+
+        <label for="houseNumberSuffix">Adres*</label>
+        <input type="text" name="locatieAdres" id="locatieAdres"  placeholder="samenvoeging van straat, huisnummer, postcode, plaats" required/>
+
+        <label for="postalCode">Telefoon<span class="required">*</span></label>
+        <input type="text" name="locatieTelefoon" id="locatieTelefoon" placeholder="Telefoon nummer van der locatie" required/>
+        
 
         <button type="submit" class="btn btn-success btn-lg btn-block btn-icon"><i
                 class="far fa-envelope"></i> Opslaan
