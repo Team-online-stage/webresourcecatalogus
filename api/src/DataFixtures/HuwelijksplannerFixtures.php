@@ -332,6 +332,7 @@ class HuwelijksplannerFixtures extends Fixture
         $configuration->setApplication($application);
         $configuration->setConfiguration([]);
         $manager->persist($configuration);
+
         // Template groups
         $id = Uuid::fromString('c434d395-edf1-4614-bf48-58a819f9ac55');
         $groupPages = new TemplateGroup();
