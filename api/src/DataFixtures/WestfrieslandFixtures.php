@@ -167,7 +167,7 @@ class WestfrieslandFixtures extends Fixture
         $manager->persist($configuration);
 
         // Menu
-        //$id = Uuid::fromString('097ea88e-beb6-476e-a978-d07650f03d97');
+        $id = Uuid::fromString('097ea88e-beb6-476e-a978-d07650f03d97');
         $menu = New Menu();
         $menu->setName('Main Menu');
         $menu->setDescription('Het hoofd menu van deze website');
