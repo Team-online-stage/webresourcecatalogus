@@ -12,6 +12,8 @@ use App\Entity\TemplateGroup;
 use App\Entity\Slug;
 use App\Entity\Menu;
 use App\Entity\MenuItem;
+use Conduction\CommonGroundBundle\CommonGroundBundle;
+use Conduction\CommonGroundBundle\Service\CommonGroundService;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Ramsey\Uuid\Uuid;
@@ -20,10 +22,15 @@ use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 class WestfrieslandFixtures extends Fixture
 {
     private $params;
+    /**
+     * @var CommonGroundService
+     */
+    private $commonGroundService;
 
-    public function __construct(ParameterBagInterface $params)
+    public function __construct(ParameterBagInterface $params, CommonGroundService $commonGroundService)
     {
         $this->params = $params;
+        $this->commonGroundService = $commonGroundService;
     }
 
     public function load(ObjectManager $manager)
@@ -154,8 +161,8 @@ class WestfrieslandFixtures extends Fixture
         $configuration->setOrganization($westfriesland);
         $configuration->setApplication($application);
         $configuration->setConfiguration([
-            'mainMenu'=>'https://wrc.westfriesland.commonground.nu/menus/097ea88e-beb6-476e-a978-d07650f03d97',
-            'home'=>'https://wrc.westfriesland.commonground.nu/templates/fc91dcd6-d0b4-4e70-9934-3e5ebf9c295c']
+            'mainMenu'=>$this->commonGroundService->cleanUrl('https://wrc.westfriesland.commonground.nu/menus/097ea88e-beb6-476e-a978-d07650f03d97'),
+            'home'=>$this->commonGroundService->cleanUrl('https://wrc.westfriesland.commonground.nu/templates/fc91dcd6-d0b4-4e70-9934-3e5ebf9c295c')]
         );
         $manager->persist($configuration);
 
