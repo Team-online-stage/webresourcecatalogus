@@ -2,15 +2,12 @@
 
 namespace App\Entity;
 
-use ApiPlatform\Core\Annotation\ApiResource;
 use ApiPlatform\Core\Annotation\ApiFilter;
+use ApiPlatform\Core\Annotation\ApiResource;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\BooleanFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\DateFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\OrderFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
-use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\DateFilter;
-
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Ramsey\Uuid\Uuid;
@@ -57,19 +54,19 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Configuration
 {
-	/**
-	 * @var UuidInterface The UUID identifier of this resource
-	 *
-	 * @example e2984465-190a-4562-829e-a8cca81aa35d
-	 *
-	 * @Assert\Uuid
-	 * @Groups({"read"})
-	 * @ORM\Id
-	 * @ORM\Column(type="uuid", unique=true)
-	 * @ORM\GeneratedValue(strategy="CUSTOM")
-	 * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
-	 */
-	private $id;
+    /**
+     * @var UuidInterface The UUID identifier of this resource
+     *
+     * @example e2984465-190a-4562-829e-a8cca81aa35d
+     *
+     * @Assert\Uuid
+     * @Groups({"read"})
+     * @ORM\Id
+     * @ORM\Column(type="uuid", unique=true)
+     * @ORM\GeneratedValue(strategy="CUSTOM")
+     * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
+     */
+    private $id;
 
     /**
      * @var string The name of this application.
@@ -129,7 +126,7 @@ class Configuration
     private $configuration = [];
 
     /**
-     * @var Datetime $dateCreated The moment this request was created
+     * @var Datetime The moment this request was created
      *
      * @Groups({"read"})
      * @Gedmo\Timestampable(on="create")
@@ -138,7 +135,7 @@ class Configuration
     private $dateCreated;
 
     /**
-     * @var Datetime $dateModified  The moment this request last Modified
+     * @var Datetime The moment this request last Modified
      *
      * @Groups({"read"})
      * @Gedmo\Timestampable(on="create")
@@ -148,14 +145,14 @@ class Configuration
 
     public function getId(): Uuid
     {
-    	return $this->id;
+        return $this->id;
     }
 
     public function setId(Uuid $id): self
     {
-    	$this->id = $id;
+        $this->id = $id;
 
-    	return $this;
+        return $this;
     }
 
     public function getName(): ?string
@@ -191,6 +188,11 @@ class Configuration
     {
         $this->application = $application;
 
+        // If the application dosn't have a deafult configuration yet lets set this one
+        if(!$this->application->getDefaultConfiguration()){
+            $this->application->setDefaultConfiguration($this);
+        }
+
         return $this;
     }
 
@@ -220,25 +222,25 @@ class Configuration
 
     public function getDateCreated(): ?\DateTimeInterface
     {
-    	return $this->dateCreated;
+        return $this->dateCreated;
     }
 
     public function setDateCreated(\DateTimeInterface $dateCreated): self
     {
-    	$this->dateCreated= $dateCreated;
+        $this->dateCreated = $dateCreated;
 
-    	return $this;
+        return $this;
     }
 
     public function getDateModified(): ?\DateTimeInterface
     {
-    	return $this->dateModified;
+        return $this->dateModified;
     }
 
     public function setDateModified(\DateTimeInterface $dateModified): self
     {
-    	$this->dateModified = $dateModified;
+        $this->dateModified = $dateModified;
 
-    	return $this;
+        return $this;
     }
 }
