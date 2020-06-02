@@ -548,9 +548,9 @@ class HuwelijksplannerFixtures extends Fixture
 
         $slug = new Slug();
         $slug->setTemplate($template);
-        $slug->setName('afwijkende-trouw-locatie');
+        $slug->setName('afwijkende_trouw_locatie');
         $slug->setApplication($application);
-        $slug->setSlug('afwijkende-trouw-locatie');
+        $slug->setSlug('afwijkende_trouw_locatie');
         $manager->persist($slug);
 
         $template = new Template();
@@ -562,9 +562,9 @@ class HuwelijksplannerFixtures extends Fixture
 
         $slug = new Slug();
         $slug->setTemplate($template);
-        $slug->setName('afwijkende-trouw-locatie-contact');
+        $slug->setName('afwijkende_trouw_locatie_contact');
         $slug->setApplication($application);
-        $slug->setSlug('afwijkende-trouw-locatie-contact');
+        $slug->setSlug('afwijkende_trouw_locatie_contact');
         $manager->persist($slug);
 
         $template = new Template();
