@@ -30,7 +30,12 @@ class HuwelijksplannerFixtures extends Fixture
     public function load(ObjectManager $manager)
     {
         // Lets make sure we only run these fixtures on larping enviroment
-        if ($this->params->get('app_domain') != 'huwelijksplanner.online' && strpos($this->params->get('app_domain'), 'huwelijksplanner.online') == false) {
+        if (
+            $this->params->get('app_domain') != 'huwelijksplanner.online' &&
+            strpos($this->params->get('app_domain'), 'huwelijksplanner.online') == false &&
+            $this->params->get('app_domain') != 'utrecht.commonground.nu' &&
+            strpos($this->params->get('app_domain'), 'utrecht.commonground.nu') == false
+        ) {
             return false;
         }
 
@@ -138,7 +143,7 @@ class HuwelijksplannerFixtures extends Fixture
 
         $style = new Style();
         $style->setName('West-Friesland');
-        $style->setDescription('Huistlijl Gemeente West-Friesland');
+        $style->setDescription('Huistlijl samenwerkingsverband West-Friesland');
         $style->setCss(':root {--primary: #233A79;--primary2: white;--secondary: #FFC926;--secondary2: #FFC926;}
         .main-title {color: var(--primary2) !important;}.logo-header {background: var(--primary);}.navbar-header
         {background: var(--primary);}.bg-primary-gradient {background: linear-gradient(-45deg, var(--secondary),
@@ -327,6 +332,7 @@ class HuwelijksplannerFixtures extends Fixture
         $configuration->setApplication($application);
         $configuration->setConfiguration([]);
         $manager->persist($configuration);
+
         // Template groups
         $id = Uuid::fromString('c434d395-edf1-4614-bf48-58a819f9ac55');
         $groupPages = new TemplateGroup();
@@ -542,9 +548,9 @@ class HuwelijksplannerFixtures extends Fixture
 
         $slug = new Slug();
         $slug->setTemplate($template);
-        $slug->setName('afwijkende-trouw-locatie');
+        $slug->setName('afwijkende_trouw_locatie');
         $slug->setApplication($application);
-        $slug->setSlug('afwijkende-trouw-locatie');
+        $slug->setSlug('afwijkende_trouw_locatie');
         $manager->persist($slug);
 
         $template = new Template();
@@ -556,9 +562,9 @@ class HuwelijksplannerFixtures extends Fixture
 
         $slug = new Slug();
         $slug->setTemplate($template);
-        $slug->setName('afwijkende-trouw-locatie-contact');
+        $slug->setName('afwijkende_trouw_locatie_contact');
         $slug->setApplication($application);
-        $slug->setSlug('afwijkende-trouw-locatie-contact');
+        $slug->setSlug('afwijkende_trouw_locatie_contact');
         $manager->persist($slug);
 
         $template = new Template();
@@ -862,8 +868,8 @@ class HuwelijksplannerFixtures extends Fixture
         $slug = new Slug();
         $slug->setTemplate($template);
         $slug->setApplication($application);
-        $slug->setName('start-huwelijk');
-        $slug->setSlug('start-huwelijk');
+        $slug->setName('start_huwelijk');
+        $slug->setSlug('start_huwelijk');
         $manager->persist($slug);
 
         // Getuigen
