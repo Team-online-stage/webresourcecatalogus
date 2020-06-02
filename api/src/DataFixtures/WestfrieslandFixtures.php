@@ -74,7 +74,7 @@ class WestfrieslandFixtures extends Fixture
         $medemblik->setDescription('Gemeente Medemblik');
         $medemblik->setRsin('1234');
         $manager->persist($medemblik);
-        $opmeer->setId($id);
+        $medemblik->setId($id);
         $manager->persist($medemblik);
         $manager->flush();
         $medemblik = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
@@ -106,8 +106,8 @@ class WestfrieslandFixtures extends Fixture
         // Koggenland
         $id = Uuid::fromString('f050292c-973d-46ab-97ae-9d8830a59d15');
         $koggenland = new Organization();
-        $koggenland->setName('Opmeer');
-        $koggenland->setDescription('Gemeente Opmeer');
+        $koggenland->setName('Koggenland');
+        $koggenland->setDescription('Gemeente Koggenland');
         $koggenland->setRsin('1234');
         $manager->persist($koggenland);
         $koggenland->setId($id);
