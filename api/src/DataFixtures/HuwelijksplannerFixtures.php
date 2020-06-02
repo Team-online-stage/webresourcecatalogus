@@ -868,8 +868,8 @@ class HuwelijksplannerFixtures extends Fixture
         $slug = new Slug();
         $slug->setTemplate($template);
         $slug->setApplication($application);
-        $slug->setName('start-huwelijk');
-        $slug->setSlug('start-huwelijk');
+        $slug->setName('start_huwelijk');
+        $slug->setSlug('start_huwelijk');
         $manager->persist($slug);
 
         // Getuigen
