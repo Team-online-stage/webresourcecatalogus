@@ -338,22 +338,22 @@ class HuwelijksplannerFixtures extends Fixture
 
         // Huwelijksplanner
         $id = Uuid::fromString('9f4db8c6-7eb3-4cc2-b481-9280aae99679');
-        $application = new Application();
-        $application->setName('Huwelijksplanner Dashboard');
-        $application->setDescription('Huwelijksplanner Dashboard');
-        $application->setDomain('huwelijksplanner.online');
-        $application->setOrganization($utrecht);
-        $application->setStyle($utrechtStyle);
-        $manager->persist($application);
-        $application->setId($id);
-        $manager->persist($application);
+        $dashboard = new Application();
+        $dashboard->setName('Huwelijksplanner Dashboard');
+        $dashboard->setDescription('Huwelijksplanner Dashboard');
+        $dashboard->setDomain('huwelijksplanner.online');
+        $dashboard->setOrganization($utrecht);
+        $dashboard->setStyle($utrechtStyle);
+        $manager->persist($dashboard);
+        $dashboard->setId($id);
+        $manager->persist($dashboard);
         $manager->flush();
-        $application = $manager->getRepository('App:Application')->findOneBy(['id'=> $id]);
+        $dashboard = $manager->getRepository('App:Application')->findOneBy(['id'=> $id]);
 
-        // Configuratie van huwelijksplanner
+        // Configuratie van dashboard
         $configuration = new Configuration();
         $configuration->setOrganization($utrecht);
-        $configuration->setApplication($application);
+        $configuration->setApplication($dashboard);
         $configuration->setConfiguration([]);
         $manager->persist($configuration);
 
