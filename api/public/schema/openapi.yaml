@@ -10714,6 +10714,28 @@ paths:
           schema:
             type: string
         -
+          name: templateGroups.name
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: templateGroups.id
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'templateGroups.id[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+        -
           name: page
           in: query
           required: false
@@ -14308,12 +14330,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-06-02 20:54:15'
+        example: '2020-06-04 15:11:18'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-06-02 20:54:15'
+        example: '2020-06-04 15:11:18'
     required: []
   AuditTrail-write:
     properties:
@@ -14361,12 +14383,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-06-02 20:54:15'
+        example: '2020-06-04 15:11:18'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-06-02 20:54:15'
+        example: '2020-06-04 15:11:18'
     required: []
   ChangeLog-write:
     properties:
