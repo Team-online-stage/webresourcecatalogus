@@ -3,9 +3,13 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <form method="post" action="{{ path('app_default_post',{'slug':'afwijkende-trouw-locatie'}) }}"
+
+    <form method="post" action="{{ path('app_default_post_request') }}"
+
           class="affa-form-contact">
-        <div class="submit-status"></div> <!-- submit status -->
+        <div class="submit-status">
+        </div> <!-- submit status -->
+
 
         <h3>Gegevens locatie</h3>
 
@@ -20,10 +24,12 @@
 
         <label for="postalCode">Telefoon<span class="required">*</span></label>
         <input type="text" name="locatieTelefoon" id="locatieTelefoon" placeholder="Telefoon nummer van der locatie" required/>
-        
 
         <button type="submit" class="btn btn-success btn-lg btn-block btn-icon"><i
                 class="far fa-envelope"></i> Opslaan
         </button>
+
     </form>
+
+
 {% endblock %}

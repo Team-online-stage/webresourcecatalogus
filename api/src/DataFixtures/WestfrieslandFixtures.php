@@ -6,6 +6,14 @@ use App\Entity\Application;
 use App\Entity\Image;
 use App\Entity\Organization;
 use App\Entity\Style;
+use App\Entity\Configuration;
+use App\Entity\Template;
+use App\Entity\TemplateGroup;
+use App\Entity\Slug;
+use App\Entity\Menu;
+use App\Entity\MenuItem;
+use Conduction\CommonGroundBundle\CommonGroundBundle;
+use Conduction\CommonGroundBundle\Service\CommonGroundService;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Ramsey\Uuid\Uuid;
@@ -14,10 +22,15 @@ use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 class WestfrieslandFixtures extends Fixture
 {
     private $params;
+    /**
+     * @var CommonGroundService
+     */
+    private $commonGroundService;
 
-    public function __construct(ParameterBagInterface $params)
+    public function __construct(ParameterBagInterface $params, CommonGroundService $commonGroundService)
     {
         $this->params = $params;
+        $this->commonGroundService = $commonGroundService;
     }
 
     public function load(ObjectManager $manager)
@@ -119,9 +132,10 @@ class WestfrieslandFixtures extends Fixture
         .main-title {color: var(--primary2) !important;}.logo-header {background: var(--primary);}.navbar-header
         {background: var(--primary);}.bg-primary-gradient {background: linear-gradient(-45deg, var(--secondary),
          var(--secondary2)) !important;}');
+        
         $style->setfavicon($favicon);
         $style->setOrganization($westfriesland);
-        $style->setfavicon($favicon);
+
 
         $manager->persist($westfriesland);
         $manager->persist($favicon);
@@ -142,5 +156,70 @@ class WestfrieslandFixtures extends Fixture
         $manager->persist($application);
         $manager->flush();
         $application = $manager->getRepository('App:Application')->findOneBy(['id'=> $id]);
+
+        // Configuratie van Begrafenisplanner
+        $configuration = new Configuration();
+        $configuration->setOrganization($westfriesland);
+        $configuration->setApplication($application);
+        $configuration->setConfiguration([
+            'mainMenu'=>$this->commonGroundService->cleanUrl('https://wrc.westfriesland.commonground.nu/menus/097ea88e-beb6-476e-a978-d07650f03d97'),
+            'home'=>$this->commonGroundService->cleanUrl('https://wrc.westfriesland.commonground.nu/templates/fc91dcd6-d0b4-4e70-9934-3e5ebf9c295c')]
+        );
+        $manager->persist($configuration);
+
+        // Menu
+        $id = Uuid::fromString('097ea88e-beb6-476e-a978-d07650f03d97');
+        $menu = New Menu();
+        $menu->setName('Main Menu');
+        $menu->setDescription('Het hoofd menu van deze website');
+        $menu->setApplication($application);
+        $manager->persist($menu);
+        $menu->setId($id);
+        $manager->persist($menu);
+        $manager->flush();
+        $menu = $manager->getRepository('App:Menu')->findOneBy(['id'=> $id]);
+
+        $menuItem = New MenuItem();
+        $menuItem->setName('Processen');
+        $menuItem->setDescription('Het hoofd menu van deze website');
+        $menuItem->setOrder(1);
+        $menuItem->setType('slug');
+        $menuItem->setHref('/process');
+        $menuItem->setMenu($menu);
+        $manager->persist($menu);
+
+        // Template groups
+        $groupPages = new TemplateGroup();
+        $groupPages->setOrganization($westfriesland);
+        $groupPages->setApplication($application);
+        $groupPages->setName('Pages');
+        $groupPages->setDescription('Webpages that are presented to visitors');
+        $manager->persist($groupPages);
+
+        // Pages
+        //s$id = Uuid::fromString('097ea88e-beb6-476e-a978-d07650f03d97');
+        $template = new Template();
+        $template->setName('Home');
+        $template->setDescription('De (web) applicatie waarop begravenisen kunnen worden doorgegeven');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Westfriesland/index.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('home');
+        $slug->setSlug('home');
+        $manager->persist($slug);
+
+        $manager->flush();
+
+
     }
 }

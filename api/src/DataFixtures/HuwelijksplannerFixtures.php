@@ -63,21 +63,23 @@ class HuwelijksplannerFixtures extends Fixture
         $logo->setDescription('Logo VNG');
         $logo->setOrganization($utrecht);
 
-        $style = new Style();
-        $style->setName('Utrecht');
-        $style->setDescription('Huistlijl Gemeente Utrecht');
-        $style->setCss(':root {--primary: #CC0000;--secondary: #06418E;--secondary2: #2A5587;}.logo-header
-    	{background: var(--primary);}.main-title {color: white !important;}.navbar-header {background: var(--primary);}
+        $utrechtStyle = new Style();
+        $utrechtStyle->setName('Utrecht');
+        $utrechtStyle->setDescription('Huistlijl Gemeente Utrecht');
+        $utrechtStyle->setCss(':root {--primary: #CC0000;--primary2: white;--secondary: #06418E;--secondary2: #2A5587;}
+        .logo-header {background: var(--primary);}
+    	.main-title {color: white !important;}
+    	.navbar-header {background: var(--primary);}
     	.bg-primary-gradient {@include linear-gradient(-45deg, var(--secondary), var(--secondary2);}');
-        $style->setfavicon($favicon);
-        $style->setOrganization($utrecht);
 
+        $utrechtStyle->setfavicon($favicon);
+        $utrechtStyle->setOrganization($utrecht);
         $utrecht->setLogo($logo);
 
         $manager->persist($utrecht);
         $manager->persist($favicon);
         $manager->persist($logo);
-        $manager->persist($style);
+        $manager->persist($utrechtStyle);
 
         $manager->flush();
 
@@ -94,17 +96,17 @@ class HuwelijksplannerFixtures extends Fixture
         $rotterdam = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
 
         $favicon = new Image();
-        $favicon->setName('VNG Favicon');
+        $favicon->setName('Rotterdam Favicon');
         $favicon->setDescription('Favicon VNG');
         $favicon->setOrganization($rotterdam);
 
         $logo = new Image();
-        $logo->setName('VNG Logo');
+        $logo->setName('Rotterdam Logo');
         $logo->setDescription('Logo VNG');
         $logo->setOrganization($rotterdam);
 
         $style = new Style();
-        $style->setName('Utrecht');
+        $style->setName('Rotterdam');
         $style->setDescription('Huistlijl Gemeente Utrecht');
         $style->setCss('');
         $style->setfavicon($favicon);
@@ -320,6 +322,7 @@ class HuwelijksplannerFixtures extends Fixture
         $application->setDescription('Huwelijksplanner');
         $application->setDomain('huwelijksplanner.online');
         $application->setOrganization($utrecht);
+        $application->setStyle($utrechtStyle);
         $manager->persist($application);
         $application->setId($id);
         $manager->persist($application);
@@ -332,6 +335,28 @@ class HuwelijksplannerFixtures extends Fixture
         $configuration->setApplication($application);
         $configuration->setConfiguration([]);
         $manager->persist($configuration);
+
+        // Huwelijksplanner
+        $id = Uuid::fromString('9f4db8c6-7eb3-4cc2-b481-9280aae99679');
+        $dashboard = new Application();
+        $dashboard->setName('Huwelijksplanner Dashboard');
+        $dashboard->setDescription('Huwelijksplanner Dashboard');
+        $dashboard->setDomain('huwelijksplanner.online');
+        $dashboard->setOrganization($utrecht);
+        $dashboard->setStyle($utrechtStyle);
+        $manager->persist($dashboard);
+        $dashboard->setId($id);
+        $manager->persist($dashboard);
+        $manager->flush();
+        $dashboard = $manager->getRepository('App:Application')->findOneBy(['id'=> $id]);
+
+        // Configuratie van dashboard
+        $configuration = new Configuration();
+        $configuration->setOrganization($utrecht);
+        $configuration->setApplication($dashboard);
+        $configuration->setConfiguration([]);
+        $manager->persist($configuration);
+
         // Template groups
         $id = Uuid::fromString('c434d395-edf1-4614-bf48-58a819f9ac55');
         $groupPages = new TemplateGroup();
@@ -547,9 +572,9 @@ class HuwelijksplannerFixtures extends Fixture
 
         $slug = new Slug();
         $slug->setTemplate($template);
-        $slug->setName('afwijkende-trouw-locatie');
+        $slug->setName('afwijkende_trouw_locatie');
         $slug->setApplication($application);
-        $slug->setSlug('afwijkende-trouw-locatie');
+        $slug->setSlug('afwijkende_trouw_locatie');
         $manager->persist($slug);
 
         $template = new Template();
@@ -561,9 +586,9 @@ class HuwelijksplannerFixtures extends Fixture
 
         $slug = new Slug();
         $slug->setTemplate($template);
-        $slug->setName('afwijkende-trouw-locatie-contact');
+        $slug->setName('afwijkende_trouw_locatie_contact');
         $slug->setApplication($application);
-        $slug->setSlug('afwijkende-trouw-locatie-contact');
+        $slug->setSlug('afwijkende_trouw_locatie_contact');
         $manager->persist($slug);
 
         $template = new Template();
@@ -867,8 +892,8 @@ class HuwelijksplannerFixtures extends Fixture
         $slug = new Slug();
         $slug->setTemplate($template);
         $slug->setApplication($application);
-        $slug->setName('start-huwelijk');
-        $slug->setSlug('start-huwelijk');
+        $slug->setName('start_huwelijk');
+        $slug->setSlug('start_huwelijk');
         $manager->persist($slug);
 
         // Getuigen

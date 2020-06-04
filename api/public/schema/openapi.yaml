@@ -13451,7 +13451,7 @@ components:
             $ref: '#/components/schemas/TemplateGroup:jsonld-write'
     TemplateGroup-read:
       type: object
-      description: 'Groups are a way of orginzing templates'
+      description: 'Groups are a way of orginzing templates.'
       properties:
         id:
           readOnly: true
@@ -13492,7 +13492,7 @@ components:
         - description
     TemplateGroup-write:
       type: object
-      description: 'Groups are a way of orginzing templates'
+      description: 'Groups are a way of orginzing templates.'
       required:
         - name
         - description
@@ -13520,7 +13520,7 @@ components:
               $ref: '#/components/schemas/Organization-write'
     'TemplateGroup:jsonld-read':
       type: object
-      description: 'Groups are a way of orginzing templates'
+      description: 'Groups are a way of orginzing templates.'
       properties:
         '@context':
           readOnly: true
@@ -13570,7 +13570,7 @@ components:
         - description
     'TemplateGroup:jsonld-write':
       type: object
-      description: 'Groups are a way of orginzing templates'
+      description: 'Groups are a way of orginzing templates.'
       required:
         - name
         - description
@@ -14308,12 +14308,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-05-27 06:12:53'
+        example: '2020-06-02 20:54:15'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-05-27 06:12:53'
+        example: '2020-06-02 20:54:15'
     required: []
   AuditTrail-write:
     properties:
@@ -14361,12 +14361,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-05-27 06:12:53'
+        example: '2020-06-02 20:54:15'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-05-27 06:12:53'
+        example: '2020-06-02 20:54:15'
     required: []
   ChangeLog-write:
     properties:
@@ -14434,7 +14434,7 @@ tags:
   -
     name: TemplateGroup
     description: |
-      Groups are a way of orginzing templates
+      Groups are a way of orginzing templates.
       
       
   -
