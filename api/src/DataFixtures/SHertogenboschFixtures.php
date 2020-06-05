@@ -93,6 +93,7 @@ class SHertogenboschFixtures extends Fixture
         $configuration->setConfiguration([]);
         $manager->persist($configuration);
 
+        $manager->flush();
 
     }
 }
