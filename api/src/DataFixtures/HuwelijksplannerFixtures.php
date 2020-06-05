@@ -481,6 +481,25 @@ class HuwelijksplannerFixtures extends Fixture
         $manager->persist($template);
         $manager->flush();
 
+        $id = Uuid::fromString('8ec26f26-524f-4b6a-907e-04df1c8e7854');
+        $template = new Template();
+        $template->setName('Melding mogelijk');
+        $template->setDescription('Bericht dat het mogelijk is om een melding te doen');
+        $template->setContent('Je kan je Melding Voorgenomen Huwelijk doen met onze <a href="https://www.huwelijksplanner.online">huwelijksplanner</a>.
+
+Op heb je je huwelijk ingepland op . Om te kunnen trouwen moet er tenminste 14 dagen en maximaal één jaar voor de huwelijksdatum of partnerschapsdatum een melding worden gedaan bij de gemeente waar je gaat trouwen of een partnerschap aangaat. Voorheen werd dit ondertrouw of aangifte genoemd.
+
+Als je naar de <a href="https://www.huwelijksplanner.online">huwelijksplanner</a> van de gemeente Utrecht toe gaat kan je daar je Melding Voorgenomen huwelijk doen.');
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupTexts);
+        $manager->persist($template);
+        $manager->flush();
+
         // Assent
         $id = Uuid::fromString('016d30d8-34dd-4841-a4af-8ad0a0f9d23f');
         $template = new Template();

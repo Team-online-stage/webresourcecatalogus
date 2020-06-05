@@ -1,0 +1,159 @@
+<?php
+
+namespace App\DataFixtures;
+
+use App\Entity\Application;
+use App\Entity\Image;
+use App\Entity\Organization;
+use App\Entity\Style;
+use App\Entity\Configuration;
+use App\Entity\Template;
+use App\Entity\TemplateGroup;
+use App\Entity\Slug;
+use App\Entity\Menu;
+use App\Entity\MenuItem;
+use Conduction\CommonGroundBundle\CommonGroundBundle;
+use Conduction\CommonGroundBundle\Service\CommonGroundService;
+use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Common\Persistence\ObjectManager;
+use Ramsey\Uuid\Uuid;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
+
+class MijnclusterFixtures extends Fixture
+{
+    private $params;
+    /**
+     * @var CommonGroundService
+     */
+    private $commonGroundService;
+
+    public function __construct(ParameterBagInterface $params, CommonGroundService $commonGroundService)
+    {
+        $this->params = $params;
+        $this->commonGroundService = $commonGroundService;
+    }
+
+    public function load(ObjectManager $manager)
+    {
+        // Lets make sure we only run these fixtures on larping enviroment
+        if ($this->params->get('app_domain') != "mijncluster.nl" && strpos($this->params->get('app_domain'), "mijncluster.nl") == false) {
+            return false;
+        }
+
+        // Pink Roccade
+        $id = Uuid::fromString('1c28b5cc-19a0-436e-8fef-08da1df2a827');
+        $organisation = new Organization();
+        $organisation->setName('Pink Roccade');
+        $organisation->setDescription('Pink Roccade');
+        $organisation->setRsin('1234');
+        $manager->persist($organisation);
+        $organisation->setId($id);
+        $manager->persist($organisation);
+        $manager->flush();
+        $organisation = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
+
+        $favicon = new Image();
+        $favicon->setName('Pink Roccade');
+        $favicon->setDescription('Pink Roccade');
+        $favicon->setOrganization($organisation);
+
+        $logo = new Image();
+        $logo->setName('Pink Roccade Logo');
+        $logo->setDescription('Pink Roccade');
+        $logo->setOrganization($organisation);
+
+        $style = new Style();
+        $style->setName('Pink Roccade');
+        $style->setDescription('Huistlijl Pink Roccade');
+        $style->setCss(':root {--primary: #233A79;--primary2: white;--secondary: #FFC926;--secondary2: #FFC926;}
+        .main-title {color: var(--primary2) !important;}.logo-header {background: var(--primary);}.navbar-header
+        {background: var(--primary);}.bg-primary-gradient {background: linear-gradient(-45deg, var(--secondary),
+         var(--secondary2)) !important;}');
+
+        $style->setfavicon($favicon);
+        $style->setOrganization($organisation);
+
+        $manager->persist($organisation);
+        $manager->persist($favicon);
+        $manager->persist($logo);
+        $manager->persist($style);
+
+        $manager->flush();
+
+        // Begrafenisplanner
+        $id = Uuid::fromString('4a9a0b39-ba6c-4048-bdf4-3c34eb560e2d');
+        $application = new Application();
+        $application->setName('Verhuisservice');
+        $application->setDescription('voorbeeld verhuisservice voor Pink Roccade');
+        $application->setDomain('mijncluster.nl');
+        $application->setOrganization($organisation);
+        $manager->persist($organisation);
+        $organisation->setId($id);
+        $manager->persist(v);
+        $manager->flush();
+        $organisation = $manager->getRepository('App:Application')->findOneBy(['id'=> $id]);
+
+        // Configuratie van Begrafenisplanner
+        $configuration = new Configuration();
+        $configuration->setOrganization($organisation);
+        $configuration->setApplication($application);
+        $configuration->setConfiguration([
+            'mainMenu'=> "{$this->commonGroundService->getComponent('wrc')['location']}/menus/7bd10d57-e1bb-48dd-81a2-fbf91ab710a0",
+            'home'=>"{$this->commonGroundService->getComponent('wrc')['location']}/templates/1cd04580-381e-4246-aed3-3c890b91e3f6"
+        ]);
+        $manager->persist($configuration);
+
+        // Menu
+        $id = Uuid::fromString('7bd10d57-e1bb-48dd-81a2-fbf91ab710a0');
+        $menu = New Menu();
+        $menu->setName('Main Menu');
+        $menu->setDescription('Het hoofd menu van deze website');
+        $menu->setApplication($application);
+        $manager->persist($menu);
+        $menu->setId($id);
+        $manager->persist($menu);
+        $manager->flush();
+        $menu = $manager->getRepository('App:Menu')->findOneBy(['id'=> $id]);
+
+        $menuItem = New MenuItem();
+        $menuItem->setName('Processen');
+        $menuItem->setDescription('Het hoofd menu van deze website');
+        $menuItem->setOrder(1);
+        $menuItem->setType('slug');
+        $menuItem->setHref('/process');
+        $menuItem->setMenu($menu);
+        $manager->persist($menu);
+
+        // Template groups
+        $groupPages = new TemplateGroup();
+        $groupPages->setOrganization($organisation);
+        $groupPages->setApplication($organisation);
+        $groupPages->setName('Pages');
+        $groupPages->setDescription('Webpages that are presented to visitors');
+        $manager->persist($groupPages);
+
+        // Pages
+        //s$id = Uuid::fromString('1cd04580-381e-4246-aed3-3c890b91e3f6');
+        $template = new Template();
+        $template->setName('Home');
+        $template->setDescription('De (web) applicatie waarop begravenisen kunnen worden doorgegeven');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Westfriesland/index.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('home');
+        $slug->setSlug('home');
+        $manager->persist($slug);
+
+        $manager->flush();
+    }
+}
