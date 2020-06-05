@@ -87,11 +87,11 @@ class MijnclusterFixtures extends Fixture
         $application->setDescription('voorbeeld verhuisservice voor Pink Roccade');
         $application->setDomain('mijncluster.nl');
         $application->setOrganization($organisation);
-        $manager->persist($organisation);
-        $organisation->setId($id);
-        $manager->persist(v);
+        $manager->persist($application);
+        $organisation->setId($application);
+        $manager->persist($application);
         $manager->flush();
-        $organisation = $manager->getRepository('App:Application')->findOneBy(['id'=> $id]);
+        $application = $manager->getRepository('App:Application')->findOneBy(['id'=> $id]);
 
         // Configuratie van Begrafenisplanner
         $configuration = new Configuration();
