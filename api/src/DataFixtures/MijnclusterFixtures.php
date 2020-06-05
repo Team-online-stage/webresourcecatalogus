@@ -88,7 +88,11 @@ class MijnclusterFixtures extends Fixture
         $application->setDomain('mijncluster.nl');
         $application->setOrganization($organisation);
         $manager->persist($application);
+<<<<<<< HEAD
         $application->setId($id);
+=======
+        $organisation->setId($application);
+>>>>>>> development
         $manager->persist($application);
         $manager->flush();
         $application = $manager->getRepository('App:Application')->findOneBy(['id'=> $id]);
