@@ -189,7 +189,7 @@ class Configuration
         $this->application = $application;
 
         // If the application dosn't have a deafult configuration yet lets set this one
-        if(!$this->application->getDefaultConfiguration()){
+        if($this->application && !$this->application->getDefaultConfiguration()){
             $this->application->setDefaultConfiguration($this);
         }
 

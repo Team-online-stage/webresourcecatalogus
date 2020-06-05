@@ -37,11 +37,11 @@ class MijnclusterFixtures extends Fixture
     {
         // Lets make sure we only run these fixtures on larping enviroment
         if ($this->params->get('app_domain') != "mijncluster.nl" && strpos($this->params->get('app_domain'), "mijncluster.nl") == false) {
-            return false;
+            //return false;
         }
 
         // Pink Roccade
-        $id = Uuid::fromString('1c28b5cc-19a0-436e-8fef-08da1df2a827');
+        $id = Uuid::fromString('cc935415-a674-4235-b99d-0c7bfce5c7aa');
         $organisation = new Organization();
         $organisation->setName('Pink Roccade');
         $organisation->setDescription('Pink Roccade');
@@ -80,18 +80,18 @@ class MijnclusterFixtures extends Fixture
 
         $manager->flush();
 
-        // Begrafenisplanner
+        // Verhuis service
         $id = Uuid::fromString('4a9a0b39-ba6c-4048-bdf4-3c34eb560e2d');
         $application = new Application();
         $application->setName('Verhuisservice');
-        $application->setDescription('voorbeeld verhuisservice voor Pink Roccade');
+        $application->setDescription('Voorbeeld verhuisservice voor Pink Roccade');
         $application->setDomain('mijncluster.nl');
         $application->setOrganization($organisation);
-        $manager->persist($organisation);
-        $organisation->setId($id);
-        $manager->persist(v);
+        $manager->persist($application);
+        $application->setId($id);
+        $manager->persist($application);
         $manager->flush();
-        $organisation = $manager->getRepository('App:Application')->findOneBy(['id'=> $id]);
+        $application = $manager->getRepository('App:Application')->findOneBy(['id'=> $id]);
 
         // Configuratie van Begrafenisplanner
         $configuration = new Configuration();
@@ -122,18 +122,27 @@ class MijnclusterFixtures extends Fixture
         $menuItem->setType('slug');
         $menuItem->setHref('/process');
         $menuItem->setMenu($menu);
-        $manager->persist($menu);
+        $manager->persist($menuItem);
+
+        $menuItem = New MenuItem();
+        $menuItem->setName('Inloggen');
+        $menuItem->setDescription('Het hoofd menu van deze website');
+        $menuItem->setOrder(1);
+        $menuItem->setType('slug');
+        $menuItem->setHref('https://ds.mijncluster.nl');
+        $menuItem->setMenu($menu);
+        $manager->persist($menuItem);
 
         // Template groups
         $groupPages = new TemplateGroup();
         $groupPages->setOrganization($organisation);
-        $groupPages->setApplication($organisation);
+        $groupPages->setApplication($application);
         $groupPages->setName('Pages');
         $groupPages->setDescription('Webpages that are presented to visitors');
         $manager->persist($groupPages);
 
         // Pages
-        //s$id = Uuid::fromString('1cd04580-381e-4246-aed3-3c890b91e3f6');
+        $id = Uuid::fromString('1cd04580-381e-4246-aed3-3c890b91e3f6');
         $template = new Template();
         $template->setName('Home');
         $template->setDescription('De (web) applicatie waarop begravenisen kunnen worden doorgegeven');
