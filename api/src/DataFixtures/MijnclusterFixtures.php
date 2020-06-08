@@ -36,12 +36,15 @@ class MijnclusterFixtures extends Fixture
     public function load(ObjectManager $manager)
     {
         // Lets make sure we only run these fixtures on larping enviroment
-        if ($this->params->get('app_domain') != "mijncluster.nl" && strpos($this->params->get('app_domain'), "mijncluster.nl") == false) {
+        if (
+            $this->params->get('app_domain') != "mijncluster.nl" && strpos($this->params->get('app_domain'), "mijncluster.nl") == false &&
+            $this->params->get('app_domain') != "zuid-drecht.nl" && strpos($this->params->get('app_domain'), "zuid-drecht.nl") == false
+        ) {
             return false;
         }
 
         // Pink Roccade
-        $id = Uuid::fromString('1c28b5cc-19a0-436e-8fef-08da1df2a827');
+        $id = Uuid::fromString('cc935415-a674-4235-b99d-0c7bfce5c7aa');
         $organisation = new Organization();
         $organisation->setName('Pink Roccade');
         $organisation->setDescription('Pink Roccade');
@@ -65,10 +68,27 @@ class MijnclusterFixtures extends Fixture
         $style = new Style();
         $style->setName('Pink Roccade');
         $style->setDescription('Huistlijl Pink Roccade');
-        $style->setCss(':root {--primary: #233A79;--primary2: white;--secondary: #FFC926;--secondary2: #FFC926;}
-        .main-title {color: var(--primary2) !important;}.logo-header {background: var(--primary);}.navbar-header
-        {background: var(--primary);}.bg-primary-gradient {background: linear-gradient(-45deg, var(--secondary),
-         var(--secondary2)) !important;}');
+        $style->setCss(':root {--primary: #E2007A;--primary2: white;--secondary: #446686;--secondary2: #FFC926;}
+.main-title {color: var(--primary2) !important;}
+
+.logo-header {background: var(--primary);}
+
+.navbar-header {background: var(--primary);}.bg-primary-gradient {background: linear-gradient(-45deg, var(--secondary),
+         var(--secondary2)) !important;}
+
+.background--donkerblauw {
+    background-color: #E2007A;
+    color: #fff;
+}
+
+.main-header{
+   background-color: #E2007A;
+}
+
+.panel-header{
+   background-color: #446686;
+}
+');
 
         $style->setfavicon($favicon);
         $style->setOrganization($organisation);
@@ -80,18 +100,18 @@ class MijnclusterFixtures extends Fixture
 
         $manager->flush();
 
-        // Begrafenisplanner
+        // Verhuis service
         $id = Uuid::fromString('4a9a0b39-ba6c-4048-bdf4-3c34eb560e2d');
         $application = new Application();
         $application->setName('Verhuisservice');
-        $application->setDescription('voorbeeld verhuisservice voor Pink Roccade');
+        $application->setDescription('Voorbeeld verhuisservice voor Pink Roccade');
         $application->setDomain('mijncluster.nl');
         $application->setOrganization($organisation);
-        $manager->persist($organisation);
-        $organisation->setId($id);
-        $manager->persist(v);
+        $manager->persist($application);
+        $application->setId($id);
+        $manager->persist($application);
         $manager->flush();
-        $organisation = $manager->getRepository('App:Application')->findOneBy(['id'=> $id]);
+        $application = $manager->getRepository('App:Application')->findOneBy(['id'=> $id]);
 
         // Configuratie van Begrafenisplanner
         $configuration = new Configuration();
@@ -122,18 +142,36 @@ class MijnclusterFixtures extends Fixture
         $menuItem->setType('slug');
         $menuItem->setHref('/process');
         $menuItem->setMenu($menu);
+        $manager->persist($menuItem);
+
+        $menuItem = New MenuItem();
+        $menuItem->setName('Inloggen');
+        $menuItem->setDescription('Het hoofd menu van deze website');
+        $menuItem->setOrder(1);
+        $menuItem->setType('slug');
+        $menuItem->setHref('https://ds.mijncluster.nl');
+        $menuItem->setMenu($menu);
+        $manager->persist($menuItem);
+
+        $menuItem = New MenuItem();
+        $menuItem->setName('Inloggen');
+        $menuItem->setDescription('Het hoofd menu van deze website');
+        $menuItem->setOrder(2);
+        $menuItem->setType('external');
+        $menuItem->setHref('https://ds.dev.mijncluster.nl/?responceurl=https://pan.dev.mijncluster.nl');
+        $menuItem->setMenu($menu);
         $manager->persist($menu);
 
         // Template groups
         $groupPages = new TemplateGroup();
         $groupPages->setOrganization($organisation);
-        $groupPages->setApplication($organisation);
+        $groupPages->setApplication($application);
         $groupPages->setName('Pages');
         $groupPages->setDescription('Webpages that are presented to visitors');
         $manager->persist($groupPages);
 
         // Pages
-        //s$id = Uuid::fromString('1cd04580-381e-4246-aed3-3c890b91e3f6');
+        $id = Uuid::fromString('1cd04580-381e-4246-aed3-3c890b91e3f6');
         $template = new Template();
         $template->setName('Home');
         $template->setDescription('De (web) applicatie waarop begravenisen kunnen worden doorgegeven');
