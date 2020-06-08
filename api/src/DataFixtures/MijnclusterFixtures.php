@@ -36,7 +36,10 @@ class MijnclusterFixtures extends Fixture
     public function load(ObjectManager $manager)
     {
         // Lets make sure we only run these fixtures on larping enviroment
-        if ($this->params->get('app_domain') != "mijncluster.nl" && strpos($this->params->get('app_domain'), "mijncluster.nl") == false) {
+        if (
+            $this->params->get('app_domain') != "mijncluster.nl" && strpos($this->params->get('app_domain'), "mijncluster.nl") == false &&
+            $this->params->get('app_domain') != "zuid-drecht.nl" && strpos($this->params->get('app_domain'), "zuid-drecht.nl") == false
+        ) {
             return false;
         }
 
@@ -149,6 +152,15 @@ class MijnclusterFixtures extends Fixture
         $menuItem->setHref('https://ds.mijncluster.nl');
         $menuItem->setMenu($menu);
         $manager->persist($menuItem);
+
+        $menuItem = New MenuItem();
+        $menuItem->setName('Inloggen');
+        $menuItem->setDescription('Het hoofd menu van deze website');
+        $menuItem->setOrder(2);
+        $menuItem->setType('external');
+        $menuItem->setHref('https://ds.dev.mijncluster.nl/?responceurl=https://pan.dev.mijncluster.nl');
+        $menuItem->setMenu($menu);
+        $manager->persist($menu);
 
         // Template groups
         $groupPages = new TemplateGroup();
