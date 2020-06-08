@@ -65,10 +65,27 @@ class MijnclusterFixtures extends Fixture
         $style = new Style();
         $style->setName('Pink Roccade');
         $style->setDescription('Huistlijl Pink Roccade');
-        $style->setCss(':root {--primary: #233A79;--primary2: white;--secondary: #FFC926;--secondary2: #FFC926;}
-        .main-title {color: var(--primary2) !important;}.logo-header {background: var(--primary);}.navbar-header
-        {background: var(--primary);}.bg-primary-gradient {background: linear-gradient(-45deg, var(--secondary),
-         var(--secondary2)) !important;}');
+        $style->setCss(':root {--primary: #E2007A;--primary2: white;--secondary: #446686;--secondary2: #FFC926;}
+.main-title {color: var(--primary2) !important;}
+
+.logo-header {background: var(--primary);}
+
+.navbar-header {background: var(--primary);}.bg-primary-gradient {background: linear-gradient(-45deg, var(--secondary),
+         var(--secondary2)) !important;}
+
+.background--donkerblauw {
+    background-color: #E2007A;
+    color: #fff;
+}
+
+.main-header{
+   background-color: #E2007A;
+}
+
+.panel-header{
+   background-color: #446686;
+}
+');
 
         $style->setfavicon($favicon);
         $style->setOrganization($organisation);
