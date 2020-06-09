@@ -132,9 +132,10 @@ class WestfrieslandFixtures extends Fixture
         .main-title {color: var(--primary2) !important;}.logo-header {background: var(--primary);}.navbar-header
         {background: var(--primary);}.bg-primary-gradient {background: linear-gradient(-45deg, var(--secondary),
          var(--secondary2)) !important;}');
+        
         $style->setfavicon($favicon);
         $style->setOrganization($westfriesland);
-        $style->setfavicon($favicon);
+
 
         $manager->persist($westfriesland);
         $manager->persist($favicon);
