@@ -3,16 +3,15 @@
 namespace App\DataFixtures;
 
 use App\Entity\Application;
-use App\Entity\Image;
-use App\Entity\Organization;
-use App\Entity\Style;
 use App\Entity\Configuration;
-use App\Entity\Template;
-use App\Entity\TemplateGroup;
-use App\Entity\Slug;
+use App\Entity\Image;
 use App\Entity\Menu;
 use App\Entity\MenuItem;
-use Conduction\CommonGroundBundle\CommonGroundBundle;
+use App\Entity\Organization;
+use App\Entity\Slug;
+use App\Entity\Style;
+use App\Entity\Template;
+use App\Entity\TemplateGroup;
 use Conduction\CommonGroundBundle\Service\CommonGroundService;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -37,8 +36,8 @@ class MijnclusterFixtures extends Fixture
     {
         // Lets make sure we only run these fixtures on larping enviroment
         if (
-            $this->params->get('app_domain') != "mijncluster.nl" && strpos($this->params->get('app_domain'), "mijncluster.nl") == false &&
-            $this->params->get('app_domain') != "zuid-drecht.nl" && strpos($this->params->get('app_domain'), "zuid-drecht.nl") == false
+            $this->params->get('app_domain') != 'mijncluster.nl' && strpos($this->params->get('app_domain'), 'mijncluster.nl') == false &&
+            $this->params->get('app_domain') != 'zuid-drecht.nl' && strpos($this->params->get('app_domain'), 'zuid-drecht.nl') == false
         ) {
             return false;
         }
@@ -119,13 +118,13 @@ class MijnclusterFixtures extends Fixture
         $configuration->setApplication($application);
         $configuration->setConfiguration([
             'mainMenu'=> "{$this->commonGroundService->getComponent('wrc')['location']}/menus/7bd10d57-e1bb-48dd-81a2-fbf91ab710a0",
-            'home'=>"{$this->commonGroundService->getComponent('wrc')['location']}/templates/1cd04580-381e-4246-aed3-3c890b91e3f6"
+            'home'    => "{$this->commonGroundService->getComponent('wrc')['location']}/templates/1cd04580-381e-4246-aed3-3c890b91e3f6",
         ]);
         $manager->persist($configuration);
 
         // Menu
         $id = Uuid::fromString('7bd10d57-e1bb-48dd-81a2-fbf91ab710a0');
-        $menu = New Menu();
+        $menu = new Menu();
         $menu->setName('Main Menu');
         $menu->setDescription('Het hoofd menu van deze website');
         $menu->setApplication($application);
@@ -135,7 +134,7 @@ class MijnclusterFixtures extends Fixture
         $manager->flush();
         $menu = $manager->getRepository('App:Menu')->findOneBy(['id'=> $id]);
 
-        $menuItem = New MenuItem();
+        $menuItem = new MenuItem();
         $menuItem->setName('Processen');
         $menuItem->setDescription('Het hoofd menu van deze website');
         $menuItem->setOrder(1);
@@ -144,7 +143,7 @@ class MijnclusterFixtures extends Fixture
         $menuItem->setMenu($menu);
         $manager->persist($menuItem);
 
-        $menuItem = New MenuItem();
+        $menuItem = new MenuItem();
         $menuItem->setName('Verzoeken');
         $menuItem->setDescription('Het hoofd menu van deze website');
         $menuItem->setOrder(2);
@@ -153,7 +152,7 @@ class MijnclusterFixtures extends Fixture
         $menuItem->setMenu($menu);
         $manager->persist($menuItem);
 
-        $menuItem = New MenuItem();
+        $menuItem = new MenuItem();
         $menuItem->setName('Inloggen');
         $menuItem->setDescription('Het hoofd menu van deze website');
         $menuItem->setOrder(3);
