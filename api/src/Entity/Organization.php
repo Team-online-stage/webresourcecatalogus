@@ -140,7 +140,7 @@ class Organization
     private $styles;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Application", mappedBy="organization", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\Application", mappedBy="organization")
      */
     private $applications;
 
@@ -150,7 +150,7 @@ class Organization
     private $images;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Configuration", mappedBy="organization", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\Configuration", mappedBy="organization")
      */
     private $configurations;
 
