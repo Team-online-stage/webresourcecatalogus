@@ -158,7 +158,7 @@ class MijnclusterFixtures extends Fixture
         $menuItem->setDescription('Het hoofd menu van deze website');
         $menuItem->setOrder(3);
         $menuItem->setType('slug');
-        $menuItem->setHref('https://ds.dev.mijncluster.nl/?responceurl=https://pan.dev.mijncluster.nl');
+        $menuItem->setHref('https://ds.dev.mijncluster.nl/?responceUrl=https://pan.dev.mijncluster.nl');
         $menuItem->setMenu($menu);
         $manager->persist($menuItem);
 
