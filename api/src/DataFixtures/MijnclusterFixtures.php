@@ -3,16 +3,15 @@
 namespace App\DataFixtures;
 
 use App\Entity\Application;
-use App\Entity\Image;
-use App\Entity\Organization;
-use App\Entity\Style;
 use App\Entity\Configuration;
-use App\Entity\Template;
-use App\Entity\TemplateGroup;
-use App\Entity\Slug;
+use App\Entity\Image;
 use App\Entity\Menu;
 use App\Entity\MenuItem;
-use Conduction\CommonGroundBundle\CommonGroundBundle;
+use App\Entity\Organization;
+use App\Entity\Slug;
+use App\Entity\Style;
+use App\Entity\Template;
+use App\Entity\TemplateGroup;
 use Conduction\CommonGroundBundle\Service\CommonGroundService;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -36,7 +35,10 @@ class MijnclusterFixtures extends Fixture
     public function load(ObjectManager $manager)
     {
         // Lets make sure we only run these fixtures on larping enviroment
-        if ($this->params->get('app_domain') != "mijncluster.nl" && strpos($this->params->get('app_domain'), "mijncluster.nl") == false) {
+        if (
+            $this->params->get('app_domain') != 'mijncluster.nl' && strpos($this->params->get('app_domain'), 'mijncluster.nl') == false &&
+            $this->params->get('app_domain') != 'zuid-drecht.nl' && strpos($this->params->get('app_domain'), 'zuid-drecht.nl') == false
+        ) {
             return false;
         }
 
@@ -65,10 +67,27 @@ class MijnclusterFixtures extends Fixture
         $style = new Style();
         $style->setName('Pink Roccade');
         $style->setDescription('Huistlijl Pink Roccade');
-        $style->setCss(':root {--primary: #233A79;--primary2: white;--secondary: #FFC926;--secondary2: #FFC926;}
-        .main-title {color: var(--primary2) !important;}.logo-header {background: var(--primary);}.navbar-header
-        {background: var(--primary);}.bg-primary-gradient {background: linear-gradient(-45deg, var(--secondary),
-         var(--secondary2)) !important;}');
+        $style->setCss(':root {--primary: #E2007A;--primary2: white;--secondary: #446686;--secondary2: #FFC926;}
+.main-title {color: var(--primary2) !important;}
+
+.logo-header {background: var(--primary);}
+
+.navbar-header {background: var(--primary);}.bg-primary-gradient {background: linear-gradient(-45deg, var(--secondary),
+         var(--secondary2)) !important;}
+
+.background--donkerblauw {
+    background-color: #E2007A;
+    color: #fff;
+}
+
+.main-header{
+   background-color: #E2007A;
+}
+
+.panel-header{
+   background-color: #446686;
+}
+');
 
         $style->setfavicon($favicon);
         $style->setOrganization($organisation);
@@ -99,13 +118,13 @@ class MijnclusterFixtures extends Fixture
         $configuration->setApplication($application);
         $configuration->setConfiguration([
             'mainMenu'=> "{$this->commonGroundService->getComponent('wrc')['location']}/menus/7bd10d57-e1bb-48dd-81a2-fbf91ab710a0",
-            'home'=>"{$this->commonGroundService->getComponent('wrc')['location']}/templates/1cd04580-381e-4246-aed3-3c890b91e3f6"
+            'home'    => "{$this->commonGroundService->getComponent('wrc')['location']}/templates/1cd04580-381e-4246-aed3-3c890b91e3f6",
         ]);
         $manager->persist($configuration);
 
         // Menu
         $id = Uuid::fromString('7bd10d57-e1bb-48dd-81a2-fbf91ab710a0');
-        $menu = New Menu();
+        $menu = new Menu();
         $menu->setName('Main Menu');
         $menu->setDescription('Het hoofd menu van deze website');
         $menu->setApplication($application);
@@ -115,7 +134,7 @@ class MijnclusterFixtures extends Fixture
         $manager->flush();
         $menu = $manager->getRepository('App:Menu')->findOneBy(['id'=> $id]);
 
-        $menuItem = New MenuItem();
+        $menuItem = new MenuItem();
         $menuItem->setName('Processen');
         $menuItem->setDescription('Het hoofd menu van deze website');
         $menuItem->setOrder(1);
@@ -124,23 +143,23 @@ class MijnclusterFixtures extends Fixture
         $menuItem->setMenu($menu);
         $manager->persist($menuItem);
 
-        $menuItem = New MenuItem();
-        $menuItem->setName('Inloggen');
+        $menuItem = new MenuItem();
+        $menuItem->setName('Verzoeken');
         $menuItem->setDescription('Het hoofd menu van deze website');
-        $menuItem->setOrder(1);
+        $menuItem->setOrder(2);
         $menuItem->setType('slug');
-        $menuItem->setHref('https://ds.mijncluster.nl');
+        $menuItem->setHref('/request');
         $menuItem->setMenu($menu);
         $manager->persist($menuItem);
 
-        $menuItem = New MenuItem();
+        $menuItem = new MenuItem();
         $menuItem->setName('Inloggen');
         $menuItem->setDescription('Het hoofd menu van deze website');
-        $menuItem->setOrder(2);
-        $menuItem->setType('external');
-        $menuItem->setHref('https://ds.dev.mijncluster.nl/?responceurl=https://pan.dev.mijncluster.nl');
+        $menuItem->setOrder(3);
+        $menuItem->setType('slug');
+        $menuItem->setHref('https://ds.dev.mijncluster.nl/?responceUrl=https://pan.dev.mijncluster.nl');
         $menuItem->setMenu($menu);
-        $manager->persist($menu);
+        $manager->persist($menuItem);
 
         // Template groups
         $groupPages = new TemplateGroup();

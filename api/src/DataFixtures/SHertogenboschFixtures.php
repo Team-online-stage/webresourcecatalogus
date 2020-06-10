@@ -6,10 +6,7 @@ use App\Entity\Application;
 use App\Entity\Configuration;
 use App\Entity\Image;
 use App\Entity\Organization;
-use App\Entity\Slug;
 use App\Entity\Style;
-use App\Entity\Template;
-use App\Entity\TemplateGroup;
 use Conduction\CommonGroundBundle\Service\CommonGroundService;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -77,7 +74,6 @@ class SHertogenboschFixtures extends Fixture
         $manager->persist($style);
         $manager->flush();
 
-
         // Mijn App
         $application = new Application();
         $application->setName('MijnApp');
@@ -94,6 +90,5 @@ class SHertogenboschFixtures extends Fixture
         $manager->persist($configuration);
 
         $manager->flush();
-
     }
 }

@@ -3,16 +3,15 @@
 namespace App\DataFixtures;
 
 use App\Entity\Application;
-use App\Entity\Image;
-use App\Entity\Organization;
-use App\Entity\Style;
 use App\Entity\Configuration;
-use App\Entity\Template;
-use App\Entity\TemplateGroup;
-use App\Entity\Slug;
+use App\Entity\Image;
 use App\Entity\Menu;
 use App\Entity\MenuItem;
-use Conduction\CommonGroundBundle\CommonGroundBundle;
+use App\Entity\Organization;
+use App\Entity\Slug;
+use App\Entity\Style;
+use App\Entity\Template;
+use App\Entity\TemplateGroup;
 use Conduction\CommonGroundBundle\Service\CommonGroundService;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -136,7 +135,6 @@ class WestfrieslandFixtures extends Fixture
         $style->setfavicon($favicon);
         $style->setOrganization($westfriesland);
 
-
         $manager->persist($westfriesland);
         $manager->persist($favicon);
         $manager->persist($logo);
@@ -161,15 +159,16 @@ class WestfrieslandFixtures extends Fixture
         $configuration = new Configuration();
         $configuration->setOrganization($westfriesland);
         $configuration->setApplication($application);
-        $configuration->setConfiguration([
-            'mainMenu'=>$this->commonGroundService->cleanUrl('https://wrc.westfriesland.commonground.nu/menus/097ea88e-beb6-476e-a978-d07650f03d97'),
-            'home'=>$this->commonGroundService->cleanUrl('https://wrc.westfriesland.commonground.nu/templates/fc91dcd6-d0b4-4e70-9934-3e5ebf9c295c')]
+        $configuration->setConfiguration(
+            [
+                'mainMenu'=> $this->commonGroundService->cleanUrl('https://wrc.westfriesland.commonground.nu/menus/097ea88e-beb6-476e-a978-d07650f03d97'),
+                'home'    => $this->commonGroundService->cleanUrl('https://wrc.westfriesland.commonground.nu/templates/fc91dcd6-d0b4-4e70-9934-3e5ebf9c295c'), ]
         );
         $manager->persist($configuration);
 
         // Menu
         $id = Uuid::fromString('097ea88e-beb6-476e-a978-d07650f03d97');
-        $menu = New Menu();
+        $menu = new Menu();
         $menu->setName('Main Menu');
         $menu->setDescription('Het hoofdmenu van deze website');
         $menu->setApplication($application);
@@ -179,7 +178,7 @@ class WestfrieslandFixtures extends Fixture
         $manager->flush();
         $menu = $manager->getRepository('App:Menu')->findOneBy(['id'=> $id]);
 
-        $menuItem = New MenuItem();
+        $menuItem = new MenuItem();
         $menuItem->setName('Processen');
         $menuItem->setDescription('Doe een aanvraag');
         $menuItem->setOrder(1);
@@ -188,7 +187,7 @@ class WestfrieslandFixtures extends Fixture
         $menuItem->setMenu($menu);
         $manager->persist($menu);
 
-        $menuItem = New MenuItem();
+        $menuItem = new MenuItem();
         $menuItem->setName('Verzoeken');
         $menuItem->setDescription('Het inzien en voortzetten van mijn verzoeken');
         $menuItem->setOrder(1);
@@ -228,7 +227,5 @@ class WestfrieslandFixtures extends Fixture
         $manager->persist($slug);
 
         $manager->flush();
-
-
     }
 }
