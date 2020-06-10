@@ -144,22 +144,22 @@ class MijnclusterFixtures extends Fixture
         $manager->persist($menuItem);
 
         $menuItem = new MenuItem();
-        $menuItem->setName('Inloggen');
+        $menuItem->setName('Verzoeken');
         $menuItem->setDescription('Het hoofd menu van deze website');
-        $menuItem->setOrder(1);
+        $menuItem->setOrder(2);
         $menuItem->setType('slug');
-        $menuItem->setHref('https://ds.mijncluster.nl');
+        $menuItem->setHref('/request');
         $menuItem->setMenu($menu);
         $manager->persist($menuItem);
 
         $menuItem = new MenuItem();
         $menuItem->setName('Inloggen');
         $menuItem->setDescription('Het hoofd menu van deze website');
-        $menuItem->setOrder(2);
-        $menuItem->setType('external');
-        $menuItem->setHref('https://ds.dev.mijncluster.nl/?responceurl=https://pan.dev.mijncluster.nl');
+        $menuItem->setOrder(3);
+        $menuItem->setType('slug');
+        $menuItem->setHref('https://ds.dev.mijncluster.nl/?responceUrl=https://pan.dev.mijncluster.nl');
         $menuItem->setMenu($menu);
-        $manager->persist($menu);
+        $manager->persist($menuItem);
 
         // Template groups
         $groupPages = new TemplateGroup();
