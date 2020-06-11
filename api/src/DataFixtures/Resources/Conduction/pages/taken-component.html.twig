@@ -1,0 +1,54 @@
+{# templates/home/index.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block headercontent %}
+    <!-- .header-content -->
+    <div class="header-content">
+
+        <!-- .container -->
+        <!-- /.container -->
+    </div><!-- /.header-content -->
+{% endblock %}
+
+{% block body %}
+    <div class="wrap-container8040 bg-white">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-10 col-md-7 col-lg-7 ">
+                    <div class="col-text20 margin-bottom20">
+                        <div class="post-heading-left">
+                            <h2 id="verhuizen" style="color: #4386FB">Taken Component</h2>
+                            <a href="https://github.styleci.io/repos/260444947" target="_blank"><img src="https://github.styleci.io/repos/260444947/shield?branch=master" alt="StyleCI"></a>
+                            <a href="https://github.com/ConductionNL/taken-component/actions?query=workflow%3A\"Docker+Image+CI\"" target="_blank"><img src="https://github.com/ConductionNL/taken-component/workflows/Docker%20Image%20CI/badge.svg?branch=master" alt="github"></a>
+
+                            <p>Het Taken Component biedt de generieke mogelijkheid om taken te registreren van de ene resource op een andere resource (bijvoorbeeld Common Ground resources). 
+                            Deze functionaliteit is bewust abstract opgezet. In de meest voorkomende vorm zal bijvoorbeeld een medewerker of gebruiker (resource) 
+                            een taak hebben op een zaak of order (resource), maar in abstracte vorm kan ook een burger (BRP resource) 
+                            een taak hebben of kunnen zelfs applicaties of processen (zoals opgenomen in het PC) een taak hebben. 
+                            Het Taken Component geeft in die zin zowel invulling aan taken, als in het agenda calendar concept “todo” als het bpmn concept “task”. 
+                            Echter moeten zowel het onderwerp van de taak, als de uitvoerder van de taak identificeerbaar zijn aan de hand van een URL.</p> 
+
+                            <p>Dit betekent dat er automatisch ondersteuning is voor simpele afhandelings-flows, 
+                            zo zouden taken kunnen worden toegewezen aan een ‘User Group’ en vervolgens kunnen worden opgepakt door een user in die groep.</p>
+                            <br>
+                            <br>
+                            <a href="https://github.com/ConductionNL/taken-component" class="btn-custom btn-more-link " target="_blank"> Bekijk repository</a>
+                            <a href="#" class="btn-custom btn-more-link " target="_blank"> bekijk documentatie</a>
+                            <br>
+                        </div><!-- ./col-heading -->
+                    </div><!-- ./col-text -->
+                </div><!-- ./col -->
+                <div class="col-sm-10 col-md-5 col-lg-5">
+                    <img src={{ asset('images/content/Componenten/tc/1280w/Blauw_vlak.png') }} width="100%">
+                </div><!-- ./col -->
+            </div><!-- ./row -->
+        </div><!-- ./container -->
+    </div><!-- ./wrap-container -->
+
+
+    {{ include('/widgets/contact.html.twig') }}
+
+
+{% endblock %}
+

@@ -1,0 +1,58 @@
+{# templates/home/index.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block headercontent %}
+    <!-- .header-content -->
+    <div class="header-content">
+
+        <!-- .container -->
+        <!-- /.container -->
+    </div><!-- /.header-content -->
+{% endblock %}
+
+{% block body %}
+    <div class="wrap-container8040 bg-white">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-10 col-md-7 col-lg-7 ">
+                    <div class="col-text20 margin-bottom20">
+                        <div class="post-heading-left">
+                            <h2 id="verhuizen" style="color: #4386FB">Medewerker Catalogus</h2>
+                            <a href="https://github.styleci.io/repos/206144408" target="_blank"><img src="https://github.styleci.io/repos/206144408/shield?branch=master" alt="StyleCI"></a>
+                            <a href="https://github.com/ConductionNL/medewerkercatalogus/actions?query=workflow%3A"Docker+Image+CI"" target="_blank"><img src="https://github.com/ConductionNL/medewerkercatalogus/workflows/Docker%20Image%20CI/badge.svg?branch=master" alt="github"></a>
+
+                            <p>Het mederwerker registratie component bevat medewerkers en de daarbij behorende HRM systematiek, 
+                            hierbij kan bijvoorbeeld worden gedacht aan contractmanagement en functie of competentie overzichten. 
+                            Deze functionaliteit wordt eigenlijk onttrokken aan de e-HRM norm (ofwel de hr-xml standaard, in nederland losjes geïmplementeerd als SETU). 
+                            Waarbij het stuk portfolio opbouw is losgetrokken en in portfolio component (eneinde de e-portfolio norm te ondersteunen).</p>
+
+                            <p>Naast het simpelweg bijhouden van medewerkers is dit component echter ook bedoeld 
+                            als hr tool met betrekking tot groei ambities in de trand van competenties en vaardigheden. 
+                            Gecombineerd met het portfolio component kan het daarmee ook de basis vormen voor coachings en of onderwijs systemen waarbij bepaalde leer of groei doelen worden bijgehouden.</p>
+
+                            <br>
+                            <br>
+                            <img src="{{ asset('images/trouwen.png') }}" width="110px">
+                            <img src="{{ asset('images/verhuizen.png') }}" width="110px" style="margin-left: 30px">
+                            <img src="{{ asset('images/overlijden.png') }}" width="110px" style="margin-left: 30px">
+                            <br>
+                            <br>
+                            <a href="https://github.com/ConductionNL/medewerkercatalogus" class="btn-custom btn-more-link " target="_blank"> Bekijk repository</a>
+                            <a href="#" class="btn-custom btn-more-link " target="_blank"> bekijk documentatie</a>
+                        </div><!-- ./col-heading -->
+                    </div><!-- ./col-text -->
+                </div><!-- ./col -->
+                <div class="col-sm-10 col-md-5 col-lg-5">
+                    <img src={{ asset('images/content/Componenten/mrc/1280w/Geel_Vlak.png') }} width="100%">
+                </div><!-- ./col -->
+            </div><!-- ./row -->
+        </div><!-- ./container -->
+    </div><!-- ./wrap-container -->
+
+
+    {{ include('/widgets/contact.html.twig') }}
+
+
+{% endblock %}
+
