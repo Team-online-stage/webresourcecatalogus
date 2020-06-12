@@ -95,7 +95,6 @@ class Menu
      * @Assert\Length(
      *      max = 2555
      * )
-     * @Gedmo\Versioned
      * @Groups({"read","write"})
      * @ORM\Column(type="text", nullable=true)
      */
