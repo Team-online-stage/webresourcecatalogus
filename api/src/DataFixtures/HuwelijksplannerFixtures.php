@@ -911,8 +911,15 @@ Als je naar de <a href="https://www.huwelijksplanner.online">huwelijksplanner</a
         $slug = new Slug();
         $slug->setTemplate($template);
         $slug->setApplication($application);
-        $slug->setName('start_huwelijk');
-        $slug->setSlug('start_huwelijk');
+        $slug->setName('start-huwelijk');
+        $slug->setSlug('start-huwelijk');
+        $manager->persist($slug);
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('uitleg');
+        $slug->setSlug('uitleg');
         $manager->persist($slug);
 
         // Getuigen

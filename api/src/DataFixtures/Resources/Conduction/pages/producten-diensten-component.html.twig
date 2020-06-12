@@ -1,0 +1,60 @@
+{# templates/home/index.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block headercontent %}
+    <!-- .header-content -->
+    <div class="header-content">
+
+        <!-- .container -->
+        <!-- /.container -->
+    </div><!-- /.header-content -->
+{% endblock %}
+
+{% block body %}
+    <div class="wrap-container8040 bg-white">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-10 col-md-7 col-lg-7 ">
+                    <div class="col-text20 margin-bottom20">
+                        <div class="post-heading-left">
+                            <h2 id="verhuizen" style="color: #4386FB">Producten Diensten Catalogus</h2>
+                            <a href="https://github.styleci.io/repos/210809809" target="_blank"><img src="https://github.styleci.io/repos/210809809/shield?branch=master" alt="StyleCI"></a>
+                            <a href="https://github.com/ConductionNL/productenendienstencatalogus/actions?query=workflow%3A"Docker+Image+CI"" target="_blank"><img src="https://github.com/ConductionNL/productenendienstencatalogus/workflows/Docker%20Image%20CI/badge.svg?branch=master" alt="github"></a>
+
+                            <p>De Producten en Diensten Catalogus heeft als doel het geheel aan af te nemen producten en/of diensten in kaart te brengen. 
+                            Hierbij wordt uitgegaan van afname door klanten vanuit een organisatie, maar er is geen technische beperking om het ook als inkoopsysteem te gebruiken.</p> 
+
+                            <p>Naast producten en diensten kent het component ook ondersteuning voor het maken van productgroepen, 
+                            beschrijvende teksten, afbeeldingen, belastingen en andere zaken die specifiek gerelateerd zijn aan webshop concepten. 
+                            Hierbij wordt (vanuit internationale normen) een onderscheid gemaakt tussen het product en het aanbieden van het product (offer) 
+                            waarbij het mogelijk is om een aanbod te koppelen aan geldigheid of doelgroepen. 
+                            Met andere woorden het is mogenlijk om een product op bepaalde momenten goedkoper of juist duurder aan te bieden (trouwen in het weekend) 
+                            of goedkoper aan te bieden voor bepaalde doelgroepen (korting op evenementen vergunningen voor buurtcomitees).</p>
+
+
+                            <br>
+                            <br>
+                            <img src="{{ asset('images/trouwen.png') }}" width="110px">
+                            <img src="{{ asset('images/verhuizen.png') }}" width="110px" style="margin-left: 30px">
+                            <img src="{{ asset('images/overlijden.png') }}" width="110px" style="margin-left: 30px">
+                            <br>
+                            <br>
+                            <a href="https://github.com/ConductionNL/productenendienstencatalogus" class="btn-custom btn-more-link " target="_blank"> Bekijk repository</a>
+                            <a href="#" class="btn-custom btn-more-link " target="_blank"> bekijk documentatie</a>
+                        </div><!-- ./col-heading -->
+                    </div><!-- ./col-text -->
+                </div><!-- ./col -->
+                <div class="col-sm-10 col-md-5 col-lg-5">
+                    <img src={{ asset('images/content/Componenten/pdc/1280w/Blauw_vlak.png') }} width="100%">
+                </div><!-- ./col -->
+            </div><!-- ./row -->
+        </div><!-- ./container -->
+    </div><!-- ./wrap-container -->
+
+
+    {{ include('/widgets/contact.html.twig') }}
+
+
+{% endblock %}
+
