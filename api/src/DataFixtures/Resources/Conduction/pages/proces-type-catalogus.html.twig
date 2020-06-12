@@ -1,0 +1,71 @@
+{# templates/home/index.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block headercontent %}
+    <!-- .header-content -->
+    <div class="header-content">
+
+        <!-- .container -->
+        <!-- /.container -->
+    </div><!-- /.header-content -->
+{% endblock %}
+
+{% block body %}
+    <div class="wrap-container8040 bg-white">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-10 col-md-7 col-lg-7 ">
+                    <div class="col-text20 margin-bottom20">
+                        <div class="post-heading-left">
+                            <h2 id="verhuizen" style="color: #4386FB">Proces Type Catalogus</h2>
+                            <a href="https://github.styleci.io/repos/198549944" target="_blank"><img src="https://github.styleci.io/repos/198549944/shield?branch=master" alt="StyleCI"></a>
+                            <a href="https://github.com/ConductionNL/verzoektypecatalogus/actions?query=workflow%3A"Docker+Image+CI"" target="_blank"><img src="https://github.com/ConductionNL/verzoektypecatalogus/workflows/Docker%20Image%20CI/badge.svg?branch=master" alt="github"></a>
+
+                            <p>De Proces Type Catalogus beschrijft de gebruikersreis waarmee een verzoek tot stand komt. 
+                            Of om het simpel te zeggen het neemt een verzoektype en deelt deze op in stappen en secties. 
+                            Hierbij moet het eindresultaat van een proces een geldig verzoek zijn. 
+                            Het is dus mogelijk om properties vanuit een verzoek niet uit te vragen (ofwel niet op te nemen in een stap of sectie), 
+                            mits deze property vanuit het verzoek type niet verplicht is.</p>
+
+                            <p>Een verzoektype kan in principe door meerdere procestypen worden gebruikt, 
+                            sterker nog de wens hiertoe vormt de basis voor het uit elkaar trekken van deze twee componenten. 
+                            Een denkbeeldig voorbeeld hiervan zou zijn, als een gemeente aanvullende vragen heeft bij een verhuizing vanuit het buitenland. 
+                            Deze aanvullende vragen zouden dan als niet verplicht kunnen worden opgenomen in het verzoektype. 
+                            Vervolgens zouden het twee processen kunnen zijn: één voor verhuizingen binnen Nederland, 
+                            waarbij de aanvullende vragen niet zijn opgenomen en één voor verhuizing van buiten Nederland waarbij deze vragen we worden gesteld.</p>
+
+                            <p>Het is bijvoorbeeld ook goed denkbaar dat verschillende kanalen gebruik maken van verschillende 
+                            processen die tot hetzelfde verzoek leiden (bijvoorbeeld een webformulier en chatbot).</p>
+
+                            <p>In deze context is het wel belangrijk om te constateren dat de Proces Type Catalogus een gebruikers flow beschrijft voor het tot stand komen van een geldig verzoek, 
+                            maar dat de Proces Type Catalogus op zich niet dwingend is.</p>
+
+                            <p>Sterker nog het VTC en VRC ondersteunen het opstarten van (bijvoorbeeld Camunda) BPMN processen bij status wijzigingen, 
+                            zoals het opstarten van een verzoek. Dat betekent dat een BPMN-engine ook in staat is om aan de hand van een verzoektype een verzoek te maken en te valideren, 
+                            mét of zonder menselijke tussenkomst.</p>
+                             <br>
+                            <br>
+                            <img src="{{ asset('images/trouwen.png') }}" width="110px">
+                            <img src="{{ asset('images/verhuizen.png') }}" width="110px" style="margin-left: 30px">
+                            <img src="{{ asset('images/overlijden.png') }}" width="110px" style="margin-left: 30px">
+                            <br>
+                            <br>
+                            <a href="https://github.com/ConductionNL/procestypecatalogus" class="btn-custom btn-more-link " target="_blank"> Bekijk repository</a>
+                            <a href="#" class="btn-custom btn-more-link " target="_blank"> bekijk documentatie</a>
+                        </div><!-- ./col-heading -->
+                    </div><!-- ./col-text -->
+                </div><!-- ./col -->
+                <div class="col-sm-10 col-md-5 col-lg-5">
+                    <img src={{ asset('images/content/Componenten/ptc/1280w/Blauw_vlak.png') }} width="100%">
+                </div><!-- ./col -->
+            </div><!-- ./row -->
+        </div><!-- ./container -->
+    </div><!-- ./wrap-container -->
+
+
+    {{ include('/widgets/contact.html.twig') }}
+
+
+{% endblock %}
+
