@@ -1,0 +1,56 @@
+{# templates/home/index.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block headercontent %}
+    <!-- .header-content -->
+    <div class="header-content">
+
+        <!-- .container -->
+        <!-- /.container -->
+    </div><!-- /.header-content -->
+{% endblock %}
+
+{% block body %}
+    <div class="wrap-container8040 bg-white">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-10 col-md-7 col-lg-7 ">
+                    <div class="col-text20 margin-bottom20">
+                        <div class="post-heading-left">
+                            <h2 id="verhuizen" style="color: #4386FB">BRP Service</h2>
+                            <a href="https://github.styleci.io/repos/204954539" target="_blank"><img src="https://github.styleci.io/repos/204954539/shield?branch=master" alt="StyleCI"></a>
+                            <a href="https://github.com/ConductionNL/brpservice/actions?query=workflow%3A"Docker+Image+CI"" target="_blank"><img src="https://github.com/ConductionNL/brpservice/workflows/Docker%20Image%20CI/badge.svg?branch=master" alt="github"></a>
+                     
+                            <p>Het Basis Registratie Personen component is een implementatie van de door Haal Centraal ontwikkelde API-specificatie in de vorm van een Common Ground container. 
+                            Dat betekent dat het ten opzichte van die referentie een aantal extra opties kent (zoals extended en filteren van data). 
+                            Dit common ground component kan op twee manieren worden ingezet. 
+                            Om te beginnen kan het aan de achterkant worden voorzien van datafixtures in de vorm van een excel sheet. 
+                            Op deze manier kan er een “specifieke” mock worden gecreëerd voor het testen van applicaties (al dan niet in combinatie met Digispoof). 
+                            Het is echter ook mogelijke om het BRP Component in te zetten in samenhang met het StuF component, 
+                            in dat geval worden API-verzoeken op het BRP vertaald naar StuF berichten op GBA of GBAV aansluiting en levert het component daadwerkelijk een BRP koppeling.</p>  
+
+                            <br>
+                            <img src="{{ asset('images/trouwen.png') }}" width="110px">
+                            <img src="{{ asset('images/verhuizen.png') }}" width="110px" style="margin-left: 30px">
+                            <img src="{{ asset('images/overlijden.png') }}" width="110px" style="margin-left: 30px">
+                            <br>
+                            <br>
+                            <a href="https://github.com/ConductionNL/brpservice" class="btn-custom btn-more-link " target="_blank"> Bekijk repository</a>
+                            <a href="#" class="btn-custom btn-more-link " target="_blank"> bekijk documentatie</a>
+                        </div><!-- ./col-heading -->
+                    </div><!-- ./col-text -->
+                </div><!-- ./col -->
+                <div class="col-sm-10 col-md-5 col-lg-5">
+                    <img src={{ asset('images/content/Componenten/brp/1280w/Geel_Vlak.png') }} width="100%">
+                </div><!-- ./col -->
+            </div><!-- ./row -->
+        </div><!-- ./container -->
+    </div><!-- ./wrap-container -->
+
+
+    {{ include('/widgets/contact.html.twig') }}
+
+
+{% endblock %}
+

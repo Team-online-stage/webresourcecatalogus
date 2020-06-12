@@ -1,0 +1,92 @@
+{# templates/home/index.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block headercontent %}
+    <!-- .header-content -->
+    <div class="header-content">
+
+        <!-- .container -->
+        <!-- /.container -->
+    </div><!-- /.header-content -->
+{% endblock %}
+
+{% block body %}
+    <div class="wrap-container8040 bg-white">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-10 col-md-7 col-lg-7 ">
+                    <div class="col-text20 margin-bottom20">
+                        <div class="post-heading-left">
+                            <h2 id="verhuizen" style="color: #4386FB">Queue Component</h2>
+                            <a href="https://github.styleci.io/repos/262041492" target="blank"><img src="https://github.styleci.io/repos/262041492/shield?branch=master" alt="StyleCI"></a>
+                            <a href="https://github.com/ConductionNL/Queue-Component/actions?query=workflow%3ADocker+Image+CI" target="_blank"><img src="https://github.com/ConductionNL/Queue-Component/workflows/Docker%20Image%20CI/badge.svg?branch=master" alt="github"></a>
+
+                            <p>Het Queue Component bevat een lijst van later uit te voeren taken, 
+                            dat wil zeggen in dit component kunnen taken worden aangemaakt die door andere componenten op een later tijdstip moeten worden uitgevoerd. 
+                            Dit lijkt op het versturen van notificaties met een paar afwijkingen:</p>
+
+                            <br>
+                            <ol>
+                                <li>
+                                    <p>De notificatie gaat altijd terug naar de indienende applicatie</p>
+                                </li>
+                                <li>
+                                    <p>De notificatie wordt op een later moment verzonden</p>
+                                </li>
+                                <li>
+                                    <p>De notificatie bevat een unieke id waarop de kan worden overschreven</p>
+                                </li>
+                            </ol>
+                            <p><br>
+                            Deze logica wordt gebruik om cronjobs en analyseren van de database te voorkomen, 
+                            voorbeeld: stel en gebruiker plaatst een bestelling en heeft de mogelijkheid om later te betalen, maar doet de gebruiker dit niet, 
+                            dan wordt de bestelling na 30 dagen geannuleerd. 
+                            Als we dit willen oplossen met een cronjob zouden we iedere dag een data bevraging moeten doen van alle bestellingen die aan de criteria voldoen en deze annuleren.<br>
+                            <br>
+                            Dat heeft een aantal nadelen</p>
+
+                            <ul>
+                                <li>
+                                    <p>We moeten altijd een hele database analyseren, ook al hebben we maar één order nodig</p>
+                                </li>
+                                <li>
+                                    <p>We zijn op de dag nauwkeurig ipv van op de minuut (en als we op de minuut nauwkeurig zouden willen zijn, moeten we iedere minuut de hele database bevragen)</p>
+                                </li>
+                                <li>
+                                    <p>Een toename van business logica, voorwaarde en gevolgen (willen we bijvoorbeeld 5 dagen van te voren een herinneringsmail sturen?) 
+                                    leidt tot een scherpe toename van database bevragingen</p>
+                                </li>
+                            </ul>
+                            
+                            <p>Om dit te voorkomen willen graag een gerichte vraag stellen die één keer na 30 dagen afgaat, 
+                            deze vraag kunnen aanmaken als de order wordt geplaatst. Omdat in de tussentijd containers kunnen wisselen, 
+                            en we centraal beheer willen kunnen doen op deze wachtrij brengen we de vragen gebundeld onder in een apart component. Dit is het Queue Component.</p>
+                            
+                            <p>Uitgangspunt hierbij is dat de queue andere component gericht notificeert (met de informatie waarmee specifiek kan worden gehandeld, 
+                            bijvoorbeeld een order id), maar dat de afhandelende applicatie zelf controleert of de handeling nog nodig is als onderdeel van de uitvoering (oftewel is de order nog wel onbetaald). </p>
+                            
+                            <p>Op deze manier blijft de wachtrij verschoont van business logica, 
+                            gecombineerd met het Processen Component (PC) biedt het echter de optie om microservices en BPMN processen in de wachtrij te zetten, 
+                            waarbij het natuurlijk technisch mogelijk is om de uitvoering met 0 minuten te vertragen. Het maakt het mogelijk om processen asynchroon uit te voeren.</p>
+                            <br>
+                            <br>
+                            <a href="https://github.com/ConductionNL/Queue-Component" class="btn-custom btn-more-link " target="_blank"> Bekijk repository</a>
+                            <a href="#" class="btn-custom btn-more-link " target="_blank"> bekijk documentatie</a>
+                            <br>
+                        </div><!-- ./col-heading -->
+                    </div><!-- ./col-text -->
+                </div><!-- ./col -->
+                <div class="col-sm-10 col-md-5 col-lg-5">
+                    <img src={{ asset('images/content/Componenten/qc/1280w/Geel_Vlak.png') }} width="100%">
+                </div><!-- ./col -->
+            </div><!-- ./row -->
+        </div><!-- ./container -->
+    </div><!-- ./wrap-container -->
+
+
+    {{ include('/widgets/contact.html.twig') }}
+
+
+{% endblock %}
+

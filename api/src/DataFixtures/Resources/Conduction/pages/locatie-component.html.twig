@@ -1,0 +1,54 @@
+{# templates/home/index.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block headercontent %}
+    <!-- .header-content -->
+    <div class="header-content">
+
+        <!-- .container -->
+        <!-- /.container -->
+    </div><!-- /.header-content -->
+{% endblock %}
+
+{% block body %}
+    <div class="wrap-container8040 bg-white">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-10 col-md-7 col-lg-7 ">
+                    <div class="col-text20 margin-bottom20">
+                        <div class="post-heading-left">
+                            <h2 id="verhuizen" style="color: #4386FB">Locatie Component</h2>
+                            <a href="https://github.styleci.io/repos/206144429" target="_blank"><img src="https://github.styleci.io/repos/206144429/shield?branch=master" alt="StyleCI"></a>
+                            <a href="https://github.com/ConductionNL/locatiecatalogus/actions?query=workflow%3A\"Docker+Image+CI\"" target="_blank"><img src="https://github.com/ConductionNL/locatiecatalogus/workflows/Docker%20Image%20CI/badge.svg?branch=master" alt="github"></a>
+
+                            <p>Het locatie component implementeer de places en accommodations strategie vanuit schema.org. 
+                            Het vormd daarmee de basis voor het bijhouden en verhuren van ruimtes en kan in de meest simpele configuratie 
+                            worden gebruikt voor planningsvraagstukken in gebouwen rondom te reserveren ruimtes zoals (vergader)zalen. 
+                            Maar is nadrukkelijk ontworpen om samen met het PDC het commercieel verhuren van gehele gebouwens of ruimtes daarin te faciliteren. 
+                            Hiermee kan het de technische basis vormen voor appartementen/kamerverhuur platforms, hotel software of zelfs camping software. </p>
+
+                            <br>
+                            <img src="{{ asset('images/trouwen.png') }}" width="110px">
+                            <img src="{{ asset('images/verhuizen.png') }}" width="110px" style="margin-left: 30px">
+                            <img src="{{ asset('images/overlijden.png') }}" width="110px" style="margin-left: 30px">
+                            <br>
+                            <br>
+                            <a href="https://github.com/ConductionNL/locatiecatalogus" class="btn-custom btn-more-link " target="_blank"> Bekijk repository</a>
+                            <a href="#" class="btn-custom btn-more-link " target="_blank"> bekijk documentatie</a>
+                        </div><!-- ./col-heading -->
+                    </div><!-- ./col-text -->
+                </div><!-- ./col -->
+                <div class="col-sm-10 col-md-5 col-lg-5">
+                     <img src={{ asset('images/content/Componenten/lc/1280w/Grijs_vlak.png') }} width="100%">
+                </div><!-- ./col -->
+            </div><!-- ./row -->
+        </div><!-- ./container -->
+    </div><!-- ./wrap-container -->
+
+
+    {{ include('/widgets/contact.html.twig') }}
+
+
+{% endblock %}
+

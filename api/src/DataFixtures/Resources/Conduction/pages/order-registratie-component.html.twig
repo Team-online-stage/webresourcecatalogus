@@ -1,0 +1,60 @@
+{# templates/home/index.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block headercontent %}
+    <!-- .header-content -->
+    <div class="header-content">
+
+        <!-- .container -->
+        <!-- /.container -->
+    </div><!-- /.header-content -->
+{% endblock %}
+
+{% block body %}
+    <div class="wrap-container8040 bg-white">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-10 col-md-7 col-lg-7 ">
+                    <div class="col-text20 margin-bottom20">
+                        <div class="post-heading-left">
+                            <h2 id="verhuizen" style="color: #4386FB">Order Registratie Component</h2>
+                            <a href="https://github.styleci.io/repos/206144416" target="_blank"><img src="https://github.styleci.io/repos/206144416/shield?branch=master" alt="StyleCI"></a>
+                            <a href="https://github.com/ConductionNL/orderregistratiecomponent/actions?query=workflow%3A"Docker+Image+CI"" target="_blank"><img src="https://github.com/ConductionNL/orderregistratiecomponent/workflows/Docker%20Image%20CI/badge.svg?branch=master" alt="github"></a>
+
+                            <p>Het Orderregistratie component verzorgt de afhandeling van bestellingen met uitzondering van facturatie en en betalingen. 
+                            Het biedt in samenwerking met het PDC een multi-tenant en omnichannel oplossing voor het verkopen van producten en diensten. 
+                            Hierbij worden offers (te kopen resources vanuit het PC) toegevoegd aan een order, 
+                            waarbij het Order Component de geldigheid van de aanbieding controleert en een eventuele prijs en betaling berekeningen uitvoert.</p>  
+
+                            <p>Omdat orders ook de status “basket” kunnen hebben, 
+                            neemt het component hierbij essentiële validatie van de frontend over, 
+                            waardoor ontwikkelaars worden ontlast en organisaties verzekerd worden van een propere berekening.</p>
+
+                            <p>In tandem met het VRC voorziet het order component ook in de directe afhandeling van een order. 
+                            Voor een simpele bestelling kan er hierbij worden gedacht aan een orderpick proces, maar voor complexe bestellingen kunnen ook zaken of processen worden opgestart.</p> 
+
+                            <br>
+                            <img src="{{ asset('images/trouwen.png') }}" width="110px">
+                            <img src="{{ asset('images/verhuizen.png') }}" width="110px" style="margin-left: 30px">
+                            <img src="{{ asset('images/overlijden.png') }}" width="110px" style="margin-left: 30px">
+                            <br>
+                            <br>
+                            <a href="https://github.com/ConductionNL/orderregistratiecomponent" class="btn-custom btn-more-link " target="_blank"> Bekijk repository</a>
+                            <a href="#" class="btn-custom btn-more-link " target="_blank"> bekijk documentatie</a>
+                        </div><!-- ./col-heading -->
+                    </div><!-- ./col-text -->
+                </div><!-- ./col -->
+                <div class="col-sm-10 col-md-5 col-lg-5">
+                    <img src={{ asset('images/content/Componenten/orc/1280w/Grijs_vlak.png') }} width="100%">
+                </div><!-- ./col -->
+            </div><!-- ./row -->
+        </div><!-- ./container -->
+    </div><!-- ./wrap-container -->
+
+
+    {{ include('/widgets/contact.html.twig') }}
+
+
+{% endblock %}
+
