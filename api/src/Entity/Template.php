@@ -23,6 +23,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * Templates holds information your pages or include in messages.
  *
  * @ApiResource(
+ *     attributes={"pagination_items_per_page"=30},
  *     	normalizationContext={"groups"={"read"}, "enable_max_depth"=true},
  *     	denormalizationContext={"groups"={"write"}, "enable_max_depth"=true},
  *     itemOperations={
@@ -50,7 +51,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *                  "description"="Gets the audit trail for this resource"
  *              }
  *          }
- * 		},
+ * 		}
  * )
  * @ORM\Entity(repositoryClass="App\Repository\TemplateRepository")
  * @Gedmo\Loggable(logEntryClass="Conduction\CommonGroundBundle\Entity\ChangeLog")
