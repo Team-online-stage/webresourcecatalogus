@@ -3,41 +3,56 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-            <!-- .row -->
-            <div class="row animation" data-animation="animation-fade-in" data-delay=" {% if app.session.flashbag.peekAll|length > 0 %}3400{%else%}200{% endif %}" >
-                <div class="post-heading-center">
-                	<h2>Extra opties</h2>
-                    <p>U kunt uiteraard ook extra opties kiezen voor uw huwelijk</p>
-                </div>
+    <!-- .row -->
+    <div class="row animation" data-animation="animation-fade-in"
+         data-delay=" {% if app.session.flashbag.peekAll|length > 0 %}3400{% else %}200{% endif %}">
+        <div class="post-heading-center">
+            <h2>Extra opties</h2>
+            <p>U kunt uiteraard ook extra opties kiezen voor uw huwelijk</p>
+        </div>
 
-                {% for product in products["hydra:member"] %}
-                    {% if (product.audience == "public") %}
+        {% for product in products["hydra:member"] %}
+            {% if (product.audience == "public") %}
+            {% if product.name == "Geen extra's" %}
+            {% else %}
                 <div class="col-sm-4"> <!-- 1 -->
-                	<div class="affa-team-profile">
-                       {% if product.logo is defined and product.logo is not empty%}
-                    	<figure class="team-profile-img" >
-                            <img src="{{ product.logo }}" alt="Avatar" />
-                        </figure>
-                       {% endif %}
-                        <div class="team-profile-name">
-                        	<h4>{{ product.name }}</h4>
-                            <p>{{ product.price }}</p>
-                        </div>
-                        <p style="height: 60px;display: block">{{ product.description|raw }}<br/></p>
-                        <div class="tbl-prc-footer">
-                            {% if user is not empty  %}
-	                    	<a href="{{ path('app_default_set',{'value':product.offers[0]['@id'],'slug':'extra'}) }}" class="btn btn-primary btn-icon btn-block">Ja dit wil ik!</a>
-							{% endif %}
-                    	</div>
+                <div class="affa-team-profile">
+                {% if product.logo is defined and product.logo is not empty %}
+                    <figure class="team-profile-img">
+                        <img src="{{ product.logo }}" alt="Avatar"/>
+                    </figure>
+                {% endif %}
+                <div class="team-profile-name">
+                    <h4>{{ product.name }}</h4>
+                    <p>{{ product.price }}</p>
+                </div>
+                <p style="height: 60px;display: block">{{ product.description|raw }}<br/></p>
+                <div class="tbl-prc-footer">
+                {% if user is not empty %}
+                    <a href="{{ path('app_default_set',{'value':product.offers[0]['@id'],'slug':'extra'}) }}"
+                       class="btn btn-primary btn-icon btn-block">{% if %}Ja dit wil ik!</a>
+                {% endif %}
+                    </div>
 
                     </div>
-                </div>
-                    {%endif%}
-                {% endfor %}
+                    </div>
+                {% endif %}
+            {% endif %}
+        {% endfor %}
 
-            </div>
-            <!-- .row end -->
+        {% for product in products["hydra:member"] %}
+        {% if product.audience == "public" and product.name == "Geen extra's"%}
+        {% if user is not empty %}
+        <a href="{{ path('app_default_set',{'value':product.offers[0]['@id'],'slug':'extra'}) }}"
+           class="btn btn-primary btn-icon btn-block">{% if %}Door naar volgende stap</a>
+        {% endif %}
+        {% endif %}
+        {% endfor %}
 
-		</div>
-        <!-- .container end -->
+
+    </div>
+    <!-- .row end -->
+
+    </div>
+    <!-- .container end -->
 {% endblock %}
