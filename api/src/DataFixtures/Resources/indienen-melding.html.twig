@@ -75,7 +75,7 @@
             <b>Gedaan:</b>
             <ul class="list-icon">
 
-                {% if request.properties.info-melding.meetsRequirements is defined and request.properties.info-melding.meetsRequirements is not empty %}
+                {% if request.properties.info.meetsRequirements is defined and request.properties.info.meetsRequirements is not empty %}
                     <li><b>Voorwaarden</b>
                         <ul class="list-icon">
                             <li>
@@ -132,7 +132,7 @@
             <b>Nog te doen:</b>
             <ul class="list-icon">
 
-                {% if request.properties.info-melding.meetsRequirements is not defined or request.properties.info-melding.meetsRequirements is empty %}
+                {% if request.properties.info.meetsRequirements is not defined or request.properties.info.meetsRequirements is empty %}
                     <li><b>Voorwaarden</b>
                         <ul class="list-icon">
                             <li>
