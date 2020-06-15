@@ -44,7 +44,7 @@
         {% if product.audience == "public" and product.name == "Geen extra's"%}
         {% if user is not empty %}
         <a href="{{ path('app_default_set',{'value':product.offers[0]['@id'],'slug':'extra'}) }}"
-           class="btn btn-primary btn-icon btn-block">Door naar volgende stap</a>
+           class="btn btn-primary btn-icon btn-block" style="width: 25%; margin: 150px 10px 10px 10px;">Door naar volgende stap</a>
         {% endif %}
         {% endif %}
         {% endfor %}
