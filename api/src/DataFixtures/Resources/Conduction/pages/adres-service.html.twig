@@ -1,0 +1,51 @@
+{# templates/home/index.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block headercontent %}
+    <!-- .header-content -->
+    <div class="header-content">
+
+        <!-- .container -->
+        <!-- /.container -->
+    </div><!-- /.header-content -->
+{% endblock %}
+
+{% block body %}
+    <div class="wrap-container8040 bg-white">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-10 col-md-7 col-lg-7 ">
+                    <div class="col-text20 margin-bottom20">
+                        <div class="post-heading-left">
+                            <h2 id="verhuizen" style="color: #4386FB">Adres Service</h2>
+                            <a href="https://github.styleci.io/repos/198549517" target="_blank"><img src="https://github.styleci.io/repos/198549517/shield?branch=master" alt="StyleCI"></a>
+                            <a href="https://github.com/ConductionNL/adresservice/actions?query=workflow%3A"Docker+Image+CI"" target="_blank"><img src="https://github.com/ConductionNL/adresservice/workflows/Docker%20Image%20CI/badge.svg?branch=master" alt="github"></a>
+  
+                            <p>
+                            De adressen service biedt een koppelvlak met de BAG API (V1)
+                            waardoor het mogelijk is om aan de hand van postcode huisnummer combinaties adressen (en bijbehorende bag ID’s) te suggereren. 
+                            Het vormt hiermee de kern functionaliteit voor formulieren
+                            waarin klanten adressen kunnen opgeven aan de hand van huisnummer postcode combinatie.
+                            </p>
+
+                            <br>
+                            <br>
+                            <a href="https://github.com/ConductionNL/adresservice" class="btn-custom btn-more-link " target="_blank"> Bekijk repository</a>
+                            <a href="#" class="btn-custom btn-more-link " target="_blank"> bekijk documentatie</a>
+                        </div><!-- ./col-heading -->
+                    </div><!-- ./col-text -->
+                </div><!-- ./col -->
+                <div class="col-sm-10 col-md-5 col-lg-5">
+                    <img src={{ asset('images/content/Componenten/as/1280w/Geel_Vlak.png') }} width="100%">
+                </div><!-- ./col -->
+            </div><!-- ./row -->
+        </div><!-- ./container -->
+    </div><!-- ./wrap-container -->
+
+
+    {{ include('/widgets/contact.html.twig') }}
+
+
+{% endblock %}
+

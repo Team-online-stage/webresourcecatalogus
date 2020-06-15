@@ -22,6 +22,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * Menu is your way of navigation inside your application.
  *
  * @ApiResource(
+ *     attributes={"pagination_items_per_page"=30},
  *     normalizationContext={"groups"={"read"}, "enable_max_depth"=true},
  *     denormalizationContext={"groups"={"write"}, "enable_max_depth"=true},
  *     itemOperations={
@@ -95,7 +96,6 @@ class Menu
      * @Assert\Length(
      *      max = 2555
      * )
-     * @Gedmo\Versioned
      * @Groups({"read","write"})
      * @ORM\Column(type="text", nullable=true)
      */

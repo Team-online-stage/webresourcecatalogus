@@ -1,0 +1,55 @@
+{# templates/home/index.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block headercontent %}
+    <!-- .header-content -->
+    <div class="header-content">
+
+        <!-- .container -->
+        <!-- /.container -->
+    </div><!-- /.header-content -->
+{% endblock %}
+
+{% block body %}
+    <div class="wrap-container8040 bg-white">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-10 col-md-7 col-lg-7 ">
+                    <div class="col-text20 margin-bottom20">
+                        <div class="post-heading-left">
+                            <h2 id="verhuizen" style="color: #4386FB">Agenda Service</h2>
+                            <a href="https://github.styleci.io/repos/206144508" target="_blank"><img src="https://github.styleci.io/repos/206144508/shield?branch=master" alt="StyleCI"></a>
+                            <a href="https://github.com/ConductionNL/agendaservice/actions?query=workflow%3A"Docker+Image+CI"" target="_blank"><img src="https://github.com/ConductionNL/agendaservice/workflows/Docker%20Image%20CI/badge.svg?branch=master" alt="github"></a>
+           
+                            <p>Het Agenda Component faciliteert agenda functionaliteit in de vorm van agenda’s gekoppeld aan resources. 
+                            Een resource kan daarbij een persoon uit het CC of een medewerker vanuit het MC zijn, maar is daar technisch niet toe beperkt. 
+                            Het is dus ook mogelijk om agenda’s te voeren voor locaties, zalen en kamers in de zin van boekingen of bijvoorbeeld voertuigen vanuit een ERP achtig perspectief. 
+                            Hierbij zit een logisch doch niet dwingend verband tot het PDC en ORC met betrekking tot kostprijsberekening etc. 
+                            Naast agenda’s als objecten bevat het component uiteraard mogelijkheden tot het blokkeren of juist beschikbaar stellen van agenda ruimtes, 
+                            het maken van afspraken en zoeken naar vrije ruimte binnen één of meer agenda’s. </p>
+                        
+                            <br>
+                            <img src="{{ asset('images/trouwen.png') }}" width="110px">
+                            <img src="{{ asset('images/verhuizen.png') }}" width="110px" style="margin-left: 30px">
+                            <img src="{{ asset('images/overlijden.png') }}" width="110px" style="margin-left: 30px">
+                            <br>
+                            <br>
+                            <a href="https://github.com/ConductionNL/agendaservice" class="btn-custom btn-more-link " target="_blank"> Bekijk repository</a>
+                            <a href="#" class="btn-custom btn-more-link " target="_blank"> bekijk documentatie</a>
+                        </div><!-- ./col-heading -->
+                    </div><!-- ./col-text -->
+                </div><!-- ./col -->
+                <div class="col-sm-10 col-md-5 col-lg-5">
+                    <img src={{ asset('images/content/Componenten/ac/1280w/Lichtblauw_vlak.png') }} width="100%">
+                </div><!-- ./col -->
+            </div><!-- ./row -->
+        </div><!-- ./container -->
+    </div><!-- ./wrap-container -->
+
+
+    {{ include('/widgets/contact.html.twig') }}
+
+
+{% endblock %}
+

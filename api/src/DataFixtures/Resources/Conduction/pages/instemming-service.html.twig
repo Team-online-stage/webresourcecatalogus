@@ -1,0 +1,52 @@
+{# templates/home/index.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block headercontent %}
+    <!-- .header-content -->
+    <div class="header-content">
+
+        <!-- .container -->
+        <!-- /.container -->
+    </div><!-- /.header-content -->
+{% endblock %}
+
+{% block body %}
+    <div class="wrap-container8040 bg-white">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-10 col-md-7 col-lg-7 ">
+                    <div class="col-text20 margin-bottom20">
+                        <div class="post-heading-left">
+                            <h2 id="verhuizen" style="color: #4386FB">Instemming Service</h2>
+                            <a href="https://github.styleci.io/repos/210753780" target="_blank"><img src="https://github.styleci.io/repos/210753780/shield?branch=master" alt="StyleCI"></a>
+                            <a href="https://github.com/ConductionNL/instemmingservice/actions?query=workflow%3A"Docker+Image+CI"" target="_blank"><img src="https://github.com/ConductionNL/instemmingservice/workflows/Docker%20Image%20CI/badge.svg?branch=master" alt="github"></a>
+                        
+                            <p>Het Instemmingen Registratie Component heeft als doel om instemmingen vast te leggen ten opzichte van resources. 
+                            Hierbij wordt de instemming verleend door een rechtspersoon. Instemmingen kunnen zowel specifiek zijn (dit verzoek mag namens mij worden ingediend), 
+                            rol gebonden (ik ga er mee akkoord getuige voor dit huwelijk te zijn) als generiek. 
+                            Generieke instemmingen worden afgegeven aan een (rechts)persoon ten opzichte van een verzoektype (deze persoon mag namens mij meldingen openbare ruimte doen).</p>
+
+                            <p>Instemmingen fungeren hiermee zowel als een digitale handtekening, als mandaat.</p>
+                            <br>
+                            <img src="{{ asset('images/trouwen.png') }}" width="110px">
+                            <br>
+                            <br>
+                            <a href="https://github.com/ConductionNL/instemmingservice" class="btn-custom btn-more-link " target="_blank"> Bekijk repository</a>
+                            <a href="#" class="btn-custom btn-more-link " target="_blank"> bekijk documentatie</a>
+                        </div><!-- ./col-heading -->
+                    </div><!-- ./col-text -->
+                </div><!-- ./col -->
+                <div class="col-sm-10 col-md-5 col-lg-5">
+                    <img src={{ asset('images/content/Componenten/irc/1280w/Geel_Vlak.png') }} width="100%">
+                </div><!-- ./col -->
+            </div><!-- ./row -->
+        </div><!-- ./container -->
+    </div><!-- ./wrap-container -->
+
+
+    {{ include('/widgets/contact.html.twig') }}
+
+
+{% endblock %}
+

@@ -1,0 +1,53 @@
+{# templates/home/index.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block headercontent %}
+    <!-- .header-content -->
+    <div class="header-content">
+
+        <!-- .container -->
+        <!-- /.container -->
+    </div><!-- /.header-content -->
+{% endblock %}
+
+{% block body %}
+    <div class="wrap-container8040 bg-white">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-10 col-md-7 col-lg-7 ">
+                    <div class="col-text20 margin-bottom20">
+                        <div class="post-heading-left">
+                            <h2 id="verhuizen" style="color: #4386FB">User Component</h2>
+                            <a href="https://github.styleci.io/repos/222616116" target="_blank"><img src="https://github.styleci.io/repos/222616116/shield?branch=master" alt="StyleCI"></a>
+                            <a href="https://github.com/ConductionNL/user-component/actions?query=workflow%3A\"Docker+Image+CI\"" target="_blank"><img src="https://github.com/ConductionNL/user-component/workflows/Docker%20Image%20CI/badge.svg?branch=master" alt="github"></a>
+
+                            <p>Het user component voert het beheer over gebruikersaccount en hun autorisaties. 
+                            Hierbij kan in de traditionele zin worden gedacht aan aan een gebruik die behoort tot bepaald groepen die op hun beurt weer beschikken over bepaalde rechten. 
+                            Waarbij het component tevens het bijhouden en valideren van wachtwoorden ondersteund (ten einde inlog mogelijkheden op bijvoorbeeld een dashboard of applicatie te faciliteren) 
+                            maar in de wat abstracte context ondersteund het ook algemene inlogs systematieken.</p>
+
+                            <p>Zo kan het user component zelf functioneren als oAuth (2) bron en daarmee de bronhouder zijn voor een OpenId van een gebruiker  maar kan het ook alternatieve 
+                            inlog stromen zoals AFC en SAML afhandelen (en daarmee digid). 
+                            Als laatste kan het functioneren als ontvangende partij van oAuth inloggen en biedt het daarmee een inloggen met facebook, Google of Github mogelijkheid voor applicaties.</p>
+
+                            <br>
+                            <br>
+                            <a href="https://github.com/ConductionNL/user-component" class="btn-custom btn-more-link " target="_blank"> Bekijk repository</a>
+                            <a href="#" class="btn-custom btn-more-link " target="_blank"> bekijk documentatie</a>
+                        </div><!-- ./col-heading -->
+                    </div><!-- ./col-text -->
+                </div><!-- ./col -->
+                <div class="col-sm-10 col-md-5 col-lg-5">
+                    <img src={{ asset('images/content/Componenten/uc/1280w/Lichtblauw_vlak.png') }} width="100%">
+                </div><!-- ./col -->
+            </div><!-- ./row -->
+        </div><!-- ./container -->
+    </div><!-- ./wrap-container -->
+
+
+    {{ include('/widgets/contact.html.twig') }}
+
+
+{% endblock %}
+
