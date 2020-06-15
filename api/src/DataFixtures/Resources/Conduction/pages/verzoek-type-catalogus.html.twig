@@ -1,0 +1,83 @@
+{# templates/home/index.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block headercontent %}
+    <!-- .header-content -->
+    <div class="header-content">
+
+        <!-- .container -->
+        <!-- /.container -->
+    </div><!-- /.header-content -->
+{% endblock %}
+
+{% block body %}
+    <div class="wrap-container8040 bg-white">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-10 col-md-7 col-lg-7 ">
+                    <div class="col-text20 margin-bottom20">
+                        <div class="post-heading-left">
+                            <h2 id="verhuizen" style="color: #4386FB">Verzoek Type Catalogus</h2>
+                            <a href="https://github.styleci.io/repos/210271092" target="_blank"><img src="https://github.styleci.io/repos/210271092/shield?branch=master" alt="StyleCI"></a>
+                            <a href="https://github.com/ConductionNL/verzoektypecatalogus/actions?query=workflow%3A"Docker+Image+CI"" target="_blank"><img src="https://github.com/ConductionNL/verzoektypecatalogus/workflows/Docker%20Image%20CI/badge.svg?branch=master" alt="github"></a>
+
+                            <p>De verzoektype catalogus biedt een overzicht van mogelijke door de gebruiker te starten verzoeken en de te verwachte afhandeling. 
+                            Zij laat zich in deze het best vergelijken met een digitale beschrijving van een formulier, 
+                            waarbij zij zich zuiver beperkt tot de definiëring van de eindwaarde. 
+                            Ze bevat in deze dus een reeks van velden en de voorwaarde waaraan deze moeten voldoen. <br>
+                            <br>
+                            De door de gebruiker aan te leveren velden noemen we properties, 
+                            en iedere property kan worden beschreven. Voor het omschrijven van de velden gebruiken we de OpenApi Standaard als richtlijn, 
+                            dat betekent dat alle daarin opgenomen typering voor velden mogen worden toegepast. Dit kan op een aantal manieren:</p>
+                            <ul>
+                                <li>
+                                    <p>Simpel: bijvoorbeeld een naam is een string van minimaal 5 en maximaal 255 teken. </p>
+                                </li>
+                                <li>
+                                    <p>Abstract: bijvoorbeeld een link is een geldige URL</p>
+                                </li>
+                                <li>
+                                    <p>Linked Data: en vanuit de Common Ground gedachte kan het ook in de trant van een linked data object beschrijving. 
+                                    In dat laatste geval wordt gebruik gemaakt van de OpenAPI 2 norm extensie voor types. 
+                                    Waarbij een type wordt gedefinieerd als {{ '{{' }}componentCode{{ '}}' }}/{{ '{{' }}resource{{ '}}' }}. Bijvoorbeeld een persoon is een cc/people (ofwel een persoon in het contacten component).<br>
+                                    <br>
+                                    Linked data bevindt zich per definitie in andere componenten die bronhouder zijn, 
+                                    dat wil zeggen dat in de dataset van een verzoek alleen de verwijzing naar de bron wordt opgeslagen. 
+                                    Er kan echter wel gebruik worden gemaakt van de in NL API strategie omschreven extend functionaliteit. 
+                                    Dat wil zeggen het mogelijk is om aan de VTC API te vragen om externe bronnen in te voegen als objecten in plaats van verwijzingen. 
+                                    Op deze manier is het mogelijk om een verzoek met onderliggende data in één keer op te halen.<br>
+                                    <br>
+                                    Omgekeerd is het ook mogelijk om onderliggende resources in andere componenten aan te maken (door in plaats van een verwijzing een object mee te geven, 
+                                    maar niet te voorzien van een id property) of deze bij te werken (door in plaats van een verwijzing een object mee te geven, maar wel te voorzien van een id property). </p>
+                                </li>
+                            </ul>
+                            <p>
+                            Als laatste kan een verzoek type ook spelregels bevatten over wat er moet gebeuren als een verzoek van status verandert.
+                             Zo is het bijvoorbeeld mogelijk om bij het indienen van een verzoek, 
+                             een zaak van een bepaald zaaktype te laten aanmaken in een API die de ZGW standaard ondersteunt of om bij bijvoorbeeld het opstarten van een verzoek een camunda proces op te starten.</p>
+                             <br>
+                            <br>
+                            <img src="{{ asset('images/trouwen.png') }}" width="110px">
+                            <img src="{{ asset('images/verhuizen.png') }}" width="110px" style="margin-left: 30px">
+                            <img src="{{ asset('images/overlijden.png') }}" width="110px" style="margin-left: 30px">
+                            <br>
+                            <br>
+                            <a href="https://github.com/ConductionNL/verzoektypecatalogus" class="btn-custom btn-more-link " target="_blank"> Bekijk repository</a>
+                            <a href="#" class="btn-custom btn-more-link " target="_blank"> bekijk documentatie</a>
+                        </div><!-- ./col-heading -->
+                    </div><!-- ./col-text -->
+                </div><!-- ./col -->
+                <div class="col-sm-10 col-md-5 col-lg-5">
+                    <img src={{ asset('images/content/Componenten/vtc/1280w/Blauw_vlak.png') }} width="100%">
+                </div><!-- ./col -->
+            </div><!-- ./row -->
+        </div><!-- ./container -->
+    </div><!-- ./wrap-container -->
+
+
+    {{ include('/widgets/contact.html.twig') }}
+
+
+{% endblock %}
+

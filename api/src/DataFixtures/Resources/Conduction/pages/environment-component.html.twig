@@ -1,0 +1,55 @@
+{# templates/home/index.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block headercontent %}
+    <!-- .header-content -->
+    <div class="header-content">
+
+        <!-- .container -->
+        <!-- /.container -->
+    </div><!-- /.header-content -->
+{% endblock %}
+
+{% block body %}
+    <div class="wrap-container8040 bg-white">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-10 col-md-7 col-lg-7 ">
+                    <div class="col-text20 margin-bottom20">
+                        <div class="post-heading-left">
+                            <h2 id="verhuizen" style="color: #4386FB">Environment Component</h2>
+                            <a href="https://github.styleci.io/repos/252478109" target="_blank"><img src="https://github.styleci.io/repos/252478109/shield?branch=master" alt="StyleCI"></a>
+                            <a href="https://github.com/ConductionNL/environment-component/actions?query=workflow%3A\"Docker+Image+CI\"" target="_blank"><img src="https://github.com/ConductionNL/environment-component/workflows/Docker%20Image%20CI/badge.svg?branch=master" alt="github"></a>
+
+                            <p>Het environment component heeft als doel om common ground omgevingen te beheren, 
+                            hierbij kan het kubernetes clusters inregleen (voorzien van de juiste en benodigde ondersteunden software zo als ingres controllers, certificatie en hekm) 
+                            maar het kan ook (bij bijvoorbeeld (Fuga, Cysco, Digital Ocean, Google en Amazon) op afstand volledige kubernetes clusters opstarten. </p>
+
+                            <p>Als tweede functionaliteit kan het component andere componenten installeren, configureren en implementeren. 
+                            Het bevat met andere woorden alle noodzakelijke functionaliteit die nodig is ommen common ground omgeving te kunnen maken 
+                            en beheren zonder dat daarvoor kennis van common ground of de onderliggende infrastructuur voor nodig is.</p>
+                            <br>
+                            <img src="{{ asset('images/trouwen.png') }}" width="110px">
+                            <img src="{{ asset('images/verhuizen.png') }}" width="110px" style="margin-left: 30px">
+                            <img src="{{ asset('images/overlijden.png') }}" width="110px" style="margin-left: 30px">
+                            <br>
+                            <br>
+                            <a href="https://github.com/ConductionNL/environment-component" class="btn-custom btn-more-link " target="_blank"> Bekijk repository</a>
+                            <a href="#" class="btn-custom btn-more-link " target="_blank"> bekijk documentatie</a>
+                        </div><!-- ./col-heading -->
+                    </div><!-- ./col-text -->
+                </div><!-- ./col -->
+                <div class="col-sm-10 col-md-5 col-lg-5">
+                    <img src={{ asset('images/content/Componenten/evc/1280w/Lichtblauw_vlak.png') }} width="100%">
+                </div><!-- ./col -->
+            </div><!-- ./row -->
+        </div><!-- ./container -->
+    </div><!-- ./wrap-container -->
+
+
+    {{ include('/widgets/contact.html.twig') }}
+
+
+{% endblock %}
+

@@ -20,6 +20,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * Your style provides ccs and a favicon for an organisation.
  *
  * @ApiResource(
+ *     attributes={"pagination_items_per_page"=30},
  *     normalizationContext={"groups"={"read"}, "enable_max_depth"=true},
  *     denormalizationContext={"groups"={"write"}, "enable_max_depth"=true},
  *     itemOperations={
