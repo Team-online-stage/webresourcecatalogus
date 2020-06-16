@@ -15,7 +15,7 @@
                 {% if (product.audience == "public") %}
                     {% if product.name == "Geen extra's" %}
                     {% else %}
-                        <div class="col-sm-4"> <!-- 1 -->
+                        <div class="mr-2 ml-2 col-sm-6"> <!-- 1 -->
                             <div class="affa-team-profile">
                                 {% if product.logo is defined and product.logo is not empty %}
                                     <figure class="team-profile-img">
@@ -33,7 +33,6 @@
                                            class="btn btn-primary btn-icon btn-block">Ja dit wil ik!</a>
                                     {% endif %}
                                 </div>
-
                             </div>
                         </div>
                     {% endif %}
@@ -47,7 +46,7 @@
                 {% for product in products["hydra:member"] %}
                     {% if product.audience == "public" and product.name == "Geen extra's" %}
                         {% if user is not empty %}
-                            <a href="{{ path('app_default_set',{'value':product.offers[0]['@id'],'slug':'extra'}) }}"
+                            <a href="{{ path('app_default_slug',{'slug':'overig'})  }}"
                                class="btn btn-primary btn-icon btn-block" style="margin: 10px">Door
                                 naar volgende stap</a>
                         {% endif %}
