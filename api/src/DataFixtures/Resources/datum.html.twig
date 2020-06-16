@@ -83,7 +83,7 @@
             $scope.minDate = new Date(
                 $scope.today.getFullYear(),
                 $scope.today.getMonth(),
-                $scope.today.getDate()
+                $scope.today.getDate() + 42
             );
             $scope.endDate = new Date(
                 $scope.today.getFullYear() +1,
@@ -98,6 +98,8 @@
                 $scope.defaultDate.getDate()
             );
             {% endif %}
+
+
 // Excluding dates
 //$scope.availabledates = function(date) {
 //    var day = date.getDay();
