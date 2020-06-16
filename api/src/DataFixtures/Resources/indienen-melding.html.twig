@@ -23,6 +23,7 @@
 
         {% if request.properties.partners.0 is defined and request.properties.partners.0 is not empty %}
             {% set assent = commonground_resource(request.properties.partners.0) %}
+            {% set brp = commonground_resource('https://brp.huwelijksplanner.online/ingeschrevenpersonen'.assent.person) %}
             {% set contact = commonground_resource(assent.contact) %}
 
             <div style="margin-bottom: 20px" class="col-md-6">
@@ -31,10 +32,21 @@
 
                 <b>Voorna(a)m(en): </b>{{ contact.givenName }}<br>
                 <b>Geslachtsnaam: </b>{{ contact.familyName }}<br>
-                <b>Geboortedatum: </b><br>
-                <b>Geboorteplaats: </b><br>
-                <b>Nationaliteiten: </b><br>
-                <b>Burgerlijke staat: </b>
+                {% if brp.geboorte.datum is defined and brp.geboorte.datum is not empty %}
+                <b>Geboortedatum: </b>{{ brp.geboorte.datum }}<br>
+                {% else %}
+                <b>Geboortedatum: </b>Onbekend<br>
+                {% endif %}
+                {% if brp.geboorte.land.omschrijving is defined and brp.geboorte.land.omschrijving is not empty and brp.geboorte.plaats.omschrijving is defined and brp.geboorte.plaats.omschrijving is not empty%}
+                <b>Geboorteplaats: </b>{{ brp.geboorte.plaats.omschrijving }}, {{ brp.geboorte.land.omschrijving }}<br>
+                {% else %}
+                <b>Geboorteplaats: </b>Onbekend<br>
+                {% endif %}
+                {% if brp.nationaliteit is defined and brp.nationaliteit is not empty %}
+                <b>Nationaliteiten: </b>{% for nationaliteit in brp.nationaliteit %}{{ nationaliteit }},{% endfor %}<br>
+                {% else %}
+                <b>Nationaliteiten: </b>Onbekend<br>
+                <b>Burgerlijke staat: </b>Onbekend
 
             </div>
 
@@ -42,6 +54,7 @@
 
         {% if request.properties.partners.1 is defined and request.properties.partners.1 is not empty %}
             {% set assent2 = commonground_resource(request.properties.partners.1) %}
+        {% set brp = commonground_resource('https://brp.huwelijksplanner.online/ingeschrevenpersonen'.assent2.person) %}
             {% set contact2 = commonground_resource(assent2.contact) %}
 
             <div  class="col-md-6">
@@ -50,10 +63,21 @@
 
                 <b>Voorna(a)m(en): </b>{{ contact2.givenName }}<br>
                 <b>Geslachtsnaam: </b>{{ contact2.familyName }}<br>
-                <b>Geboortedatum: </b><br>
-                <b>Geboorteplaats: </b><br>
-                <b>Nationaliteiten: </b><br>
-                <b>Burgerlijke staat: </b><br>
+                {% if brp.geboorte.datum is defined and brp.geboorte.datum is not empty %}
+                    <b>Geboortedatum: </b>{{ brp.geboorte.datum }}<br>
+                {% else %}
+                    <b>Geboortedatum: </b>Onbekend<br>
+                {% endif %}
+                {% if brp.geboorte.land.omschrijving is defined and brp.geboorte.land.omschrijving is not empty and brp.geboorte.plaats.omschrijving is defined and brp.geboorte.plaats.omschrijving is not empty%}
+                    <b>Geboorteplaats: </b>{{ brp.geboorte.plaats.omschrijving }}, {{ brp.geboorte.land.omschrijving }}<br>
+                {% else %}
+                    <b>Geboorteplaats: </b>Onbekend<br>
+                {% endif %}
+                {% if brp.nationaliteit is defined and brp.nationaliteit is not empty %}
+                <b>Nationaliteiten: </b>{% for nationaliteit in brp.nationaliteit %}{{ nationaliteit }},{% endfor %}<br>
+                {% else %}
+                <b>Nationaliteiten: </b>Onbekend<br>
+                <b>Burgerlijke staat: </b>Onbekend
 
             </div>
 
