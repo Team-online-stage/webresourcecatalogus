@@ -42,13 +42,13 @@
         </div>
 
         <div class="row">
-            <div class="col-sm-3">
+            <div class="col-sm-6 col-sm-offset-3">
 
                 {% for product in products["hydra:member"] %}
                     {% if product.audience == "public" and product.name == "Geen extra's" %}
                         {% if user is not empty %}
                             <a href="{{ path('app_default_set',{'value':product.offers[0]['@id'],'slug':'extra'}) }}"
-                               class="btn btn-primary btn-icon btn-block" style="margin: 150px 10px 10px 10px;">Door
+                               class="btn btn-primary btn-icon btn-block" style="margin: 10px">Door
                                 naar volgende stap</a>
                         {% endif %}
                     {% endif %}
