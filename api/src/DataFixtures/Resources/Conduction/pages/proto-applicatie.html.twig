@@ -1,0 +1,78 @@
+{# templates/home/index.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block headercontent %}
+    <!-- .header-content -->
+    <div class="header-content">
+
+        <!-- .container -->
+        <!-- /.container -->
+    </div><!-- /.header-content -->
+{% endblock %}
+
+{% block body %}
+    <div class="wrap-container8040 bg-white">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-10 col-md-7 col-lg-7 ">
+                    <div class="col-text20 margin-bottom20">
+                        <div class="post-heading-left">
+                            <h2 id="verhuizen" style="color: #4386FB">Proto Applicatie NL Design System</h2>
+                            <a href="https://github.styleci.io/repos/221635255" target="_blank"><img src="https://github.styleci.io/repos/221635255/shield?branch=master" alt="StyleCI"></a>
+                            <a href="https://github.com/ConductionNL/proto-application-commonground/actions?query=workflow%3A"Docker+Image+CI"" target="_blank"><img src="https://github.com/ConductionNL/proto-application-commonground/workflows/Docker%20Image%20CI/badge.svg?branch=master" alt="github"></a>
+
+                            <p>De Proto Applicatie levert een vooringerichte versie van het Symfony PHP framework waarbij de NL Design System componenten zijn voorzien van template widgets. 
+                            Oftewel het is mogelijk om vanuit je PHP/HTML templates direct gebruik te maken van NL Design Elementen. 
+                            De business logica van de Proto Applicatie wordt geleverd door de generieke Common Ground Bundle.</p>  
+
+                            <p><strong>Framework</strong><br>
+                            De Proto Applicatie rust op het PHP Symfony Framework, daarbij importeert het de Common Ground Bundle, 
+                            die ze als logica gebruikt (voor o.a. de VSBE) en NL Design System voor grafische vormgeving. 
+                            Er is dus geen sprake van specifiek geschreven code, 
+                            de applicatie wordt geheel vormgegeven door slim gebruik van dependency management en een klein beetje 
+                            configuratie met betrekking tot hoe de applicatie zich authenticeert op Common Ground / NLX.</p> 
+
+                            <p>Het dient dus als een voorbeeld voor de kracht van framework development en dependency management als methodiek, 
+                            om een volledige applicatie puur te baseren op hergebruik van code en processen.</p> 
+
+                            <p><strong>NL Design System</strong><br>
+                            Tevens is er een widget library beschikbaar voor de Processen Catalogus, 
+                            dat wil versimpeld zeggen dat er vooringerichte widgets zijn die zijn gekoppeld aan een specifieke (micro) service. 
+                            Hiermee worden de grafische elementen uit NL Design System geoperationaliseerd.</p>
+
+                            <p>Voorbeelden hiervan zijn formulier-elementen zoals: ‘adres opgeven’, 
+                            die gebruik maakt van de Adressen Service, om aan de hand van een huisnummer- postcode combinatie tot een BAG id te komen. En ‘bedrijf opgeven’, 
+                            die aan de hand van een bedrijfsnaam een kvk nummer suggereert. 
+                            De proto applicatie geeft dus een invulling aan het verbinden van de door NL design ontworpen UI en de door Common Ground Bundle geleverde componenten en API’s.</p> 
+
+                            <p><strong>Very Small Business Engine
+                            Onderdeel van de Proto Applicatie is de very small business engine, deze is oorspronkelijk bedacht voor het uitvoeren van simpele processen, 
+                            maar heeft zich tegenwoordig gespecialiseerd in het ondersteunen van klantreizen. 
+                            In de Common Ground zin wil dit dus zeggen dat het het Procestypen uit het PTC voorziet van de grafische elementen uit NL Design System 
+                            (met indien nodig microservices uit het PC) en de resultaten van de klantreis als verzoek opslaat in het VRC. 
+                            Met andere woorden de Proto Applicatie ondersteunt ‘out of the box’ klantreizen zoals gedefinieerd binnen Common Ground containers.</p>
+
+                            <p><strong>Implementaties</strong><br> 
+                            Er zijn momenteel een aantal voorbeeld implementaties van de Proto Applicatie beschikbaar vanuit de Huwelijksplanner, 
+                            AdreswijzigingNL, Begraafplaatsen Registratie, COVID-19 formulieren, ROC flevoland en Processen.</p>
+                            <br>
+                            <br>
+                            <a href="https://github.com/ConductionNL/Proto-application-NLDesign" class="btn-custom btn-more-link " target="_blank"> Bekijk repository</a>
+                            <a href="#" class="btn-custom btn-more-link " target="_blank"> bekijk documentatie</a>
+                        </div><!-- ./col-heading -->
+                    </div><!-- ./col-text -->
+                </div><!-- ./col -->
+                <div class="col-sm-10 col-md-5 col-lg-5">
+                    <img src={{ asset('images/content/Componenten/proto/1280w/Grijs_vlak.png') }} width="100%">
+                </div><!-- ./col -->
+            </div><!-- ./row -->
+        </div><!-- ./container -->
+    </div><!-- ./wrap-container -->
+
+
+    {{ include('/widgets/contact.html.twig') }}
+
+
+{% endblock %}
+

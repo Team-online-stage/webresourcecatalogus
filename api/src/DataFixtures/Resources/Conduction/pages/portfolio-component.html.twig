@@ -1,0 +1,53 @@
+{# templates/home/index.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block headercontent %}
+    <!-- .header-content -->
+    <div class="header-content">
+
+        <!-- .container -->
+        <!-- /.container -->
+    </div><!-- /.header-content -->
+{% endblock %}
+
+{% block body %}
+    <div class="wrap-container8040 bg-white">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-10 col-md-7 col-lg-7 ">
+                    <div class="col-text20 margin-bottom20">
+                        <div class="post-heading-left">
+                            <h2 id="verhuizen" style="color: #4386FB">Portfolio Component</h2>
+                            <a href="https://github.styleci.io/repos/260448733" target="blank"><img src="https://github.styleci.io/repos/260448733/shield?branch=master" alt="StyleCI"></a>
+                            <a href="https://github.com/ConductionNL/portfolio-component/actions?query=workflow%3A\"Docker+Image+CI\"" target="_blank"><img src="https://github.com/ConductionNL/portfolio-component/workflows/Docker%20Image%20CI/badge.svg?branch=master" alt="github"></a>
+
+                            <p>Het portfolie component vormd een commonground implementatie van de e-portfolio norm 
+                            (die op haar beurt weer voortkomt uit e-hrm) en stelt gebruikers (of contactpersonen ) in staat  om een portfolio op te bouwen. 
+                            Hierbij kan een portfolio zowel een een HRM toepassing zijn waarbij voor de medewerker vaardigheden en competenties worden bijgehouden 
+                            (eventueel voorzien van bewijsstukken) en gekoppeld aan ontwikkelingsdoelen en eventueel functies) 
+                            als dat een portfolio een meer traditionele invulling kan hebben van gedaan werk, ofwel een showcase functie. 
+                            Zo als men die bij kunstenaars en andere zelfstandige vaka tegen komt.</p>
+
+                            <p>In het geval van een onderwijsinstelling kan het portfolio ook bijvoorbeeld beide bevatten en daarmee de basis zijn voor een leerling dossier. </p>
+
+                            <br>
+                            <br>
+                            <a href="https://github.com/ConductionNL/portfolio-component" class="btn-custom btn-more-link " target="_blank"> Bekijk repository</a>
+                            <a href="#" class="btn-custom btn-more-link " target="_blank"> bekijk documentatie</a>
+                        </div><!-- ./col-heading -->
+                    </div><!-- ./col-text -->
+                </div><!-- ./col -->
+                <div class="col-sm-10 col-md-5 col-lg-5">
+                    <img src={{ asset('images/content/Componenten/pfc/1280w/Blauw_vlak.png') }} width="100%">
+                </div><!-- ./col -->
+            </div><!-- ./row -->
+        </div><!-- ./container -->
+    </div><!-- ./wrap-container -->
+
+
+    {{ include('/widgets/contact.html.twig') }}
+
+
+{% endblock %}
+

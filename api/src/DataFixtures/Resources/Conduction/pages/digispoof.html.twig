@@ -1,0 +1,51 @@
+{# templates/home/index.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block headercontent %}
+    <!-- .header-content -->
+    <div class="header-content">
+
+        <!-- .container -->
+        <!-- /.container -->
+    </div><!-- /.header-content -->
+{% endblock %}
+
+{% block body %}
+    <div class="wrap-container8040 bg-white">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-10 col-md-7 col-lg-7 ">
+                    <div class="col-text20 margin-bottom20">
+                        <div class="post-heading-left">
+                            <h2 id="verhuizen" style="color: #4386FB">Digispoof</h2>
+                            <a href="https://github.styleci.io/repos/244861540" target="_blank"><img src="https://github.styleci.io/repos/244861540/shield?branch=master" alt="StyleCI"></a>
+                            <a href="https://github.com/ConductionNL/digispoof/actions?query=workflow%3A"Docker+Image+CI"" target="_blank"><img src="https://github.com/ConductionNL/digispoof/workflows/Docker%20Image%20CI/badge.svg?branch=master" alt="github"></a>
+        
+                            <p>Digispoof is een SAML applicatie voor het testen van DigiD (en op termijn AIDAS) inlogmethodes. 
+                            De gedachte hierbij is dat Digispoof technisch uitwisselbaar is met DigiD (dus exact hetzelfde werkt met betrekking tot API’s), 
+                            maar doordat het gebruik maakt van het BRP (in mock-vorm) geen echte burgergegevens ontsluit. 
+                            Het geeft echter wel een BSN nummer terug dat bestaat in het mock BRP. 
+                            Dat betekent dat ontwikkelaars de mogelijkheid hebben om hun applicatie te testen met DigiD en BPR toegang zonder deze daadwerkelijk te hoeven aanvragen 
+                            (waarvoor zelfs in demo-versies een PKI overheidscertificaat nodig is). Het is dan ook puur een development tool.</p>
+
+                            <br>
+                            <br>
+                            <a href="https://github.com/ConductionNL/digispoof" class="btn-custom btn-more-link " target="_blank"> Bekijk repository</a>
+                            <a href="#" class="btn-custom btn-more-link " target="_blank"> bekijk documentatie</a>
+                        </div><!-- ./col-heading -->
+                    </div><!-- ./col-text -->
+                </div><!-- ./col -->
+                <div class="col-sm-10 col-md-5 col-lg-5">
+                    <img src={{ asset('images/content/Componenten/ds/1280w/Geel_Vlak.png') }} alt="ec" width="100%">
+                </div><!-- ./col -->
+            </div><!-- ./row -->
+        </div><!-- ./container -->
+    </div><!-- ./wrap-container -->
+
+
+    {{ include('/widgets/contact.html.twig') }}
+
+
+{% endblock %}
+

@@ -50,7 +50,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *                  "description"="Gets the audit trail for this resource"
  *              }
  *          }
- * 		},
+ * 		}
  * )
  * @ORM\Entity(repositoryClass="App\Repository\TemplateRepository")
  * @Gedmo\Loggable(logEntryClass="Conduction\CommonGroundBundle\Entity\ChangeLog")
@@ -58,7 +58,18 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ApiFilter(BooleanFilter::class)
  * @ApiFilter(OrderFilter::class)
  * @ApiFilter(DateFilter::class, strategy=DateFilter::EXCLUDE_NULL)
- * @ApiFilter(SearchFilter::class, properties={"application.id": "exact", "organization.id": "exact","slugs.id": "exact","templateEngine": "exact","slugs.slug": "exact", "title": "partial", "name": "partial", "description": "partial", "content": "partial", "templateGroup.name": "partial", "templateGroup.id": "exact"})
+ * @ApiFilter(SearchFilter::class, properties={
+ *     "application.id": "exact",
+ *     "organization.id": "exact",
+ *     "slugs.id": "exact",
+ *     "templateEngine": "exact",
+ *     "slugs.slug": "exact",
+ *     "title": "partial",
+ *     "name": "partial",
+ *     "description": "partial",
+ *     "content": "partial",
+ *     "templateGroups.name": "partial",
+ *     "templateGroups.id": "exact"})
  */
 class Template
 {

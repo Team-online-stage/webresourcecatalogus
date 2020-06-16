@@ -20,6 +20,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * Configurations hold a specific organisation configruation for an application.
  *
  * @ApiResource(
+ *     attributes={"pagination_items_per_page"=30},
  *     normalizationContext={"groups"={"read"}, "enable_max_depth"=true},
  *     denormalizationContext={"groups"={"write"}, "enable_max_depth"=true},
  *     itemOperations={
@@ -189,7 +190,7 @@ class Configuration
         $this->application = $application;
 
         // If the application dosn't have a deafult configuration yet lets set this one
-        if(!$this->application->getDefaultConfiguration()){
+        if ($this->application && !$this->application->getDefaultConfiguration()) {
             $this->application->setDefaultConfiguration($this);
         }
 

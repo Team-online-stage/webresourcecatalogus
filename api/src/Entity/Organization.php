@@ -21,6 +21,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * An organization as active on commonground.
  *
  * @ApiResource(
+ *     attributes={"pagination_items_per_page"=30},
  *     normalizationContext={"groups"={"read"}, "enable_max_depth"=true},
  *     denormalizationContext={"groups"={"write"}, "enable_max_depth"=true},
  *     itemOperations={
@@ -140,7 +141,7 @@ class Organization
     private $styles;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Application", mappedBy="organization", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\Application", mappedBy="organization")
      */
     private $applications;
 
@@ -150,7 +151,7 @@ class Organization
     private $images;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Configuration", mappedBy="organization", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\Configuration", mappedBy="organization")
      */
     private $configurations;
 
