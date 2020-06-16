@@ -33,7 +33,7 @@
             <b>Voorna(a)m(en): </b>{{ contact.givenName }}<br>
             <b>Geslachtsnaam: </b>{{ contact.familyName }}<br>
             {% if brp.geboorte.datum is defined and brp.geboorte.datum is not empty %}
-                <b>Geboortedatum: </b>{{ brp.geboorte.datum }}<br>
+                <b>Geboortedatum: </b>{{ brp.geboorte.datum.date }}<br>
             {% else %}
                 <b>Geboortedatum: </b>Onbekend<br>
             {% endif %}
