@@ -10,45 +10,52 @@
             <h2>Extra opties</h2>
             <p>U kunt uiteraard ook extra opties kiezen voor uw huwelijk</p>
         </div>
+        <div class="row">
+            {% for product in products["hydra:member"] %}
+                {% if (product.audience == "public") %}
+                    {% if product.name == "Geen extra's" %}
+                    {% else %}
+                        <div class="col-sm-4"> <!-- 1 -->
+                            <div class="affa-team-profile">
+                                {% if product.logo is defined and product.logo is not empty %}
+                                    <figure class="team-profile-img">
+                                        <img src="{{ product.logo }}" alt="Avatar"/>
+                                    </figure>
+                                {% endif %}
+                                <div class="team-profile-name">
+                                    <h4>{{ product.name }}</h4>
+                                    <p>{{ product.price }}</p>
+                                </div>
+                                <p style="height: 60px;display: block">{{ product.description|raw }}<br/></p>
+                                <div class="tbl-prc-footer">
+                                    {% if user is not empty %}
+                                        <a href="{{ path('app_default_set',{'value':product.offers[0]['@id'],'slug':'extra'}) }}"
+                                           class="btn btn-primary btn-icon btn-block">Ja dit wil ik!</a>
+                                    {% endif %}
+                                </div>
 
-        {% for product in products["hydra:member"] %}
-            {% if (product.audience == "public") %}
-            {% if product.name == "Geen extra's" %}
-            {% else %}
-                <div class="col-sm-4"> <!-- 1 -->
-                <div class="affa-team-profile">
-                {% if product.logo is defined and product.logo is not empty %}
-                    <figure class="team-profile-img">
-                        <img src="{{ product.logo }}" alt="Avatar"/>
-                    </figure>
+                            </div>
+                        </div>
+                    {% endif %}
                 {% endif %}
-                <div class="team-profile-name">
-                    <h4>{{ product.name }}</h4>
-                    <p>{{ product.price }}</p>
-                </div>
-                <p style="height: 60px;display: block">{{ product.description|raw }}<br/></p>
-                <div class="tbl-prc-footer">
-                {% if user is not empty %}
-                    <a href="{{ path('app_default_set',{'value':product.offers[0]['@id'],'slug':'extra'}) }}"
-                       class="btn btn-primary btn-icon btn-block">Ja dit wil ik!</a>
-                {% endif %}
-                    </div>
+            {% endfor %}
+        </div>
 
-                    </div>
-                    </div>
-                {% endif %}
-            {% endif %}
-        {% endfor %}
+        <div class="row">
+            <div class="col-sm-3">
 
-        {% for product in products["hydra:member"] %}
-        {% if product.audience == "public" and product.name == "Geen extra's"%}
-        {% if user is not empty %}
-        <a href="{{ path('app_default_set',{'value':product.offers[0]['@id'],'slug':'extra'}) }}"
-           class="btn btn-primary btn-icon btn-block" style="width: 25%; margin: 150px 10px 10px 10px;">Door naar volgende stap</a>
-        {% endif %}
-        {% endif %}
-        {% endfor %}
+                {% for product in products["hydra:member"] %}
+                    {% if product.audience == "public" and product.name == "Geen extra's" %}
+                        {% if user is not empty %}
+                            <a href="{{ path('app_default_set',{'value':product.offers[0]['@id'],'slug':'extra'}) }}"
+                               class="btn btn-primary btn-icon btn-block" style="margin: 150px 10px 10px 10px;">Door
+                                naar volgende stap</a>
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
 
+            </div>
+        </div>
 
     </div>
     <!-- .row end -->
