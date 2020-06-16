@@ -130,35 +130,35 @@
                                     </li>
                                 {% endfor %}
                             {% endif %}
-                            {% if request.properties.partners[1] is defined and request.properties.partners[1] is not empty %}
-                                <li>
-                                    {% set assent2 = commonground_resource(request.properties.partners[1]) %}
-                                    {% set contact2 = commonground_resource(assent2.contact) %}
-                                    <b>Partner: {{ contact2.formalName }}</b>
-                                    <ul class="list-icon">
-                                        <li>
-                                            <!-- Partner -->
-                                            <i class="fa {% if assent2.status == "granted" %}fas fa-check{% else %}fa-exclamation-triangle{% endif %}"></i>Status: {{ assent2.status|trans }}
-                                        <li>
-                                        <li>
-                                            <i class="fa fas fa-check"></i>Leeftijd is gecontroleerd
-                                        <li>
-                                        <li>
-                                            <i class="fa fas fa-check"></i>Staat niet onder curatele
-                                        <li>
-                                            {% if request.properties.partners[0] is not defined and request.properties.partners[0] is empty %}
-                                        <li>
-                                            <i style="color: red" class="fa fa-exclamation-triangle"></i>Heeft op dit
-                                            moment geen partner
-                                        <li>
-                                            {% else %}
-                                        <li>
-                                            <i class="fa fas fa-check"></i>Partner is geen familie in de eerste graad
-                                        <li>
-                                            {% endif %}
-                                    </ul>
-                                </li>
-                            {% endif %}
+{#                            {% if request.properties.partners[1] is defined and request.properties.partners[1] is not empty %}#}
+{#                                <li>#}
+{#                                    {% set assent2 = commonground_resource(request.properties.partners[1]) %}#}
+{#                                    {% set contact2 = commonground_resource(assent2.contact) %}#}
+{#                                    <b>Partner: {{ contact2.formalName }}</b>#}
+{#                                    <ul class="list-icon">#}
+{#                                        <li>#}
+{#                                            <!-- Partner -->#}
+{#                                            <i class="fa {% if assent2.status == "granted" %}fas fa-check{% else %}fa-exclamation-triangle{% endif %}"></i>Status: {{ assent2.status|trans }}#}
+{#                                        <li>#}
+{#                                        <li>#}
+{#                                            <i class="fa fas fa-check"></i>Leeftijd is gecontroleerd#}
+{#                                        <li>#}
+{#                                        <li>#}
+{#                                            <i class="fa fas fa-check"></i>Staat niet onder curatele#}
+{#                                        <li>#}
+{#                                            {% if request.properties.partners[0] is not defined and request.properties.partners[0] is empty %}#}
+{#                                        <li>#}
+{#                                            <i style="color: red" class="fa fa-exclamation-triangle"></i>Heeft op dit#}
+{#                                            moment geen partner#}
+{#                                        <li>#}
+{#                                            {% else %}#}
+{#                                        <li>#}
+{#                                            <i class="fa fas fa-check"></i>Partner is geen familie in de eerste graad#}
+{#                                        <li>#}
+{#                                            {% endif %}#}
+{#                                    </ul>#}
+{#                                </li>#}
+{#                            {% endif %}#}
                             {% if request.properties.getuigen is defined and request.properties.getuigen is not empty %}
                                 <li>
                                     <b>Getuigen</b>

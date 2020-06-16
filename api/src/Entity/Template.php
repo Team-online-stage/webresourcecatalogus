@@ -50,7 +50,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *                  "description"="Gets the audit trail for this resource"
  *              }
  *          }
- * 		},
+ * 		}
  * )
  * @ORM\Entity(repositoryClass="App\Repository\TemplateRepository")
  * @Gedmo\Loggable(logEntryClass="Conduction\CommonGroundBundle\Entity\ChangeLog")

@@ -47,26 +47,26 @@
                             goed te laten keuren. Door u melding te doen verklaart u het volgende:<br>
 
 
-                            <label for="inNetherlands"><input type="checkbox" id="inNetherlands" required {% if request.properties.info.meetsRequirements is defined %} checked {% endif %}> Ik en/of mijn partner wonen minimaal een half jaar in
+                            <label for="inNetherlands"><input type="checkbox" id="inNetherlands" required {% if request.properties['info-melding']['meetsRequirements'] is defined and request.properties['info-melding']['meetsRequirements'] is not empty %} checked {% endif %}> Ik en/of mijn partner wonen minimaal een half jaar in
                                 Nederland.</label><br>
 
 
-                            <label for="areAdults"><input type="checkbox" id="areAdults" required {% if request.properties.info.meetsRequirements is defined %} checked {% endif %}> Ik verklaar dat ik en mijn partner allebei 18 jaar of ouder zijn op
+                            <label for="areAdults"><input type="checkbox" id="areAdults" required {% if request.properties['info-melding']['meetsRequirements'] is defined and request.properties['info-melding']['meetsRequirements'] is not empty %} checked {% endif %}> Ik verklaar dat ik en mijn partner allebei 18 jaar of ouder zijn op
                                 het moment van trouwen of registreren partnerschap.</label><br>
 
 
-                            <label for="notMarried"><input type="checkbox" id="notMarried" required {% if request.properties.info.meetsRequirements is defined %} checked {% endif %}> Ik verklaar niet al getrouwd te zijn of een geregistreerd
+                            <label for="notMarried"><input type="checkbox" id="notMarried" required {% if request.properties['info-melding']['meetsRequirements'] is defined and request.properties['info-melding']['meetsRequirements'] is not empty %} checked {% endif %}> Ik verklaar niet al getrouwd te zijn of een geregistreerd
                                 partnerschap te hebben.</label><br>
 
 
-                            <label for="notFamily"><input type="checkbox" id="notFamily" required {% if request.properties.info.meetsRequirements is defined %} checked {% endif %}> Ik verklaar geen directe familie te zijn van mijn partner.</label><br>
+                            <label for="notFamily"><input type="checkbox" id="notFamily" required {% if request.properties['info-melding']['meetsRequirements'] is defined and request.properties['info-melding']['meetsRequirements'] is not empty %} checked {% endif %}> Ik verklaar geen directe familie te zijn van mijn partner.</label><br>
 
 
-                            <label for="noMisuse"><input type="checkbox" id="noMisuse" required {% if request.properties.info.meetsRequirements is defined %} checked {% endif %}> Ik verklaar dat ik niet trouw om een verblijfsvergunning te
+                            <label for="noMisuse"><input type="checkbox" id="noMisuse" required {% if request.properties['info-melding']['meetsRequirements'] is defined and request.properties['info-melding']['meetsRequirements'] is not empty %} checked {% endif %}> Ik verklaar dat ik niet trouw om een verblijfsvergunning te
                                 verkrijgen.</label><br>
 
 
-                            <label for="noReceivership"><input type="checkbox" id="noReceivership" required {% if request.properties.info.meetsRequirements is defined %} checked {% endif %}> Ik verklaar dat ik of mijn partner niet onder curatele
+                            <label for="noReceivership"><input type="checkbox" id="noReceivership" required {% if request.properties['info-melding']['meetsRequirements'] is defined and request.properties['info-melding']['meetsRequirements'] is not empty %} checked {% endif %}> Ik verklaar dat ik of mijn partner niet onder curatele
                                 staan.</label>
                         </li>
 
