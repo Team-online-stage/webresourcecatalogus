@@ -46,7 +46,7 @@
 
                     {% if plechtigheid.id == "2b9ba0a9-376d-45e2-aa83-809ef07fa104" or plechtigheid.id == "77f6419d-b264-4898-8229-9916d9deccee" %}
                         <select name="tijd">
-                            {% if plechtigheid.id == "77f6419d-b264-4898-8229-9916d9deccee" or  plechtigheid.id == "2b9ba0a9-376d-45e2-aa83-809ef07fa104"%}
+                            {% if plechtigheid.id == "77f6419d-b264-4898-8229-9916d9deccee" or  plechtigheid.id == "2b9ba0a9-376d-45e2-aa83-809ef07fa104" %}
                                 <option
                                     value="10:00" {% if request.properties.datum is defined and request.properties.datum is not empty and "10:00" == request.properties.datum|date("H:i") %} selected {% endif %}>
                                     10:00
@@ -76,7 +76,7 @@
                         </select>
                     {% endif %}
 
-                    {%   if plechtigheid.id == "bfeb9399-fce6-49b8-a047-70928f3611fb" %}
+                    {% if plechtigheid.id == "bfeb9399-fce6-49b8-a047-70928f3611fb" %}
                         <label for="tijd">Voer uw gewenste tijdstip in als bijvoorbeeld: "12:30"</label>
                         <input id="tijd" name="tijd"
                                type="time" {% if request.properties.datum is defined and request.properties.datum is not empty %} value="{{ request.properties.datum|date("H:i") }}" {% endif %}
@@ -110,32 +110,38 @@
 {% endblock %}
 
 {% block javascript %}
-<script>
+<
+script >
 angular.module('MyApp', ['ngMaterial', 'ngMessages', 'material.svgAssetsCache']).config(function ($mdDateLocaleProvider) {
-$mdDateLocaleProvider.firstDayOfWeek = 1;
-$mdDateLocaleProvider.months = ['januari', 'februari', 'maart', 'april', 'mei', 'juni', 'juli', 'augustus', 'september', 'oktober', 'november', 'december'];
-$mdDateLocaleProvider.shortMonths = ['jan', 'feb', 'mar', 'apr', 'mei', 'jun', 'jul', 'aug', 'sep', 'okt', 'nov', 'dec'];
-$mdDateLocaleProvider.days = ['zondag', 'maandag', 'dinsdag', 'woensdag', 'donderdag', 'vrijdag', 'zaterdag'];
-$mdDateLocaleProvider.shortDays = ['Zo', 'Ma', 'Di', 'Wo', 'Do', 'Vr', 'Za',];
-$mdDateLocaleProvider.minDate = '2020-01-30';
-$mdDateLocaleProvider.formatDate = function (date) {
-return moment(date).format('DD-MM-YYYY');
-};
+    $mdDateLocaleProvider.firstDayOfWeek = 1;
+    $mdDateLocaleProvider.months = ['januari', 'februari', 'maart', 'april', 'mei', 'juni', 'juli', 'augustus', 'september', 'oktober', 'november', 'december'];
+    $mdDateLocaleProvider.shortMonths = ['jan', 'feb', 'mar', 'apr', 'mei', 'jun', 'jul', 'aug', 'sep', 'okt', 'nov', 'dec'];
+    $mdDateLocaleProvider.days = ['zondag', 'maandag', 'dinsdag', 'woensdag', 'donderdag', 'vrijdag', 'zaterdag'];
+    $mdDateLocaleProvider.shortDays = ['Zo', 'Ma', 'Di', 'Wo', 'Do', 'Vr', 'Za',];
+    $mdDateLocaleProvider.minDate = '2020-01-30';
+    $mdDateLocaleProvider.formatDate = function (date) {
+        return moment(date).format('DD-MM-YYYY');
+    };
 
 }).controller('AppCtrl', ['$mdDateLocale', '$scope', function ($mdDateLocale, $scope) {
-$scope.today = new Date();
-$scope.minDate = new Date(
-$scope.today.getFullYear(),
-$scope.today.getMonth(),
-$scope.today.getDate()
-);
+    $scope.today = new Date();
+    $scope.minDate = new Date(
+        $scope.today.getFullYear(),
+        $scope.today.getMonth() + 1,
+        $scope.today.getDate() + 14
+    );
+    $scope.endDate = new Date(
+        $scope.today.getFullYear() + 1,
+        $scope.today.getMonth(),
+        $scope.today.getDate()
+    );
 {% if request.properties.datum is defined and request.properties.datum is not empty %}
     $scope.defaultDate = new Date({{ request.properties.datum | date("Y, m, d") }});
     $scope.defaultDate = new Date(
     $scope.defaultDate.getFullYear(),
     $scope.defaultDate.getMonth()-1,
     $scope.defaultDate.getDate()
-    )
+    );
 {% endif %}
 // Excluding dates
 //$scope.availabledates = function(date) {

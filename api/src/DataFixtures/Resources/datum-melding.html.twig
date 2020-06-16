@@ -82,8 +82,8 @@ angular.module('MyApp', ['ngMaterial', 'ngMessages', 'material.svgAssetsCache'])
     $scope.today = new Date();
     $scope.minDate = new Date(
         $scope.today.getFullYear(),
-        $scope.today.getMonth(),
-        $scope.today.getDate()
+        $scope.today.getMonth() + 1,
+        $scope.today.getDate() + 14
     );
     $scope.endDate = new Date(
         $scope.today.getFullYear() +1,
