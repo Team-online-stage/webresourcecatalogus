@@ -1,6 +1,12 @@
 {# templates/home/index.html.twig #}
 {% extends 'base.html.twig' %}
 {% block body %}
+
+
+    {% if request.properties.plechtigheid is defined and request.properties.plechtigheid is not empty %}
+        {% set plechtigheid = coomongorund_resoruce(request.properties.plechtigheid) %}
+    {% endif %}
+
     <!-- .row -->
     <div class="row animation" data-animation="animation-fade-in"
          data-delay=" {% if app.session.flashbag.peekAll|length > 0 %}3400{% else %}200{% endif %}">
@@ -30,10 +36,117 @@
                                    md-min-date="minDate" md-max-date="endDate"></md-datepicker>
                 </div>
                 <select name="tijd">
-                    <option
-                        value="10:00" {% if request.properties.datum is defined and request.properties.datum is not empty and "10:00" == request.properties.datum|date("H:i") %} selected {% endif %}>
-                        10:00
-                    </option>
+
+
+                    {% if plechtigheid is defined and plechtigheid.id = "1ba1772b-cc8a-4808-ad1e-f9b3c93bdebf" %} {# // flits huwelijk#}
+                        <option
+                            value="10:00" {% if request.properties.datum is defined and request.properties.datum is not empty and "10:00" == request.properties.datum|date("H:i") %} selected {% endif %}>
+                            10:00
+                        </option>
+                        <option
+                            value="10:30" {% if request.properties.datum is defined and request.properties.datum is not empty and "10:30" == request.properties.datum|date("H:i") %} selected {% endif %}>
+                            10:30
+                        </option>
+
+                    {% elseif plechtigheid is defined and  plechtigheid.id = "77f6419d-b264-4898-8229-9916d9deccee" %} {# // gratis trouwen #}
+                        <option
+                            value="10:00" {% if request.properties.datum is defined and request.properties.datum is not empty and "10:00" == request.properties.datum|date("H:i") %} selected {% endif %}>
+                            10:00
+                        </option>
+                        <option
+                            value="10:30" {% if request.properties.datum is defined and request.properties.datum is not empty and "10:30" == request.properties.datum|date("H:i") %} selected {% endif %}>
+                            10:30
+                        </option>
+
+                    {% elseif plechtigheid is defined and  plechtigheid.id = "2b9ba0a9-376d-45e2-aa83-809ef07fa104" %} {# // eenvoudig trouwen #}
+                        <option
+                            value="10:00" {% if request.properties.datum is defined and request.properties.datum is not empty and "10:00" == request.properties.datum|date("H:i") %} selected {% endif %}>
+                            10:00
+                        </option>
+                        <option
+                            value="10:30" {% if request.properties.datum is defined and request.properties.datum is not empty and "10:30" == request.properties.datum|date("H:i") %} selected {% endif %}>
+                            10:30
+                        </option>
+                        <option
+                            value="11:00" {% if request.properties.datum is defined and request.properties.datum is not empty and "11:00" == request.properties.datum|date("H:i") %} selected {% endif %}>
+                            10:00
+                        </option>
+                        <option
+                            value="11:30" {% if request.properties.datum is defined and request.properties.datum is not empty and "11:30" == request.properties.datum|date("H:i") %} selected {% endif %}>
+                            10:30
+                        </option>
+
+                    {# elseif plechtigheid is defined and  plechtigheid.id = "bfeb9399-fce6-49b8-a047-70928f3611f" #} {# // uitgebreid trouwen #}
+
+                    {% else %}
+                        <option
+                            value="09:00" {% if request.properties.datum is defined and request.properties.datum is not empty and "09:00" == request.properties.datum|date("H:i") %} selected {% endif %}>
+                            10:00
+                        </option>
+                        <option
+                            value="09:30" {% if request.properties.datum is defined and request.properties.datum is not empty and "09:30" == request.properties.datum|date("H:i") %} selected {% endif %}>
+                            10:30
+                        </option>
+                        <option
+                            value="10:00" {% if request.properties.datum is defined and request.properties.datum is not empty and "10:00" == request.properties.datum|date("H:i") %} selected {% endif %}>
+                            10:00
+                        </option>
+                        <option
+                            value="10:30" {% if request.properties.datum is defined and request.properties.datum is not empty and "10:30" == request.properties.datum|date("H:i") %} selected {% endif %}>
+                            10:30
+                        </option>
+                        <option
+                            value="11:00" {% if request.properties.datum is defined and request.properties.datum is not empty and "11:00" == request.properties.datum|date("H:i") %} selected {% endif %}>
+                            10:00
+                        </option>
+                        <option
+                            value="11:30" {% if request.properties.datum is defined and request.properties.datum is not empty and "11:30" == request.properties.datum|date("H:i") %} selected {% endif %}>
+                            10:30
+                        </option>
+                        <option
+                            value="12:00" {% if request.properties.datum is defined and request.properties.datum is not empty and "12:00" == request.properties.datum|date("H:i") %} selected {% endif %}>
+                            10:00
+                        </option>
+                        <option
+                            value="12:30" {% if request.properties.datum is defined and request.properties.datum is not empty and "12:30" == request.properties.datum|date("H:i") %} selected {% endif %}>
+                            10:30
+                        </option>
+                        <option
+                            value="13:00" {% if request.properties.datum is defined and request.properties.datum is not empty and "13:00" == request.properties.datum|date("H:i") %} selected {% endif %}>
+                            10:00
+                        </option>
+                        <option
+                            value="13:30" {% if request.properties.datum is defined and request.properties.datum is not empty and "13:30" == request.properties.datum|date("H:i") %} selected {% endif %}>
+                            10:30
+                        </option>
+                        <option
+                            value="14:00" {% if request.properties.datum is defined and request.properties.datum is not empty and "14:00" == request.properties.datum|date("H:i") %} selected {% endif %}>
+                            10:00
+                        </option>
+                        <option
+                            value="14:30" {% if request.properties.datum is defined and request.properties.datum is not empty and "14:30" == request.properties.datum|date("H:i") %} selected {% endif %}>
+                            10:30
+                        </option>
+                        <option
+                            value="15:00" {% if request.properties.datum is defined and request.properties.datum is not empty and "15:00" == request.properties.datum|date("H:i") %} selected {% endif %}>
+                            10:00
+                        </option>
+                        <option
+                            value="15:30" {% if request.properties.datum is defined and request.properties.datum is not empty and "15:30" == request.properties.datum|date("H:i") %} selected {% endif %}>
+                            10:30
+                        </option>
+                        <option
+                            value="16:00" {% if request.properties.datum is defined and request.properties.datum is not empty and "16:00" == request.properties.datum|date("H:i") %} selected {% endif %}>
+                            10:00
+                        </option>
+                        <option
+                            value="16:30" {% if request.properties.datum is defined and request.properties.datum is not empty and "16:30" == request.properties.datum|date("H:i") %} selected {% endif %}>
+                            10:30
+                        </option>
+
+
+                    {% endif %}
+
                     <option
                         value="12:00" {% if request.properties.datum is defined and request.properties.datum is not empty and "12:00" == request.properties.datum|date("H:i") %} selected {% endif %}>
                         12:00
@@ -99,12 +212,30 @@
             );
             {% endif %}
 
+            {% if plechtigheid is defined and plechtigheid.id = "1ba1772b-cc8a-4808-ad1e-f9b3c93bdebf" %} // flits huwelijk
+                $scope.availabledates = function(date) {
+                    var day = date.getDay();
+                    return day === 1 ;
+                  };
+
+            {% elseif plechtigheid is defined and  plechtigheid.id = "77f6419d-b264-4898-8229-9916d9deccee" %} // gratis trouwen
+                $scope.availabledates = function(date) {
+                    var day = date.getDay();
+                    return day === 1 ;
+                  };
+
+            {% elseif plechtigheid is defined and  plechtigheid.id = "2b9ba0a9-376d-45e2-aa83-809ef07fa104" %} // eenvoudig trouwen
+                $scope.availabledates = function(date) {
+                    var day = date.getDay();
+                    return day === 1 || day === 2 || day === 3||   day === 5;
+                  };
+
+            {% elseif plechtigheid is defined and  plechtigheid.id = "bfeb9399-fce6-49b8-a047-70928f3611f" %} // uitgebreid trouwen
+
+            {% endif %}
+
 
 // Excluding dates
-//$scope.availabledates = function(date) {
-//    var day = date.getDay();
-//    return day === 1 || day === 2 || day === 3|| day === 4 ||  day === 5;
-//  };
         }]);
         /**
          Copyright 2016 Google Inc. All Rights Reserved.
