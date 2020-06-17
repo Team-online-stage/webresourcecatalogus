@@ -31,19 +31,19 @@
                 </div>
                 <select name="tijd">
                     <option
-                        value="10:00" {% if request.properties.datum is defined and request.properties.datum is not empty and "10:00" == request.properties.datum|date("H:i") %} selected {% endif %}>
+                        value="10:00" {% if request.properties['datum-melding'] is defined and request.properties['datum-melding'] is not empty and "10:00" == request.properties['datum-melding']|date("H:i") %} selected {% endif %}>
                         10:00
                     </option>
                     <option
-                        value="12:00" {% if request.properties.datum is defined and request.properties.datum is not empty and "12:00" == request.properties.datum|date("H:i") %} selected {% endif %}>
+                        value="12:00" {% if request.properties['datum-melding'] is defined and request.properties['datum-melding'] is not empty and "12:00" == request.properties['datum-melding']|date("H:i") %} selected {% endif %}>
                         12:00
                     </option>
                     <option
-                        value="14:00" {% if request.properties.datum is defined and request.properties.datum is not empty and "14:00" == request.properties.datum|date("H:i") %} selected {% endif %}>
+                        value="14:00" {% if request.properties['datum-melding'] is defined and request.properties['datum-melding'] is not empty and "14:00" == request.properties['datum-melding']|date("H:i") %} selected {% endif %}>
                         14:00
                     </option>
                     <option
-                        value="16:00" {% if request.properties.datum is defined and request.properties.datum is not empty and "16:00" == request.properties.datum|date("H:i") %} selected {% endif %}>
+                        value="16:00" {% if request.properties['datum-melding'] is defined and request.properties['datum-melding'] is not empty and "16:00" == request.properties['datum-melding']|date("H:i") %} selected {% endif %}>
                         16:00
                     </option>
                 </select>
