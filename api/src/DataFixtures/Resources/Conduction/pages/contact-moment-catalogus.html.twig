@@ -1,0 +1,55 @@
+{# templates/home/index.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block headercontent %}
+    <!-- .header-content -->
+    <div class="header-content">
+
+        <!-- .container -->
+        <!-- /.container -->
+    </div><!-- /.header-content -->
+{% endblock %}
+
+{% block body %}
+    <div class="wrap-container8040 bg-white">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-10 col-md-7 col-lg-7 ">
+                    <div class="col-text20 margin-bottom20">
+                        <div class="post-heading-left">
+                            <h2 id="verhuizen" style="color: #4386FB">Contact Moment Component</h2>
+                            <a href="https://github.styleci.io/repos/262270870" target="_blank"><img src="https://github.styleci.io/repos/262270870/shield?branch=master" alt="StyleCI"></a>
+                            <a href="https://github.com/ConductionNL/ContactMoment-Component/actions?query=workflow%3A\"Docker+Image+CI\"" target="_blank"><img src="https://github.com/ConductionNL/ContactMoment-Component/workflows/Docker%20Image%20CI/badge.svg?branch=master" alt="github"></a>
+
+                            <p>Het Contactmomenten Component biedt de generieke mogelijkheid om contactmomenten rondom resources, 
+                            bijvoorbeeld Common Ground resources, vast te leggen. Deze functionaliteit is bewust abstract opgezet.</p> 
+
+                            <p>In wezen kan een contactmoment gaan over alles van een zaak tot een verzoek, 
+                            van order tot product en een combinatie van deze. De enige technische voorwaarde is dat het onderwerp identificeerbaar is via een URL. 
+                            Contactmomenten kunnen logischerwijs een relatie bevatten tot de berichtenservice 
+                            (die immers met het versturen van berichten contactmomenten genereert) en houden doorgaans verband tot personen en organisaties uit het Contacten Component.
+                             Het is echter ook mogelijk om contactmomenten te koppelen aan medewerkers.</p> 
+
+                            <p>Aanvullend kunnen contactmomenten logischerwijs leiden tot memo’s of taken.</p>
+
+                            <br>
+                            <br>
+                            <a href="https://github.com/ConductionNL/ContactMoment-Component" class="btn-custom btn-more-link " target="_blank"> Bekijk repository</a>
+                            <a href="#" class="btn-custom btn-more-link " target="_blank"> bekijk documentatie</a>
+                        </div><!-- ./col-heading -->
+                    </div><!-- ./col-text -->
+                </div><!-- ./col -->
+                <div class="col-sm-10 col-md-5 col-lg-5">
+                    <img src={{ asset('images/content/Componenten/cmc/1280w/Grijs_vlak.png') }} width="100%">
+                </div><!-- ./col -->
+            </div><!-- ./row -->
+        </div><!-- ./container -->
+    </div><!-- ./wrap-container -->
+
+
+    {{ include('/widgets/contact.html.twig') }}
+
+
+{% endblock %}
+

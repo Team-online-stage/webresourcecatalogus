@@ -2,13 +2,13 @@
 
 namespace App\Entity;
 
-use ApiPlatform\Core\Annotation\ApiResource;
 use ApiPlatform\Core\Annotation\ApiFilter;
+use ApiPlatform\Core\Annotation\ApiResource;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\BooleanFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\DateFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\OrderFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
-use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\DateFilter;
-
+use App\Controller\DefaultController;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -19,11 +19,8 @@ use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Serializer\Annotation\MaxDepth;
 use Symfony\Component\Validator\Constraints as Assert;
 
-
-use App\Controller\DefaultController;
-
 /**
- * Content holds information and photos you want to show on your pages.
+ * Templates holds information your pages or include in messages.
  *
  * @ApiResource(
  *     	normalizationContext={"groups"={"read"}, "enable_max_depth"=true},
@@ -53,15 +50,26 @@ use App\Controller\DefaultController;
  *                  "description"="Gets the audit trail for this resource"
  *              }
  *          }
- * 		},
+ * 		}
  * )
  * @ORM\Entity(repositoryClass="App\Repository\TemplateRepository")
- * @Gedmo\Loggable(logEntryClass="App\Entity\ChangeLog")
- * 
+ * @Gedmo\Loggable(logEntryClass="Conduction\CommonGroundBundle\Entity\ChangeLog")
+ *
  * @ApiFilter(BooleanFilter::class)
  * @ApiFilter(OrderFilter::class)
  * @ApiFilter(DateFilter::class, strategy=DateFilter::EXCLUDE_NULL)
- * @ApiFilter(SearchFilter::class)
+ * @ApiFilter(SearchFilter::class, properties={
+ *     "application.id": "exact",
+ *     "organization.id": "exact",
+ *     "slugs.id": "exact",
+ *     "templateEngine": "exact",
+ *     "slugs.slug": "exact",
+ *     "title": "partial",
+ *     "name": "partial",
+ *     "description": "partial",
+ *     "content": "partial",
+ *     "templateGroups.name": "partial",
+ *     "templateGroups.id": "exact"})
  */
 class Template
 {
@@ -93,14 +101,13 @@ class Template
      * @ORM\Column(type="string", length=255)
      */
     private $name;
-    
+
     /**
-     * @var string $title The external name of this menu
+     * @var string The external name of this menu
      *
      * @example webshop menu
      *
      * @Gedmo\Versioned
-     * @Assert\NotNull
      * @Assert\Length(
      *      max = 255
      * )
@@ -125,6 +132,15 @@ class Template
     private $description;
 
     /**
+     * @var bool Whether to auto create a slug on creation of this template
+     *
+     * @example true
+     *
+     * @Groups({"write"})
+     */
+    private $slug;
+
+    /**
      * @var string The Content of this template.
      *
      * @example A lot of random info over any topic
@@ -137,9 +153,9 @@ class Template
     private $content;
 
     /**
-     * @var string The template engine used to render this template. Schould be either twig (Twig), md (markdown) or rst (reStructuredText)
+     * @var string The template engine used to render this template. Schould be either twig (Twig), md (Markdown) or rst (reStructuredText)
      *
-     * @example Twig
+     * @example twig
      *
      * @Gedmo\Versioned
      * @Assert\NotNull
@@ -150,11 +166,11 @@ class Template
     private $templateEngine;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Page", mappedBy="template")
+     * @ORM\OneToMany(targetEntity="App\Entity\Slug", mappedBy="template", cascade={"persist"})
      * @MaxDepth(1)
      */
-    private $pages;
-    
+    private $slugs;
+
     /**
      * @Groups({"read","write"})
      * @MaxDepth(1)
@@ -162,7 +178,7 @@ class Template
      * @ORM\JoinColumn(nullable=false, nullable=true)
      */
     private $application;
-    
+
     /**
      * @Groups({"read","write"})
      * @MaxDepth(1)
@@ -170,18 +186,25 @@ class Template
      * @ORM\JoinColumn(nullable=false, nullable=true)
      */
     private $organization;
-    
+
     /**
-     * @var Datetime $dateCreated The moment this request was created
+     * @Groups({"read","write"})
+     * @MaxDepth(1)
+     * @ORM\ManyToMany(targetEntity="App\Entity\TemplateGroup", inversedBy="templates")
+     */
+    private $templateGroups;
+
+    /**
+     * @var Datetime The moment this request was created
      *
      * @Groups({"read"})
      * @Gedmo\Timestampable(on="create")
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $dateCreated;
-    
+
     /**
-     * @var Datetime $dateModified  The moment this request last Modified
+     * @var Datetime The moment this request last Modified
      *
      * @Groups({"read"})
      * @Gedmo\Timestampable(on="create")
@@ -192,6 +215,8 @@ class Template
     public function __construct()
     {
         $this->image = new ArrayCollection();
+        $this->slugs = new ArrayCollection();
+        $this->templateGroups = new ArrayCollection();
     }
 
     public function getId(): Uuid
@@ -217,17 +242,17 @@ class Template
 
         return $this;
     }
-    
+
     public function getTitle(): ?string
     {
-    	return $this->title;
+        return $this->title;
     }
-    
+
     public function setTitle(string $title): self
     {
-    	$this->title = $title;
-    	
-    	return $this;
+        $this->title = $title;
+
+        return $this;
     }
 
     public function getDescription(): ?string
@@ -238,6 +263,18 @@ class Template
     public function setDescription(string $description): self
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(bool $slug): self
+    {
+        $this->slug = $slug;
 
         return $this;
     }
@@ -267,81 +304,107 @@ class Template
     }
 
     /**
-     * @return Collection|Page[]
+     * @return Collection|Slug[]
      */
-    public function getPages(): Collection
+    public function getSlugs(): Collection
     {
-        return $this->pages;
+        return $this->slugs;
     }
 
-    public function addPage(Page $page): self
+    public function addSlug(Slug $slug): self
     {
-        if (!$this->pages->contains($page)) {
-            $this->pages[] = $page;
-            $page->setApplication($this);
+        if (!$this->slugs->contains($slug)) {
+            $this->slugs[] = $slug;
+            $slug->setTemplate($this);
         }
 
         return $this;
     }
 
-    public function removePage(Page $page): self
+    public function removeSlug(Slug $slug): self
     {
-        if ($this->pages->contains($page)) {
-            $this->pages->removeElement($page);
+        if ($this->slugs->contains($slug)) {
+            $this->slugs->removeElement($slug);
             // set the owning side to null (unless already changed)
-            if ($page->getApplication() === $this) {
-                $page->setApplication(null);
+            if ($slug->getTemplate() === $this) {
+                $slug->setTemplate(null);
             }
         }
 
         return $this;
     }
-    
+
     public function getApplication(): ?Application
     {
-    	return $this->application;
+        return $this->application;
     }
-    
+
     public function setApplication(?Application $application): self
     {
-    	$this->application = $application;
-    	
-    	return $this;
+        $this->application = $application;
+
+        return $this;
     }
-    
+
     public function getOrganization(): ?Organization
     {
-    	return $this->organization;
+        return $this->organization;
     }
-    
+
     public function setOrganization(?Organization $organization): self
     {
-    	$this->organization = $organization;
-    	
-    	return $this;
+        $this->organization = $organization;
+
+        return $this;
     }
-    
+
+    /**
+     * @return Collection|TemplateGroup[]
+     */
+    public function getTemplateGroups(): Collection
+    {
+        return $this->templateGroups;
+    }
+
+    public function addTemplateGroup(TemplateGroup $templateGroup): self
+    {
+        if (!$this->templateGroups->contains($templateGroup)) {
+            $this->templateGroups[] = $templateGroup;
+        }
+
+        return $this;
+    }
+
+    public function removeTemplateGroup(TemplateGroup $templateGroup): self
+    {
+        if ($this->templateGroups->contains($templateGroup)) {
+            $this->templateGroups->removeElement($templateGroup);
+        }
+
+        return $this;
+    }
+
     public function getDateCreated(): ?\DateTimeInterface
     {
-    	return $this->dateCreated;
+        return $this->dateCreated;
     }
-    
+
     public function setDateCreated(\DateTimeInterface $dateCreated): self
     {
-    	$this->dateCreated= $dateCreated;
-    	
-    	return $this;
+        $this->dateCreated = $dateCreated;
+
+        return $this;
     }
-    
+
     public function getDateModified(): ?\DateTimeInterface
     {
-    	return $this->dateModified;
+        return $this->dateModified;
     }
-    
+
     public function setDateModified(\DateTimeInterface $dateModified): self
     {
-    	$this->dateModified = $dateModified;
-    	
-    	return $this;
+        $this->dateModified = $dateModified;
+
+        return $this;
     }
 }

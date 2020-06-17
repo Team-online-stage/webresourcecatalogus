@@ -1,0 +1,123 @@
+{# templates/home/index.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block headercontent %}
+    <!-- .header-content -->
+    <div class="header-content">
+
+        <!-- .container -->
+        <div class="container">
+
+            <!-- .row -->
+            <div class="row">
+
+                <div class="col-sm-7">
+                    <div class="header-text" style="padding-top: 0">
+                        <div class="post-heading-left-white header-heading">
+                            <h1>Trouwen</h1>
+                            <h4 style="color: white">Product: Huwelijksplanner</h4>
+                        </div>
+                        <br>
+                        <p style="margin-top: -35px">Samen met de gemeente Utrecht, Almere, Rotterdam en Westfriese
+                            gemeenten bouwen wij een online huwelijksplanner waarbij de burger centraal staat, waarvan
+                            de technische architectuur zo zuiver mogelijk is en deelbaar-herbruikbaar is voor andere
+                            gemeenten en applicaties.</p>
+                        <br>
+                        <img src="{{ asset('images/gemeenteutrecht.png') }}" width="110px">
+                        <img src="{{ asset('images/gemeentealmereblauw.png') }}" width="110px">
+                        <img src="{{ asset('images/gemeentewestfrieslandblauw.png') }}" width="110px">
+                        <img src="{{ asset('images/gemeenterotterdamblauw.png') }}" width="110px">
+                    </div>
+                </div><!-- /.col -->
+
+                <div class="col-sm-5">
+                    <div class="header-img">
+                        <img src="{{ asset('images/trouwenproject.png') }}" width="600px"></div>
+                    <br>
+                </div><!-- /.col -->
+
+            </div><!-- /.row -->
+        </div><!-- /.container -->
+    </div><!-- /.header-content -->
+{% endblock %}
+
+{% block body %}
+    <div class="wrap-container8040 bg-grey">
+        <div class="container">
+            <div class="row">
+
+
+                <div class="col-sm-10 col-md-6 col-lg-6 ">
+                    <div class="col-text20 margin-bottom20">
+                        <div class="post-heading-left">
+                            <h2 id="verhuizen" style="color: #4386FB">Verhuizen</h2>
+                            <h4 style="color: #4386FB">Product: Verhuisplanner</h4>
+
+                            <p>Samen met de gemeente 's-Hertogenbosch, Eindhoven en de Solviteers hebben we een applicatie
+                                gebouwd voor het melden van een verhuizing. Waarbij wij ons vooral hebben gericht op het
+                                ontwikkelen van de backend en de Solviteers op de frontend.</p>
+                            <br>
+                            <br>
+                            <img src="{{ asset('images/Gemeentedenboschgrijzeachtergrond.png') }}" width="110px">
+                            <img src="{{ asset('images/gemeenteeindhovengrijzeachtergrond.png') }}" width="110px">
+                            <img src="{{ asset('images/solviteersgrijzeachtergrond.png') }}" width="110px">
+
+                    </div>
+                </div>
+
+
+
+            </div>
+                <div class="col-sm-10 col-md-6 col-lg-6">
+                    <img src={{ asset('images/verhuizenproject.png') }} width="100%" class="border img-rounded">
+                </div>
+            <!-- ./col -->
+        </div>
+    </div>
+    </div>
+
+    <div class="wrap-container8040">
+        <div class="container">
+            <div class="row">
+
+
+                <div class="col-sm-10 col-md-6 col-lg-6 ">
+                    <div class="col-text20 margin-bottom20">
+                        <div class="post-heading-left">
+                            <h2 id="overlijden" style="color: #4386FB">Overlijden</h2>
+                            <h4 style="color: #4386FB">Product: Begraafplaatsen registragtie</h4>
+
+                            <p>Samen met de Westfriese gemeenten zijn wij aan het ontwikkelen op de gebeurtenis overlijden,
+                                daar komt een hoop bij kijken. Zoals bijvoorbeeld de totale cyclus van een graf, van het plannen
+                                van de begrafenis tot het ruimen van een graf. Wij ondersteunen op de digitale ontwikkeling van
+                                dit proces, weer volgens het common ground principe: Data bij de bron, deelbaar en
+                                schaalbaar.</p>
+                            <br>
+                            <br>
+                            <img src="{{ asset('images/gemeentewestfriesland.png') }}" width="110px">
+
+                            <img src="{{ asset('images/018-Logo-HTA.png') }}" width="110px" style="margin-left: 30px">
+
+
+                        </div>
+                    </div>
+
+
+
+                </div>
+                <div class="col-sm-10 col-md-6 col-lg-6">
+                    <img src={{ asset('images/overlijdenproject.png') }} width="100%" class="border img-rounded">
+                </div>
+                <!-- ./col -->
+            </div>
+        </div>
+    </div>
+
+
+
+    {{  include('/widgets/contact.html.twig') }}
+
+
+{% endblock %}
+

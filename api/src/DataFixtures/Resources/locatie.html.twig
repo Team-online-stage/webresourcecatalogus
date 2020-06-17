@@ -1,4 +1,4 @@
-{# templates/home/index.html.twig #}
+{# templates/home/index.html.twig id: e2615a62-95a5-43a4-8ab7-efaa8777ed7f #}
 
 {% extends 'base.html.twig' %}
 
@@ -32,8 +32,8 @@
                     </a>
 
                 {% elseif request.properties.plechtigheid is defined
-                    and (request.properties.plechtigheid == "https://pdc.huwelijksplanner.online/offers/2b9ba0a9-376d-45e2-aa83-809ef07fa104" or request.properties.plechtigheid == "https://pdc.huwelijksplanner.online/offers/bfeb9399-fce6-49b8-a047-70928f3611fb") %}
-                    <p>Let op: Het type ceremonie dat u heeft geselecteerd laat geen keuze voor een locatie toe. Alleen bij een uitgebreide ceremonie bestaat de mogelijkheid een locatie te kiezen. Wilt u toch een locatie kunnen kiezen, dan kunt u  <a href="{{ path('app_default_slug',{'slug':'plechtigheid'}) }}">hier</a> uw ceremonie aanpassen.</p>
+                    and request.properties.plechtigheid == "https://pdc.dev.huwelijksplanner.online/offers/1ba1772b-cc8a-4808-ad1e-f9b3c93bdebf" or request.properties.plechtigheid == "https://pdc.dev.huwelijksplanner.online/offers/77f6419d-b264-4898-8229-9916d9deccee" or request.properties.plechtigheid == "https://pdc.dev.huwelijksplanner.online/offers/2b9ba0a9-376d-45e2-aa83-809ef07fa104" %}
+                    <p>Let op: Het type plechtigheid dat u heeft geselecteerd laat geen keuze voor een locatie toe. Alleen bij een uitgebreide ceremonie bestaat de mogelijkheid een locatie te kiezen. Wilt u toch een locatie kunnen kiezen, dan kunt u  <a href="{{ path('app_default_slug',{'slug':'plechtigheid'}) }}">hier</a> uw plechtigheid aanpassen.</p>
                 {% elseif (commonground_resource(request.properties.locatie).products[0]['@id'] == resource['@id']) %}
                     <a href="{{ path('app_default_unset',{'value':resource.offers[0]['@id'],'slug':'locatie'}) }}" class="btn btn-danger btn-icon" >
                         <i class="far fa-calendar-times"></i>
@@ -43,7 +43,7 @@
                     U heeft reeds <a href="{{  path('app_default_slug',{'slug':'locatie-kiezen','resource':commonground_resource(request.properties.locatie).products[0]['@id']}) }}">een locatie</a> gekozen, annuleer deze eerst als u deze locatie wil reserveren.
                 {% endif %}
                 <br><br>
-                <a href="{{ path('app_default_slug',{'slug':'ambtenaren'}) }}" class="btn btn-primary btn-icon">
+                <a href="{{ path('app_default_slug',{'slug':'ambtenaar'}) }}" class="btn btn-primary btn-icon">
                     <i class="far fa-calendar-times"></i>
                     Ga door naar ambtenaren
                 </a>

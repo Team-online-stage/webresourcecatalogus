@@ -115,8 +115,6 @@
 
                 <p><a href="/betalen">> Doe de betaling.</a></p>
 
-                <img src="images/content/elements/Scooter.png" alt="Image" width="100%">
-
             </div>
         </div>
 
@@ -133,16 +131,14 @@
                     {% endif %}
                 </li>
 
-                {% if request.properties.partners is defined and request.properties.partners is not empty %}
-
-                    {% for partner in request.properties.partners %}
-                        {% set assent = commonground_resource(partner) %}
-                        {% set contact = commonground_resource(assent.contact) %}
-                        <li><h5><i class="fa {% if assent.status == "granted" %} fas fa-check{% else %}fa-exclamation-triangle{% endif %}"></i>Partner: {{ contact.formalName }}</h5>
+                {% if request.properties.partners[0] is defined and request.properties.partners[0] is not empty %}
+                        {% set assent1 = commonground_resource(request.properties.partners[0]) %}
+                        {% set contact1 = commonground_resource(assent1.contact) %}
+                        <li><h5><i class="fa {% if assent1.status == "granted" %} fas fa-check{% else %}fa-exclamation-triangle{% endif %}"></i>Partner: {{ contact1.formalName }}</h5>
                             <ul style="padding-left: 0" class="list">
                                 <li>
                                     <!-- Partner -->
-                                    <i class="fa {% if assent.status == "granted" %}fas fa-check{% else %}fa-exclamation-triangle{% endif %}"></i>Status: {{ assent.status|trans }}
+                                    <i class="fa {% if assent1.status == "granted" %}fas fa-check{% else %}fa-exclamation-triangle{% endif %}"></i>Status: {{ assent1.status|trans }}
                                 </li>
                                 <li>
                                     <!--  Trouwdatum -->
@@ -162,14 +158,31 @@
                                 </li>
                             </ul>
                         </li>
-                    {% endfor %}
-
-                {% else %}
-
-                    <li>
-                        <h5><i style="color: red; margin-right: 10px" class="fas fa-exclamation-triangle"></i>Partners
-                        </h5>
-                    </li>
+                {% endif %}
+                {% if request.properties.partners|length == 2 and request.properties.partners[1] is not empty %}
+                        {% set assent1 = commonground_resource(request.properties.partners[0]) %}
+                        {% set contact1 = commonground_resource(assent1.contact) %}
+                        <li><h5><i class="fa {% if assent1.status == "granted" %} fas fa-check{% else %}fa-exclamation-triangle{% endif %}"></i>Partner: {{ contact1.formalName }}</h5>
+                            <ul style="padding-left: 0" class="list">
+                                <li>
+                                    <!--  Trouwdatum -->
+                                    <i class="fa fas fa-check"></i>Leeftijd is gecontroleerd
+                                </li>
+                                <li>
+                                    <!--  Trouwdatum -->
+                                    <i class="fa fas fa-check"></i>Staat niet onder curatele
+                                </li>
+                                {% if request.properties.partners|length < 2 or request.properties.partners[1] is empty %}
+                                <li>
+                                    <i style="color: red" class="fa fa-exclamation-triangle"></i>U hebt nog een partner uitgenodigd
+                                <li>
+                                    {% else %}
+                                <li>
+                                    <i class="fa fas fa-check"></i>Partner is geen familie in de eerste graad
+                                <li>
+                                    {% endif %}
+                            </ul>
+                        </li>
                 {% endif %}
                 <li><h5>{% if request.properties.plechtigheid is not defined or request.properties.plechtigheid is empty %}<i
                             style="color: red; margin-left: -30px; padding-right: 10px" class="fas fa-exclamation-triangle"></i>{% else %}<i
@@ -234,6 +247,18 @@
                 </li>
 
             </ul>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="col-sm-6 col-sm-offset-3">
+                    <a href="{{ path('app_default_slug',{'slug':'ceremonie'}) }}" class="btn btn-primary btn-icon btn-block">Start hier uw huwelijksverzoek</a>
+                </div>
+                <div class="col-sm-12">
+                    <img src="images/content/elements/Scooter.png" alt="Image" width="100%">
+                </div>
+
+            </div>
         </div>
 
     </div>

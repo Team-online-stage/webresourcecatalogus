@@ -1,0 +1,51 @@
+{# templates/home/index.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block headercontent %}
+    <!-- .header-content -->
+    <div class="header-content">
+
+        <!-- .container -->
+        <!-- /.container -->
+    </div><!-- /.header-content -->
+{% endblock %}
+
+{% block body %}
+    <div class="wrap-container8040 bg-white">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-10 col-md-7 col-lg-7 ">
+                    <div class="col-text20 margin-bottom20">
+                        <div class="post-heading-left">
+                            <h2 id="verhuizen" style="color: #4386FB">Review Component</h2>
+                            <a href="https://github.styleci.io/repos/235730051" target="_blank"><img src="https://github.styleci.io/repos/235730051/shield?branch=master" alt="StyleCI"></a>
+                            <a href="https://github.com/ConductionNL/review-component/actions?query=workflow%3A"Docker+Image+CI"" target="_blank"><img src="https://github.com/ConductionNL/review-component/workflows/Docker%20Image%20CI/badge.svg?branch=master" alt="github"></a>
+                
+                            <p>Het Review Component faciliteer reviews van resources, 
+                            hoewel we hierbij in eerste instantie denken aan producten vanuit het PDC zou een resource en feiten alles kunnen zijn.</p> 
+
+                            <p>Onder een review verstaan we een gebruikerservaring, 
+                            deze ervaring kan zowel worden aangeduid met een cijfer als een een texturele beschrijving. 
+                            Additioneel biedt het component ondersteuning voor “likes” en het berekenen van totalen gemiddelde review resultaten op resources.</p> 
+
+                            <br>
+                            <br>
+                            <a href="https://github.com/ConductionNL/review-component" class="btn-custom btn-more-link " target="_blank"> Bekijk repository</a>
+                            <a href="#" class="btn-custom btn-more-link " target="_blank"> bekijk documentatie</a>
+                        </div><!-- ./col-heading -->
+                    </div><!-- ./col-text -->
+                </div><!-- ./col -->
+                <div class="col-sm-10 col-md-5 col-lg-5">
+                    <img src={{ asset('images/content/Componenten/rc/1280w/Blauw_vlak.png') }} width="100%">
+                </div><!-- ./col -->
+            </div><!-- ./row -->
+        </div><!-- ./container -->
+    </div><!-- ./wrap-container -->
+
+
+    {{ include('/widgets/contact.html.twig') }}
+
+
+{% endblock %}
+

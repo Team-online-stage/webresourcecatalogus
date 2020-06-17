@@ -1,0 +1,52 @@
+{# templates/home/index.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block headercontent %}
+    <!-- .header-content -->
+    <div class="header-content">
+
+        <!-- .container -->
+        <!-- /.container -->
+    </div><!-- /.header-content -->
+{% endblock %}
+
+{% block body %}
+    <div class="wrap-container8040 bg-white">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-10 col-md-7 col-lg-7 ">
+                    <div class="col-text20 margin-bottom20">
+                        <div class="post-heading-left">
+                            <h2 id="verhuizen" style="color: #4386FB">Bericht Service</h2>
+                            <a href="https://github.styleci.io/repos/206144502" target="_blank"><img src="https://github.styleci.io/repos/206144502/shield?branch=master" alt="StyleCI"></a>
+                            <a href="https://github.com/ConductionNL/berichtservice/actions?query=workflow%3A\"Docker+Image+CI\"" target="_blank"><img src="https://github.com/ConductionNL/berichtservice/workflows/Docker%20Image%20CI/badge.svg?branch=master" alt="github"></a>
+          
+                            <p>De Berichtenservice faciliteert het versturen van berichten (bijvoorbeeld aan de hand van WRC sjablonen) en het rapporteren daarover. 
+                            Hiervoor levert het zowel bulk-capaciteiten (voor bijvoorbeeld het versturen van mailings), 
+                            als opvolg-capaciteiten (voor het controleren van bijvoorbeeld het aankomen van emails).</p> 
+
+                            <p>Vooralsnog ondersteunt de Berichtenservice het versturen van mails en smsberichten, 
+                            maar er wordt nagedacht over het toevoegen van een post route en chatfunctionaliteit (social media). 
+                            Het kan hierbij zowel zelfstandig opereren, als een front leveren voor functionaliteit van derden (mailgun, mailchimp, messagbird etc).</p>
+
+                            <br>
+                            <br>
+                            <a href="https://github.com/ConductionNL/berichtservice" class="btn-custom btn-more-link " target="_blank"> Bekijk repository</a>
+                            <a href="#" class="btn-custom btn-more-link " target="_blank"> bekijk documentatie</a>
+                        </div><!-- ./col-heading -->
+                    </div><!-- ./col-text -->
+                </div><!-- ./col -->
+                <div class="col-sm-10 col-md-5 col-lg-5">
+                    <img src={{ asset('images/content/Componenten/berichten/1280w/Lichtblauw_vlak.png') }} width="100%">
+                </div><!-- ./col -->
+            </div><!-- ./row -->
+        </div><!-- ./container -->
+    </div><!-- ./wrap-container -->
+
+
+    {{ include('/widgets/contact.html.twig') }}
+
+
+{% endblock %}
+

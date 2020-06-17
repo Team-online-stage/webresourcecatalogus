@@ -39,25 +39,26 @@
                     niet zelf een babs kiezen, de gemeente wijst er een toe.</p>
 
                 <!-- .row -->
-                <div class="row">
-                    <div class="col-xs-12 col-sm-6">
-                        <a href="{{ path('app_default_index',{'requestType':'https://vtc.huwelijksplanner.online/request_types/cdd7e88b-1890-425d-a158-7f9ec92c9508','requestParent':request['@id']}) }}" class="btn btn-primary btn-icon">
-                            <i class="fas fa-share-square"></i>
-                            BABS voor een dag
-                        </a>
-                    </div><!-- /.col -->
-                    <div class="col-xs-12 col-sm-6">
-                        <a href="{{ path('app_default_index',{'requestType':'https://vtc.huwelijksplanner.online/request_types/27f6ecf0-34bb-4100-a375-d14f2d5ee1d0','requestParent':request['@id']}) }}" class="btn btn-primary btn-icon">
-                            <i class="fas fa-share-square"></i>
-                            BABS van een andere gemeente
-                        </a>
-                    </div><!-- /.col -->
-                </div>
-                <!-- .row end -->
-
+                {% if user is  not empty and request is defined and request is not empty%}
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6">
+                            <a href="{{ path('app_default_index',{'requestType':'https://vtc.dev.huwelijksplanner.online/request_types/cdd7e88b-1890-425d-a158-7f9ec92c9508','requestParent':request['@id']}) }}" class="btn btn-primary btn-icon">
+                                <i class="fas fa-share-square"></i>
+                                BABS voor een dag
+                            </a>
+                        </div><!-- /.col -->
+                        <div class="col-xs-12 col-sm-6">
+                            <a href="{{ path('app_default_index',{'requestType':'https://vtc.dev.huwelijksplanner.online/request_types/27f6ecf0-34bb-4100-a375-d14f2d5ee1d0','requestParent':request['@id']}) }}" class="btn btn-primary btn-icon">
+                                <i class="fas fa-share-square"></i>
+                                BABS van een andere gemeente
+                            </a>
+                        </div><!-- /.col -->
+                    </div>
+                    <!-- .row end -->
+                {% endif %}
             </div>
             {% for product in products["hydra:member"] %}
-                {% if (product.audience == "public") %}
+                {% if (product.offers[0].audience == "public") %}
                     <div class="col-sm-6"> <!-- 4 -->
                         <a href="{{ path('app_default_slug',{'slug':'ambtenaar-kiezen','resource':product['@id']}) }}">
                             <div class="affa-testimonial">

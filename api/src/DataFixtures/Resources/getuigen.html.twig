@@ -18,7 +18,7 @@
     {% else %}
         <div class="post-heading-center">
             <h2>Uw Getuigen</h2>
-            <p>Voor een huwelijk zijn er getuigen nodig, minimaal 1 en maximaal 3 per partner. In totaal moeten er
+            <p>Voor een huwelijk zijn er getuigen nodig. In totaal moeten er
                 minimaal 2 en maximaal 4 getuigen zijn.</p>
         </div>
         <div class="
@@ -29,16 +29,12 @@
             	{% endif %}">
         <div class="row">
             {% if request.properties.getuigen is defined %}
-                {% for partner in request.properties.partners %}
-                    <h3 class="col-md-12 text-center">Getuigen
-                        van {{ commonground_resource(commonground_resource(partner).contact).name }} </h3>
                     {% for getuige in request.properties.getuigen %}
                         {% set assent = commonground_resource(getuige) %}
                         {% set contact = commonground_resource(assent.contact) %}
-                        {% if assent.requester == commonground_resource(partner)['@id'] %}
+                        <div style="margin-bottom: 20px" class="col-md-6"> <!-- 1 -->
+                            <div class="affa-team-profile">
 
-                            <div style="margin-bottom: 20px" class="col-md-6"> <!-- 1 -->
-                                <div class="affa-team-profile">
                                     {#                                <figure class="team-profile-img animation" data-animation="animation-fade-in-down">#}
                                     {#                                    <div class="team-profile-socials">#}
                                     {#                                        <!--#}
@@ -68,15 +64,13 @@
                                         </div>
 
                                         <a style="margin-top: 10px"
-                                           href="{{ path('app_default_unset', {'slug':'getuigen', 'value': 'http://irc.zaakonline.nl/assents/'~assent.id}) }}"
+                                           href="{{ path('app_default_unset', {'slug':'getuige', 'value': assent['@id']}) }}"
                                            class="btn btn-danger btn-icon col-md-8 col-md-offset-2">Annuleer
                                             getuige</a>
                                         </p>
                                     </div><!-- /.team-profile-name -->
                                 </div><!-- /.affa-team-profile -->
                             </div><!-- /.col-md-6 -->
-                        {% endif %}
-                    {% endfor %}
                 {% endfor %}
             {% endif %}
         </div><!-- /.row -->
@@ -89,15 +83,6 @@
                   class="affa-form-contact">
                 <h3>Toevoegen</h3>
                 <br/>
-                {% if request.properties.partners is defined %}
-                    <label for="getuige_voornamen">Voor partner</label>
-                    <select name="partner" id="partner">
-                        {% for partner in request.properties.partners %}
-                            <option
-                                    value="{{ partner }}">{{ commonground_resource(commonground_resource(partner).contact).formalName }} </option>
-                        {% endfor %}
-                    </select>
-                {% endif %}
                 <label for="givenName">Voornaam(en)</label>
                 <input type="text" name="givenName" placeholder="John" ng-disabled="loading" required/>
                 <label for="familyName">Achternaam</label>
@@ -114,7 +99,7 @@
                 </button>
                 <br/>
                 <p>Uw getuige ontvangt een email met daarin een bevestigingslink. <br/> Via die link kan uw getuige
-                    aangeven of hij voor u wilt/gaat s.</p>
+                    aangeven of hij voor u wilt/gaat getuigen.</p>
 
                 <br/>
                 <a href="{{ path('app_default_slug',{'slug':'extra'}) }}"

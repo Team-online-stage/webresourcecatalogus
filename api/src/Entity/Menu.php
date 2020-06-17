@@ -2,13 +2,12 @@
 
 namespace App\Entity;
 
-use ApiPlatform\Core\Annotation\ApiResource;
 use ApiPlatform\Core\Annotation\ApiFilter;
+use ApiPlatform\Core\Annotation\ApiResource;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\BooleanFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\DateFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\OrderFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
-use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\DateFilter;
-
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -23,6 +22,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * Menu is your way of navigation inside your application.
  *
  * @ApiResource(
+ *     attributes={"pagination_items_per_page"=30},
  *     normalizationContext={"groups"={"read"}, "enable_max_depth"=true},
  *     denormalizationContext={"groups"={"write"}, "enable_max_depth"=true},
  *     itemOperations={
@@ -48,12 +48,13 @@ use Symfony\Component\Validator\Constraints as Assert;
  *     }
  * )
  * @ORM\Entity(repositoryClass="App\Repository\MenuRepository")
- * @Gedmo\Loggable(logEntryClass="App\Entity\ChangeLog")
- * 
+ * @Gedmo\Loggable(logEntryClass="Conduction\CommonGroundBundle\Entity\ChangeLog")
+ *
  * @ApiFilter(BooleanFilter::class)
  * @ApiFilter(OrderFilter::class)
  * @ApiFilter(DateFilter::class, strategy=DateFilter::EXCLUDE_NULL)
  * @ApiFilter(SearchFilter::class)
+ * @ApiFilter(SearchFilter::class, properties={"id": "exact", "application.id": "exact", "name": "partial", "description": "partial"})
  */
 class Menu
 {
@@ -85,7 +86,7 @@ class Menu
      * @ORM\Column(type="string", length=255)
      */
     private $name;
-    
+
     /**
      * @var string The description of this menuItems
      *
@@ -95,7 +96,6 @@ class Menu
      * @Assert\Length(
      *      max = 2555
      * )
-     * @Gedmo\Versioned
      * @Groups({"read","write"})
      * @ORM\Column(type="text", nullable=true)
      */
@@ -103,38 +103,31 @@ class Menu
 
     /**
      * @Groups({"read","write"})
-     * @ORM\OneToMany(targetEntity="App\Entity\MenuItem", mappedBy="menu")
+     * @ORM\OneToMany(targetEntity="App\Entity\MenuItem", mappedBy="menu",cascade={"persist"})
      * @MaxDepth(1)
      */
     private $menuItems;
-    
+
     /**
      * @Groups({"read","write"})
-     * @MaxDepth(1)
+     * @Assert\NotNull
      * @ORM\ManyToOne(targetEntity="App\Entity\Application", inversedBy="menus")
      * @ORM\JoinColumn(nullable=false)
+     * @MaxDepth(1)
      */
     private $application;
-    
+
     /**
-     * @Groups({"read","write"})
-     * @MaxDepth(1)
-     * @ORM\ManyToOne(targetEntity="App\Entity\Organization", inversedBy="menus")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $organization;
-    
-    /**
-     * @var Datetime $dateCreated The moment this request was created
+     * @var Datetime The moment this request was created
      *
      * @Groups({"read"})
      * @Gedmo\Timestampable(on="create")
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $dateCreated;
-    
+
     /**
-     * @var Datetime $dateModified  The moment this request last Modified
+     * @var Datetime The moment this request last Modified
      *
      * @Groups({"read"})
      * @Gedmo\Timestampable(on="create")
@@ -170,17 +163,17 @@ class Menu
 
         return $this;
     }
-    
+
     public function getDescription(): ?string
     {
-    	return $this->description;
+        return $this->description;
     }
-    
+
     public function setDescription(?string $description): self
     {
-    	$this->description = $description;
-    	
-    	return $this;
+        $this->description = $description;
+
+        return $this;
     }
 
     /**
@@ -191,7 +184,7 @@ class Menu
         return $this->menuItems;
     }
 
-    public function addNenuItem(MenuItem $menuItem): self
+    public function addMenuItem(MenuItem $menuItem): self
     {
         if (!$this->menuItems->contains($menuItem)) {
             $this->menuItems[] = $menuItem;
@@ -213,52 +206,40 @@ class Menu
 
         return $this;
     }
-    
+
     public function getApplication(): ?Application
     {
-    	return $this->application;
+        return $this->application;
     }
-    
+
     public function setApplication(?Application $application): self
     {
-    	$this->application = $application;
-    	
-    	return $this;
+        $this->application = $application;
+
+        return $this;
     }
-    
-    public function getOrganization(): ?Organization
-    {
-    	return $this->organization;
-    }
-    
-    public function setOrganization(?Organization $organization): self
-    {
-    	$this->organization = $organization;
-    	
-    	return $this;
-    }
-    
+
     public function getDateCreated(): ?\DateTimeInterface
     {
-    	return $this->dateModified;
+        return $this->dateModified;
     }
-    
+
     public function setDateCreated(\DateTimeInterface $dateCreated): self
     {
-    	$this->dateCreated= $dateCreated;
-    	
-    	return $this;
+        $this->dateCreated = $dateCreated;
+
+        return $this;
     }
-    
+
     public function getDateModified(): ?\DateTimeInterface
     {
-    	return $this->dateModified;
+        return $this->dateModified;
     }
-    
+
     public function setDateModified(\DateTimeInterface $dateModified): self
     {
-    	$this->dateModified = $dateModified;
-    	
-    	return $this;
+        $this->dateModified = $dateModified;
+
+        return $this;
     }
 }

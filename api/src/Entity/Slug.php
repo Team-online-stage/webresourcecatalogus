@@ -2,13 +2,12 @@
 
 namespace App\Entity;
 
-use ApiPlatform\Core\Annotation\ApiResource;
 use ApiPlatform\Core\Annotation\ApiFilter;
+use ApiPlatform\Core\Annotation\ApiResource;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\BooleanFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\DateFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\OrderFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
-use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\DateFilter;
-
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Ramsey\Uuid\Uuid;
@@ -21,6 +20,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * Your slug connects your application with your pages.
  *
  * @ApiResource(
+ *     attributes={"pagination_items_per_page"=30},
  *     normalizationContext={"groups"={"read"}, "enable_max_depth"=true},
  *     denormalizationContext={"groups"={"write"}, "enable_max_depth"=true},
  *     itemOperations={
@@ -28,7 +28,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *          "put",
  *          "delete",
  *          "get_change_logs"={
- *              "path"="/adresses/{id}/change_log",
+ *              "path"="/slugs/{id}/change_log",
  *              "method"="get",
  *              "swagger_context" = {
  *                  "summary"="Changelogs",
@@ -36,7 +36,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *              }
  *          },
  *          "get_audit_trail"={
- *              "path"="/adresses/{id}/audit_trail",
+ *              "path"="/slugs/{id}/audit_trail",
  *              "method"="get",
  *              "swagger_context" = {
  *                  "summary"="Audittrail",
@@ -46,12 +46,12 @@ use Symfony\Component\Validator\Constraints as Assert;
  *     }
  * )
  * @ORM\Entity(repositoryClass="App\Repository\SlugRepository")
- * @Gedmo\Loggable(logEntryClass="App\Entity\ChangeLog")
- * 
+ * @Gedmo\Loggable(logEntryClass="Conduction\CommonGroundBundle\Entity\ChangeLog")
+ *
  * @ApiFilter(BooleanFilter::class)
  * @ApiFilter(OrderFilter::class)
  * @ApiFilter(DateFilter::class, strategy=DateFilter::EXCLUDE_NULL)
- * @ApiFilter(SearchFilter::class)
+ * @ApiFilter(SearchFilter::class, properties={"application.id": "exact", "template.id": "exact", "slug": "exact", "name": "partial"})
  */
 class Slug
 {
@@ -67,22 +67,22 @@ class Slug
      * @ORM\GeneratedValue(strategy="CUSTOM")
      * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
      */
-	private $id;
-	
-	/**
-	 * @var string The internal name of this slug.
-	 *
-	 * @example About page for website
-	 *
-	 * @Gedmo\Versioned
-	 * @Assert\NotNull
-	 * @Assert\Length(
-	 *     max = 255
-	 * )
-	 * @Groups({"read","write"})
-	 * @ORM\Column(type="string", length=255)
-	 */
-	private $name;
+    private $id;
+
+    /**
+     * @var string The internal name of this slug.
+     *
+     * @example About page for website
+     *
+     * @Gedmo\Versioned
+     * @Assert\NotNull
+     * @Assert\Length(
+     *     max = 255
+     * )
+     * @Groups({"read","write"})
+     * @ORM\Column(type="string", length=255)
+     */
+    private $name;
 
     /**
      * @Groups({"read","write"})
@@ -93,15 +93,15 @@ class Slug
 
     /**
      * @Groups({"read","write"})
-     * @ORM\OneToOne(targetEntity="App\Entity\Page", mappedBy="slug", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity="App\Entity\Template", inversedBy="slugs")
      * @MaxDepth(1)
      */
-    private $page;
+    private $template;
 
     /**
-     * @var string The actual slug of this slug.
+     * @var string The actual slug of this slug without a pre / e.g. about not about
      *
-     * @example /about
+     * @example about
      *
      * @Gedmo\Versioned
      * @Assert\NotNull
@@ -112,18 +112,18 @@ class Slug
      * @ORM\Column(type="string", length=255)
      */
     private $slug;
-    
+
     /**
-     * @var Datetime $dateCreated The moment this request was created
+     * @var Datetime The moment this request was created
      *
      * @Groups({"read"})
      * @Gedmo\Timestampable(on="create")
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $dateCreated;
-    
+
     /**
-     * @var Datetime $dateModified  The moment this request last Modified
+     * @var Datetime The moment this request last Modified
      *
      * @Groups({"read"})
      * @Gedmo\Timestampable(on="create")
@@ -142,17 +142,17 @@ class Slug
 
         return $this;
     }
-    
+
     public function getName(): ?string
     {
-    	return $this->name;
+        return $this->name;
     }
-    
-    public function setName(string $title): self
+
+    public function setName(string $name): self
     {
-    	$this->name = $name;
-    	
-    	return $this;
+        $this->name = $name;
+
+        return $this;
     }
 
     public function getApplication(): ?Application
@@ -167,19 +167,14 @@ class Slug
         return $this;
     }
 
-    public function getPage(): ?Page
+    public function getTemplate(): ?Template
     {
-        return $this->page;
+        return $this->template;
     }
 
-    public function setPage(Page $page): self
+    public function setTemplate(?Template $template): self
     {
-        $this->page = $page;
-
-        // set the owning side of the relation if necessary
-        if ($this !== $page->getSlug()) {
-            $page->setSlug($this);
-        }
+        $this->template = $template;
 
         return $this;
     }
@@ -195,28 +190,28 @@ class Slug
 
         return $this;
     }
-    
+
     public function getDateCreated(): ?\DateTimeInterface
     {
-    	return $this->dateModified;
+        return $this->dateModified;
     }
-    
+
     public function setDateCreated(\DateTimeInterface $dateCreated): self
     {
-    	$this->dateCreated= $dateCreated;
-    	
-    	return $this;
+        $this->dateCreated = $dateCreated;
+
+        return $this;
     }
-    
+
     public function getDateModified(): ?\DateTimeInterface
     {
-    	return $this->dateModified;
+        return $this->dateModified;
     }
-    
+
     public function setDateModified(\DateTimeInterface $dateModified): self
     {
-    	$this->dateModified = $dateModified;
-    	
-    	return $this;
+        $this->dateModified = $dateModified;
+
+        return $this;
     }
 }
