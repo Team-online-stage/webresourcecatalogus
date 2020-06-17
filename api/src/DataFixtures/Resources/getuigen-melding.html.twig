@@ -22,14 +22,14 @@
                 minimaal 2 en maximaal 4 getuigen zijn.</p>
         </div>
         <div class="
-            	{% if (request.properties.getuigen is defined and request.properties.getuigen|length < 4) or request.properties.getuigen is not defined %}
+            	{% if (request.properties['getuige-melding'] is defined and request.properties['getuige-melding']|length < 2) or request.properties['getuige-melding'] is not defined %}
             	col-md-8
             	{% else %}
             	col-md-12
             	{% endif %}">
             <div class="row">
-                {% if request.properties.getuigen is defined %}
-                    {% for getuige in request.properties.getuigen %}
+                {% if request.properties['getuige-melding'] is defined %}
+                    {% for getuige in request.properties['getuige-melding'] %}
                         {% set assent = commonground_resource(getuige) %}
                         {% set contact = commonground_resource(assent.contact) %}
                         <div style="margin-bottom: 20px" class="col-md-6"> <!-- 1 -->
@@ -77,7 +77,7 @@
             {% endif %}
         </div>
         {# We are onlygoing to display this form if we do not yet already have 4 witnesses #}
-        {% if (request.properties.getuigen is defined and request.properties.getuigen|length < 4) or request.properties.getuigen is not defined %}
+        {% if (request.properties['getuige-melding'] is defined and request.properties['getuige-melding']|length < 2) or request.properties['getuige-melding'] is not defined %}
             <div class="col-md-4">
                 <form method="post" action="{{ path('app_default_post',{'slug':'getuige-melding'}) }}"
                       class="affa-form-contact">
@@ -111,7 +111,7 @@
             </div>
         {% endif %}
     </div><!-- /.row -->
-    {% if request.properties.getuigen is defined and request.properties.getuigen|length >= 4 %}
+    {% if request.properties['getuige-melding'] is defined and request.properties['getuige-melding']|length >= 2 %}
         <div class="row">
             <div class="col-sm-12">
                 <a href="{{ path('app_default_slug',{'slug':'indienen-melding'}) }}" class="btn btn-primary btn-block btn-icon">
