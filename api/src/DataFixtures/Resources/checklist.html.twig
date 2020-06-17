@@ -130,35 +130,35 @@
                                     </li>
                                 {% endfor %}
                             {% endif %}
-                            {% if request.properties.partners[1] is defined and request.properties.partners[1] is not empty %}
-                                <li>
-                                    {% set assent2 = commonground_resource(request.properties.partners[1]) %}
-                                    {% set contact2 = commonground_resource(assent2.contact) %}
-                                    <b>Partner: {{ contact2.formalName }}</b>
-                                    <ul class="list-icon">
-                                        <li>
-                                            <!-- Partner -->
-                                            <i class="fa {% if assent2.status == "granted" %}fas fa-check{% else %}fa-exclamation-triangle{% endif %}"></i>Status: {{ assent2.status|trans }}
-                                        <li>
-                                        <li>
-                                            <i class="fa fas fa-check"></i>Leeftijd is gecontroleerd
-                                        <li>
-                                        <li>
-                                            <i class="fa fas fa-check"></i>Staat niet onder curatele
-                                        <li>
-                                            {% if request.properties.partners[0] is not defined and request.properties.partners[0] is empty %}
-                                        <li>
-                                            <i style="color: red" class="fa fa-exclamation-triangle"></i>Heeft op dit
-                                            moment geen partner
-                                        <li>
-                                            {% else %}
-                                        <li>
-                                            <i class="fa fas fa-check"></i>Partner is geen familie in de eerste graad
-                                        <li>
-                                            {% endif %}
-                                    </ul>
-                                </li>
-                            {% endif %}
+{#                            {% if request.properties.partners[1] is defined and request.properties.partners[1] is not empty %}#}
+{#                                <li>#}
+{#                                    {% set assent2 = commonground_resource(request.properties.partners[1]) %}#}
+{#                                    {% set contact2 = commonground_resource(assent2.contact) %}#}
+{#                                    <b>Partner: {{ contact2.formalName }}</b>#}
+{#                                    <ul class="list-icon">#}
+{#                                        <li>#}
+{#                                            <!-- Partner -->#}
+{#                                            <i class="fa {% if assent2.status == "granted" %}fas fa-check{% else %}fa-exclamation-triangle{% endif %}"></i>Status: {{ assent2.status|trans }}#}
+{#                                        <li>#}
+{#                                        <li>#}
+{#                                            <i class="fa fas fa-check"></i>Leeftijd is gecontroleerd#}
+{#                                        <li>#}
+{#                                        <li>#}
+{#                                            <i class="fa fas fa-check"></i>Staat niet onder curatele#}
+{#                                        <li>#}
+{#                                            {% if request.properties.partners[0] is not defined and request.properties.partners[0] is empty %}#}
+{#                                        <li>#}
+{#                                            <i style="color: red" class="fa fa-exclamation-triangle"></i>Heeft op dit#}
+{#                                            moment geen partner#}
+{#                                        <li>#}
+{#                                            {% else %}#}
+{#                                        <li>#}
+{#                                            <i class="fa fas fa-check"></i>Partner is geen familie in de eerste graad#}
+{#                                        <li>#}
+{#                                            {% endif %}#}
+{#                                    </ul>#}
+{#                                </li>#}
+{#                            {% endif %}#}
                             {% if request.properties.getuigen is defined and request.properties.getuigen is not empty %}
                                 <li>
                                     <b>Getuigen</b>
@@ -171,6 +171,22 @@
                                             <i class="fa {% if assent.status == "granted" %}fas fa-check{% else %}fa-exclamation-triangle{% endif %}"></i>{{ contact.formalName }} {% if assent.status == "granted" %}heeft ingestemd{% else %}heeft (nog) niet ingestemd{% endif %}
                                         <li>
                                             {% endfor %}
+                                    </ul>
+                                </li>
+                            {% endif %}
+                            {% if request is defined and request and request.properties.invoice is defined and request.properties.invoice is not empty %}
+                                {% set invoice = commonground_resource(request.properties.invoice) %}
+                                <li>
+                                    <b>Betalen</b>
+                                    <ul class="list-icon">
+                                        <li>
+                                            <!--  Trouwdatum -->
+                                            {% if invoice.paid == true %}
+                                            <i class="fa fas fa-check"></i>{{ "U heeft betaald" }}
+                                            {% elseif invoice.paid == false %}
+                                            <i class="fa fa-exclamation-triangle"></i>{{ "U moet nog betalen" }}
+                                            {% endif %}
+                                        </li>
                                     </ul>
                                 </li>
                             {% endif %}
@@ -319,7 +335,7 @@
                                     </ul>
                                 </li>
                             {% endif %}
-                            {% if (request.properties.getuigen is defined and request.properties.getuigen|length <= 2) or request.properties.getuigen is not defined %}
+                            {% if (request.properties.getuigen is defined and request.properties.getuigen|length < 2) or request.properties.getuigen is not defined %}
                                 <li><b>Getuigen</b>
                                     <ul class="list-icon">
                                         <li>
@@ -328,6 +344,20 @@
                                             getuigen, u kunt deze <a
                                                 href="{{ path('app_default_slug',{'slug':'getuige'}) }}">hier</a>
                                             toevoegen.
+                                        </li>
+                                    </ul>
+                                </li>
+                            {% endif %}
+                            {% if request is defined and request.properties.invoice is defined and request.properties.invoice is not empty %}
+                                {% set invoice = commonground_resource(request.properties.invoice) %}
+                            {% endif %}
+                            {% if invoice is defined and invoice.paid == false %}
+                                <li><b>betalen</b>
+                                    <ul class="list-icon">
+                                        <li>
+                                            <!--  Trouwdatum -->
+                                            <i style="color: red" class="fas fa-exclamation-triangle"></i> U heeft nog niet betaald, u kunt hier <a
+                                                href="{{ path('app_default_slug',{'slug':'betalen'}) }}"></a>
                                         </li>
                                     </ul>
                                 </li>
