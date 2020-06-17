@@ -591,9 +591,9 @@ Als je naar de <a href="https://www.huwelijksplanner.online">huwelijksplanner</a
 
         $slug = new Slug();
         $slug->setTemplate($template);
-        $slug->setName('afwijkende_trouw_locatie');
+        $slug->setName('afwijkende-trouw-locatie');
         $slug->setApplication($application);
-        $slug->setSlug('afwijkende_trouw_locatie');
+        $slug->setSlug('afwijkende-trouw-locatie');
         $manager->persist($slug);
 
         $template = new Template();
