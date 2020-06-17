@@ -21,8 +21,8 @@
     <div style="margin: 20px 0 0 0" class="col-md-12">
         <h4>Gegevens partners</h4>
 
-        {% if request.properties.partners.0 is defined and request.properties.partners.0 is not empty %}
-        {% set assent = commonground_resource(request.properties.partners.0) %}
+        {% if request.properties['partner-melding'].0 is defined and request.properties['partner-melding'].0 is not empty %}
+        {% set assent = commonground_resource(request.properties['partner-melding'].0) %}
         {% set brp = commonground_resource('https://brp.huwelijksplanner.online/ingeschrevenpersonen/'~assent.person) %}
         {% set contact = commonground_resource(assent.contact) %}
 
@@ -53,8 +53,8 @@
 
         {% endif %}
 
-        {% if request.properties.partners.1 is defined and request.properties.partners.1 is not empty %}
-        {% set assent2 = commonground_resource(request.properties.partners.1) %}
+        {% if request.properties['partner-melding'].1 is defined and request.properties['partner-melding'].1 is not empty %}
+        {% set assent2 = commonground_resource(request.properties['partner-melding'].1) %}
         {% set brp = commonground_resource('https://brp.huwelijksplanner.online/ingeschrevenpersonen/'~assent2.person) %}
         {% set contact2 = commonground_resource(assent2.contact) %}
 
