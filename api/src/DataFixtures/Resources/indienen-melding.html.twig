@@ -112,19 +112,19 @@
                     </li>
                 {% endif %}
 
-                {% if request.properties.datum is defined and request.properties.datum is not empty %}
+                {% if request.properties['datum-melding'] is defined and request.properties['datum-melding'] is not empty %}
                     <li><b>Datum</b>
                         <ul class="list-icon">
                             <li>
                                 <!--  Trouwdatum -->
-                                <i class="fa fas fa-check"></i> {{ request.properties.datum|date("d-m-Y H:i", "Europe/Paris") }}
+                                <i class="fa fas fa-check"></i> {{ request.properties['datum-melding']|date("d-m-Y H:i", "Europe/Paris") }}
                             </li>
                         </ul>
                     </li>
                 {% endif %}
 
-                {% if request.properties.partners.1 is defined and request.properties.partners.1 is not empty %}
-                    {% set assent2 = commonground_resource(request.properties.partners.1) %}
+                {% if request.properties['partner-melding'].1 is defined and request.properties['partner-melding'].1 is not empty %}
+                    {% set assent2 = commonground_resource(request.properties['partner-melding'].1) %}
                     {% set contact2 = commonground_resource(assent2.contact) %}
                     <li><b>Partner</b>
                         <ul class="list-icon">
@@ -136,11 +136,11 @@
                     </li>
                 {% endif %}
 
-                {% if request.properties.getuigen is defined and request.properties.getuigen is not empty %}
+                {% if request.properties['getuige-melding'] is defined and request.properties['getuige-melding'] is not empty %}
                     <li>
                         <b>Getuigen</b>
                         <ul class="list-icon">
-                            {% for getuige in request.properties.getuigen %}
+                            {% for getuige in request.properties['getuige-melding'] %}
                             {% set assent = commonground_resource(getuige) %}
                             {% set contact = commonground_resource(assent.contact) %}
                             <li>
@@ -173,7 +173,7 @@
                     </li>
                 {% endif %}
 
-                {% if request.properties.datum is not defined or request.properties.datum is empty %}
+                {% if request.properties['datum-melding'] is not defined or request.properties['datum-melding'] is empty %}
                     <li><b>Datum</b>
                         <ul class="list-icon">
                             <li>
@@ -188,7 +188,7 @@
                     </li>
                 {% endif %}
 
-                {% if request.properties.partners.1 is not defined or request.properties.partners.1 is empty %}
+                {% if request.properties['partner-melding'].1 is not defined or request.properties['partner-melding'].1 is empty %}
                     <li><b>Partner</b>
                         <ul class="list-icon">
                             <li>
@@ -203,7 +203,7 @@
                     </li>
                 {% endif %}
 
-                {% if request.properties.getuigen is not defined or request.properties.getuigen is empty or request.properties.getuigen|length < 2 %}
+                {% if request.properties['getuige-melding'] is not defined or request.properties['getuige-melding'] is empty or request.properties['getuige-melding']|length < 2 %}
                     <li><b>Getuigen</b>
                         <ul class="list-icon">
                             <li>
