@@ -4,7 +4,7 @@
 
 
     {% if request.properties.plechtigheid is defined and request.properties.plechtigheid is not empty %}
-        {% set plechtigheid = coomongorund_resoruce(request.properties.plechtigheid) %}
+        {% set plechtigheid = commonground_resource(request.properties.plechtigheid) %}
     {% endif %}
 
     <!-- .row -->
@@ -38,7 +38,7 @@
                 <select name="tijd">
 
 
-                    {% if plechtigheid is defined and plechtigheid.id = "1ba1772b-cc8a-4808-ad1e-f9b3c93bdebf" %} {# // flits huwelijk#}
+                    {% if plechtigheid is defined and plechtigheid.id == "1ba1772b-cc8a-4808-ad1e-f9b3c93bdebf" %} {# // flits huwelijk#}
                         <option
                             value="10:00" {% if request.properties.datum is defined and request.properties.datum is not empty and "10:00" == request.properties.datum|date("H:i") %} selected {% endif %}>
                             10:00
@@ -48,7 +48,7 @@
                             10:30
                         </option>
 
-                    {% elseif plechtigheid is defined and  plechtigheid.id = "77f6419d-b264-4898-8229-9916d9deccee" %} {# // gratis trouwen #}
+                    {% elseif plechtigheid is defined and  plechtigheid.id == "77f6419d-b264-4898-8229-9916d9deccee" %} {# // gratis trouwen #}
                         <option
                             value="10:00" {% if request.properties.datum is defined and request.properties.datum is not empty and "10:00" == request.properties.datum|date("H:i") %} selected {% endif %}>
                             10:00
@@ -58,7 +58,7 @@
                             10:30
                         </option>
 
-                    {% elseif plechtigheid is defined and  plechtigheid.id = "2b9ba0a9-376d-45e2-aa83-809ef07fa104" %} {# // eenvoudig trouwen #}
+                    {% elseif plechtigheid is defined and  plechtigheid.id == "2b9ba0a9-376d-45e2-aa83-809ef07fa104" %} {# // eenvoudig trouwen #}
                         <option
                             value="10:00" {% if request.properties.datum is defined and request.properties.datum is not empty and "10:00" == request.properties.datum|date("H:i") %} selected {% endif %}>
                             10:00
@@ -204,25 +204,25 @@
             );
             {% endif %}
 
-            {% if plechtigheid is defined and plechtigheid.id = "1ba1772b-cc8a-4808-ad1e-f9b3c93bdebf" %} // flits huwelijk
+            {% if plechtigheid is defined and plechtigheid.id == "1ba1772b-cc8a-4808-ad1e-f9b3c93bdebf" %} // flits huwelijk
                 $scope.availabledates = function(date) {
                     var day = date.getDay();
                     return day === 1 ;
                   };
 
-            {% elseif plechtigheid is defined and  plechtigheid.id = "77f6419d-b264-4898-8229-9916d9deccee" %} // gratis trouwen
+            {% elseif plechtigheid is defined and  plechtigheid.id == "77f6419d-b264-4898-8229-9916d9deccee" %} // gratis trouwen
                 $scope.availabledates = function(date) {
                     var day = date.getDay();
                     return day === 1 ;
                   };
 
-            {% elseif plechtigheid is defined and  plechtigheid.id = "2b9ba0a9-376d-45e2-aa83-809ef07fa104" %} // eenvoudig trouwen
+            {% elseif plechtigheid is defined and  plechtigheid.id == "2b9ba0a9-376d-45e2-aa83-809ef07fa104" %} // eenvoudig trouwen
                 $scope.availabledates = function(date) {
                     var day = date.getDay();
                     return day === 1 || day === 2 || day === 3||   day === 5;
                   };
 
-            {% elseif plechtigheid is defined and  plechtigheid.id = "bfeb9399-fce6-49b8-a047-70928f3611f" %} // uitgebreid trouwen
+            {% elseif plechtigheid is defined and  plechtigheid.id == "bfeb9399-fce6-49b8-a047-70928f3611f" %} // uitgebreid trouwen
 
             {% endif %}
 

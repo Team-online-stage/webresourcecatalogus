@@ -23,7 +23,7 @@
                     </div>
 
                     {% for product in products["hydra:member"] %}
-                        {% if (product.audience == "public") %}
+                        {% if (product.offers[0].audience == "public") %}
                     <div class="col-sm-4 tbl-prc-col"> <!-- 1  -->
                     	<div class="tbl-prc-wrap">
                         	<div class="tbl-prc-heading">

@@ -38,7 +38,7 @@
                     voor een vrije locatie kunt u hier ook doen. </p>
             </div>
             {% for product in products["hydra:member"] %}
-                {% if (product.audience == "public") %}
+                {% if (product.offers[0].audience == "public") %}
                     {# Is dit de locatie balie? #}
                     {% if product.id == "9aef22c4-0c35-4615-ab0e-251585442b55" %}
                         {# Als het plechtigheid flitshuwelijk is laten we de locatie balie zien. #}
