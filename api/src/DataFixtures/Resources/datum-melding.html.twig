@@ -5,6 +5,23 @@
     <div class="row animation" data-animation="animation-fade-in"
          data-delay=" {% if app.session.flashbag.peekAll|length > 0 %}3400{% else %}200{% endif %}">
 
+
+        {% if request.properties['datum-melding'] is defined and request.properties['datum-melding'] is not empty %}
+            <div class="post-heading-center ">
+                <h2>Uw trouw datum</h2>
+            </div>
+            <div class="col-sm-10 col-md-6 col-sm-offset-1 col-md-offset-0 text-center-sm text-center-xs">
+                <div class="margin-bottom40">
+                    <figure class="col-img40 margin-bottom40">
+                        <img src="images/content/elements/Bank.png" alt="Image">
+                    </figure>
+                </div>
+            </div>
+            <div style="height: 450px;" class="col-sm-10 col-md-6 col-sm-offset-1 col-md-offset-0 text-center-sm text-center-xs">
+                <h2 style="width:100%;height:10%;text-align:center;position:relative;top:40%;">datum: {{ request.properties['datum-melding']|date("d-m-Y", "Europe/Paris") }} </h2>
+                <h2 style="width:100%;height:10%;text-align:center;position:relative;top:40%;">Tijd: {{ request.properties['datum-melding']|date("H:i", "Europe/Paris") }}</h2>
+            </div>
+        {% else %}
         <div class="post-heading-center ">
             <h2>Wanneer wilt u trouwen?</h2>
         </div>
@@ -63,6 +80,7 @@
                 <span ng-hide="defaultDate">Kies een datum om door te gaan</span>
             </form>
         </div>
+        {% endif %}
     </div>
     <!-- .row end -->
 {% endblock %}
