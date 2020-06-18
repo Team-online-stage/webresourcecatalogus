@@ -5,12 +5,12 @@
 {% block body %}
 
     {# here we are going to play a small trick but we want to prevent making an commonground call  #}
-    {% if request.properties['partner-melding'] is defined and request.properties['partner-melding'][0] is defined %}
-        {% set assent1 = commonground_resource(request.properties['partner-melding'].0) %}
+    {% if request.properties['partners-melding'] is defined and request.properties['partners-melding'][0] is defined %}
+        {% set assent1 = commonground_resource(request.properties['partners-melding'].0) %}
         {% set contact1 = commonground_resource(assent1.contact) %}
     {% endif %}
-    {% if request.properties['partner-melding'] is defined and request.properties['partner-melding'][1] is defined %}
-        {% set assent2 = commonground_resource(request.properties['partner-melding'].1) %}
+    {% if request.properties['partners-melding'] is defined and request.properties['partners-melding'][1] is defined %}
+        {% set assent2 = commonground_resource(request.properties['partners-melding'].1) %}
         {% set contact2 = commonground_resource(assent2.contact) %}
     {% endif %}
     <!-- .row-custom -->
@@ -188,6 +188,13 @@
                             </form>
                     </div>
                 {% endif %}
+
+                <br/>
+                <a href="{{ path('app_default_slug',{'slug':'getuige-melding'}) }}"
+                   class="btn btn-primary btn-block btn-icon">
+                    <i class="far fa-calendar-times"></i>
+                    Ga door naar getuigen
+                </a>
             </div>
             {% else %}
                 <!-- Uitnodigen partner 2 -->

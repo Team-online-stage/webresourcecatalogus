@@ -90,8 +90,8 @@ angular.module('MyApp', ['ngMaterial', 'ngMessages', 'material.svgAssetsCache'])
         $scope.today.getMonth(),
         $scope.today.getDate()
     );
-{% if request.properties.datum is defined and request.properties.datum is not empty %}
-    $scope.defaultDate = new Date({{ request.properties.datum | date("Y, m, d") }});
+{% if request.properties['datum-melding'] is defined and request.properties['datum-melding'] is not empty %}
+    $scope.defaultDate = new Date({{ request.properties['datum-melding'] | date("Y, m, d") }});
     $scope.defaultDate = new Date(
     $scope.defaultDate.getFullYear(),
     $scope.defaultDate.getMonth()-1,
