@@ -21,6 +21,14 @@
                 <h2 style="width:100%;height:10%;text-align:center;position:relative;top:40%;">datum: {{ request.properties['datum-melding']|date("d-m-Y", "Europe/Paris") }} </h2>
                 <h2 style="width:100%;height:10%;text-align:center;position:relative;top:40%;">Tijd: {{ request.properties['datum-melding']|date("H:i", "Europe/Paris") }}</h2>
             </div>
+            <div class="row">
+                <div class="col-sm-6 col-sm-offset-3">
+                                <a href="{{ path('app_default_slug',{'slug':'partner-melding'})  }}"
+                                   class="btn btn-primary btn-icon btn-block" style="margin: 10px">Door
+                                    naar volgende stap</a>
+
+                </div>
+            </div>
         {% else %}
         <div class="post-heading-center ">
             <h2>Wanneer wilt u trouwen?</h2>
