@@ -76,7 +76,7 @@
                             11:30
                         </option>
 
-                    {# elseif plechtigheid is defined and  plechtigheid.id = "bfeb9399-fce6-49b8-a047-70928f3611f" #} {# // uitgebreid trouwen #}
+                        {# elseif plechtigheid is defined and  plechtigheid.id = "bfeb9399-fce6-49b8-a047-70928f3611f" #} {# // uitgebreid trouwen #}
 
                     {% else %}
                         <option
@@ -137,7 +137,7 @@
                         </option>
                         <option
                             value="16:00" {% if request.properties.datum is defined and request.properties.datum is not empty and "16:00" == request.properties.datum|date("H:i") %} selected {% endif %}>
-                            116:00
+                            16:00
                         </option>
                         <option
                             value="16:30" {% if request.properties.datum is defined and request.properties.datum is not empty and "16:30" == request.properties.datum|date("H:i") %} selected {% endif %}>
@@ -196,33 +196,27 @@
                 $scope.defaultDate.getMonth()-1,
                 $scope.defaultDate.getDate()
             );
-            {% else %}
-            $scope.defaultDate = new Date(
-                $scope.defaultDate.getFullYear(),
-                $scope.defaultDate.getMonth()-1,
-                $scope.defaultDate.getDate() + 42
-            );
             {% endif %}
 
-            {% if plechtigheid is defined and plechtigheid.id = "1ba1772b-cc8a-4808-ad1e-f9b3c93bdebf" %} // flits huwelijk
-                $scope.availabledates = function(date) {
-                    var day = date.getDay();
-                    return day === 1 ;
-                  };
+            {% if plechtigheid is defined and plechtigheid.id == "1ba1772b-cc8a-4808-ad1e-f9b3c93bdebf" %} // flits huwelijk
+            $scope.availabledates = function(date) {
+                var day = date.getDay();
+                return day === 1 ;
+            };
 
-            {% elseif plechtigheid is defined and  plechtigheid.id = "77f6419d-b264-4898-8229-9916d9deccee" %} // gratis trouwen
-                $scope.availabledates = function(date) {
-                    var day = date.getDay();
-                    return day === 1 ;
-                  };
+            {% elseif plechtigheid is defined and  plechtigheid.id == "77f6419d-b264-4898-8229-9916d9deccee" %} // gratis trouwen
+            $scope.availabledates = function(date) {
+                var day = date.getDay();
+                return day === 1 ;
+            };
 
-            {% elseif plechtigheid is defined and  plechtigheid.id = "2b9ba0a9-376d-45e2-aa83-809ef07fa104" %} // eenvoudig trouwen
-                $scope.availabledates = function(date) {
-                    var day = date.getDay();
-                    return day === 1 || day === 2 || day === 3||   day === 5;
-                  };
+            {% elseif plechtigheid is defined and  plechtigheid.id == "2b9ba0a9-376d-45e2-aa83-809ef07fa104" %} // eenvoudig trouwen
+            $scope.availabledates = function(date) {
+                var day = date.getDay();
+                return day === 1 || day === 2 || day === 3||   day === 5;
+            };
 
-            {% elseif plechtigheid is defined and  plechtigheid.id = "bfeb9399-fce6-49b8-a047-70928f3611f" %} // uitgebreid trouwen
+            {% elseif plechtigheid is defined and  plechtigheid.id == "bfeb9399-fce6-49b8-a047-70928f3611f" %} // uitgebreid trouwen
 
             {% endif %}
 
