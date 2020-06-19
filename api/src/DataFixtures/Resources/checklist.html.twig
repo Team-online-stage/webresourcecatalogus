@@ -97,7 +97,7 @@
                                         <li>
                                             <!--  Trouwdatum -->
                                             <i class="fa fas fa-check"></i>
-                                            {% set  set melding = commonground_resource(request.properties.melding)  %}
+                                            {% set  melding = commonground_resource(request.properties.melding)  %}
                                             {% if melding.reference is defined and melding.reference is not empty %}
                                                 {{ melding.reference }}
                                             {% else %}
