@@ -55,7 +55,7 @@
                             meer over het doen van een melding </p>
                         <p>
                             {% if request['@id'] is defined %}
-                                <a href="{{ path('app_default_slug',{'requestType':'https://vtc.huwelijksplanner.online/request_types/146cb7c8-46b9-4911-8ad9-3238bab4313e','requestParent':request['@id']}) }}"
+                                <a href="{{ path('app_default_slug',{'requestType':'https://vtc.huwelijksplanner.online/request_types/146cb7c8-46b9-4911-8ad9-3238bab4313e','requestParent':request['@id'],'requestParentProperty':'melding'}) }}"
                                    class="btn btn-primary btn-icon">
                                     Doe melding
                                 </a>
