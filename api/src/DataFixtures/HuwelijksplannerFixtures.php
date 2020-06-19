@@ -1424,7 +1424,7 @@ Als je naar de <a href="https://www.huwelijksplanner.online">huwelijksplanner</a
         $template->setName('E-mail instemming');
         $template->setTitle('Instemming voor een huwelijk');
         $template->setDescription('');
-        $template->setContent("Beste {{ contact.givenName }},<br><br>Uw instemming is gevraagd bij een instemmingsverzoek.<br><br><a href='{$this->commonGroundService->cleanUrl($this->commonGroundService->getComponent('irc-ui')['location'])}/assents/{{ assent[\"id\"] }}'>Klik hier</a> om op dit verzoek te reageren.<br><br>Met vriendelijke groet,<br><br>Gemeente Utrecht");
+        $template->setContent("Beste {{ contact.givenName }},<br><br>Uw instemming is gevraagd bij een instemmingsverzoek.<br><br><a href='https://irc-ui.huwelijksplanner.online//assents/{{ assent[\"id\"] }}'>Klik hier</a> om op dit verzoek te reageren.<br><br>Met vriendelijke groet,<br><br>Gemeente Utrecht");
         $template->setTemplateEngine('twig');
         $manager->persist($template);
         $template->setId($id);
@@ -1440,7 +1440,7 @@ Als je naar de <a href="https://www.huwelijksplanner.online">huwelijksplanner</a
         $template->setName('E-mail aanvraag');
         $template->setTitle('Aanvraag huwelijksplanner');
         $template->setDescription('');
-        $template->setContent("Beste {{ contact.givenName }},<br><br>U heeft een aanvraag insgestuurd voor een {{ requestType.name }} bij de gemeente Utrecht.<br><br><a href='{$this->commonGroundService->cleanUrl($this->commonGroundService->getComponent('ui')['location'])}/?request={{ request[\"@id\"] }}'>Klik hier</a> om op dit uw aanvraag in te zien<br><br>Met vriendelijke groet,<br><br>Gemeente Utrecht");
+        $template->setContent("Beste {{ contact.givenName }},<br><br>U heeft een aanvraag insgestuurd voor een {{ requestType.name }} bij de gemeente Utrecht.<br><br><a href='https://huwelijksplanner.online/?request={{ request[\"@id\"] }}'>Klik hier</a> om op dit uw aanvraag in te zien<br><br>Met vriendelijke groet,<br><br>Gemeente Utrecht");
         $template->setTemplateEngine('twig');
         $manager->persist($template);
         $template->setId($id);
