@@ -2,106 +2,180 @@
 
 {% extends 'base.html.twig' %}
 
-{% block body %}
-<div class="container">
-    <div class="row content-background background--hemelblauw" style="height: 25%; width: 100%; background-color: green; position: relative;">
-        <div style="position: absolute; bottom: 0; left: 0; background-color: blue";>
-            <h1>Nieuws</h1>
-            <ul>
-                <li><a href="">link</a></li>
-                <li><a href="">link</a></li>
-                <li><a href="">link</a></li>
-                <li><a href="">link</a></li>
-            </ul>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-8">
-            <ul class="list list--card">
-                <li class="card">
-                    <a href="{{ path('app_default_slug',{'slug':'subpage'}) }}" class="card__content">
-                        <div class="card__body">
-                            <span class="card__title">Verhuizen</span>
-                        </div>
-                    </a>
-                </li>
-                <li class="card">
-                    <a href="{{ path('app_default_slug',{'slug':'subpage'}) }}" class="card__content">
-                        <div class="card__body">
-                            <span class="card__title">Trouwen</span>
-                        </div>
-                    </a>
-                </li>
-                <li class="card">
-                    <a href="{{ path('app_default_slug',{'slug':'subpage'}) }}" class="card__content">
-                        <div class="card__body">
-                            <span class="card__title">Begraven</span>
-                        </div>
-                    </a>
-                </li>
-                <li class="card">
-                    <a href="{{ path('app_default_slug',{'slug':'subpage'}) }}" class="card__content">
-                        <div class="card__body">
-                            <span class="card__title">Geboorte aangifte</span>
-                        </div>
-                    </a>
-                </li>
-                <li class="card">
-                    <a href="{{ path('app_default_slug',{'slug':'subpage'}) }}" class="card__content">
-                        <div class="card__body">
-                            <span class="card__title">Melding openbare ruimte</span>
-                        </div>
-                    </a>
-                </li>
-                <li class="card">
-                    <a href="{{ path('app_default_slug',{'slug':'subpage'}) }}" class="card__content">
-                        <div class="card__body">
-                            <span class="card__title">aanvraag parkeer vergunning</span>
-                        </div>
-                    </a>
-                </li>
-            </ul>
-        </div>
-        <div class="col-sm-4">
-            <section style="background-color: lightblue">
-                <h3>contact</h3>
-                <ul>
-                    <li>
-                        <h4>Telefoon</h4>
-                        <span>15 423</span>
-                    </li>
-                </ul>
-            </section>
-        </div>
-    </div>
-    <div class="row" style="height: 25%; width: 100%; background-color: green;">
-        <div class="col-sm-3">
-            <h1>Lorem ipsum dolor sit amet.</h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Aspernatur dicta et in ipsum iusto laboriosam laborum, nesciunt, non odit possimus quia quibusdam,
-                sapiente veritatis voluptatibus.
-            </p>
-        </div>
-        <div class="col-sm-3">
-            <h1>Lorem ipsum dolor.</h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Aut autem culpa natus necessitatibus quisquam temporibus.
-            </p>
-        </div>
-        <div class="col-sm-3">
-            <h1>Lorem ipsum dolor sit amet, consectetur adipisicing.</h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Alias architecto culpa, debitis deleniti dolor eos illum libero neque! Blanditiis,
-                cupiditate doloremque fuga fugiat iste laborum magnam nobis porro soluta vitae.
-            </p>
-        </div>
-        <div class="col-sm-3">
-            <h1>Lorem ipsum dolor sit amet, consectetur adipisicing.</h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Alias architecto culpa, debitis deleniti dolor eos illum libero neque! Blanditiis,
-                cupiditate doloremque fuga fugiat iste laborum magnam nobis porro soluta vitae.
-            </p>
-        </div>
-    </div>
+{% block content %}
 </div>
+    <div class="row content-background background--hemelblauw" style="height: 400px; background: url(https://images.unsplash.com/photo-1547499681-28dece7dba00?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80) !important; background-size: cover !important;">
+        <div class="container" style="height: 400px; position: relative;">
+            <div  style=" position: absolute; bottom: 15px; right: 15px; padding: 15px; margin: 0; background-color: #004699">
+                <h1>Nieuws</h1>
+                <li><a href="" style="text-decoration: none;">Zuid-drecht uitgeroepen tot beste gemeente 2020</a></li>
+                <li><a href="" style="text-decoration: none;">PI event!</a></li>
+                <li><a href="" style="text-decoration: none;">Utrecht lanceerd huwelijksplanner</a></li>
+                <li><a href="" style="text-decoration: none;">link</a></li>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row" style="margin-top: 50px;">
+            <div class="col-sm-8">
+                <div class="row">
+                    <div class="col-sm-4" style="">
+                        <div class="card" style="height: 166px; width: 236px; background-color: #3669A5;">
+                            <a href="/subpage" class="card__content">
+                                <div class="card__body">
+                                    <span class="card__title" style="color: white;">Verhuizen</span>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-sm-4" style="">
+                        <div class="card" style="height: 166px; width: 236px; background-color: #3669A5;">
+                            <a href="/subpage" class="card__content">
+                                <div class="card__body">
+                                    <span class="card__title" style="color: white;">Trouwen</span>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-sm-4" style="">
+                        <div class="card" style="height: 166px; width: 236px; background-color: #3669A5;">
+                            <a href="/subpage" class="card__content">
+                                <div class="card__body">
+                                    <span class="card__title" style="color: white;">Begraven</span>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-sm-4" style="">
+                        <div class="card" style="height: 166px; width: 236px; background-color: #3669A5;">
+                            <a href="/subpage" class="card__content">
+                                <div class="card__body">
+                                    <span class="card__title" style="color: white;">Geboorte aangifte</span>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-sm-4" style="">
+                        <div class="card" style="height: 166px; width: 236px; background-color: #3669A5;">
+                            <a href="/subpage" class="card__content">
+                                <div class="card__body">
+                                    <span class="card__title" style="color: white;">Melding openbare ruimte</span>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-sm-4" style="">
+                        <div class="card" style="height: 166px; width: 236px; background-color: #3669A5;">
+                            <a href="/subpage" class="card__content">
+                                <div class="card__body">
+                                    <span class="card__title" style="color: white;">Aanvraag parkeer vergunning</span>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4" style="height: 343px;">
+                <section style="background-color: lightblue; height: inherit;  padding: 10px">
+                    <h1 style="margin-bottom: 1px;">contact</h1>
+                    <h4 style="margin-top: 0;">Openingstijden</h4>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <span>Maandag:</span>
+                        </div>
+                        <div class="col-sm-6">
+                            <span>09:00 - 17:00</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <span>Dinsdag:</span>
+                        </div>
+                        <div class="col-sm-6">
+                            <span>09:00 - 17:00</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <span>Woensdag:</span>
+                        </div>
+                        <div class="col-sm-6">
+                            <span>09:00 - 17:00</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <span>Donderdag:</span>
+                        </div>
+                        <div class="col-sm-6">
+                            <span>09:00 - 21:00</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <span>Vrijdag:</span>
+                        </div>
+                        <div class="col-sm-6">
+                            <span>09:00 - 17:00</span>
+                        </div>
+                    </div>
+                    </p>
+                    <p>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <h4>Telefoon</h4>
+                            <span>145002</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <a href="#" style="text-decoration: none;">Meer informatie</a><br>
+                        </div>
+                        <div class="col-sm-6">
+                            <a href="#" style="text-decoration: none;">Online loket</a><br>
+                        </div>
+                    </div>
+                    <button class="btn-primary" style="width: 100%; background-color: #3669A5; color: white;">Maak een afspraak</button>
+                    </p>
+
+
+                </section>
+            </div>
+        </div>
+    </div>
+        <div  style=" margin-top: 50px; padding: 25px; background: url(https://images.unsplash.com/photo-1563122089-71f56e4e8d06?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80) !important; background-size: cover !important;">
+            <div class="container" style="display: flex; justify-content: space-between; padding-top: 5px; padding-bottom: 5px;">
+                <div style="margin: 10px auto; width: 240px; background-color: white; padding: 15px; margin-left: 0px;">
+                    <h2>Lorem ipsum dolor sit amet.</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                        Aspernatur dicta et in ipsum iusto laboriosam laborum, nesciunt, non odit possimus quia quibusdam,
+                        sapiente veritatis voluptatibus.
+                    </p>
+                </div>
+                <div style="margin: 10px auto; width: 240px; background-color: white; padding: 15px">
+                    <h2>Lorem ipsum dolor.</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                        Aut autem culpa natus necessitatibus quisquam temporibus.
+                    </p>
+                </div>
+                <div style="margin: 10px auto; width: 240px; background-color: white; padding: 15px">
+                    <h2>Lorem ipsum dolor sit amet, consectetur adipisicing.</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                        Alias architecto culpa, debitis deleniti dolor eos illum libero neque! Blanditiis,
+                        cupiditate doloremque fuga fugiat iste laborum magnam nobis porro soluta vitae.
+                    </p>
+                </div>
+                <div style="margin: 10px auto; width: 240px; background-color: white; padding: 15px; margin-right: 0px">
+                    <h2>Lorem ipsum dolor sit amet, consectetur adipisicing.</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                        Alias architecto culpa, debitis deleniti dolor eos illum libero neque! Blanditiis,
+                        cupiditate doloremque fuga fugiat iste laborum magnam nobis porro soluta vitae.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+
+
 {% endblock %}
