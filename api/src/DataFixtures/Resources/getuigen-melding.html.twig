@@ -102,10 +102,10 @@
                         aangeven of hij voor u wilt/gaat getuigen.</p>
 
                     <br/>
-                    <a href="{{ path('app_default_slug',{'slug':'extra'}) }}"
+                    <a href="{{ path('app_default_slug',{'slug':'indienen-melding'}) }}"
                        class="btn btn-primary btn-block btn-icon">
                         <i class="far fa-calendar-times"></i>
-                        Ga door naar extras
+                        Ga door naar indienen
                     </a>
                 </form>
             </div>
@@ -114,9 +114,9 @@
     {% if request.properties.getuigen is defined and request.properties.getuigen|length >= 4 %}
         <div class="row">
             <div class="col-sm-12">
-                <a href="{{ path('app_default_slug',{'slug':'extra'}) }}" class="btn btn-primary btn-block btn-icon">
+                <a href="{{ path('app_default_slug',{'slug':'indienen-melding'}) }}" class="btn btn-primary btn-block btn-icon">
                     <i class="far fa-calendar-times"></i>
-                    Ga door naar extras
+                    Ga door naar indienen
                 </a>
             </div>
         </div><!-- /.row -->
