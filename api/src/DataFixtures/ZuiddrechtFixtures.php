@@ -102,6 +102,7 @@ class ZuiddrechtFixtures extends Fixture
         $application->setDescription('De website van de gemeente zuid-drecht');
         $application->setDomain('zuid-drecht.nl');
         $application->setOrganization($organization);
+        $application->setStyle($style);
         $manager->persist($application);
         $application->setId($id);
         $manager->persist($application);
@@ -110,6 +111,8 @@ class ZuiddrechtFixtures extends Fixture
 
         // Configuratie
         $configuration = new Configuration();
+        $configuration->setName('Website');
+        $configuration->setDescription('De website van de gemeente zuid-drecht');
         $configuration->setOrganization($organization);
         $configuration->setApplication($application);
         $configuration->setConfiguration(
@@ -139,7 +142,7 @@ class ZuiddrechtFixtures extends Fixture
         $menuItem->setType('slug');
         $menuItem->setHref('/process');
         $menuItem->setMenu($menu);
-        $manager->persist($menu);
+        $manager->persist($menuItem);
 
         $menuItem = new MenuItem();
         $menuItem->setName('Verzoeken');
@@ -148,7 +151,7 @@ class ZuiddrechtFixtures extends Fixture
         $menuItem->setType('slug');
         $menuItem->setHref('/requests');
         $menuItem->setMenu($menu);
-        $manager->persist($menu);
+        $manager->persist($menuItem);
 
         $menuItem = new MenuItem();
         $menuItem->setName('Nieuws');
@@ -157,7 +160,7 @@ class ZuiddrechtFixtures extends Fixture
         $menuItem->setType('slug');
         $menuItem->setHref('/nieuws');
         $menuItem->setMenu($menu);
-        $manager->persist($menu);
+        $manager->persist($menuItem);
 
         $menuItem = new MenuItem();
         $menuItem->setName('Ondernemers');
@@ -166,7 +169,7 @@ class ZuiddrechtFixtures extends Fixture
         $menuItem->setType('slug');
         $menuItem->setHref('/ondernemers');
         $menuItem->setMenu($menu);
-        $manager->persist($menu);
+        $manager->persist($menuItem);
 
         // Menu
         $id = Uuid::fromString('0dca3fd2-0124-46fb-88c1-4f0860b2888c');
@@ -187,7 +190,7 @@ class ZuiddrechtFixtures extends Fixture
         $menuItem->setType('slug');
         $menuItem->setHref('/login');
         $menuItem->setMenu($menu);
-        $manager->persist($menu);
+        $manager->persist($menuItem);
 
         $menuItem = new MenuItem();
         $menuItem->setName('verhuizen');
@@ -196,7 +199,7 @@ class ZuiddrechtFixtures extends Fixture
         $menuItem->setType('slug');
         $menuItem->setHref('/verhuizen');
         $menuItem->setMenu($menu);
-        $manager->persist($menu);
+        $manager->persist($menuItem);
 
         $menuItem = new MenuItem();
         $menuItem->setName('trouwen');
@@ -205,7 +208,7 @@ class ZuiddrechtFixtures extends Fixture
         $menuItem->setType('slug');
         $menuItem->setHref('/trouwen');
         $menuItem->setMenu($menu);
-        $manager->persist($menu);
+        $manager->persist($menuItem);
 
         $menuItem = new MenuItem();
         $menuItem->setName('begraven');
@@ -214,7 +217,7 @@ class ZuiddrechtFixtures extends Fixture
         $menuItem->setType('slug');
         $menuItem->setHref('/begraven');
         $menuItem->setMenu($menu);
-        $manager->persist($menu);
+        $manager->persist($menuItem);
 
         $menuItem = new MenuItem();
         $menuItem->setName('geboorte aangifte');
@@ -223,7 +226,7 @@ class ZuiddrechtFixtures extends Fixture
         $menuItem->setType('slug');
         $menuItem->setHref('/geboorte-aangifte');
         $menuItem->setMenu($menu);
-        $manager->persist($menu);
+        $manager->persist($menuItem);
 
         $menuItem = new MenuItem();
         $menuItem->setName('melding openbare ruimte');
@@ -232,7 +235,7 @@ class ZuiddrechtFixtures extends Fixture
         $menuItem->setType('slug');
         $menuItem->setHref('/melding-openbare-ruimte');
         $menuItem->setMenu($menu);
-        $manager->persist($menu);
+        $manager->persist($menuItem);
 
         $menuItem = new MenuItem();
         $menuItem->setName('aanvraag parkeer vergunning');
@@ -241,7 +244,7 @@ class ZuiddrechtFixtures extends Fixture
         $menuItem->setType('slug');
         $menuItem->setHref('/aanvraag-parkeer-vergunning');
         $menuItem->setMenu($menu);
-        $manager->persist($menu);
+        $manager->persist($menuItem);
 
         // Template groups
         $groupPages = new TemplateGroup();
