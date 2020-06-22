@@ -66,7 +66,7 @@ class ZuiddrechtFixtures extends Fixture
         $style = new Style();
         $style->setName('Zuid-Drecht');
         $style->setDescription('Huistlijl samenwerkingsverband West-Friesland');
-        $style->setCss(':root {--primary: #233A79;--primary2: white;--secondary: #FFC926;--secondary2: #FFC926;}
+        $style->setCss(':root {--primary: #CC0000;--primary2: white;--secondary: #3669A5;--secondary2: #FFC926;}
         .main-title {color: var(--primary2) !important;}.logo-header {background: var(--primary);}.navbar-header
         {background: var(--primary);}.bg-primary-gradient {background: linear-gradient(-45deg, var(--secondary),
          var(--secondary2)) !important;}');
@@ -134,7 +134,7 @@ class ZuiddrechtFixtures extends Fixture
         $menuItem = new MenuItem();
         $menuItem->setName('Processen');
         $menuItem->setDescription('Doe een aanvraag');
-        $menuItem->setOrder(1);
+        $menuItem->setOrder(4);
         $menuItem->setType('slug');
         $menuItem->setHref('/process');
         $menuItem->setMenu($menu);
@@ -143,9 +143,27 @@ class ZuiddrechtFixtures extends Fixture
         $menuItem = new MenuItem();
         $menuItem->setName('Verzoeken');
         $menuItem->setDescription('Het inzien en voortzetten van mijn verzoeken');
-        $menuItem->setOrder(1);
+        $menuItem->setOrder(3);
         $menuItem->setType('slug');
         $menuItem->setHref('/requests');
+        $menuItem->setMenu($menu);
+        $manager->persist($menu);
+
+        $menuItem = new MenuItem();
+        $menuItem->setName('Nieuws');
+        $menuItem->setDescription('Nieuws overzicht');
+        $menuItem->setOrder(2);
+        $menuItem->setType('slug');
+        $menuItem->setHref('/nieuws');
+        $menuItem->setMenu($menu);
+        $manager->persist($menu);
+
+        $menuItem = new MenuItem();
+        $menuItem->setName('Ondernemers');
+        $menuItem->setDescription('Lijst van ondernemers');
+        $menuItem->setOrder(1);
+        $menuItem->setType('slug');
+        $menuItem->setHref('/ondernemers');
         $menuItem->setMenu($menu);
         $manager->persist($menu);
 
@@ -171,6 +189,7 @@ class ZuiddrechtFixtures extends Fixture
         $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
         $template->addTemplateGroup($groupPages);
         $manager->persist($template);
+        $manager->flush();
 
         $slug = new Slug();
         $slug->setTemplate($template);
@@ -178,6 +197,30 @@ class ZuiddrechtFixtures extends Fixture
         $slug->setName('home');
         $slug->setSlug('home');
         $manager->persist($slug);
+
+        $id = Uuid::fromString('fc5cef2d-c64d-4cfc-ac8c-da0ea0c66063');
+        $template = new Template();
+        $template->setName('Home');
+        $template->setDescription('De (web) applicatie waarop begravenisen kunnen worden doorgegeven');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Zuiddrecht/website/subpage.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('subpage');
+        $slug->setSlug('subpage');
+        $manager->persist($slug);
+
+
 
         // Mijn Zuid Decht
         $id = Uuid::fromString('64f60afd-7506-48e0-928b-6bbede045812');
