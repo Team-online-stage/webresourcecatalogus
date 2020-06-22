@@ -22,7 +22,7 @@
             <div class="col-text20 margin-bottom20">
                 <div class="post-heading-left">
                     <h2>Wat is er al gedaan en wat moet er nog gebeuren?</h2>
-                    <p>We kunnen ons goed voorstellen dat er nogal wat op jullie afkomt bij het plannen , daarom hebben
+                    <p>We kunnen ons goed voorstellen dat er nogal wat op jullie afkomt bij het plannen, daarom hebben
                         we alles op een rij gezet voor jullie. Een handig overzicht van wat er moet gebeuren, maar ook
                         wat er al is gedaan.</p>
 
@@ -74,7 +74,7 @@
                                 <li><b>Ambtenaar</b>
                                     <ul class="list-icon">
                                         <li>
-                                            <!--  Trouwdatum -->
+                                            <!--  Ambtenaar -->
                                             <i class="fa fas fa-check"></i>{{ commonground_resource(request.properties.ambtenaar).name }}
                                         </li>
                                     </ul>
@@ -84,8 +84,25 @@
                                 <li><b>Locatie</b>
                                     <ul class="list-icon">
                                         <li>
-                                            <!--  Trouwdatum -->
+                                            <!--  Locatie -->
                                             <i class="fa fas fa-check"></i>{{ commonground_resource(request.properties.locatie).name }}
+                                        </li>
+                                    </ul>
+                                </li>
+                            {% endif %}
+
+                            {% if request.properties.melding is defined and request.properties.melding is not empty %}
+                                <li><b>Melding</b>
+                                    <ul class="list-icon">
+                                        <li>
+                                            <!--  Trouwdatum -->
+                                            <i class="fa fas fa-check"></i>
+                                            {% set  melding = commonground_resource(request.properties.melding)  %}
+                                            {% if melding.reference is defined and melding.reference is not empty %}
+                                                {{ melding.reference }}
+                                            {% else %}
+                                                {{ melding.name }}
+                                            {% endif %}
                                         </li>
                                     </ul>
                                 </li>
@@ -174,6 +191,22 @@
                                     </ul>
                                 </li>
                             {% endif %}
+                            {% if request is defined and request and request.properties.invoice is defined and request.properties.invoice is not empty %}
+                                {% set invoice = commonground_resource(request.properties.invoice) %}
+                                <li>
+                                    <b>Betalen</b>
+                                    <ul class="list-icon">
+                                        <li>
+                                            <!--  Trouwdatum -->
+                                            {% if invoice.paid == true %}
+                                            <i class="fa fas fa-check"></i>{{ "U heeft betaald" }}
+                                            {% elseif invoice.paid == false %}
+                                            <i class="fa fa-exclamation-triangle"></i>{{ "U moet nog betalen" }}
+                                            {% endif %}
+                                        </li>
+                                    </ul>
+                                </li>
+                            {% endif %}
 
                             {#
                             <li>
@@ -245,6 +278,20 @@
                                             Ceremonie, u
                                             kunt deze <a
                                                 href="{{ path('app_default_slug',{'slug':'ceremonie'}) }}">hier</a>
+                                            toevoegen.
+                                        </li>
+                                    </ul>
+                                </li>
+                            {% endif %}
+
+                            {% if request.properties.melding is not defined or request.properties.melding is empty %}
+                                <li><b>Melding</b>
+                                    <ul class="list-icon">
+                                        <li>
+                                            <!--  Trouwdatum -->
+                                            <i style="color: red" class="fas fa-exclamation-triangle"></i> Geen melding, u
+                                            kunt deze <a
+                                                href="{{ path('app_default_slug',{'slug':'melding'}) }}">hier</a>
                                             toevoegen.
                                         </li>
                                     </ul>
@@ -328,6 +375,20 @@
                                             getuigen, u kunt deze <a
                                                 href="{{ path('app_default_slug',{'slug':'getuige'}) }}">hier</a>
                                             toevoegen.
+                                        </li>
+                                    </ul>
+                                </li>
+                            {% endif %}
+                            {% if request is defined and request.properties.invoice is defined and request.properties.invoice is not empty %}
+                                {% set invoice = commonground_resource(request.properties.invoice) %}
+                            {% endif %}
+                            {% if invoice is defined and invoice.paid == false %}
+                                <li><b>betalen</b>
+                                    <ul class="list-icon">
+                                        <li>
+                                            <!--  Trouwdatum -->
+                                            <i style="color: red" class="fas fa-exclamation-triangle"></i> U heeft nog niet betaald, u kunt hier <a
+                                                href="{{ path('app_default_slug',{'slug':'betalen'}) }}">betalen</a>
                                         </li>
                                     </ul>
                                 </li>

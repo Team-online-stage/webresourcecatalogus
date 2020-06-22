@@ -58,7 +58,7 @@
                 {% endif %}
             </div>
             {% for product in products["hydra:member"] %}
-                {% if (product.audience == "public") %}
+                {% if (product.offers[0].audience == "public") %}
                     <div class="col-sm-6"> <!-- 4 -->
                         <a href="{{ path('app_default_slug',{'slug':'ambtenaar-kiezen','resource':product['@id']}) }}">
                             <div class="affa-testimonial">
