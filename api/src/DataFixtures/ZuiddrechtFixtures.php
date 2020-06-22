@@ -38,7 +38,7 @@ class ZuiddrechtFixtures extends Fixture
             $this->params->get('app_domain') != 'zuiddrecht.nl' && strpos($this->params->get('app_domain'), 'zuiddrecht.nl') == false &&
             $this->params->get('app_domain') != 'zuid-drecht.nl' && strpos($this->params->get('app_domain'), 'zuid-drecht.nl') == false
         ) {
-            //return false;
+            return false;
         }
 
         // Zuid-Drecht
@@ -80,6 +80,20 @@ class ZuiddrechtFixtures extends Fixture
         $manager->persist($style);
 
         $manager->flush();
+
+
+        // Website
+        $id = Uuid::fromString('1163e443-5f9c-4aa6-802c-c619a14986c9');
+        $application = new Application();
+        $application->setName('Dashboard');
+        $application->setDescription('het Dashboard van de gemeente zuid-drecht');
+        $application->setDomain('db.zuid-drecht.nl');
+        $application->setOrganization($organization);
+        $manager->persist($application);
+        $application->setId($id);
+        $manager->persist($application);
+        $manager->flush();
+        $application = $manager->getRepository('App:Application')->findOneBy(['id'=> $id]);
 
         // Website
         $id = Uuid::fromString('1ef30b69-6b28-4fbd-a0cd-83d6ff3c505e');
