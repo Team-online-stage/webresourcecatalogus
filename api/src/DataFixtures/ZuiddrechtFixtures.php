@@ -242,7 +242,8 @@ class ZuiddrechtFixtures extends Fixture
         $configuration->setConfiguration(
             [
                 'mainMenu'=> $this->commonGroundService->cleanUrl("{$this->commonGroundService->getComponent('wrc')['location']}/menus/350156d4-4eca-4bec-bc48-c906f20d2bda"),
-                'home'    => $this->commonGroundService->cleanUrl("{$this->commonGroundService->getComponent('wrc')['location']}/templates/f62792c9-d229-43b9-8f6a-3b368eee6739"), ]
+                'home'    => $this->commonGroundService->cleanUrl("{$this->commonGroundService->getComponent('wrc')['location']}/templates/f62792c9-d229-43b9-8f6a-3b368eee6739"),
+                'footer1'=> $this->commonGroundService->cleanUrl("{$this->commonGroundService->getComponent('wrc')['location']}/menus/0dca3fd2-0124-46fb-88c1-4f0860b2888c"),]
         );
         $manager->persist($configuration);
 
@@ -275,6 +276,82 @@ class ZuiddrechtFixtures extends Fixture
         $menuItem->setHref('/requests');
         $menuItem->setMenu($menu);
         $manager->persist($menu);
+
+        // Menu
+        $id = Uuid::fromString('0dca3fd2-0124-46fb-88c1-4f0860b2888c');
+        $menu = new Menu();
+        $menu->setName('Voor inwoners');
+        $menu->setDescription('Footer 1');
+        $menu->setApplication($application);
+        $manager->persist($menu);
+        $menu->setId($id);
+        $manager->persist($menu);
+        $manager->flush();
+        $menu = $manager->getRepository('App:Menu')->findOneBy(['id'=> $id]);
+
+        $menuItem = new MenuItem();
+        $menuItem->setName('Mijn zuiddrecht');
+        $menuItem->setDescription('Doe een aanvraag');
+        $menuItem->setOrder(1);
+        $menuItem->setType('slug');
+        $menuItem->setHref('/login');
+        $menuItem->setMenu($menu);
+        $manager->persist($menu);
+
+        $menuItem = new MenuItem();
+        $menuItem->setName('verhuizen');
+        $menuItem->setDescription('Het inzien en voortzetten van mijn verzoeken');
+        $menuItem->setOrder(2);
+        $menuItem->setType('slug');
+        $menuItem->setHref('/verhuizen');
+        $menuItem->setMenu($menu);
+        $manager->persist($menu);
+
+        $menuItem = new MenuItem();
+        $menuItem->setName('trouwen');
+        $menuItem->setDescription('Het inzien en voortzetten van mijn verzoeken');
+        $menuItem->setOrder(3);
+        $menuItem->setType('slug');
+        $menuItem->setHref('/trouwen');
+        $menuItem->setMenu($menu);
+        $manager->persist($menu);
+
+        $menuItem = new MenuItem();
+        $menuItem->setName('begraven');
+        $menuItem->setDescription('Het inzien en voortzetten van mijn verzoeken');
+        $menuItem->setOrder(4);
+        $menuItem->setType('slug');
+        $menuItem->setHref('/begraven');
+        $menuItem->setMenu($menu);
+        $manager->persist($menu);
+
+        $menuItem = new MenuItem();
+        $menuItem->setName('geboorte aangifte');
+        $menuItem->setDescription('Het inzien en voortzetten van mijn verzoeken');
+        $menuItem->setOrder(5);
+        $menuItem->setType('slug');
+        $menuItem->setHref('/geboorte-aangifte');
+        $menuItem->setMenu($menu);
+        $manager->persist($menu);
+
+        $menuItem = new MenuItem();
+        $menuItem->setName('melding openbare ruimte');
+        $menuItem->setDescription('Het inzien en voortzetten van mijn verzoeken');
+        $menuItem->setOrder(6);
+        $menuItem->setType('slug');
+        $menuItem->setHref('/melding-openbare-ruimte');
+        $menuItem->setMenu($menu);
+        $manager->persist($menu);
+
+        $menuItem = new MenuItem();
+        $menuItem->setName('aanvraag parkeer vergunning');
+        $menuItem->setDescription('Het inzien en voortzetten van mijn verzoeken');
+        $menuItem->setOrder(7);
+        $menuItem->setType('slug');
+        $menuItem->setHref('/aanvraag-parkeer-vergunning');
+        $menuItem->setMenu($menu);
+        $manager->persist($menu);
+        
 
         // Template groups
         $groupPages = new TemplateGroup();
