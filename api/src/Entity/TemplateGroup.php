@@ -102,7 +102,7 @@ class TemplateGroup
     private $description;
 
     /**
-     * @Groups({"write"})
+     * @Groups({"read","write"})
      * @MaxDepth(1)
      * @ORM\ManyToMany(targetEntity="App\Entity\Template", mappedBy="templateGroups")
      */
