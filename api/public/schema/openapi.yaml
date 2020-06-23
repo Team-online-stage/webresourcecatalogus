@@ -10858,7 +10858,7 @@ paths:
           description: 'The number of items per page'
           schema:
             type: integer
-            default: 30
+            default: 5
             minimum: 0
         -
           name: Authorization
@@ -14447,12 +14447,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-06-19 07:50:56'
+        example: '2020-06-23 13:36:40'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-06-19 07:50:56'
+        example: '2020-06-23 13:36:40'
     required: []
   AuditTrail-write:
     properties:
@@ -14500,12 +14500,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-06-19 07:50:56'
+        example: '2020-06-23 13:36:40'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-06-19 07:50:56'
+        example: '2020-06-23 13:36:40'
     required: []
   ChangeLog-write:
     properties:
