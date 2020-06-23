@@ -166,6 +166,7 @@ class Template
     private $templateEngine;
 
     /**
+     * @Groups({"read","write"})
      * @ORM\OneToMany(targetEntity="App\Entity\Slug", mappedBy="template", cascade={"persist"})
      * @MaxDepth(1)
      */
