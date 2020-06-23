@@ -89,6 +89,7 @@ class ZuiddrechtFixtures extends Fixture
         $application->setDescription('het Dashboard van de gemeente zuid-drecht');
         $application->setDomain('db.zuid-drecht.nl');
         $application->setOrganization($organization);
+        $application->setStyle($style);
         $manager->persist($application);
         $application->setId($id);
         $manager->persist($application);
