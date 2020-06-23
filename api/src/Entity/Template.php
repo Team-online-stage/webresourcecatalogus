@@ -166,13 +166,13 @@ class Template
     private $templateEngine;
 
     /**
+     * @Groups({"read","write"})
      * @ORM\OneToMany(targetEntity="App\Entity\Slug", mappedBy="template", cascade={"persist"})
      * @MaxDepth(1)
      */
     private $slugs;
 
     /**
-     * @Groups({"read","write"})
      * @MaxDepth(1)
      * @ORM\ManyToOne(targetEntity="App\Entity\Application", inversedBy="templates")
      * @ORM\JoinColumn(nullable=false, nullable=true)
