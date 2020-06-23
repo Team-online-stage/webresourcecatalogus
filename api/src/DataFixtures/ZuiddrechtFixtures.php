@@ -291,9 +291,9 @@ class ZuiddrechtFixtures extends Fixture
 
         $id = Uuid::fromString('42594401-3db2-42c5-b06a-0b6d5eaeb8c2');
         $template = new Template();
-        $template->setName('nieuws');
-        $template->setDescription('nieuws');
-        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Zuiddrecht/website/nieuws/nieuws.html.twig', 'r'));
+        $template->setName('nieuwsoverzicht');
+        $template->setDescription('nieuwsoverzicht');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Zuiddrecht/website/nieuws/nieuwsoverzicht.html.twig', 'r'));
         $template->setTemplateEngine('twig');
         $manager->persist($template);
         $template->setId($id);
@@ -307,8 +307,8 @@ class ZuiddrechtFixtures extends Fixture
         $slug = new Slug();
         $slug->setTemplate($template);
         $slug->setApplication($application);
-        $slug->setName('nieuws');
-        $slug->setSlug('nieuws');
+        $slug->setName('nieuwsoverzicht');
+        $slug->setSlug('nieuwsoverzicht');
         $manager->persist($slug);
 
         // Template groups
