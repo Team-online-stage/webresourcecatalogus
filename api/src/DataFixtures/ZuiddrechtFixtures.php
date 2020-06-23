@@ -317,9 +317,12 @@ class ZuiddrechtFixtures extends Fixture
         $groupNews->setOrganization($organization);
         $groupNews->setApplication($application);
         $groupNews->setName('Nieuws');
-        $groupNews->setId($id);
         $groupNews->setDescription('Webpages about news articles');
         $manager->persist($groupNews);
+        $groupNews->setId($id);
+        $manager->persist($groupNews);
+        $manager->flush();
+        $groupNews = $manager->getRepository('App:TemplateGroup')->findOneBy(['id'=> $id]);
 
         $id = Uuid::fromString('0ace23c9-3c95-4675-994c-596b9ef0144b');
         $template = new Template();
