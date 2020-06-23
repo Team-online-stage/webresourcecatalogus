@@ -173,7 +173,6 @@ class Template
     private $slugs;
 
     /**
-     * @Groups({"read","write"})
      * @MaxDepth(1)
      * @ORM\ManyToOne(targetEntity="App\Entity\Application", inversedBy="templates")
      * @ORM\JoinColumn(nullable=false, nullable=true)
