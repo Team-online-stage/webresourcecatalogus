@@ -38,7 +38,7 @@ class ZuiddrechtFixtures extends Fixture
             $this->params->get('app_domain') != 'zuiddrecht.nl' && strpos($this->params->get('app_domain'), 'zuiddrecht.nl') == false &&
             $this->params->get('app_domain') != 'zuid-drecht.nl' && strpos($this->params->get('app_domain'), 'zuid-drecht.nl') == false
         ) {
-            return false;
+            //return false;
         }
 
         // Zuid-Drecht
@@ -315,6 +315,73 @@ class ZuiddrechtFixtures extends Fixture
         $slug->setApplication($application);
         $slug->setName('nieuwsoverzicht');
         $slug->setSlug('nieuwsoverzicht');
+        $manager->persist($slug);
+
+        $id = Uuid::fromString('bc227e94-e542-4623-a88b-ca9f74c52bf8');
+        $template = new Template();
+        $template->setName('cookies');
+        $template->setDescription('cookies');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Zuiddrecht/website/cookies.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('cookies');
+        $slug->setSlug('cookies');
+        $manager->persist($slug);
+
+        $id = Uuid::fromString('70dd6462-85ef-45f4-b9dc-57eb9ac56646');
+        $template = new Template();
+        $template->setName('proclaimer');
+        $template->setDescription('proclaimer');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Zuiddrecht/website/proclaimer.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('proclaimer');
+        $slug->setSlug('proclaimer');
+        $manager->persist($slug);
+
+
+        $id = Uuid::fromString('70dd6462-85ef-45f4-b9dc-57eb9ac56646');
+        $template = new Template();
+        $template->setName('privacy');
+        $template->setDescription('privacy');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Zuiddrecht/website/privacy.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('privacy');
+        $slug->setSlug('privacy');
         $manager->persist($slug);
 
         // Template groups
