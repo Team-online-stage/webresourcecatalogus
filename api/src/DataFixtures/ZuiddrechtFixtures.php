@@ -141,7 +141,7 @@ class ZuiddrechtFixtures extends Fixture
         $menu = $manager->getRepository('App:Menu')->findOneBy(['id'=> $id]);
 
         $menuItem = new MenuItem();
-        $menuItem->setName('Processen');
+        $menuItem->setName('Zelf regelen');
         $menuItem->setDescription('Doe een aanvraag');
         $menuItem->setOrder(4);
         $menuItem->setType('slug');
@@ -150,11 +150,11 @@ class ZuiddrechtFixtures extends Fixture
         $manager->persist($menuItem);
 
         $menuItem = new MenuItem();
-        $menuItem->setName('Verzoeken');
+        $menuItem->setName('Home');
         $menuItem->setDescription('Het inzien en voortzetten van mijn verzoeken');
-        $menuItem->setOrder(3);
+        $menuItem->setOrder(1);
         $menuItem->setType('slug');
-        $menuItem->setHref('/requests');
+        $menuItem->setHref('/Home');
         $menuItem->setMenu($menu);
         $manager->persist($menuItem);
 
@@ -170,7 +170,7 @@ class ZuiddrechtFixtures extends Fixture
         $menuItem = new MenuItem();
         $menuItem->setName('Ondernemers');
         $menuItem->setDescription('Lijst van ondernemers');
-        $menuItem->setOrder(1);
+        $menuItem->setOrder(3);
         $menuItem->setType('slug');
         $menuItem->setHref('/ondernemers');
         $menuItem->setMenu($menu);
