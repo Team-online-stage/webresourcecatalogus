@@ -6,9 +6,9 @@
     <div class="row">
         {% if application.defaultconfiguration.configuration.nieuws is defined %}
             {% set nieuws = commonground_resource(application.defaultconfiguration.configration.nieuws) %}
-            {% set templates = commonground_resourcelist(['component'=>'wrc', 'type'=>'templates'],['templateGroups.id' => nieuws.id, 'order[dateCreated]' => 'desc']) %}
+            {% set templates = commonground_resource_list({'component':'wrc', 'type':'templates'})['hydra:member'] %}
             {% for template in templates %}
-                {% set slug = commonground_resource(['component'=>'wrc', 'type'=>'slugs'],['template.id' => template.id])%}
+                {% set slug = commonground_resource({'component':'wrc', 'type':'slugs'},{'template.id' : template.id})['hydra:member']%}
                 <div class="col-sm-3">
                     <div class="card">
                         <a href="{{ slug.slug }}" class="card__content">

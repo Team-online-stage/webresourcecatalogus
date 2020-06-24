@@ -63,6 +63,12 @@ class ZuiddrechtFixtures extends Fixture
         $logo->setDescription('Zuid-Drecht VNG');
         $logo->setOrganization($organization);
 
+        $header = new Image();
+        $header -> setName('header');
+        $header->setBase64(file_get_contents(dirname(__FILE__).'/Resources/Zuiddrecht/afbeelding/zuiddrecht_header.jpg', 'r'));
+        $header->setDescription('Zuid-Drecht header');
+        $header->setOrganization($organization);
+
         $style = new Style();
         $style->setName('Zuid-Drecht');
         $style->setDescription('Huistlijl samenwerkingsverband West-Friesland');
@@ -163,7 +169,7 @@ class ZuiddrechtFixtures extends Fixture
         $menuItem->setDescription('Nieuws overzicht');
         $menuItem->setOrder(2);
         $menuItem->setType('slug');
-        $menuItem->setHref('/nieuws');
+        $menuItem->setHref('/nieuwsoverzicht');
         $menuItem->setMenu($menu);
         $manager->persist($menuItem);
 
