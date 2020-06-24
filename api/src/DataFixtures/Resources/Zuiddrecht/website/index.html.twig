@@ -4,15 +4,20 @@
 
 {% block content %}
 </div>
-    <div class="row content-background background--hemelblauw" style="height: 400px; background: url(https://images.unsplash.com/photo-1547499681-28dece7dba00?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80) !important; background-size: cover !important;">
+    <div class="row content-background background--hemelblauw" style="height: 400px; margin-top: 0px; background: url(https://images.unsplash.com/photo-1547499681-28dece7dba00?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80) !important; background-size: cover !important;">
         <div class="container" style="height: 400px; position: relative;">
             <div  style=" position: absolute; bottom: 15px; right: 15px; padding: 15px; margin: 0; background-color: #004699">
                 <h1>Nieuws</h1>
                 {% if application.defaultconfiguration.configuration.nieuws is defined %}
-                {% set nieuws = commonground_resource(application.defaultConfiguration.configuration.nieuws) %}
-                {% for template in nieuws.templates %}
-                <li><a href="" style="text-decoration: none;">template.description</a></li>
-                {% endfor %}
+                    {% set nieuws = commonground_resource(application.defaultconfiguration.configration.nieuws) %}
+                    {% set templates = commonground_resource_list({'component':'wrc', 'type':'templates'})['hydra:member'] %}
+                    {{ dump(templates) }}
+                    {% for template in templates %}
+                        {% set slug = commonground_resource({'component':'wrc', 'type':'slugs'},{'template.id' : template.id})['hydra:member']%}
+                        <li><a href="{{ slug.slug }}" style="text-decoration: none;">{{ template.description }}</a></li>
+                    {% endfor %}
+                    {% else %}
+                    <div>ging iets mis</div>
                 {% endif %}
             </div>
         </div>
@@ -23,8 +28,9 @@
                 <div class="row">
                     <div class="col-sm-4" style="">
                         <div class="card" style="height: 166px; width: 236px; background-color: #3669A5;">
-                            <a href="/subpage" class="card__content">
+                            <a href="/process/c8de2851-332d-4284-b86e-ba0615694427" class="card__content">
                                 <div class="card__body">
+                                    <i style="color: white;" class="fas fa-people-carry"></i>
                                     <span class="card__title" style="color: white;">Verhuizen</span>
                                 </div>
                             </a>
@@ -34,6 +40,7 @@
                         <div class="card" style="height: 166px; width: 236px; background-color: #3669A5;">
                             <a href="/subpage" class="card__content">
                                 <div class="card__body">
+                                    <i style="color: white;" class="fas fa-ring"></i>
                                     <span class="card__title" style="color: white;">Trouwen</span>
                                 </div>
                             </a>
@@ -43,6 +50,7 @@
                         <div class="card" style="height: 166px; width: 236px; background-color: #3669A5;">
                             <a href="/subpage" class="card__content">
                                 <div class="card__body">
+                                    <i style="color: white;" class="fas fa-monument"></i>
                                     <span class="card__title" style="color: white;">Begraven</span>
                                 </div>
                             </a>
@@ -52,6 +60,7 @@
                         <div class="card" style="height: 166px; width: 236px; background-color: #3669A5;">
                             <a href="/subpage" class="card__content">
                                 <div class="card__body">
+                                    <i style="color: white" class="fas fa-baby"></i>
                                     <span class="card__title" style="color: white;">Geboorte aangifte</span>
                                 </div>
                             </a>
@@ -61,6 +70,7 @@
                         <div class="card" style="height: 166px; width: 236px; background-color: #3669A5;">
                             <a href="/subpage" class="card__content">
                                 <div class="card__body">
+                                    <i style="color: white;" class="fas fa-exclamation"></i>
                                     <span class="card__title" style="color: white;">Melding openbare ruimte</span>
                                 </div>
                             </a>
@@ -70,6 +80,7 @@
                         <div class="card" style="height: 166px; width: 236px; background-color: #3669A5;">
                             <a href="/subpage" class="card__content">
                                 <div class="card__body">
+                                    <i style="color: white;" class="fas fa-parking"></i>
                                     <span class="card__title" style="color: white;">Aanvraag parkeer vergunning</span>
                                 </div>
                             </a>
@@ -79,7 +90,7 @@
             </div>
             <div class="col-sm-4" style="height: 343px;">
                 <section style="background-color: lightblue; height: inherit;  padding: 10px">
-                    <h1 style="margin-bottom: 1px;">contact</h1>
+                    <h1 style="margin-bottom: 1px;">Contact</h1>
                     <h4 style="margin-top: 0;">Openingstijden</h4>
                     <div class="row">
                         <div class="col-sm-6">
@@ -129,15 +140,7 @@
                             <span>145002</span>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <a href="#" style="text-decoration: none;">Meer informatie</a><br>
-                        </div>
-                        <div class="col-sm-6">
-                            <a href="#" style="text-decoration: none;">Online loket</a><br>
-                        </div>
-                    </div>
-                    <a href="#" class="btn-primary" style="width: 100%; background-color: #3669A5; color: white;">Maak een afspraak</a>
+                    <a style="text-decoration: none;" href="#"><button class="btn btn--primary" style="width: 100%;">Maak een afspraak</button></a>
                     </p>
 
 

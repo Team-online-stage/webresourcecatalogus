@@ -27,7 +27,8 @@ class ZaakonlineFixtures extends Fixture
         // Lets make sure we only run these fixtures on larping enviroment
         if (
             !$this->params->get('app_build_all_fixtures') &&
-            $this->params->get('app_domain') != 'zaakonline.nl' && strpos($this->params->get('app_domain'), 'zaakonline.nl') == false) {
+            $this->params->get('app_domain') != 'zaakonline.nl' && strpos($this->params->get('app_domain'), 'zaakonline.nl') == false
+        ) {
             return false;
         }
         var_dump($this->params->get('app_domain'));
