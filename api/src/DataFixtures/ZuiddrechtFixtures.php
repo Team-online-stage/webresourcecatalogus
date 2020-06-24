@@ -317,6 +317,79 @@ class ZuiddrechtFixtures extends Fixture
         $slug->setSlug('nieuwsoverzicht');
         $manager->persist($slug);
 
+        $id = Uuid::fromString('bc227e94-e542-4623-a88b-ca9f74c52bf8');
+        $template = new Template();
+        $template->setName('copyright');
+        $template->setDescription('copyright');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Zuiddrecht/website/copyright.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('copyright');
+        $slug->setSlug('copyright');
+        $manager->persist($slug);
+
+        $id = Uuid::fromString('70dd6462-85ef-45f4-b9dc-57eb9ac56646');
+        $template = new Template();
+        $template->setName('disclaimer');
+        $template->setDescription('disclaimer');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Zuiddrecht/website/disclaimer.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('disclaimer');
+        $slug->setSlug('disclaimer');
+        $manager->persist($slug);
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('copyright');
+        $slug->setSlug('copyright');
+        $manager->persist($slug);
+
+        $id = Uuid::fromString('70dd6462-85ef-45f4-b9dc-57eb9ac56646');
+        $template = new Template();
+        $template->setName('privacy');
+        $template->setDescription('privacy');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Zuiddrecht/website/privacy.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('privacy');
+        $slug->setSlug('privacy');
+        $manager->persist($slug);
+
         // Template groups
         $id = Uuid::fromString('5c59f238-1ce3-4c8d-8107-4bd8e2134648');
         $groupNews = new TemplateGroup();
