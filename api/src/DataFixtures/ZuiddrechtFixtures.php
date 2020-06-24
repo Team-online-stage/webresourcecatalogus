@@ -99,7 +99,7 @@ class ZuiddrechtFixtures extends Fixture
         // Website
         $id = Uuid::fromString('1ef30b69-6b28-4fbd-a0cd-83d6ff3c505e');
         $application = new Application();
-        $application->setName('Website');
+        $application->setName('Zuid-Drecht');
         $application->setDescription('De website van de gemeente zuid-drecht');
         $application->setDomain('zuid-drecht.nl');
         $application->setOrganization($organization);
