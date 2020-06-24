@@ -35,10 +35,10 @@ class ZuiddrechtFixtures extends Fixture
     public function load(ObjectManager $manager)
     {
         if (
-            $this->params->get('app_domain') != "zuiddrecht.nl" && strpos($this->params->get('app_domain'), "zuiddrecht.nl") == false &&
-            $this->params->get('app_domain') != "zuid-drecht.nl" && strpos($this->params->get('app_domain'), "zuid-drecht.nl") == false
+            $this->params->get('app_domain') != 'zuiddrecht.nl' && strpos($this->params->get('app_domain'), 'zuiddrecht.nl') == false &&
+            $this->params->get('app_domain') != 'zuid-drecht.nl' && strpos($this->params->get('app_domain'), 'zuid-drecht.nl') == false
         ) {
-            //return false;
+            return false;
         }
 
         // Zuid-Drecht
@@ -66,7 +66,7 @@ class ZuiddrechtFixtures extends Fixture
         $style = new Style();
         $style->setName('Zuid-Drecht');
         $style->setDescription('Huistlijl samenwerkingsverband West-Friesland');
-        $style->setCss(':root {--primary: #233A79;--primary2: white;--secondary: #FFC926;--secondary2: #FFC926;}
+        $style->setCss(':root {--primary: #CC0000;--primary2: white;--secondary: #3669A5;--secondary2: #FFC926;}
         .main-title {color: var(--primary2) !important;}.logo-header {background: var(--primary);}.navbar-header
         {background: var(--primary);}.bg-primary-gradient {background: linear-gradient(-45deg, var(--secondary),
          var(--secondary2)) !important;}');
@@ -81,6 +81,21 @@ class ZuiddrechtFixtures extends Fixture
 
         $manager->flush();
 
+
+        // Website
+        $id = Uuid::fromString('1163e443-5f9c-4aa6-802c-c619a14986c9');
+        $application = new Application();
+        $application->setName('Dashboard');
+        $application->setDescription('het Dashboard van de gemeente zuid-drecht');
+        $application->setDomain('db.zuid-drecht.nl');
+        $application->setOrganization($organization);
+        $application->setStyle($style);
+        $manager->persist($application);
+        $application->setId($id);
+        $manager->persist($application);
+        $manager->flush();
+        $application = $manager->getRepository('App:Application')->findOneBy(['id'=> $id]);
+
         // Website
         $id = Uuid::fromString('1ef30b69-6b28-4fbd-a0cd-83d6ff3c505e');
         $application = new Application();
@@ -88,6 +103,7 @@ class ZuiddrechtFixtures extends Fixture
         $application->setDescription('De website van de gemeente zuid-drecht');
         $application->setDomain('zuid-drecht.nl');
         $application->setOrganization($organization);
+        $application->setStyle($style);
         $manager->persist($application);
         $application->setId($id);
         $manager->persist($application);
@@ -96,12 +112,19 @@ class ZuiddrechtFixtures extends Fixture
 
         // Configuratie
         $configuration = new Configuration();
+        $configuration->setName('Website');
+        $configuration->setDescription('De website van de gemeente zuid-drecht');
         $configuration->setOrganization($organization);
         $configuration->setApplication($application);
         $configuration->setConfiguration(
             [
                 'mainMenu'=> $this->commonGroundService->cleanUrl("{$this->commonGroundService->getComponent('wrc')['location']}/menus/ca1ca0b4-4c8f-4638-9869-16974426e3df"),
-                'home'    => $this->commonGroundService->cleanUrl("{$this->commonGroundService->getComponent('wrc')['location']}/templates/163f8616-abb7-411d-b7b2-0d11c6bd7dca"), ]
+                'home'    => $this->commonGroundService->cleanUrl("{$this->commonGroundService->getComponent('wrc')['location']}/templates/163f8616-abb7-411d-b7b2-0d11c6bd7dca"),
+                'footer1'=> $this->commonGroundService->cleanUrl("{$this->commonGroundService->getComponent('wrc')['location']}/templates/0dca3fd2-0124-46fb-88c1-4f0860b2888c"),
+                'footer2'=> $this->commonGroundService->cleanUrl("{$this->commonGroundService->getComponent('wrc')['location']}/templates/68003cd6-7729-4807-af24-d58a1dfe0870"),
+                'footer3'=> $this->commonGroundService->cleanUrl("{$this->commonGroundService->getComponent('wrc')['location']}/templates/facad633-27a9-499a-b3fc-4687215bf82a"),
+                'footer4'=> $this->commonGroundService->cleanUrl("{$this->commonGroundService->getComponent('wrc')['location']}/templates/4bc966b6-e310-4bce-b459-a7cf65651ce0"),
+                'nieuws'=> $this->commonGroundService->cleanUrl("{$this->commonGroundService->getComponent('wrc')['location']}/template_groups/5c59f238-1ce3-4c8d-8107-4bd8e2134648"),]
         );
         $manager->persist($configuration);
 
@@ -120,20 +143,38 @@ class ZuiddrechtFixtures extends Fixture
         $menuItem = new MenuItem();
         $menuItem->setName('Processen');
         $menuItem->setDescription('Doe een aanvraag');
-        $menuItem->setOrder(1);
+        $menuItem->setOrder(4);
         $menuItem->setType('slug');
         $menuItem->setHref('/process');
         $menuItem->setMenu($menu);
-        $manager->persist($menu);
+        $manager->persist($menuItem);
 
         $menuItem = new MenuItem();
         $menuItem->setName('Verzoeken');
         $menuItem->setDescription('Het inzien en voortzetten van mijn verzoeken');
-        $menuItem->setOrder(1);
+        $menuItem->setOrder(3);
         $menuItem->setType('slug');
         $menuItem->setHref('/requests');
         $menuItem->setMenu($menu);
-        $manager->persist($menu);
+        $manager->persist($menuItem);
+
+        $menuItem = new MenuItem();
+        $menuItem->setName('Nieuws');
+        $menuItem->setDescription('Nieuws overzicht');
+        $menuItem->setOrder(2);
+        $menuItem->setType('slug');
+        $menuItem->setHref('/nieuws');
+        $menuItem->setMenu($menu);
+        $manager->persist($menuItem);
+
+        $menuItem = new MenuItem();
+        $menuItem->setName('Ondernemers');
+        $menuItem->setDescription('Lijst van ondernemers');
+        $menuItem->setOrder(1);
+        $menuItem->setType('slug');
+        $menuItem->setHref('/ondernemers');
+        $menuItem->setMenu($menu);
+        $manager->persist($menuItem);
 
         // Template groups
         $groupPages = new TemplateGroup();
@@ -157,6 +198,7 @@ class ZuiddrechtFixtures extends Fixture
         $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
         $template->addTemplateGroup($groupPages);
         $manager->persist($template);
+        $manager->flush();
 
         $slug = new Slug();
         $slug->setTemplate($template);
@@ -164,6 +206,254 @@ class ZuiddrechtFixtures extends Fixture
         $slug->setName('home');
         $slug->setSlug('home');
         $manager->persist($slug);
+
+        $id = Uuid::fromString('fc5cef2d-c64d-4cfc-ac8c-da0ea0c66063');
+        $template = new Template();
+        $template->setName('SubPage');
+        $template->setDescription('tijdelijke subpage');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Zuiddrecht/website/subpage.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('subpage');
+        $slug->setSlug('subpage');
+        $manager->persist($slug);
+
+        $id = Uuid::fromString('0dca3fd2-0124-46fb-88c1-4f0860b2888c');
+        $template = new Template();
+        $template->setName('footer1');
+        $template->setDescription('footer1');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Zuiddrecht/website/footer1.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
+
+        $id = Uuid::fromString('68003cd6-7729-4807-af24-d58a1dfe0870');
+        $template = new Template();
+        $template->setName('footer2');
+        $template->setDescription('footer2');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Zuiddrecht/website/footer2.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
+
+        $id = Uuid::fromString('facad633-27a9-499a-b3fc-4687215bf82a');
+        $template = new Template();
+        $template->setName('footer3');
+        $template->setDescription('footer3');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Zuiddrecht/website/footer3.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
+
+        $id = Uuid::fromString('4bc966b6-e310-4bce-b459-a7cf65651ce0');
+        $template = new Template();
+        $template->setName('footer4');
+        $template->setDescription('footer4');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Zuiddrecht/website/footer4.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
+
+        $id = Uuid::fromString('42594401-3db2-42c5-b06a-0b6d5eaeb8c2');
+        $template = new Template();
+        $template->setName('nieuws');
+        $template->setDescription('nieuws');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Zuiddrecht/website/nieuws/nieuws.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('nieuws');
+        $slug->setSlug('nieuws');
+        $manager->persist($slug);
+
+        // Template groups
+        $id = Uuid::fromString('5c59f238-1ce3-4c8d-8107-4bd8e2134648');
+        $groupNews = new TemplateGroup();
+        $groupNews->setOrganization($organization);
+        $groupNews->setApplication($application);
+        $groupNews->setName('Nieuws');
+        $groupNews->setId($id);
+        $groupNews->setDescription('Webpages about news articles');
+        $manager->persist($groupNews);
+
+        $id = Uuid::fromString('0ace23c9-3c95-4675-994c-596b9ef0144b');
+        $template = new Template();
+        $template->setName('pi event');
+        $template->setDescription('pi event is van start');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Zuiddrecht/website/nieuws/pi-event.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupNews);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('pi-event');
+        $slug->setSlug('pi-event');
+        $manager->persist($slug);
+
+        $id = Uuid::fromString('67b1e403-4436-4cd9-a328-ce99e05511a1');
+        $template = new Template();
+        $template->setName('huwelijksplanner');
+        $template->setDescription('utrecht lanceert huwelijksplanner');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Zuiddrecht/website/nieuws/huwelijksplanner.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupNews);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('huwelijksplanner');
+        $slug->setSlug('huwelijksplanner');
+        $manager->persist($slug);
+
+        $id = Uuid::fromString('90035899-fd96-4998-9d38-db7b0f5940f9');
+        $template = new Template();
+        $template->setName('corona');
+        $template->setDescription('Dit kan Nederland leren van corona-uitbraken Duitsland');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Zuiddrecht/website/nieuws/corona.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupNews);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('corona');
+        $slug->setSlug('corona');
+        $manager->persist($slug);
+
+        $id = Uuid::fromString('12f475a7-151c-48b6-8b02-0e0dfcfc78d9');
+        $template = new Template();
+        $template->setName('groene stroom');
+        $template->setDescription('zuid-drecht gaat over op groene stroom');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Zuiddrecht/website/nieuws/groene-stroom.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupNews);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('groene-stroom');
+        $slug->setSlug('groene-stroom');
+        $manager->persist($slug);
+
+        $id = Uuid::fromString('272a5076-dfb0-4adf-b5ca-d3525e7a31bf');
+        $template = new Template();
+        $template->setName('Woninginbraak gehalveerd');
+        $template->setDescription('Woninginbraak gehalveerd in de gemeente zuid-drecht');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Zuiddrecht/website/nieuws/woning-inbraak.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupNews);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('woning-inbraak');
+        $slug->setSlug('woning-inbraak');
+        $manager->persist($slug);
+
+        $id = Uuid::fromString('6d38b11f-2edb-4a4e-894a-5b4677da2c53');
+        $template = new Template();
+        $template->setName('Beste gemeente');
+        $template->setDescription('Zuid-drecht is uitgeroepen tot beste gemeente van 2020');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Zuiddrecht/website/nieuws/beste-gemeente.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupNews);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('beste-gemeente');
+        $slug->setSlug('beste-gemeente');
+        $manager->persist($slug);
+
+
 
         // Mijn Zuid Decht
         $id = Uuid::fromString('64f60afd-7506-48e0-928b-6bbede045812');
@@ -185,7 +475,8 @@ class ZuiddrechtFixtures extends Fixture
         $configuration->setConfiguration(
             [
                 'mainMenu'=> $this->commonGroundService->cleanUrl("{$this->commonGroundService->getComponent('wrc')['location']}/menus/350156d4-4eca-4bec-bc48-c906f20d2bda"),
-                'home'    => $this->commonGroundService->cleanUrl("{$this->commonGroundService->getComponent('wrc')['location']}/templates/f62792c9-d229-43b9-8f6a-3b368eee6739"), ]
+                'home'    => $this->commonGroundService->cleanUrl("{$this->commonGroundService->getComponent('wrc')['location']}/templates/f62792c9-d229-43b9-8f6a-3b368eee6739"),
+                ]
         );
         $manager->persist($configuration);
 

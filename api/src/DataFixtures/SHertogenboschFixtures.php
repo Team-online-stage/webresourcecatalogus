@@ -30,6 +30,10 @@ class SHertogenboschFixtures extends Fixture
         if (
             $this->params->get('app_domain') != 'shertogenbosch.commonground.nu' &&
             strpos($this->params->get('app_domain'), 'shertogenbosch.commonground.nu') == false &&
+            $this->params->get('app_domain') != 'verhuizen.accp.s-hertogenbosch.nl' &&
+            strpos($this->params->get('app_domain'), 'verhuizen.accp.s-hertogenbosch.nl') == false &&
+            $this->params->get('app_domain') != 'verhuizen=.s-hertogenbosch.nl' &&
+            strpos($this->params->get('app_domain'), 'verhuizen.s-hertogenbosch.nl') == false &&
             $this->params->get('app_domain') != 's-hertogenbosch.commonground.nu' &&
             strpos($this->params->get('app_domain'), 's-hertogenbosch.commonground.nu') == false
         ) {
@@ -39,7 +43,7 @@ class SHertogenboschFixtures extends Fixture
         // Deze organisaties worden ook buiten het wrc gebruikt
 
         // -Hertogenbosch
-        $id = Uuid::fromString('fed9339e-57d5-4f63-ab68-694759705c19');
+        $id = Uuid::fromString('4f387d0e-a2e5-44c0-9902-c31b63a8ee36');
         $sHertogenbosch = new Organization();
         $sHertogenbosch->setName('\'s-Hertogenbosch');
         $sHertogenbosch->setDescription('Gemeente \'s-Hertogenbosch');

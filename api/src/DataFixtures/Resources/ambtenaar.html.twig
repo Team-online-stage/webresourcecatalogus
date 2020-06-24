@@ -35,8 +35,8 @@
                     </a>
 
                 {% elseif request.properties.plechtigheid is defined
-                    and (request.properties.plechtigheid == "https://pdc.huwelijksplanner.online/offers/2b9ba0a9-376d-45e2-aa83-809ef07fa104" or request.properties.plechtigheid == "https://pdc.huwelijksplanner.online/offers/bfeb9399-fce6-49b8-a047-70928f3611fb")   %}
-                    <p>Let op: Het type ceremonie dat u heeft geselecteerd laat geen keuze voor een ambtenaar toe. Alleen bij een uitgebreide ceremonie bestaat de mogelijkheid een ambtenaar te kiezen. Wilt u toch een ambtenaar kunnen kiezen, dan kunt u  <a href="{{ path('app_default_slug',{'slug':'plechtigheid'}) }}">hier</a> uw ceremonie aanpassen.</p>
+                    and request.properties.plechtigheid == "https://pdc.huwelijksplanner.online/offers/1ba1772b-cc8a-4808-ad1e-f9b3c93bdebf" or request.properties.plechtigheid == "https://pdc.huwelijksplanner.online/offers/77f6419d-b264-4898-8229-9916d9deccee" or request.properties.plechtigheid == "https://pdc.dev.huwelijksplanner.online/offers/2b9ba0a9-376d-45e2-aa83-809ef07fa104" %}
+                    <p>Let op: Het type plechtigheid dat u heeft geselecteerd laat geen keuze voor een ambtenaar toe. Alleen bij een uitgebreide ceremonie bestaat de mogelijkheid een ambtenaar te kiezen. Wilt u toch een ambtenaar kunnen kiezen, dan kunt u  <a href="{{ path('app_default_slug',{'slug':'plechtigheid'}) }}">hier</a> uw plechtigheid aanpassen.</p>
                 {% elseif (request.properties.ambtenaar == resource.offers[0]['@id']) %}
                     <a href="{{ path('app_default_unset',{'value':resource.offers[0]['@id'],'slug':'ambtenaar'}) }}" class="btn btn-danger btn-icon" >
                         <i class="far fa-calendar-times"></i>

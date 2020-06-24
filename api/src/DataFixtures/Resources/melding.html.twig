@@ -43,7 +43,7 @@
             <div class="row animation" {% if app.session.flashbag.peekAll|length > 0 %}data-animation="animation-fade-in" data-delay="400"{% endif %}>
                 <div class="col-sm-10 col-md-7 col-lg-6 col-sm-offset-0 col-md-offset-0 col-lg-offset-1">
                     {% if request['@id']  is defined %}
-        			<a href="{{ path('app_default_slug',{'requestType':'https://vtc.huwelijksplanner.online/request_types/146cb7c8-46b9-4911-8ad9-3238bab4313e','requestParent':request['@id']}) }}" class="btn btn-primary btn-icon" >
+        			<a href="{{ path('app_default_slug',{'requestType':'https://vtc.huwelijksplanner.online/request_types/146cb7c8-46b9-4911-8ad9-3238bab4313e','requestParent':request['@id'],'requestParentProperty':'melding'}) }}" class="btn btn-primary btn-icon" >
         				<i class="fas fa-share-square"></i>
         			 	Doe melding
         		    </a>
