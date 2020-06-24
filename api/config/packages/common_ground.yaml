@@ -59,7 +59,7 @@ parameters:
     app_container: "%env(APP_CONTAINER)%"
     app_repro: "%env(APP_REPRO)%"
     app_web: "%env(APP_WEB)%"
-    app_build_al_fixtures: "%env(APP_BUILD_ALL_FIXTURES)%"
+    app_build_all_fixtures: "%env(APP_BUILD_ALL_FIXTURES)%"
 
     # Organisatie details
     env(GOOGLE_TAG_MANAGER_ID): ""
@@ -517,7 +517,7 @@ twig:
         app_container: "%env(APP_CONTAINER)%"
         app_repro: "%env(APP_REPRO)%"
         app_web: "%env(APP_WEB)%"
-        app_build_al_fixtures: "%env(APP_BUILD_ALL_FIXTURES)%"
+        app_build_all_fixtures: "%env(APP_BUILD_ALL_FIXTURES)%"
 
         # Security Details
         app_commonground_id: "%env(APP_COMMONGROUND_ID)%"
