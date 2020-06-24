@@ -40,7 +40,7 @@ class SHertogenboschFixtures extends Fixture
         // Deze organisaties worden ook buiten het wrc gebruikt
 
         // -Hertogenbosch
-        $id = Uuid::fromString('4f387d0e-a2e5-44c0-9902-c31b63a8ee36');
+        $id = Uuid::fromString('d2569fb9-413e-41df-bd9f-ea70b9f4bcc7');
         $sHertogenbosch = new Organization();
         $sHertogenbosch->setName('\'s-Hertogenbosch');
         $sHertogenbosch->setDescription('Gemeente \'s-Hertogenbosch');

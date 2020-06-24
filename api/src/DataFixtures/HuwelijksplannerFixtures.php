@@ -121,7 +121,7 @@ class HuwelijksplannerFixtures extends Fixture
         $manager->flush();
 
         // West-Friesland
-        $id = Uuid::fromString('d280c4d3-6310-46db-9934-5285ec7d0d5e');
+        $id = Uuid::fromString('d280c4d3-6310-46db-9934-5285ec7d0d5a');
         $westfriesland = new Organization();
         $westfriesland->setName('West-Friesland');
         $westfriesland->setDescription('Gemeente West-Friesland');

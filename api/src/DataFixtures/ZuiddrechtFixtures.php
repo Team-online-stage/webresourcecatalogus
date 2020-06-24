@@ -343,7 +343,7 @@ class ZuiddrechtFixtures extends Fixture
         $slug->setSlug('cookies');
         $manager->persist($slug);
 
-        $id = Uuid::fromString('70dd6462-85ef-45f4-b9dc-57eb9ac56646');
+        $id = Uuid::fromString('bdcd7f74-2407-4ca2-b89a-9fcb33ab6b1f');
         $template = new Template();
         $template->setName('proclaimer');
         $template->setDescription('proclaimer');
