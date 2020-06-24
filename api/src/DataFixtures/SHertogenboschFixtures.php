@@ -28,14 +28,11 @@ class SHertogenboschFixtures extends Fixture
     {
         // Lets make sure we only run these fixtures on larping enviroment
         if (
-            $this->params->get('app_domain') != 'shertogenbosch.commonground.nu' &&
-            strpos($this->params->get('app_domain'), 'shertogenbosch.commonground.nu') == false &&
-            $this->params->get('app_domain') != 'verhuizen.accp.s-hertogenbosch.nl' &&
-            strpos($this->params->get('app_domain'), 'verhuizen.accp.s-hertogenbosch.nl') == false &&
-            $this->params->get('app_domain') != 'verhuizen=.s-hertogenbosch.nl' &&
-            strpos($this->params->get('app_domain'), 'verhuizen.s-hertogenbosch.nl') == false &&
-            $this->params->get('app_domain') != 's-hertogenbosch.commonground.nu' &&
-            strpos($this->params->get('app_domain'), 's-hertogenbosch.commonground.nu') == false
+            !$this->params->get('app_build_all_fixtures') &&
+            $this->params->get('app_domain') != 'shertogenbosch.commonground.nu' && strpos($this->params->get('app_domain'), 'shertogenbosch.commonground.nu') == false &&
+            $this->params->get('app_domain') != 'verhuizen.accp.s-hertogenbosch.nl' && strpos($this->params->get('app_domain'), 'verhuizen.accp.s-hertogenbosch.nl') == false &&
+            $this->params->get('app_domain') != 'verhuizen=.s-hertogenbosch.nl' && strpos($this->params->get('app_domain'), 'verhuizen.s-hertogenbosch.nl') == false &&
+            $this->params->get('app_domain') != 's-hertogenbosch.commonground.nu' && strpos($this->params->get('app_domain'), 's-hertogenbosch.commonground.nu') == false
         ) {
             return false;
         }
