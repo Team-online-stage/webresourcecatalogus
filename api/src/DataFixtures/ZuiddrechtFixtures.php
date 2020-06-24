@@ -38,7 +38,7 @@ class ZuiddrechtFixtures extends Fixture
             $this->params->get('app_domain') != 'zuiddrecht.nl' && strpos($this->params->get('app_domain'), 'zuiddrecht.nl') == false &&
             $this->params->get('app_domain') != 'zuid-drecht.nl' && strpos($this->params->get('app_domain'), 'zuid-drecht.nl') == false
         ) {
-            //return false;
+            return false;
         }
 
         // Zuid-Drecht
@@ -62,12 +62,6 @@ class ZuiddrechtFixtures extends Fixture
         $logo->setName('Zuid-Drecht Logo');
         $logo->setDescription('Zuid-Drecht VNG');
         $logo->setOrganization($organization);
-
-        $header = new Image();
-        $header -> setName('header');
-        $header->setBase64(file_get_contents(dirname(__FILE__).'/Resources/Zuiddrecht/afbeelding/zuiddrecht_header.jpg', 'r'));
-        $header->setDescription('Zuid-Drecht header');
-        $header->setOrganization($organization);
 
         $style = new Style();
         $style->setName('Zuid-Drecht');
