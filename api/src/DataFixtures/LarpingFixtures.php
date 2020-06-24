@@ -10,6 +10,7 @@ use App\Entity\MenuItem;
 use App\Entity\Organization;
 use App\Entity\Style;
 use App\Entity\Template;
+use Conduction\CommonGroundBundle\Service\CommonGroundService;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Ramsey\Uuid\Uuid;
@@ -18,10 +19,12 @@ use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 class LarpingFixtures extends Fixture
 {
     private $params;
+    private $commonGroundService;
 
-    public function __construct(ParameterBagInterface $params)
+    public function __construct(ParameterBagInterface $params, CommonGroundService $commonGroundService)
     {
         $this->params = $params;
+        $this->commonGroundService = $commonGroundService;
     }
 
     public function load(ObjectManager $manager)
@@ -81,7 +84,7 @@ class LarpingFixtures extends Fixture
         $menu = new Menu();
         $menu->setName('Larping menu');
         $menu->setDescription('');
-        $menu->setOrganization($larping);
+        //$menu->setOrganization($larping);      Geeft een foutmelding bij build, bestaat niet
         $menu->setApplication($application);
         $manager->persist($menu);
         //$menu->setId($id);
