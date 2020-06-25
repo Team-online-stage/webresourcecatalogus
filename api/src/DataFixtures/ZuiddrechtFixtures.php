@@ -407,7 +407,7 @@ class ZuiddrechtFixtures extends Fixture
         $template = new Template();
         $template->setName('article');
         $template->setDescription('article');
-        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Zuiddrecht/website/article.html.twig', 'r'));
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Zuiddrecht/website/nieuws/article.html.twig', 'r'));
         $template->setTemplateEngine('twig');
         $manager->persist($template);
         $template->setId($id);
