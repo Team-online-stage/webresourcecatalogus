@@ -97,6 +97,20 @@ class ZuiddrechtFixtures extends Fixture
         {background: var(--primary);}.bg-primary-gradient {background: linear-gradient(-45deg, var(--secondary),
          var(--secondary2)) !important;}
 
+        icon {
+            color: white;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .processCard {
+            height: 166px;
+            width: 236px;
+            background-color: #CC0000;
+        }
+
         .footerStyle {
             background-color: #3669A5;
             color: white;
@@ -105,6 +119,17 @@ class ZuiddrechtFixtures extends Fixture
         .menuStyle {
             background-color: #CC0000;
             color: white;
+        }
+
+        .newsCard {
+        border-radius: 15px;
+        margin: 10px auto;
+        width: 240px;
+        background-color: rgba(255,255,255,0.95);
+        padding: 15px;
+        margin-left: 0px;
+        border-radius: 15px;
+        box-shadow: 10px 10px 14px -1px rgba(0,0,0,0.43);
         }
 
         .header-logo a:before {
