@@ -3,23 +3,26 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
-    <div class="row">
-        {% if application.defaultconfiguration.configuration.nieuws is defined %}
-            {% set nieuws = commonground_resource(application.defaultconfiguration.configration.nieuws) %}
-            {% set templates = commonground_resource_list({'component':'wrc', 'type':'templates'})['hydra:member'] %}
-            {% for template in templates %}
-                {% set slug = commonground_resource({'component':'wrc', 'type':'slugs'},{'template.id' : template.id})['hydra:member']%}
-                <div class="col-sm-3">
-                    <div class="card">
-                        <a href="{{ slug.slug }}" class="card__content">
-                            <div class="card__thumb" style="background-image: url(https://images.unsplash.com/photo-1497008386681-a7941f08011e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80)"></div>
-                            <div class="card__body">
-                                <span class="card__title">{{ template.description }}</span>
-                            </div>
-                        </a>
+    <article>
+        <div class="row">
+            <div class="col-xl-8 col-xl-offset-2 col-lg-10 col-lg-offset-1">
+                <div class="content-background">
+                    <div class="content">
+                        <h1>Nieuwsoverzicht</h1>
+                        <ul class="list list--links list--chevrons">
+                        {% if application.defaultConfiguration.configuration.nieuws is defined %}
+                        {% set nieuws = commonground_resource(application.defaultConfiguration.configuration.nieuws) %}
+                        {% set templates = commonground_resource_list({'component':'wrc', 'type':'templates'},{'templateGroup.id': nieuws.id})['hydra:member'] %}
+                        {% for template in templates %}
+                            <li>
+                                <a href="/article?id={{ template.id }}">{{ template.description }}</a>
+                            </li>
+                        {% endfor %}
+                        {% endif %}
+                        </ul>
                     </div>
                 </div>
-            {% endfor %}
-        {% endif %}
-    </div>
+            </div>
+        </div>
+    </article>
 {% endblock %}
