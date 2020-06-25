@@ -60,17 +60,29 @@ class ZuiddrechtFixtures extends Fixture
         $favicon->setDescription('Zuid-Drecht VNG');
         $favicon->setOrganization($organization);
 
+        $id = Uuid::fromString('0e5b1531-4abb-4704-9bd3-feeb94717521');
         $newsimg = new Image();
         $newsimg->setName('news image');
         $newsimg->setBase64(base64_encode(file_get_contents(dirname(__FILE__).'/Resources/Zuiddrecht/afbeeldingen/zuiddrecht_news.jpg', 'r')));
         $newsimg->setDescription('Zuid-Drecht news');
         $newsimg->setOrganization($organization);
+        $manager->persist($newsimg);
+        $newsimg->setId($id);
+        $manager->persist($newsimg);
+        $manager->flush();
+        $newsimg = $manager->getRepository('App:Image')->findOneBy(['id'=> $id]);
 
+        $id = Uuid::fromString('ff3ca823-234f-4874-9ee6-1067d47e4391');
         $headerimg = new Image();
         $headerimg->setName('header image');
         $headerimg->setBase64(base64_encode(file_get_contents(dirname(__FILE__).'/Resources/Zuiddrecht/afbeeldingen/zuiddrecht_header.jpg', 'r')));
         $headerimg->setDescription('Zuid-Drecht header');
         $headerimg->setOrganization($organization);
+        $manager->persist($headerimg);
+        $headerimg->setId($id);
+        $manager->persist($headerimg);
+        $manager->flush();
+        $headerimg = $manager->getRepository('App:Image')->findOneBy(['id'=> $id]);
 
         $logo = new Image();
         $logo->setName('Zuid-Drecht Logo');
@@ -146,7 +158,9 @@ class ZuiddrechtFixtures extends Fixture
                 'footer2'=> $this->commonGroundService->cleanUrl("{$this->commonGroundService->getComponent('wrc')['location']}/templates/68003cd6-7729-4807-af24-d58a1dfe0870"),
                 'footer3'=> $this->commonGroundService->cleanUrl("{$this->commonGroundService->getComponent('wrc')['location']}/templates/facad633-27a9-499a-b3fc-4687215bf82a"),
                 'footer4'=> $this->commonGroundService->cleanUrl("{$this->commonGroundService->getComponent('wrc')['location']}/templates/4bc966b6-e310-4bce-b459-a7cf65651ce0"),
-                'nieuws'=> $this->commonGroundService->cleanUrl("{$this->commonGroundService->getComponent('wrc')['location']}/template_groups/5c59f238-1ce3-4c8d-8107-4bd8e2134648"),]
+                'nieuws'=> $this->commonGroundService->cleanUrl("{$this->commonGroundService->getComponent('wrc')['location']}/template_groups/5c59f238-1ce3-4c8d-8107-4bd8e2134648"),
+                'newsimg'=> $this->commonGroundService->cleanUrl("{$this->commonGroundService->getComponent('wrc')['location']}/image/0e5b1531-4abb-4704-9bd3-feeb94717521"),
+                'headerimg'=> $this->commonGroundService->cleanUrl("{$this->commonGroundService->getComponent('wrc')['location']}/image/ff3ca823-234f-4874-9ee6-1067d47e4391"),]
         );
         $manager->persist($configuration);
 
