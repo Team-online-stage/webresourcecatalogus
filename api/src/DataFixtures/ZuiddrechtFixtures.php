@@ -122,14 +122,11 @@ class ZuiddrechtFixtures extends Fixture
         }
 
         .newsCard {
-        border-radius: 15px;
         margin: 10px auto;
         width: 240px;
-        background-color: rgba(255,255,255,0.95);
+        background-color: white;
         padding: 15px;
         margin-left: 0px;
-        border-radius: 15px;
-        box-shadow: 10px 10px 14px -1px rgba(0,0,0,0.43);
         }
 
         .header-logo a:before {
