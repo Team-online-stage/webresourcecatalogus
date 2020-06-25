@@ -1,0 +1,8 @@
+{# templates/home/index.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    {% set article = commonground_resource({'component':'wrc','type':'templates','id':app.request.get('id')}) %}
+    {{ article.content|raw }}
+{% endblock %}
