@@ -162,17 +162,17 @@ class ZuiddrechtFixtures extends Fixture
         $configuration->setApplication($application);
         $configuration->setConfiguration(
             [
-                'mainMenu'=> $this->commonGroundService->cleanUrl("{$this->commonGroundService->getComponent('wrc')['location']}/menus/ca1ca0b4-4c8f-4638-9869-16974426e3df"),
-                'home'    => $this->commonGroundService->cleanUrl("{$this->commonGroundService->getComponent('wrc')['location']}/templates/163f8616-abb7-411d-b7b2-0d11c6bd7dca"),
-                'footer1'=> $this->commonGroundService->cleanUrl("{$this->commonGroundService->getComponent('wrc')['location']}/templates/0dca3fd2-0124-46fb-88c1-4f0860b2888c"),
-                'footer2'=> $this->commonGroundService->cleanUrl("{$this->commonGroundService->getComponent('wrc')['location']}/templates/68003cd6-7729-4807-af24-d58a1dfe0870"),
-                'footer3'=> $this->commonGroundService->cleanUrl("{$this->commonGroundService->getComponent('wrc')['location']}/templates/facad633-27a9-499a-b3fc-4687215bf82a"),
-                'footer4'=> $this->commonGroundService->cleanUrl("{$this->commonGroundService->getComponent('wrc')['location']}/templates/4bc966b6-e310-4bce-b459-a7cf65651ce0"),
-                'nieuws'=> $this->commonGroundService->cleanUrl("{$this->commonGroundService->getComponent('wrc')['location']}/template_groups/5c59f238-1ce3-4c8d-8107-4bd8e2134648"),
-                'newsimg'=> $this->commonGroundService->cleanUrl("{$this->commonGroundService->getComponent('wrc')['location']}/image/0e5b1531-4abb-4704-9bd3-feeb94717521"),
-                'headerimg'=> $this->commonGroundService->cleanUrl("{$this->commonGroundService->getComponent('wrc')['location']}/image/ff3ca823-234f-4874-9ee6-1067d47e4391"),
+                'mainMenu'          => $this->commonGroundService->cleanUrl(["component"=>"wrc","type"=>"menus","id"=>"ca1ca0b4-4c8f-4638-9869-16974426e3df"]),
+                'home'              => $this->commonGroundService->cleanUrl(["component"=>"wrc","type"=>"templates","id"=>"0e5b1531-4abb-4704-9bd3-feeb94717521"]),
+                'footer1'           => $this->commonGroundService->cleanUrl(["component"=>"wrc","type"=>"templates","id"=>"0dca3fd2-0124-46fb-88c1-4f0860b2888c"]),
+                'footer2'           => $this->commonGroundService->cleanUrl(["component"=>"wrc","type"=>"templates","id"=>"68003cd6-7729-4807-af24-d58a1dfe0870"]),
+                'footer3'           => $this->commonGroundService->cleanUrl(["component"=>"wrc","type"=>"templates","id"=>"facad633-27a9-499a-b3fc-4687215bf82a"]),
+                'footer4'           => $this->commonGroundService->cleanUrl(["component"=>"wrc","type"=>"templates","id"=>"4bc966b6-e310-4bce-b459-a7cf65651ce0"]),
+                'nieuws'            => $this->commonGroundService->cleanUrl(["component"=>"wrc","type"=>"template_groups","id"=>"5c59f238-1ce3-4c8d-8107-4bd8e2134648"]),
+                'newsimg'           => $this->commonGroundService->cleanUrl(["component"=>"wrc","type"=>"image","id"=>"0e5b1531-4abb-4704-9bd3-feeb94717521"]),
+                'headerimg'         => $this->commonGroundService->cleanUrl(["component"=>"wrc","type"=>"image","id"=>"ff3ca823-234f-4874-9ee6-1067d47e4391"]),
                 'colorSchemeFooter' => 'footerStyle',
-                'colorSchemeMenu' => 'menuStyle']
+                'colorSchemeMenu'   => 'menuStyle']
         );
         $manager->persist($configuration);
 
@@ -592,8 +592,8 @@ class ZuiddrechtFixtures extends Fixture
         $configuration->setApplication($application);
         $configuration->setConfiguration(
             [
-                'mainMenu'=> $this->commonGroundService->cleanUrl("{$this->commonGroundService->getComponent('wrc')['location']}/menus/350156d4-4eca-4bec-bc48-c906f20d2bda"),
-                'home'    => $this->commonGroundService->cleanUrl("{$this->commonGroundService->getComponent('wrc')['location']}/templates/f62792c9-d229-43b9-8f6a-3b368eee6739"),
+                'mainMenu'=> $this->commonGroundService->cleanUrl(["component"=>"wrc","type"=>"menus","id"=>"350156d4-4eca-4bec-bc48-c906f20d2bda"]),
+                'home'    => $this->commonGroundService->cleanUrl(["component"=>"wrc","type"=>"templates","id"=>"f62792c9-d229-43b9-8f6a-3b368eee6739"]),
                 ]
         );
         $manager->persist($configuration);
