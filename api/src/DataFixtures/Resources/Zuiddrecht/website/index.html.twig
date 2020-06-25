@@ -13,15 +13,15 @@
         <div class="container" style="height: 500px; position: relative;">
             <div  style=" position: absolute; bottom: 15px; right: 15px; padding: 15px; margin: 0; background-color: #3669A5">
                 <h1>Nieuws</h1>
+                <ul class="list list--links list--chevrons">
                 {% if application.defaultConfiguration.configuration.nieuws is defined %}
                     {% set nieuws = commonground_resource(application.defaultConfiguration.configuration.nieuws) %}
                     {% set templates = commonground_resource_list({'component': 'wrc', 'type': 'templates'},{'limit':4})['hydra:member'] %}
                     {% for template in templates %}
-                        <li><a href="" style="text-decoration: none;">{{ template.description }}</a></li>
+                        <li><a href="/article?id={{ template.id }}" style="text-decoration: none;">{{ template.description }}</a></li>
                     {% endfor %}
-                    {% else %}
-                    <div>ging iets mis</div>
                 {% endif %}
+                </ul>
             </div>
         </div>
     </div>
