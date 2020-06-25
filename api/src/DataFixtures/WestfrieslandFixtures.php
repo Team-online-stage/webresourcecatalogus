@@ -18,7 +18,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Ramsey\Uuid\Uuid;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 
-class WestFrieslandFixtures extends Fixture
+class WestfrieslandFixtures extends Fixture
 {
     private $params;
     private $commonGroundService;
