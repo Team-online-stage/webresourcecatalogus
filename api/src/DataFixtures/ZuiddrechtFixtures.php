@@ -60,6 +60,18 @@ class ZuiddrechtFixtures extends Fixture
         $favicon->setDescription('Zuid-Drecht VNG');
         $favicon->setOrganization($organization);
 
+        $newsimg = new Image();
+        $newsimg->setName('news image');
+        $newsimg->setBase64(base64_encode(file_get_contents(dirname(__FILE__).'/Resources/Zuiddrecht/afbeeldingen/zuiddrecht_news.jpg', 'r')));
+        $newsimg->setDescription('Zuid-Drecht news');
+        $newsimg->setOrganization($organization);
+
+        $headerimg = new Image();
+        $headerimg->setName('header image');
+        $headerimg->setBase64(base64_encode(file_get_contents(dirname(__FILE__).'/Resources/Zuiddrecht/afbeeldingen/zuiddrecht_header.jpg', 'r')));
+        $headerimg->setDescription('Zuid-Drecht header');
+        $headerimg->setOrganization($organization);
+
         $logo = new Image();
         $logo->setName('Zuid-Drecht Logo');
         $logo->setDescription('Zuid-Drecht VNG');
