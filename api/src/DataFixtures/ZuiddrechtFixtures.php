@@ -97,7 +97,7 @@ class ZuiddrechtFixtures extends Fixture
         {background: var(--primary);}.bg-primary-gradient {background: linear-gradient(-45deg, var(--secondary),
          var(--secondary2)) !important;}
 
-        icon {
+        i {
             color: white;
         }
 
