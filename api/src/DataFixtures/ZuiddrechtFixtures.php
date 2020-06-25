@@ -160,7 +160,9 @@ class ZuiddrechtFixtures extends Fixture
                 'footer4'=> $this->commonGroundService->cleanUrl("{$this->commonGroundService->getComponent('wrc')['location']}/templates/4bc966b6-e310-4bce-b459-a7cf65651ce0"),
                 'nieuws'=> $this->commonGroundService->cleanUrl("{$this->commonGroundService->getComponent('wrc')['location']}/template_groups/5c59f238-1ce3-4c8d-8107-4bd8e2134648"),
                 'newsimg'=> $this->commonGroundService->cleanUrl("{$this->commonGroundService->getComponent('wrc')['location']}/image/0e5b1531-4abb-4704-9bd3-feeb94717521"),
-                'headerimg'=> $this->commonGroundService->cleanUrl("{$this->commonGroundService->getComponent('wrc')['location']}/image/ff3ca823-234f-4874-9ee6-1067d47e4391"),]
+                'headerimg'=> $this->commonGroundService->cleanUrl("{$this->commonGroundService->getComponent('wrc')['location']}/image/ff3ca823-234f-4874-9ee6-1067d47e4391"),
+                'colorSchemeFooter' => 'footerStyle',
+                'colorSchemeMenu' => 'menuStyle']
         );
         $manager->persist($configuration);
 
