@@ -97,12 +97,21 @@ class ZuiddrechtFixtures extends Fixture
         {background: var(--primary);}.bg-primary-gradient {background: linear-gradient(-45deg, var(--secondary),
          var(--secondary2)) !important;}
 
-        i {
-            color: white;
-        }
-
         a {
             text-decoration: none;
+        }
+
+        a:focus:not(.btn):not(.pagination__link):not(.nav__link){
+            background: #3669A5;
+            outline: none;
+        }
+
+
+
+        .flex-center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .processCard {
@@ -116,6 +125,10 @@ class ZuiddrechtFixtures extends Fixture
             color: white;
         }
 
+        .top-nav-autoresize .nav__link:hover {
+            background-color: #3669A5;
+        }
+
         .menuStyle {
             background-color: #CC0000;
             color: white;
@@ -126,6 +139,7 @@ class ZuiddrechtFixtures extends Fixture
         width: 240px;
         background-color: white;
         padding: 15px;
+        height:400px;
         margin-left: 0px;
         }
 
@@ -185,7 +199,7 @@ class ZuiddrechtFixtures extends Fixture
         $configuration->setConfiguration(
             [
                 'mainMenu'          => $this->commonGroundService->cleanUrl(["component"=>"wrc","type"=>"menus","id"=>"ca1ca0b4-4c8f-4638-9869-16974426e3df"]),
-                'home'              => $this->commonGroundService->cleanUrl(["component"=>"wrc","type"=>"templates","id"=>"0e5b1531-4abb-4704-9bd3-feeb94717521"]),
+                'home'              => $this->commonGroundService->cleanUrl(["component"=>"wrc","type"=>"templates","id"=>"163f8616-abb7-411d-b7b2-0d11c6bd7dca"]),
                 'footer1'           => $this->commonGroundService->cleanUrl(["component"=>"wrc","type"=>"templates","id"=>"0dca3fd2-0124-46fb-88c1-4f0860b2888c"]),
                 'footer2'           => $this->commonGroundService->cleanUrl(["component"=>"wrc","type"=>"templates","id"=>"68003cd6-7729-4807-af24-d58a1dfe0870"]),
                 'footer3'           => $this->commonGroundService->cleanUrl(["component"=>"wrc","type"=>"templates","id"=>"facad633-27a9-499a-b3fc-4687215bf82a"]),
