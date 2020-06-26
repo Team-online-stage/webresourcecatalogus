@@ -106,7 +106,49 @@ class ZuiddrechtFixtures extends Fixture
             outline: none;
         }
 
+        .headerImage {
+            margin-top: -20px;
+            height: 500px;
+            background: none;
+            background-size: cover !important;
+            background-position: center !important;
 
+        }
+
+        .newsImage {
+            margin-top: 50px;
+            padding: 25px;
+            margin-bottom: -50px;
+            background: none;
+            background-size: cover !important;
+            background-position: center !important;
+            }
+
+
+        @media only screen and (min-width: 1376px){
+            .headerImage {
+                margin-top: -20px;
+                height: 500px;
+                background: none;
+                background-size: 100% auto !important;
+                background-position: center !important;
+            }
+
+            .newsImage {
+                margin-top: 50px;
+                padding: 25px;
+                margin-bottom: -50px;
+                background: none;
+                background-size: 100% auto !important;
+                background-position: center !important;
+            }
+        }
+
+
+
+        .header-logo a:after{
+            background-image: none;
+        }
 
         .flex-center {
             display: flex;
