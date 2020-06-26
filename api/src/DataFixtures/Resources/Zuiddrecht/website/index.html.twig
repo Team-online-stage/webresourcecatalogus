@@ -18,7 +18,7 @@
                         {% set nieuws = commonground_resource(application.defaultConfiguration.configuration.nieuws) %}
                         {% set templates = commonground_resource_list({'component': 'wrc', 'type': 'templates'},{'templateGroups.id':nieuws.id,'limit':4,'order[dateCreated]':'desc'})['hydra:member'] %}
                         {% for template in templates %}
-                            <li><a href="/article?id={{ template.id }}" style="text-decoration: none;">{{ template.description }}</a></li>
+                            <li><a href="/article?id={{ template.id }}" style="text-decoration: none;">{{ template.title }}</a></li>
                         {% endfor %}
                     {% endif %}
                 </ul>
@@ -137,16 +137,16 @@
                 {% if application.defaultConfiguration.configuration.nieuws is defined %}
                     {% set nieuws = commonground_resource(application.defaultConfiguration.configuration.nieuws) %}
                     {% set templates = commonground_resource_list({'component': 'wrc', 'type': 'templates'},{'templateGroups.id':nieuws.id,'limit':4, 'order[dateCreated]':'desc'})['hydra:member'] %}
+                    {% set value = 1 %}
                     {% for template in templates %}
-                        <div class="newsCard" style="position: relative">
-                            <h2>{{ template.description }}</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                Aspernatur dicta et in ipsum iusto laboriosam laborum, nesciunt, non odit possimus quia quibusdam,
-                                sapiente veritatis voluptatibus.
+                        <div class="newsCard" id="news-{{ value }}" style="position: relative">
+                            <h2>{{ template.title }}</h2>
+                            <p>
+                                {{ template.description }}
                             </p>
                             <a href="/article?id={{ template.id }}" style="position: absolute; bottom: 15px; right: 15px;">lees meer</a>
                         </div>
-
+                    {% set value = value + 1 %}
                     {% endfor %}
                 {% endif %}
             </div>
