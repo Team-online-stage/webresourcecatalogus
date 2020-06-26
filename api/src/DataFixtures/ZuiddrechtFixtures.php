@@ -101,6 +101,19 @@ class ZuiddrechtFixtures extends Fixture
             text-decoration: none;
         }
 
+        a:focus:not(.btn):not(.pagination__link):not(.nav__link){
+            background: #3669A5;
+            outline: none;
+        }
+
+
+
+        .flex-center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
         .processCard {
             height: 166px;
             width: 236px;
