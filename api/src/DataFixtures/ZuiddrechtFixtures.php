@@ -135,7 +135,7 @@ class ZuiddrechtFixtures extends Fixture
             }
 
             .newsImage {
-                margin-top: 50px;
+                margin-top: 35px;
                 padding: 25px;
                 margin-bottom: -50px;
                 background: none;
@@ -144,6 +144,166 @@ class ZuiddrechtFixtures extends Fixture
             }
         }
 
+        .processen ul {
+            clear: left;
+            padding: 0 .5em
+        }
+
+        @media only screen and (min-width: 35em) {
+            .processen ul {
+                padding:0
+            }
+
+            .processen ul li {
+                width: 32%;
+                float: left;
+                margin-right: 2%
+            }
+        }
+
+        @media only screen and (min-width: 60em) {
+            .processen ul {
+                padding-right: .8em;
+            }
+
+            .processen ul li {
+                width: 19%;
+                float: left;
+                margin-right: 1.25%
+            }
+        }
+
+        .processen ul li {
+            list-style: none;
+            margin-top: 0;
+            margin-bottom: .6em;
+            padding: 0;
+            background-image: none
+        }
+
+        @media only screen and (min-width: 35em) {
+            ,.processen ul li:nth-child(3n) {
+                margin-right:0
+            }
+        }
+
+        @media only screen and (min-width: 60em) {
+            .processen ul li:nth-child(3n) {
+                margin-right:1.25%
+            }
+
+            .processen ul li:nth-child(5n) {
+                margin-right: 0
+            }
+
+            .processen:after {
+                display: none
+            }
+
+            .processen ul {
+                width: 66.67%;
+                float: left
+            }
+        }
+
+        .processen ul li{
+            background-image: none;
+            padding-left: 0
+        }
+
+        @media only screen and (min-width: 35em) {
+            .processen ul li {
+                width:48%
+            }
+        }
+
+        @media only screen and (min-width: 60em) {
+            .processen ul li {
+                width:32%;
+                float: left;
+                margin-bottom: .8em;
+                margin-right: 2%
+            }
+        }
+
+        @media only screen and (min-width: 35em) {
+            .processen ul li:nth-child(2n) {
+                margin-right:0
+            }
+        }
+
+        @media only screen and (min-width: 60em) {
+            .processen ul li:nth-child(2n) {
+                margin-right:2%
+            }
+
+            .processen ul li:nth-child(3n) {
+                margin-right: 0
+            }
+
+            .processen ul li:nth-child(5n) {
+                margin-right: 2%
+            }
+
+            .processen a {
+                min-height: 10.2em
+            }
+        }
+
+        .processen {
+            margin: 0 -1.2em
+            margin-top: 25px;
+        }
+
+        @media only screen and (min-width: 35em) {
+            .processen li:nth-child(3n) {
+                margin-right:2%
+            }
+        }
+
+        @media only screen and (min-width: 60em) {
+            ..processen li:nth-child(3n) {
+                margin-right:0
+            }
+        }
+
+        .processen ul {
+            margin-top: 0;
+            margin-left: 0;
+        }
+
+        .processen a {
+            display: block;
+            text-align: center;
+            position: relative;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            background-color: #CC0000;
+            color: #FFF;
+            text-decoration: none;
+        }
+
+        .processen a:hover {
+            background-color: #3669A5;
+            border-color: #3669A5;
+            transform: scale(1.02)
+        }
+
+        .processen a span {
+            font-size: 1.25em
+        }
+
+        @media only screen and (min-width: 35em) {
+            .processen a {
+                padding:2.5em .75em .75em;
+                min-height: 9em
+            }
+
+            .processen a span {
+                font-size: 1.125em;
+                line-height: 1.2
+            }
+        }
 
 
         .header-logo a:after{
@@ -154,12 +314,6 @@ class ZuiddrechtFixtures extends Fixture
             display: flex;
             justify-content: center;
             align-items: center;
-        }
-
-        .processCard {
-            height: 166px;
-            width: 236px;
-            background-color: #CC0000;
         }
 
         .footerStyle {
@@ -185,6 +339,29 @@ class ZuiddrechtFixtures extends Fixture
         margin-left: 0px;
         }
 
+        .contact {
+        background-color: #3669A5;
+        float:left;
+        width: 100%;
+        color: white;
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 10px;
+        }
+
+        @media only screen and (min-width: 960px) {
+            .contact {
+                background-color: #3669A5;
+                float:left;
+                width: 33%;
+                color: white;
+                padding-left: 10px;
+                padding-right: 10px;
+                padding-top: 10px;
+
+            }
+        }
+
         .header-logo a:before {
         background: url("data:image/svg+xml;base64,PHN2ZyBpZD0iw5HDq8Ouw6lfMSIgZGF0YS1uYW1lPSLDkcOrw67DqSAxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA5MzkuNTcgMTA5OC44OSI+PGRlZnM+PHN0eWxlPi5jbHMtMXtmaWxsOiNjMDA7fS5jbHMtMntmaWxsOiMzNjY5YTU7fTwvc3R5bGU+PC9kZWZzPjx0aXRsZT56dWlkIERyZWNodCBOb3BheW9mZjwvdGl0bGU+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNNTc2LDk2Ny4xMWMtNTYsNDEuMzktMTAxLjQzLDY2LjA1LTExMSw3MS4xMWE0LDQsMCwwLDEtMy43MiwwYy0yNS41Ny0xMy41LTMwNy40OC0xNjctMzYxLjM3LTQwNmE0LDQsMCwwLDEsNy4zOC0yLjgxYzM4LjU0LDY4LjkzLDEyNS4zNywxMTkuMjYsMTg3LjUxLDE1Mi42OSw1Mi41LDI4LjIzLDExMy42Miw1MC4yMSwxNjguMzQsODAuMzZDNTA4LjIyLDg4Ny4yOSw1NDksOTE3LjY5LDU3Nyw5NjEuNzVBNCw0LDAsMCwxLDU3Niw5NjcuMTFaIi8+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNODM0LjcxLDIxNS44NFYxMDEuNjVhOC45LDguOSwwLDAsMC04LjktOC45MWgtMjczQTE0LjU5LDE0LjU5LDAsMCwwLDUzOS40MywxMDNsLTE5LDcwLjI4YTE0LjU4LDE0LjU4LDAsMCwxLTEzLjM1LDEwLjIxSDM4M1YxNDcuMTJjMzYuODQtMS4zNCw2Mi40Mi03LjQ1LDgwLjE2LTE1LjEsMjkuNDktMTIuNzQsMzcuMzUtMjkuNzgsMzkuMzYtMzYuNDRhMi4yMiwyLjIyLDAsMCwwLTIuMTMtMi44NEgzMzQuNjFjLTMzLjg4LDAtNjcuOTEsOS4yLTg2LjA4LDQwLjEtMTkuMzgsMzIuOTQtMTguMjQsNzguMDctMTYuNDksMTE0Ljg5LDAsMC01MC02Ni4yMi00MC43Ni0xNDguODdhNS41MSw1LjUxLDAsMCwwLTUuNDgtNi4xMkgxMDAuMzJhOC43OSw4Ljc5LDAsMCwwLTguNzgsOC43OVYxMjRjNC44Niw3OS4yNiw0OS4xNCwyODguNTcsMzcxLjU4LDM4NS40QzczNSw1OTEuMDYsNzc1LjQyLDcxNi4zLDc4My4zMiw3MzguMjRhMS4zOCwxLjM4LDAsMCwwLDIuNTMuMTdjNzUuMy0xNDMuOS04MS40OS0yNDcuNTItODEuNDktMjQ3LjUyLDMxLjMzLDAsNzkuMjMsMTcuOTQsMTE4LDM5Ljc5YTguMjgsOC4yOCwwLDAsMCwxMi4zNy03LjIxVjM2My44M2ExNC42LDE0LjYsMCwwLDAtMTguMTUtMTQuMTdjLTEzLjUsMy4zOS0zMCw2LjY4LTMyLjg3LDcuMjMtMzkuNDYsNy43Ny04NC43NSwxMS4xNS0xMjItOC43M3MtNDcuMjYtNjYuMjctMTguMzMtOTguMjNjMjUuMy0yOCw2NS41My0zNy41LDEwMi4yOS0zNSwyMy41NiwxLjYyLDU1LjE4LDcuNTksNzMuNzEsMTIuNjNBMTIuMTYsMTIuMTYsMCwwLDAsODM0LjcxLDIxNS44NFoiLz48cGF0aCBjbGFzcz0iY2xzLTIiIGQ9Ik02NTQuODcsOTAxLjVhNCw0LDAsMCwxLTYtLjExYy0xMy41Ni0xNi4yNS03NS40Ni04Ni0xODUuNzMtMTQ2LjQyQTc1Ni40NCw3NTYuNDQsMCwwLDAsMzgzLDcxN2MtMTczLjUzLTcwLjE3LTI4Mi42OS0xNDMuMy0yOTEuNDItMzM4LjF2LTYuMjJhNCw0LDAsMCwxLDcuMjEtMi4zNGM2My42MSw4NywxNDQuNjksMTM3LjksMjQzLjE2LDE4Ni43Nyw0MC4yOCwyMCw4MS4xNywzNi4zMiwxMjEuMjEsNTMuMjUsNjYuMTUsMjgsMTMwLDU3LjU0LDE4NC43MywxMDcuOCwxNi4xOCwxNC44NSwyOS4wOSwyOS4xNSwzNi44MSw1MEM2OTUuNzUsNzk4LjEzLDcwMi41NSw4NDkuMTcsNjU0Ljg3LDkwMS41WiIvPjwvc3ZnPg==") no-repeat bottom;
         background-size: 120%;
@@ -192,6 +369,8 @@ class ZuiddrechtFixtures extends Fixture
         left:  0;
         position: absolute;
         top: 0;}');
+
+
 
         $style->setfavicon($favicon);
         $style->setOrganization($organization);
