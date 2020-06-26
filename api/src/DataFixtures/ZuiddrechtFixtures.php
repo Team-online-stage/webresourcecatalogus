@@ -97,10 +97,6 @@ class ZuiddrechtFixtures extends Fixture
         {background: var(--primary);}.bg-primary-gradient {background: linear-gradient(-45deg, var(--secondary),
          var(--secondary2)) !important;}
 
-        i {
-            color: white;
-        }
-
         a {
             text-decoration: none;
         }
@@ -126,6 +122,7 @@ class ZuiddrechtFixtures extends Fixture
         width: 240px;
         background-color: white;
         padding: 15px;
+        height:400px;
         margin-left: 0px;
         }
 
