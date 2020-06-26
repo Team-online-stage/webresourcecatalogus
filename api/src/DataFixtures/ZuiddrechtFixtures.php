@@ -215,6 +215,10 @@ class ZuiddrechtFixtures extends Fixture
             .processen ul li {
                 width:48%
             }
+
+            .processen {
+                margin-left: 17px;
+            }
         }
 
         @media only screen and (min-width: 60em) {
@@ -223,6 +227,11 @@ class ZuiddrechtFixtures extends Fixture
                 float: left;
                 margin-bottom: .8em;
                 margin-right: 2%
+
+            }
+
+            .processen {
+            margin-left: 0px;
             }
         }
 
