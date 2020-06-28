@@ -414,7 +414,25 @@ class ZuiddrechtFixtures extends Fixture
         content: ;
         left:  0;
         position: absolute;
-        top: 0;}');
+        top: 0;}
+
+        .footer3, .footer4 {
+        display: none;
+        }
+
+        @media only screen and (min-width: 767px) {
+            .footer3 {
+                display: block;
+            }
+        }
+
+        @media only screen and (min-width: 992px) {
+            .footer4 {
+                display: block;
+            }
+        }
+
+        ');
 
 
 
