@@ -23,9 +23,6 @@ use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 class WestfrieslandFixtures extends Fixture
 {
     private $params;
-    /**
-     * @var CommonGroundService
-     */
     private $commonGroundService;
 
     public function __construct(ParameterBagInterface $params, CommonGroundService $commonGroundService)
@@ -172,8 +169,8 @@ class WestfrieslandFixtures extends Fixture
         $configuration->setApplication($application);
         $configuration->setConfiguration(
             [
-                'mainMenu' => $this->commonGroundService->cleanUrl($this->commonGroundService->cleanUrl(["component" => "wrc", "type" => "menus", "id" => "097ea88e-beb6-476e-a978-d07650f03d97"])),
-                'home' => $this->commonGroundService->cleanUrl($this->commonGroundService->cleanUrl(["component" => "wrc", "type" => "templates", "id" => "fc91dcd6-d0b4-4e70-9934-3e5ebf9c295c"]))]
+                'mainMenu'=> $this->commonGroundService->cleanUrl(["component"=>"wrc","type"=>"menus","id"=>"097ea88e-beb6-476e-a978-d07650f03d97"]),
+                'home'    => $this->commonGroundService->cleanUrl(["component"=>"wrc","type"=>"menus","id"=>"fc91dcd6-d0b4-4e70-9934-3e5ebf9c295c"]), ]
         );
         $manager->persist($configuration);
 

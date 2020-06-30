@@ -10858,7 +10858,7 @@ paths:
           description: 'The number of items per page'
           schema:
             type: integer
-            default: 5
+            default: 30
             minimum: 0
         -
           name: Authorization
@@ -13398,11 +13398,10 @@ components:
         templateEngine:
           description: 'The template engine used to render this template. Schould be either twig (Twig), md (Markdown) or rst (reStructuredText)'
           type: string
-        application:
-          nullable: true
-          anyOf:
-            -
-              $ref: '#/components/schemas/Application-read'
+        slugs:
+          type: array
+          items:
+            $ref: '#/components/schemas/Slug-read'
         organization:
           nullable: true
           anyOf:
@@ -13456,11 +13455,10 @@ components:
         templateEngine:
           description: 'The template engine used to render this template. Schould be either twig (Twig), md (Markdown) or rst (reStructuredText)'
           type: string
-        application:
-          nullable: true
-          anyOf:
-            -
-              $ref: '#/components/schemas/Application-write'
+        slugs:
+          type: array
+          items:
+            $ref: '#/components/schemas/Slug-write'
         organization:
           nullable: true
           anyOf:
@@ -13507,11 +13505,10 @@ components:
         templateEngine:
           description: 'The template engine used to render this template. Schould be either twig (Twig), md (Markdown) or rst (reStructuredText)'
           type: string
-        application:
-          nullable: true
-          anyOf:
-            -
-              $ref: '#/components/schemas/Application:jsonld-read'
+        slugs:
+          type: array
+          items:
+            $ref: '#/components/schemas/Slug:jsonld-read'
         organization:
           nullable: true
           anyOf:
@@ -13574,11 +13571,10 @@ components:
         templateEngine:
           description: 'The template engine used to render this template. Schould be either twig (Twig), md (Markdown) or rst (reStructuredText)'
           type: string
-        application:
-          nullable: true
-          anyOf:
-            -
-              $ref: '#/components/schemas/Application:jsonld-write'
+        slugs:
+          type: array
+          items:
+            $ref: '#/components/schemas/Slug:jsonld-write'
         organization:
           nullable: true
           anyOf:
@@ -14256,7 +14252,7 @@ definitions:
       dateModified:
         description: 'The moment this request last Modified'
         type: \Datetime
-      application: []
+      slugs: []
       organization: []
       templateGroups: []
     required:
@@ -14289,7 +14285,7 @@ definitions:
         description: 'The template engine used to render this template. Schould be either twig (Twig), md (Markdown) or rst (reStructuredText)'
         type: string
         example: twig
-      application: []
+      slugs: []
       organization: []
       templateGroups: []
     required:
@@ -14447,12 +14443,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-06-23 13:36:40'
+        example: '2020-06-25 13:21:38'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-06-23 13:36:40'
+        example: '2020-06-25 13:21:38'
     required: []
   AuditTrail-write:
     properties:
@@ -14500,12 +14496,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-06-23 13:36:40'
+        example: '2020-06-25 13:21:38'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-06-23 13:36:40'
+        example: '2020-06-25 13:21:38'
     required: []
   ChangeLog-write:
     properties:
