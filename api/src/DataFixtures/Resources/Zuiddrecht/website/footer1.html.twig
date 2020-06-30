@@ -1,6 +1,10 @@
 <span class="footer__header">Voor inwoners</span>
-<ul class="list list--links footer__nav" >
-    <li><a style="color: white" href="#">Mijn zuiddrecht</a></li>
+<ul class="list list--links list--chevrons footer__nav" >
+    {% if user is not empty %}
+    <li><a style="color: white" href="https://www.mijn.zuid-drecht.nl">Mijn zuiddrecht</a></li>
+    {% else %}
+        <li><a style="color: white" href="{{ commonground_cleanurl({"component":"ds"}) }}?responceUrl={{ absolute_url(path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params'))) }}">Mijn zuiddrecht</a></li>
+    {% endif %}
     <li><a style="color: white" href="{{ path('app_process_load',{"id":"c8de2851-332d-4284-b86e-ba0615694427"}) }}">Verhuizen</a></li>
     <li><a style="color: white" href="{{ path('app_process_load',{"id":"b8955949-2d8d-4bfb-9c73-e5275bffa427"}) }}">Trouwen</a></li>
     <li><a style="color: white" href="{{ path('app_process_load',{"id":"a8b8ce49-d5db-4270-9e42-4b47902fc817"}) }}">Begraven</a></li>
