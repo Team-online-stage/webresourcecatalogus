@@ -1,0 +1,76 @@
+{# templates/home/index.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <h1>Aanbestedingen</h1>
+    <div class="row">
+        <div class="col-sm-8">
+            {% set challenges = commonground_resource_list({'component': 'chrc', 'type': 'tenders'},{'order[dateCreated]':'desc'})['hydra:member'] %}
+            {% if challenges is not empty %}
+                <ul class="list list--card list--card-small">
+                {% for challenge in challenges %}
+                    <li class="card card--small">
+                        <a href="#" class="card__content">
+                            <div class="card__thumb" style="background-image: url('https://picsum.photos/200')"></div>
+                            <div class="card__body"><span class="card__title">{{ challenge.name }}</span></div>
+                        </a>
+                    </li>
+                {% endfor %}
+            {% else %}
+                    <p>Er zijn op dit moment geen aanbestedingen</p>
+            {% endif %}
+                <li class="card card--small">
+                    <a href="#" class="card__content">
+                        <div class="card__thumb" style="background-image: url('https://picsum.photos/200')"></div>
+                        <div class="card__body"><span class="card__title">Test challenge</span></div>
+                    </a>
+                </li>
+                <li class="card card--small">
+                    <a href="#" class="card__content">
+                        <div class="card__thumb" style="background-image: url('https://picsum.photos/200')"></div>
+                        <div class="card__body"><span class="card__title">Test challenge 2</span></div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-sm-4">
+                <fieldset class="input filter">
+                    <legend class="filter__title">Kanaal</legend>
+                    <div class="input__group input__group--radio input__group--compact">
+                        <input type="radio" name="optradio1" id="opt-compact-1" class="input__control input__control--radio">
+                        <label class="input__label input__label--radio" for="opt-compact-1">Particulier portaal</label>
+                    </div>
+                    <div class="input__group input__group--radio input__group--compact">
+                        <input type="radio" name="optradio1" id="opt-compact-2" class="input__control input__control--radio" checked="">
+                        <label class="input__label input__label--radio" for="opt-compact-2">Zakelijk portaal</label>
+                    </div>
+                    <div class="input__group input__group--radio input__group--compact">
+                        <input type="radio" name="optradio1" id="opt-compact-3" class="input__control input__control--radio" disabled="">
+                        <label class="input__label input__label--radio" for="opt-compact-3">Medewerkersportaal</label>
+                    </div>
+                </fieldset>
+
+                <fieldset class="input filter">
+                    <legend class="filter__title">Hobbies:</legend>
+                    <div class="input__group input__group--compact input__group--checkbox">
+                        <input name="hobbies_compact[]" type="checkbox" id="chkbx-compact-1" class="input__control input__control--checkbox">
+                        <label class="input__label input__label--checkbox" for="chkbx-compact-1">Kitesurfen</label>
+                    </div>
+                    <div class="input__group input__group--compact input__group--checkbox">
+                        <input name="hobbies_compact[]" type="checkbox" id="chkbx-compact-2" class="input__control input__control--checkbox" checked="">
+                        <label class="input__label input__label--checkbox" for="chkbx-compact-2">Postzegels verzamelen</label>
+                    </div>
+                    <div class="input__group input__group--compact input__group--checkbox">
+                        <input name="hobbies_compact[]" type="checkbox" id="chkbx-compact-3" class="input__control input__control--checkbox" disabled="">
+                        <label class="input__label input__label--checkbox" for="chkbx-compact-3">Paardrijden</label>
+                    </div>
+                    <div class="input__group input__group--compact input__group--checkbox">
+                        <input name="hobbies_compact[]" type="checkbox" id="chkbx-compact-4" class="input__control input__control--checkbox" disabled="" checked="">
+                        <label class="input__label input__label--checkbox" for="chkbx-compact-4">JavaScript</label>
+                    </div>
+                </fieldset>
+        </div>
+    </div>
+
+{% endblock %}

@@ -765,6 +765,50 @@ class ZuiddrechtFixtures extends Fixture
         $slug->setSlug('privacy');
         $manager->persist($slug);
 
+        $id = Uuid::fromString('16da42d1-4be6-499d-8a82-94acde4eac25');
+        $template = new Template();
+        $template->setName('pitches');
+        $template->setDescription('pitches');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Zuiddrecht/website/pitches.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('pitches');
+        $slug->setSlug('pitches');
+        $manager->persist($slug);
+
+        $id = Uuid::fromString('16da42d1-4be6-499d-8a82-94acde4eac25');
+        $template = new Template();
+        $template->setName('challenges');
+        $template->setDescription('challenges');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Zuiddrecht/website/challenges.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('challenges');
+        $slug->setSlug('challenges');
+        $manager->persist($slug);
+
         // Template groups
         $id = Uuid::fromString('5c59f238-1ce3-4c8d-8107-4bd8e2134648');
         $groupNews = new TemplateGroup();
