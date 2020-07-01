@@ -35,6 +35,7 @@ class ZuiddrechtFixtures extends Fixture
     public function load(ObjectManager $manager)
     {
         if (
+            !$this->params->get('app_build_all_fixtures') &&
             $this->params->get('app_domain') != 'zuiddrecht.nl' && strpos($this->params->get('app_domain'), 'zuiddrecht.nl') == false &&
             $this->params->get('app_domain') != 'zuid-drecht.nl' && strpos($this->params->get('app_domain'), 'zuid-drecht.nl') == false
         ) {
@@ -55,8 +56,33 @@ class ZuiddrechtFixtures extends Fixture
 
         $favicon = new Image();
         $favicon->setName('Zuid-Drecht Favicon');
+        $favicon->setBase64('data:image/svg+xml;base64,PHN2ZyBpZD0iw5HDq8Ouw6lfMSIgZGF0YS1uYW1lPSLDkcOrw67DqSAxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA5MzkuNTcgMTA5OC44OSI+PGRlZnM+PHN0eWxlPi5jbHMtMXtmaWxsOiNjMDA7fS5jbHMtMntmaWxsOiMzNjY5YTU7fTwvc3R5bGU+PC9kZWZzPjx0aXRsZT56dWlkIERyZWNodCBOb3BheW9mZjwvdGl0bGU+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNNTc2LDk2Ny4xMWMtNTYsNDEuMzktMTAxLjQzLDY2LjA1LTExMSw3MS4xMWE0LDQsMCwwLDEtMy43MiwwYy0yNS41Ny0xMy41LTMwNy40OC0xNjctMzYxLjM3LTQwNmE0LDQsMCwwLDEsNy4zOC0yLjgxYzM4LjU0LDY4LjkzLDEyNS4zNywxMTkuMjYsMTg3LjUxLDE1Mi42OSw1Mi41LDI4LjIzLDExMy42Miw1MC4yMSwxNjguMzQsODAuMzZDNTA4LjIyLDg4Ny4yOSw1NDksOTE3LjY5LDU3Nyw5NjEuNzVBNCw0LDAsMCwxLDU3Niw5NjcuMTFaIi8+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNODM0LjcxLDIxNS44NFYxMDEuNjVhOC45LDguOSwwLDAsMC04LjktOC45MWgtMjczQTE0LjU5LDE0LjU5LDAsMCwwLDUzOS40MywxMDNsLTE5LDcwLjI4YTE0LjU4LDE0LjU4LDAsMCwxLTEzLjM1LDEwLjIxSDM4M1YxNDcuMTJjMzYuODQtMS4zNCw2Mi40Mi03LjQ1LDgwLjE2LTE1LjEsMjkuNDktMTIuNzQsMzcuMzUtMjkuNzgsMzkuMzYtMzYuNDRhMi4yMiwyLjIyLDAsMCwwLTIuMTMtMi44NEgzMzQuNjFjLTMzLjg4LDAtNjcuOTEsOS4yLTg2LjA4LDQwLjEtMTkuMzgsMzIuOTQtMTguMjQsNzguMDctMTYuNDksMTE0Ljg5LDAsMC01MC02Ni4yMi00MC43Ni0xNDguODdhNS41MSw1LjUxLDAsMCwwLTUuNDgtNi4xMkgxMDAuMzJhOC43OSw4Ljc5LDAsMCwwLTguNzgsOC43OVYxMjRjNC44Niw3OS4yNiw0OS4xNCwyODguNTcsMzcxLjU4LDM4NS40QzczNSw1OTEuMDYsNzc1LjQyLDcxNi4zLDc4My4zMiw3MzguMjRhMS4zOCwxLjM4LDAsMCwwLDIuNTMuMTdjNzUuMy0xNDMuOS04MS40OS0yNDcuNTItODEuNDktMjQ3LjUyLDMxLjMzLDAsNzkuMjMsMTcuOTQsMTE4LDM5Ljc5YTguMjgsOC4yOCwwLDAsMCwxMi4zNy03LjIxVjM2My44M2ExNC42LDE0LjYsMCwwLDAtMTguMTUtMTQuMTdjLTEzLjUsMy4zOS0zMCw2LjY4LTMyLjg3LDcuMjMtMzkuNDYsNy43Ny04NC43NSwxMS4xNS0xMjItOC43M3MtNDcuMjYtNjYuMjctMTguMzMtOTguMjNjMjUuMy0yOCw2NS41My0zNy41LDEwMi4yOS0zNSwyMy41NiwxLjYyLDU1LjE4LDcuNTksNzMuNzEsMTIuNjNBMTIuMTYsMTIuMTYsMCwwLDAsODM0LjcxLDIxNS44NFoiLz48cGF0aCBjbGFzcz0iY2xzLTIiIGQ9Ik02NTQuODcsOTAxLjVhNCw0LDAsMCwxLTYtLjExYy0xMy41Ni0xNi4yNS03NS40Ni04Ni0xODUuNzMtMTQ2LjQyQTc1Ni40NCw3NTYuNDQsMCwwLDAsMzgzLDcxN2MtMTczLjUzLTcwLjE3LTI4Mi42OS0xNDMuMy0yOTEuNDItMzM4LjF2LTYuMjJhNCw0LDAsMCwxLDcuMjEtMi4zNGM2My42MSw4NywxNDQuNjksMTM3LjksMjQzLjE2LDE4Ni43Nyw0MC4yOCwyMCw4MS4xNywzNi4zMiwxMjEuMjEsNTMuMjUsNjYuMTUsMjgsMTMwLDU3LjU0LDE4NC43MywxMDcuOCwxNi4xOCwxNC44NSwyOS4wOSwyOS4xNSwzNi44MSw1MEM2OTUuNzUsNzk4LjEzLDcwMi41NSw4NDkuMTcsNjU0Ljg3LDkwMS41WiIvPjwvc3ZnPg==');
         $favicon->setDescription('Zuid-Drecht VNG');
         $favicon->setOrganization($organization);
+
+        $id = Uuid::fromString('0e5b1531-4abb-4704-9bd3-feeb94717521');
+        $newsimg = new Image();
+        $newsimg->setName('news image');
+        $newsimg->setBase64(base64_encode(file_get_contents(dirname(__FILE__).'/Resources/Zuiddrecht/afbeeldingen/zuiddrecht_news.jpg', 'r')));
+        $newsimg->setDescription('Zuid-Drecht news');
+        $newsimg->setOrganization($organization);
+        $manager->persist($newsimg);
+        $newsimg->setId($id);
+        $manager->persist($newsimg);
+        $manager->flush();
+        $newsimg = $manager->getRepository('App:Image')->findOneBy(['id'=> $id]);
+
+        $id = Uuid::fromString('ff3ca823-234f-4874-9ee6-1067d47e4391');
+        $headerimg = new Image();
+        $headerimg->setName('header image');
+        $headerimg->setBase64(base64_encode(file_get_contents(dirname(__FILE__).'/Resources/Zuiddrecht/afbeeldingen/zuiddrecht_header.jpg', 'r')));
+        $headerimg->setDescription('Zuid-Drecht header');
+        $headerimg->setOrganization($organization);
+        $manager->persist($headerimg);
+        $headerimg->setId($id);
+        $manager->persist($headerimg);
+        $manager->flush();
+        $headerimg = $manager->getRepository('App:Image')->findOneBy(['id'=> $id]);
 
         $logo = new Image();
         $logo->setName('Zuid-Drecht Logo');
@@ -69,7 +95,344 @@ class ZuiddrechtFixtures extends Fixture
         $style->setCss(':root {--primary: #CC0000;--primary2: white;--secondary: #3669A5;--secondary2: #FFC926;}
         .main-title {color: var(--primary2) !important;}.logo-header {background: var(--primary);}.navbar-header
         {background: var(--primary);}.bg-primary-gradient {background: linear-gradient(-45deg, var(--secondary),
-         var(--secondary2)) !important;}');
+         var(--secondary2)) !important;}
+
+        a {
+            text-decoration: none;
+        }
+
+        a:focus:not(.btn):not(.pagination__link):not(.nav__link){
+            background: #3669A5;
+            outline: none;
+        }
+
+        .headerImage {
+            margin-top: -20px;
+            height: 500px;
+            background: none;
+            background-size: cover !important;
+            background-position: center !important;
+
+        }
+
+        .newsImage {
+            display: none;
+            margin-top: 50px;
+            padding: 25px;
+            margin-bottom: -50px;
+            background: none;
+            background-size: cover !important;
+            background-position: center !important;
+            }
+
+        #news-1, #news-2, #news-3, #news-4 {
+            display: none;
+        }
+
+        @media only screen and (min-width: 600px){
+
+            .newsImage {
+                display: block;
+                margin-top: 50px;
+                padding: 25px;
+                margin-bottom: -50px;
+                background: none;
+                background-size: cover !important;
+                background-position: center !important;
+            }
+
+            #news-1, #news-2 {
+                display: block;
+            }
+        }
+
+        @media only screen and (min-width: 900px){
+            #news-3 {
+                display: block;
+            }
+        }
+
+        @media only screen and (min-width: 1200px){
+            #news-4 {
+                display: block;
+            }
+        }
+
+
+
+
+
+        @media only screen and (min-width: 1376px){
+            .headerImage {
+                margin-top: -20px;
+                height: 500px;
+                background: none;
+                background-size: 100% auto !important;
+                background-position: center !important;
+            }
+
+            .newsImage {
+                margin-top: 35px;
+                padding: 25px;
+                margin-bottom: -50px;
+                background: none;
+                background-size: 100% auto !important;
+                background-position: center !important;
+            }
+        }
+
+        .processen ul {
+            clear: left;
+            padding: 0 .5em
+        }
+
+        @media only screen and (min-width: 35em) {
+            .processen ul {
+                padding:0
+            }
+
+            .processen ul li {
+                width: 32%;
+                float: left;
+                margin-right: 2%
+            }
+        }
+
+        @media only screen and (min-width: 60em) {
+            .processen ul {
+                padding-right: .8em;
+            }
+
+            .processen ul li {
+                width: 19%;
+                float: left;
+                margin-right: 1.25%
+            }
+        }
+
+        .processen ul li {
+            list-style: none;
+            margin-top: 0;
+            margin-bottom: .6em;
+            padding: 0;
+            background-image: none
+        }
+
+        @media only screen and (min-width: 35em) {
+            ,.processen ul li:nth-child(3n) {
+                margin-right:0
+            }
+        }
+
+        @media only screen and (min-width: 60em) {
+            .processen ul li:nth-child(3n) {
+                margin-right:1.25%
+            }
+
+            .processen ul li:nth-child(5n) {
+                margin-right: 0
+            }
+
+            .processen:after {
+                display: none
+            }
+
+            .processen ul {
+                width: 66.67%;
+                float: left
+            }
+        }
+
+        .processen ul li{
+            background-image: none;
+            padding-left: 0
+        }
+
+        @media only screen and (min-width: 35em) {
+            .processen ul li {
+                width:48%
+            }
+
+            .processen {
+                margin-left: 17px;
+            }
+        }
+
+        @media only screen and (min-width: 60em) {
+            .processen ul li {
+                width:32%;
+                float: left;
+                margin-bottom: .8em;
+                margin-right: 2%
+
+            }
+
+            .processen {
+            margin-left: 0px;
+            }
+        }
+
+        @media only screen and (min-width: 35em) {
+            .processen ul li:nth-child(2n) {
+                margin-right:0
+            }
+        }
+
+        @media only screen and (min-width: 60em) {
+            .processen ul li:nth-child(2n) {
+                margin-right:2%
+            }
+
+            .processen ul li:nth-child(3n) {
+                margin-right: 0
+            }
+
+            .processen ul li:nth-child(5n) {
+                margin-right: 2%
+            }
+
+            .processen a {
+                min-height: 10.2em
+            }
+        }
+
+        .processen {
+            margin: 0 -1.2em
+            margin-top: 25px;
+        }
+
+        @media only screen and (min-width: 35em) {
+            .processen li:nth-child(3n) {
+                margin-right:2%
+            }
+        }
+
+        @media only screen and (min-width: 60em) {
+            ..processen li:nth-child(3n) {
+                margin-right:0
+            }
+        }
+
+        .processen ul {
+            margin-top: 0;
+            margin-left: 0;
+        }
+
+        .processen a {
+            display: block;
+            text-align: center;
+            position: relative;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            background-color: #CC0000;
+            color: #FFF;
+            text-decoration: none;
+        }
+
+        .processen a:hover {
+            background-color: #3669A5;
+            border-color: #3669A5;
+            transform: scale(1.02)
+        }
+
+        .processen a span {
+            font-size: 1.25em
+        }
+
+        @media only screen and (min-width: 35em) {
+            .processen a {
+                padding:2.5em .75em .75em;
+                min-height: 9em
+            }
+
+            .processen a span {
+                font-size: 1.125em;
+                line-height: 1.2
+            }
+        }
+
+
+        .header-logo a:after{
+            background-image: none;
+        }
+
+        .flex-center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .footerStyle {
+            background-color: #3669A5;
+            color: white;
+        }
+
+        .top-nav-autoresize .nav__link:hover {
+            background-color: #3669A5;
+        }
+
+        .menuStyle {
+            background-color: #CC0000;
+            color: white;
+        }
+
+        .newsCard {
+        margin: 10px auto;
+        width: 240px;
+        background-color: white;
+        padding: 15px;
+        height:400px;
+        }
+
+        .contact {
+        background-color: #3669A5;
+        float:left;
+        width: 100%;
+        color: white;
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 10px;
+        margin-left: 5px;
+        }
+
+        @media only screen and (min-width: 960px) {
+            .contact {
+                background-color: #3669A5;
+                float:left;
+                width: 33%;
+                color: white;
+                padding-left: 10px;
+                padding-right: 10px;
+                padding-top: 10px;
+                margin-left: 0px;
+            }
+        }
+
+        .header-logo a:before {
+        background: url("data:image/svg+xml;base64,PHN2ZyBpZD0iw5HDq8Ouw6lfMSIgZGF0YS1uYW1lPSLDkcOrw67DqSAxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA5MzkuNTcgMTA5OC44OSI+PGRlZnM+PHN0eWxlPi5jbHMtMXtmaWxsOiNjMDA7fS5jbHMtMntmaWxsOiMzNjY5YTU7fTwvc3R5bGU+PC9kZWZzPjx0aXRsZT56dWlkIERyZWNodCBOb3BheW9mZjwvdGl0bGU+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNNTc2LDk2Ny4xMWMtNTYsNDEuMzktMTAxLjQzLDY2LjA1LTExMSw3MS4xMWE0LDQsMCwwLDEtMy43MiwwYy0yNS41Ny0xMy41LTMwNy40OC0xNjctMzYxLjM3LTQwNmE0LDQsMCwwLDEsNy4zOC0yLjgxYzM4LjU0LDY4LjkzLDEyNS4zNywxMTkuMjYsMTg3LjUxLDE1Mi42OSw1Mi41LDI4LjIzLDExMy42Miw1MC4yMSwxNjguMzQsODAuMzZDNTA4LjIyLDg4Ny4yOSw1NDksOTE3LjY5LDU3Nyw5NjEuNzVBNCw0LDAsMCwxLDU3Niw5NjcuMTFaIi8+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNODM0LjcxLDIxNS44NFYxMDEuNjVhOC45LDguOSwwLDAsMC04LjktOC45MWgtMjczQTE0LjU5LDE0LjU5LDAsMCwwLDUzOS40MywxMDNsLTE5LDcwLjI4YTE0LjU4LDE0LjU4LDAsMCwxLTEzLjM1LDEwLjIxSDM4M1YxNDcuMTJjMzYuODQtMS4zNCw2Mi40Mi03LjQ1LDgwLjE2LTE1LjEsMjkuNDktMTIuNzQsMzcuMzUtMjkuNzgsMzkuMzYtMzYuNDRhMi4yMiwyLjIyLDAsMCwwLTIuMTMtMi44NEgzMzQuNjFjLTMzLjg4LDAtNjcuOTEsOS4yLTg2LjA4LDQwLjEtMTkuMzgsMzIuOTQtMTguMjQsNzguMDctMTYuNDksMTE0Ljg5LDAsMC01MC02Ni4yMi00MC43Ni0xNDguODdhNS41MSw1LjUxLDAsMCwwLTUuNDgtNi4xMkgxMDAuMzJhOC43OSw4Ljc5LDAsMCwwLTguNzgsOC43OVYxMjRjNC44Niw3OS4yNiw0OS4xNCwyODguNTcsMzcxLjU4LDM4NS40QzczNSw1OTEuMDYsNzc1LjQyLDcxNi4zLDc4My4zMiw3MzguMjRhMS4zOCwxLjM4LDAsMCwwLDIuNTMuMTdjNzUuMy0xNDMuOS04MS40OS0yNDcuNTItODEuNDktMjQ3LjUyLDMxLjMzLDAsNzkuMjMsMTcuOTQsMTE4LDM5Ljc5YTguMjgsOC4yOCwwLDAsMCwxMi4zNy03LjIxVjM2My44M2ExNC42LDE0LjYsMCwwLDAtMTguMTUtMTQuMTdjLTEzLjUsMy4zOS0zMCw2LjY4LTMyLjg3LDcuMjMtMzkuNDYsNy43Ny04NC43NSwxMS4xNS0xMjItOC43M3MtNDcuMjYtNjYuMjctMTguMzMtOTguMjNjMjUuMy0yOCw2NS41My0zNy41LDEwMi4yOS0zNSwyMy41NiwxLjYyLDU1LjE4LDcuNTksNzMuNzEsMTIuNjNBMTIuMTYsMTIuMTYsMCwwLDAsODM0LjcxLDIxNS44NFoiLz48cGF0aCBjbGFzcz0iY2xzLTIiIGQ9Ik02NTQuODcsOTAxLjVhNCw0LDAsMCwxLTYtLjExYy0xMy41Ni0xNi4yNS03NS40Ni04Ni0xODUuNzMtMTQ2LjQyQTc1Ni40NCw3NTYuNDQsMCwwLDAsMzgzLDcxN2MtMTczLjUzLTcwLjE3LTI4Mi42OS0xNDMuMy0yOTEuNDItMzM4LjF2LTYuMjJhNCw0LDAsMCwxLDcuMjEtMi4zNGM2My42MSw4NywxNDQuNjksMTM3LjksMjQzLjE2LDE4Ni43Nyw0MC4yOCwyMCw4MS4xNywzNi4zMiwxMjEuMjEsNTMuMjUsNjYuMTUsMjgsMTMwLDU3LjU0LDE4NC43MywxMDcuOCwxNi4xOCwxNC44NSwyOS4wOSwyOS4xNSwzNi44MSw1MEM2OTUuNzUsNzk4LjEzLDcwMi41NSw4NDkuMTcsNjU0Ljg3LDkwMS41WiIvPjwvc3ZnPg==") no-repeat bottom;
+        background-size: 120%;
+        content: ;
+        left:  0;
+        position: absolute;
+        top: 0;}
+
+        .footer3, .footer4 {
+        display: none;
+        }
+
+        @media only screen and (min-width: 767px) {
+            .footer3 {
+                display: block;
+            }
+        }
+
+        @media only screen and (min-width: 992px) {
+            .footer4 {
+                display: block;
+            }
+        }
+
+        ');
 
         $style->setfavicon($favicon);
         $style->setOrganization($organization);
@@ -80,7 +443,6 @@ class ZuiddrechtFixtures extends Fixture
         $manager->persist($style);
 
         $manager->flush();
-
 
         // Website
         $id = Uuid::fromString('1163e443-5f9c-4aa6-802c-c619a14986c9');
@@ -99,7 +461,7 @@ class ZuiddrechtFixtures extends Fixture
         // Website
         $id = Uuid::fromString('1ef30b69-6b28-4fbd-a0cd-83d6ff3c505e');
         $application = new Application();
-        $application->setName('Website');
+        $application->setName('Zuid-Drecht');
         $application->setDescription('De website van de gemeente zuid-drecht');
         $application->setDomain('zuid-drecht.nl');
         $application->setOrganization($organization);
@@ -118,13 +480,17 @@ class ZuiddrechtFixtures extends Fixture
         $configuration->setApplication($application);
         $configuration->setConfiguration(
             [
-                'mainMenu'=> $this->commonGroundService->cleanUrl("{$this->commonGroundService->getComponent('wrc')['location']}/menus/ca1ca0b4-4c8f-4638-9869-16974426e3df"),
-                'home'    => $this->commonGroundService->cleanUrl("{$this->commonGroundService->getComponent('wrc')['location']}/templates/163f8616-abb7-411d-b7b2-0d11c6bd7dca"),
-                'footer1'=> $this->commonGroundService->cleanUrl("{$this->commonGroundService->getComponent('wrc')['location']}/templates/0dca3fd2-0124-46fb-88c1-4f0860b2888c"),
-                'footer2'=> $this->commonGroundService->cleanUrl("{$this->commonGroundService->getComponent('wrc')['location']}/templates/68003cd6-7729-4807-af24-d58a1dfe0870"),
-                'footer3'=> $this->commonGroundService->cleanUrl("{$this->commonGroundService->getComponent('wrc')['location']}/templates/facad633-27a9-499a-b3fc-4687215bf82a"),
-                'footer4'=> $this->commonGroundService->cleanUrl("{$this->commonGroundService->getComponent('wrc')['location']}/templates/4bc966b6-e310-4bce-b459-a7cf65651ce0"),
-                'nieuws'=> $this->commonGroundService->cleanUrl("{$this->commonGroundService->getComponent('wrc')['location']}/template_groups/5c59f238-1ce3-4c8d-8107-4bd8e2134648"),]
+                'mainMenu'          => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'ca1ca0b4-4c8f-4638-9869-16974426e3df']),
+                'home'              => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'163f8616-abb7-411d-b7b2-0d11c6bd7dca']),
+                'footer1'           => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'0dca3fd2-0124-46fb-88c1-4f0860b2888c']),
+                'footer2'           => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'68003cd6-7729-4807-af24-d58a1dfe0870']),
+                'footer3'           => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'facad633-27a9-499a-b3fc-4687215bf82a']),
+                'footer4'           => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'4bc966b6-e310-4bce-b459-a7cf65651ce0']),
+                'nieuws'            => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'template_groups', 'id'=>'5c59f238-1ce3-4c8d-8107-4bd8e2134648']),
+                'newsimg'           => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'0e5b1531-4abb-4704-9bd3-feeb94717521']),
+                'headerimg'         => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'ff3ca823-234f-4874-9ee6-1067d47e4391']),
+                'colorSchemeFooter' => 'footerStyle',
+                'colorSchemeMenu'   => 'menuStyle', ]
         );
         $manager->persist($configuration);
 
@@ -141,7 +507,7 @@ class ZuiddrechtFixtures extends Fixture
         $menu = $manager->getRepository('App:Menu')->findOneBy(['id'=> $id]);
 
         $menuItem = new MenuItem();
-        $menuItem->setName('Processen');
+        $menuItem->setName('Zelf regelen');
         $menuItem->setDescription('Doe een aanvraag');
         $menuItem->setOrder(4);
         $menuItem->setType('slug');
@@ -150,11 +516,11 @@ class ZuiddrechtFixtures extends Fixture
         $manager->persist($menuItem);
 
         $menuItem = new MenuItem();
-        $menuItem->setName('Verzoeken');
-        $menuItem->setDescription('Het inzien en voortzetten van mijn verzoeken');
+        $menuItem->setName('Ondernemers');
+        $menuItem->setDescription('Lijst van ondernemers');
         $menuItem->setOrder(3);
         $menuItem->setType('slug');
-        $menuItem->setHref('/requests');
+        $menuItem->setHref('/ondernemers');
         $menuItem->setMenu($menu);
         $manager->persist($menuItem);
 
@@ -163,16 +529,16 @@ class ZuiddrechtFixtures extends Fixture
         $menuItem->setDescription('Nieuws overzicht');
         $menuItem->setOrder(2);
         $menuItem->setType('slug');
-        $menuItem->setHref('/nieuws');
+        $menuItem->setHref('/nieuwsoverzicht');
         $menuItem->setMenu($menu);
         $manager->persist($menuItem);
 
         $menuItem = new MenuItem();
-        $menuItem->setName('Ondernemers');
-        $menuItem->setDescription('Lijst van ondernemers');
+        $menuItem->setName('Home');
+        $menuItem->setDescription('Het inzien en voortzetten van mijn verzoeken');
         $menuItem->setOrder(1);
         $menuItem->setType('slug');
-        $menuItem->setHref('/ondernemers');
+        $menuItem->setHref('/home');
         $menuItem->setMenu($menu);
         $manager->persist($menuItem);
 
@@ -188,7 +554,7 @@ class ZuiddrechtFixtures extends Fixture
         $id = Uuid::fromString('163f8616-abb7-411d-b7b2-0d11c6bd7dca');
         $template = new Template();
         $template->setName('Home');
-        $template->setDescription('De (web) applicatie waarop begravenisen kunnen worden doorgegeven');
+        $template->setDescription('Zuid drecht home page');
         $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Zuiddrecht/website/index.html.twig', 'r'));
         $template->setTemplateEngine('twig');
         $manager->persist($template);
@@ -291,9 +657,9 @@ class ZuiddrechtFixtures extends Fixture
 
         $id = Uuid::fromString('42594401-3db2-42c5-b06a-0b6d5eaeb8c2');
         $template = new Template();
-        $template->setName('nieuws');
-        $template->setDescription('nieuws');
-        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Zuiddrecht/website/nieuws/nieuws.html.twig', 'r'));
+        $template->setName('nieuwsoverzicht');
+        $template->setDescription('nieuwsoverzicht');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Zuiddrecht/website/nieuws/nieuwsoverzicht.html.twig', 'r'));
         $template->setTemplateEngine('twig');
         $manager->persist($template);
         $template->setId($id);
@@ -307,8 +673,96 @@ class ZuiddrechtFixtures extends Fixture
         $slug = new Slug();
         $slug->setTemplate($template);
         $slug->setApplication($application);
-        $slug->setName('nieuws');
-        $slug->setSlug('nieuws');
+        $slug->setName('nieuwsoverzicht');
+        $slug->setSlug('nieuwsoverzicht');
+        $manager->persist($slug);
+
+        $id = Uuid::fromString('bc227e94-e542-4623-a88b-ca9f74c52bf8');
+        $template = new Template();
+        $template->setName('cookies');
+        $template->setDescription('cookies');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Zuiddrecht/website/cookies.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('cookies');
+        $slug->setSlug('cookies');
+        $manager->persist($slug);
+
+        $id = Uuid::fromString('bdcd7f74-2407-4ca2-b89a-9fcb33ab6b1f');
+        $template = new Template();
+        $template->setName('proclaimer');
+        $template->setDescription('proclaimer');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Zuiddrecht/website/proclaimer.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('proclaimer');
+        $slug->setSlug('proclaimer');
+        $manager->persist($slug);
+
+        $id = Uuid::fromString('a8fe7cc7-d358-4081-8597-cd21ae87c295');
+        $template = new Template();
+        $template->setName('article');
+        $template->setDescription('article');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Zuiddrecht/website/nieuws/article.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('article');
+        $slug->setSlug('article');
+        $manager->persist($slug);
+
+        $id = Uuid::fromString('70dd6462-85ef-45f4-b9dc-57eb9ac56646');
+        $template = new Template();
+        $template->setName('privacy');
+        $template->setDescription('privacy');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Zuiddrecht/website/privacy.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('privacy');
+        $slug->setSlug('privacy');
         $manager->persist($slug);
 
         // Template groups
@@ -317,14 +771,18 @@ class ZuiddrechtFixtures extends Fixture
         $groupNews->setOrganization($organization);
         $groupNews->setApplication($application);
         $groupNews->setName('Nieuws');
-        $groupNews->setId($id);
         $groupNews->setDescription('Webpages about news articles');
         $manager->persist($groupNews);
+        $groupNews->setId($id);
+        $manager->persist($groupNews);
+        $manager->flush();
+        $groupNews = $manager->getRepository('App:TemplateGroup')->findOneBy(['id'=> $id]);
 
         $id = Uuid::fromString('0ace23c9-3c95-4675-994c-596b9ef0144b');
         $template = new Template();
         $template->setName('pi event');
-        $template->setDescription('pi event is van start');
+        $template->setTitle('pi event is van start');
+        $template->setDescription('Het Pi event is eindelijk van start! In dit event gaan verschillende gemeentes hun nieuwe platformen tonen.');
         $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Zuiddrecht/website/nieuws/pi-event.html.twig', 'r'));
         $template->setTemplateEngine('twig');
         $manager->persist($template);
@@ -346,7 +804,8 @@ class ZuiddrechtFixtures extends Fixture
         $id = Uuid::fromString('67b1e403-4436-4cd9-a328-ce99e05511a1');
         $template = new Template();
         $template->setName('huwelijksplanner');
-        $template->setDescription('utrecht lanceert huwelijksplanner');
+        $template->setTitle('Zuid drecht lanceert huwelijksplanner');
+        $template->setDescription('De gemeente Zuid drecht heeft in samenwerking met het bedrijf Conduction een huwelijksplanner gelanceerd. Dit project is in leven gebracht om het aanvragen van een huwelijk een fijne en soepele ervaring te maken.');
         $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Zuiddrecht/website/nieuws/huwelijksplanner.html.twig', 'r'));
         $template->setTemplateEngine('twig');
         $manager->persist($template);
@@ -368,7 +827,8 @@ class ZuiddrechtFixtures extends Fixture
         $id = Uuid::fromString('90035899-fd96-4998-9d38-db7b0f5940f9');
         $template = new Template();
         $template->setName('corona');
-        $template->setDescription('Dit kan Nederland leren van corona-uitbraken Duitsland');
+        $template->setTitle('Corona maatregelen in Zuid-drecht');
+        $template->setDescription('De corona maatregelingen worden per 1 Juli versoepeld in de gemeente Zuid drecht. De cijfers blijken dusdanig te dalen in deze gemeente dat er weer steeds meer mogenlijk is.');
         $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Zuiddrecht/website/nieuws/corona.html.twig', 'r'));
         $template->setTemplateEngine('twig');
         $manager->persist($template);
@@ -390,7 +850,8 @@ class ZuiddrechtFixtures extends Fixture
         $id = Uuid::fromString('12f475a7-151c-48b6-8b02-0e0dfcfc78d9');
         $template = new Template();
         $template->setName('groene stroom');
-        $template->setDescription('zuid-drecht gaat over op groene stroom');
+        $template->setTitle('zuid-drecht gaat over op groene stroom');
+        $template->setDescription('De gemeente is sinds vandaag helemaal over op groene stroom. Dit is een heel groot project geweest maar het is de gemeente Zuid drecht gelukt om in iets minder dan een jaar compleet over te gaan op groene stroom.');
         $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Zuiddrecht/website/nieuws/groene-stroom.html.twig', 'r'));
         $template->setTemplateEngine('twig');
         $manager->persist($template);
@@ -412,7 +873,8 @@ class ZuiddrechtFixtures extends Fixture
         $id = Uuid::fromString('272a5076-dfb0-4adf-b5ca-d3525e7a31bf');
         $template = new Template();
         $template->setName('Woninginbraak gehalveerd');
-        $template->setDescription('Woninginbraak gehalveerd in de gemeente zuid-drecht');
+        $template->setTitle('Woninginbraak gehalveerd in de gemeente zuid-drecht');
+        $template->setDescription('Woning inbraken lijken steeds minder voor te komen in de gemeente Zuid drecht. Uit cijfers blijkt dat dit vergeleken vorig jaar alweer met 50% is gedaald.');
         $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Zuiddrecht/website/nieuws/woning-inbraak.html.twig', 'r'));
         $template->setTemplateEngine('twig');
         $manager->persist($template);
@@ -434,7 +896,8 @@ class ZuiddrechtFixtures extends Fixture
         $id = Uuid::fromString('6d38b11f-2edb-4a4e-894a-5b4677da2c53');
         $template = new Template();
         $template->setName('Beste gemeente');
-        $template->setDescription('Zuid-drecht is uitgeroepen tot beste gemeente van 2020');
+        $template->setTitle('Zuid-drecht is uitgeroepen tot beste gemeente van 2020');
+        $template->setDescription('De jaarlijkse prijs uitreiking voor de beste gemeente van het jaar is weer voorbij. Dit jaar hebben we als winnaar de nog best jonge gemeente Zuid drecht.');
         $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Zuiddrecht/website/nieuws/beste-gemeente.html.twig', 'r'));
         $template->setTemplateEngine('twig');
         $manager->persist($template);
@@ -452,8 +915,6 @@ class ZuiddrechtFixtures extends Fixture
         $slug->setName('beste-gemeente');
         $slug->setSlug('beste-gemeente');
         $manager->persist($slug);
-
-
 
         // Mijn Zuid Decht
         $id = Uuid::fromString('64f60afd-7506-48e0-928b-6bbede045812');
@@ -474,9 +935,9 @@ class ZuiddrechtFixtures extends Fixture
         $configuration->setApplication($application);
         $configuration->setConfiguration(
             [
-                'mainMenu'=> $this->commonGroundService->cleanUrl("{$this->commonGroundService->getComponent('wrc')['location']}/menus/350156d4-4eca-4bec-bc48-c906f20d2bda"),
-                'home'    => $this->commonGroundService->cleanUrl("{$this->commonGroundService->getComponent('wrc')['location']}/templates/f62792c9-d229-43b9-8f6a-3b368eee6739"),
-                ]
+                'mainMenu'=> $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'350156d4-4eca-4bec-bc48-c906f20d2bda']),
+                'home'    => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'f62792c9-d229-43b9-8f6a-3b368eee6739']),
+            ]
         );
         $manager->persist($configuration);
 

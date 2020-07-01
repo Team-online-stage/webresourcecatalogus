@@ -16,7 +16,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Ramsey\Uuid\Uuid;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 
-class HuwelijksplannerFixtures extends Fixture
+class UtrechtFixtures extends Fixture
 {
     private $params;
     private $commonGroundService;
@@ -31,10 +31,9 @@ class HuwelijksplannerFixtures extends Fixture
     {
         // Lets make sure we only run these fixtures on larping enviroment
         if (
-            $this->params->get('app_domain') != 'huwelijksplanner.online' &&
-            strpos($this->params->get('app_domain'), 'huwelijksplanner.online') == false &&
-            $this->params->get('app_domain') != 'utrecht.commonground.nu' &&
-            strpos($this->params->get('app_domain'), 'utrecht.commonground.nu') == false
+            !$this->params->get('app_build_all_fixtures') &&
+            $this->params->get('app_domain') != 'huwelijksplanner.online' && strpos($this->params->get('app_domain'), 'huwelijksplanner.online') == false &&
+            $this->params->get('app_domain') != 'utrecht.commonground.nu' && strpos($this->params->get('app_domain'), 'utrecht.commonground.nu') == false
         ) {
             return false;
         }
@@ -122,7 +121,7 @@ class HuwelijksplannerFixtures extends Fixture
         $manager->flush();
 
         // West-Friesland
-        $id = Uuid::fromString('d280c4d3-6310-46db-9934-5285ec7d0d5e');
+        $id = Uuid::fromString('d280c4d3-6310-46db-9934-5285ec7d0d5a');
         $westfriesland = new Organization();
         $westfriesland->setName('West-Friesland');
         $westfriesland->setDescription('Gemeente West-Friesland');

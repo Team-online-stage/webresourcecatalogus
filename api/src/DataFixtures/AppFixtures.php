@@ -6,7 +6,7 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 
-class ComponentFixtures extends Fixture
+class AppFixtures extends Fixture
 {
     private $params;
 
@@ -17,5 +17,11 @@ class ComponentFixtures extends Fixture
 
     public function load(ObjectManager $manager)
     {
+        // Lets make sure we only run these fixtures on larping enviroment
+        if (
+            !$this->params->get('app_build_all_fixtures')
+        ) {
+            return false;
+        }
     }
 }
