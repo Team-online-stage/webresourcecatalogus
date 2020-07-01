@@ -233,7 +233,7 @@ class ConductionFixtures extends Fixture
         $favicon->setOrganization($conduction);
 
         $logo = new Image();
-        $logo->setName('Zaakonline Logo');
+        $logo->setName('Commonground.nu Logo');
         $logo->setDescription('Logo Commonground.nu');
         $logo->setOrganization($conduction);
 
@@ -317,7 +317,7 @@ class ConductionFixtures extends Fixture
         $id = Uuid::fromString('501654ed-50f6-4239-8ecf-610b853be1b0');
         $template = new Template();
         $template->setName('Home');
-        $template->setDescription('De (web) applicatie waarop begravenisen kunnen worden doorgegeven');
+        $template->setDescription('Homepage voor commonground.nu');
         $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/CommongroundNu/index.html.twig', 'r'));
         $template->setTemplateEngine('twig');
         $manager->persist($template);
@@ -336,5 +336,236 @@ class ConductionFixtures extends Fixture
         $manager->persist($slug);
 
         $manager->flush();
+
+        /*
+         * Common-ground.dev
+         */
+
+        $favicon = new Image();
+        $favicon->setName('Common-ground.dev Favicon');
+        $favicon->setDescription('Favicon Common-ground.dev');
+        $favicon->setOrganization($conduction);
+
+        $logo = new Image();
+        $logo->setName('Common-ground.dev Logo');
+        $logo->setDescription('Logo Common-ground.dev');
+        $logo->setOrganization($conduction);
+
+        $style = new Style();
+        $style->setName('Common-ground.dev');
+        $style->setDescription('Huistlijl Common-ground.dev');
+        $style->setCss('');
+        $style->setfavicon($favicon);
+        $style->setOrganization($conduction);
+
+        $manager->persist($conduction);
+        $manager->persist($favicon);
+        $manager->persist($logo);
+        $manager->persist($style);
+
+        $manager->flush();
+        $id = Uuid::fromString('a081ea56-618d-4d01-b975-ea308118aec8');
+        $commongroundDev = new Application();
+        $commongroundDev->setName('Common-ground.dev');
+        $commongroundDev->setDescription('Website voor common-grond.dev');
+        $commongroundDev->setDomain('common-ground.dev');
+        $commongroundDev->setStyle($style);
+        $commongroundDev->setOrganization($conduction);
+        $manager->persist($commongroundDev);
+        $commongroundDev->setId($id);
+        $manager->persist($commongroundDev);
+        $manager->flush();
+        $commongroundDev = $manager->getRepository('App:Application')->findOneBy(['id'=> $id]);
+
+        // Configuratie van Begrafenisplanner
+        $configuration = new Configuration();
+        $configuration->setOrganization($conduction);
+        $configuration->setApplication($commongroundDev);
+        $configuration->setConfiguration(
+            [
+                'mainMenu'=> $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'687c7d73-0007-4ad3-b65e-e605a7a6cb04']),
+                'home'    => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'f84c9703-5652-458f-b0ce-3b3df4ba70aa']),
+            ]
+        );
+        $manager->persist($configuration);
+
+        // Menu
+        $id = Uuid::fromString('687c7d73-0007-4ad3-b65e-e605a7a6cb04');
+        $menu = new Menu();
+        $menu->setName('Main Menu');
+        $menu->setDescription('Het hoofdmenu van deze website');
+        $menu->setApplication($commongroundDev);
+        $manager->persist($menu);
+        $menu->setId($id);
+        $manager->persist($menu);
+        $manager->flush();
+        $menu = $manager->getRepository('App:Menu')->findOneBy(['id'=> $id]);
+
+        $menuItem = new MenuItem();
+        $menuItem->setName('Processen');
+        $menuItem->setDescription('Doe een aanvraag');
+        $menuItem->setOrder(1);
+        $menuItem->setType('slug');
+        $menuItem->setHref('/process');
+        $menuItem->setMenu($menu);
+        $manager->persist($menu);
+
+        $menuItem = new MenuItem();
+        $menuItem->setName('Verzoeken');
+        $menuItem->setDescription('Het inzien en voortzetten van mijn verzoeken');
+        $menuItem->setOrder(1);
+        $menuItem->setType('slug');
+        $menuItem->setHref('/requests');
+        $menuItem->setMenu($menu);
+        $manager->persist($menu);
+
+        // Template groups
+        $groupPages = new TemplateGroup();
+        $groupPages->setOrganization($conduction);
+        $groupPages->setApplication($commongroundDev);
+        $groupPages->setName('Pages');
+        $groupPages->setDescription('Webpages that are presented to visitors');
+        $manager->persist($groupPages);
+
+        // Pages
+        $id = Uuid::fromString('f84c9703-5652-458f-b0ce-3b3df4ba70aa');
+        $template = new Template();
+        $template->setName('Home');
+        $template->setDescription('Homepage voor common-ground.dev');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/CommongroundDev/index.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($commongroundDev);
+        $slug->setName('home');
+        $slug->setSlug('home');
+        $manager->persist($slug);
+
+        $manager->flush();
+
+        /*
+        * stage.conduction.nl
+        */
+
+        $favicon = new Image();
+        $favicon->setName('stage Favicon');
+        $favicon->setDescription('Favicon stage');
+        $favicon->setOrganization($conduction);
+
+        $logo = new Image();
+        $logo->setName('stage Logo');
+        $logo->setDescription('Logo stage');
+        $logo->setOrganization($conduction);
+
+        $style = new Style();
+        $style->setName('stage');
+        $style->setDescription('Huistlijl stage');
+        $style->setCss('');
+        $style->setfavicon($favicon);
+        $style->setOrganization($conduction);
+
+        $manager->persist($conduction);
+        $manager->persist($favicon);
+        $manager->persist($logo);
+        $manager->persist($style);
+
+        $manager->flush();
+        $id = Uuid::fromString('63be0f75-c228-4c10-8146-1d60214063dd');
+        $stage = new Application();
+        $stage->setName('Stage');
+        $stage->setDescription('Website voor stage.conduction.nl');
+        $stage->setDomain('stage.conduction.nl');
+        $stage->setStyle($style);
+        $stage->setOrganization($conduction);
+        $manager->persist($stage);
+        $stage->setId($id);
+        $manager->persist($stage);
+        $manager->flush();
+        $stage = $manager->getRepository('App:Application')->findOneBy(['id'=> $id]);
+
+        // Configuratie van Begrafenisplanner
+        $configuration = new Configuration();
+        $configuration->setOrganization($conduction);
+        $configuration->setApplication($stage);
+        $configuration->setConfiguration(
+            [
+                'mainMenu'=> $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'d6309260-73a3-4bd9-9e0c-41b88a02c0a8']),
+                'home'    => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'7d53cc95-ca23-4068-880b-48731f804f69']),
+            ]
+        );
+        $manager->persist($configuration);
+
+        // Menu
+        $id = Uuid::fromString('d6309260-73a3-4bd9-9e0c-41b88a02c0a8');
+        $menu = new Menu();
+        $menu->setName('Main Menu');
+        $menu->setDescription('Het hoofdmenu van deze website');
+        $menu->setApplication($stage);
+        $manager->persist($menu);
+        $menu->setId($id);
+        $manager->persist($menu);
+        $manager->flush();
+        $menu = $manager->getRepository('App:Menu')->findOneBy(['id'=> $id]);
+
+        $menuItem = new MenuItem();
+        $menuItem->setName('Processen');
+        $menuItem->setDescription('Doe een aanvraag');
+        $menuItem->setOrder(1);
+        $menuItem->setType('slug');
+        $menuItem->setHref('/process');
+        $menuItem->setMenu($menu);
+        $manager->persist($menu);
+
+        $menuItem = new MenuItem();
+        $menuItem->setName('Verzoeken');
+        $menuItem->setDescription('Het inzien en voortzetten van mijn verzoeken');
+        $menuItem->setOrder(1);
+        $menuItem->setType('slug');
+        $menuItem->setHref('/requests');
+        $menuItem->setMenu($menu);
+        $manager->persist($menu);
+
+        // Template groups
+        $groupPages = new TemplateGroup();
+        $groupPages->setOrganization($conduction);
+        $groupPages->setApplication($stage);
+        $groupPages->setName('Pages');
+        $groupPages->setDescription('Webpages that are presented to visitors');
+        $manager->persist($groupPages);
+
+        // Pages
+        $id = Uuid::fromString('7d53cc95-ca23-4068-880b-48731f804f69');
+        $template = new Template();
+        $template->setName('Home');
+        $template->setDescription('home page voor stage.conduction.nl');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Conduction/Stage/index.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($stage);
+        $slug->setName('home');
+        $slug->setSlug('home');
+        $manager->persist($slug);
+
+        $manager->flush();
+
+
+
     }
 }
