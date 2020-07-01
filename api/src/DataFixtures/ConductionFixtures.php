@@ -5,10 +5,7 @@ namespace App\DataFixtures;
 use App\Entity\Application;
 use App\Entity\Image;
 use App\Entity\Organization;
-use App\Entity\Page;
-use App\Entity\Slug;
 use App\Entity\Style;
-use App\Entity\Template;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Ramsey\Uuid\Uuid;
@@ -98,7 +95,6 @@ class ConductionFixtures extends Fixture
         $manager->flush();
         $dashboard = $manager->getRepository('App:Application')->findOneBy(['id'=> $id]);
 
-        
         $manager->flush();
     }
 }
