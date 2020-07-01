@@ -3,9 +3,16 @@
 namespace App\DataFixtures;
 
 use App\Entity\Application;
+use App\Entity\Configuration;
 use App\Entity\Image;
+use App\Entity\Menu;
+use App\Entity\MenuItem;
 use App\Entity\Organization;
+use App\Entity\Slug;
 use App\Entity\Style;
+use App\Entity\Template;
+use App\Entity\TemplateGroup;
+use Conduction\CommonGroundBundle\Service\CommonGroundService;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Ramsey\Uuid\Uuid;
@@ -14,10 +21,15 @@ use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 class ConductionFixtures extends Fixture
 {
     private $params;
+    /**
+     * @var CommonGroundService
+     */
+    private $commonGroundService;
 
-    public function __construct(ParameterBagInterface $params)
+    public function __construct(ParameterBagInterface $params, CommonGroundService $commonGroundService)
     {
         $this->params = $params;
+        $this->commonGroundService = $commonGroundService;
     }
 
     public function load(ObjectManager $manager)
@@ -94,6 +106,120 @@ class ConductionFixtures extends Fixture
         $manager->persist($dashboard);
         $manager->flush();
         $dashboard = $manager->getRepository('App:Application')->findOneBy(['id'=> $id]);
+
+        $manager->flush();
+
+        /*
+         * ZaakOnline
+         */
+
+        $favicon = new Image();
+        $favicon->setName('Zaakonline Favicon');
+        $favicon->setDescription('Favicon ZaakOnline');
+        $favicon->setOrganization($conduction);
+
+        $logo = new Image();
+        $logo->setName('Zaakonline Logo');
+        $logo->setDescription('Logo ZaakOnline');
+        $logo->setOrganization($conduction);
+
+        $style = new Style();
+        $style->setName('Zaakonline');
+        $style->setDescription('Huistlijl ZaakOnline');
+        $style->setCss('');
+        $style->setfavicon($favicon);
+        $style->setOrganization($conduction);
+
+        $manager->persist($conduction);
+        $manager->persist($favicon);
+        $manager->persist($logo);
+        $manager->persist($style);
+
+        $manager->flush();
+        $id = Uuid::fromString('b0dd8168-2f36-44ad-91e5-700c7400adaf');
+        $zaakOnline = new Application();
+        $zaakOnline->setName('Zaakonline');
+        $zaakOnline->setDescription('Website voor Zaakonline');
+        $zaakOnline->setDomain('zaakonline.nl');
+        $zaakOnline->setStyle($style);
+        $zaakOnline->setOrganization($conduction);
+        $manager->persist($zaakOnline);
+        $zaakOnline->setId($id);
+        $manager->persist($zaakOnline);
+        $manager->flush();
+        $zaakOnline = $manager->getRepository('App:Application')->findOneBy(['id'=> $id]);
+
+        // Configuratie van Begrafenisplanner
+        $configuration = new Configuration();
+        $configuration->setOrganization($conduction);
+        $configuration->setApplication($zaakOnline);
+        $configuration->setConfiguration(
+            [
+                'mainMenu'=> $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'7b1fd58b-0f55-4374-afc7-f8b646919835']),
+                'home'    => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'e469c3e6-6b8f-4351-bcca-49e7f288dfc5']),
+            ]
+        );
+        $manager->persist($configuration);
+
+        // Menu
+        $id = Uuid::fromString('7b1fd58b-0f55-4374-afc7-f8b646919835');
+        $menu = new Menu();
+        $menu->setName('Main Menu');
+        $menu->setDescription('Het hoofdmenu van deze website');
+        $menu->setApplication($zaakOnline);
+        $manager->persist($menu);
+        $menu->setId($id);
+        $manager->persist($menu);
+        $manager->flush();
+        $menu = $manager->getRepository('App:Menu')->findOneBy(['id'=> $id]);
+
+        $menuItem = new MenuItem();
+        $menuItem->setName('Processen');
+        $menuItem->setDescription('Doe een aanvraag');
+        $menuItem->setOrder(1);
+        $menuItem->setType('slug');
+        $menuItem->setHref('/process');
+        $menuItem->setMenu($menu);
+        $manager->persist($menu);
+
+        $menuItem = new MenuItem();
+        $menuItem->setName('Verzoeken');
+        $menuItem->setDescription('Het inzien en voortzetten van mijn verzoeken');
+        $menuItem->setOrder(1);
+        $menuItem->setType('slug');
+        $menuItem->setHref('/requests');
+        $menuItem->setMenu($menu);
+        $manager->persist($menu);
+
+        // Template groups
+        $groupPages = new TemplateGroup();
+        $groupPages->setOrganization($conduction);
+        $groupPages->setApplication($zaakOnline);
+        $groupPages->setName('Pages');
+        $groupPages->setDescription('Webpages that are presented to visitors');
+        $manager->persist($groupPages);
+
+        // Pages
+        $id = Uuid::fromString('e469c3e6-6b8f-4351-bcca-49e7f288dfc5');
+        $template = new Template();
+        $template->setName('Home');
+        $template->setDescription('De (web) applicatie waarop begravenisen kunnen worden doorgegeven');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Zaakonline/index.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($zaakOnline);
+        $slug->setName('home');
+        $slug->setSlug('home');
+        $manager->persist($slug);
 
         $manager->flush();
     }

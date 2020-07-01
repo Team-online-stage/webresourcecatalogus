@@ -787,7 +787,7 @@ class ZuiddrechtFixtures extends Fixture
         $slug->setSlug('pitches');
         $manager->persist($slug);
 
-        $id = Uuid::fromString('16da42d1-4be6-499d-8a82-94acde4eac25');
+        $id = Uuid::fromString('eec83f6b-602e-4f72-94ce-f5d3870dd61b');
         $template = new Template();
         $template->setName('challenges');
         $template->setDescription('challenges');
