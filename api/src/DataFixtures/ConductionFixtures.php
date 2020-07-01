@@ -203,7 +203,7 @@ class ConductionFixtures extends Fixture
         $id = Uuid::fromString('e469c3e6-6b8f-4351-bcca-49e7f288dfc5');
         $template = new Template();
         $template->setName('Home');
-        $template->setDescription('De (web) applicatie waarop begravenisen kunnen worden doorgegeven');
+        $template->setDescription('De homepage voor zaakonline');
         $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Zaakonline/index.html.twig', 'r'));
         $template->setTemplateEngine('twig');
         $manager->persist($template);
@@ -217,6 +217,120 @@ class ConductionFixtures extends Fixture
         $slug = new Slug();
         $slug->setTemplate($template);
         $slug->setApplication($zaakOnline);
+        $slug->setName('home');
+        $slug->setSlug('home');
+        $manager->persist($slug);
+
+        $manager->flush();
+
+        /*
+         * Commonground.nu
+         */
+
+        $favicon = new Image();
+        $favicon->setName('Commonground.nu Favicon');
+        $favicon->setDescription('Favicon Commonground.nu');
+        $favicon->setOrganization($conduction);
+
+        $logo = new Image();
+        $logo->setName('Zaakonline Logo');
+        $logo->setDescription('Logo Commonground.nu');
+        $logo->setOrganization($conduction);
+
+        $style = new Style();
+        $style->setName('commonground.nu');
+        $style->setDescription('Huistlijl commonground.nu');
+        $style->setCss('');
+        $style->setfavicon($favicon);
+        $style->setOrganization($conduction);
+
+        $manager->persist($conduction);
+        $manager->persist($favicon);
+        $manager->persist($logo);
+        $manager->persist($style);
+
+        $manager->flush();
+        $id = Uuid::fromString('f0e4d34a-5e07-4f85-babf-e0e70e46d0d3');
+        $commongroundNu = new Application();
+        $commongroundNu->setName('Commonground.nu');
+        $commongroundNu->setDescription('Website voor commonground.nu');
+        $commongroundNu->setDomain('commonground.nu');
+        $commongroundNu->setStyle($style);
+        $commongroundNu->setOrganization($conduction);
+        $manager->persist($commongroundNu);
+        $commongroundNu->setId($id);
+        $manager->persist($commongroundNu);
+        $manager->flush();
+        $commongroundNu = $manager->getRepository('App:Application')->findOneBy(['id'=> $id]);
+
+        // Configuratie van Begrafenisplanner
+        $configuration = new Configuration();
+        $configuration->setOrganization($conduction);
+        $configuration->setApplication($commongroundNu);
+        $configuration->setConfiguration(
+            [
+                'mainMenu'=> $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'92d343e1-24d2-4c5b-808b-6dccd9f3d778']),
+                'home'    => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'501654ed-50f6-4239-8ecf-610b853be1b0']),
+            ]
+        );
+        $manager->persist($configuration);
+
+        // Menu
+        $id = Uuid::fromString('92d343e1-24d2-4c5b-808b-6dccd9f3d778');
+        $menu = new Menu();
+        $menu->setName('Main Menu');
+        $menu->setDescription('Het hoofdmenu van deze website');
+        $menu->setApplication($commongroundNu);
+        $manager->persist($menu);
+        $menu->setId($id);
+        $manager->persist($menu);
+        $manager->flush();
+        $menu = $manager->getRepository('App:Menu')->findOneBy(['id'=> $id]);
+
+        $menuItem = new MenuItem();
+        $menuItem->setName('Processen');
+        $menuItem->setDescription('Doe een aanvraag');
+        $menuItem->setOrder(1);
+        $menuItem->setType('slug');
+        $menuItem->setHref('/process');
+        $menuItem->setMenu($menu);
+        $manager->persist($menu);
+
+        $menuItem = new MenuItem();
+        $menuItem->setName('Verzoeken');
+        $menuItem->setDescription('Het inzien en voortzetten van mijn verzoeken');
+        $menuItem->setOrder(1);
+        $menuItem->setType('slug');
+        $menuItem->setHref('/requests');
+        $menuItem->setMenu($menu);
+        $manager->persist($menu);
+
+        // Template groups
+        $groupPages = new TemplateGroup();
+        $groupPages->setOrganization($conduction);
+        $groupPages->setApplication($commongroundNu);
+        $groupPages->setName('Pages');
+        $groupPages->setDescription('Webpages that are presented to visitors');
+        $manager->persist($groupPages);
+
+        // Pages
+        $id = Uuid::fromString('501654ed-50f6-4239-8ecf-610b853be1b0');
+        $template = new Template();
+        $template->setName('Home');
+        $template->setDescription('De (web) applicatie waarop begravenisen kunnen worden doorgegeven');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/CommongroundNu/index.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($commongroundNu);
         $slug->setName('home');
         $slug->setSlug('home');
         $manager->persist($slug);
