@@ -136,7 +136,7 @@ class ConductionFixtures extends Fixture
         $manager->persist($style);
 
         $manager->flush();
-        $id = Uuid::fromString('b0dd8168-2f36-44ad-91e5-700c7400adaf');
+        $id = Uuid::fromString('8bcc5b9d-bc9f-4981-bba5-7441ef51af5e');
         $zaakOnline = new Application();
         $zaakOnline->setName('Zaakonline');
         $zaakOnline->setDescription('Website voor Zaakonline');
@@ -151,20 +151,21 @@ class ConductionFixtures extends Fixture
 
         // Configuratie van Begrafenisplanner
         $configuration = new Configuration();
+        $configuration->setName('zaakonline configuration');
         $configuration->setOrganization($conduction);
         $configuration->setApplication($zaakOnline);
         $configuration->setConfiguration(
             [
-                'mainMenu'=> $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'7b1fd58b-0f55-4374-afc7-f8b646919835']),
-                'home'    => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'e469c3e6-6b8f-4351-bcca-49e7f288dfc5']),
+                'mainMenu'=> $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'bb05a4b3-5eca-4cf0-83a9-8fcf41dcc40f']),
+                'home'    => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'6e01b18c-6751-4e11-9430-c69f629a6760']),
             ]
         );
         $manager->persist($configuration);
 
         // Menu
-        $id = Uuid::fromString('7b1fd58b-0f55-4374-afc7-f8b646919835');
+        $id = Uuid::fromString('bb05a4b3-5eca-4cf0-83a9-8fcf41dcc40f');
         $menu = new Menu();
-        $menu->setName('Main Menu');
+        $menu->setName('zaakonline Main Menu');
         $menu->setDescription('Het hoofdmenu van deze website');
         $menu->setApplication($zaakOnline);
         $manager->persist($menu);
@@ -200,9 +201,9 @@ class ConductionFixtures extends Fixture
         $manager->persist($groupPages);
 
         // Pages
-        $id = Uuid::fromString('e469c3e6-6b8f-4351-bcca-49e7f288dfc5');
+        $id = Uuid::fromString('6e01b18c-6751-4e11-9430-c69f629a6760');
         $template = new Template();
-        $template->setName('Home');
+        $template->setName('zaakonline Home');
         $template->setDescription('De homepage voor zaakonline');
         $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Zaakonline/index.html.twig', 'r'));
         $template->setTemplateEngine('twig');
@@ -250,7 +251,7 @@ class ConductionFixtures extends Fixture
         $manager->persist($style);
 
         $manager->flush();
-        $id = Uuid::fromString('f0e4d34a-5e07-4f85-babf-e0e70e46d0d3');
+        $id = Uuid::fromString('86ca72d4-b40e-45cf-bb8c-1a17ba65ad52');
         $commongroundNu = new Application();
         $commongroundNu->setName('Commonground.nu');
         $commongroundNu->setDescription('Website voor commonground.nu');
@@ -265,20 +266,21 @@ class ConductionFixtures extends Fixture
 
         // Configuratie van Begrafenisplanner
         $configuration = new Configuration();
+        $configuration->setName('commonground.nu configuration');
         $configuration->setOrganization($conduction);
         $configuration->setApplication($commongroundNu);
         $configuration->setConfiguration(
             [
-                'mainMenu'=> $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'92d343e1-24d2-4c5b-808b-6dccd9f3d778']),
-                'home'    => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'501654ed-50f6-4239-8ecf-610b853be1b0']),
+                'mainMenu'=> $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'447eb167-17b0-416a-9df4-7cd4d3cc417c']),
+                'home'    => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'83b365c9-33fe-4b89-99d0-d77ef676adb1']),
             ]
         );
         $manager->persist($configuration);
 
         // Menu
-        $id = Uuid::fromString('92d343e1-24d2-4c5b-808b-6dccd9f3d778');
+        $id = Uuid::fromString('447eb167-17b0-416a-9df4-7cd4d3cc417c');
         $menu = new Menu();
-        $menu->setName('Main Menu');
+        $menu->setName('commonground.nu Main Menu');
         $menu->setDescription('Het hoofdmenu van deze website');
         $menu->setApplication($commongroundNu);
         $manager->persist($menu);
@@ -314,9 +316,9 @@ class ConductionFixtures extends Fixture
         $manager->persist($groupPages);
 
         // Pages
-        $id = Uuid::fromString('501654ed-50f6-4239-8ecf-610b853be1b0');
+        $id = Uuid::fromString('83b365c9-33fe-4b89-99d0-d77ef676adb1');
         $template = new Template();
-        $template->setName('Home');
+        $template->setName('commonground.nu Home');
         $template->setDescription('Homepage voor commonground.nu');
         $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/CommongroundNu/index.html.twig', 'r'));
         $template->setTemplateEngine('twig');
@@ -364,7 +366,7 @@ class ConductionFixtures extends Fixture
         $manager->persist($style);
 
         $manager->flush();
-        $id = Uuid::fromString('a081ea56-618d-4d01-b975-ea308118aec8');
+        $id = Uuid::fromString('283dc171-605f-4e17-9e75-3d161d4b097c');
         $commongroundDev = new Application();
         $commongroundDev->setName('Common-ground.dev');
         $commongroundDev->setDescription('Website voor common-grond.dev');
@@ -379,20 +381,21 @@ class ConductionFixtures extends Fixture
 
         // Configuratie van Begrafenisplanner
         $configuration = new Configuration();
+        $configuration->setName('common-ground.dev configuration');
         $configuration->setOrganization($conduction);
         $configuration->setApplication($commongroundDev);
         $configuration->setConfiguration(
             [
-                'mainMenu'=> $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'687c7d73-0007-4ad3-b65e-e605a7a6cb04']),
-                'home'    => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'f84c9703-5652-458f-b0ce-3b3df4ba70aa']),
+                'mainMenu'=> $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'15db60f7-76f1-4bc0-8caf-cb9ed9d4066f']),
+                'home'    => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'cdc7b532-2084-470e-9032-935bb8e5bde4']),
             ]
         );
         $manager->persist($configuration);
 
         // Menu
-        $id = Uuid::fromString('687c7d73-0007-4ad3-b65e-e605a7a6cb04');
+        $id = Uuid::fromString('15db60f7-76f1-4bc0-8caf-cb9ed9d4066f');
         $menu = new Menu();
-        $menu->setName('Main Menu');
+        $menu->setName('common-ground.dev Main Menu');
         $menu->setDescription('Het hoofdmenu van deze website');
         $menu->setApplication($commongroundDev);
         $manager->persist($menu);
@@ -428,9 +431,9 @@ class ConductionFixtures extends Fixture
         $manager->persist($groupPages);
 
         // Pages
-        $id = Uuid::fromString('f84c9703-5652-458f-b0ce-3b3df4ba70aa');
+        $id = Uuid::fromString('cdc7b532-2084-470e-9032-935bb8e5bde4');
         $template = new Template();
-        $template->setName('Home');
+        $template->setName('common-ground.dev Home');
         $template->setDescription('Homepage voor common-ground.dev');
         $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/CommongroundDev/index.html.twig', 'r'));
         $template->setTemplateEngine('twig');
@@ -478,7 +481,7 @@ class ConductionFixtures extends Fixture
         $manager->persist($style);
 
         $manager->flush();
-        $id = Uuid::fromString('63be0f75-c228-4c10-8146-1d60214063dd');
+        $id = Uuid::fromString('be1fd311-525b-4408-beb1-012d27af1ff3');
         $stage = new Application();
         $stage->setName('Stage');
         $stage->setDescription('Website voor stage.conduction.nl');
@@ -493,20 +496,21 @@ class ConductionFixtures extends Fixture
 
         // Configuratie van Begrafenisplanner
         $configuration = new Configuration();
+        $configuration->setName('stage.conduction.nl configuration');
         $configuration->setOrganization($conduction);
         $configuration->setApplication($stage);
         $configuration->setConfiguration(
             [
-                'mainMenu'=> $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'d6309260-73a3-4bd9-9e0c-41b88a02c0a8']),
+                'mainMenu'=> $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'a10c80cb-8e93-44af-8393-c475da173328']),
                 'home'    => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'7d53cc95-ca23-4068-880b-48731f804f69']),
             ]
         );
         $manager->persist($configuration);
 
         // Menu
-        $id = Uuid::fromString('d6309260-73a3-4bd9-9e0c-41b88a02c0a8');
+        $id = Uuid::fromString('a10c80cb-8e93-44af-8393-c475da173328');
         $menu = new Menu();
-        $menu->setName('Main Menu');
+        $menu->setName('stage.conduction.nl Main Menu');
         $menu->setDescription('Het hoofdmenu van deze website');
         $menu->setApplication($stage);
         $manager->persist($menu);
@@ -544,7 +548,7 @@ class ConductionFixtures extends Fixture
         // Pages
         $id = Uuid::fromString('7d53cc95-ca23-4068-880b-48731f804f69');
         $template = new Template();
-        $template->setName('Home');
+        $template->setName('stage.conduction.nl Home');
         $template->setDescription('home page voor stage.conduction.nl');
         $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Conduction/Stage/index.html.twig', 'r'));
         $template->setTemplateEngine('twig');
