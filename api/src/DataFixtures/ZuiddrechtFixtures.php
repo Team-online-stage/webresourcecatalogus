@@ -432,6 +432,16 @@ class ZuiddrechtFixtures extends Fixture
             }
         }
 
+        .challenge-card-picture {
+            display: none;
+        }
+
+        @media only screen and (min-width: 1205px) {
+            .challenge-card-picture {
+                display: block;
+            }
+        }
+
         ');
 
         $style->setfavicon($favicon);
