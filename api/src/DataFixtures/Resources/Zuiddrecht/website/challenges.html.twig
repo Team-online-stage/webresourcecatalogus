@@ -24,7 +24,7 @@
                                             <div style="display: flex; flex-direction: column; justify-items: center;">
                                                 <p style="margin: 0; color: grey;">budget: {{ challenge.budget }}<i style="color: grey" class="fas fa-euro-sign"></i></p>
                                                 <p style="margin: 0;">deadline: {{ challenge.dateClose|date("d-m-Y H:i", "Europe/Paris") }}</p>
-                                                <a href="/challenge?id={{ challenge.id }}">lees meer</a>
+                                                <a href="{{ path('app_zuiddrecht_challenge', {id: challenge.id}) }}">lees meer</a>
                                             </div>
                                         </div>
                                     </div>

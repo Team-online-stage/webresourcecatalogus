@@ -797,6 +797,28 @@ class ZuiddrechtFixtures extends Fixture
         $slug->setSlug('pitches');
         $manager->persist($slug);
 
+        $id = Uuid::fromString('5c2164ad-b696-403c-999e-bc3ca92dd30a');
+        $template = new Template();
+        $template->setName('pitch');
+        $template->setDescription('pitch');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Zuiddrecht/website/pitch.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('pitch');
+        $slug->setSlug('pitch');
+        $manager->persist($slug);
+
         $id = Uuid::fromString('eec83f6b-602e-4f72-94ce-f5d3870dd61b');
         $template = new Template();
         $template->setName('challenges');
@@ -817,6 +839,28 @@ class ZuiddrechtFixtures extends Fixture
         $slug->setApplication($application);
         $slug->setName('challenges');
         $slug->setSlug('challenges');
+        $manager->persist($slug);
+
+        $id = Uuid::fromString('8ca36a4e-8d4a-4fd7-a7c6-b7a87de1c379');
+        $template = new Template();
+        $template->setName('challenge');
+        $template->setDescription('challenge');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Zuiddrecht/website/challenge.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('challenge');
+        $slug->setSlug('challenge');
         $manager->persist($slug);
 
         // Template groups
