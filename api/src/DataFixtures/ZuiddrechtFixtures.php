@@ -442,6 +442,15 @@ class ZuiddrechtFixtures extends Fixture
             }
         }
 
+        .calendarButton {
+            border: none;
+            background-color: white;
+        }
+
+        .calendarButton :hover {
+            background-color: lightgrey;
+        }
+
         ');
 
         $style->setfavicon($favicon);
