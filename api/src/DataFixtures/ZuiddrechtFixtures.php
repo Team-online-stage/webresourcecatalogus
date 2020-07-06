@@ -840,6 +840,10 @@ class ZuiddrechtFixtures extends Fixture
         $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Zuiddrecht/website/nieuws/pi-event.html.twig', 'r'));
         $template->setTemplateEngine('twig');
         $manager->persist($template);
+        $date = new \DateTime();
+        $date->sub(new \DateInterval('P2D'));
+        $template->setDateCreated($date);
+        $template->setDateModified($date);
         $template->setId($id);
         $manager->persist($template);
         $manager->flush();
@@ -862,6 +866,10 @@ class ZuiddrechtFixtures extends Fixture
         $template->setDescription('De gemeente Zuid drecht heeft in samenwerking met het bedrijf Conduction een huwelijksplanner gelanceerd. Dit project is in leven gebracht om het aanvragen van een huwelijk een fijne en soepele ervaring te maken.');
         $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Zuiddrecht/website/nieuws/huwelijksplanner.html.twig', 'r'));
         $template->setTemplateEngine('twig');
+        $date = new \DateTime();
+        $date->sub(new \DateInterval('P4D'));
+        $template->setDateCreated($date);
+        $template->setDateModified($date);
         $manager->persist($template);
         $template->setId($id);
         $manager->persist($template);
@@ -885,6 +893,10 @@ class ZuiddrechtFixtures extends Fixture
         $template->setDescription('De corona maatregelingen worden per 1 Juli versoepeld in de gemeente Zuid drecht. De cijfers blijken dusdanig te dalen in deze gemeente dat er weer steeds meer mogenlijk is.');
         $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Zuiddrecht/website/nieuws/corona.html.twig', 'r'));
         $template->setTemplateEngine('twig');
+        $date = new \DateTime();
+        $date->sub(new \DateInterval('P1D'));
+        $template->setDateCreated($date);
+        $template->setDateModified($date);
         $manager->persist($template);
         $template->setId($id);
         $manager->persist($template);
@@ -908,6 +920,10 @@ class ZuiddrechtFixtures extends Fixture
         $template->setDescription('De gemeente is sinds vandaag helemaal over op groene stroom. Dit is een heel groot project geweest maar het is de gemeente Zuid drecht gelukt om in iets minder dan een jaar compleet over te gaan op groene stroom.');
         $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Zuiddrecht/website/nieuws/groene-stroom.html.twig', 'r'));
         $template->setTemplateEngine('twig');
+        $date = new \DateTime();
+        $date->sub(new \DateInterval('P3D'));
+        $template->setDateCreated($date);
+        $template->setDateModified($date);
         $manager->persist($template);
         $template->setId($id);
         $manager->persist($template);
@@ -954,6 +970,10 @@ class ZuiddrechtFixtures extends Fixture
         $template->setDescription('De jaarlijkse prijs uitreiking voor de beste gemeente van het jaar is weer voorbij. Dit jaar hebben we als winnaar de nog best jonge gemeente Zuid drecht.');
         $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Zuiddrecht/website/nieuws/beste-gemeente.html.twig', 'r'));
         $template->setTemplateEngine('twig');
+        $date = new \DateTime();
+        $date->sub(new \DateInterval('P5D'));
+        $template->setDateCreated($date);
+        $template->setDateModified($date);
         $manager->persist($template);
         $template->setId($id);
         $manager->persist($template);
