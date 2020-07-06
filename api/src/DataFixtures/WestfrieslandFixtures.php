@@ -50,7 +50,7 @@ class WestfrieslandFixtures extends Fixture
         $westfriesland->setName('Westfriesland');
         $westfriesland->setDescription('Samenwerkingsverband Westfriesland');
         $westfriesland->setRsin('1234');
-        $westfriesland->setContact($this->commonGroundService->cleanUrl(["component" => "cc", "type" => "organizations", "id" => "b294b0ae-fce4-48d3-bf50-eab1f82ddd7f"]));
+        $westfriesland->setContact($this->commonGroundService->cleanUrl(['component'=>'cc', 'type'=>'organizations', 'id'=>'b294b0ae-fce4-48d3-bf50-eab1f82ddd7f']));
         $manager->persist($westfriesland);
         $westfriesland->setId($id);
         $manager->persist($westfriesland);
@@ -63,7 +63,7 @@ class WestfrieslandFixtures extends Fixture
         $opmeer->setName('Opmeer');
         $opmeer->setDescription('Gemeente Opmeer');
         $opmeer->setRsin('1234');
-        $opmeer->setContact($this->commonGroundService->cleanUrl(["component" => "cc", "type" => "organizations", "id" => "26dee7a2-0fb6-4cc8-b5f6-0b5e2f8aa789"]));
+        $opmeer->setContact($this->commonGroundService->cleanUrl(['component'=>'cc', 'type'=>'organizations', 'id'=>'26dee7a2-0fb6-4cc8-b5f6-0b5e2f8aa789']));
         $manager->persist($opmeer);
         $opmeer->setId($id);
         $manager->persist($opmeer);
@@ -76,7 +76,7 @@ class WestfrieslandFixtures extends Fixture
         $medemblik->setName('Medemblik');
         $medemblik->setDescription('Gemeente Medemblik');
         $medemblik->setRsin('1234');
-        $medemblik->setContact($this->commonGroundService->cleanUrl(["component" => "cc", "type" => "organizations", "id" => "47c8c694-62bb-4dec-b054-556537e896fe"]));
+        $medemblik->setContact($this->commonGroundService->cleanUrl(['component'=>'cc', 'type'=>'organizations', 'id'=>'47c8c694-62bb-4dec-b054-556537e896fe']));
         $manager->persist($medemblik);
         $medemblik->setId($id);
         $manager->persist($medemblik);
@@ -89,7 +89,7 @@ class WestfrieslandFixtures extends Fixture
         $sed->setName('SED');
         $sed->setDescription('Gemeenten Stede Broec, Enkhuizen en Drechterland');
         $sed->setRsin('1234');
-        $sed->setContact($this->commonGroundService->cleanUrl(["component" => "cc", "type" => "organizations", "id" => "0012428b-dc06-444a-af20-17d3ee06a916"]));
+        $sed->setContact($this->commonGroundService->cleanUrl(['component'=>'cc', 'type'=>'organizations', 'id'=>'0012428b-dc06-444a-af20-17d3ee06a916']));
         $manager->persist($sed);
         $sed->setId($id);
         $manager->persist($sed);
@@ -102,7 +102,7 @@ class WestfrieslandFixtures extends Fixture
         $hoorn->setName('Hoorn');
         $hoorn->setDescription('Gemeente Hoorn');
         $hoorn->setRsin('1234');
-        $hoorn->setContact($this->commonGroundService->cleanUrl(["component" => "cc", "type" => "organizations", "id" => "816395fc-4ba4-4fa5-90e9-780bb14a50c2"]));
+        $hoorn->setContact($this->commonGroundService->cleanUrl(['component'=>'cc', 'type'=>'organizations', 'id'=>'816395fc-4ba4-4fa5-90e9-780bb14a50c2']));
         $manager->persist($hoorn);
         $hoorn->setId($id);
         $manager->persist($hoorn);
@@ -115,7 +115,7 @@ class WestfrieslandFixtures extends Fixture
         $koggenland->setName('Koggenland');
         $koggenland->setDescription('Gemeente Koggenland');
         $koggenland->setRsin('1234');
-        $koggenland->setContact($this->commonGroundService->cleanUrl(["component" => "cc", "type" => "organizations", "id" => "5792b63d-afb5-4689-990b-51eec52b663b"]));
+        $koggenland->setContact($this->commonGroundService->cleanUrl(['component'=>'cc', 'type'=>'organizations', 'id'=>'5792b63d-afb5-4689-990b-51eec52b663b']));
         $manager->persist($koggenland);
         $koggenland->setId($id);
         $manager->persist($koggenland);
@@ -169,8 +169,8 @@ class WestfrieslandFixtures extends Fixture
         $configuration->setApplication($application);
         $configuration->setConfiguration(
             [
-                'mainMenu'=> $this->commonGroundService->cleanUrl(["component"=>"wrc","type"=>"menus","id"=>"097ea88e-beb6-476e-a978-d07650f03d97"]),
-                'home'    => $this->commonGroundService->cleanUrl(["component"=>"wrc","type"=>"menus","id"=>"fc91dcd6-d0b4-4e70-9934-3e5ebf9c295c"]), ]
+                'mainMenu'=> $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'097ea88e-beb6-476e-a978-d07650f03d97']),
+                'home'    => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'fc91dcd6-d0b4-4e70-9934-3e5ebf9c295c']), ]
         );
         $manager->persist($configuration);
 
