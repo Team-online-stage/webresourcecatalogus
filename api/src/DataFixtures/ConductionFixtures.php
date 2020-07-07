@@ -470,7 +470,7 @@ class ConductionFixtures extends Fixture
 
         $style = new Style();
         $style->setName('stage');
-        $style->setDescription('Huistlijl stage');
+        $style->setDescription('Huistijl stage');
         $style->setCss('');
         $style->setfavicon($favicon);
         $style->setOrganization($conduction);
@@ -494,21 +494,26 @@ class ConductionFixtures extends Fixture
         $manager->flush();
         $stage = $manager->getRepository('App:Application')->findOneBy(['id'=> $id]);
 
-        // Configuratie van Begrafenisplanner
+        // Configuratie
         $configuration = new Configuration();
         $configuration->setName('stage.conduction.nl configuration');
         $configuration->setOrganization($conduction);
         $configuration->setApplication($stage);
         $configuration->setConfiguration(
             [
-                'mainMenu'=> $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'a10c80cb-8e93-44af-8393-c475da173328']),
-                'home'    => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'7d53cc95-ca23-4068-880b-48731f804f69']),
+                'mainMenu'          => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'da3d55e3-6b7e-47f3-856d-eb158212d8af']),
+                'home'              => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'6079cc7d-7b69-4db3-ad17-6bf972cca6a2']),
+                'footer1'           => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'09dfc502-19ce-4b11-8e0a-a7fc456a5c52']),
+                'footer2'           => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'23b58ab8-45a6-4fbf-a180-6aac96da4df6']),
+                'footer3'           => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'b86881b2-7911-4598-826d-875acc899845']),
+                'footer4'           => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'b0c69fb9-852f-4c54-80c7-7b0f931e779a']),
+                'nieuws'            => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'template_groups', 'id'=>'f2729540-2740-4fbf-98ae-f0a069a1f43f']),
             ]
         );
         $manager->persist($configuration);
 
         // Menu
-        $id = Uuid::fromString('a10c80cb-8e93-44af-8393-c475da173328');
+        $id = Uuid::fromString('da3d55e3-6b7e-47f3-856d-eb158212d8af');
         $menu = new Menu();
         $menu->setName('stage.conduction.nl Main Menu');
         $menu->setDescription('Het hoofdmenu van deze website');
@@ -520,20 +525,47 @@ class ConductionFixtures extends Fixture
         $menu = $manager->getRepository('App:Menu')->findOneBy(['id'=> $id]);
 
         $menuItem = new MenuItem();
-        $menuItem->setName('Processen');
-        $menuItem->setDescription('Doe een aanvraag');
+        $menuItem->setName('Home');
+        $menuItem->setDescription('De Home Pagina');
         $menuItem->setOrder(1);
         $menuItem->setType('slug');
-        $menuItem->setHref('/process');
+        $menuItem->setHref('/home');
         $menuItem->setMenu($menu);
         $manager->persist($menu);
 
         $menuItem = new MenuItem();
-        $menuItem->setName('Verzoeken');
-        $menuItem->setDescription('Het inzien en voortzetten van mijn verzoeken');
-        $menuItem->setOrder(1);
+        $menuItem->setName('Over');
+        $menuItem->setDescription('Over');
+        $menuItem->setOrder(2);
         $menuItem->setType('slug');
-        $menuItem->setHref('/requests');
+        $menuItem->setHref('/over');
+        $menuItem->setMenu($menu);
+        $manager->persist($menu);
+
+        $menuItem = new MenuItem();
+        $menuItem->setName('Stages');
+        $menuItem->setDescription('Stages');
+        $menuItem->setOrder(3);
+        $menuItem->setType('slug');
+        $menuItem->setHref('/stages');
+        $menuItem->setMenu($menu);
+        $manager->persist($menu);
+
+        $menuItem = new MenuItem();
+        $menuItem->setName('Tutorials');
+        $menuItem->setDescription('Tutorials');
+        $menuItem->setOrder(4);
+        $menuItem->setType('slug');
+        $menuItem->setHref('/tutorials');
+        $menuItem->setMenu($menu);
+        $manager->persist($menu);
+
+        $menuItem = new MenuItem();
+        $menuItem->setName('Challenges');
+        $menuItem->setDescription('Challenges');
+        $menuItem->setOrder(5);
+        $menuItem->setType('slug');
+        $menuItem->setHref('/challenges');
         $menuItem->setMenu($menu);
         $manager->persist($menu);
 
@@ -546,10 +578,10 @@ class ConductionFixtures extends Fixture
         $manager->persist($groupPages);
 
         // Pages
-        $id = Uuid::fromString('7d53cc95-ca23-4068-880b-48731f804f69');
+        $id = Uuid::fromString('6079cc7d-7b69-4db3-ad17-6bf972cca6a2');
         $template = new Template();
-        $template->setName('stage.conduction.nl Home');
-        $template->setDescription('home page voor stage.conduction.nl');
+        $template->setName('Home');
+        $template->setDescription('Stage Home Page');
         $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Conduction/Stage/index.html.twig', 'r'));
         $template->setTemplateEngine('twig');
         $manager->persist($template);
@@ -559,6 +591,7 @@ class ConductionFixtures extends Fixture
         $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
         $template->addTemplateGroup($groupPages);
         $manager->persist($template);
+        $manager->flush();
 
         $slug = new Slug();
         $slug->setTemplate($template);
@@ -567,9 +600,282 @@ class ConductionFixtures extends Fixture
         $slug->setSlug('home');
         $manager->persist($slug);
 
+        $id = Uuid::fromString('a7cd9c16-4d5c-45bd-a95c-3dd931e53b0e');
+        $template = new Template();
+        $template->setName('Over');
+        $template->setDescription('Stage Over Page');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Conduction/Stage/over.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
         $manager->flush();
 
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($stage);
+        $slug->setName('over');
+        $slug->setSlug('over');
+        $manager->persist($slug);
 
+        $id = Uuid::fromString('3bfd1aba-c2af-4e50-be81-d7a86c9fe70b');
+        $template = new Template();
+        $template->setName('Stages');
+        $template->setDescription('Stage Stages Page');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Conduction/Stage/stages.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
 
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($stage);
+        $slug->setName('stages');
+        $slug->setSlug('stages');
+        $manager->persist($slug);
+
+        $id = Uuid::fromString('73332c62-c2bf-4aeb-a3ca-a397863e1d04');
+        $template = new Template();
+        $template->setName('Tutorials');
+        $template->setDescription('Stage Tutorials Page');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Conduction/Stage/tutorials.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($stage);
+        $slug->setName('tutorials');
+        $slug->setSlug('tutorials');
+        $manager->persist($slug);
+
+        $id = Uuid::fromString('cad4760e-703d-4de6-aefb-1ce11e9ff829');
+        $template = new Template();
+        $template->setName('Challenges');
+        $template->setDescription('Stage Challenges Page');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Conduction/Stage/challenges.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($stage);
+        $slug->setName('challenges');
+        $slug->setSlug('challenges');
+        $manager->persist($slug);
+
+        $id = Uuid::fromString('bb1ed90e-e529-4f80-a486-5c58583d835c');
+        $template = new Template();
+        $template->setName('Studenten');
+        $template->setDescription('Stage Studenten Page');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Conduction/Stage/studenten.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($stage);
+        $slug->setName('studenten');
+        $slug->setSlug('studenten');
+        $manager->persist($slug);
+
+        $id = Uuid::fromString('89ddaf33-9b5f-4651-9f12-c35122da5a34');
+        $template = new Template();
+        $template->setName('Teams');
+        $template->setDescription('Stage Teams Page');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Conduction/Stage/teams.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($stage);
+        $slug->setName('teams');
+        $slug->setSlug('teams');
+        $manager->persist($slug);
+
+        $id = Uuid::fromString('09dfc502-19ce-4b11-8e0a-a7fc456a5c52');
+        $template = new Template();
+        $template->setName('footer1');
+        $template->setDescription('footer1');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Conduction/Stage/footer1.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
+
+        $id = Uuid::fromString('23b58ab8-45a6-4fbf-a180-6aac96da4df6');
+        $template = new Template();
+        $template->setName('footer2');
+        $template->setDescription('footer2');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Conduction/Stage/footer2.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
+
+        $id = Uuid::fromString('b86881b2-7911-4598-826d-875acc899845');
+        $template = new Template();
+        $template->setName('footer3');
+        $template->setDescription('footer3');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Conduction/Stage/footer3.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
+
+        $id = Uuid::fromString('b0c69fb9-852f-4c54-80c7-7b0f931e779a');
+        $template = new Template();
+        $template->setName('footer4');
+        $template->setDescription('footer4');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Conduction/Stage/footer4.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
+
+        $id = Uuid::fromString('17f556f4-105a-44df-a74c-1dccc9f22979');
+        $template = new Template();
+        $template->setName('nieuwsoverzicht');
+        $template->setDescription('nieuwsoverzicht');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Conduction/Stage/nieuws/nieuwsoverzicht.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($stage);
+        $slug->setName('nieuwsoverzicht');
+        $slug->setSlug('nieuwsoverzicht');
+        $manager->persist($slug);
+
+        $id = Uuid::fromString('3f19d75d-086e-46ad-a6dc-b7a355deffba');
+        $template = new Template();
+        $template->setName('article');
+        $template->setDescription('article');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Conduction/Stage/nieuws/article.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($stage);
+        $slug->setName('article');
+        $slug->setSlug('article');
+        $manager->persist($slug);
+
+        // Template groups
+        $id = Uuid::fromString('f2729540-2740-4fbf-98ae-f0a069a1f43f');
+        $groupNews = new TemplateGroup();
+        $groupNews->setOrganization($conduction);
+        $groupNews->setApplication($stage);
+        $groupNews->setName('Nieuws');
+        $groupNews->setDescription('Webpages about news articles');
+        $manager->persist($groupNews);
+        $groupNews->setId($id);
+        $manager->persist($groupNews);
+        $manager->flush();
+        $groupNews = $manager->getRepository('App:TemplateGroup')->findOneBy(['id'=> $id]);
+
+        $id = Uuid::fromString('21218de7-2750-4ed0-a7bb-9f13906f22b5');
+        $template = new Template();
+        $template->setName('pi event');
+        $template->setTitle('pi event is van start');
+        $template->setDescription('Het Pi event is eindelijk van start! In dit event gaan verschillende gemeentes hun nieuwe platformen tonen.');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Zuiddrecht/website/nieuws/pi-event.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $date = new \DateTime();
+        $date->sub(new \DateInterval('P2D'));
+        $template->setDateCreated($date);
+        $template->setDateModified($date);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupNews);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($stage);
+        $slug->setName('pi-event');
+        $slug->setSlug('pi-event');
+        $manager->persist($slug);
+
+        $manager->flush();
     }
 }
