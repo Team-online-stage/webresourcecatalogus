@@ -18,7 +18,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Ramsey\Uuid\Uuid;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 
-class MijnclusterFixtures extends Fixture
+class PinkFixtures extends Fixture
 {
     private $params;
     /**
