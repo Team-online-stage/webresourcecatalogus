@@ -507,6 +507,7 @@ class ConductionFixtures extends Fixture
                 'footer2'           => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'23b58ab8-45a6-4fbf-a180-6aac96da4df6']),
                 'footer3'           => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'b86881b2-7911-4598-826d-875acc899845']),
                 'footer4'           => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'b0c69fb9-852f-4c54-80c7-7b0f931e779a']),
+                'nieuws'            => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'template_groups', 'id'=>'f2729540-2740-4fbf-98ae-f0a069a1f43f']),
             ]
         );
         $manager->persist($configuration);
@@ -790,6 +791,90 @@ class ConductionFixtures extends Fixture
         $template->addTemplateGroup($groupPages);
         $manager->persist($template);
         $manager->flush();
+
+        $id = Uuid::fromString('17f556f4-105a-44df-a74c-1dccc9f22979');
+        $template = new Template();
+        $template->setName('nieuwsoverzicht');
+        $template->setDescription('nieuwsoverzicht');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Conduction/Stage/nieuws/nieuwsoverzicht.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($stage);
+        $slug->setName('nieuwsoverzicht');
+        $slug->setSlug('nieuwsoverzicht');
+        $manager->persist($slug);
+
+        $id = Uuid::fromString('3f19d75d-086e-46ad-a6dc-b7a355deffba');
+        $template = new Template();
+        $template->setName('article');
+        $template->setDescription('article');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Conduction/Stage/nieuws/article.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($stage);
+        $slug->setName('article');
+        $slug->setSlug('article');
+        $manager->persist($slug);
+
+        // Template groups
+        $id = Uuid::fromString('f2729540-2740-4fbf-98ae-f0a069a1f43f');
+        $groupNews = new TemplateGroup();
+        $groupNews->setOrganization($conduction);
+        $groupNews->setApplication($stage);
+        $groupNews->setName('Nieuws');
+        $groupNews->setDescription('Webpages about news articles');
+        $manager->persist($groupNews);
+        $groupNews->setId($id);
+        $manager->persist($groupNews);
+        $manager->flush();
+        $groupNews = $manager->getRepository('App:TemplateGroup')->findOneBy(['id'=> $id]);
+
+        $id = Uuid::fromString('21218de7-2750-4ed0-a7bb-9f13906f22b5');
+        $template = new Template();
+        $template->setName('pi event');
+        $template->setTitle('pi event is van start');
+        $template->setDescription('Het Pi event is eindelijk van start! In dit event gaan verschillende gemeentes hun nieuwe platformen tonen.');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Zuiddrecht/website/nieuws/pi-event.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $date = new \DateTime();
+        $date->sub(new \DateInterval('P2D'));
+        $template->setDateCreated($date);
+        $template->setDateModified($date);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupNews);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($stage);
+        $slug->setName('pi-event');
+        $slug->setSlug('pi-event');
+        $manager->persist($slug);
 
         $manager->flush();
     }
