@@ -3,26 +3,51 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
-    <article>
-        <div class="row">
-            <div class="col-xl-8 col-xl-offset-2 col-lg-10 col-lg-offset-1">
-                <div class="content-background">
-                    <div class="content">
-                        <h1>Nieuwsoverzicht</h1>
-                        <ul class="list list--links list--chevrons">
-                        {% if application.defaultConfiguration.configuration.nieuws is defined %}
-                        {% set nieuws = commonground_resource(application.defaultConfiguration.configuration.nieuws) %}
-                        {% set templates = commonground_resource_list({'component': 'wrc', 'type': 'templates'},{'templateGroups.id':nieuws.id, 'order[dateCreated]':'desc'})['hydra:member'] %}
-                        {% for template in templates %}
-                            <li>
-                                <a href="/article?id={{ template.id }}">{{ template.title }}</a>
-                            </li>
-                        {% endfor %}
-                        {% endif %}
-                        </ul>
-                    </div>
-                </div>
-            </div>
+    <h1>Nieuws</h1>
+    <div class="row">
+        <div class="col-sm-12 col-lg-9">
+            {% if application.defaultConfiguration.configuration.nieuws is defined %}
+            {% set nieuws = commonground_resource(application.defaultConfiguration.configuration.nieuws) %}
+            {% set templates = commonground_resource_list({'component': 'wrc', 'type': 'templates'},{'templateGroups.id':nieuws.id, 'order[dateCreated]':'desc'})['hydra:member'] %}
+            <ul class="list list--card list--card-small">
+                {% for template in templates %}
+                    <li class="card card--small">
+                        <div class="card__content">
+                            <div class="card__thumb challenge-card-picture" style="background-image: url('https://picsum.photos/200')"></div>
+                            <div class="card__body">
+                                <div class="row" style=" height: 100%; width: 100%;">
+                                    <div class="col-sm-8" style="padding-right: 0px;">
+                                        <span class="card__title">{{ template.title }}</span><br>
+                                        <span>{{ template.description|slice(0, 110)|raw ~ '...' }}</span>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div style="">
+                                            <div style="display: flex; flex-direction: column; justify-items: center;">
+                                                <p style="margin: 0; color: grey;">gemaakt: {{ template.dateModified|date("d-m-Y H:i", "Europe/Paris") }}</i></p>
+                                                <p style="margin: 0; color: grey;">bijgewerkt: {{ template.dateCreated|date("d-m-Y H:i", "Europe/Paris") }}</p>
+                                                <a href="/article?id={{ template.id }}">lees meer</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                {% endfor %}
+                {% else %}
+                    <p>Er zijn op dit moment geen nieuws berichten</p>
+                {% endif %}
+            </ul>
         </div>
-    </article>
+        <div class="col-sm-12 col-lg-3" style="background-color: lightgray">
+            <fieldset class="input filter">
+                <legend class="filter__title">Filters <button class="btn btn-primary" style="float: right;" type="submit">Filter</button></legend>
+                <div class="input__group input__group--text input__group--compact">
+                    <label class="input__label input__label--text" for="limit">Aantal items:</label>
+                    <input type="text" name="filter[limit]" id="limit" class="input__control input__control--text">
+                </div>
+            </fieldset>
+        </div>
+    </div>
+
 {% endblock %}

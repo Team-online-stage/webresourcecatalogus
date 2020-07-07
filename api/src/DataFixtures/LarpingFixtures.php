@@ -10,6 +10,7 @@ use App\Entity\MenuItem;
 use App\Entity\Organization;
 use App\Entity\Style;
 use App\Entity\Template;
+use Conduction\CommonGroundBundle\Service\CommonGroundService;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Ramsey\Uuid\Uuid;
@@ -18,10 +19,13 @@ use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 class LarpingFixtures extends Fixture
 {
     private $params;
-
-    public function __construct(ParameterBagInterface $params)
+    /**
+     * @var CommonGroundService
+     */
+    public function __construct(ParameterBagInterface $params, CommonGroundService $commonGroundService)
     {
         $this->params = $params;
+        $this->commonGroundService = $commonGroundService;
     }
 
     public function load(ObjectManager $manager)
@@ -32,7 +36,6 @@ class LarpingFixtures extends Fixture
         ) {
             return false;
         }
-        var_dump($this->params->get('app_domain'));
 
         // Conduction
         $id = Uuid::fromString('7b863976-0fc3-4f49-a4f7-0bf7d2f2f535');

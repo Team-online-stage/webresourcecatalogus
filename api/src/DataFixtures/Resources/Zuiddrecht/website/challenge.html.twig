@@ -1,0 +1,33 @@
+{# templates/home/index.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="content-background">
+                <div class="content">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h1>{{ resource.name|capitalize }}</h1>
+                            <p>{{ resource.description }}</p>
+                        </div>
+                        <div class="col-md-6">
+                            <img src="https://picsum.photos/200" alt="tender">
+                        </div>
+                    </div>
+                </div>
+                {#        <div class="col-sm-12 col-lg-4" style="background-color: lightgray">#}
+                {#            <fieldset class="input filter">#}
+                {#                <legend class="filter__title">Filters <button class="btn btn-primary" style="float: right;" type="submit">Filter</button></legend>#}
+                {#                <div class="input__group input__group--text input__group--compact">#}
+                {#                    <label class="input__label input__label--text" for="limit">Aantal items:</label>#}
+                {#                    <input type="text" name="filter[limit]" id="limit" class="input__control input__control--text">#}
+                {#                </div>#}
+                {#            </fieldset>#}
+                {#        </div>#}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
