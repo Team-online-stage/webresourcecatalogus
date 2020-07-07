@@ -31,7 +31,6 @@ class LarpingFixtures extends Fixture
     {
         // Lets make sure we only run these fixtures on larping enviroment
         if (
-            !$this->params->get('app_build_all_fixtures') &&
             $this->params->get('app_domain') != 'larping.eu' && strpos($this->params->get('app_domain'), 'larping.eu') == false
         ) {
             return false;
@@ -84,7 +83,6 @@ class LarpingFixtures extends Fixture
         $menu = new Menu();
         $menu->setName('Larping menu');
         $menu->setDescription('');
-        //$menu->setOrganization($larping);      Geeft een foutmelding bij build, bestaat niet
         $menu->setApplication($application);
         $manager->persist($menu);
         //$menu->setId($id);
@@ -166,13 +164,13 @@ class LarpingFixtures extends Fixture
         $configParams = [];
 
         $larpingUiParams = [];
-        $larpingUiParams['menuPrimary'] = $protocol.$this->params->get('app_name').'.'.$env.$this->params->get('app_domains')[0].'/menus/'.(string) $menu->getId();
-        $larpingUiParams['menuFooter1'] = $protocol.$this->params->get('app_name').'.'.$env.$this->params->get('app_domains')[0].'/menus/'.(string) $menu->getId();
-        $larpingUiParams['menuFooter2'] = $protocol.$this->params->get('app_name').'.'.$env.$this->params->get('app_domains')[0].'/menus/'.(string) $menu->getId();
-        $larpingUiParams['confirmationClientSMS'] = $protocol.$this->params->get('app_name').'.'.$env.$this->params->get('app_domains')[0].'/templates/'.(string) $clientSMS->getId();
-        $larpingUiParams['confirmationClientMail'] = $protocol.$this->params->get('app_name').'.'.$env.$this->params->get('app_domains')[0].'/templates/'.(string) $clientMail->getId();
-        $larpingUiParams['confirmationOrganizationSMS'] = $protocol.$this->params->get('app_name').'.'.$env.$this->params->get('app_domains')[0].'/templates/'.(string) $organizationSMS->getId();
-        $larpingUiParams['confirmationOrganizationMail'] = $protocol.$this->params->get('app_name').'.'.$env.$this->params->get('app_domains')[0].'/templates/'.(string) $organizationMail->getId();
+        $larpingUiParams['menuPrimary'] = $protocol.$this->params->get('app_name').'.'.$env.$this->params->get('app_domain')[0].'/menus/'.(string) $menu->getId();
+        $larpingUiParams['menuFooter1'] = $protocol.$this->params->get('app_name').'.'.$env.$this->params->get('app_domain')[0].'/menus/'.(string) $menu->getId();
+        $larpingUiParams['menuFooter2'] = $protocol.$this->params->get('app_name').'.'.$env.$this->params->get('app_domain')[0].'/menus/'.(string) $menu->getId();
+        $larpingUiParams['confirmationClientSMS'] = $protocol.$this->params->get('app_name').'.'.$env.$this->params->get('app_domain')[0].'/templates/'.(string) $clientSMS->getId();
+        $larpingUiParams['confirmationClientMail'] = $protocol.$this->params->get('app_name').'.'.$env.$this->params->get('app_domain')[0].'/templates/'.(string) $clientMail->getId();
+        $larpingUiParams['confirmationOrganizationSMS'] = $protocol.$this->params->get('app_name').'.'.$env.$this->params->get('app_domain')[0].'/templates/'.(string) $organizationSMS->getId();
+        $larpingUiParams['confirmationOrganizationMail'] = $protocol.$this->params->get('app_name').'.'.$env.$this->params->get('app_domain')[0].'/templates/'.(string) $organizationMail->getId();
 
         $configParams['larpingUi'] = $larpingUiParams;
 
