@@ -516,7 +516,7 @@ class ConductionFixtures extends Fixture
         $menu = new Menu();
         $menu->setName('stage.conduction.nl Main Menu');
         $menu->setDescription('Het hoofdmenu van deze website');
-        $menu->setApplication($commongroundDev);
+        $menu->setApplication($stage);
         $manager->persist($menu);
         $menu->setId($id);
         $manager->persist($menu);
@@ -571,7 +571,7 @@ class ConductionFixtures extends Fixture
         // Template groups
         $groupPages = new TemplateGroup();
         $groupPages->setOrganization($conduction);
-        $groupPages->setApplication($commongroundDev);
+        $groupPages->setApplication($stage);
         $groupPages->setName('Pages');
         $groupPages->setDescription('Webpages that are presented to visitors');
         $manager->persist($groupPages);
