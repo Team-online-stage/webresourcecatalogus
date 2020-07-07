@@ -3,12 +3,16 @@
 namespace App\DataFixtures;
 
 use App\Entity\Application;
+use App\Entity\Configuration;
 use App\Entity\Image;
+use App\Entity\Menu;
+use App\Entity\MenuItem;
 use App\Entity\Organization;
-use App\Entity\Page;
 use App\Entity\Slug;
 use App\Entity\Style;
 use App\Entity\Template;
+use App\Entity\TemplateGroup;
+use Conduction\CommonGroundBundle\Service\CommonGroundService;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Ramsey\Uuid\Uuid;
@@ -17,10 +21,15 @@ use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 class ConductionFixtures extends Fixture
 {
     private $params;
+    /**
+     * @var CommonGroundService
+     */
+    private $commonGroundService;
 
-    public function __construct(ParameterBagInterface $params)
+    public function __construct(ParameterBagInterface $params, CommonGroundService $commonGroundService)
     {
         $this->params = $params;
+        $this->commonGroundService = $commonGroundService;
     }
 
     public function load(ObjectManager $manager)
@@ -98,263 +107,465 @@ class ConductionFixtures extends Fixture
         $manager->flush();
         $dashboard = $manager->getRepository('App:Application')->findOneBy(['id'=> $id]);
 
+        $manager->flush();
+
         /*
+         * ZaakOnline
+         */
+
+        $favicon = new Image();
+        $favicon->setName('Zaakonline Favicon');
+        $favicon->setDescription('Favicon ZaakOnline');
+        $favicon->setOrganization($conduction);
+
+        $logo = new Image();
+        $logo->setName('Zaakonline Logo');
+        $logo->setDescription('Logo ZaakOnline');
+        $logo->setOrganization($conduction);
+
+        $style = new Style();
+        $style->setName('Zaakonline');
+        $style->setDescription('Huistlijl ZaakOnline');
+        $style->setCss('');
+        $style->setfavicon($favicon);
+        $style->setOrganization($conduction);
+
+        $manager->persist($conduction);
+        $manager->persist($favicon);
+        $manager->persist($logo);
+        $manager->persist($style);
+
+        $manager->flush();
+        $id = Uuid::fromString('b0dd8168-2f36-44ad-91e5-700c7400adaf');
+        $zaakOnline = new Application();
+        $zaakOnline->setName('Zaakonline');
+        $zaakOnline->setDescription('Website voor Zaakonline');
+        $zaakOnline->setDomain('zaakonline.nl');
+        $zaakOnline->setStyle($style);
+        $zaakOnline->setOrganization($conduction);
+        $manager->persist($zaakOnline);
+        $zaakOnline->setId($id);
+        $manager->persist($zaakOnline);
+        $manager->flush();
+        $zaakOnline = $manager->getRepository('App:Application')->findOneBy(['id'=> $id]);
+
+        // Configuratie van Begrafenisplanner
+        $configuration = new Configuration();
+        $configuration->setOrganization($conduction);
+        $configuration->setApplication($zaakOnline);
+        $configuration->setConfiguration(
+            [
+                'mainMenu'=> $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'7b1fd58b-0f55-4374-afc7-f8b646919835']),
+                'home'    => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'e469c3e6-6b8f-4351-bcca-49e7f288dfc5']),
+            ]
+        );
+        $manager->persist($configuration);
+
+        // Menu
+        $id = Uuid::fromString('7b1fd58b-0f55-4374-afc7-f8b646919835');
+        $menu = new Menu();
+        $menu->setName('Main Menu');
+        $menu->setDescription('Het hoofdmenu van deze website');
+        $menu->setApplication($zaakOnline);
+        $manager->persist($menu);
+        $menu->setId($id);
+        $manager->persist($menu);
+        $manager->flush();
+        $menu = $manager->getRepository('App:Menu')->findOneBy(['id'=> $id]);
+
+        $menuItem = new MenuItem();
+        $menuItem->setName('Processen');
+        $menuItem->setDescription('Doe een aanvraag');
+        $menuItem->setOrder(1);
+        $menuItem->setType('slug');
+        $menuItem->setHref('/process');
+        $menuItem->setMenu($menu);
+        $manager->persist($menu);
+
+        $menuItem = new MenuItem();
+        $menuItem->setName('Verzoeken');
+        $menuItem->setDescription('Het inzien en voortzetten van mijn verzoeken');
+        $menuItem->setOrder(1);
+        $menuItem->setType('slug');
+        $menuItem->setHref('/requests');
+        $menuItem->setMenu($menu);
+        $manager->persist($menu);
+
+        // Template groups
+        $groupPages = new TemplateGroup();
+        $groupPages->setOrganization($conduction);
+        $groupPages->setApplication($zaakOnline);
+        $groupPages->setName('Pages');
+        $groupPages->setDescription('Webpages that are presented to visitors');
+        $manager->persist($groupPages);
+
         // Pages
+        $id = Uuid::fromString('e469c3e6-6b8f-4351-bcca-49e7f288dfc5');
         $template = new Template();
-        $template->setName('Home'); // Naam
-        $template->setDescription('Pagina waarop instemming kan worden verleend'); // korte beschrijving
-        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Conduction/pages/home.html.twig', 'r'));
+        $template->setName('Home');
+        $template->setDescription('De homepage voor zaakonline');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Zaakonline/index.html.twig', 'r'));
         $template->setTemplateEngine('twig');
         $manager->persist($template);
-
-        $page = new Page();
-        $page->setName($template->getName());
-        $page->setTitle($template->getName());
-        $page->setDescription($template->getName());
-        $page->setApplication($website);
-        $page->setTemplate($template);
-        $manager->persist($page);
-
-        $slug = new Slug();
-        $slug->setPage($page);
-        $slug->setApplication($website);
-        $slug->setName($page->getName());
-        $slug->setSlug(''); // Dit komt eigenlijk overeen met de route
-        $manager->persist($slug);
-
-
-        $template = new Template();
-        $template->setName('Buzz'); // Naam
-        $template->setDescription('Pagina waarop instemming kan worden verleend'); // korte beschrijving
-        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Conduction/pages/buzz.html.twig', 'r'));
-        $template->setTemplateEngine('twig');
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
         $manager->persist($template);
 
-        $page = new Page();
-        $page->setName($template->getName());
-        $page->setTitle($template->getName());
-        $page->setDescription($template->getName());
-        $page->setApplication($website);
-        $page->setTemplate($template);
-        $manager->persist($page);
-
         $slug = new Slug();
-        $slug->setPage($page);
-        $slug->setApplication($website);
-        $slug->setName($page->getName());
-        $slug->setSlug(''); // Dit komt eigenlijk overeen met de route
-        $manager->persist($slug);
-
-
-        $template = new Template();
-        $template->setName('Commonground'); // Naam
-        $template->setDescription('Pagina waarop instemming kan worden verleend'); // korte beschrijving
-        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Conduction/pages/commonground.html.twig', 'r'));
-        $template->setTemplateEngine('twig');
-        $manager->persist($template);
-
-        $page = new Page();
-        $page->setName($template->getName());
-        $page->setTitle($template->getName());
-        $page->setDescription($template->getName());
-        $page->setApplication($website);
-        $page->setTemplate($template);
-        $manager->persist($page);
-
-        $slug = new Slug();
-        $slug->setPage($page);
-        $slug->setApplication($website);
-        $slug->setName($page->getName());
-        $slug->setSlug(''); // Dit komt eigenlijk overeen met de route
-        $manager->persist($slug);
-
-
-
-        $template = new Template();
-        $template->setName('Contact'); // Naam
-        $template->setDescription('Pagina waarop instemming kan worden verleend'); // korte beschrijving
-        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Conduction/pages/contact.html.twig', 'r'));
-        $template->setTemplateEngine('twig');
-        $manager->persist($template);
-
-        $page = new Page();
-        $page->setName($template->getName());
-        $page->setTitle($template->getName());
-        $page->setDescription($template->getName());
-        $page->setApplication($website);
-        $page->setTemplate($template);
-        $manager->persist($page);
-
-        $slug = new Slug();
-        $slug->setPage($page);
-        $slug->setApplication($website);
-        $slug->setName($page->getName());
-        $slug->setSlug(''); // Dit komt eigenlijk overeen met de route
-        $manager->persist($slug);
-
-
-
-        $template = new Template();
-        $template->setName('Idealen'); // Naam
-        $template->setDescription('Pagina waarop instemming kan worden verleend'); // korte beschrijving
-        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Conduction/pages/idealen.html.twig', 'r'));
-        $template->setTemplateEngine('twig');
-        $manager->persist($template);
-
-        $page = new Page();
-        $page->setName($template->getName());
-        $page->setTitle($template->getName());
-        $page->setDescription($template->getName());
-        $page->setApplication($website);
-        $page->setTemplate($template);
-        $manager->persist($page);
-
-        $slug = new Slug();
-        $slug->setPage($page);
-        $slug->setApplication($website);
-        $slug->setName($page->getName());
-        $slug->setSlug(''); // Dit komt eigenlijk overeen met de route
-        $manager->persist($slug);
-
-
-        $template = new Template();
-        $template->setName('Partners'); // Naam
-        $template->setDescription('Pagina waarop instemming kan worden verleend'); // korte beschrijving
-        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Conduction/pages/partners.html.twig', 'r'));
-        $template->setTemplateEngine('twig');
-        $manager->persist($template);
-
-        $page = new Page();
-        $page->setName($template->getName());
-        $page->setTitle($template->getName());
-        $page->setDescription($template->getName());
-        $page->setApplication($website);
-        $page->setTemplate($template);
-        $manager->persist($page);
-
-        $slug = new Slug();
-        $slug->setPage($page);
-        $slug->setApplication($website);
-        $slug->setName($page->getName());
-        $slug->setSlug(''); // Dit komt eigenlijk overeen met de route
-        $manager->persist($slug);
-
-        $template = new Template();
-        $template->setName('Projecten'); // Naam
-        $template->setDescription('Pagina waarop instemming kan worden verleend'); // korte beschrijving
-        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Conduction/pages/projecten.html.twig', 'r'));
-        $template->setTemplateEngine('twig');
-        $manager->persist($template);
-
-        $page = new Page();
-        $page->setName($template->getName());
-        $page->setTitle($template->getName());
-        $page->setDescription($template->getName());
-        $page->setApplication($website);
-        $page->setTemplate($template);
-        $manager->persist($page);
-
-        $slug = new Slug();
-        $slug->setPage($page);
-        $slug->setApplication($website);
-        $slug->setName($page->getName());
-        $slug->setSlug(''); // Dit komt eigenlijk overeen met de route
-        $manager->persist($slug);
-
-
-        $template = new Template();
-        $template->setName('Team'); // Naam
-        $template->setDescription('Pagina waarop instemming kan worden verleend'); // korte beschrijving
-        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Conduction/pages/team.html.twig', 'r'));
-        $template->setTemplateEngine('twig');
-        $manager->persist($template);
-
-        $page = new Page();
-        $page->setName($template->getName());
-        $page->setTitle($template->getName());
-        $page->setDescription($template->getName());
-        $page->setApplication($website);
-        $page->setTemplate($template);
-        $manager->persist($page);
-
-        $slug = new Slug();
-        $slug->setPage($page);
-        $slug->setApplication($website);
-        $slug->setName($page->getName());
-        $slug->setSlug(''); // Dit komt eigenlijk overeen met de route
-        $manager->persist($slug);
-
-
-        $template = new Template();
-        $template->setName('Vacatures'); // Naam
-        $template->setDescription('Pagina waarop instemming kan worden verleend'); // korte beschrijving
-        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Conduction/pages/vacatures.html.twig', 'r'));
-        $template->setTemplateEngine('twig');
-        $manager->persist($template);
-
-        $page = new Page();
-        $page->setName($template->getName());
-        $page->setTitle($template->getName());
-        $page->setDescription($template->getName());
-        $page->setApplication($website);
-        $page->setTemplate($template);
-        $manager->persist($page);
-
-        $slug = new Slug();
-        $slug->setPage($page);
-        $slug->setApplication($website);
-        $slug->setName($page->getName());
-        $slug->setSlug(''); // Dit komt eigenlijk overeen met de route
-        $manager->persist($slug);
-
-
-        $template = new Template();
-        $template->setName('Webservice'); // Naam
-        $template->setDescription('Pagina waarop instemming kan worden verleend'); // korte beschrijving
-        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Conduction/pages/webservice.html.twig', 'r'));
-        $template->setTemplateEngine('twig');
-        $manager->persist($template);
-
-        $page = new Page();
-        $page->setName($template->getName());
-        $page->setTitle($template->getName());
-        $page->setDescription($template->getName());
-        $page->setApplication($website);
-        $page->setTemplate($template);
-        $manager->persist($page);
-
-        $slug = new Slug();
-        $slug->setPage($page);
-        $slug->setApplication($website);
-        $slug->setName($page->getName());
-        $slug->setSlug(''); // Dit komt eigenlijk overeen met de route
-        $manager->persist($slug);
-
-
-
-        $template = new Template();
-        $template->setName('Werkwijze'); // Naam
-        $template->setDescription('Pagina waarop instemming kan worden verleend'); // korte beschrijving
-        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Conduction/pages/werkwijze.html.twig', 'r'));
-        $template->setTemplateEngine('twig');
-        $manager->persist($template);
-
-        $page = new Page();
-        $page->setName($template->getName());
-        $page->setTitle($template->getName());
-        $page->setDescription($template->getName());
-        $page->setApplication($website);
-        $page->setTemplate($template);
-        $manager->persist($page);
-
-        $slug = new Slug();
-        $slug->setPage($page);
-        $slug->setApplication($website);
-        $slug->setName($page->getName());
-        $slug->setSlug(''); // Dit komt eigenlijk overeen met de route
+        $slug->setTemplate($template);
+        $slug->setApplication($zaakOnline);
+        $slug->setName('home');
+        $slug->setSlug('home');
         $manager->persist($slug);
 
         $manager->flush();
+
+        /*
+         * Commonground.nu
+         */
+
+        $favicon = new Image();
+        $favicon->setName('Commonground.nu Favicon');
+        $favicon->setDescription('Favicon Commonground.nu');
+        $favicon->setOrganization($conduction);
+
+        $logo = new Image();
+        $logo->setName('Commonground.nu Logo');
+        $logo->setDescription('Logo Commonground.nu');
+        $logo->setOrganization($conduction);
+
+        $style = new Style();
+        $style->setName('commonground.nu');
+        $style->setDescription('Huistlijl commonground.nu');
+        $style->setCss('');
+        $style->setfavicon($favicon);
+        $style->setOrganization($conduction);
+
+        $manager->persist($conduction);
+        $manager->persist($favicon);
+        $manager->persist($logo);
+        $manager->persist($style);
+
+        $manager->flush();
+        $id = Uuid::fromString('f0e4d34a-5e07-4f85-babf-e0e70e46d0d3');
+        $commongroundNu = new Application();
+        $commongroundNu->setName('Commonground.nu');
+        $commongroundNu->setDescription('Website voor commonground.nu');
+        $commongroundNu->setDomain('commonground.nu');
+        $commongroundNu->setStyle($style);
+        $commongroundNu->setOrganization($conduction);
+        $manager->persist($commongroundNu);
+        $commongroundNu->setId($id);
+        $manager->persist($commongroundNu);
+        $manager->flush();
+        $commongroundNu = $manager->getRepository('App:Application')->findOneBy(['id'=> $id]);
+
+        // Configuratie van Begrafenisplanner
+        $configuration = new Configuration();
+        $configuration->setOrganization($conduction);
+        $configuration->setApplication($commongroundNu);
+        $configuration->setConfiguration(
+            [
+                'mainMenu'=> $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'92d343e1-24d2-4c5b-808b-6dccd9f3d778']),
+                'home'    => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'501654ed-50f6-4239-8ecf-610b853be1b0']),
+            ]
+        );
+        $manager->persist($configuration);
+
+        // Menu
+        $id = Uuid::fromString('92d343e1-24d2-4c5b-808b-6dccd9f3d778');
+        $menu = new Menu();
+        $menu->setName('Main Menu');
+        $menu->setDescription('Het hoofdmenu van deze website');
+        $menu->setApplication($commongroundNu);
+        $manager->persist($menu);
+        $menu->setId($id);
+        $manager->persist($menu);
+        $manager->flush();
+        $menu = $manager->getRepository('App:Menu')->findOneBy(['id'=> $id]);
+
+        $menuItem = new MenuItem();
+        $menuItem->setName('Processen');
+        $menuItem->setDescription('Doe een aanvraag');
+        $menuItem->setOrder(1);
+        $menuItem->setType('slug');
+        $menuItem->setHref('/process');
+        $menuItem->setMenu($menu);
+        $manager->persist($menu);
+
+        $menuItem = new MenuItem();
+        $menuItem->setName('Verzoeken');
+        $menuItem->setDescription('Het inzien en voortzetten van mijn verzoeken');
+        $menuItem->setOrder(1);
+        $menuItem->setType('slug');
+        $menuItem->setHref('/requests');
+        $menuItem->setMenu($menu);
+        $manager->persist($menu);
+
+        // Template groups
+        $groupPages = new TemplateGroup();
+        $groupPages->setOrganization($conduction);
+        $groupPages->setApplication($commongroundNu);
+        $groupPages->setName('Pages');
+        $groupPages->setDescription('Webpages that are presented to visitors');
+        $manager->persist($groupPages);
+
+        // Pages
+        $id = Uuid::fromString('501654ed-50f6-4239-8ecf-610b853be1b0');
+        $template = new Template();
+        $template->setName('Home');
+        $template->setDescription('Homepage voor commonground.nu');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/CommongroundNu/index.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($commongroundNu);
+        $slug->setName('home');
+        $slug->setSlug('home');
+        $manager->persist($slug);
+
+        $manager->flush();
+
+        /*
+         * Common-ground.dev
+         */
+
+        $favicon = new Image();
+        $favicon->setName('Common-ground.dev Favicon');
+        $favicon->setDescription('Favicon Common-ground.dev');
+        $favicon->setOrganization($conduction);
+
+        $logo = new Image();
+        $logo->setName('Common-ground.dev Logo');
+        $logo->setDescription('Logo Common-ground.dev');
+        $logo->setOrganization($conduction);
+
+        $style = new Style();
+        $style->setName('Common-ground.dev');
+        $style->setDescription('Huistlijl Common-ground.dev');
+        $style->setCss('');
+        $style->setfavicon($favicon);
+        $style->setOrganization($conduction);
+
+        $manager->persist($conduction);
+        $manager->persist($favicon);
+        $manager->persist($logo);
+        $manager->persist($style);
+
+        $manager->flush();
+        $id = Uuid::fromString('a081ea56-618d-4d01-b975-ea308118aec8');
+        $commongroundDev = new Application();
+        $commongroundDev->setName('Common-ground.dev');
+        $commongroundDev->setDescription('Website voor common-grond.dev');
+        $commongroundDev->setDomain('common-ground.dev');
+        $commongroundDev->setStyle($style);
+        $commongroundDev->setOrganization($conduction);
+        $manager->persist($commongroundDev);
+        $commongroundDev->setId($id);
+        $manager->persist($commongroundDev);
+        $manager->flush();
+        $commongroundDev = $manager->getRepository('App:Application')->findOneBy(['id'=> $id]);
+
+        // Configuratie van Begrafenisplanner
+        $configuration = new Configuration();
+        $configuration->setOrganization($conduction);
+        $configuration->setApplication($commongroundDev);
+        $configuration->setConfiguration(
+            [
+                'mainMenu'=> $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'687c7d73-0007-4ad3-b65e-e605a7a6cb04']),
+                'home'    => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'f84c9703-5652-458f-b0ce-3b3df4ba70aa']),
+            ]
+        );
+        $manager->persist($configuration);
+
+        // Menu
+        $id = Uuid::fromString('687c7d73-0007-4ad3-b65e-e605a7a6cb04');
+        $menu = new Menu();
+        $menu->setName('Main Menu');
+        $menu->setDescription('Het hoofdmenu van deze website');
+        $menu->setApplication($commongroundDev);
+        $manager->persist($menu);
+        $menu->setId($id);
+        $manager->persist($menu);
+        $manager->flush();
+        $menu = $manager->getRepository('App:Menu')->findOneBy(['id'=> $id]);
+
+        $menuItem = new MenuItem();
+        $menuItem->setName('Processen');
+        $menuItem->setDescription('Doe een aanvraag');
+        $menuItem->setOrder(1);
+        $menuItem->setType('slug');
+        $menuItem->setHref('/process');
+        $menuItem->setMenu($menu);
+        $manager->persist($menu);
+
+        $menuItem = new MenuItem();
+        $menuItem->setName('Verzoeken');
+        $menuItem->setDescription('Het inzien en voortzetten van mijn verzoeken');
+        $menuItem->setOrder(1);
+        $menuItem->setType('slug');
+        $menuItem->setHref('/requests');
+        $menuItem->setMenu($menu);
+        $manager->persist($menu);
+
+        // Template groups
+        $groupPages = new TemplateGroup();
+        $groupPages->setOrganization($conduction);
+        $groupPages->setApplication($commongroundDev);
+        $groupPages->setName('Pages');
+        $groupPages->setDescription('Webpages that are presented to visitors');
+        $manager->persist($groupPages);
+
+        // Pages
+        $id = Uuid::fromString('f84c9703-5652-458f-b0ce-3b3df4ba70aa');
+        $template = new Template();
+        $template->setName('Home');
+        $template->setDescription('Homepage voor common-ground.dev');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/CommongroundDev/index.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($commongroundDev);
+        $slug->setName('home');
+        $slug->setSlug('home');
+        $manager->persist($slug);
+
+        $manager->flush();
+
+        /*
+        * stage.conduction.nl
         */
+
+        $favicon = new Image();
+        $favicon->setName('stage Favicon');
+        $favicon->setDescription('Favicon stage');
+        $favicon->setOrganization($conduction);
+
+        $logo = new Image();
+        $logo->setName('stage Logo');
+        $logo->setDescription('Logo stage');
+        $logo->setOrganization($conduction);
+
+        $style = new Style();
+        $style->setName('stage');
+        $style->setDescription('Huistlijl stage');
+        $style->setCss('');
+        $style->setfavicon($favicon);
+        $style->setOrganization($conduction);
+
+        $manager->persist($conduction);
+        $manager->persist($favicon);
+        $manager->persist($logo);
+        $manager->persist($style);
+
+        $manager->flush();
+        $id = Uuid::fromString('63be0f75-c228-4c10-8146-1d60214063dd');
+        $stage = new Application();
+        $stage->setName('Stage');
+        $stage->setDescription('Website voor stage.conduction.nl');
+        $stage->setDomain('stage.conduction.nl');
+        $stage->setStyle($style);
+        $stage->setOrganization($conduction);
+        $manager->persist($stage);
+        $stage->setId($id);
+        $manager->persist($stage);
+        $manager->flush();
+        $stage = $manager->getRepository('App:Application')->findOneBy(['id'=> $id]);
+
+        // Configuratie van Begrafenisplanner
+        $configuration = new Configuration();
+        $configuration->setOrganization($conduction);
+        $configuration->setApplication($stage);
+        $configuration->setConfiguration(
+            [
+                'mainMenu'=> $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'d6309260-73a3-4bd9-9e0c-41b88a02c0a8']),
+                'home'    => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'7d53cc95-ca23-4068-880b-48731f804f69']),
+            ]
+        );
+        $manager->persist($configuration);
+
+        // Menu
+        $id = Uuid::fromString('d6309260-73a3-4bd9-9e0c-41b88a02c0a8');
+        $menu = new Menu();
+        $menu->setName('Main Menu');
+        $menu->setDescription('Het hoofdmenu van deze website');
+        $menu->setApplication($stage);
+        $manager->persist($menu);
+        $menu->setId($id);
+        $manager->persist($menu);
+        $manager->flush();
+        $menu = $manager->getRepository('App:Menu')->findOneBy(['id'=> $id]);
+
+        $menuItem = new MenuItem();
+        $menuItem->setName('Processen');
+        $menuItem->setDescription('Doe een aanvraag');
+        $menuItem->setOrder(1);
+        $menuItem->setType('slug');
+        $menuItem->setHref('/process');
+        $menuItem->setMenu($menu);
+        $manager->persist($menu);
+
+        $menuItem = new MenuItem();
+        $menuItem->setName('Verzoeken');
+        $menuItem->setDescription('Het inzien en voortzetten van mijn verzoeken');
+        $menuItem->setOrder(1);
+        $menuItem->setType('slug');
+        $menuItem->setHref('/requests');
+        $menuItem->setMenu($menu);
+        $manager->persist($menu);
+
+        // Template groups
+        $groupPages = new TemplateGroup();
+        $groupPages->setOrganization($conduction);
+        $groupPages->setApplication($stage);
+        $groupPages->setName('Pages');
+        $groupPages->setDescription('Webpages that are presented to visitors');
+        $manager->persist($groupPages);
+
+        // Pages
+        $id = Uuid::fromString('7d53cc95-ca23-4068-880b-48731f804f69');
+        $template = new Template();
+        $template->setName('Home');
+        $template->setDescription('home page voor stage.conduction.nl');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Conduction/Stage/index.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($stage);
+        $slug->setName('home');
+        $slug->setSlug('home');
+        $manager->persist($slug);
+
+        $manager->flush();
+
+
+
     }
 }

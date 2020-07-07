@@ -10,7 +10,6 @@ use App\Entity\MenuItem;
 use App\Entity\Organization;
 use App\Entity\Style;
 use App\Entity\Template;
-use Conduction\CommonGroundBundle\Service\CommonGroundService;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Ramsey\Uuid\Uuid;
@@ -19,12 +18,10 @@ use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 class LarpingFixtures extends Fixture
 {
     private $params;
-    private $commonGroundService;
 
-    public function __construct(ParameterBagInterface $params, CommonGroundService $commonGroundService)
+    public function __construct(ParameterBagInterface $params)
     {
         $this->params = $params;
-        $this->commonGroundService = $commonGroundService;
     }
 
     public function load(ObjectManager $manager)
