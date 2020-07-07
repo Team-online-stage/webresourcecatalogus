@@ -495,7 +495,7 @@ class ConductionFixtures extends Fixture
         $style = new Style();
         $style->setName('stage');
         $style->setDescription('Huistlijl stage');
-        $style->setCss(':root {--primary: #CC0000;--primary2: white;--secondary: #3669A5;--secondary2: #FFC926;}
+        $style->setCss(':root {--primary: #ffbc2c;--primary2: white;--secondary: #ffc446;--secondary2: #ffc446;}
         .main-title {color: var(--primary2) !important;}.logo-header {background: var(--primary);}.navbar-header
         {background: var(--primary);}.bg-primary-gradient {background: linear-gradient(-45deg, var(--secondary),
          var(--secondary2)) !important;}
@@ -505,7 +505,7 @@ class ConductionFixtures extends Fixture
         }
 
         a:focus:not(.btn):not(.pagination__link):not(.nav__link){
-            background: #3669A5;
+            background: #FFBC2C;
             outline: none;
         }
 
@@ -727,14 +727,14 @@ class ConductionFixtures extends Fixture
             position: relative;
             padding-top: 5px;
             padding-bottom: 5px;
-            background-color: #CC0000;
+            background-color: #ffbc2c;
             color: #FFF;
             text-decoration: none;
         }
 
         .processen a:hover {
-            background-color: #3669A5;
-            border-color: #3669A5;
+            background-color: #FFC446;
+            border-color: #FFC446;
             transform: scale(1.02)
         }
 
@@ -766,17 +766,15 @@ class ConductionFixtures extends Fixture
         }
 
         .footerStyle {
-            background-color: #3669A5;
-            color: white;
+            background-color: #ffbc2c;
         }
 
         .top-nav-autoresize .nav__link:hover {
-            background-color: #3669A5;
+            background-color: #ffc446;
         }
 
         .menuStyle {
-            background-color: #CC0000;
-            color: white;
+            background-color: #ffbc2c;
         }
 
         .newsCard {
@@ -788,10 +786,9 @@ class ConductionFixtures extends Fixture
         }
 
         .contact {
-        background-color: #3669A5;
+        background-color: #ffbc2c;
         float:left;
         width: 100%;
-        color: white;
         padding-left: 10px;
         padding-right: 10px;
         padding-top: 10px;
@@ -800,10 +797,9 @@ class ConductionFixtures extends Fixture
 
         @media only screen and (min-width: 960px) {
             .contact {
-                background-color: #3669A5;
+                background-color: #ffbc2c;
                 float:left;
                 width: 33%;
-                color: white;
                 padding-left: 10px;
                 padding-right: 10px;
                 padding-top: 10px;
@@ -884,6 +880,8 @@ class ConductionFixtures extends Fixture
                 'nieuws'            => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'template_groups', 'id'=>'f2729540-2740-4fbf-98ae-f0a069a1f43f']),
                 'newsimg'           => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'b0e3e803-2cb6-41ed-ab32-d6e5451c119d']),
                 'headerimg'         => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'0863d15c-286e-4ec4-90f6-27cebb107aa9']),
+                'colorSchemeFooter' => 'footerStyle',
+                'colorSchemeMenu'   => 'menuStyle',
             ]
         );
         $manager->persist($configuration);
