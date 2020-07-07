@@ -3,34 +3,50 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
+    <header class="content__header">
+        <a class="backlink" href="/pitches">Iniatieven</a>
+    </header>
     <div class="row">
-        <div class="col-sm-12">
+        <div class="col-sm-12 col-lg-8">
             <div class="content-background">
-                <div class="content">
+                <div class="content ">
                     <div class="row">
                         <div class="col-md-6">
                             <h1>{{ resource.name|capitalize }}</h1>
                             <p>{{ resource.description }}</p>
                         </div>
                         <div class="col-md-6">
-                            <img src="https://picsum.photos/200" alt="tender">
+                            <img src="https://picsum.photos/100/75" alt="tender" width="100%">
                         </div>
                     </div>
                     {% if resource.tender is defined and resource.tender is not empty %}
-                    {% set tender = commonground_resource(resource.tender) %}
-                    <h1>Challenge: {{ tender.name }}</h1>
-                    <p>{{ tender.description }}</p>
+                        <h1>Aanbesteding: {{ resource.tender.name }}</h1>
+                        <p>{{ resource.tender.description }}</p>
+                        <a href="#">
+                            <button class="btn btn--primary col-offset-3 col-6">Ga naar aanbesteding</button>
+                        </a>
                     {% endif %}
                 </div>
-                {#        <div class="col-sm-12 col-lg-4" style="background-color: lightgray">#}
-                {#            <fieldset class="input filter">#}
-                {#                <legend class="filter__title">Filters <button class="btn btn-primary" style="float: right;" type="submit">Filter</button></legend>#}
-                {#                <div class="input__group input__group--text input__group--compact">#}
-                {#                    <label class="input__label input__label--text" for="limit">Aantal items:</label>#}
-                {#                    <input type="text" name="filter[limit]" id="limit" class="input__control input__control--text">#}
-                {#                </div>#}
-                {#            </fieldset>#}
-                {#        </div>#}
+            </div>
+        </div>
+        <div class="col-sm-12 col-lg-4">
+            <div class="content-background">
+                <div class="content ">
+                    <h1>Kenmerken</h1>
+                    {% if resource.submitters is defined and resource.submitters is not empty %}
+                        <b>Aangemaakt
+                            door:</b>{% for submitter in resource.submitters %} {{ submitter }},{% endfor %}
+                        <br>
+                    {% endif %}
+                    {% if resource.dateSubmitted is defined and resource.dateSubmitted is not empty %}
+                        <b>Ingediend op: </b>{{ resource.dateSubmitted|date("d-m-Y H:i", "Europe/Paris") }}
+                        <br>
+                    {% endif %}
+                    {% if resource.requiredBudget is defined and resource.requiredBudget is not empty %}
+                        <b>Benodigd budget: </b>&euro; {{ resource.requiredBudget }},-
+                        <br>
+                    {% endif %}
+                </div>
             </div>
         </div>
     </div>
