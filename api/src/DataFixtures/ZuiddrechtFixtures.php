@@ -941,7 +941,7 @@ class ZuiddrechtFixtures extends Fixture
         $slug->setSlug('deal');
         $manager->persist($slug);
 
-        $id = Uuid::fromString('93a13fa8-d81b-4e37-9fef-8320af96d0db');
+        $id = Uuid::fromString('03e7b509-9868-40d3-9ecf-5ef725be99e5');
         $template = new Template();
         $template->setName('question');
         $template->setDescription('question');
