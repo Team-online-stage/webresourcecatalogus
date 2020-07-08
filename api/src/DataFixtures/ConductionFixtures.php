@@ -120,7 +120,7 @@ class ConductionFixtures extends Fixture
 
         $slug = new Slug();
         $slug->setTemplate($template);
-        $slug->setApplication($conduction);
+        $slug->setApplication($website);
         $slug->setName('adres-service');
         $slug->setSlug('componenten/adres-service');
         $manager->persist($slug);
@@ -142,7 +142,7 @@ class ConductionFixtures extends Fixture
 
         $slug = new Slug();
         $slug->setTemplate($template);
-        $slug->setApplication($conduction);
+        $slug->setApplication($website);
         $slug->setName('agenda-service');
         $slug->setSlug('componenten/agenda-service');
         $manager->persist($slug);
@@ -164,7 +164,7 @@ class ConductionFixtures extends Fixture
 
         $slug = new Slug();
         $slug->setTemplate($template);
-        $slug->setApplication($conduction);
+        $slug->setApplication($website);
         $slug->setName('bedankt');
         $slug->setSlug('bedankt');
         $manager->persist($slug);
@@ -186,7 +186,7 @@ class ConductionFixtures extends Fixture
 
         $slug = new Slug();
         $slug->setTemplate($template);
-        $slug->setApplication($conduction);
+        $slug->setApplication($website);
         $slug->setName('begraven');
         $slug->setSlug('projecten/overlijden');
         $manager->persist($slug);
@@ -208,7 +208,7 @@ class ConductionFixtures extends Fixture
 
         $slug = new Slug();
         $slug->setTemplate($template);
-        $slug->setApplication($conduction);
+        $slug->setApplication($website);
         $slug->setName('bericht-service');
         $slug->setSlug('componenten/bericht-service');
         $manager->persist($slug);
@@ -230,7 +230,7 @@ class ConductionFixtures extends Fixture
 
         $slug = new Slug();
         $slug->setTemplate($template);
-        $slug->setApplication($conduction);
+        $slug->setApplication($website);
         $slug->setName('besmetting-registratie-component');
         $slug->setSlug('componenten/besmetting-registratie-component');
         $manager->persist($slug);
@@ -252,7 +252,7 @@ class ConductionFixtures extends Fixture
 
         $slug = new Slug();
         $slug->setTemplate($template);
-        $slug->setApplication($conduction);
+        $slug->setApplication($website);
         $slug->setName('betaal-service');
         $slug->setSlug('componenten/betaal-service');
         $manager->persist($slug);
@@ -274,7 +274,7 @@ class ConductionFixtures extends Fixture
 
         $slug = new Slug();
         $slug->setTemplate($template);
-        $slug->setApplication($conduction);
+        $slug->setApplication($website);
         $slug->setName('betaal-service');
         $slug->setSlug('componenten/betaal-service');
         $manager->persist($slug);
@@ -296,7 +296,7 @@ class ConductionFixtures extends Fixture
 
         $slug = new Slug();
         $slug->setTemplate($template);
-        $slug->setApplication($conduction);
+        $slug->setApplication($website);
         $slug->setName('brp-service');
         $slug->setSlug('componenten/brp-service');
         $manager->persist($slug);
@@ -318,7 +318,7 @@ class ConductionFixtures extends Fixture
 
         $slug = new Slug();
         $slug->setTemplate($template);
-        $slug->setApplication($conduction);
+        $slug->setApplication($website);
         $slug->setName('buzz');
         $slug->setSlug('buzz');
         $manager->persist($slug);
@@ -340,7 +340,7 @@ class ConductionFixtures extends Fixture
 
         $slug = new Slug();
         $slug->setTemplate($template);
-        $slug->setApplication($conduction);
+        $slug->setApplication($website);
         $slug->setName('caas');
         $slug->setSlug('caas');
         $manager->persist($slug);
@@ -362,7 +362,7 @@ class ConductionFixtures extends Fixture
 
         $slug = new Slug();
         $slug->setTemplate($template);
-        $slug->setApplication($conduction);
+        $slug->setApplication($website);
         $slug->setName('challenges');
         $slug->setSlug('projecten/challange-platform');
         $manager->persist($slug);
@@ -384,7 +384,7 @@ class ConductionFixtures extends Fixture
 
         $slug = new Slug();
         $slug->setTemplate($template);
-        $slug->setApplication($conduction);
+        $slug->setApplication($website);
         $slug->setName('challenge-component');
         $slug->setSlug('componenten/challenge-component');
         $manager->persist($slug);
@@ -406,7 +406,7 @@ class ConductionFixtures extends Fixture
 
         $slug = new Slug();
         $slug->setTemplate($template);
-        $slug->setApplication($conduction);
+        $slug->setApplication($website);
         $slug->setName('commonground');
         $slug->setSlug('common-ground');
         $manager->persist($slug);
@@ -428,7 +428,7 @@ class ConductionFixtures extends Fixture
 
         $slug = new Slug();
         $slug->setTemplate($template);
-        $slug->setApplication($conduction);
+        $slug->setApplication($website);
         $slug->setName('commonground-dashboard');
         $slug->setSlug('componenten/commonground-dashboard');
         $manager->persist($slug);
@@ -450,7 +450,7 @@ class ConductionFixtures extends Fixture
 
         $slug = new Slug();
         $slug->setTemplate($template);
-        $slug->setApplication($conduction);
+        $slug->setApplication($website);
         $slug->setName('commonground-registratie-component');
         $slug->setSlug('componenten/commonground-registratie-component');
         $manager->persist($slug);
@@ -472,7 +472,7 @@ class ConductionFixtures extends Fixture
 
         $slug = new Slug();
         $slug->setTemplate($template);
-        $slug->setApplication($conduction);
+        $slug->setApplication($website);
         $slug->setName('componenten');
         $slug->setSlug('componenten');
         $manager->persist($slug);
@@ -494,7 +494,7 @@ class ConductionFixtures extends Fixture
 
         $slug = new Slug();
         $slug->setTemplate($template);
-        $slug->setApplication($conduction);
+        $slug->setApplication($website);
         $slug->setName('contact');
         $slug->setSlug('contact');
         $manager->persist($slug);
@@ -516,7 +516,7 @@ class ConductionFixtures extends Fixture
 
         $slug = new Slug();
         $slug->setTemplate($template);
-        $slug->setApplication($conduction);
+        $slug->setApplication($website);
         $slug->setName('contact-catalogus');
         $slug->setSlug('componenten/contact-catalogus');
         $manager->persist($slug);
@@ -538,7 +538,7 @@ class ConductionFixtures extends Fixture
 
         $slug = new Slug();
         $slug->setTemplate($template);
-        $slug->setApplication($conduction);
+        $slug->setApplication($website);
         $slug->setName('contact-moment-catalogus');
         $slug->setSlug('componenten/contact-moment-catalogus');
         $manager->persist($slug);
@@ -560,7 +560,7 @@ class ConductionFixtures extends Fixture
 
         $slug = new Slug();
         $slug->setTemplate($template);
-        $slug->setApplication($conduction);
+        $slug->setApplication($website);
         $slug->setName('corona');
         $slug->setSlug('corona');
         $manager->persist($slug);
@@ -582,7 +582,7 @@ class ConductionFixtures extends Fixture
 
         $slug = new Slug();
         $slug->setTemplate($template);
-        $slug->setApplication($conduction);
+        $slug->setApplication($website);
         $slug->setName('digispoof');
         $slug->setSlug('componenten/digispoof');
         $manager->persist($slug);
@@ -604,7 +604,7 @@ class ConductionFixtures extends Fixture
 
         $slug = new Slug();
         $slug->setTemplate($template);
-        $slug->setApplication($conduction);
+        $slug->setApplication($website);
         $slug->setName('docparser');
         $slug->setSlug('componenten/docparser');
         $manager->persist($slug);
@@ -626,7 +626,7 @@ class ConductionFixtures extends Fixture
 
         $slug = new Slug();
         $slug->setTemplate($template);
-        $slug->setApplication($conduction);
+        $slug->setApplication($website);
         $slug->setName('environment-component');
         $slug->setSlug('componenten/environment-component');
         $manager->persist($slug);
@@ -648,7 +648,7 @@ class ConductionFixtures extends Fixture
 
         $slug = new Slug();
         $slug->setTemplate($template);
-        $slug->setApplication($conduction);
+        $slug->setApplication($website);
         $slug->setName('export-component');
         $slug->setSlug('componenten/export-component');
         $manager->persist($slug);
@@ -670,7 +670,7 @@ class ConductionFixtures extends Fixture
 
         $slug = new Slug();
         $slug->setTemplate($template);
-        $slug->setApplication($conduction);
+        $slug->setApplication($website);
         $slug->setName('formulieren');
         $slug->setSlug('projecten/formulieren');
         $manager->persist($slug);
@@ -692,7 +692,7 @@ class ConductionFixtures extends Fixture
 
         $slug = new Slug();
         $slug->setTemplate($template);
-        $slug->setApplication($conduction);
+        $slug->setApplication($website);
         $slug->setName('home');
         $slug->setSlug('home');
         $manager->persist($slug);
@@ -714,7 +714,7 @@ class ConductionFixtures extends Fixture
 
         $slug = new Slug();
         $slug->setTemplate($template);
-        $slug->setApplication($conduction);
+        $slug->setApplication($website);
         $slug->setName('idealen');
         $slug->setSlug('idealen');
         $manager->persist($slug);
@@ -736,7 +736,7 @@ class ConductionFixtures extends Fixture
 
         $slug = new Slug();
         $slug->setTemplate($template);
-        $slug->setApplication($conduction);
+        $slug->setApplication($website);
         $slug->setName('landelijke-tabellen-catalogus');
         $slug->setSlug('componenten/landelijke-tabellen-catalogus');
         $manager->persist($slug);
@@ -758,7 +758,7 @@ class ConductionFixtures extends Fixture
 
         $slug = new Slug();
         $slug->setTemplate($template);
-        $slug->setApplication($conduction);
+        $slug->setApplication($website);
         $slug->setName('locatie-component');
         $slug->setSlug('componenten/locatie-component');
         $manager->persist($slug);
@@ -780,7 +780,7 @@ class ConductionFixtures extends Fixture
 
         $slug = new Slug();
         $slug->setTemplate($template);
-        $slug->setApplication($conduction);
+        $slug->setApplication($website);
         $slug->setName('medewerker-catalogus');
         $slug->setSlug('componenten/medewerker-catalogus');
         $manager->persist($slug);
@@ -802,7 +802,7 @@ class ConductionFixtures extends Fixture
 
         $slug = new Slug();
         $slug->setTemplate($template);
-        $slug->setApplication($conduction);
+        $slug->setApplication($website);
         $slug->setName('memo-component');
         $slug->setSlug('componenten/memo-component');
         $manager->persist($slug);
@@ -824,7 +824,7 @@ class ConductionFixtures extends Fixture
 
         $slug = new Slug();
         $slug->setTemplate($template);
-        $slug->setApplication($conduction);
+        $slug->setApplication($website);
         $slug->setName('odyssey');
         $slug->setSlug('odyssey');
         $manager->persist($slug);
@@ -846,7 +846,7 @@ class ConductionFixtures extends Fixture
 
         $slug = new Slug();
         $slug->setTemplate($template);
-        $slug->setApplication($conduction);
+        $slug->setApplication($website);
         $slug->setName('order-registratie-component');
         $slug->setSlug('componenten/order-registratie-component');
         $manager->persist($slug);
@@ -868,7 +868,7 @@ class ConductionFixtures extends Fixture
 
         $slug = new Slug();
         $slug->setTemplate($template);
-        $slug->setApplication($conduction);
+        $slug->setApplication($website);
         $slug->setName('partners');
         $slug->setSlug('partners');
         $manager->persist($slug);
@@ -890,7 +890,7 @@ class ConductionFixtures extends Fixture
 
         $slug = new Slug();
         $slug->setTemplate($template);
-        $slug->setApplication($conduction);
+        $slug->setApplication($website);
         $slug->setName('portfolio-component');
         $slug->setSlug('componenten/portfolio-component');
         $manager->persist($slug);
@@ -912,7 +912,7 @@ class ConductionFixtures extends Fixture
 
         $slug = new Slug();
         $slug->setTemplate($template);
-        $slug->setApplication($conduction);
+        $slug->setApplication($website);
         $slug->setName('proces-type-catalogus');
         $slug->setSlug('componenten/proces-type-catalogus');
         $manager->persist($slug);
@@ -934,7 +934,7 @@ class ConductionFixtures extends Fixture
 
         $slug = new Slug();
         $slug->setTemplate($template);
-        $slug->setApplication($conduction);
+        $slug->setApplication($website);
         $slug->setName('producten-diensten-component');
         $slug->setSlug('componenten/producten-diensten-component');
         $manager->persist($slug);
@@ -956,7 +956,7 @@ class ConductionFixtures extends Fixture
 
         $slug = new Slug();
         $slug->setTemplate($template);
-        $slug->setApplication($conduction);
+        $slug->setApplication($website);
         $slug->setName('projecten');
         $slug->setSlug('projecten');
         $manager->persist($slug);
@@ -978,7 +978,7 @@ class ConductionFixtures extends Fixture
 
         $slug = new Slug();
         $slug->setTemplate($template);
-        $slug->setApplication($conduction);
+        $slug->setApplication($website);
         $slug->setName('proto-applicatie');
         $slug->setSlug('componenten/proto-applicatie');
         $manager->persist($slug);
@@ -1000,7 +1000,7 @@ class ConductionFixtures extends Fixture
 
         $slug = new Slug();
         $slug->setTemplate($template);
-        $slug->setApplication($conduction);
+        $slug->setApplication($website);
         $slug->setName('proto-component-commonground');
         $slug->setSlug('componenten/proto-component-commonground');
         $manager->persist($slug);
@@ -1022,7 +1022,7 @@ class ConductionFixtures extends Fixture
 
         $slug = new Slug();
         $slug->setTemplate($template);
-        $slug->setApplication($conduction);
+        $slug->setApplication($website);
         $slug->setName('queue-component');
         $slug->setSlug('componenten/queue-component');
         $manager->persist($slug);
@@ -1044,7 +1044,7 @@ class ConductionFixtures extends Fixture
 
         $slug = new Slug();
         $slug->setTemplate($template);
-        $slug->setApplication($conduction);
+        $slug->setApplication($website);
         $slug->setName('review-component');
         $slug->setSlug('componenten/review-component');
         $manager->persist($slug);
@@ -1066,7 +1066,7 @@ class ConductionFixtures extends Fixture
 
         $slug = new Slug();
         $slug->setTemplate($template);
-        $slug->setApplication($conduction);
+        $slug->setApplication($website);
         $slug->setName('stage');
         $slug->setSlug('projecten/digitale-stages');
         $manager->persist($slug);
@@ -1088,7 +1088,7 @@ class ConductionFixtures extends Fixture
 
         $slug = new Slug();
         $slug->setTemplate($template);
-        $slug->setApplication($conduction);
+        $slug->setApplication($website);
         $slug->setName('stuf-component');
         $slug->setSlug('componenten/stuf-component');
         $manager->persist($slug);
@@ -1110,7 +1110,7 @@ class ConductionFixtures extends Fixture
 
         $slug = new Slug();
         $slug->setTemplate($template);
-        $slug->setApplication($conduction);
+        $slug->setApplication($website);
         $slug->setName('taken-component');
         $slug->setSlug('componenten/taken-component');
         $manager->persist($slug);
@@ -1132,7 +1132,7 @@ class ConductionFixtures extends Fixture
 
         $slug = new Slug();
         $slug->setTemplate($template);
-        $slug->setApplication($conduction);
+        $slug->setApplication($website);
         $slug->setName('team');
         $slug->setSlug('team');
         $manager->persist($slug);
@@ -1154,7 +1154,7 @@ class ConductionFixtures extends Fixture
 
         $slug = new Slug();
         $slug->setTemplate($template);
-        $slug->setApplication($conduction);
+        $slug->setApplication($website);
         $slug->setName('trouwen');
         $slug->setSlug('projecten/trouwen');
         $manager->persist($slug);
@@ -1176,7 +1176,7 @@ class ConductionFixtures extends Fixture
 
         $slug = new Slug();
         $slug->setTemplate($template);
-        $slug->setApplication($conduction);
+        $slug->setApplication($website);
         $slug->setName('user-component');
         $slug->setSlug('componenten/user-component');
         $manager->persist($slug);
@@ -1198,7 +1198,7 @@ class ConductionFixtures extends Fixture
 
         $slug = new Slug();
         $slug->setTemplate($template);
-        $slug->setApplication($conduction);
+        $slug->setApplication($website);
         $slug->setName('vacatures');
         $slug->setSlug('vacatures');
         $manager->persist($slug);
@@ -1220,7 +1220,7 @@ class ConductionFixtures extends Fixture
 
         $slug = new Slug();
         $slug->setTemplate($template);
-        $slug->setApplication($conduction);
+        $slug->setApplication($website);
         $slug->setName('verhuizen');
         $slug->setSlug('projecten/verhuizen');
         $manager->persist($slug);
@@ -1242,7 +1242,7 @@ class ConductionFixtures extends Fixture
 
         $slug = new Slug();
         $slug->setTemplate($template);
-        $slug->setApplication($conduction);
+        $slug->setApplication($website);
         $slug->setName('verzoek-registratie-component');
         $slug->setSlug('componenten/verzoek-registratie-component');
         $manager->persist($slug);
@@ -1264,7 +1264,7 @@ class ConductionFixtures extends Fixture
 
         $slug = new Slug();
         $slug->setTemplate($template);
-        $slug->setApplication($conduction);
+        $slug->setApplication($website);
         $slug->setName('verzoek-type-catalogus');
         $slug->setSlug('componenten/verzoek-type-catalogus');
         $manager->persist($slug);
@@ -1286,7 +1286,7 @@ class ConductionFixtures extends Fixture
 
         $slug = new Slug();
         $slug->setTemplate($template);
-        $slug->setApplication($conduction);
+        $slug->setApplication($website);
         $slug->setName('vrijwilligers');
         $slug->setSlug('projecten/vrijwilligers-platform');
         $manager->persist($slug);
@@ -1308,7 +1308,7 @@ class ConductionFixtures extends Fixture
 
         $slug = new Slug();
         $slug->setTemplate($template);
-        $slug->setApplication($conduction);
+        $slug->setApplication($website);
         $slug->setName('web-resource-catalogus');
         $slug->setSlug('componenten/web-resource-catalogus');
         $manager->persist($slug);
@@ -1330,7 +1330,7 @@ class ConductionFixtures extends Fixture
 
         $slug = new Slug();
         $slug->setTemplate($template);
-        $slug->setApplication($conduction);
+        $slug->setApplication($website);
         $slug->setName('webservice');
         $slug->setSlug('webservice');
         $manager->persist($slug);
@@ -1352,7 +1352,7 @@ class ConductionFixtures extends Fixture
 
         $slug = new Slug();
         $slug->setTemplate($template);
-        $slug->setApplication($conduction);
+        $slug->setApplication($website);
         $slug->setName('werkwijze');
         $slug->setSlug('werkwijze');
         $manager->persist($slug);
