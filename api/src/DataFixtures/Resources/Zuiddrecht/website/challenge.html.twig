@@ -19,7 +19,96 @@
                             {% endif %}
                         </div>
                         <div class="col-md-6">
-                            <img src="https://picsum.photos/100/75" alt="tender" width="100%">
+                            <img src="https://picsum.photos/350/250" alt="tender" width="100%">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1>Inschrijvingen</h1>
+                            <ul class="list list--card list--card-small">
+                                <li class="card card--small">
+                                    <div class="card__content">
+                                        <div class="card__body">
+                                            <div class="row" style=" height: 100%; width: 100%;">
+                                                <div class="col-sm-12 col-md-6" style="padding-right: 0px;">
+                                                    <span class="card__title">Inschrijving van ..</span><br>
+                                                    <span>Ingeschreven op 8-7-2020</span>
+                                                </div>
+                                                {#                                                <div class="col-sm-12 col-md-6">#}
+                                                {#                                                    <div>#}
+                                                {#                                                        <div style="display: flex; flex-direction: column; justify-items: center;">#}
+                                                {#                                                            <p style="margin: 0; color: grey;">benodigd budget: 150000.00 <i style="color: grey" class="fas fa-euro-sign" aria-hidden="true"></i></p>#}
+                                                {#                                                            <p style="margin: 0;">ingediend op: 06-07-2020 15:50</p>#}
+                                                {#                                                            <a href="/chrc/pitches/0450beeb-093e-4df8-8f2e-99dd645439c9">lees meer</a>#}
+                                                {#                                                        </div>#}
+                                                {#                                                    </div>#}
+                                                {#                                                </div>#}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                            {% if resource.entries is defined and resource.entries is not empty %}
+                                <ul class="list list--card list--card-small">
+                                    <li class="card card--small">
+                                        <div class="card__content">
+                                            <div class="card__body">
+                                                <div class="row" style=" height: 100%; width: 100%;">
+                                                    <div class="col-sm-12 col-md-6" style="padding-right: 0px;">
+                                                        <span class="card__title">Inschrijving van .. </span><br>
+                                                        <span>Beschrijving ...</span>
+                                                    </div>
+                                                    {#                                                <div class="col-sm-12 col-md-6">#}
+                                                    {#                                                    <div>#}
+                                                    {#                                                        <div style="display: flex; flex-direction: column; justify-items: center;">#}
+                                                    {#                                                            <p style="margin: 0; color: grey;">benodigd budget: 150000.00 <i style="color: grey" class="fas fa-euro-sign" aria-hidden="true"></i></p>#}
+                                                    {#                                                            <p style="margin: 0;">ingediend op: 06-07-2020 15:50</p>#}
+                                                    {#                                                            <a href="/chrc/pitches/0450beeb-093e-4df8-8f2e-99dd645439c9">lees meer</a>#}
+                                                    {#                                                        </div>#}
+                                                    {#                                                    </div>#}
+                                                    {#                                                </div>#}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            {% else %}
+                                <p style="color:lightgray">Er zijn nog geen inschrijvingen.</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1>Iniatieven</h1>
+                            {% if resource.pitches is defined and resource.pitches is not empty %}
+                                <ul class="list list--card list--card-small">
+                                    {% for pitch in resource.pitches %}
+                                        <li class="card card--small">
+                                            <div class="card__content">
+                                                <div class="card__body">
+                                                    <div class="row" style=" height: 100%; width: 100%;">
+                                                        <div class="col-sm-12 col-md-6" style="padding-right: 0px;">
+                                                            <span class="card__title">Iniatief van ..</span><br>
+                                                            <span>Ingediend op ...</span>
+                                                        </div>
+                                                        {#                                                <div class="col-sm-12 col-md-6">#}
+                                                        {#                                                    <div>#}
+                                                        {#                                                        <div style="display: flex; flex-direction: column; justify-items: center;">#}
+                                                        {#                                                            <p style="margin: 0; color: grey;">benodigd budget: 150000.00 <i style="color: grey" class="fas fa-euro-sign" aria-hidden="true"></i></p>#}
+                                                        {#                                                            <p style="margin: 0;">ingediend op: 06-07-2020 15:50</p>#}
+                                                        {#                                                            <a href="/chrc/pitches/0450beeb-093e-4df8-8f2e-99dd645439c9">lees meer</a>#}
+                                                        {#                                                        </div>#}
+                                                        {#                                                    </div>#}
+                                                        {#                                                </div>#}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            {% else %}
+                                <p style="color:lightgray">Er zijn nog geen iniatieven.</p>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
@@ -45,6 +134,15 @@
                     {% if resource.dateClose is defined and resource.dateClose is not empty %}
                         <b>Datum van beëindiging: </b>{{ resource.dateClose|date("d-m-Y H:i", "Europe/Paris") }}
                         <br>
+                    {% endif %}
+                    {% if resource.documents is defined and resource.documents is not empty %}
+                        <br>
+                        <h3>Documenten</h3>
+                        <ul class="list list--links list--chevrons">
+                            {% for document in resource.documents %}
+                                <li><a href="#">{{ document }}</a></li>
+                            {% endfor %}
+                        </ul>
                     {% endif %}
                 </div>
             </div>
