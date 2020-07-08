@@ -4,7 +4,7 @@
 
 {% block content %}
     <header class="content__header">
-        <a class="backlink" href="/pitches">Iniatieven</a>
+        <a class="backlink" href="/challenges">Aanbestedingen</a>
     </header>
     <div class="row">
         <div class="col-sm-12 col-lg-8">
@@ -13,19 +13,15 @@
                     <div class="row">
                         <div class="col-md-6">
                             <h1>{{ resource.name|capitalize }}</h1>
-                            <p>{{ resource.description }}</p>
+                            <p>{{ resource.description|capitalize }}</p>
+                            {% if resource.selectionCritera is defined and resource.selectionCritera is not empty %}
+                                <b>Selectie criteria: </b>{{ resource.selectionCritera|capitalize }}
+                            {% endif %}
                         </div>
                         <div class="col-md-6">
-                            <img src="https://picsum.photos/350/250" alt="tender" width="100%">
+                            <img src="https://picsum.photos/100/75" alt="tender" width="100%">
                         </div>
                     </div>
-                    {% if resource.tender is defined and resource.tender is not empty %}
-                        <h1>Aanbesteding: {{ resource.tender.name }}</h1>
-                        <p>{{ resource.tender.description }}</p>
-                        <a href="{{ path('app_tender_challenge', {id: resource.tender.id}) }}">
-                            <button class="btn btn--primary col-offset-3 col-6">Ga naar aanbesteding</button>
-                        </a>
-                    {% endif %}
                 </div>
             </div>
         </div>
@@ -42,8 +38,12 @@
                         <b>Ingediend op: </b>{{ resource.dateSubmitted|date("d-m-Y H:i", "Europe/Paris") }}
                         <br>
                     {% endif %}
-                    {% if resource.requiredBudget is defined and resource.requiredBudget is not empty %}
-                        <b>Benodigd budget: </b>&euro; {{ resource.requiredBudget }},-
+                    {% if resource.budget is defined and resource.budget is not empty %}
+                        <b>Beschikbaar budget: </b>&euro; {{ resource.budget }},-
+                        <br>
+                    {% endif %}
+                    {% if resource.dateClose is defined and resource.dateClose is not empty %}
+                        <b>Datum van beëindiging: </b>{{ resource.dateClose|date("d-m-Y H:i", "Europe/Paris") }}
                         <br>
                     {% endif %}
                 </div>
