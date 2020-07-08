@@ -94,6 +94,103 @@ class ConductionFixtures extends Fixture
         $manager->flush();
         $website = $manager->getRepository('App:Application')->findOneBy(['id'=> $id]);
 
+        // Template groups
+        $groupPages = new TemplateGroup();
+        $groupPages->setOrganization($conduction);
+        $groupPages->setApplication($website);
+        $groupPages->setName('Pages');
+        $groupPages->setDescription('Webpages that are presented to visitors');
+        $manager->persist($groupPages);
+
+        // Pages
+        $id = Uuid::fromString('928d2632-b52d-49d7-8b5f-814bddf4b18b');
+        $template = new Template();
+        $template->setName('adres-service');
+        $template->setDescription('adres-service');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Conduction/pages/adres-service.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($conduction);
+        $slug->setName('adres-service');
+        $slug->setSlug('componenten/adres-service');
+        $manager->persist($slug);
+
+        $id = Uuid::fromString('0e83c9ac-0af3-4fbd-b56a-42c97abc317d');
+        $template = new Template();
+        $template->setName('agenda-service');
+        $template->setDescription('agenda-service');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Conduction/pages/agenda-service.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($conduction);
+        $slug->setName('agenda-service');
+        $slug->setSlug('componenten/agenda-service');
+        $manager->persist($slug);
+
+        $id = Uuid::fromString('8ad226c8-636d-4187-8371-367599068b00');
+        $template = new Template();
+        $template->setName('bedankt');
+        $template->setDescription('bedankt');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Conduction/pages/bedankt.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($conduction);
+        $slug->setName('bedankt');
+        $slug->setSlug('bedankt');
+        $manager->persist($slug);
+
+        $id = Uuid::fromString('96068066-6923-4b81-ac25-a5d5e632dd82');
+        $template = new Template();
+        $template->setName('begraven');
+        $template->setDescription('begraven');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Conduction/pages/begraven.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($conduction);
+        $slug->setName('begraven');
+        $slug->setSlug('projecten/overlijden');
+        $manager->persist($slug);
+
         // Dashboard applicatie
         $id = Uuid::fromString('6ce4dc4c-3db5-417c-ab15-4b823b81605c');
         $dashboard = new Application();

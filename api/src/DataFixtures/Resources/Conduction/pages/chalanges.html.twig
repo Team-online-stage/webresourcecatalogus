@@ -1,0 +1,75 @@
+{# templates/home/index.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block headercontent %}
+<!-- .header-content -->
+<div class="header-content">
+
+    <!-- .container -->
+    <div class="container">
+
+        <!-- .row -->
+        <div class="row">
+
+            <div class="col-sm-7">
+                <div class="header-text" style="padding-top: 0">
+                    <div class="post-heading-left-white header-heading">
+                        <h1>Challenge Pagina</h1>
+                        <h4 style="color: white">Product: Online Platform</h4>
+                    </div>
+                    <br>
+                    <p style="margin-top: -35px">Een pagina waar vraag en aanbod elkaar kunnen vinden met betrekking tot het
+                        oplossen van maatschappelijke vraagstukken. Omdat we het matchen van
+                        maatschappelijke vraagstukken en de bouwende burger willen
+                        vergemakkelijken! Hiermee kunnen branche organisaties, bedrijven en
+                        overheden, kleine challenges (met of zonder beloning) uitschrijven voor de
+                        problemen waar ze tegenaan lopen. Vervolgens kunnen partijen en personen
+                        hun ideeën aandragen, denk aan pathé die vraagt hoe ze met stoelverdeling
+                        om zouden moeten omgaan.
+                    </p>
+                    <br>
+                </div>
+            </div><!-- /.col -->
+
+            <div class="col-sm-5">
+                <div class="header-img">
+                    <!--
+                        <img src="{{ asset('images/trouwenproject.png') }}" width="600px"></div> -->
+                    <br>
+                </div><!-- /.col -->
+
+            </div><!-- /.row -->
+        </div><!-- /.container -->
+    </div><!-- /.header-content -->
+    {% endblock %}
+
+    {% block body %}
+
+        <div class="wrap-container8040">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-10 col-md-7 col-lg-7 ">
+                        <div class="col-text20 margin-bottom20">
+                            <div class="post-heading-left">
+                                <h2 id="verhuizen" style="color: #4386FB">hackathon-achtig ecosysteem</h2>
+
+                                <p> Hiermee wordt een hackathon-achtig ecosysteem gefaciliteerd, waar bedrijven
+                                    en individuen, met name de organisaties en personen die momenteel minder
+                                    werk hebben, hun creativiteit kunnen inzetten om één van de grootste
+                                    uitdagingen van onze tijd, stukje bij beetje te tackelen.</p>
+                            </div><!-- ./col-heading -->
+                        </div><!-- ./col-text -->
+                    </div><!-- ./col -->
+                    <div class="col-sm-10 col-md-5 col-lg-5">
+                        <!-- <img src={{ asset('images/verhuizenproject.png') }} width="600px"> -->
+                    </div><!-- ./col -->
+                </div><!-- ./row -->
+            </div><!-- ./container -->
+        </div><!-- ./wrap-container -->
+
+        {{  include('/widgets/contact.html.twig') }}
+
+
+    {% endblock %}
+

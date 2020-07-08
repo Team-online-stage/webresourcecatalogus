@@ -1,0 +1,90 @@
+{# templates/home/index.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block headercontent %}
+    <!-- .header-content -->
+    <div class="header-content">
+
+        <!-- .container -->
+        <div class="container">
+
+            <!-- .row -->
+            <div class="row">
+
+                <div class="col-sm-7">
+                    <div class="header-text" style="padding-top: 0">
+                        <div class="post-heading-left-white header-heading">
+                            <h1>Ondersteunen Vrijwilliges</h1>
+                            <h4 style="color: white">Product: Online Platform<</h4>
+                        </div>
+                        <br>
+                        <p style="margin-top: -35px">Een platform bouwen en faciliteren voor het ondersteunen van vrijwilligers
+                            is altijd een wens van ons geweest. Zo zijn wij een tijd geleden al gestart
+                            met het bouwen van een framework, destijds ook omdat we meededen aan een
+                            challenge voor VWS.</p>
+                        <br>
+                    </div>
+                </div><!-- /.col -->
+
+                <div class="col-sm-5">
+                    <div class="header-img">
+                        <img src="{{ asset('images/trouwenproject.png') }}" width="600px"></div>
+                    <br>
+                </div><!-- /.col -->
+
+            </div><!-- /.row -->
+        </div><!-- /.container -->
+    </div><!-- /.header-content -->
+{% endblock %}
+
+{% block body %}
+
+    <div class="wrap-container8040">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-10 col-md-7 col-lg-7 ">
+                    <div class="col-text20 margin-bottom20">
+                        <div class="post-heading-left">
+                            <h2 id="verhuizen" style="color: #4386FB">Verbinden</h2>
+                            <h4 style="color: #4386FB">Product: Onlineplatform</h4>
+
+                            <p >
+                                Nu is een dergelijk platform relevanter dan ooit, want i.v.m. de uitbraak
+                                van het coronavirus zijn er momenteel legio initiatieven voor buurt en
+                                zelfhulp APP’s. Deze hebben naast een verbeterde sociale cohesie, als
+                                belangrijke winst dat ze de druk op reguliere zorgverlening kunnen
+                                ontlasten. Tot onze schrik zien wij echter dat de infrastructuur waar veel
+                                van deze “applicaties” op draaien zeer onveilig en soms rechtuit een AVG
+                                overtreding is. Zo wordt er bijvoorbeeld veel gewerkt met Google Forms en
+                                heeft bijna niemand nagedacht over logging en toegang.
+                            </p>
+                            <p>
+                                We willen deze initiatieven graag ondersteunen door proactief (en vooral
+                                gratis) Common Ground infrastructuur voor ze beschikbaar te stellen,
+                                gekoppeld aan <a href="https://irma.app/?lang=en">IRMA</a>.
+                                Bij voorkeur zouden we ze prikkelen om hiervan gebruik te maken door ze
+                                te belonen en motiveren met kleine subsidies als ze gebruik maken van
+                                veilige infrastructuur. Aanvullend geven we burgers hiermee (via
+                                <a href="https://irma.app/?lang=en">IRMA</a> /”regie op eigen gegevens”) grip op waar hun data staat.
+                            </p>
+                            <p>
+                                We kunnen dit faciliteren aan de hand van de <a href="https://www.conduction.nl/projecten/caas"> CAAS </a>
+                                oplossing.
+                            </p>
+                        </div><!-- ./col-heading -->
+                    </div><!-- ./col-text -->
+                </div><!-- ./col -->
+                <div class="col-sm-10 col-md-5 col-lg-5">
+                    <!-- <img src={{ asset('images/verhuizenproject.png') }} width="600px"> -->
+                </div><!-- ./col -->
+            </div><!-- ./row -->
+        </div><!-- ./container -->
+    </div><!-- ./wrap-container -->
+
+
+    {{  include('/widgets/contact.html.twig') }}
+
+
+{% endblock %}
+
