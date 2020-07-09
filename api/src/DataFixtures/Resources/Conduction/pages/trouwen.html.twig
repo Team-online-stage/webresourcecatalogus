@@ -1,0 +1,50 @@
+{# templates/home/index.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block headercontent %}
+    <!-- .header-content -->
+    <div class="header-content">
+
+        <!-- .container -->
+        <!-- /.container -->
+    </div><!-- /.header-content -->
+{% endblock %}
+
+{% block body %}
+    <div class="wrap-container8040 bg-white">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-10 col-md-7 col-lg-7 ">
+                    <div class="col-text20 margin-bottom20">
+                        <div class="post-heading-left">
+                            <h2 id="verhuizen" style="color: #4386FB">Trouwen</h2>
+                            <h4 style="color: #4386FB">Product: Huwelijksplanner</h4>
+                            <p>
+                                Samen met de gemeente Utrecht, Almere, Rotterdam en Westfriese gemeenten bouwen wij een
+                                online huwelijksplanner waarbij de burger centraal staat, waarvan de technische
+                                architectuur zo zuiver mogelijk is en deelbaar-herbruikbaar is voor andere gemeenten en
+                                applicaties.</p>
+                            <br>
+                            <img src="{{ asset('images/gemeenteutrecht.png') }}" width="110px">
+                            <img src="{{ asset('images/gemeentealmere.png') }}" width="110px">
+                            <img src="{{ asset('images/gemeentewestfriesland.png') }}" width="110px">
+                            <img src="{{ asset('images/gemeenterotterdam.png') }}" width="110px">
+
+                            <br>
+                        </div><!-- ./col-heading -->
+                    </div><!-- ./col-text -->
+                </div><!-- ./col -->
+                <div class="col-sm-10 col-md-5 col-lg-5">
+                    <img src={{ asset('images/trouwenproject.png') }} width="600px">
+                </div><!-- ./col -->
+            </div><!-- ./row -->
+        </div><!-- ./container -->
+    </div><!-- ./wrap-container -->
+
+
+    {{ include('/widgets/contact.html.twig') }}
+
+
+{% endblock %}
+

@@ -1,0 +1,217 @@
+{# templates/home/index.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <header class="content__header">
+        <a class="backlink" href="/pitches">Initiatieven</a>
+    </header>
+    <div class="row">
+        <div class="col-sm-12 col-lg-8">
+            <div class="content-background">
+                <div class="content ">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h1>{{ resource.name|capitalize }}</h1>
+                            <p>{{ resource.description }}</p>
+                        </div>
+                        <div class="col-md-6">
+                            <img src="https://picsum.photos/350/250" alt="tender" width="100%">
+                        </div>
+                    </div>
+
+                    <br>
+                    <div class="collapse" role="status">
+                        <div x-uno-collapse="" class="collapse__header">
+                            <i class="collapse__indicator">
+                                        <span class="screenreader-only" data-contracted-i18n="ingeklapt"
+                                              data-expanded-i18n="uitgeklapt"></span>
+                            </i>
+                            <span class="collapse__title">Reacties</span>
+                        </div>
+                        <div class="collapse__details collapse__details--closed">
+                            {% if resource.reactions is defined and resource.reactions is not empty %}
+                                <ul class="list list--card list--card-small">
+                                    {% for reaction in resource.reactions %}
+                                        <li class="card card--small">
+                                            <div class="card__content">
+                                                <div class="card__body">
+                                                    <div class="row" style=" height: 100%; width: 100%;">
+                                                        <div class="col-sm-12"
+                                                             style="padding-right: 0px;">
+                                                                <span
+                                                                    class="card__title">"{{ reaction.reaction }}"</span>
+                                                            {% if reaction.submitter is defined and reaction.submitter is not empty %}
+                                                                <br>
+                                                                <span>Vraag gesteld door {% for submitter in reaction.submitters %}{{ submitter }}{% endfor %}</span>
+                                                            {% endif %}
+
+                                                            <br>
+                                                            <span>Ingediend op {{ reaction.created|date("d-m-Y H:i", "Europe/Paris") }}</span>
+
+                                                        </div>
+                                                        {#                                                        <div class="col-sm-12 col-md-6">#}
+                                                        {#                                                            <div>#}
+                                                        {#                                                                <div>#}
+                                                        {#                                                                    <a href="{{ path('app_tender_question', {id: question.id}) }}"#}
+                                                        {#                                                                       rel="noopener" class="btn btn--primary"#}
+                                                        {#                                                                       target="_blank">Bekijk de vra(a)g(en) en#}
+                                                        {#                                                                        antwoord(en).<span#}
+                                                        {#                                                                            class="btn__icon icon icon-arr-forward"#}
+                                                        {#                                                                            title="" role=""></span></a>#}
+                                                        {#                                                                </div>#}
+                                                        {#                                                            </div>#}
+                                                        {#                                                        </div>#}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            {% else %}
+                                <p style="color:gray">Er zijn nog geen reacties.</p>
+                            {% endif %}
+
+                            <div class="collapse" role="status">
+                                <div x-uno-collapse="" class="collapse__header">
+                                    <i class="collapse__indicator">
+                                        <span class="screenreader-only" data-contracted-i18n="ingeklapt"
+                                              data-expanded-i18n="uitgeklapt"></span>
+                                    </i>
+                                    <span class="collapse__title">Reageer</span>
+                                </div>
+                                <div class="collapse__details collapse__details--closed">
+                                    <div class="input">
+                                        <label class="input__label" for="textarea_voorbeeld">Voer hier uw reactie in:</label>
+                                        <textarea id="textarea_voorbeeld"
+                                                  class="input__control input__control--l input__control--text"></textarea>
+                                    </div>
+
+                                    <div class="input">
+                                        <button type="submit" class="btn btn--primary">Verstuur</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    {% if resource.proposals is defined and resource.proposals is not empty %}
+                        <h1>Voorstellen:</h1>
+                        <ul class="list list--card list--card-small">
+                            {% for proposal in resource.proposals %}
+                                <li class="card card--small">
+                                    <div class="card__content">
+                                        <div class="card__body">
+                                            <div class="row" style=" height: 100%; width: 100%;">
+                                                <div class="col-sm-12 col-md-6"
+                                                     style="padding-right: 0px;">
+                                                                    <span class="card__title">Voorstel van {% for submitter in resource.submitters %}{{ submitter }}{% endfor %}</span>
+
+                                                    {% if proposal.dateSubmitted is defined and proposal.dateSubmitted is not empty %}
+                                                        <br>
+                                                        <span>Ingediend op {{ proposal.dateSubmitted|date("d-m-Y H:i", "Europe/Paris") }}</span>
+                                                    {% endif %}
+                                                </div>
+                                                <div class="col-sm-12 col-md-6">
+                                                    <div>
+                                                        <div
+                                                            style="display: flex; flex-direction: column; justify-items: center;">
+                                                            <a href="{{ path('app_tender_proposal', {id: proposal.id}) }}"
+                                                               rel="noopener" class="btn btn--primary"
+                                                               target="_blank">Lees hier meer over dit
+                                                                voorstel<span
+                                                                    class="btn__icon icon icon-arr-forward"
+                                                                    title="" role=""></span></a>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                    {% if resource.tender is defined and resource.tender is not empty %}
+                        <br>
+                        <h1>Aanbesteding</h1>
+                        <h3>{{ resource.tender.name }}</h3>
+                        <p>{{ resource.tender.description }}</p>
+                        <a href="{{ path('app_tender_challenge', {id: resource.tender.id}) }}"
+                           rel="noopener" class="btn btn--primary"
+                           target="_blank">Ga naar aanbesteding<span
+                                class="btn__icon icon icon-arr-forward"
+                                title="" role=""></span></a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-lg-4">
+            <div class="content-background">
+                <div class="content ">
+                    <h1>Kenmerken</h1>
+                    {% if resource.submitters is defined and resource.submitters is not empty %}
+                        <b>Aangemaakt
+                            door:</b>{% for submitter in resource.submitters %} {{ submitter }},{% endfor %}
+                        <br>
+                    {% endif %}
+                    {% if resource.dateSubmitted is defined and resource.dateSubmitted is not empty %}
+                        <b>Ingediend op: </b>{{ resource.dateSubmitted|date("d-m-Y H:i", "Europe/Paris") }}
+                        <br>
+                    {% endif %}
+                    {% if resource.documents is defined and resource.documents is not empty %}
+                        <br>
+                        <h3>Documenten</h3>
+                        <ul class="list list--links list--chevrons">
+                            {% for document in resource.documents %}
+                                <li><a href="#">{{ document }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                    {% if resource.requiredBudget is defined and resource.requiredBudget is not empty %}
+                        {#                        <b>Benodigd budget: </b>&euro; {{ resource.requiredBudget }},-#}
+                        <br><br>
+
+                        <div class="donut-chart" id="requiredbudget-donut-chart">
+                            <h3 class="donut-chart__title">Benodigd budget</h3>
+                            <div class="donut-chart__chart">
+                                <canvas class="donut-chart__canvas"></canvas>
+                                <div class="donut-chart__inner">€ {{ resource.requiredBudget }},-</div>
+                            </div>
+                            {% if resource.tender.budget is defined and resource.tender.budget is not empty %}
+                                <span
+                                    class="donut-chart__subtitle">van het beschikbare budget € {{ resource.tender.budget }},-</span>
+                            {% endif %}
+                        </div>
+                        <br>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% if resource.requiredBudget is defined and resource.requiredBudget is not empty %}
+
+        <script>
+
+            System.import('/uno/components/donut-chart/donut-chart.js').then(function (module) {
+                var donutChart = new module.DonutChart(document.getElementById('requiredbudget-donut-chart'));
+                donutChart.value = 66;
+                donutChart.draw();
+            });
+
+            // Load collapse component
+            System.import('/uno/components/collapse/collapse.js').then(function (module) {
+                // Select all collapsible elements on the page
+                var collapses = document.querySelectorAll('[x-uno-collapse]');
+                // Initialize all collapses
+                for (var i = 0; i < collapses.length; i++) {
+                    new module.Collapse(collapses.item(i));
+                }
+            });
+        </script>
+
+    {% endif %}
+
+{% endblock %}
