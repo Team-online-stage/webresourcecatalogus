@@ -3,28 +3,28 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
-    <h1>Aanbestedingen</h1>
+    <h1>Studenten</h1>
     <div class="row">
         <div class="col-sm-8">
-            {% set challenges = commonground_resource_list({'component': 'chrc', 'type': 'tenders'},{'order[dateCreated]':'desc'})['hydra:member'] %}
-            {% if challenges is not empty %}
+            {% set studenten = commonground_resource_list({'component': 'chrc', 'type': 'tenders'},{'order[dateCreated]':'desc'})['hydra:member'] %}
+            {% if studenten is not empty %}
             <ul class="list list--card list--card-small">
-                {% for challenge in challenges %}
+                {% for student in studenten %}
                     <li class="card card--small">
                         <div class="card__content">
                             <div class="card__thumb" style="background-image: url('https://picsum.photos/200')"></div>
                             <div class="card__body">
                                 <div class="row" style=" height: 100%; width: 100%;">
                                     <div class="col-sm-8" style="padding-right: 0px;">
-                                        <span class="card__title">{{ challenge.name }}</span><br>
-                                        <span>{{ challenge.description }}</span>
+                                        <span class="card__title">{{ student.name }}</span><br>
+                                        <span>{{ student.description }}</span>
                                     </div>
                                     <div class="col-sm-4">
                                         <div style="float: right;">
                                             <div style="display: flex; flex-direction: column; justify-items: center;">
-                                                <p style="margin: 0; color: grey;">budget: {{ challenge.budget }}<i style="color: grey" class="fas fa-euro-sign"></i></p>
-                                                <p style="margin: 0;">deadline: {{ challenge.dateClose|date("d-m-Y H:i", "Europe/Paris") }}</p>
-                                                <a href="/challenge?id={{ challenge.id }}">lees meer</a>
+                                                <p style="margin: 0; color: grey;">budget: {{ student.budget }}<i style="color: grey" class="fas fa-euro-sign"></i></p>
+                                                <p style="margin: 0;">deadline: {{ student.dateClose|date("d-m-Y H:i", "Europe/Paris") }}</p>
+                                                <a href="/student?id={{ student.id }}">lees meer</a>
                                             </div>
                                         </div>
                                     </div>
@@ -34,7 +34,7 @@
                     </li>
                 {% endfor %}
                 {% else %}
-                    <p>Er zijn op dit moment geen aanbestedingen</p>
+                    <p>Er zijn op dit moment geen studenten</p>
                 {% endif %}
                 <li class="card card--small">
                     <div class="card__content">
