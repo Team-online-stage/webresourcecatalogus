@@ -15,18 +15,18 @@
                             <div class="card__thumb challenge-card-picture" style="background-image: url('https://picsum.photos/200')"></div>
                             <div class="card__body">
                                 <div class="row" style=" height: 100%; width: 100%;">
-                                    <div class="col-sm-12 col-md-6" style="padding-right: 0px;">
-                                        <span class="card__title">{{ pitch.name }}</span><br>
-                                        <span>{{ pitch.description|slice(0, 110)|raw ~ '...' }}</span>
+                                    <div class="col-sm-6" style="padding-right: 0px;">
+                                        <span class="card__title">{{ pitch.name|capitalize }}</span><br>
+{#                                        <span>{{ pitch.description|slice(0, 110)|raw ~ '...' }}</span>#}
+                                        <span><b>Benodigd budget:</b> &euro; {{ pitch.requiredBudget }},-</span>
+                                        <span><b>Ingediend op:</b> {{ pitch.dateSubmitted|date("d-m-Y", "Europe/Paris") }}</span>
                                     </div>
-                                    <div class="col-sm-12 col-md-6">
-                                        <div>
-                                            <div style="display: flex; flex-direction: column; justify-items: center;">
-                                                <p style="margin: 0; color: grey;">benodigd budget: {{ pitch.requiredBudget }} <i style="color: grey" class="fas fa-euro-sign"></i></p>
-                                                <p style="margin: 0;">ingediend op: {{ pitch.dateSubmitted|date("d-m-Y H:i", "Europe/Paris") }}</p>
-                                                <a href="{{ path('app_tender_pitch', {id: pitch.id}) }}">lees meer</a>
-                                            </div>
-                                        </div>
+                                    <div class="col-sm-6">
+                                        <a style="margin-top: 20px; float: right" href="{{ path('app_tender_pitch', {id: pitch.id}) }}"
+                                                             rel="noopener" class="btn btn--primary"
+                                                             target="_blank">Bekijk deze pitch<span
+                                                class="btn__icon icon icon-arr-forward"
+                                                title="" role=""></span></a>
                                     </div>
                                 </div>
                             </div>
@@ -36,52 +36,52 @@
                 {% else %}
                     <p>Er zijn op dit moment geen initiatieven</p>
                 {% endif %}
-                <li class="card card--small">
-                    <div class="card__content">
-                        <div class="card__thumb challenge-card-picture" style="background-image: url('https://picsum.photos/200')"></div>
-                        <div class="card__body">
-                            <div class="row" style=" height: 100%; width: 100%;">
-                                <div class="col-sm-12 col-md-6" style="padding-right: 0px;">
-                                    <span class="card__title">Dit is de title</span><br>
-                                    <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                        Ad distinctio eos</span>
-                                </div>
-                                <div class="col-sm-12 col-md-6">
-                                    <div>
-                                        <div style="display: flex; flex-direction: column; justify-items: center;">
-                                            <p style="margin: 0; color: grey;">benodigd budget: 4500.00 <i style="color: grey" class="fas fa-euro-sign"></i></p>
-                                            <p style="margin: 0;">ingediend op: 2020-07-01</p>
-                                            <a href="">lees meer</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li class="card card--small">
-                    <div class="card__content">
-                        <div class="card__thumb challenge-card-picture" style="background-image: url('https://picsum.photos/200')"></div>
-                        <div class="card__body">
-                            <div class="row" style=" height: 100%; width: 100%;">
-                                <div class="col-sm-12 col-md-6" style="padding-right: 0px;">
-                                    <span class="card__title">Dit is de title</span><br>
-                                    <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                        Ad distinctio eos</span>
-                                </div>
-                                <div class="col-sm-12 col-md-6">
-                                    <div>
-                                        <div style="display: flex; flex-direction: column; justify-items: center;">
-                                            <p style="margin: 0; color: grey;">benodigd budget: 4500.00 <i style="color: grey" class="fas fa-euro-sign"></i></p>
-                                            <p style="margin: 0;">ingediend op: 2020-07-01</p>
-                                            <a href="">lees meer</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
+{#                <li class="card card--small">#}
+{#                    <div class="card__content">#}
+{#                        <div class="card__thumb challenge-card-picture" style="background-image: url('https://picsum.photos/200')"></div>#}
+{#                        <div class="card__body">#}
+{#                            <div class="row" style=" height: 100%; width: 100%;">#}
+{#                                <div class="col-sm-12 col-md-6" style="padding-right: 0px;">#}
+{#                                    <span class="card__title">Dit is de title</span><br>#}
+{#                                    <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit.#}
+{#                                        Ad distinctio eos</span>#}
+{#                                </div>#}
+{#                                <div class="col-sm-12 col-md-6">#}
+{#                                    <div>#}
+{#                                        <div style="display: flex; flex-direction: column; justify-items: center;">#}
+{#                                            <p style="margin: 0; color: grey;">benodigd budget: 4500.00 <i style="color: grey" class="fas fa-euro-sign"></i></p>#}
+{#                                            <p style="margin: 0;">ingediend op: 2020-07-01</p>#}
+{#                                            <a href="">lees meer</a>#}
+{#                                        </div>#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </li>#}
+{#                <li class="card card--small">#}
+{#                    <div class="card__content">#}
+{#                        <div class="card__thumb challenge-card-picture" style="background-image: url('https://picsum.photos/200')"></div>#}
+{#                        <div class="card__body">#}
+{#                            <div class="row" style=" height: 100%; width: 100%;">#}
+{#                                <div class="col-sm-12 col-md-6" style="padding-right: 0px;">#}
+{#                                    <span class="card__title">Dit is de title</span><br>#}
+{#                                    <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit.#}
+{#                                        Ad distinctio eos</span>#}
+{#                                </div>#}
+{#                                <div class="col-sm-12 col-md-6">#}
+{#                                    <div>#}
+{#                                        <div style="display: flex; flex-direction: column; justify-items: center;">#}
+{#                                            <p style="margin: 0; color: grey;">benodigd budget: 4500.00 <i style="color: grey" class="fas fa-euro-sign"></i></p>#}
+{#                                            <p style="margin: 0;">ingediend op: 2020-07-01</p>#}
+{#                                            <a href="">lees meer</a>#}
+{#                                        </div>#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </li>#}
             </ul>
         </div>
         <div class="col-sm-12 col-lg-4" style="background-color: lightgray">
