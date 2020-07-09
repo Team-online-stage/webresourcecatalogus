@@ -1313,49 +1313,6 @@ class ConductionFixtures extends Fixture
         $slug->setSlug('componenten/web-resource-catalogus');
         $manager->persist($slug);
 
-        $id = Uuid::fromString('4011468d-28ea-44c3-bf1a-2a848f2b7c36');
-        $template = new Template();
-        $template->setName('webservice');
-        $template->setDescription('webservice');
-        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Conduction/pages/webservice.html.twig', 'r'));
-        $template->setTemplateEngine('twig');
-        $manager->persist($template);
-        $template->setId($id);
-        $manager->persist($template);
-        $manager->flush();
-        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
-        $template->addTemplateGroup($groupPages);
-        $manager->persist($template);
-        $manager->flush();
-
-        $slug = new Slug();
-        $slug->setTemplate($template);
-        $slug->setApplication($website);
-        $slug->setName('webservice');
-        $slug->setSlug('webservice');
-        $manager->persist($slug);
-
-        $id = Uuid::fromString('4011468d-28ea-44c3-bf1a-2a848f2b7c36');
-        $template = new Template();
-        $template->setName('werkwijze');
-        $template->setDescription('werkwijze');
-        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Conduction/pages/werkwijze.html.twig', 'r'));
-        $template->setTemplateEngine('twig');
-        $manager->persist($template);
-        $template->setId($id);
-        $manager->persist($template);
-        $manager->flush();
-        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
-        $template->addTemplateGroup($groupPages);
-        $manager->persist($template);
-        $manager->flush();
-
-        $slug = new Slug();
-        $slug->setTemplate($template);
-        $slug->setApplication($website);
-        $slug->setName('werkwijze');
-        $slug->setSlug('werkwijze');
-        $manager->persist($slug);
 
 
         // Dashboard applicatie
