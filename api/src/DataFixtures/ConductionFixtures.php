@@ -188,7 +188,7 @@ class ConductionFixtures extends Fixture
         $slug->setTemplate($template);
         $slug->setApplication($website);
         $slug->setName('begraven');
-        $slug->setSlug('projecten/overlijden');
+        $slug->setSlug('projecten/begraven');
         $manager->persist($slug);
 
         $id = Uuid::fromString('89d26cc1-6e54-4bd0-b8b9-b9b21c7a18b0');
@@ -364,7 +364,7 @@ class ConductionFixtures extends Fixture
         $slug->setTemplate($template);
         $slug->setApplication($website);
         $slug->setName('challenges');
-        $slug->setSlug('projecten/challange-platform');
+        $slug->setSlug('projecten/challenges');
         $manager->persist($slug);
 
         $id = Uuid::fromString('41125876-c0c5-4b38-a709-7de36a18535f');
@@ -562,7 +562,7 @@ class ConductionFixtures extends Fixture
         $slug->setTemplate($template);
         $slug->setApplication($website);
         $slug->setName('corona');
-        $slug->setSlug('corona');
+        $slug->setSlug('projecten/corona');
         $manager->persist($slug);
 
         $id = Uuid::fromString('73fe2248-42d6-4010-985e-24396c02c80b');
@@ -1288,7 +1288,7 @@ class ConductionFixtures extends Fixture
         $slug->setTemplate($template);
         $slug->setApplication($website);
         $slug->setName('vrijwilligers');
-        $slug->setSlug('projecten/vrijwilligers-platform');
+        $slug->setSlug('projecten/vrijwilligers');
         $manager->persist($slug);
 
         $id = Uuid::fromString('999a2f5f-802f-4f9b-a5db-b6360cd32a52');
