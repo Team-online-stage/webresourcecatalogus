@@ -72,26 +72,33 @@
                                 <p style="color:gray">Er zijn nog geen reacties.</p>
                             {% endif %}
 
-                            <div class="collapse" role="status">
-                                <div x-uno-collapse="" class="collapse__header">
-                                    <i class="collapse__indicator">
+
+                            <form method="post" action="{{ path('app_tender_pitch') }}">
+
+                                <div class="collapse" role="status">
+                                    <div x-uno-collapse="" class="collapse__header">
+                                        <i class="collapse__indicator">
                                         <span class="screenreader-only" data-contracted-i18n="ingeklapt"
                                               data-expanded-i18n="uitgeklapt"></span>
-                                    </i>
-                                    <span class="collapse__title">Reageer</span>
-                                </div>
-                                <div class="collapse__details collapse__details--closed">
-                                    <div class="input">
-                                        <label class="input__label" for="textarea_voorbeeld">Voer hier uw reactie in:</label>
-                                        <textarea id="textarea_voorbeeld"
-                                                  class="input__control input__control--l input__control--text"></textarea>
+                                        </i>
+                                        <span class="collapse__title">Reageer</span>
                                     </div>
+                                    <div class="collapse__details collapse__details--closed">
+                                        <div class="input">
+                                            <label class="input__label" for="textarea_voorbeeld">Voer hier uw reactie
+                                                in:</label>
+                                            <textarea id="textarea_voorbeeld"
+                                                      class="input__control input__control--l input__control--text"
+                                                      name="review"></textarea>
+                                        </div>
 
-                                    <div class="input">
-                                        <button type="submit" class="btn btn--primary">Verstuur</button>
+                                        <div class="input">
+                                            <button name="add_comment" type="submit" class="btn btn--primary">Verstuur</button>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+
+                            </form>
 
                         </div>
                     </div>
@@ -105,7 +112,8 @@
                                             <div class="row" style=" height: 100%; width: 100%;">
                                                 <div class="col-sm-12 col-md-6"
                                                      style="padding-right: 0px;">
-                                                                    <span class="card__title">Voorstel van {% for submitter in resource.submitters %}{{ submitter }}{% endfor %}</span>
+                                                    <span
+                                                        class="card__title">Voorstel van {% for submitter in resource.submitters %}{{ submitter }}{% endfor %}</span>
 
                                                     {% if proposal.dateSubmitted is defined and proposal.dateSubmitted is not empty %}
                                                         <br>
