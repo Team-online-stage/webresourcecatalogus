@@ -1,34 +1,336 @@
 {# templates/home/index.html.twig #}
 
-{% extends 'base.html.twig' %}
+    {% extends 'base.html.twig' %}
 
-{% block body %}
+    {% block headercontent %}
+        <!-- .header-content -->
+        <div class="header-content">
 
-    <div class="wrap-container8040">
-        <div class="container">
+            <!-- .container -->
+            <div class="container">
 
-            <div class="post-heading-left">
-                <h2>Partners</h2>
-            </div><!-- ./post-heading-left -->
-            
+                <!-- .row -->
+                <div class="row">
+
+                    <div class="col-sm-7">
+                        <div class="header-text" style="padding-top: 0">
+                            <div class="post-heading-left-white header-heading">
+                                <h1>Open source</h1>
+                            </div>
+                            <br>
+                            <p style="margin-top: -35px">Voor ons betekent open source: het maken van producten die voor
+                                anderen herbruikbaar zijn, dat gaat verder dan code delen en licentie. Open source betekent
+                                hergebruik van je product op de eerste plaats zetten. Dat klinkt natuurlijk logisch, maar in de
+                                praktijk zien we dat open source te vaak neerkomt op het “over de schutting gooien” van een reeds
+                                gemaakt (en vaak super specifiek) project.
+                                <br><br>
+                                Om hier voor onze projecten invulling aan te geven, hebben we voor onszelf de volgende richtlijnen opgesteld.
+                            </p>
+                        </div>
+                    </div><!-- /.col -->
+
+                    <div class="col-sm-10 col-md-5 col-lg-5">
+                        <div class="header-img">
+                            <img src="{{ asset('images/content/Opensource/1280w/Blauw_Vlak.png') }}" width="100%"></div>
+                        <br>
+                    </div><!-- /.col -->
+
+                </div><!-- /.row -->
+            </div><!-- /.container -->
+        </div><!-- /.header-content -->
+    {% endblock %}
+
+    {% block body %}
+        <div class="wrap-container8040 bg-grey">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-10 col-md-7 col-lg-7 ">
+                        <div class="col-text20 margin-bottom20">
+                            <div class="post-heading-left">
+                                <h2 id="verhuizen" style="color: #4386FB">Bouwen voor de community</h2>
+
+                                <p>Ga op zoek naar welke software er nog mist en bouw die. Niet voor onszelf,
+                                    maar voor de gemeenschap, waarbij wijzelf één van de gebruikers zijn.
+                                    Met andere woorden we maken geen organisatie specifieke software die je in het
+                                    ecosysteem probeert aan te sluiten, maar we bouwen iets voor het ecosysteem dat
+                                    wijzelf ook kunnen gebruiken. Hiermee voorkom je latere problemen rondom adaptatie.
+                                    Daarnaast is open source zonder afname een holle term.
+                                </p>
+                            </div><!-- ./col-heading -->
+                        </div><!-- ./col-text -->
+                    </div><!-- ./col -->
+                    <div class="col-sm-10 col-md-5 col-lg-5">
+                        <img src={{ asset('images/content/Product/1280w/Geel_Vlak.png') }} width="100%">
+                    </div><!-- ./col -->
+                </div><!-- ./row -->
+            </div><!-- ./container -->
+        </div><!-- ./wrap-container -->
+
+        <div class="wrap-container8040">
+            <div class="container">
+                <div class="row">
+
+
+                    <div class="col-sm-10 col-md-7 col-lg-7 ">
+                        <div class="col-text20 margin-bottom20">
+                            <div class="post-heading-left">
+                                <h2 id="overlijden" style="color: #4386FB">Citizen Coders </h2>
+
+                                <p>Wij geloven in de democratiserende kracht van software, door (overheids)processen
+                                    open en inzichtelijk te maken kunnen individuele burgers hier controle op uitvoeren én
+                                    verbeteringen op voorstellen. Dat betekent dat we prioriteit moeten geven aan het “leesbaar”
+                                    maken van code door kleine codebases en goede documentatie. Zodat we bijdragen aan het
+                                    zuiverende karakter van open source, fouten sneller worden gevonden en lekken eerder worden gedicht.
+                                </p>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                    <div class="col-sm-10 col-md-5 col-lg-5">
+                        <img src={{ asset('images/content/CitizenCoder/1280w/Lichtblauw_vlak.png') }} width="100%">
+                    </div>
+                    <!-- ./col -->
+                </div>
+            </div>
         </div>
-    </div>
-    <div class="wrap-container8040">
-        <div class="container">
 
-            <div class="post-heading-left">
-                <h5>Coming soon</h5>
-            </div><!-- ./post-heading-left -->
+        <div class="wrap-container8040 bg-grey" id="stages">
+            <div class="container">
+                <div class="row">
+
+
+                    <div class="col-sm-10 col-md-7 col-lg-7 ">
+                        <div class="col-text20 margin-bottom20">
+                            <div class="post-heading-left">
+                                <h2 id="stage" style="color: #4386FB">Internationaal boven lokaal</h2>
+                                <p>
+                                    Het Nederlandse ICT Ecosysteem staat bol van lokale (vaak overheids-)standaarden,
+                                    dat levert legio problemen op in koppelvlakken. Daarom is ons uitgangspunt:
+                                    bouwen naar europese/internationale standaarden, zodat onze software overal
+                                    gebruikt en aangesloten kan worden.
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-sm-10 col-md-5 col-lg-5">
+                        <img src={{ asset('images/content/Internationaal/1280w/Geel_Vlak.png') }}  width="100%">
+                    </div>
+                    <!-- ./col -->
+                </div>
+            </div>
+        </div>
+
+        <div class="wrap-container8040">
+            <div class="container">
+                <div class="row">
+
+
+                    <div class="col-sm-10 col-md-7 col-lg-7 ">
+                        <div class="col-text20 margin-bottom20">
+                            <div class="post-heading-left">
+                                <h2 id="overlijden" style="color: #4386FB">Engels boven Nederlands</h2>
+                                <p>
+                                    Wij kiezen voor Engels als het gaat om coderen en documenteren.
+                                    Waarom? Omdat veel code en standaarden van nature al in het engels zijn.
+                                    Ook omdat iedereen buiten Nederland dan onze code en documentatie kan lezen,
+                                    verbeteren en gebruiken.
+                                </p>
+
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                    <div class="col-sm-10 col-md-5 col-lg-5">
+                        <img src={{ asset('images/content/Samen/1280w/Grijsvlak.png') }}  width="100%">
+                    </div>
+                    <!-- ./col -->
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="wrap-container8040 bg-grey">
+            <div class="container">
+                <div class="row">
+
+
+                    <div class="col-sm-10 col-md-7 col-lg-7 ">
+                        <div class="col-text20 margin-bottom20">
+                            <div class="post-heading-left">
+                                <h2 id="overlijden" style="color: #4386FB">Componenten in plaats van Silo’s</h2>
+                                <p>
+                                    Om te kunnen voldoen aan inzichtelijke en onderhoudbare code, moeten we projecten
+                                    en codebases klein en overzichtelijk houden. Waarbij we afscheid nemen van zogenaamde
+                                    silo applicaties ten gunste van microservices architectuur. Kleine stukken code die
+                                    gemeenschappelijk een ecosysteem aan functionaliteit leveren, waarbij meerdere
+                                    applicaties gebruik kunnen maken van dezelfde code door deze als API aan te roepen.
+                                    Een goed voorbeeld hiervan is een DigiD koppeling, het elke keer opnieuw bouwen
+                                    hiervan in ieder applicatie is zonde van het geld en de ontwikkelingscapaciteit.
+                                </p>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                    <div class="col-sm-10 col-md-5 col-lg-5">
+                        <img src={{ asset('images/content/Duurzaam/1280w/Blauw_Vlak.png') }}  width="100%">
+                    </div>
+                    <!-- ./col -->
+                </div>
+            </div>
+        </div>
+
+        <div class="wrap-container8040 ">
+            <div class="container">
+                <div class="row">
+
+
+                    <div class="col-sm-10 col-md-7 col-lg-7 ">
+                        <div class="col-text20 margin-bottom20">
+                            <div class="post-heading-left">
+                                <h2 id="overlijden" style="color: #4386FB">Uitbreidbaar ecosysteem</h2>
+                                <p>
+                                    Voor het creëren van een sterk (Nederlands)ecosysteem is het cruciaal dat
+                                    softwarepakketten makkelijk uit te breiden zijn door derden. Hier is op
+                                    internationaal niveau binnen open source communities al veel ervaring mee
+                                    opgedaan en dat heeft bijna overal tot dezelfde oplossing geleid: frameworks
+                                    en package management. Bijna alle grote open source applicatie projecten
+                                    (Wordpress, Joomla, Drupal, Wikipedia, Symfony, Larvel, Zend, Django, Rails)
+                                    zijn opgebouwd als een uitbreidbaar framework. Daarom maken wij voor het bouwen
+                                    van applicaties gebruik van een framework en brengen wij eventuele afwijkingen onder
+                                    in een package. Zo houden we een applicatie uitbreidbaar voor derden en kunnen andere
+                                    ook weer gebruik maken van onze packages.
+                                </p>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                    <div class="col-sm-10 col-md-5 col-lg-5">
+                        <img src={{ asset('images/content/Ecosysteem/1280w/Grijsvlak.png') }}  width="100%">
+                    </div>
+                    <!-- ./col -->
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="wrap-container8040 bg-grey">
+            <div class="container">
+                <div class="row">
+
+
+                    <div class="col-sm-10 col-md-7 col-lg-7 ">
+                        <div class="col-text20 margin-bottom20">
+                            <div class="post-heading-left">
+                                <h2 id="overlijden" style="color: #4386FB">Containers in plaats van Servers</h2>
+                                <p>
+                                    Onze code is geschikt om op virtuele machines, in de vorm van containers,
+                                    te draaien. Dat maakt de software onafhankelijk van hardware en stelt anderen
+                                    is staat een breed scala aan componenten te kunnen draaien, zonder een heel
+                                    serverpark in te richten. Key voor ons is: Het maken van ‘geschikte’ code en het
+                                    aanleveren van deze containers, zodat de code plug and play zonder installatie te draaien is.
+                                </p>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                    <div class="col-sm-10 col-md-5 col-lg-5">
+                        <img src={{ asset('images/Commonground_afb1.jpg') }}  width="100%">
+                    </div>
+                    <!-- ./col -->
+                </div>
+            </div>
+        </div>
+
+        <div class="wrap-container8040 ">
+            <div class="container">
+                <div class="row">
+
+
+                    <div class="col-sm-10 col-md-7 col-lg-7 ">
+                        <div class="col-text20 margin-bottom20">
+                            <div class="post-heading-left">
+                                <h2 id="overlijden" style="color: #4386FB">Beheer vooraf goed organiseren</h2>
+                                <p>
+                                    Open source code die niet wordt onderhouden is doodzonde. Om te voorkomen
+                                    dat projecten en code na oplevering een stille dood sterven, is het heel belangrijk
+                                    om op voorhand afspraken te maken over het onderhoud. Een bijzonder aandachtspunt
+                                    hierbij is dat gebrekkige documentatie of slechte code niet het probleem mag worden
+                                    van de onderhoudende partij. Daarom zou een aantal jaar onderhoud onderdeel moeten
+                                    zijn van development opdrachten.
+                                </p>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                    <div class="col-sm-10 col-md-5 col-lg-5">
+                        <img src={{ asset('images/content/Beheer/1280w/Blauw_Vlak.png') }}  width="100%">
+                    </div>
+                    <!-- ./col -->
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- #contact -->
+        <div id="contact" class="wrap-container80 bg-color">
+
+            <!-- .container -->
+            <div class="container">
+
+                <!-- .row -->
+                <div class="row">
+
+
+                    <div class="col-md-6">
+                        <div class="post-heading-center">
+                            <h4>Conduction blauw past bij jou!</h4>
+                            <h2 style="color: white">Ook werken of stage bij Conduction?</h2>
+                            <p>Wij zijn altijd op zoek naar gedreven, originele vakfanaten, pioniers en creatievelingen (to be).
+                                Voel je je aangesproken? Neem vooral contact met ons op! :) </p>
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <form action="/contact" method="post" class="affa-form-contact">
+                            <div class="submit-status"></div> <!-- submit status -->
+                            <input type="text" name="name" placeholder="Your Name"/>
+                            <input type="text" name="email" placeholder="Email Address *"/>
+                            <textarea name="message" placeholder="Message *"></textarea>
+                            <button type="submit" name="submit" class=" btn-block btn-custom2" style="padding: unset;">
+                                Join !
+                            </button>
+                        </form>
+                    </div>
+
+                </div>
+                <!-- .row end -->
+
+            </div>
+            <!-- .container end -->
 
         </div>
-    </div>
+        <!-- #contact end -->
 
 
 
 
-    {{  include('/widgets/contact.html.twig') }}
 
-
-
-{% endblock %}
+    {% endblock %}
 

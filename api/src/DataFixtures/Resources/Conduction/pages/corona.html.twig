@@ -1,0 +1,237 @@
+{# templates/home/index.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block headercontent %}
+<!-- .header-content -->
+<div class="header-content">
+
+    <!-- .container -->
+    <div class="container">
+
+        <!-- .row -->
+        <div class="row">
+
+            <div class="col-sm-7">
+                <div class="header-text" style="padding-top: 0">
+                    <div class="post-heading-left-white header-heading">
+                        <h1>Nabijheids App</h1>
+                        <h4 style="color: white">Product: Online Platform</h4>
+                    </div>
+                    <br>
+                    <p style="margin-top: -35px">Er is een recente vraag vanuit het rijk om een app die gebruikers
+                        waarschuwt wanneer ze in contact zijn geweest met personen die het virus
+                        hebben opgelopen. Het rijk stelt hier een aantal technische voorwaarde aan,
+                        maar wij zijn ons bewust van de brede maatschappelijke discussie over deze
+                        applicatie en hebben daarom breder gekeken (binnen en buiten Europa).</p>
+                    <br>
+                </div>
+            </div><!-- /.col -->
+
+            <div class="col-sm-5">
+                <div class="header-img">
+                    <!--
+                        <img src="{{ asset('images/trouwenproject.png') }}" width="600px"></div> -->
+                    <br>
+                </div><!-- /.col -->
+
+            </div><!-- /.row -->
+        </div><!-- /.container -->
+    </div><!-- /.header-content -->
+    {% endblock %}
+
+    {% block body %}
+
+        <div class="wrap-container8040">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-10 col-md-7 col-lg-7 ">
+                        <div class="col-text20 margin-bottom20">
+                            <div class="post-heading-left">
+                                <h2 id="verhuizen" style="color: #4386FB">Aansluiten bij bestaande initiatieven (uitbreiden Privatetracer)</h2>
+
+                                <p>Er loopt op dit moment een Nederlands initiatief    <a href="https://www.privatetracer.org/">https://www.privatetracer.org/</a>
+                                    , dat een uitwerking is van het Europese <a href="https://www.pepp-pt.org/">pepp-pt</a> initiatief. Het voldoet
+                                    daarmee in grote lijnen aan de door het rijk gestelde eisen, sterker nog
+                                    het gaat wat verder en voldoet tevens aan de gestelde kaders van
+                                    <a href="https://www.veiligtegencorona.nl/">
+                                        https://www.veiligtegencorona.nl/
+                                    </a>
+                                    , een intiatief van bijna alle digitale privacy belangen organisaties en
+                                    instellingen.</p>
+                                <p>
+                                    We maken we een aantal opmerkingen over de vormgeving en werking
+                                </p>
+                                <ol>
+                                    <li >
+                                        <p >
+                                            Vanuit onderzoek van het Utrecht UX team is naar voren gekomen dat
+                                            vertrouwen van de burger de cruciale succesfactor is. Dit betekent
+                                            dat de app zal moet worden omgezet naar de rijkshuisstijl.
+                                        </p>
+                                    </li>
+                                    <li >
+                                        <p >
+                                            Vanuit WCAG 2.0 is het belangrijk dat de app meertalig is (minimaal
+                                            Engels en Nederlands)
+                                        </p>
+                                    </li>
+                                    <li >
+                                        <p >
+                                            Het versturen van ID’s en ontvangen van ID’s moet los kunnen worden
+                                            uitgezet.
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <p >
+                                            In de app kan een persoon nu zelfstandig aangeven besmet te zijn,
+                                            in de tender wordt dat specifiek uitgesloten, omdat dit door een
+                                            arts moet gebeuren (Het pepp-pt heeft het in deze context trouwens
+                                            over tan codes). Dit om valse meldingen te voorkomen.
+                                        </p>
+                                    </li>
+                                    <li dir="ltr">
+                                        <p dir="ltr">
+                                            De eigen gehashte/encrypted ID kan niet en mag niet worden ingezien.
+                                            Dit doen we zo dat niemand je kan vragen/eisen om je hash om zo af te leiden wie jij bent.
+                                        </p>
+                                    </li>
+                                    <li dir="ltr">
+                                        <p dir="ltr">
+                                            Er worden meerdere positieve contactmomenten weergegeven (in plaats
+                                            van alleen de laatste positieve). Dit maakt het makkelijk om uit te
+                                            vogelen wie er besmet is als je iemand vaker tegenkomt en tart
+                                            daarmee de privacy. Met andere woorden dit is onwenselijk en zal
+                                            moeten worden aangepast naar alleen het laatste moment.
+                                        </p>
+                                    </li>
+                                    <li >
+                                        <p >
+                                            Je kunt in de app zien wat je eigen status is, daarmee ondersteunt
+                                            de app het forceren van informatie (bijvoorbeeld een winkel die
+                                            verplicht om je app te laten zien bij binnenkomst). Dit vinden wij
+                                            onwenselijk en zal moeten worden worden verwijderd.
+                                        </p>
+                                    </li>
+                                </ol>
+                                <br/>
+                                <p >
+                                    Cruciaal voordeel van deze app is dat hij alleen data verstuurt naar een
+                                    server als er sprake is van een mogelijke besmetting (overige dataverkeer
+                                    is tussen telefoons onderling). Daarmee levert het massaal downloaden en
+                                    installeren van de app geen dataverkeer op overheids- servers en kan je
+                                    daarvoor bijvoorbeeld een NL alert gebruiken.
+                                </p>
+                                <p >
+                                    Gelukkig is <a href="https://www.privatetracer.org/">privatetracer.org</a>
+                                    gebaseerd op een open source project. Dat betekent dat wij de bovenstaande 7 punten kunnen aanpassen.
+                                </p>
+                            </div><!-- ./col-heading -->
+                        </div><!-- ./col-text -->
+                    </div><!-- ./col -->
+                </div><!-- ./row -->
+            </div><!-- ./container -->
+        </div><!-- ./wrap-container -->
+
+
+        <div class="wrap-container8040 bg-grey">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-10 col-md-7 col-lg-7 ">
+                        <div class="col-text20 margin-bottom20">
+                            <div class="post-heading-left">
+                                <h2 id="verhuizen" style="color: #4386FB">Afwijkende klantreis</h2>
+
+                                <p>
+                                    We zien echter wel een uitdaging op punt 4 “Binnen de app kan iemand
+                                    zelfstandig aangeven besmet te zijn”, dit wijkt af van de voorkomende
+                                    gedachte dat een arts dit aangeeft (om false positives te voorkomen). Aan
+                                    de andere kant onderschrijven we juist dat een burger zelf initiatief moet
+                                    nemen om zijn code en mogelijke besmetting kenbaar te maken.
+                                </p>
+
+                                <p>
+                                    We stellen voor om hier te handelen in lijn met het TAN principe van
+                                    pepp-pt, waarbij een gebruiker kan aangeven te vermoeden dat hij of zij
+                                    besmet is, maar hierna terecht komt in in een “voorraadbak” bij
+                                    dienstdoende arts (hetzij GGD of huisarts) die dit bevestigt. We zien
+                                    hierin een sterke overlap met de Corona check app van het OLVG te
+                                    Amsterdam. Qua functionaliteit kan men zich voorstellen dat de gebruiker
+                                    twee routes heeft.
+                                </p>
+                                <ol>
+                                    <li >
+                                        <p>
+                                            Alleen zijn code “activeren”, vervolgens zelf contact opnemen met
+                                            een huisarts om deze te laten bevestigen.
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <p>
+                                            Zijn contact gegevens kenbaar te maken bij het GGD zodat hij gebeld
+                                            kan worden voor een telefonisch consult
+                                        </p>
+                                    </li>
+                                </ol>
+                                <br/>
+                                <p>
+                                    Concreet betekent dit dat de routing in private tracker moet worden
+                                    aangepast, er een beveiligde omgeving voor artsen (Huisartsportaal) moet
+                                    komen en deze aan de hand van een beveiligde API (Nabijheid Register)
+                                    gegevens moet ontsluiten.
+                                </p>
+                            </div><!-- ./col-heading -->
+                        </div><!-- ./col-text -->
+                    </div><!-- ./col -->
+                </div><!-- ./row -->
+            </div><!-- ./container -->
+        </div><!-- ./wrap-container -->
+
+
+        <div class="wrap-container8040">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-10 col-md-7 col-lg-7 ">
+                        <div class="col-text20 margin-bottom20">
+                            <div class="post-heading-left">
+                                <h2 id="verhuizen" style="color: #4386FB">Invulling van het nabijheids register</h2>
+
+                                <p dir="ltr">
+                                    Om de privacy van de nabijheidsapp te waarborgen houdt onze applicatie
+                                    slechts enkele gegevens vast:
+                                </p>
+                                <ol>
+                                    <li >
+                                        <p>Een unieke identifier die niet is gelinkt aan andere applicaties
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <p>Een keuze van de gebruiker of deze “besmet” is
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <p>Een keuze of de gemelde besmetting bevestigd is door een GGD of huisarts
+                                        </p>
+                                    </li>
+                                </ol>
+                                <p>
+                                    Verder kan de gebruiker ervoor kiezen om contactgegevens achter te laten
+                                    voor GGD of huisarts, maar deze kunnen alleen bestaan als er een
+                                    onbevestigde besmetting is vastgelegd. Als de gebruiker de besmetting
+                                    afmeldt, of de GGD of huisarts de besmetting bevestigd wordt de verwijzing
+                                    naar het contact uit het component verwijderd, en worden de contactgegevens
+                                    vernietigd.
+                                </p>
+                            </div><!-- ./col-heading -->
+                        </div><!-- ./col-text -->
+                    </div><!-- ./col -->
+                </div><!-- ./row -->
+            </div><!-- ./container -->
+        </div><!-- ./wrap-container -->
+
+
+        {{  include('/widgets/contact.html.twig') }}
+
+
+    {% endblock %}
+
