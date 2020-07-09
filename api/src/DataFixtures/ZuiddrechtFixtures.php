@@ -963,6 +963,28 @@ class ZuiddrechtFixtures extends Fixture
         $slug->setSlug('question');
         $manager->persist($slug);
 
+        $id = Uuid::fromString('71e84ed8-607a-4825-8240-695055be1e20');
+        $template = new Template();
+        $template->setName('new-pitch');
+        $template->setDescription('new-pitch');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Zuiddrecht/website/new-pitch.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('new-pitch');
+        $slug->setSlug('new-pitch');
+        $manager->persist($slug);
+
         // Template groups
         $id = Uuid::fromString('5c59f238-1ce3-4c8d-8107-4bd8e2134648');
         $groupNews = new TemplateGroup();
