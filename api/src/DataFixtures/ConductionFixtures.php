@@ -495,7 +495,7 @@ class ConductionFixtures extends Fixture
         $style = new Style();
         $style->setName('stage');
         $style->setDescription('Huistlijl stage');
-        $style->setCss(':root {--primary: #ffbc2c;--primary2: white;--secondary: #ffc446;--secondary2: #ffc446;}
+        $style->setCss(':root {--primary: #ffbc2c;--primary2: black;--secondary: #ffc446;--secondary2: #ffc446;}
         .main-title {color: var(--primary2) !important;}.logo-header {background: var(--primary);}.navbar-header
         {background: var(--primary);}.bg-primary-gradient {background: linear-gradient(-45deg, var(--secondary),
          var(--secondary2)) !important;}
@@ -767,6 +767,7 @@ class ConductionFixtures extends Fixture
 
         .footerStyle {
             background-color: #ffbc2c;
+            color: black;
         }
 
         .top-nav-autoresize .nav__link:hover {
@@ -775,6 +776,7 @@ class ConductionFixtures extends Fixture
 
         .menuStyle {
             background-color: #ffbc2c;
+            color: black;
         }
 
         .newsCard {
@@ -800,6 +802,7 @@ class ConductionFixtures extends Fixture
                 background-color: #ffbc2c;
                 float:left;
                 width: 33%;
+                color: black;
                 padding-left: 10px;
                 padding-right: 10px;
                 padding-top: 10px;
@@ -1150,6 +1153,50 @@ class ConductionFixtures extends Fixture
         $slug->setSlug('teams');
         $manager->persist($slug);
 
+        $id = Uuid::fromString('6520071f-e40e-4a64-bb82-859a1216298e');
+        $template = new Template();
+        $template->setName('Organisaties');
+        $template->setDescription('Stage Organisaties Page');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Conduction/Stage/organisaties.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($stage);
+        $slug->setName('organisaties');
+        $slug->setSlug('organisaties');
+        $manager->persist($slug);
+
+        $id = Uuid::fromString('52118ee2-df4f-4ae2-b535-e481f3eb93a3');
+        $template = new Template();
+        $template->setName('Organisatie');
+        $template->setDescription('Stage Organisatie Page');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Conduction/Stage/organisatie.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($stage);
+        $slug->setName('organisatie');
+        $slug->setSlug('organisatie');
+        $manager->persist($slug);
+
         $id = Uuid::fromString('09dfc502-19ce-4b11-8e0a-a7fc456a5c52');
         $template = new Template();
         $template->setName('footer1');
@@ -1272,7 +1319,7 @@ class ConductionFixtures extends Fixture
         $template->setName('pi event');
         $template->setTitle('pi event is van start');
         $template->setDescription('Het Pi event is eindelijk van start! In dit event gaan verschillende gemeentes hun nieuwe platformen tonen.');
-        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Zuiddrecht/website/nieuws/pi-event.html.twig', 'r'));
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Conduction/Stage/nieuws/pi-event.html.twig', 'r'));
         $template->setTemplateEngine('twig');
         $manager->persist($template);
         $date = new \DateTime();
@@ -1292,6 +1339,56 @@ class ConductionFixtures extends Fixture
         $slug->setApplication($stage);
         $slug->setName('pi-event');
         $slug->setSlug('pi-event');
+        $manager->persist($slug);
+
+        $id = Uuid::fromString('ee7d531b-9245-4cbe-9cef-e1b800cdd3f4');
+        $template = new Template();
+        $template->setName('corona');
+        $template->setTitle('Corona maatregelen in Zuid-drecht');
+        $template->setDescription('De corona maatregelingen worden per 1 Juli versoepeld in de gemeente Zuid drecht. De cijfers blijken dusdanig te dalen in deze gemeente dat er weer steeds meer mogenlijk is.');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Conduction/Stage/nieuws/corona.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $date = new \DateTime();
+        $date->sub(new \DateInterval('P1D'));
+        $template->setDateCreated($date);
+        $template->setDateModified($date);
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupNews);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($stage);
+        $slug->setName('corona');
+        $slug->setSlug('corona');
+        $manager->persist($slug);
+
+        $id = Uuid::fromString('d76116ed-2704-4b9d-8101-2de5cfb343c9');
+        $template = new Template();
+        $template->setName('Woninginbraak gehalveerd');
+        $template->setTitle('Woninginbraak gehalveerd in de gemeente zuid-drecht');
+        $template->setDescription('Woning inbraken lijken steeds minder voor te komen in de gemeente Zuid drecht. Uit cijfers blijkt dat dit vergeleken vorig jaar alweer met 50% is gedaald.');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Conduction/Stage/nieuws/woning-inbraak.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupNews);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($stage);
+        $slug->setName('woning-inbraak');
+        $slug->setSlug('woning-inbraak');
         $manager->persist($slug);
 
         $manager->flush();
