@@ -1,0 +1,50 @@
+{# templates/home/index.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <header class="content__header">
+        <a class="backlink" href="{{ path('app_tender_challenge', {id: resource.tender.id}) }}">Terug naar aanbesteding</a>
+    </header>
+    <div class="row">
+        <div class="col-sm-10 col-sm-offset-1 col-lg-8 col-lg-offset-2">
+            <div class="content-background">
+                <div class="content ">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1>{{ resource.name|capitalize }}</h1>
+                            <p>{{ resource.description|capitalize }}</p>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+{#        <div class="col-sm-12 col-lg-4">#}
+{#            <div class="content-background">#}
+{#                <div class="content ">#}
+{#                    <h1>Kenmerken</h1>#}
+{#                    {% if resource.submitters is defined and resource.submitters is not empty %}#}
+{#                        <b>Aangemaakt#}
+{#                            door:</b>{% for submitter in resource.submitters %} {{ submitter }},{% endfor %}#}
+{#                        <br>#}
+{#                    {% endif %}#}
+{#                    {% if resource.dateSubmitted is defined and resource.dateSubmitted is not empty %}#}
+{#                        <b>Ingediend op: </b>{{ resource.dateSubmitted|date("d-m-Y H:i", "Europe/Paris") }}#}
+{#                        <br>#}
+{#                    {% endif %}#}
+{#                    {% if resource.budget is defined and resource.budget is not empty %}#}
+{#                        <b>Beschikbaar budget: </b>&euro; {{ resource.budget }},-#}
+{#                        <br>#}
+{#                    {% endif %}#}
+{#                    {% if resource.dateClose is defined and resource.dateClose is not empty %}#}
+{#                        <b>Datum van beëindiging: </b>{{ resource.dateClose|date("d-m-Y H:i", "Europe/Paris") }}#}
+{#                        <br>#}
+{#                    {% endif %}#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+    </div>
+
+{% endblock %}

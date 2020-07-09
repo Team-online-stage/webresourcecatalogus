@@ -442,6 +442,40 @@ class ZuiddrechtFixtures extends Fixture
             }
         }
 
+        .calendarSelect {
+            border: none;
+            background-color: white;
+            width: 70px;
+        }
+
+        @media only screen and (min-width: 990px) {
+            .calendarSelect{
+                width: 100%;
+            }
+        }
+
+        .progressbar {
+            background-color: grey;
+            padding: 3px;
+            position: relative;
+            text-align: center;
+        }
+
+        .progressbar>div {
+            background-color: #148839;
+            width: 0%;
+            height: 20px;
+        }
+
+        .progressbar>p {
+            position: absolute;
+            left: 0;
+            right: 0;
+            margin-left: auto;
+            margin-right: auto;
+            width: 100%;
+            color: white;
+        }
         ');
 
         $style->setfavicon($favicon);
@@ -861,6 +895,72 @@ class ZuiddrechtFixtures extends Fixture
         $slug->setApplication($application);
         $slug->setName('challenge');
         $slug->setSlug('challenge');
+        $manager->persist($slug);
+
+        $id = Uuid::fromString('efb8eb07-1bea-4946-b160-e7e4198194c6');
+        $template = new Template();
+        $template->setName('proposal');
+        $template->setDescription('proposal');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Zuiddrecht/website/proposal.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('proposal');
+        $slug->setSlug('proposal');
+        $manager->persist($slug);
+
+        $id = Uuid::fromString('93a13fa8-d81b-4e37-9fef-8320af96d0db');
+        $template = new Template();
+        $template->setName('deal');
+        $template->setDescription('deal');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Zuiddrecht/website/proposal.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('deal');
+        $slug->setSlug('deal');
+        $manager->persist($slug);
+
+        $id = Uuid::fromString('03e7b509-9868-40d3-9ecf-5ef725be99e5');
+        $template = new Template();
+        $template->setName('question');
+        $template->setDescription('question');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Zuiddrecht/website/question.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('question');
+        $slug->setSlug('question');
         $manager->persist($slug);
 
         // Template groups
