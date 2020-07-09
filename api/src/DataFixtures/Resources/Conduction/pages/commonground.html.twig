@@ -150,10 +150,10 @@
         <div class="row">
 
             <div class="col-sm-6 col-sm-push-6">
-
-                <img class="img-responsive img-fluid" src="{{ asset('images/Commonground_afb4.jpg') }}"
-                     style="margin-top: -130px ">
-
+                <a href="images/Commonground_afb4.jpg">
+                    <img class="img-responsive img-fluid" src="{{ asset('images/Commonground_afb4.jpg') }}"
+                         style="margin-top: -130px ">
+                </a>
             </div>
 
             <div class="col-sm-6 col-sm-pull-6">
@@ -246,18 +246,19 @@
                     <div class="col-md-6">
                         <div class="post-heading-left-orange">
                             <h2 style="color: #FAB702">Join!</h2>
+                            <br>
                         </div>
 
                         <div class="ml-5">
-                            <h6>Common Gound is voor en van iedereen.
+                            <h5>Common Ground is voor en van iedereen.
                                 Wilt u ook bijdragen aan het succes van Common Ground, bel, mail of stuur ons een
                                 berichtje
                                 via de chat, ook voor vragen uiteraard.
                                 Wij gaan graag samen met u aan de slag!
-                            </h6>
+                            </h5>
 
-                            <a href="https://share.hsforms.com/1v2XzjkSpSumDa_q-O69MKg3mxau"
-                               class="btn-custom btn-more-link ">
+                            <a href="/contact"
+                               class="btn-custom btn-more-link">
                                 Contact</a>
                         </div>
                     </div>
@@ -268,6 +269,45 @@
         </div>
     </div>
 
-    {{ include('/widgets/contact.html.twig') }}
+    <!-- #contact -->
+    <div id="contact" class="wrap-container80 bg-color">
+
+        <!-- .container -->
+        <div class="container">
+
+            <!-- .row -->
+            <div class="row">
+
+
+                <div class="col-md-6">
+                    <div class="post-heading-center">
+                        <h4>Conduction blauw past bij jou!</h4>
+                        <h2 style="color: white">Ook werken of stage bij Conduction?</h2>
+                        <p>Wij zijn altijd op zoek naar gedreven, originele vakfanaten, pioniers en creatievelingen (to be).
+                            Voel je je aangesproken? Neem vooral contact met ons op! :) </p>
+
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <form action="/contact" method="post" class="affa-form-contact">
+                        <div class="submit-status"></div> <!-- submit status -->
+                        <input type="text" name="name" placeholder="Your Name"/>
+                        <input type="text" name="email" placeholder="Email Address *"/>
+                        <textarea name="message" placeholder="Message *"></textarea>
+                        <button type="submit" name="submit" class=" btn-block btn-custom2" style="padding: unset;">
+                            Join !
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+            <!-- .row end -->
+
+        </div>
+        <!-- .container end -->
+
+    </div>
+    <!-- #contact end -->
 
 {% endblock %}

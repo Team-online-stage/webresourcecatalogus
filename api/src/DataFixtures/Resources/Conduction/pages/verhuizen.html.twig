@@ -1,0 +1,47 @@
+{# templates/home/index.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block headercontent %}
+    <!-- .header-content -->
+    <div class="header-content">
+
+        <!-- .container -->
+        <!-- /.container -->
+    </div><!-- /.header-content -->
+{% endblock %}
+
+{% block body %}
+    <div class="wrap-container8040 bg-grey">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-10 col-md-7 col-lg-7 ">
+                    <div class="col-text20 margin-bottom20">
+                        <div class="post-heading-left">
+                            <h2 id="verhuizen" style="color: #4386FB">Verhuizen</h2>
+                            <h4 style="color: #4386FB">Product: Verhuisplanner</h4>
+
+                            <p>Samen met de gemeente 's-Hertogenbosch, Eindhoven en de Solviteers hebben we een applicatie
+                                gebouwd voor het melden van een verhuizing. Waarbij wij ons vooral hebben gericht op het
+                                ontwikkelen van de backend en de Solviteers op de frontend.</p>
+                            <br>
+                            <img src="{{ asset('images/gemeenteeindhovengrijzeachtergrond.png') }}" width="110px">
+                            <img src="{{ asset('images/Gemeentedenboschgrijzeachtergrond.png') }}" width="110px">
+                            <img src="{{ asset('images/solviteersgrijzeachtergrond.png') }}" width="110px">
+                            <br>
+                        </div><!-- ./col-heading -->
+                    </div><!-- ./col-text -->
+                </div><!-- ./col -->
+                <div class="col-sm-10 col-md-5 col-lg-5">
+                    <img src={{ asset('images/verhuizenproject.png') }} width="600px">
+                </div><!-- ./col -->
+            </div><!-- ./row -->
+        </div><!-- ./container -->
+    </div><!-- ./wrap-container -->
+
+
+    {{  include('/widgets/contact.html.twig') }}
+
+
+{% endblock %}
+
