@@ -13446,7 +13446,7 @@ components:
           description: 'The description of this page.'
           type: string
           nullable: true
-        slug:
+        createSlug:
           description: 'Whether to auto create a slug on creation of this template'
           type: boolean
         content:
@@ -13562,7 +13562,7 @@ components:
           description: 'The description of this page.'
           type: string
           nullable: true
-        slug:
+        createSlug:
           description: 'Whether to auto create a slug on creation of this template'
           type: boolean
         content:
@@ -14443,12 +14443,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-07-09 14:48:27'
+        example: '2020-07-10 06:04:37'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-07-09 14:48:27'
+        example: '2020-07-10 06:04:37'
     required: []
   AuditTrail-write:
     properties:
@@ -14496,12 +14496,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-07-09 14:48:27'
+        example: '2020-07-10 06:04:37'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-07-09 14:48:27'
+        example: '2020-07-10 06:04:37'
     required: []
   ChangeLog-write:
     properties:
