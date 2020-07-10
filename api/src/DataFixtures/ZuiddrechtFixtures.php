@@ -721,6 +721,116 @@ class ZuiddrechtFixtures extends Fixture
         $slug->setSlug('nieuwsoverzicht');
         $manager->persist($slug);
 
+        $id = Uuid::fromString('66687380-ec1a-4b87-9ccd-5fa7af5e8c50');
+        $template = new Template();
+        $template->setName('api');
+        $template->setDescription('api');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Zuiddrecht/website/api.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('api');
+        $slug->setSlug('api');
+        $manager->persist($slug);
+
+        $id = Uuid::fromString('b4d411c7-17b3-469b-8a4a-2f334dbaeb4c');
+        $template = new Template();
+        $template->setName('concept');
+        $template->setDescription('concept');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Zuiddrecht/website/concept.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('concept');
+        $slug->setSlug('concept');
+        $manager->persist($slug);
+
+        $id = Uuid::fromString('9ab2a88c-b8f2-434d-bc63-76402a0166c9');
+        $template = new Template();
+        $template->setName('contact');
+        $template->setDescription('contact');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Zuiddrecht/website/contact.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('contact');
+        $slug->setSlug('contact');
+        $manager->persist($slug);
+
+        $id = Uuid::fromString('5ecb3603-c245-43f5-85cb-80e4640639f6');
+        $template = new Template();
+        $template->setName('repositories');
+        $template->setDescription('repositories');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Zuiddrecht/website/repositories.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('repositories');
+        $slug->setSlug('repositories');
+        $manager->persist($slug);
+
+        $id = Uuid::fromString('01cb91e9-7211-45b8-aee9-6f044f3b41dc');
+        $template = new Template();
+        $template->setName('uitleg');
+        $template->setDescription('uitleg');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Zuiddrecht/website/uitleg.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('uitleg');
+        $slug->setSlug('uitleg');
+        $manager->persist($slug);
+
         $id = Uuid::fromString('bc227e94-e542-4623-a88b-ca9f74c52bf8');
         $template = new Template();
         $template->setName('cookies');
