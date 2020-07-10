@@ -2166,44 +2166,46 @@ class ConductionFixtures extends Fixture
         $menuItem->setMenu($menu);
         $manager->persist($menuItem);
 
-        // LoggedOut Menu
-//        $id = Uuid::fromString('b239cf91-2440-495b-853f-3c1e0fe54ef7');
-//        $menu = new Menu();
-//        $menu->setName('Logged Out Menu');
-//        $menu->setDescription('De login opties voor het menuItem inloggen');
-//        $menu->setApplication($stage);
-//        $manager->persist($menu);
-//        $menu->setId($id);
-//        $manager->persist($menu);
-//        $manager->flush();
-//        $menu = $manager->getRepository('App:Menu')->findOneBy(['id'=> $id]);
-//
-//        $menuItem = new MenuItem();
-//        $menuItem->setName('Student');
-//        $menuItem->setDescription('Student');
-//        $menuItem->setOrder(1);
-//        $menuItem->setType('slug');
-//        $menuItem->setHref('/home');
-//        $menuItem->setMenu($menu);
-//        $manager->persist($menuItem);
-//
-//        $menuItem = new MenuItem();
-//        $menuItem->setName('Onderwijsinstelling');
-//        $menuItem->setDescription('Onderwijsinstelling');
-//        $menuItem->setOrder(2);
-//        $menuItem->setType('slug');
-//        $menuItem->setHref('/home');
-//        $menuItem->setMenu($menu);
-//        $manager->persist($menuItem);
-//
-//        $menuItem = new MenuItem();
-//        $menuItem->setName('Gemeente of Organisatie');
-//        $menuItem->setDescription('Gemeente of Organisatie');
-//        $menuItem->setOrder(3);
-//        $menuItem->setType('slug');
-//        $menuItem->setHref('/home');
-//        $menuItem->setMenu($menu);
-//        $manager->persist($menuItem);
+        /**
+         * // LoggedOut Menu
+         * $id = Uuid::fromString('b239cf91-2440-495b-853f-3c1e0fe54ef7');
+         * $menu = new Menu();
+         * $menu->setName('Logged Out Menu');
+         * $menu->setDescription('De login opties voor het menuItem inloggen');
+         * $menu->setApplication($stage);
+         * $manager->persist($menu);
+         * $menu->setId($id);
+         * $manager->persist($menu);
+         * $manager->flush();
+         * $menu = $manager->getRepository('App:Menu')->findOneBy(['id'=> $id]);
+         *
+         * $menuItem = new MenuItem();
+         * $menuItem->setName('Student');
+         * $menuItem->setDescription('Student');
+         * $menuItem->setOrder(1);
+         * $menuItem->setType('slug');
+         * $menuItem->setHref('/home');
+         * $menuItem->setMenu($menu);
+         * $manager->persist($menuItem);
+         *
+         * $menuItem = new MenuItem();
+         * $menuItem->setName('Onderwijsinstelling');
+         * $menuItem->setDescription('Onderwijsinstelling');
+         * $menuItem->setOrder(2);
+         * $menuItem->setType('slug');
+         * $menuItem->setHref('/home');
+         * $menuItem->setMenu($menu);
+         * $manager->persist($menuItem);
+         *
+         * $menuItem = new MenuItem();
+         * $menuItem->setName('Gemeente of Organisatie');
+         * $menuItem->setDescription('Gemeente of Organisatie');
+         * $menuItem->setOrder(3);
+         * $menuItem->setType('slug');
+         * $menuItem->setHref('/home');
+         * $menuItem->setMenu($menu);
+         * $manager->persist($menuItem);
+         */
 
         // Template groups
         $groupPages = new TemplateGroup();
