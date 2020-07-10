@@ -21,17 +21,12 @@
                                         <span><b>Budget:</b> &euro; {{ challenge.budget }},-</span>
                                         <br>
                                         <span><b>Deadline:</b> {{ challenge.dateClose|date("d-m-Y", "Europe/Paris") }}</b></span>
-                                        {#                                        <span>{{ challenge.description|slice(0, 110)|raw ~ '...' }}</span>#}
+                                        <br><br>
+                                        <span>{{ challenge.description|slice(0, 110)|raw ~ '...' }}</span>
                                     </div>
                                     <div class="col-sm-6">
-                                        {#                                        <div style="float: right;">#}
-                                        {#                                            <div style="display: flex; flex-direction: column; justify-items: center;">#}
-                                        {#                                                <p style="margin: 0; color: grey;">budget: {{ challenge.budget }}<i style="color: grey" class="fas fa-euro-sign"></i></p>#}
-                                        {#                                                <p style="margin: 0;">deadline: {{ challenge.dateClose|date("d-m-Y H:i", "Europe/Paris") }}</p>#}
-                                        {#                                                <a href="{{ path('app_tender_challenge', {id: challenge.id}) }}">lees meer</a>#}
-                                        {#                                            </div>#}
 
-                                        <a style="margin-top: 20px; float: right" href="{{ path('app_tender_challenge', {id: challenge.id}) }}"
+                                        <a style="margin-top: 20px; float: right; background: #ffea00" href="{{ path('app_tender_challenge', {id: challenge.id}) }}"
                                            rel="noopener" class="btn btn--primary"
                                            target="_blank">Bekijk deze aanbesteding<span
                                                 class="btn__icon icon icon-arr-forward"
@@ -52,9 +47,26 @@
                 <legend class="filter__title">Filters
                     <button class="btn btn-primary" style="float: right;" type="submit">Filter</button>
                 </legend>
+
                 <div class="input__group input__group--text input__group--compact">
-                    <label class="input__label input__label--text" for="limit">Aantal items:</label>
+
+                    <label class="input__label input__label--text" for="limit">Trefwoord(en)</label>
                     <input type="text" name="filter[limit]" id="limit" class="input__control input__control--text">
+
+                    <label class="input__label">Datum ingediend</label>
+                    <input style="padding: 8px 6px 8px 6px" class="input__control input__control--m input__control--linked" type="date">
+
+                    <label class="input__label">Datum afloop</label>
+                    <input style="padding: 8px 6px 8px 6px" class="input__control input__control--m input__control--linked" type="date">
+
+                    <label class="input__label" for="budget">Budget</label>
+                    <input aria-label="Budget" title="Budget" type="text" id="budget"
+                           class="input__control input__control--s input__control--text">
+
+                    <label class="input__label input__label--text" for="limit">Aanbieder</label>
+                    <input type="text" name="filter[limit]" id="limit" class="input__control input__control--text">
+
+
                 </div>
             </fieldset>
         </div>

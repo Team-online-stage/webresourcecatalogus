@@ -20,12 +20,15 @@
                                         <span class="card__title">{{ pitch.name|capitalize }}</span><br>
                                         {#                                        <span>{{ pitch.description|slice(0, 110)|raw ~ '...' }}</span>#}
                                         <span><b>Benodigd budget:</b> &euro; {{ pitch.requiredBudget }},-</span>
+                                        <br>
                                         <span><b>Ingediend op:</b> {{ pitch.dateSubmitted|date("d-m-Y", "Europe/Paris") }}</span>
+                                        <br><br>
+                                        <span>{{ pitch.description|slice(0, 110)|raw ~ '...' }}</span>
                                     </div>
                                     <div class="col-sm-6">
-                                        <a style="margin-top: 20px; float: right"
+                                        <a style="margin-top: 20px; float: right; background: #ffea00"
                                            href="{{ path('app_tender_pitch', {id: pitch.id}) }}"
-                                           rel="noopener" class="btn btn--primary"
+                                           rel="noopener" class="btn btn--primary content-background background--geel"
                                            target="_blank">Bekijk deze pitch<span
                                                 class="btn__icon icon icon-arr-forward"
                                                 title="" role=""></span></a>
@@ -91,9 +94,29 @@
                 <legend class="filter__title">Filters
                     <button class="btn btn-primary" style="float: right;" type="submit">Filter</button>
                 </legend>
+
                 <div class="input__group input__group--text input__group--compact">
-                    <label class="input__label input__label--text" for="limit">Aantal items:</label>
+
+                    <label class="input__label input__label--text" for="limit">Trefwoord(en):</label>
                     <input type="text" name="filter[limit]" id="limit" class="input__control input__control--text">
+
+                    <label class="input__label">Datum ingediend</label>
+                    <input style="padding: 8px 6px 8px 6px" class="input__control input__control--m input__control--linked" type="date">
+
+                    <label class="input__label">Datum afloop</label>
+                    <input style="padding: 8px 6px 8px 6px" class="input__control input__control--m input__control--linked" type="date">
+
+                    <label class="input__label" for="budget">Budget</label>
+                    <input aria-label="Budget" title="Budget" type="text" id="budget"
+                           class="input__control input__control--s input__control--text">
+
+                    <label class="input__label" for="funded">Gefinancierd</label>
+                    <select id="funded" class="input__control input__control--s input__control--select ">
+                        <option></option>
+                        <option>Ja</option>
+                        <option>Nee</option>
+                    </select>
+
                 </div>
             </fieldset>
 
@@ -108,7 +131,7 @@
             {% endif %}
 
             <div class="col-md-8 col-md-offset-2" style="margin-bottom: 20px">
-                <a style="width: 100%" href="/new-pitch" rel="noopener"
+                <a style="width: 100%" href="/chrc/new-pitch" rel="noopener"
                    class="btn btn--pnrimary {% if user is not defined or user is empty or user is null %}btn--disabled{% endif %}"
                    target="_blank">Begin een initiatief <span
                         class="btn__icon icon icon-plus-sign" title="" role=""></span></a>

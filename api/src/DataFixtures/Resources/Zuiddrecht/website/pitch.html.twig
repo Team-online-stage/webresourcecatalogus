@@ -30,78 +30,86 @@
                             <span class="collapse__title">Reacties</span>
                         </div>
                         <div class="collapse__details collapse__details--closed">
-                            {% if comments is defined and comments is not empty %}
-                                <ul class="list list--card list--card-small">
-                                    {% for comment in comments %}
-                                        <li class="card card--small">
-                                            <div class="card__content">
-                                                <div class="card__body">
-                                                    <div class="row" style=" height: 100%; width: 100%;">
-                                                        <div class="col-sm-12"
-                                                             style="padding-right: 0px;">
-                                                                <span
-                                                                    class="card__title">"{{ reaction.reaction }}"</span>
-                                                            {% if comment.author is defined and comment.author is not empty %}
-                                                                <br>
-                                                                <span>Vraag gesteld door {{ comment.author.name }}</span>
-                                                            {% endif %}
 
-                                                            <br>
-                                                            <span>Ingediend op {{ comment.dateCreated|date("d-m-Y H:i", "Europe/Paris") }}</span>
+{#                            Mock reactie  #}
 
-                                                        </div>
-                                                        {#                                                        <div class="col-sm-12 col-md-6">#}
-                                                        {#                                                            <div>#}
-                                                        {#                                                                <div>#}
-                                                        {#                                                                    <a href="{{ path('app_tender_question', {id: question.id}) }}"#}
-                                                        {#                                                                       rel="noopener" class="btn btn--primary"#}
-                                                        {#                                                                       target="_blank">Bekijk de vra(a)g(en) en#}
-                                                        {#                                                                        antwoord(en).<span#}
-                                                        {#                                                                            class="btn__icon icon icon-arr-forward"#}
-                                                        {#                                                                            title="" role=""></span></a>#}
-                                                        {#                                                                </div>#}
-                                                        {#                                                            </div>#}
-                                                        {#                                                        </div>#}
+                            <ul class="list list--card list--card-small">
+                                    <li class="card card--small">
+                                        <div class="card__content">
+                                            <div class="card__body">
+                                                <div class="row" style=" height: 100%; width: 100%;">
+                                                    <div class="col-sm-12"
+                                                         style="padding-right: 0px;">
+                                                        <span class="card__title">B.Brands</span>
+                                                        <br>
+                                                        <span>"Dit is een mock reactie."</span>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </li>
-                                    {% endfor %}
-                                </ul>
+                                        </div>
+                                    </li>
+                            </ul>
+
+{#                            Reacties       #}
+
+{#                            {% if comments is defined and comments is not empty and comments is not null %}#}
+{#                                <ul class="list list--card list--card-small">#}
+{#                                    {% for comment in comments %}#}
+{#                                        <li class="card card--small">#}
+{#                                            <div class="card__content">#}
+{#                                                <div class="card__body">#}
+{#                                                    <div class="row" style=" height: 100%; width: 100%;">#}
+{#                                                        <div class="col-sm-12"#}
+{#                                                             style="padding-right: 0px;">#}
+{#                                                            #}{#                                                                <span#}
+{#                                                            #}{#                                                                    class="card__title">"{{ comment.review }}"</span>#}
+{#                                                            {% if comment.author is defined and comment.author is not empty %}#}
+{#                                                                <br>#}
+{#                                                                <span>Vraag gesteld door {{ comment.author.name }}</span>#}
+{#                                                            {% endif %}#}
+{#                                                        </div>#}
+{#                                                    </div>#}
+{#                                                </div>#}
+{#                                            </div>#}
+{#                                        </li>#}
+{#                                    {% endfor %}#}
+{#                                </ul>#}
+{#                            {% else %}#}
+{#                                <p style="color:gray">Er zijn nog geen reacties.</p>#}
+{#                            {% endif %}#}
+
+                            {% if user is not defined or user is empty or user is null %}
+
+                                <p>
+                                    <a href="{{ commonground_cleanurl({"component":"ds"}) }}?responceUrl={{ absolute_url(path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params'))) }}">Login</a>
+                                    om een reactie te plaatsen.</p>
+
                             {% else %}
-                                <p style="color:gray">Er zijn nog geen reacties.</p>
+
+                                <form method="post" action="{{ path('app_tender_pitch', {id: resource.id}) }}">
+
+                                    <div class="input">
+                                        <label class="input__label" for="textarea_voorbeeld">Voer hier uw
+                                            reactie
+                                            in:</label>
+                                        <textarea id="textarea_voorbeeld"
+                                                  class="input__control input__control--l input__control--text"
+                                                  name="review"></textarea>
+                                    </div>
+
+                                    <div class="input">
+                                        <button name="add_comment" type="submit" class="btn btn--primary">
+                                            Verstuur
+                                        </button>
+                                    </div>
+
+                                </form>
+
                             {% endif %}
-
-
-                            <form method="post" action="{{ path('app_tender_pitch', {id: resource.id}) }}">
-
-                                <div class="collapse" role="status">
-                                    <div x-uno-collapse="" class="collapse__header">
-                                        <i class="collapse__indicator">
-                                        <span class="screenreader-only" data-contracted-i18n="ingeklapt"
-                                              data-expanded-i18n="uitgeklapt"></span>
-                                        </i>
-                                        <span class="collapse__title">Reageer</span>
-                                    </div>
-                                    <div class="collapse__details collapse__details--closed">
-                                        <div class="input">
-                                            <label class="input__label" for="textarea_voorbeeld">Voer hier uw reactie
-                                                in:</label>
-                                            <textarea id="textarea_voorbeeld"
-                                                      class="input__control input__control--l input__control--text"
-                                                      name="review"></textarea>
-                                        </div>
-
-                                        <div class="input">
-                                            <button name="add_comment" type="submit" class="btn btn--primary">Verstuur</button>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </form>
 
                         </div>
                     </div>
+
                     {% if resource.proposals is defined and resource.proposals is not empty %}
                         <h1>Voorstellen:</h1>
                         <ul class="list list--card list--card-small">
@@ -113,7 +121,13 @@
                                                 <div class="col-sm-12 col-md-6"
                                                      style="padding-right: 0px;">
                                                     <span
-                                                        class="card__title">Voorstel van {% for submitter in resource.submitters %}{{ submitter }}{% endfor %}</span>
+                                                        class="card__title">Voorstel van
+                                                        {% if proposal.submitters is defined and proposal.submitters is not empty %}
+                                                            {% for submitter in proposal.submitters %}
+                                                                {{ submitter }}
+                                                            {% endfor %}
+                                                        {% endif %}
+                                                    </span>
 
                                                     {% if proposal.dateSubmitted is defined and proposal.dateSubmitted is not empty %}
                                                         <br>
@@ -161,7 +175,11 @@
                     <h1>Kenmerken</h1>
                     {% if resource.submitters is defined and resource.submitters is not empty %}
                         <b>Aangemaakt
-                            door:</b>{% for submitter in resource.submitters %} {{ submitter }},{% endfor %}
+                            door:</b>
+                        {% for submitter in resource.submitters %}
+                            {% set person = commonground_resource(submitter) %}
+                            {{ person.naam.voorletters }} {{ person.naam.geslachtsnaam }}
+                        {% endfor %}
                         <br>
                     {% endif %}
                     {% if resource.dateSubmitted is defined and resource.dateSubmitted is not empty %}
@@ -208,18 +226,21 @@
                 donutChart.value = 66;
                 donutChart.draw();
             });
-
-            // Load collapse component
-            System.import('/uno/components/collapse/collapse.js').then(function (module) {
-                // Select all collapsible elements on the page
-                var collapses = document.querySelectorAll('[x-uno-collapse]');
-                // Initialize all collapses
-                for (var i = 0; i < collapses.length; i++) {
-                    new module.Collapse(collapses.item(i));
-                }
-            });
         </script>
 
     {% endif %}
+
+
+    <script>
+        // Load collapse component
+        System.import('/uno/components/collapse/collapse.js').then(function (module) {
+            // Select all collapsible elements on the page
+            var collapses = document.querySelectorAll('[x-uno-collapse]');
+            // Initialize all collapses
+            for (var i = 0; i < collapses.length; i++) {
+                new module.Collapse(collapses.item(i));
+            }
+        });
+    </script>
 
 {% endblock %}
