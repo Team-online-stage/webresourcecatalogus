@@ -48,7 +48,6 @@ class ConductionFixtures extends Fixture
         $conduction->setName('Conduction');
         $conduction->setDescription('Conduction');
         $conduction->setRsin('');
-        //$conduction->setContact('https://cc.huwelijksplanner.online/organizations/95c3da92-b7d3-4ea0-b6d4-3bc24944e622');
         $manager->persist($conduction);
         $conduction->setId($id);
         $manager->persist($conduction);
@@ -2105,7 +2104,7 @@ class ConductionFixtures extends Fixture
         $configuration->setConfiguration(
             [
                 'mainMenu'          => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'da3d55e3-6b7e-47f3-856d-eb158212d8af']),
-                'loggedOut'         => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'b239cf91-2440-495b-853f-3c1e0fe54ef7']),
+                //'loggedOut'         => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'b239cf91-2440-495b-853f-3c1e0fe54ef7']),
                 'home'              => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'6079cc7d-7b69-4db3-ad17-6bf972cca6a2']),
                 'footer1'           => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'09dfc502-19ce-4b11-8e0a-a7fc456a5c52']),
                 'footer2'           => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'23b58ab8-45a6-4fbf-a180-6aac96da4df6']),
@@ -2177,6 +2176,7 @@ class ConductionFixtures extends Fixture
         $menuItem->setMenu($menu);
         $manager->persist($menuItem);
 
+        /**
         // LoggedOut Menu
         $id = Uuid::fromString('b239cf91-2440-495b-853f-3c1e0fe54ef7');
         $menu = new Menu();
@@ -2215,6 +2215,8 @@ class ConductionFixtures extends Fixture
         $menuItem->setHref('/home');
         $menuItem->setMenu($menu);
         $manager->persist($menuItem);
+         *
+         */
 
         // Template groups
         $groupPages = new TemplateGroup();
