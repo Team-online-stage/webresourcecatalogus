@@ -1719,8 +1719,20 @@ class ConductionFixtures extends Fixture
         {background: var(--primary);}.bg-primary-gradient {background: linear-gradient(-45deg, var(--secondary),
          var(--secondary2)) !important;}
 
+        .processen i, span {
+            color: black;
+        }
+
         a {
             text-decoration: none;
+        }
+
+        .footer__nav a {
+            color: black !important;
+        }
+
+        .footer__nav {
+            color: black !important;
         }
 
         a:focus:not(.btn):not(.pagination__link):not(.nav__link){
@@ -1810,9 +1822,7 @@ class ConductionFixtures extends Fixture
         }
 
         @media only screen and (min-width: 35em) {
-            .processen ul {
-                padding:0
-            }
+
 
             .processen ul li {
                 width: 32%;
@@ -1848,9 +1858,6 @@ class ConductionFixtures extends Fixture
         }
 
         @media only screen and (min-width: 60em) {
-            .processen ul li:nth-child(3n) {
-                margin-right:1.25%
-            }
 
             .processen ul li:nth-child(5n) {
                 margin-right: 0
@@ -1860,10 +1867,6 @@ class ConductionFixtures extends Fixture
                 display: none
             }
 
-            .processen ul {
-                width: 66.67%;
-                float: left
-            }
         }
 
         .processen ul li{
@@ -1879,19 +1882,17 @@ class ConductionFixtures extends Fixture
             .processen {
                 margin-left: 17px;
             }
+
+
         }
 
         @media only screen and (min-width: 60em) {
             .processen ul li {
-                width:32%;
+                width:48%;
                 float: left;
                 margin-bottom: .8em;
-                margin-right: 2%
+                margin-right: 2%;
 
-            }
-
-            .processen {
-            margin-left: 0px;
             }
         }
 
@@ -1902,17 +1903,6 @@ class ConductionFixtures extends Fixture
         }
 
         @media only screen and (min-width: 60em) {
-            .processen ul li:nth-child(2n) {
-                margin-right:2%
-            }
-
-            .processen ul li:nth-child(3n) {
-                margin-right: 0
-            }
-
-            .processen ul li:nth-child(5n) {
-                margin-right: 2%
-            }
 
             .processen a {
                 min-height: 10.2em
@@ -1948,7 +1938,7 @@ class ConductionFixtures extends Fixture
             padding-top: 5px;
             padding-bottom: 5px;
             background-color: #FFBC2C;
-            color: #FFF;
+            color: black;
             text-decoration: none;
         }
 
