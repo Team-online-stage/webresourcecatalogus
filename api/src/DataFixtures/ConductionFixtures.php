@@ -48,7 +48,6 @@ class ConductionFixtures extends Fixture
         $conduction->setName('Conduction');
         $conduction->setDescription('Conduction');
         $conduction->setRsin('');
-        //$conduction->setContact('https://cc.huwelijksplanner.online/organizations/95c3da92-b7d3-4ea0-b6d4-3bc24944e622');
         $manager->persist($conduction);
         $conduction->setId($id);
         $manager->persist($conduction);
@@ -2206,8 +2205,9 @@ class ConductionFixtures extends Fixture
         $menuItem->setHref('/home');
         $menuItem->setMenu($menu);
         $manager->persist($menuItem);
-*/
          *
+         */
+
         // Template groups
         $groupPages = new TemplateGroup();
         $groupPages->setOrganization($conduction);
