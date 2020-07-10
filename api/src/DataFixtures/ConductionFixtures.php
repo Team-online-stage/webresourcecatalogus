@@ -1313,8 +1313,6 @@ class ConductionFixtures extends Fixture
         $slug->setSlug('componenten/web-resource-catalogus');
         $manager->persist($slug);
 
-
-
         // Dashboard applicatie
         $id = Uuid::fromString('6ce4dc4c-3db5-417c-ab15-4b823b81605c');
         $dashboard = new Application();
@@ -2122,7 +2120,6 @@ class ConductionFixtures extends Fixture
         $manager->persist($menu);
         $manager->flush();
         $menu = $manager->getRepository('App:Menu')->findOneBy(['id'=> $id]);
-
 
         $menuItem = new MenuItem();
         $menuItem->setName('Stages');
