@@ -2205,7 +2205,6 @@ class ConductionFixtures extends Fixture
         $menuItem->setHref('/home');
         $menuItem->setMenu($menu);
         $manager->persist($menuItem);
-         *
          */
 
         // Template groups
