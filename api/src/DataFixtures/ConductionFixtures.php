@@ -1727,6 +1727,7 @@ class ConductionFixtures extends Fixture
         a:focus:not(.btn):not(.pagination__link):not(.nav__link){
             background: #FFCC5F;
             outline: none;
+            color: black;
         }
 
         .headerImage {
@@ -1990,8 +1991,17 @@ class ConductionFixtures extends Fixture
             color: black;
         }
 
+        .nav__link {
+            color: black;
+        }
+
+        .nav__submenu {
+            background-color: #FFBC2C;
+        }
+
         .top-nav-autoresize .nav__link:hover {
             background-color: #ffc446;
+            color: black;
         }
 
         .menuStyle {
