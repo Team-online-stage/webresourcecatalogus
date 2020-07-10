@@ -2597,6 +2597,72 @@ class ConductionFixtures extends Fixture
         $manager->persist($template);
         $manager->flush();
 
+        $id = Uuid::fromString('960dcf02-5fe5-422e-98b7-c68d3d2d8256');
+        $template = new Template();
+        $template->setName('cookies');
+        $template->setDescription('cookies');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Conduction/Stage/cookies.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($stage);
+        $slug->setName('cookies');
+        $slug->setSlug('cookies');
+        $manager->persist($slug);
+
+        $id = Uuid::fromString('ebf44c6e-976a-47b4-910f-7390d64c717a');
+        $template = new Template();
+        $template->setName('proclaimer');
+        $template->setDescription('proclaimer');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Conduction/Stage/proclaimer.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($stage);
+        $slug->setName('proclaimer');
+        $slug->setSlug('proclaimer');
+        $manager->persist($slug);
+
+        $id = Uuid::fromString('3c212626-ac3a-4682-b7e5-835fbf5bc000');
+        $template = new Template();
+        $template->setName('privacy');
+        $template->setDescription('privacy');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Conduction/Stage/privacy.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($stage);
+        $slug->setName('privacy');
+        $slug->setSlug('privacy');
+        $manager->persist($slug);
+
         $id = Uuid::fromString('17f556f4-105a-44df-a74c-1dccc9f22979');
         $template = new Template();
         $template->setName('nieuwsoverzicht');
