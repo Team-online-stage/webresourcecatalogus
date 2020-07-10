@@ -561,7 +561,7 @@ class ZuiddrechtFixtures extends Fixture
 
         $menuItem = new MenuItem();
         $menuItem->setName('Ondernemers');
-        $menuItem->setDescription('Lijst van ondernemers');5
+        $menuItem->setDescription('Lijst van ondernemers');
         $menuItem->setOrder(3);
         $menuItem->setType('slug');
         $menuItem->setHref('/ondernemers');
