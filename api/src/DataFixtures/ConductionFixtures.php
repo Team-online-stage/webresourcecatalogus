@@ -2178,7 +2178,7 @@ class ConductionFixtures extends Fixture
         $manager->persist($menuItem);
 
         // LoggedOut Menu
-        $id = Uuid::fromString('da3d55e3-6b7e-47f3-856d-eb158212d8af');
+        $id = Uuid::fromString('b239cf91-2440-495b-853f-3c1e0fe54ef7');
         $menu = new Menu();
         $menu->setName('Logged Out Menu');
         $menu->setDescription('De login opties voor het menuItem inloggen');
