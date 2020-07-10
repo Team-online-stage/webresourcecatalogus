@@ -30,88 +30,34 @@
             <ul>
                 <li>
                     <a href="/tutorials">
-                        <i style="color: white; font-size: 2em;" class="fas fa-chalkboard-teacher processIcon"></i>
+                        <i style="color: black; font-size: 2em;" class="fas fa-chalkboard-teacher processIcon"></i>
                         <br>
-                        <span class="card__title" style="color: white;">Tutorials</span>
+                        <span class="card__title" style="color: black;">Tutorials</span>
                     </a>
                 </li>
                 <li>
                     <a href="/stages">
-                        <i style="color: white; font-size: 2em;"  class="fas fa-briefcase processIcon"></i>
+                        <i style="color: black; font-size: 2em;"  class="fas fa-briefcase processIcon"></i>
                         <br>
-                        <span class="card__title" style="color: white;">Stage plaatsen</span>
+                        <span class="card__title" style="color: black;">Stage plaatsen</span>
                     </a>
                 </li>
                 <li>
                     <a href="/challenges">
-                        <i style="color: white; font-size: 2em;" class="fas fa-exclamation processIcon"></i>
+                        <i style="color: black; font-size: 2em;" class="fas fa-exclamation processIcon"></i>
                         <br>
-                        <span class="card__title" style="color: white;">Challenges</span>
+                        <span class="card__title" style="color: black;">Challenges</span>
                     </a>
                 </li>
                 <li>
-                    <a href="/challenges">
-                        <i style="color: white; font-size: 2em;" class="fas fa-lightbulb processIcon"></i>
+                    <a href="/oplossingen">
+                        <i style="color: black; font-size: 2em;" class="fas fa-lightbulb processIcon"></i>
                         <br>
-                        <span class="card__title" style="color: white;">Oplossingen</span>
+                        <span class="card__title" style="color: black;">Oplossingen</span>
                     </a>
                 </li>
             </ul>
         </div>
-        <section class="contact">
-            <h1 style="margin-bottom: 1px; ">Contact</h1>
-            <h4 style="margin-top: 0;">Openingstijden</h4>
-            <div class="row">
-                <div class="col-sm-6">
-                    <span>Maandag:</span>
-                </div>
-                <div class="col-sm-6">
-                    <span>09:00 - 17:00</span>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-6">
-                    <span>Dinsdag:</span>
-                </div>
-                <div class="col-sm-6">
-                    <span>09:00 - 17:00</span>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-6">
-                    <span>Woensdag:</span>
-                </div>
-                <div class="col-sm-6">
-                    <span>09:00 - 17:00</span>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-6">
-                    <span>Donderdag:</span>
-                </div>
-                <div class="col-sm-6">
-                    <span>09:00 - 21:00</span>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-6">
-                    <span>Vrijdag:</span>
-                </div>
-                <div class="col-sm-6">
-                    <span>09:00 - 17:00</span>
-                </div>
-            </div>
-            </p>
-            <p>
-            <div class="row">
-                <div class="col-sm-6">
-                    <h4>Telefoon</h4>
-                    <span>14 020</span>
-                </div>
-            </div>
-            <a href="{{ path('app_process_load',{"id":"d1118a40-cede-42e0-b5dd-ff38e837ab0b"}) }}"><button class="btn btn--primary" style="width: 100%;">Maak een afspraak</button></a>
-            </p>
-        </section>
     </div>
     {% if application is defined and application.defaultConfiguration.configuration.newsimg is defined and application.defaultConfiguration.configuration.newsimg is not empty  %}
     {% set newsimg = commonground_resource(application.defaultConfiguration.configuration.newsimg) %}
