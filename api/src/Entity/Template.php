@@ -65,9 +65,9 @@ use Symfony\Component\Validator\Constraints as Assert;
  *     "slugs.id": "exact",
  *     "templateEngine": "exact",
  *     "slugs.slug": "exact",
- *     "title": "partial",
+ *     "title": "ipartial",
  *     "name": "partial",
- *     "description": "partial",
+ *     "description": "ipartial",
  *     "content": "partial",
  *     "templateGroups.name": "partial",
  *     "templateGroups.id": "exact"})
