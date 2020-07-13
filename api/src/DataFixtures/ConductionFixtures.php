@@ -2439,8 +2439,8 @@ class ConductionFixtures extends Fixture
         $id = Uuid::fromString('c15bc8ea-7489-4885-a35a-1f545c2e7950');
         $template = new Template();
         $template->setName('Oplossingen');
-        $template->setDescription('Stage Oplossingen Page');
-        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Conduction/Stage/oplossingen.html.twig', 'r'));
+        $template->setDescription('Stage Oplossingen (pitches) Page');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Conduction/Stage/pitches.html.twig', 'r'));
         $template->setTemplateEngine('twig');
         $manager->persist($template);
         $template->setId($id);
@@ -2456,6 +2456,28 @@ class ConductionFixtures extends Fixture
         $slug->setApplication($stage);
         $slug->setName('oplossingen');
         $slug->setSlug('oplossingen');
+        $manager->persist($slug);
+
+        $id = Uuid::fromString('bef9c010-a9e6-416c-8b0a-1cc4860f9084');
+        $template = new Template();
+        $template->setName('Oplossing');
+        $template->setDescription('Stage Oplossing (pitch) Page');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Conduction/Stage/pitch.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($stage);
+        $slug->setName('oplossing');
+        $slug->setSlug('oplossing');
         $manager->persist($slug);
 
         $id = Uuid::fromString('bb1ed90e-e529-4f80-a486-5c58583d835c');
