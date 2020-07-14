@@ -514,7 +514,7 @@ class ZuiddrechtFixtures extends Fixture
             ]
         );
         $manager->persist($configuration);
-        
+
         // Website
         $id = Uuid::fromString('1ef30b69-6b28-4fbd-a0cd-83d6ff3c505e');
         $application = new Application();
