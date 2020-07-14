@@ -2308,7 +2308,7 @@ class ConductionFixtures extends Fixture
         $template = new Template();
         $template->setName('Tutorials');
         $template->setDescription('Stage Tutorials Page');
-        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Conduction/Stage/tutorials/tutorials.html.twig', 'r'));
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Conduction/Stage/tutorials.html.twig', 'r'));
         $template->setTemplateEngine('twig');
         $manager->persist($template);
         $template->setId($id);
@@ -2326,11 +2326,11 @@ class ConductionFixtures extends Fixture
         $slug->setSlug('tutorials');
         $manager->persist($slug);
 
-        $id = Uuid::fromString('4d785bbe-9a17-4c04-a21d-ed9e5a9aeb4b');
+        $id = Uuid::fromString('2e1c1eff-ae18-47c5-9caf-a19f2b50bea8');
         $template = new Template();
-        $template->setName('Scrum gericht werken en github');
-        $template->setDescription('Dit is een tutorial om je kennis te laten maken met scrum en github');
-        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Conduction/Stage/tutorials/scrum-github.html.twig', 'r'));
+        $template->setName('Tutorial');
+        $template->setDescription('Stage Tutorial Page');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Conduction/Stage/tutorial.html.twig', 'r'));
         $template->setTemplateEngine('twig');
         $manager->persist($template);
         $template->setId($id);
@@ -2344,52 +2344,8 @@ class ConductionFixtures extends Fixture
         $slug = new Slug();
         $slug->setTemplate($template);
         $slug->setApplication($stage);
-        $slug->setName('scrum-github');
-        $slug->setSlug('scrum-github');
-        $manager->persist($slug);
-
-        $id = Uuid::fromString('2b08aae3-0fae-4abd-a31f-72c9a72dab13');
-        $template = new Template();
-        $template->setName('Tutorial2');
-        $template->setDescription('Dit is een 2de tutorial.');
-        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Conduction/Stage/tutorials/tutorial2.html.twig', 'r'));
-        $template->setTemplateEngine('twig');
-        $manager->persist($template);
-        $template->setId($id);
-        $manager->persist($template);
-        $manager->flush();
-        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
-        $template->addTemplateGroup($groupPages);
-        $manager->persist($template);
-        $manager->flush();
-
-        $slug = new Slug();
-        $slug->setTemplate($template);
-        $slug->setApplication($stage);
-        $slug->setName('tutorial2');
-        $slug->setSlug('tutorial2');
-        $manager->persist($slug);
-
-        $id = Uuid::fromString('6264d050-96c7-43cd-93ea-87d421bbf037');
-        $template = new Template();
-        $template->setName('Tutorial3');
-        $template->setDescription('Dit is een 3de tutorial.');
-        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Conduction/Stage/tutorials/tutorial3.html.twig', 'r'));
-        $template->setTemplateEngine('twig');
-        $manager->persist($template);
-        $template->setId($id);
-        $manager->persist($template);
-        $manager->flush();
-        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
-        $template->addTemplateGroup($groupPages);
-        $manager->persist($template);
-        $manager->flush();
-
-        $slug = new Slug();
-        $slug->setTemplate($template);
-        $slug->setApplication($stage);
-        $slug->setName('tutorial3');
-        $slug->setSlug('tutorial3');
+        $slug->setName('tutorial');
+        $slug->setSlug('tutorial');
         $manager->persist($slug);
 
         $id = Uuid::fromString('cad4760e-703d-4de6-aefb-1ce11e9ff829');

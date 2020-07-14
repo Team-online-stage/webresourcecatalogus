@@ -19,12 +19,12 @@
                                     <div class="row" style=" height: 100%; width: 100%;">
                                         <div class="col-sm-8" style="padding-right: 0px;">
                                             <span class="card__title">{{ studentContact.name }}</span><br>
-                                            <span>{{ studentContact.name }}</span>
+                                            <span>{{ studentContact.formalName }}</span>
                                         </div>
                                         <div class="col-sm-4">
                                             <div style="float: right;">
                                                 <div style="display: flex; flex-direction: column; justify-items: center;">
-                                                    <p style="margin: 0; color: grey;">givenName: {{ studentContact.givenName }}</p>
+                                                    <p style="margin: 0;">givenName: {{ studentContact.givenName }}</p>
                                                     <p style="margin: 0;">familyName: {{ studentContact.familyName }}</p>
                                                     <a href="/student?id={{ student.id }}">lees meer</a>
                                                 </div>
@@ -38,6 +38,7 @@
                     {% else %}
                         <p>Er zijn op dit moment geen studenten</p>
                     {% endif %}
+                </ul>
             {# else %}
                 <h2>U bent nog niet ingelogd!</h2>
             {% endif #}

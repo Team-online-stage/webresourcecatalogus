@@ -3,13 +3,13 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
-    <h1>Initiatieven</h1>
+    <h1>Oplossingen</h1>
     <div class="row">
         <div class="col-sm-12 col-lg-8">
-            {% set pitches = commonground_resource_list({'component': 'chrc', 'type': 'pitches'},{'order[dateCreated]':'desc'})['hydra:member'] %}
-            {% if pitches is not empty %}
+            {% set oplossingen = commonground_resource_list({'component': 'chrc', 'type': 'pitches'},{'order[dateCreated]':'desc'})['hydra:member'] %}
+            {% if oplossingen is not empty %}
             <ul class="list list--card list--card-small">
-                {% for pitch in pitches %}
+                {% for oplossing in oplossingen %}
                     <li class="card card--small">
                         <div class="card__content">
                             <div class="card__thumb challenge-card-picture"
@@ -17,19 +17,16 @@
                             <div class="card__body">
                                 <div class="row" style=" height: 100%; width: 100%;">
                                     <div class="col-sm-6" style="padding-right: 0px;">
-                                        <span class="card__title">{{ pitch.name|capitalize }}</span><br>
-                                        {#                                        <span>{{ pitch.description|slice(0, 110)|raw ~ '...' }}</span>#}
-                                        <span><b>Benodigd budget:</b> &euro; {{ pitch.requiredBudget }},-</span>
-                                        <br>
-                                        <span><b>Ingediend op:</b> {{ pitch.dateSubmitted|date("d-m-Y", "Europe/Paris") }}</span>
+                                        <span class="card__title">{{ oplossing.name|capitalize }}</span><br>
+                                        <span><b>Ingediend op:</b> {{ oplossing.dateSubmitted|date("d-m-Y", "Europe/Paris") }}</span>
                                         <br><br>
-                                        <span>{{ pitch.description|slice(0, 110)|raw ~ '...' }}</span>
+                                        <span>{{ oplossing.description|slice(0, 110)|raw ~ '...' }}</span>
                                     </div>
                                     <div class="col-sm-6">
                                         <a style="margin-top: 20px; float: right; background: #ffea00"
-                                           href="{{ path('app_tender_pitch', {id: pitch.id}) }}"
+                                           href="{{ path('app_tender_pitch', {id: oplossing.id}) }}"
                                            rel="noopener" class="btn btn--primary content-background background--geel"
-                                           target="_blank">Bekijk deze pitch<span
+                                           target="_blank">Bekijk deze oplossing<span
                                                 class="btn__icon icon icon-arr-forward"
                                                 title="" role=""></span></a>
                                     </div>
@@ -39,103 +36,9 @@
                     </li>
                 {% endfor %}
                 {% else %}
-                    <p>Er zijn op dit moment geen initiatieven</p>
+                    <p>Er zijn op dit moment geen oplossingen</p>
                 {% endif %}
-                {#                <li class="card card--small">#}
-                {#                    <div class="card__content">#}
-                {#                        <div class="card__thumb challenge-card-picture" style="background-image: url('https://picsum.photos/200')"></div>#}
-                {#                        <div class="card__body">#}
-                {#                            <div class="row" style=" height: 100%; width: 100%;">#}
-                {#                                <div class="col-sm-12 col-md-6" style="padding-right: 0px;">#}
-                {#                                    <span class="card__title">Dit is de title</span><br>#}
-                {#                                    <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit.#}
-                {#                                        Ad distinctio eos</span>#}
-                {#                                </div>#}
-                {#                                <div class="col-sm-12 col-md-6">#}
-                {#                                    <div>#}
-                {#                                        <div style="display: flex; flex-direction: column; justify-items: center;">#}
-                {#                                            <p style="margin: 0; color: grey;">benodigd budget: 4500.00 <i style="color: grey" class="fas fa-euro-sign"></i></p>#}
-                {#                                            <p style="margin: 0;">ingediend op: 2020-07-01</p>#}
-                {#                                            <a href="">lees meer</a>#}
-                {#                                        </div>#}
-                {#                                    </div>#}
-                {#                                </div>#}
-                {#                            </div>#}
-                {#                        </div>#}
-                {#                    </div>#}
-                {#                </li>#}
-                {#                <li class="card card--small">#}
-                {#                    <div class="card__content">#}
-                {#                        <div class="card__thumb challenge-card-picture" style="background-image: url('https://picsum.photos/200')"></div>#}
-                {#                        <div class="card__body">#}
-                {#                            <div class="row" style=" height: 100%; width: 100%;">#}
-                {#                                <div class="col-sm-12 col-md-6" style="padding-right: 0px;">#}
-                {#                                    <span class="card__title">Dit is de title</span><br>#}
-                {#                                    <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit.#}
-                {#                                        Ad distinctio eos</span>#}
-                {#                                </div>#}
-                {#                                <div class="col-sm-12 col-md-6">#}
-                {#                                    <div>#}
-                {#                                        <div style="display: flex; flex-direction: column; justify-items: center;">#}
-                {#                                            <p style="margin: 0; color: grey;">benodigd budget: 4500.00 <i style="color: grey" class="fas fa-euro-sign"></i></p>#}
-                {#                                            <p style="margin: 0;">ingediend op: 2020-07-01</p>#}
-                {#                                            <a href="">lees meer</a>#}
-                {#                                        </div>#}
-                {#                                    </div>#}
-                {#                                </div>#}
-                {#                            </div>#}
-                {#                        </div>#}
-                {#                    </div>#}
-                {#                </li>#}
             </ul>
-        </div>
-        <div class="col-sm-12 col-lg-4" style="background-color: lightgray">
-            <fieldset class="input filter">
-                <legend class="filter__title">Filters
-                    <button class="btn btn-primary" style="float: right;" type="submit">Filter</button>
-                </legend>
-
-                <div class="input__group input__group--text input__group--compact">
-
-                    <label class="input__label input__label--text" for="limit">Trefwoord(en):</label>
-                    <input type="text" name="filter[limit]" id="limit" class="input__control input__control--text">
-
-                    <label class="input__label">Datum ingediend</label>
-                    <input style="padding: 8px 6px 8px 6px" class="input__control input__control--m input__control--linked" type="date">
-
-                    <label class="input__label">Datum afloop</label>
-                    <input style="padding: 8px 6px 8px 6px" class="input__control input__control--m input__control--linked" type="date">
-
-                    <label class="input__label" for="budget">Budget</label>
-                    <input aria-label="Budget" title="Budget" type="text" id="budget"
-                           class="input__control input__control--s input__control--text">
-
-                    <label class="input__label" for="funded">Gefinancierd</label>
-                    <select id="funded" class="input__control input__control--s input__control--select ">
-                        <option></option>
-                        <option>Ja</option>
-                        <option>Nee</option>
-                    </select>
-
-                </div>
-            </fieldset>
-
-            <br>
-
-            {% if user is not defined or user is empty or user is null %}
-
-                <p style="text-align: center">
-                    <a href="{{ commonground_cleanurl({"component":"ds"}) }}?responceUrl={{ absolute_url(path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params'))) }}">Login</a>
-                    om een initiatief te starten.</p>
-
-            {% endif %}
-
-            <div class="col-md-8 col-md-offset-2" style="margin-bottom: 20px">
-                <a style="width: 100%" href="/chrc/new-pitch" rel="noopener"
-                   class="btn btn--pnrimary {% if user is not defined or user is empty or user is null %}btn--disabled{% endif %}"
-                   target="_blank">Begin een initiatief <span
-                        class="btn__icon icon icon-plus-sign" title="" role=""></span></a>
-            </div>
         </div>
     </div>
 
