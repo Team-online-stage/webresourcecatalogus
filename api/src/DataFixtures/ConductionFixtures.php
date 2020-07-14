@@ -1319,6 +1319,7 @@ class ConductionFixtures extends Fixture
         $dashboard->setDescription('Huwelijksplanner');
         $dashboard->setDomain('db.conduction.nl');
         $dashboard->setOrganization($conduction);
+        $dashboard->setStyle($style);
         $manager->persist($dashboard);
         $dashboard->setId($id);
         $manager->persist($dashboard);
