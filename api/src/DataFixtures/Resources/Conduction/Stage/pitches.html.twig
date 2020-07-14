@@ -1,0 +1,45 @@
+{# templates/home/index.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <h1>Oplossingen</h1>
+    <div class="row">
+        <div class="col-sm-12 col-lg-8">
+            {% set oplossingen = commonground_resource_list({'component': 'chrc', 'type': 'pitches'},{'order[dateCreated]':'desc'})['hydra:member'] %}
+            {% if oplossingen is not empty %}
+            <ul class="list list--card list--card-small">
+                {% for oplossing in oplossingen %}
+                    <li class="card card--small">
+                        <div class="card__content">
+                            <div class="card__thumb challenge-card-picture"
+                                 style="background-image: url('https://picsum.photos/200')"></div>
+                            <div class="card__body">
+                                <div class="row" style=" height: 100%; width: 100%;">
+                                    <div class="col-sm-6" style="padding-right: 0px;">
+                                        <span class="card__title">{{ oplossing.name|capitalize }}</span><br>
+                                        <span><b>Ingediend op:</b> {{ oplossing.dateSubmitted|date("d-m-Y", "Europe/Paris") }}</span>
+                                        <br><br>
+                                        <span>{{ oplossing.description|slice(0, 110)|raw ~ '...' }}</span>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <a style="margin-top: 20px; float: right; background: #ffea00"
+                                           href="{{ path('app_tender_pitch', {id: oplossing.id}) }}"
+                                           rel="noopener" class="btn btn--primary content-background background--geel"
+                                           target="_blank">Bekijk deze oplossing<span
+                                                class="btn__icon icon icon-arr-forward"
+                                                title="" role=""></span></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                {% endfor %}
+                {% else %}
+                    <p>Er zijn op dit moment geen oplossingen</p>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+
+{% endblock %}
