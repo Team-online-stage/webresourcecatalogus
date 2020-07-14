@@ -23,7 +23,7 @@
                                         <div style="float: right;">
                                             <div style="display: flex; flex-direction: column; justify-items: center;">
                                                 <p style="margin: 0;">deadline: {{ challenge.dateClose|date("d-m-Y H:i", "Europe/Paris") }}</p>
-                                                <a href="/challenge?id={{ challenge.id }}">lees meer</a>
+                                                <a href="{{ path('app_tender_challenge', {id: challenge.id}) }}">lees meer</a>
                                             </div>
                                         </div>
                                     </div>
