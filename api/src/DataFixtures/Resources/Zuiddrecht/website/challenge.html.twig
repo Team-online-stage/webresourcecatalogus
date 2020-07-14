@@ -273,7 +273,15 @@
                     <h1>Kenmerken</h1>
                     {% if resource.submitters is defined and resource.submitters is not empty %}
                         <b>Aangemaakt
-                            door:</b>{% for submitter in resource.submitters %} {{ submitter }},{% endfor %}
+                            door:</b>
+                        {% for submitter in resource.submitters %}
+                            {% if 'https' in submitter %}
+                                {% set person = commonground_resource(submitter) %}
+                                {{ person.naam.voorletters }} {{ person.naam.geslachtsnaam }}{% if resource.submitters|length > 1 %}, {% endif %}
+                            {% else %}
+                                {{ submitter }}{% if resource.submitters|length > 1 %}, {% endif %}
+                            {% endif %}
+                        {% endfor %}
                         <br>
                     {% endif %}
                     {% if resource.dateSubmitted is defined and resource.dateSubmitted is not empty %}
