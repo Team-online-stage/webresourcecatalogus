@@ -11,7 +11,7 @@
             {% elseif resources is defined and resources is not empty and resources['hydra:member'] is not defined %}
                 {% set challenges = resources %}
             {% endif %}
-            {% if challenges is defined challenges is not empty %}
+            {% if challenges is defined and challenges is not empty %}
             <ul class="list list--card list--card-small">
                 {% for challenge in challenges %}
                     <li class="card card--small">
