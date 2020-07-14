@@ -2177,7 +2177,7 @@ class ConductionFixtures extends Fixture
          * $menu->setId($id);
          * $manager->persist($menu);
          * $manager->flush();
-         * $menu = $manager->getRepository('App:Menu')->findOneBy(['id'=> $id]);
+         * $menu = $manager->getRepository('App:Menu')->findOneBy(['id'=> $id]);.
          *
          * $menuItem = new MenuItem();
          * $menuItem->setName('Student');
