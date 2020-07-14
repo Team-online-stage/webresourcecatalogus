@@ -6,25 +6,26 @@
     <h1>Studenten</h1>
     <div class="row">
         <div class="col-sm-8">
-            {% if user is defined and user is not null %}
-                {% set studenten = commonground_resource_list({'component': 'chrc', 'type': 'tenders'},{'order[dateCreated]':'desc'})['hydra:member'] %}
+            {# if user is defined and user is not null #}
+                {% set studenten = commonground_resource_list({'component': 'edu', 'type': 'participants'},{'order[dateCreated]':'desc'})['hydra:member'] %}
                 {% if studenten is not empty %}
                 <ul class="list list--card list--card-small">
                     {% for student in studenten %}
+                        {% set studentContact = commonground_resource(student.person) %}
                         <li class="card card--small">
                             <div class="card__content">
                                 <div class="card__thumb" style="background-image: url('https://picsum.photos/200')"></div>
                                 <div class="card__body">
                                     <div class="row" style=" height: 100%; width: 100%;">
                                         <div class="col-sm-8" style="padding-right: 0px;">
-                                            <span class="card__title">{{ student.name }}</span><br>
-                                            <span>{{ student.description }}</span>
+                                            <span class="card__title">{{ studentContact.name }}</span><br>
+                                            <span>{{ studentContact.name }}</span>
                                         </div>
                                         <div class="col-sm-4">
                                             <div style="float: right;">
                                                 <div style="display: flex; flex-direction: column; justify-items: center;">
-                                                    <p style="margin: 0; color: grey;">budget: {{ student.budget }}<i style="color: grey" class="fas fa-euro-sign"></i></p>
-                                                    <p style="margin: 0;">deadline: {{ student.dateClose|date("d-m-Y H:i", "Europe/Paris") }}</p>
+                                                    <p style="margin: 0; color: grey;">givenName: {{ studentContact.givenName }}</p>
+                                                    <p style="margin: 0;">familyName: {{ studentContact.familyName }}</p>
                                                     <a href="/student?id={{ student.id }}">lees meer</a>
                                                 </div>
                                             </div>
@@ -37,56 +38,9 @@
                     {% else %}
                         <p>Er zijn op dit moment geen studenten</p>
                     {% endif %}
-                    <li class="card card--small">
-                        <div class="card__content">
-                            <div class="card__thumb" style="background-image: url('https://picsum.photos/200')"></div>
-                            <div class="card__body">
-                                <div class="row" style=" height: 100%; width: 100%;">
-                                    <div class="col-sm-8" style="padding-right: 0px;">
-                                        <span class="card__title">Dit is de title</span><br>
-                                        <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                            Ad distinctio eos expedita ipsam laboriosam maiores</span>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div style="float: right;">
-                                            <div style="display: flex; flex-direction: column; justify-items: center;">
-                                                <p style="margin: 0; color: grey;">budget: 4500.00 <i style="color: grey" class="fas fa-euro-sign"></i></p>
-                                                <p style="margin: 0;">deadline: 2020-07-01</p>
-                                                <a href="">lees meer</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="card card--small">
-                        <div class="card__content">
-                            <div class="card__thumb" style="background-image: url('https://picsum.photos/200')"></div>
-                            <div class="card__body">
-                                <div class="row" style=" height: 100%; width: 100%;">
-                                    <div class="col-sm-8" style="padding-right: 0px;">
-                                        <span class="card__title">Dit is de title</span><br>
-                                        <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                            Ad distinctio eos expedita ipsam laboriosam maiores</span>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div style="float: right;">
-                                            <div style="display: flex; flex-direction: column; justify-items: center;">
-                                                <p style="margin: 0; color: grey;">budget: 2400.00 <i style="color: grey" class="fas fa-euro-sign"></i></p>
-                                                <p style="margin: 0;">deadline: 2020-07-15</p>
-                                                <a href="">lees meer</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-            {% else %}
+            {# else %}
                 <h2>U bent nog niet ingelogd!</h2>
-            {% endif %}
+            {% endif #}
         </div>
     </div>
 {% endblock %}
