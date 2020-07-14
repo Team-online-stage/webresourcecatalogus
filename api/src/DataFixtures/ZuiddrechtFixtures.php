@@ -502,6 +502,20 @@ class ZuiddrechtFixtures extends Fixture
         $manager->flush();
         $application = $manager->getRepository('App:Application')->findOneBy(['id'=> $id]);
 
+        // Configuratie
+        $configuration = new Configuration();
+        $configuration->setName('Dashboard');
+        $configuration->setDescription('Dashboard van zuid-drecht');
+        $configuration->setOrganization($organization);
+        $configuration->setApplication($application);
+        $configuration->setConfiguration(
+            [
+                'sideMenu'          => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'915d5b04-c050-4b18-8f72-a068c2708883']),
+            ]
+        );
+        $manager->persist($configuration);
+
+
         // Website
         $id = Uuid::fromString('1ef30b69-6b28-4fbd-a0cd-83d6ff3c505e');
         $application = new Application();
