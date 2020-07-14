@@ -524,6 +524,7 @@ class ZuiddrechtFixtures extends Fixture
         $configuration->setApplication($application);
         $configuration->setConfiguration(
             [
+                'sideMenu'          => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'915d5b04-c050-4b18-8f72-a068c2708883']),
                 'mainMenu'          => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'ca1ca0b4-4c8f-4638-9869-16974426e3df']),
                 'home'              => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'163f8616-abb7-411d-b7b2-0d11c6bd7dca']),
                 'footer1'           => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'0dca3fd2-0124-46fb-88c1-4f0860b2888c']),
@@ -538,7 +539,28 @@ class ZuiddrechtFixtures extends Fixture
         );
         $manager->persist($configuration);
 
-        // Menu
+        // Side menu
+        $id = Uuid::fromString('915d5b04-c050-4b18-8f72-a068c2708883');
+        $menu = new Menu();
+        $menu->setName('Side Menu');
+        $menu->setDescription('Side menu voor dashboard');
+        $menu->setApplication($application);
+        $manager->persist($menu);
+        $menu->setId($id);
+        $manager->persist($menu);
+        $manager->flush();
+        $menu = $manager->getRepository('App:Menu')->findOneBy(['id'=> $id]);
+
+        $menuItem = new MenuItem();
+        $menuItem->setName('Als test wrc/templates');
+        $menuItem->setDescription('test');
+        $menuItem->setOrder(1);
+        $menuItem->setType('slug');
+        $menuItem->setHref('{{ path("app_wrc_templates") }}');
+        $menuItem->setMenu($menu);
+        $manager->persist($menuItem);
+
+        // Main Menu
         $id = Uuid::fromString('ca1ca0b4-4c8f-4638-9869-16974426e3df');
         $menu = new Menu();
         $menu->setName('Main Menu');
