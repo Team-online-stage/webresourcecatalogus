@@ -6,7 +6,7 @@
     <h1>Stages</h1>
     <div class="row">
         <div class="col-sm-8">
-            {% set stages = commonground_resource_list({'component': 'edu', 'type': 'educational_occupational_programs'},{'order[dateCreated]':'desc'})['hydra:member'] %}
+            {% set stages = commonground_resource_list({'component': 'edu', 'type': 'programs'},{'order[dateCreated]':'desc'})['hydra:member'] %}
             {% if stages is not empty %}
             <ul class="list list--card list--card-small">
                 {% for stage in stages %}
