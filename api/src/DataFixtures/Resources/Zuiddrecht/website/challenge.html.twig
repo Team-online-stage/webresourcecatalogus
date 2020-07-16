@@ -101,7 +101,7 @@
                                                                     class="card__title">"{{ question.question }}"</span>
                                                                     {% if question.submitter is defined and question.submitter is not empty %}
                                                                         <br>
-                                                                        <span>Vraag gesteld door {% for submitter in question.submitters %}{{ submitter }}{% endfor %}</span>
+                                                                        <span>Vraag gesteld door {{ question.submitter }}</span>
                                                                     {% endif %}
 
                                                                     <br>
@@ -129,26 +129,14 @@
                                     {% else %}
                                         <p style="color:lightgray">Er zijn nog geen vragen.</p>
                                     {% endif %}
+                                    <div class="input">
+                                        <label class="input__label" for="textarea_voorbeeld">Uw vraag:</label>
+                                        <textarea id="textarea_voorbeeld"
+                                                  class="input__control input__control--l input__control--text"></textarea>
+                                    </div>
 
-                                    <div class="collapse" role="status">
-                                        <div x-uno-collapse="" class="collapse__header">
-                                            <i class="collapse__indicator">
-                                        <span class="screenreader-only" data-contracted-i18n="ingeklapt"
-                                              data-expanded-i18n="uitgeklapt"></span>
-                                            </i>
-                                            <span class="collapse__title">Stel een vraag</span>
-                                        </div>
-                                        <div class="collapse__details collapse__details--closed">
-                                            <div class="input">
-                                                <label class="input__label" for="textarea_voorbeeld">Uw vraag:</label>
-                                                <textarea id="textarea_voorbeeld"
-                                                          class="input__control input__control--l input__control--text"></textarea>
-                                            </div>
-
-                                            <div class="input">
-                                                <button type="submit" class="btn btn--primary">Verstuur</button>
-                                            </div>
-                                        </div>
+                                    <div class="input">
+                                        <button type="submit" class="btn btn--primary">Verstuur</button>
                                     </div>
                                 </div>
                             </div>
@@ -175,7 +163,7 @@
                                                                 <div class="col-sm-12 col-md-6"
                                                                      style="padding-right: 0px;">
                                                                     <span
-                                                                        class="card__title">Initiatief van {% for submitter in pitch.submitters %}{{ submitter }}{% endfor %}</span>
+                                                                        class="card__title">Initiatief van {{ pitch. submitter }}</span>
 
                                                                     {% if pitch.dateSubmitted is defined and pitch.dateSubmitted is not empty %}
                                                                         <br>
@@ -230,7 +218,7 @@
                                                                 <div class="col-sm-12 col-md-6"
                                                                      style="padding-right: 0px;">
                                                                     <span
-                                                                        class="card__title">Voorstel van {% for submitter in proposal.pitch.submitters %}{{ submitter }}{% endfor %}</span>
+                                                                        class="card__title">Voorstel van {{ proposal.pitch.submitter }}</span>
 
                                                                     {% if proposal.created is defined and proposal.created is not empty %}
                                                                         <br>
@@ -273,7 +261,15 @@
                     <h1>Kenmerken</h1>
                     {% if resource.submitters is defined and resource.submitters is not empty %}
                         <b>Aangemaakt
-                            door:</b>{% for submitter in resource.submitters %} {{ submitter }},{% endfor %}
+                            door:</b>
+                        {% for submitter in resource.submitters %}
+                            {% if 'https' in submitter %}
+                                {% set person = commonground_resource(submitter) %}
+                                {{ person.naam.voorletters }} {{ person.naam.geslachtsnaam }}
+                            {% else %}
+                                {{ submitter }}
+                            {% endif %}
+                        {% endfor %}
                         <br>
                     {% endif %}
                     {% if resource.dateSubmitted is defined and resource.dateSubmitted is not empty %}

@@ -31,52 +31,59 @@
                         </div>
                         <div class="collapse__details collapse__details--closed">
 
-{#                            Mock reactie  #}
+                            {#                            Mock reactie  #}
 
-                            <ul class="list list--card list--card-small">
-                                    <li class="card card--small">
-                                        <div class="card__content">
-                                            <div class="card__body">
-                                                <div class="row" style=" height: 100%; width: 100%;">
-                                                    <div class="col-sm-12"
-                                                         style="padding-right: 0px;">
-                                                        <span class="card__title">B.Brands</span>
-                                                        <br>
-                                                        <span>"Dit is een mock reactie."</span>
+{#                            <ul class="list list--card list--card-small">#}
+{#                                <li class="card card--small">#}
+{#                                    <div class="card__content">#}
+{#                                        <div class="card__body">#}
+{#                                            <div class="row" style=" height: 100%; width: 100%;">#}
+{#                                                <div class="col-sm-12"#}
+{#                                                     style="padding-right: 0px;">#}
+{#                                                    <span class="card__title">B.Brands</span>#}
+{#                                                    <br>#}
+{#                                                    <span>"Dit is een mock reactie."</span>#}
+{#                                                </div>#}
+{#                                            </div>#}
+{#                                        </div>#}
+{#                                    </div>#}
+{#                                </li>#}
+{#                            </ul>#}
+
+                            {#                            Reacties       #}
+
+                            {% if comments is defined and comments is not empty and comments is not null %}
+                                {#                                {{ dump(comments) }}#}
+                                <ul class="list list--card list--card-small">
+                                    {% for comment in comments['hydra:member'] %}
+                                        <li class="card card--small">
+                                            <div class="card__content">
+                                                <div class="card__body">
+                                                    <div class="row" style=" height: 100%; width: 100%;">
+                                                        <div class="col-sm-12"
+                                                             style="padding-right: 0px;">
+                                                            {% if comment.author is defined and comment.author is not empty %}
+                                                                {% if 'https' in comment.author %}
+                                                                    {% set person = commonground_resource(comment.author) %}
+                                                                    <span
+                                                                        class="card__title">{{ person.naam.voorletters }} {{ person.naam.geslachtsnaam }} - {{ comment.dateCreated|date("d-m-Y H:i", "Europe/Paris") }}</span>
+                                                                {% else %}
+                                                                    <span
+                                                                        class="card__title">{{ comment.author }}</span>
+                                                                {% endif %}
+                                                                <br>
+                                                                <span>"{{ comment.review }}"</span>
+                                                            {% endif %}
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </li>
-                            </ul>
-
-{#                            Reacties       #}
-
-{#                            {% if comments is defined and comments is not empty and comments is not null %}#}
-{#                                <ul class="list list--card list--card-small">#}
-{#                                    {% for comment in comments %}#}
-{#                                        <li class="card card--small">#}
-{#                                            <div class="card__content">#}
-{#                                                <div class="card__body">#}
-{#                                                    <div class="row" style=" height: 100%; width: 100%;">#}
-{#                                                        <div class="col-sm-12"#}
-{#                                                             style="padding-right: 0px;">#}
-{#                                                            #}{#                                                                <span#}
-{#                                                            #}{#                                                                    class="card__title">"{{ comment.review }}"</span>#}
-{#                                                            {% if comment.author is defined and comment.author is not empty %}#}
-{#                                                                <br>#}
-{#                                                                <span>Vraag gesteld door {{ comment.author.name }}</span>#}
-{#                                                            {% endif %}#}
-{#                                                        </div>#}
-{#                                                    </div>#}
-{#                                                </div>#}
-{#                                            </div>#}
-{#                                        </li>#}
-{#                                    {% endfor %}#}
-{#                                </ul>#}
-{#                            {% else %}#}
-{#                                <p style="color:gray">Er zijn nog geen reacties.</p>#}
-{#                            {% endif %}#}
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            {% else %}
+                                <p style="color:gray">Er zijn nog geen reacties.</p>
+                            {% endif %}
 
                             {% if user is not defined or user is empty or user is null %}
 
@@ -173,13 +180,15 @@
             <div class="content-background">
                 <div class="content ">
                     <h1>Kenmerken</h1>
-                    {% if resource.submitters is defined and resource.submitters is not empty %}
+                    {% if resource.submitter is defined and resource.submitter is not empty %}
                         <b>Aangemaakt
                             door:</b>
-                        {% for submitter in resource.submitters %}
-                            {% set person = commonground_resource(submitter) %}
+                        {% if 'https' in resource.submitter %}
+                            {% set person = commonground_resource(resource.submitter) %}
                             {{ person.naam.voorletters }} {{ person.naam.geslachtsnaam }}
-                        {% endfor %}
+                        {% else %}
+                            {{ resource.submitter }}
+                        {% endif %}
                         <br>
                     {% endif %}
                     {% if resource.dateSubmitted is defined and resource.dateSubmitted is not empty %}
