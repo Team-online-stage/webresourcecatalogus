@@ -26,7 +26,7 @@
                             {% if tutorials is not empty %}
                                 {% for tutorial in tutorials %}
                                     <li class="sidenav__item ">
-                                        <a href="/tutorial?id={{ tutorial.id }}">
+                                        <a href="{{ path('app_education_tutorial', {id: tutorial.id}) }}">
                                             {{ tutorial.name }}
                                         </a>
                                     </li>
