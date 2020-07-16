@@ -31,7 +31,7 @@
                                     {% else %}
                                     <li class="sidenav__item">
                                     {% endif %}
-                                        <a href="/tutorial?id={{ tutorial.id }}">
+                                        <a href="{{ path('app_education_tutorial', {id: tutorial.id}) }}">
                                             {{ tutorial.name }}
                                         </a>
                                     </li>

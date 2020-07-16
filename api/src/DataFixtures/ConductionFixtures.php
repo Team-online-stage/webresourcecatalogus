@@ -2261,28 +2261,6 @@ class ConductionFixtures extends Fixture
         $slug->setSlug('over');
         $manager->persist($slug);
 
-        $id = Uuid::fromString('d69ae50c-f7cf-4f42-84c8-88234e87cf2b');
-        $template = new Template();
-        $template->setName('Opdracht uitzetten');
-        $template->setDescription('Stage Opdracht uitzetten Page');
-        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Conduction/Stage/opdracht-uitzetten.html.twig', 'r'));
-        $template->setTemplateEngine('twig');
-        $manager->persist($template);
-        $template->setId($id);
-        $manager->persist($template);
-        $manager->flush();
-        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
-        $template->addTemplateGroup($groupPages);
-        $manager->persist($template);
-        $manager->flush();
-
-        $slug = new Slug();
-        $slug->setTemplate($template);
-        $slug->setApplication($stage);
-        $slug->setName('opdracht-uitzetten');
-        $slug->setSlug('opdracht-uitzetten');
-        $manager->persist($slug);
-
         $id = Uuid::fromString('3bfd1aba-c2af-4e50-be81-d7a86c9fe70b');
         $template = new Template();
         $template->setName('Stages');
@@ -2303,6 +2281,28 @@ class ConductionFixtures extends Fixture
         $slug->setApplication($stage);
         $slug->setName('stages');
         $slug->setSlug('stages');
+        $manager->persist($slug);
+
+        $id = Uuid::fromString('d13a4b1b-90e2-49a9-b3b4-b3f9407c939f');
+        $template = new Template();
+        $template->setName('Stage');
+        $template->setDescription('Stage Stage Page');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Conduction/Stage/stage.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($stage);
+        $slug->setName('stage');
+        $slug->setSlug('stage');
         $manager->persist($slug);
 
         $id = Uuid::fromString('73332c62-c2bf-4aeb-a3ca-a397863e1d04');
