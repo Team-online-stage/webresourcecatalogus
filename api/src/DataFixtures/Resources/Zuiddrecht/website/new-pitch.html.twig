@@ -37,7 +37,8 @@
                                                class="input__control input__control--l input__control--text">
                                         <br><br>
                                         <div class="input">
-                                            <button type="submit" class="btn btn--primary">Aanmaken</button>
+                                            <button type="submit" class="btn btn--primary"
+                                                {% if user is not defined or user is empty or user is null %}disabled="disabled"{% endif %}>Aanmaken</button>
                                         </div>
                                     </div>
                                 </form>
@@ -45,6 +46,14 @@
                             <div class="col-md-6">
                                 <p>Heeft u een top idee wat u met de community wilt delen? Begin hier uw initiatief door
                                     dit formulier in te vullen.</p>
+
+                                {% if user is not defined or user is empty or user is null %}
+
+                                <p>
+                                    <a href="{{ commonground_cleanurl({"component":"ds"}) }}?responceUrl={{ absolute_url(path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params'))) }}">Login</a>
+                                    om een initiatief te starten.</p>
+
+                                {% endif %}
                             </div>
                         </div>
                     </div>

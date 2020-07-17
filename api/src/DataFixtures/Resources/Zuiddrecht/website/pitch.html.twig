@@ -245,9 +245,9 @@
                     <br>
                 {% endif %}
 
-                {% if likes is defined and likes|length > 0 %}
+                <form action="{{ path('app_tender_pitch', {id: resource.id}) }}" method="post">
 
-                    <form action="{{ path('app_tender_pitch', {id: resource.id}) }}" method="post">
+                    {% if likes is defined and likes|length > 0 %}
 
                         <p style="text-align: center; height:50px;font-size: 35px; margin-top:15px">
                         <span style="color:#ff0000; display: inline-block"><button style="background: none;border: none" type="submit" name="like"
@@ -255,16 +255,18 @@
                             likes
                         </p>
 
-                    </form>
+                    {% else %}
 
-                {% else %}
+                        <p style="text-align: center; height:50px;font-size: 35px; margin-top:15px">
+                        <span style="color:lightgray; display: inline-block"><button
+                                style="background: none;border: none" type="submit" name="like"
+                                {% if user is not defined or user is empty or user is null %}disabled{% endif %}>&#x2764;</button> 0</span>
+                            likes
+                        </p>
 
-                    <p style="text-align: center; height:50px;font-size: 35px; margin-top:15px">
-                        <span style="color:lightgray; display: inline-block">&#x2764; </span>
-                        likes
-                    </p>
+                    {% endif %}
 
-                {% endif %}
+                </form>
 
                 {% if user is not defined or user is empty or user is null %}
 
