@@ -985,6 +985,28 @@ class ZuiddrechtFixtures extends Fixture
         $slug->setSlug('product');
         $manager->persist($slug);
 
+        $id = Uuid::fromString('7f36118c-f0d3-4a80-9d4a-a975929452d5');
+        $template = new Template();
+        $template->setName('ondernemers');
+        $template->setDescription('ondernemers');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Zuiddrecht/website/ondernemers.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('ondernemers');
+        $slug->setSlug('ondernemers');
+        $manager->persist($slug);
+
         $id = Uuid::fromString('70dd6462-85ef-45f4-b9dc-57eb9ac56646');
         $template = new Template();
         $template->setName('privacy');
@@ -1200,7 +1222,7 @@ class ZuiddrechtFixtures extends Fixture
         $template = new Template();
         $template->setName('PI-event');
         $template->setTitle('PI-event is van start');
-        $template->setDescription('Het PI-event is eindelijk van start! In dit event gaan verschillende gemeentes hun nieuwe platformen tonen.');
+        $template->setDescription('Het PI-event is eindelijk van start! Tijdens dit event gaan verschillende gemeentes hun nieuwe platformen tonen.');
         $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Zuiddrecht/website/nieuws/pi-event.html.twig', 'r'));
         $template->setTemplateEngine('twig');
         $manager->persist($template);
@@ -1254,7 +1276,7 @@ class ZuiddrechtFixtures extends Fixture
         $template = new Template();
         $template->setName('corona');
         $template->setTitle('Corona maatregelen in Zuid-Drecht');
-        $template->setDescription('De corona maatregelingen worden per 1 Juli versoepeld in de gemeente Zuid drecht. De cijfers blijken dusdanig te dalen in deze gemeente dat er weer steeds meer mogenlijk is.');
+        $template->setDescription('De corona maatregelen worden per 1 juli 2020 versoepeld in de gemeente Zuid-Drecht. De cijfers blijken dusdanig te dalen in deze gemeente, dat er weer steeds meer mogelijk is.');
         $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Zuiddrecht/website/nieuws/corona.html.twig', 'r'));
         $template->setTemplateEngine('twig');
         $date = new \DateTime();
@@ -1281,7 +1303,7 @@ class ZuiddrechtFixtures extends Fixture
         $template = new Template();
         $template->setName('groene stroom');
         $template->setTitle('Zuid-Drecht gaat over op groene stroom');
-        $template->setDescription('De gemeente is sinds vandaag helemaal over op groene stroom. Dit is een heel groot project geweest maar het is de gemeente Zuid drecht gelukt om in iets minder dan een jaar compleet over te gaan op groene stroom.');
+        $template->setDescription('De gemeente is sinds vandaag helemaal over op groene stroom. Dit is een heel groot project geweest, maar het is de gemeente Zuid-Drecht gelukt om in iets minder dan een jaar compleet over te gaan op groene stroom.');
         $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Zuiddrecht/website/nieuws/groene-stroom.html.twig', 'r'));
         $template->setTemplateEngine('twig');
         $date = new \DateTime();
@@ -1308,7 +1330,7 @@ class ZuiddrechtFixtures extends Fixture
         $template = new Template();
         $template->setName('Woninginbraken gehalveerd');
         $template->setTitle('Woninginbraken gehalveerd in de gemeente Zuid-Drecht');
-        $template->setDescription('Woning inbraken lijken steeds minder voor te komen in de gemeente Zuid drecht. Uit cijfers blijkt dat dit vergeleken vorig jaar alweer met 50% is gedaald.');
+        $template->setDescription('Woninginbraken lijken steeds minder voor te komen in de gemeente Zuid-Drecht. Uit cijfers blijkt dat dit vergeleken vorig jaar alweer gehalveerd is.');
         $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Zuiddrecht/website/nieuws/woning-inbraak.html.twig', 'r'));
         $template->setTemplateEngine('twig');
         $manager->persist($template);
