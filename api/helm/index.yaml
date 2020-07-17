@@ -3,7 +3,7 @@ entries:
   pc:
   - apiVersion: v1
     appVersion: V.0.1
-    created: "2020-07-16T13:35:04.819278204Z"
+    created: "2020-07-17T08:05:26.880410352Z"
     description: '&#039;Naast deze JSON rest API is er ook een [graphql](/graphql)
       interface beschikbaar.&#039;'
     digest: a3ebf537582710b118b706a276db61fec8e25b642f3e8f3d1bb239ac1131f064
@@ -16,7 +16,7 @@ entries:
   wrc:
   - apiVersion: v1
     appVersion: V.0.1
-    created: "2020-07-16T13:35:04.823626804Z"
+    created: "2020-07-17T08:05:26.896414152Z"
     description: '&#039;Naast deze JSON rest API is er ook een [graphql](/graphql)
       interface beschikbaar.&#039;'
     digest: 81a889f442830c2881b0e5027a89af1504ede5c257e36a8fff9b6f5a45448bc3
@@ -26,4 +26,4 @@ entries:
     urls:
     - wrc-0.1.0.tgz
     version: 0.1.0
-generated: "2020-07-16T13:35:04.812631904Z"
+generated: "2020-07-17T08:05:26.857322652Z"
