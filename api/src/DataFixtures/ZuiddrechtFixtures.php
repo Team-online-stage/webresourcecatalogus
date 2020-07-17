@@ -492,7 +492,7 @@ class ZuiddrechtFixtures extends Fixture
         $id = Uuid::fromString('1163e443-5f9c-4aa6-802c-c619a14986c9');
         $application = new Application();
         $application->setName('Dashboard');
-        $application->setDescription('het Dashboard van de gemeente zuid-drecht');
+        $application->setDescription('het Dashboard van de gemeente Zuid-Drecht');
         $application->setDomain('db.zuid-drecht.nl');
         $application->setOrganization($organization);
         $application->setStyle($style);
@@ -505,7 +505,7 @@ class ZuiddrechtFixtures extends Fixture
         // Configuratie
         $configuration = new Configuration();
         $configuration->setName('Dashboard');
-        $configuration->setDescription('Dashboard van zuid-drecht');
+        $configuration->setDescription('Dashboard van Zuid-Drecht');
         $configuration->setOrganization($organization);
         $configuration->setApplication($application);
         $configuration->setConfiguration(
@@ -519,7 +519,7 @@ class ZuiddrechtFixtures extends Fixture
         $id = Uuid::fromString('1ef30b69-6b28-4fbd-a0cd-83d6ff3c505e');
         $application = new Application();
         $application->setName('Zuid-Drecht');
-        $application->setDescription('De website van de gemeente zuid-drecht');
+        $application->setDescription('De website van de gemeente Zuid-Drecht');
         $application->setDomain('zuid-drecht.nl');
         $application->setOrganization($organization);
         $application->setStyle($style);
@@ -532,7 +532,7 @@ class ZuiddrechtFixtures extends Fixture
         // Configuratie
         $configuration = new Configuration();
         $configuration->setName('Website');
-        $configuration->setDescription('De website van de gemeente zuid-drecht');
+        $configuration->setDescription('De website van de gemeente Zuid-Drecht');
         $configuration->setOrganization($organization);
         $configuration->setApplication($application);
         $configuration->setConfiguration(
@@ -985,6 +985,28 @@ class ZuiddrechtFixtures extends Fixture
         $slug->setSlug('product');
         $manager->persist($slug);
 
+        $id = Uuid::fromString('7f36118c-f0d3-4a80-9d4a-a975929452d5');
+        $template = new Template();
+        $template->setName('ondernemers');
+        $template->setDescription('ondernemers');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Zuiddrecht/website/ondernemers.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('ondernemers');
+        $slug->setSlug('ondernemers');
+        $manager->persist($slug);
+
         $id = Uuid::fromString('70dd6462-85ef-45f4-b9dc-57eb9ac56646');
         $template = new Template();
         $template->setName('privacy');
@@ -1198,9 +1220,9 @@ class ZuiddrechtFixtures extends Fixture
 
         $id = Uuid::fromString('0ace23c9-3c95-4675-994c-596b9ef0144b');
         $template = new Template();
-        $template->setName('pi event');
-        $template->setTitle('pi event is van start');
-        $template->setDescription('Het Pi event is eindelijk van start! In dit event gaan verschillende gemeentes hun nieuwe platformen tonen.');
+        $template->setName('PI-event');
+        $template->setTitle('PI-event is van start');
+        $template->setDescription('Het PI-event is eindelijk van start! Tijdens dit event gaan verschillende gemeentes hun nieuwe platformen tonen.');
         $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Zuiddrecht/website/nieuws/pi-event.html.twig', 'r'));
         $template->setTemplateEngine('twig');
         $manager->persist($template);
@@ -1253,8 +1275,8 @@ class ZuiddrechtFixtures extends Fixture
         $id = Uuid::fromString('90035899-fd96-4998-9d38-db7b0f5940f9');
         $template = new Template();
         $template->setName('corona');
-        $template->setTitle('Corona maatregelen in Zuid-drecht');
-        $template->setDescription('De corona maatregelingen worden per 1 Juli versoepeld in de gemeente Zuid drecht. De cijfers blijken dusdanig te dalen in deze gemeente dat er weer steeds meer mogenlijk is.');
+        $template->setTitle('Corona maatregelen in Zuid-Drecht');
+        $template->setDescription('De corona maatregelen worden per 1 juli 2020 versoepeld in de gemeente Zuid-Drecht. De cijfers blijken dusdanig te dalen in deze gemeente, dat er weer steeds meer mogelijk is.');
         $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Zuiddrecht/website/nieuws/corona.html.twig', 'r'));
         $template->setTemplateEngine('twig');
         $date = new \DateTime();
@@ -1280,8 +1302,8 @@ class ZuiddrechtFixtures extends Fixture
         $id = Uuid::fromString('12f475a7-151c-48b6-8b02-0e0dfcfc78d9');
         $template = new Template();
         $template->setName('groene stroom');
-        $template->setTitle('zuid-drecht gaat over op groene stroom');
-        $template->setDescription('De gemeente is sinds vandaag helemaal over op groene stroom. Dit is een heel groot project geweest maar het is de gemeente Zuid drecht gelukt om in iets minder dan een jaar compleet over te gaan op groene stroom.');
+        $template->setTitle('Zuid-Drecht gaat over op groene stroom');
+        $template->setDescription('De gemeente is sinds vandaag helemaal over op groene stroom. Dit is een heel groot project geweest, maar het is de gemeente Zuid-Drecht gelukt om in iets minder dan een jaar compleet over te gaan op groene stroom.');
         $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Zuiddrecht/website/nieuws/groene-stroom.html.twig', 'r'));
         $template->setTemplateEngine('twig');
         $date = new \DateTime();
@@ -1306,9 +1328,9 @@ class ZuiddrechtFixtures extends Fixture
 
         $id = Uuid::fromString('272a5076-dfb0-4adf-b5ca-d3525e7a31bf');
         $template = new Template();
-        $template->setName('Woninginbraak gehalveerd');
-        $template->setTitle('Woninginbraak gehalveerd in de gemeente zuid-drecht');
-        $template->setDescription('Woning inbraken lijken steeds minder voor te komen in de gemeente Zuid drecht. Uit cijfers blijkt dat dit vergeleken vorig jaar alweer met 50% is gedaald.');
+        $template->setName('Woninginbraken gehalveerd');
+        $template->setTitle('Woninginbraken gehalveerd in de gemeente Zuid-Drecht');
+        $template->setDescription('Woninginbraken lijken steeds minder voor te komen in de gemeente Zuid-Drecht. Uit cijfers blijkt dat dit vergeleken vorig jaar alweer gehalveerd is.');
         $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Zuiddrecht/website/nieuws/woning-inbraak.html.twig', 'r'));
         $template->setTemplateEngine('twig');
         $manager->persist($template);
