@@ -4,12 +4,12 @@
 
 {% block content %}
     <header class="content__header">
-        <a class="backlink" href="/pitches">Initiatieven</a>
+        <a class="backlink" href="/chrc/pitches">Initiatieven</a>
     </header>
     <div class="row">
         <div class="col-sm-12 col-lg-8">
             <div class="content-background">
-                <div class="content ">
+                <div class="content">
                     <div class="row">
                         <div class="col-md-6">
                             <h1>{{ resource.name|capitalize }}</h1>
@@ -17,6 +17,7 @@
                         </div>
                         <div class="col-md-6">
                             <img src="https://picsum.photos/350/250" alt="tender" width="100%">
+                            <span class="btn__icon icon icon-heart-empty"></span>
                         </div>
                     </div>
 
@@ -33,22 +34,22 @@
 
                             {#                            Mock reactie  #}
 
-{#                            <ul class="list list--card list--card-small">#}
-{#                                <li class="card card--small">#}
-{#                                    <div class="card__content">#}
-{#                                        <div class="card__body">#}
-{#                                            <div class="row" style=" height: 100%; width: 100%;">#}
-{#                                                <div class="col-sm-12"#}
-{#                                                     style="padding-right: 0px;">#}
-{#                                                    <span class="card__title">B.Brands</span>#}
-{#                                                    <br>#}
-{#                                                    <span>"Dit is een mock reactie."</span>#}
-{#                                                </div>#}
-{#                                            </div>#}
-{#                                        </div>#}
-{#                                    </div>#}
-{#                                </li>#}
-{#                            </ul>#}
+                            {#                            <ul class="list list--card list--card-small">#}
+                            {#                                <li class="card card--small">#}
+                            {#                                    <div class="card__content">#}
+                            {#                                        <div class="card__body">#}
+                            {#                                            <div class="row" style=" height: 100%; width: 100%;">#}
+                            {#                                                <div class="col-sm-12"#}
+                            {#                                                     style="padding-right: 0px;">#}
+                            {#                                                    <span class="card__title">B.Brands</span>#}
+                            {#                                                    <br>#}
+                            {#                                                    <span>"Dit is een mock reactie."</span>#}
+                            {#                                                </div>#}
+                            {#                                            </div>#}
+                            {#                                        </div>#}
+                            {#                                    </div>#}
+                            {#                                </li>#}
+                            {#                            </ul>#}
 
                             {#                            Reacties       #}
 
@@ -72,7 +73,7 @@
                                                                         class="card__title">{{ comment.author }}</span>
                                                                 {% endif %}
                                                                 <br>
-                                                                <span>"{{ comment.review }}"</span>
+                                                                <span>{{ comment.review }}</span>
                                                             {% endif %}
                                                         </div>
                                                     </div>
@@ -118,7 +119,7 @@
                     </div>
 
                     {% if resource.proposals is defined and resource.proposals is not empty %}
-                        <h1>Voorstellen:</h1>
+                        <h1>Voorstellen</h1>
                         <ul class="list list--card list--card-small">
                             {% for proposal in resource.proposals %}
                                 <li class="card card--small">
@@ -128,17 +129,12 @@
                                                 <div class="col-sm-12 col-md-6"
                                                      style="padding-right: 0px;">
                                                     <span
-                                                        class="card__title">Voorstel van
-                                                        {% if proposal.submitters is defined and proposal.submitters is not empty %}
-                                                            {% for submitter in proposal.submitters %}
-                                                                {{ submitter }}
-                                                            {% endfor %}
-                                                        {% endif %}
+                                                        class="card__title">{{ proposal.name }}
                                                     </span>
 
-                                                    {% if proposal.dateSubmitted is defined and proposal.dateSubmitted is not empty %}
+                                                    {% if proposal.created is defined and proposal.created is not empty %}
                                                         <br>
-                                                        <span>Ingediend op {{ proposal.dateSubmitted|date("d-m-Y H:i", "Europe/Paris") }}</span>
+                                                        <span>Ingediend op {{ proposal.created|date("d-m-Y H:i", "Europe/Paris") }}</span>
                                                     {% endif %}
                                                 </div>
                                                 <div class="col-sm-12 col-md-6">
@@ -165,65 +161,94 @@
                     {% if resource.tender is defined and resource.tender is not empty %}
                         <br>
                         <h1>Aanbesteding</h1>
-                        <h3>{{ resource.tender.name }}</h3>
-                        <p>{{ resource.tender.description }}</p>
-                        <a href="{{ path('app_tender_challenge', {id: resource.tender.id}) }}"
-                           rel="noopener" class="btn btn--primary"
-                           target="_blank">Ga naar aanbesteding<span
-                                class="btn__icon icon icon-arr-forward"
-                                title="" role=""></span></a>
-                    {% endif %}
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-12 col-lg-4">
-            <div class="content-background">
-                <div class="content ">
-                    <h1>Kenmerken</h1>
-                    {% if resource.submitter is defined and resource.submitter is not empty %}
-                        <b>Aangemaakt
-                            door:</b>
-                        {% if 'https' in resource.submitter %}
-                            {% set person = commonground_resource(resource.submitter) %}
-                            {{ person.naam.voorletters }} {{ person.naam.geslachtsnaam }}
-                        {% else %}
-                            {{ resource.submitter }}
-                        {% endif %}
-                        <br>
-                    {% endif %}
-                    {% if resource.dateSubmitted is defined and resource.dateSubmitted is not empty %}
-                        <b>Ingediend op: </b>{{ resource.dateSubmitted|date("d-m-Y H:i", "Europe/Paris") }}
-                        <br>
-                    {% endif %}
-                    {% if resource.documents is defined and resource.documents is not empty %}
-                        <br>
-                        <h3>Documenten</h3>
-                        <ul class="list list--links list--chevrons">
-                            {% for document in resource.documents %}
-                                <li><a href="#">{{ document }}</a></li>
-                            {% endfor %}
+                        <ul class="list list--card list--card-small">
+                            <li class="card card--small">
+                                <div class="card__content">
+                                    <div class="card__body">
+                                        <div class="row" style=" height: 100%; width: 100%;">
+                                            <div class="col-sm-12 col-md-6"
+                                                 style="padding-right: 0px;">
+                                                    <span
+                                                        class="card__title">{{ resource.tender.name }}
+                                                    </span>
+
+                                                {% if resource.tender.created is defined and resource.tender.created is not empty %}
+                                                    <br>
+                                                    <span>Ingediend op {{ resource.tender.created|date("d-m-Y H:i", "Europe/Paris") }}</span>
+                                                {% endif %}
+                                            </div>
+                                            <div class="col-sm-12 col-md-6">
+                                                <div>
+                                                    <div
+                                                        style="display: flex; flex-direction: column; justify-items: center;">
+                                                        <a href="{{ path('app_tender_challenge', {id: resource.tender.id}) }}"
+                                                           rel="noopener" class="btn btn--primary"
+                                                           target="_blank">Lees hier meer over deze
+                                                            aanbesteding<span
+                                                                class="btn__icon icon icon-arr-forward"
+                                                                title="" role=""></span></a>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
                         </ul>
                     {% endif %}
-                    {% if resource.requiredBudget is defined and resource.requiredBudget is not empty %}
-                        {#                        <b>Benodigd budget: </b>&euro; {{ resource.requiredBudget }},-#}
-                        <br><br>
-
-                        <div class="donut-chart" id="requiredbudget-donut-chart">
-                            <h3 class="donut-chart__title">Benodigd budget</h3>
-                            <div class="donut-chart__chart">
-                                <canvas class="donut-chart__canvas"></canvas>
-                                <div class="donut-chart__inner">€ {{ resource.requiredBudget }},-</div>
-                            </div>
-                            {% if resource.tender.budget is defined and resource.tender.budget is not empty %}
-                                <span
-                                    class="donut-chart__subtitle">van het beschikbare budget € {{ resource.tender.budget }},-</span>
-                            {% endif %}
-                        </div>
-                        <br>
-                    {% endif %}
                 </div>
             </div>
+        </div
+    </div>
+    <div class="col-sm-12 col-lg-4">
+        <div class="content-background">
+            <div class="content ">
+                <h1>Kenmerken</h1>
+                {% if resource.submitter is defined and resource.submitter is not empty %}
+                    <b>Aangemaakt
+                        door:</b>
+                    {% if 'https' in resource.submitter %}
+                        {% set person = commonground_resource(resource.submitter) %}
+                        {{ person.naam.voorletters }} {{ person.naam.geslachtsnaam }}
+                    {% else %}
+                        {{ resource.submitter }}
+                    {% endif %}
+                    <br>
+                {% endif %}
+                {% if resource.dateSubmitted is defined and resource.dateSubmitted is not empty %}
+                    <b>Ingediend op: </b>{{ resource.dateSubmitted|date("d-m-Y H:i", "Europe/Paris") }}
+                    <br>
+                {% endif %}
+                {% if resource.documents is defined and resource.documents is not empty %}
+                    <br>
+                    <h3>Documenten</h3>
+                    <ul class="list list--links list--chevrons">
+                        {% for document in resource.documents %}
+                            <li><a href="#">{{ document }}</a></li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+                {% if resource.requiredBudget is defined and resource.requiredBudget is not empty %}
+                    {#                        <b>Benodigd budget: </b>&euro; {{ resource.requiredBudget }},-#}
+                    <br><br>
+
+                    <div class="donut-chart" id="requiredbudget-donut-chart">
+                        <h3 class="donut-chart__title">Benodigd budget</h3>
+                        <div class="donut-chart__chart">
+                            <canvas class="donut-chart__canvas"></canvas>
+                            <div class="donut-chart__inner">€ {{ resource.requiredBudget }},-</div>
+                        </div>
+                        {% if resource.tender.budget is defined and resource.tender.budget is not empty %}
+                            <span
+                                class="donut-chart__subtitle">van het beschikbare budget € {{ resource.tender.budget }},-</span>
+                        {% endif %}
+                    </div>
+                    <br>
+                {% endif %}
+            </div>
         </div>
+    </div>
     </div>
 
     {% if resource.requiredBudget is defined and resource.requiredBudget is not empty %}
