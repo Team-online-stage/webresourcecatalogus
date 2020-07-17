@@ -2136,7 +2136,7 @@ class ConductionFixtures extends Fixture
         $menuItem->setDescription('Tutorials');
         $menuItem->setOrder(4);
         $menuItem->setType('slug');
-        $menuItem->setHref('/tutorials');
+        $menuItem->setHref('/education/programs');
         $menuItem->setMenu($menu);
         $manager->persist($menuItem);
 
@@ -2732,10 +2732,10 @@ class ConductionFixtures extends Fixture
 
         $id = Uuid::fromString('21218de7-2750-4ed0-a7bb-9f13906f22b5');
         $template = new Template();
-        $template->setName('pi event');
-        $template->setTitle('pi event is van start');
-        $template->setDescription('Het Pi event is eindelijk van start! In dit event gaan verschillende gemeentes hun nieuwe platformen tonen.');
-        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Conduction/Stage/nieuws/pi-event.html.twig', 'r'));
+        $template->setName('Overheid');
+        $template->setTitle('Overheid geeft 1 miljard euro meer uit aan ICT dan gepland');
+        $template->setDescription('De Nederlandse overheid gaat zo\'n 1 miljard euro meer uitgeven aan ICT-projecten dan origineel was gepland.');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Conduction/Stage/nieuws/overheid.html.twig', 'r'));
         $template->setTemplateEngine('twig');
         $manager->persist($template);
         $date = new \DateTime();
@@ -2753,21 +2753,17 @@ class ConductionFixtures extends Fixture
         $slug = new Slug();
         $slug->setTemplate($template);
         $slug->setApplication($stage);
-        $slug->setName('pi-event');
-        $slug->setSlug('pi-event');
+        $slug->setName('overheid');
+        $slug->setSlug('overheid');
         $manager->persist($slug);
 
         $id = Uuid::fromString('ee7d531b-9245-4cbe-9cef-e1b800cdd3f4');
         $template = new Template();
-        $template->setName('corona');
-        $template->setTitle('Corona maatregelen in Zuid-drecht');
-        $template->setDescription('De corona maatregelingen worden per 1 Juli versoepeld in de gemeente Zuid drecht. De cijfers blijken dusdanig te dalen in deze gemeente dat er weer steeds meer mogenlijk is.');
-        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Conduction/Stage/nieuws/corona.html.twig', 'r'));
+        $template->setName('Gekwalificeerd ICT\'er');
+        $template->setTitle('Gekwalificeerde ICT\'er heeft banen voor het uitzoeken');
+        $template->setDescription('Werkgevers vinden het steeds moeilijker om geschikt ICT-personeel te vinden. Vaak zijn er wel genoeg mensen die werk in computertechnologie zoeken.');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Conduction/Stage/nieuws/gekwalificeerd-icter.html.twig', 'r'));
         $template->setTemplateEngine('twig');
-        $date = new \DateTime();
-        $date->sub(new \DateInterval('P1D'));
-        $template->setDateCreated($date);
-        $template->setDateModified($date);
         $manager->persist($template);
         $template->setId($id);
         $manager->persist($template);
@@ -2780,16 +2776,16 @@ class ConductionFixtures extends Fixture
         $slug = new Slug();
         $slug->setTemplate($template);
         $slug->setApplication($stage);
-        $slug->setName('corona');
-        $slug->setSlug('corona');
+        $slug->setName('gekwalificeerd-icter');
+        $slug->setSlug('gekwalificeerd-icter');
         $manager->persist($slug);
 
         $id = Uuid::fromString('d76116ed-2704-4b9d-8101-2de5cfb343c9');
         $template = new Template();
-        $template->setName('Woninginbraak gehalveerd');
-        $template->setTitle('Woninginbraak gehalveerd in de gemeente zuid-drecht');
-        $template->setDescription('Woning inbraken lijken steeds minder voor te komen in de gemeente Zuid drecht. Uit cijfers blijkt dat dit vergeleken vorig jaar alweer met 50% is gedaald.');
-        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Conduction/Stage/nieuws/woning-inbraak.html.twig', 'r'));
+        $template->setName('Corona app');
+        $template->setTitle('App CoronaMelder vanaf 1 september van start');
+        $template->setDescription('De app CoronaMelder moet volgens het ministerie van Volksgezondheid vanaf 1 september van start gaan. Vanaf 17 augustus zou het verkrijgbaar moeten zijn voor zowel Android als iOS.');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Conduction/Stage/nieuws/corona-app.html.twig', 'r'));
         $template->setTemplateEngine('twig');
         $manager->persist($template);
         $template->setId($id);
@@ -2803,8 +2799,8 @@ class ConductionFixtures extends Fixture
         $slug = new Slug();
         $slug->setTemplate($template);
         $slug->setApplication($stage);
-        $slug->setName('woning-inbraak');
-        $slug->setSlug('woning-inbraak');
+        $slug->setName('corona-app');
+        $slug->setSlug('corona-app');
         $manager->persist($slug);
 
         $manager->flush();
