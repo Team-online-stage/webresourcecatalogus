@@ -6,25 +6,25 @@
     <h1>Stages</h1>
     <div class="row">
         <div class="col-sm-8">
-            {# set stages = commonground_resource_list({'component': 'chrc', 'type': 'tenders'},{'order[dateCreated]':'desc'})['hydra:member'] #}
-            {# if stages is not empty #}
-                <ul class="list list--card list--card-small">
-                {# for stage in stages #}
+            {% set stages = commonground_resource_list({'component': 'edu', 'type': 'programs'},{'order[dateCreated]':'desc'})['hydra:member'] %}
+            {% if stages is not empty %}
+            <ul class="list list--card list--card-small">
+                {% for stage in stages %}
                     <li class="card card--small">
                         <div class="card__content">
                             <div class="card__thumb" style="background-image: url('https://picsum.photos/200')"></div>
                             <div class="card__body">
                                 <div class="row" style=" height: 100%; width: 100%;">
                                     <div class="col-sm-8" style="padding-right: 0px;">
-                                        <span class="card__title">{# stage.name #} Voorbeeld Stage</span><br>
-                                        <span>{# stage.description #} Voorbeeld Beschrijving</span>
+                                        <span class="card__title">{{ stage.name }}</span><br>
+                                        <span>{{ stage.description }}</span>
                                     </div>
                                     <div class="col-sm-4">
                                         <div style="float: right;">
                                             <div style="display: flex; flex-direction: column; justify-items: center;">
-                                                <p style="margin: 0; color: grey;">budget: 123{# stage.budget #}<i style="color: grey" class="fas fa-euro-sign"></i></p>
-                                                <p style="margin: 0;">deadline: 16-08-2020{# stage.dateClose|date("d-m-Y H:i", "Europe/Paris") #}</p>
-                                                <a href="/stage{# ?id={{ stage.id }} #}">lees meer</a>
+                                                <p style="margin: 0;">onderwijsvorm: {{ stage.occupationalCategory }}</p>
+                                                <p style="margin: 0;">salaris: {{ stage.trainingSalary }}</p>
+                                                <a href="{{ path('app_education_stage', {id: stage.id}) }}">lees meer</a>
                                             </div>
                                         </div>
                                     </div>
@@ -32,56 +32,10 @@
                             </div>
                         </div>
                     </li>
-                {# endfor #}
-        {#  {% else %}
-                <p>Er zijn op dit moment geen stages</p>
-            {% endif %}     #}
-            <li class="card card--small">
-                <div class="card__content">
-                    <div class="card__thumb" style="background-image: url('https://picsum.photos/200')"></div>
-                    <div class="card__body">
-                        <div class="row" style=" height: 100%; width: 100%;">
-                            <div class="col-sm-8" style="padding-right: 0px;">
-                                <span class="card__title">Dit is de title</span><br>
-                                <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                        Ad distinctio eos expedita ipsam laboriosam maiores</span>
-                            </div>
-                            <div class="col-sm-4">
-                                <div style="float: right;">
-                                    <div style="display: flex; flex-direction: column; justify-items: center;">
-                                        <p style="margin: 0; color: grey;">budget: 4500.00 <i style="color: grey" class="fas fa-euro-sign"></i></p>
-                                        <p style="margin: 0;">deadline: 2020-07-01</p>
-                                        <a href="">lees meer</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </li>
-            <li class="card card--small">
-                <div class="card__content">
-                    <div class="card__thumb" style="background-image: url('https://picsum.photos/200')"></div>
-                    <div class="card__body">
-                        <div class="row" style=" height: 100%; width: 100%;">
-                            <div class="col-sm-8" style="padding-right: 0px;">
-                                <span class="card__title">Dit is de title</span><br>
-                                <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                        Ad distinctio eos expedita ipsam laboriosam maiores</span>
-                            </div>
-                            <div class="col-sm-4">
-                                <div style="float: right;">
-                                    <div style="display: flex; flex-direction: column; justify-items: center;">
-                                        <p style="margin: 0; color: grey;">budget: 2400.00 <i style="color: grey" class="fas fa-euro-sign"></i></p>
-                                        <p style="margin: 0;">deadline: 2020-07-15</p>
-                                        <a href="">lees meer</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </li>
+                {% endfor %}
+                {% else %}
+                    <p>Er zijn op dit moment geen stages</p>
+                {% endif %}
             </ul>
         </div>
     </div>

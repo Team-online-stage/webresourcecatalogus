@@ -4,7 +4,7 @@
 
 {% block content %}
     <header class="content__header">
-        <a class="backlink" href="/studenten">Studenten</a>
+        <a class="backlink" href="/stages">Stages</a>
     </header>
     <div class="row">
         {# if user is defined and user is not null #}
@@ -13,10 +13,9 @@
                     <div class="content ">
                         <div class="row">
                             <div class="col-md-6">
-                                {% set studentContact = commonground_resource(resource.person) %}
-                                <h1>{{ studentContact.name|capitalize }}</h1>
-                                <p>{{ studentContact.formalName|capitalize }}</p>
-                                <b>Family Name: </b>{{ studentContact.familyName|capitalize }}
+                                <h1>{{ resource.name|capitalize }}</h1>
+                                <p>{{ resource.description|capitalize }}</p>
+                                <b>Onderwijsvorm: </b>{{ resource.occupationalCategory|capitalize }}
                             </div>
                             <div class="col-md-6">
                                 <img src="https://picsum.photos/350/250" alt="tender" width="100%">
@@ -31,48 +30,12 @@
                                             <span class="screenreader-only" data-contracted-i18n="ingeklapt"
                                                   data-expanded-i18n="uitgeklapt"></span>
                                         </i>
-                                        <span class="collapse__title">educationalOccupationalPrograms</span>
-                                    </div>
-                                    <div class="collapse__details collapse__details--closed">
-                                        {% if resource.educationalOccupationalPrograms is defined and resource.educationalOccupationalPrograms is not empty %}
-                                            <ul class="list list--card list--card-small">
-                                                {% for educationalOccupationalProgram in resource.educationalOccupationalPrograms %}
-                                                    <li class="card card--small">
-                                                        <div class="card__content">
-                                                            <div class="card__body">
-                                                                <div class="row" style=" height: 100%; width: 100%;">
-                                                                    <div class="col-sm-12" style="padding-right: 0px;">
-                                                                        <span class="card__title">{{ educationalOccupationalProgram.name }}</span><br>
-                                                                        <span>{{ educationalOccupationalProgram.description }}</span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                {% endfor %}
-                                            </ul>
-                                        {% else %}
-                                            <p style="color:lightgray">Er zijn nog geen educationalOccupationalPrograms.</p>
-                                        {% endif %}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <br>
-                                <div class="collapse" role="status">
-                                    <div x-uno-collapse="" class="collapse__header">
-                                        <i class="collapse__indicator">
-                                            <span class="screenreader-only" data-contracted-i18n="ingeklapt"
-                                                  data-expanded-i18n="uitgeklapt"></span>
-                                        </i>
                                         <span class="collapse__title">courses</span>
                                     </div>
                                     <div class="collapse__details collapse__details--closed">
-                                        {% if resource.coursese is defined and resource.courses is not empty %}
+                                        {% if resource.courses is defined and resource.courses is not empty %}
                                             <ul class="list list--card list--card-small">
-                                                {% for course in resource.coursese %}
+                                                {% for course in resource.courses %}
                                                     <li class="card card--small">
                                                         <div class="card__content">
                                                             <div class="card__body">
