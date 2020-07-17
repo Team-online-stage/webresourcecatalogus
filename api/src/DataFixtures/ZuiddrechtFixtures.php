@@ -604,6 +604,15 @@ class ZuiddrechtFixtures extends Fixture
         $manager->persist($menuItem);
 
         $menuItem = new MenuItem();
+        $menuItem->setName('Producten en diensten');
+        $menuItem->setDescription('Lijst van producten en diensten');
+        $menuItem->setOrder(3);
+        $menuItem->setType('slug');
+        $menuItem->setHref('/producten');
+        $menuItem->setMenu($menu);
+        $manager->persist($menuItem);
+
+        $menuItem = new MenuItem();
         $menuItem->setName('Nieuws');
         $menuItem->setDescription('Nieuws overzicht');
         $menuItem->setOrder(2);
@@ -930,6 +939,50 @@ class ZuiddrechtFixtures extends Fixture
         $slug->setApplication($application);
         $slug->setName('article');
         $slug->setSlug('article');
+        $manager->persist($slug);
+
+        $id = Uuid::fromString('9c8095f4-4252-4c49-b4d2-caa6515d8a69');
+        $template = new Template();
+        $template->setName('producten');
+        $template->setDescription('producten');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Zuiddrecht/website/producten.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('producten');
+        $slug->setSlug('producten');
+        $manager->persist($slug);
+
+        $id = Uuid::fromString('4a080e26-2deb-4fdd-ab4d-38d50c64261d');
+        $template = new Template();
+        $template->setName('product');
+        $template->setDescription('product');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Zuiddrecht/website/product.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('product');
+        $slug->setSlug('product');
         $manager->persist($slug);
 
         $id = Uuid::fromString('70dd6462-85ef-45f4-b9dc-57eb9ac56646');

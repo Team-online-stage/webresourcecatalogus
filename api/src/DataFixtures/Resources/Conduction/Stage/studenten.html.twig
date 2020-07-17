@@ -26,7 +26,7 @@
                                                 <div style="display: flex; flex-direction: column; justify-items: center;">
                                                     <p style="margin: 0;">givenName: {{ studentContact.givenName }}</p>
                                                     <p style="margin: 0;">familyName: {{ studentContact.familyName }}</p>
-                                                    <a href="/student?id={{ student.id }}">lees meer</a>
+                                                    <a href="{{ path('app_education_student', {id: student.id}) }}">lees meer</a>
                                                 </div>
                                             </div>
                                         </div>
