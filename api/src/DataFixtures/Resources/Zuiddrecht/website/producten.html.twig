@@ -19,9 +19,7 @@
                                 <div class="col-sm-6" style="padding-right: 0px;">
                                     <span class="card__title">{{ product.name|capitalize }}</span>
                                     <br>
-                                    <span><b>Prijs:</b> {{ product.price }}</span>
-                                    <br>
-                                    <span>{{ product.description|slice(0, 110)|raw }}</span>
+                                    <span>{{ product.description|slice(0, 110)|raw ~ '...' }}</span>
                                 </div>
                                 <div class="col-sm-6">
                                     <a style="margin-top: 45px; float: right; background: #ffea00"
