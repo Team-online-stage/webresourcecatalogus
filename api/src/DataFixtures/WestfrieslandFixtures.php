@@ -267,6 +267,5 @@ class WestfrieslandFixtures extends Fixture
         $configuration->setOrganization($westfriesland);
         $configuration->setApplication($application);
         $manager->persist($configuration);
-
     }
 }
