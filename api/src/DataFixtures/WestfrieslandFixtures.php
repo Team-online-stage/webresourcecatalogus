@@ -163,13 +163,13 @@ class WestfrieslandFixtures extends Fixture
         $configuration->setApplication($application);
         $configuration->setConfiguration(
             [
-                'mainMenu'=> $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'097ea88e-beb6-476e-a978-d07650f03d97']),
-                'home'    => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'fc91dcd6-d0b4-4e70-9934-3e5ebf9c295c']), ]
+                'mainMenu'=> $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'cce26509-9710-4bd2-b01d-7d9f6e7f65c5']),
+                'home'    => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'d724c8dd-a32a-4092-b7e8-040065cf0600']), ]
         );
         $manager->persist($configuration);
 
         // Menu
-        $id = Uuid::fromString('097ea88e-beb6-476e-a978-d07650f03d97');
+        $id = Uuid::fromString('cce26509-9710-4bd2-b01d-7d9f6e7f65c5');
         $menu = new Menu();
         $menu->setName('Main Menu');
         $menu->setDescription('Het hoofdmenu van deze website');
@@ -207,7 +207,7 @@ class WestfrieslandFixtures extends Fixture
         $manager->persist($groupPages);
 
         // Pages
-        //s$id = Uuid::fromString('097ea88e-beb6-476e-a978-d07650f03d97');
+        $id = Uuid::fromString('d724c8dd-a32a-4092-b7e8-040065cf0600');
         $template = new Template();
         $template->setName('Home');
         $template->setDescription('De (web) applicatie waarop begravenisen kunnen worden doorgegeven');
