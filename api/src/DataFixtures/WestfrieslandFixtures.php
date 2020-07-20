@@ -229,5 +229,44 @@ class WestfrieslandFixtures extends Fixture
         $manager->persist($slug);
 
         $manager->flush();
+
+        // Dashboard
+        $style = new Style();
+        $style->setName('Dashboard');
+        $style->setDescription('Huistlijl samenwerkingsverband West-Friesland');
+        $style->setCss(':root {--primary: #233A79;--primary2: white;--secondary: #FFC926;--secondary2: #FFC926;}
+        .main-title {color: var(--primary2) !important;}.logo-header {background: var(--primary);}.navbar-header
+        {background: var(--primary);}.bg-primary-gradient {background: linear-gradient(-45deg, var(--secondary),
+         var(--secondary2)) !important;}');
+
+        $style->setfavicon($favicon);
+        $style->setOrganization($westfriesland);
+
+        $manager->persist($westfriesland);
+        $manager->persist($favicon);
+        $manager->persist($logo);
+        $manager->persist($style);
+
+        $id = Uuid::fromString('76298171-e049-4492-ae7b-1d2fe231aa5f');
+        $application = new Application();
+        $application->setName('Dashboard');
+        $application->setDescription('het Dashboard van de gemeente Zuid-Drecht');
+        $application->setDomain('db.zuid-drecht.nl');
+        $application->setOrganization($westfriesland);
+        $application->setStyle($style);
+        $manager->persist($application);
+        $application->setId($id);
+        $manager->persist($application);
+        $manager->flush();
+        $application = $manager->getRepository('App:Application')->findOneBy(['id'=> $id]);
+
+        // Configuratie
+        $configuration = new Configuration();
+        $configuration->setName('Dashboard');
+        $configuration->setDescription('Dashboard van Zuid-Drecht');
+        $configuration->setOrganization($westfriesland);
+        $configuration->setApplication($application);
+        $manager->persist($configuration);
+
     }
 }
