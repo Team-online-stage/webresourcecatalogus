@@ -251,7 +251,6 @@ class WestfrieslandFixtures extends Fixture
         $manager->persist($style);
         $manager->flush();
 
-
         $id = Uuid::fromString('76298171-e049-4492-ae7b-1d2fe231aa5f');
         $application = new Application();
         $application->setName('Dashboard');
