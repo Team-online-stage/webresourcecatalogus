@@ -250,8 +250,8 @@ class WestfrieslandFixtures extends Fixture
         $id = Uuid::fromString('76298171-e049-4492-ae7b-1d2fe231aa5f');
         $application = new Application();
         $application->setName('Dashboard');
-        $application->setDescription('het Dashboard van de gemeente Zuid-Drecht');
-        $application->setDomain('db.zuid-drecht.nl');
+        $application->setDescription('het Dashboard van de gemeente westfriesland');
+        $application->setDomain('db.westfriesland.commonground.nu');
         $application->setOrganization($westfriesland);
         $application->setStyle($style);
         $manager->persist($application);
