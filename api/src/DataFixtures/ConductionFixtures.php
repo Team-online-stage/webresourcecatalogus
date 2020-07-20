@@ -1982,7 +1982,11 @@ class ConductionFixtures extends Fixture
         }
 
         .nav__link {
-            color: black;
+            color: black !important;
+        }
+
+        .nav__link--parent {
+            color: black !important;
         }
 
         .nav__submenu {
