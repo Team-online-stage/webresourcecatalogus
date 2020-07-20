@@ -21,7 +21,7 @@
                             <div class="card__body">
                                 <div class="row" style=" height: 100%; width: 100%;">
                                     <div class="col-sm-6" style="padding-right: 0px;">
-                                        <span class="card__title">{{ challenge.name }}</span>
+                                        <span class="card__title">{{ challenge.name|capitalize }}</span>
                                         <br>
                                         <span><b>Deadline:</b> {{ challenge.dateClose|date("d-m-Y", "Europe/Paris") }}</b></span>
                                         <br>
@@ -32,7 +32,7 @@
                                         <a style="margin-top: 45px; float: right; background: #ffea00"
                                            href="{{ path('app_tender_challenge', {id: challenge.id}) }}"
                                            rel="noopener" class="btn btn--primary"
-                                           target="_blank">Bekijk deze aanbesteding<span
+                                           >Bekijk deze aanbesteding<span
                                                 class="btn__icon icon icon-arr-forward"
                                                 title="" role=""></span></a>
                                     </div>
