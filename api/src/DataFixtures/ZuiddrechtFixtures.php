@@ -597,6 +597,7 @@ class ZuiddrechtFixtures extends Fixture
         $menuItem->setMenu($menu);
         $manager->persist($menuItem);
 
+        /*
         $menuItem = new MenuItem();
         $menuItem->setName('Ondernemers');
         $menuItem->setDescription('Lijst van ondernemers');
@@ -614,6 +615,7 @@ class ZuiddrechtFixtures extends Fixture
         $menuItem->setHref('/producten');
         $menuItem->setMenu($menu);
         $manager->persist($menuItem);
+        */
 
         $menuItem = new MenuItem();
         $menuItem->setName('Nieuws');
@@ -810,6 +812,72 @@ class ZuiddrechtFixtures extends Fixture
         $slug->setApplication($application);
         $slug->setName('concept');
         $slug->setSlug('concept');
+        $manager->persist($slug);
+
+        $id = Uuid::fromString('22689f6d-9f62-4025-b880-18d8ba63818f');
+        $template = new Template();
+        $template->setName('functionaliteit');
+        $template->setDescription('functionaliteit');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Zuiddrecht/website/functionaliteit.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('functionaliteit');
+        $slug->setSlug('functionaliteit');
+        $manager->persist($slug);
+
+        $id = Uuid::fromString('5bf63407-73dc-4c9b-a458-3350e9325457');
+        $template = new Template();
+        $template->setName('roadmap');
+        $template->setDescription('roadmap');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Zuiddrecht/website/roadmap.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('roadmap');
+        $slug->setSlug('roadmap');
+        $manager->persist($slug);
+
+        $id = Uuid::fromString('55a98b6b-8ca7-4c2f-a0a0-2c559efeb189');
+        $template = new Template();
+        $template->setName('voor-developers');
+        $template->setDescription('v');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Zuiddrecht/website/voor-developers.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('voor-developers');
+        $slug->setSlug('voor-developers');
         $manager->persist($slug);
 
         $id = Uuid::fromString('9ab2a88c-b8f2-434d-bc63-76402a0166c9');
