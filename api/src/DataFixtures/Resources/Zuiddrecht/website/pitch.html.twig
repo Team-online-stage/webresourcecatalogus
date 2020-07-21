@@ -96,7 +96,7 @@
                                 <form method="post" action="{{ path('app_tender_pitch', {id: resource.id}) }}">
 
                                     <div class="row">
-                                        <div class="col-md-6">
+                                        <div class="col-md-12">
 
                                             <div class="input">
                                                 <label class="input__label" for="textarea_voorbeeld">Voer hier uw
@@ -108,19 +108,19 @@
                                             </div>
 
                                         </div>
-                                        <div class="col-md-6">
+{#                                        <div class="col-md-6">#}
 
-                                            <input id="rating" type="hidden" name="rating" required>
+{#                                            <input id="rating" type="hidden" name="rating" required>#}
 
-                                            <div align="center" style=" padding: 25px 10px 10px 10px; margin: 27.5px; background: #CC0000; border-radius: 8px">
-                                                <i class="fa fa-star fa-2x" data-index="0"></i>
-                                                <i class="fa fa-star fa-2x" data-index="1"></i>
-                                                <i class="fa fa-star fa-2x" data-index="2"></i>
-                                                <i class="fa fa-star fa-2x" data-index="3"></i>
-                                                <i class="fa fa-star fa-2x" data-index="4"></i>
-                                                <br><br>
-                                            </div>
-                                        </div>
+{#                                            <div align="center" style=" padding: 25px 10px 10px 10px; margin: 27.5px; background: #CC0000; border-radius: 8px">#}
+{#                                                <i class="fa fa-star fa-2x" data-index="0"></i>#}
+{#                                                <i class="fa fa-star fa-2x" data-index="1"></i>#}
+{#                                                <i class="fa fa-star fa-2x" data-index="2"></i>#}
+{#                                                <i class="fa fa-star fa-2x" data-index="3"></i>#}
+{#                                                <i class="fa fa-star fa-2x" data-index="4"></i>#}
+{#                                                <br><br>#}
+{#                                            </div>#}
+{#                                        </div>#}
                                     </div>
 
                                     <div class="input">
@@ -327,42 +327,44 @@
         });
     </script>
 
-    <script>
-        var ratedIndex = -1;
+{#  Script for Rating  #}
 
-        $(document).ready(function () {
-            resetStarColors();
+{#    <script>#}
+{#        var ratedIndex = -1;#}
+
+{#        $(document).ready(function () {#}
+{#            resetStarColors();#}
 
 
 
-            $('.fa-star').on('click', function () {
-                ratedIndex = parseInt($(this).data('index'));
-                localStorage.setItem('ratedIndex', ratedIndex);
-                document.getElementById('rating').value = ratedIndex;
-            });
+{#            $('.fa-star').on('click', function () {#}
+{#                ratedIndex = parseInt($(this).data('index'));#}
+{#                localStorage.setItem('ratedIndex', ratedIndex);#}
+{#                document.getElementById('rating').value = ratedIndex;#}
+{#            });#}
 
-            $('.fa-star').mouseover(function () {
-                resetStarColors();
-                var currentIndex = parseInt($(this).data('index'));
-                setStars(currentIndex);
-            });
+{#            $('.fa-star').mouseover(function () {#}
+{#                resetStarColors();#}
+{#                var currentIndex = parseInt($(this).data('index'));#}
+{#                setStars(currentIndex);#}
+{#            });#}
 
-            $('.fa-star').mouseleave(function () {
-                resetStarColors();
+{#            $('.fa-star').mouseleave(function () {#}
+{#                resetStarColors();#}
 
-                if (ratedIndex != -1)
-                    setStars(ratedIndex);
-            });
-        });
+{#                if (ratedIndex != -1)#}
+{#                    setStars(ratedIndex);#}
+{#            });#}
+{#        });#}
 
-        function setStars(max) {
-            for (var i = 0; i <= max; i++)
-                $('.fa-star:eq(' + i + ')').css('color', 'gold');
-        }
+{#        function setStars(max) {#}
+{#            for (var i = 0; i <= max; i++)#}
+{#                $('.fa-star:eq(' + i + ')').css('color', 'gold');#}
+{#        }#}
 
-        function resetStarColors() {
-            $('.fa-star').css('color', 'white');
-        }
-    </script>
+{#        function resetStarColors() {#}
+{#            $('.fa-star').css('color', 'white');#}
+{#        }#}
+{#    </script>#}
 
 {% endblock %}
