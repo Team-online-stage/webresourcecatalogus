@@ -187,7 +187,7 @@ class WestfrieslandFixtures extends Fixture
         $menuItem->setType('slug');
         $menuItem->setHref('/process');
         $menuItem->setMenu($menu);
-        $manager->persist($menu);
+        $manager->persist($menuItem);
 
         $menuItem = new MenuItem();
         $menuItem->setName('Verzoeken');
@@ -196,7 +196,7 @@ class WestfrieslandFixtures extends Fixture
         $menuItem->setType('slug');
         $menuItem->setHref('/requests');
         $menuItem->setMenu($menu);
-        $manager->persist($menu);
+        $manager->persist($menuItem);
 
         // Template groups
         $groupPages = new TemplateGroup();
