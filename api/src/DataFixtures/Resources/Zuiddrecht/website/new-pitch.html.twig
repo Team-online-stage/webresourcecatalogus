@@ -5,41 +5,59 @@
 {% block content %}
     <header class="content__header col-sm-10 col-sm-offset-1">
         <a class="backlink" href="/pitches">Initiatieven</a>
+        <h1 class="content__header-title">Maak hier uw initiatief aan</h1>
     </header>
     <div class="row">
-        <div class="col-sm-10 col-sm-offset-1 col-lg-8 col-lg-offset-2">
+        <div class="col-sm-10 col-sm-offset-1 ">
             <div class="content-background">
                 <div class="content ">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <form method="post" action="{{ path('app_tender_newpitch') }}">
-                                <div class="input">
-                                    <label class="input__label" for="name">Titel</label>
-                                    <input type="text" id="name" name="name"
-                                           class="input__control input__control--m input__control--text">
-
-                                    <label class="input__label" for="description">Beschrijving</label>
-                                    <textarea id="description"
-                                              class="input__control input__control--l input__control--text"
-                                              name="description"></textarea>
-
-                                    <label class="input__label" for="neededBudget">Benodigd budget in &euro;</label>
-                                    <input type="text" id="neededBudget" name="neededBudget"
-                                           class="input__control input__control--m input__control--text">
-
-                                    <label class="input__label" for="document">Links voor documenten</label>
-                                    <input type="text" id="document" name="documents[]"
-                                           class="input__control input__control--m input__control--text">
-                                    <input type="text" id="document" name="documents[]"
-                                           class="input__control input__control--m input__control--text">
-
+                                        <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <form method="post" action="{{ path('app_tender_newpitch') }}">
                                     <div class="input">
-                                        <button type="submit" class="btn btn--primary">Aanmaken</button>>
+                                        <label class="input__label" for="name">Titel</label>
+                                        <input type="text" id="name" name="name"
+                                               class="input__control input__control--l input__control--text">
+                                        <label class="input__label" for="description">Beschrijving</label>
+                                        <textarea id="description"
+                                                  class="input__control input__control--l input__control--text"
+                                                  name="description"></textarea>
+                                        <label class="input__label" for="requiredBudget">Benodigd budget <span
+                                                class="label label--optional">afgerond op hele euro's</span></label>
+                                        <input type="text" id="requiredBudget" name="requiredBudget"
+                                               class="input__control input__control--l input__control--text">
+                                        <label class="input__label" for="document">Links voor documenten</label>
+                                        <input type="text" id="document" name="documents[]"
+                                               class="input__control input__control--l input__control--text">
+                                        <br>
+
+                                        <input style="margin-top: 20px;" type="text" id="document" name="documents[]"
+                                               class="input__control input__control--l input__control--text">
+                                        <br><br>
+                                        <div class="input">
+                                            <button type="submit" class="btn btn--primary"
+                                                {% if user is not defined or user is empty or user is null %}disabled="disabled"{% endif %}>Aanmaken</button>
+                                        </div>
                                     </div>
-                                </div>
-                            </form>
+                                </form>
+                            </div>
+                            <div class="col-md-6">
+                                <p>Heeft u een top idee wat u met de community wilt delen? Begin hier uw initiatief door
+                                    dit formulier in te vullen.</p>
+
+                                {% if user is not defined or user is empty or user is null %}
+
+                                <p>
+                                    <a href="{{ commonground_cleanurl({"component":"ds"}) }}?responceUrl={{ absolute_url(path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params'))) }}">Login</a>
+                                    om een initiatief te starten.</p>
+
+                                {% endif %}
+                            </div>
                         </div>
                     </div>
+                                        </div>
                 </div>
             </div>
         </div>

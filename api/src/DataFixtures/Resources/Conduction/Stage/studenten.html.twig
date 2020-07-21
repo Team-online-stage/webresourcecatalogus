@@ -6,26 +6,27 @@
     <h1>Studenten</h1>
     <div class="row">
         <div class="col-sm-8">
-            {% if user is defined and user is not null %}
-                {% set studenten = commonground_resource_list({'component': 'chrc', 'type': 'tenders'},{'order[dateCreated]':'desc'})['hydra:member'] %}
+            {# if user is defined and user is not null #}
+                {% set studenten = commonground_resource_list({'component': 'edu', 'type': 'participants'},{'order[dateCreated]':'desc'})['hydra:member'] %}
                 {% if studenten is not empty %}
                 <ul class="list list--card list--card-small">
                     {% for student in studenten %}
+                        {% set studentContact = commonground_resource(student.person) %}
                         <li class="card card--small">
                             <div class="card__content">
                                 <div class="card__thumb" style="background-image: url('https://picsum.photos/200')"></div>
                                 <div class="card__body">
                                     <div class="row" style=" height: 100%; width: 100%;">
                                         <div class="col-sm-8" style="padding-right: 0px;">
-                                            <span class="card__title">{{ student.name }}</span><br>
-                                            <span>{{ student.description }}</span>
+                                            <span class="card__title">{{ studentContact.name }}</span><br>
+                                            <span>{{ studentContact.formalName }}</span>
                                         </div>
                                         <div class="col-sm-4">
                                             <div style="float: right;">
                                                 <div style="display: flex; flex-direction: column; justify-items: center;">
-                                                    <p style="margin: 0; color: grey;">budget: {{ student.budget }}<i style="color: grey" class="fas fa-euro-sign"></i></p>
-                                                    <p style="margin: 0;">deadline: {{ student.dateClose|date("d-m-Y H:i", "Europe/Paris") }}</p>
-                                                    <a href="/student?id={{ student.id }}">lees meer</a>
+                                                    <p style="margin: 0;">givenName: {{ studentContact.givenName }}</p>
+                                                    <p style="margin: 0;">familyName: {{ studentContact.familyName }}</p>
+                                                    <a href="{{ path('app_education_student', {id: student.id}) }}">lees meer</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -37,94 +38,10 @@
                     {% else %}
                         <p>Er zijn op dit moment geen studenten</p>
                     {% endif %}
-                    <li class="card card--small">
-                        <div class="card__content">
-                            <div class="card__thumb" style="background-image: url('https://picsum.photos/200')"></div>
-                            <div class="card__body">
-                                <div class="row" style=" height: 100%; width: 100%;">
-                                    <div class="col-sm-8" style="padding-right: 0px;">
-                                        <span class="card__title">Dit is de title</span><br>
-                                        <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                            Ad distinctio eos expedita ipsam laboriosam maiores</span>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div style="float: right;">
-                                            <div style="display: flex; flex-direction: column; justify-items: center;">
-                                                <p style="margin: 0; color: grey;">budget: 4500.00 <i style="color: grey" class="fas fa-euro-sign"></i></p>
-                                                <p style="margin: 0;">deadline: 2020-07-01</p>
-                                                <a href="">lees meer</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="card card--small">
-                        <div class="card__content">
-                            <div class="card__thumb" style="background-image: url('https://picsum.photos/200')"></div>
-                            <div class="card__body">
-                                <div class="row" style=" height: 100%; width: 100%;">
-                                    <div class="col-sm-8" style="padding-right: 0px;">
-                                        <span class="card__title">Dit is de title</span><br>
-                                        <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                            Ad distinctio eos expedita ipsam laboriosam maiores</span>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div style="float: right;">
-                                            <div style="display: flex; flex-direction: column; justify-items: center;">
-                                                <p style="margin: 0; color: grey;">budget: 2400.00 <i style="color: grey" class="fas fa-euro-sign"></i></p>
-                                                <p style="margin: 0;">deadline: 2020-07-15</p>
-                                                <a href="">lees meer</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
                 </ul>
-            {% else %}
+            {# else %}
                 <h2>U bent nog niet ingelogd!</h2>
-            {% endif %}
-        </div>
-        <div class="col-sm-4" style="background-color: lightgray">
-            <fieldset class="input filter">
-                <legend class="filter__title">Kanaal</legend>
-                <div class="input__group input__group--radio input__group--compact">
-                    <input type="radio" name="optradio1" id="opt-compact-1" class="input__control input__control--radio">
-                    <label class="input__label input__label--radio" for="opt-compact-1">Particulier portaal</label>
-                </div>
-                <div class="input__group input__group--radio input__group--compact">
-                    <input type="radio" name="optradio1" id="opt-compact-2" class="input__control input__control--radio" checked="">
-                    <label class="input__label input__label--radio" for="opt-compact-2">Zakelijk portaal</label>
-                </div>
-                <div class="input__group input__group--radio input__group--compact">
-                    <input type="radio" name="optradio1" id="opt-compact-3" class="input__control input__control--radio" disabled="">
-                    <label class="input__label input__label--radio" for="opt-compact-3">Medewerkersportaal</label>
-                </div>
-            </fieldset>
-
-            <fieldset class="input filter">
-                <legend class="filter__title">Hobbies:</legend>
-                <div class="input__group input__group--compact input__group--checkbox">
-                    <input name="hobbies_compact[]" type="checkbox" id="chkbx-compact-1" class="input__control input__control--checkbox">
-                    <label class="input__label input__label--checkbox" for="chkbx-compact-1">Kitesurfen</label>
-                </div>
-                <div class="input__group input__group--compact input__group--checkbox">
-                    <input name="hobbies_compact[]" type="checkbox" id="chkbx-compact-2" class="input__control input__control--checkbox" checked="">
-                    <label class="input__label input__label--checkbox" for="chkbx-compact-2">Postzegels verzamelen</label>
-                </div>
-                <div class="input__group input__group--compact input__group--checkbox">
-                    <input name="hobbies_compact[]" type="checkbox" id="chkbx-compact-3" class="input__control input__control--checkbox" disabled="">
-                    <label class="input__label input__label--checkbox" for="chkbx-compact-3">Paardrijden</label>
-                </div>
-                <div class="input__group input__group--compact input__group--checkbox">
-                    <input name="hobbies_compact[]" type="checkbox" id="chkbx-compact-4" class="input__control input__control--checkbox" disabled="" checked="">
-                    <label class="input__label input__label--checkbox" for="chkbx-compact-4">JavaScript</label>
-                </div>
-            </fieldset>
+            {% endif #}
         </div>
     </div>
-
 {% endblock %}

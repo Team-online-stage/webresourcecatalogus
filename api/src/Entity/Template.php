@@ -65,9 +65,9 @@ use Symfony\Component\Validator\Constraints as Assert;
  *     "slugs.id": "exact",
  *     "templateEngine": "exact",
  *     "slugs.slug": "exact",
- *     "title": "partial",
+ *     "title": "ipartial",
  *     "name": "partial",
- *     "description": "partial",
+ *     "description": "ipartial",
  *     "content": "partial",
  *     "templateGroups.name": "partial",
  *     "templateGroups.id": "exact"})
@@ -139,7 +139,7 @@ class Template
      *
      * @Groups({"write"})
      */
-    private $slug;
+    private $createSlug;
 
     /**
      * @var string The Content of this template.
@@ -268,14 +268,14 @@ class Template
         return $this;
     }
 
-    public function getSlug(): ?string
+    public function getCreateSlug(): ?string
     {
-        return $this->slug;
+        return $this->createSlug;
     }
 
-    public function setSlug(bool $slug): self
+    public function setCreateSlug(bool $createSlug): self
     {
-        $this->slug = $slug;
+        $this->createSlug = $createSlug;
 
         return $this;
     }

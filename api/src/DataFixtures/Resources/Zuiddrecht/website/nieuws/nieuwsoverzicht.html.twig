@@ -7,8 +7,10 @@
     <div class="row">
         <div class="col-sm-12 col-lg-9">
             {% if application.defaultConfiguration.configuration.nieuws is defined %}
+            {% set search = app.request.get('search') %}
             {% set nieuws = commonground_resource(application.defaultConfiguration.configuration.nieuws) %}
-            {% set templates = commonground_resource_list({'component': 'wrc', 'type': 'templates'},{'templateGroups.id':nieuws.id, 'order[dateCreated]':'desc'})['hydra:member'] %}
+            {% set templates = commonground_resource_list({'component': 'wrc', 'type': 'templates'},
+                {'templateGroups.id':nieuws.id, 'order[dateCreated]':'desc', 'title':search})['hydra:member'] %}
             <ul class="list list--card list--card-small">
                 {% for template in templates %}
                     <li class="card card--small">
@@ -41,11 +43,18 @@
         </div>
         <div class="col-sm-12 col-lg-3" style="background-color: lightgray">
             <fieldset class="input filter">
-                <legend class="filter__title">Filters <button class="btn btn-primary" style="float: right;" type="submit">Filter</button></legend>
-                <div class="input__group input__group--text input__group--compact">
-                    <label class="input__label input__label--text" for="limit">Aantal items:</label>
-                    <input type="text" name="filter[limit]" id="limit" class="input__control input__control--text">
-                </div>
+                <form action="{{ path('slug',{"slug":"nieuwsoverzicht"}) }}" method="get">
+                    <legend class="filter__title">Filters <button class="btn btn-primary" style="float: right;" type="submit">Filter</button></legend>
+                    <div class="input__group input__group--text input__group--compact">
+                        <label class="input__label input__label--text" for="search">naam/beschrijving:</label>
+                        <input type="text" name="search" id="search" class="input__control input__control--text">
+                    </div>
+                    <div class="input__group input__group--text input__group--compact">
+                        <label class="input__label input__label--text" for="search">naam/beschrijving:</label>
+                        <input type="date" name="search" id="search" class="input__control input__control--text">
+                    </div>
+                </form>
+
             </fieldset>
         </div>
     </div>

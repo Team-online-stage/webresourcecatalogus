@@ -102,11 +102,10 @@ class Configuration
     private $description;
 
     /**
-     * @Groups({"write"})
-     * @Assert\NotNull
+     * @Groups({"read","write"})
      * @MaxDepth(1)
-     * @ORM\ManyToOne(targetEntity="App\Entity\Application", inversedBy="configurations")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\OneToOne(targetEntity="App\Entity\Application")
+     * @ORM\JoinColumn(nullable=true)
      */
     private $application;
 
@@ -188,11 +187,6 @@ class Configuration
     public function setApplication(?Application $application): self
     {
         $this->application = $application;
-
-        // If the application dosn't have a deafult configuration yet lets set this one
-        if ($this->application && !$this->application->getDefaultConfiguration()) {
-            $this->application->setDefaultConfiguration($this);
-        }
 
         return $this;
     }

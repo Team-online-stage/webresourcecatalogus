@@ -3,17 +3,40 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
-    </div>
-    <div class="row content-background background--donkergeel" style="height: 400px; background: url(https://images.unsplash.com/photo-1547499681-28dece7dba00?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80) !important; background-size: cover !important;">
-        <div class="container" style="height: 400px; position: relative;">
-            <div  style=" position: absolute; bottom: 15px; right: 15px; padding: 15px; margin: 0; background-color: #004699">
-                <h1>Stages</h1>
-                <p>Voorbeeld tekst</p>
-            </div>
+    <h1>Stages</h1>
+    <div class="row">
+        <div class="col-sm-8">
+            {% set stages = commonground_resource_list({'component': 'edu', 'type': 'programs'},{'order[dateCreated]':'desc'})['hydra:member'] %}
+            {% if stages is not empty %}
+            <ul class="list list--card list--card-small">
+                {% for stage in stages %}
+                    <li class="card card--small">
+                        <div class="card__content">
+                            <div class="card__thumb" style="background-image: url('https://picsum.photos/200')"></div>
+                            <div class="card__body">
+                                <div class="row" style=" height: 100%; width: 100%;">
+                                    <div class="col-sm-8" style="padding-right: 0px;">
+                                        <span class="card__title">{{ stage.name }}</span><br>
+                                        <span>{{ stage.description }}</span>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div style="float: right;">
+                                            <div style="display: flex; flex-direction: column; justify-items: center;">
+                                                <p style="margin: 0;">onderwijsvorm: {{ stage.occupationalCategory }}</p>
+                                                <p style="margin: 0;">salaris: {{ stage.trainingSalary }}</p>
+                                                <a href="{{ path('app_education_stage', {id: stage.id}) }}">lees meer</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                {% endfor %}
+                {% else %}
+                    <p>Er zijn op dit moment geen stages</p>
+                {% endif %}
+            </ul>
         </div>
-    </div>
-
-    <div class="container">
-        <h1>Deze pagina word nog aan gewerkt!</h1>
     </div>
 {% endblock %}
