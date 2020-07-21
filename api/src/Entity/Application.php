@@ -145,12 +145,6 @@ class Application
     private $organization;
 
     /**
-     * @MaxDepth(1)
-     * @ORM\OneToMany(targetEntity="App\Entity\Configuration", mappedBy="application", orphanRemoval=true)
-     */
-    private $configurations;
-
-    /**
      * @Groups({"read","write"})
      * @MaxDepth(1)
      * @ORM\OneToOne(targetEntity="App\Entity\Configuration")
@@ -201,15 +195,13 @@ class Application
 
     public function __construct()
     {
-        $this->pages = new ArrayCollection();
         $this->slugs = new ArrayCollection();
-        $this->configurations = new ArrayCollection();
         $this->templates = new ArrayCollection();
     }
 
-    public function setDefaultConfiguration(Configuration $configuration): self
+    public function setDefaultConfiguration(Configuration $defaultConfiguration): self
     {
-        $this->defaultConfiguration = $configuration;
+        $this->defaultConfiguration = $defaultConfiguration;
 
         return $this;
     }
@@ -318,37 +310,6 @@ class Application
     public function setOrganization(?Organization $organization): self
     {
         $this->organization = $organization;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Configuration[]
-     */
-    public function getConfigurations(): Collection
-    {
-        return $this->configurations;
-    }
-
-    public function addConfiguration(Configuration $configuration): self
-    {
-        if (!$this->configurations->contains($configuration)) {
-            $this->configurations[] = $configuration;
-            $configuration->setApplication($this);
-        }
-
-        return $this;
-    }
-
-    public function removeConfiguration(Configuration $configuration): self
-    {
-        if ($this->configurations->contains($configuration)) {
-            $this->configurations->removeElement($configuration);
-            // set the owning side to null (unless already changed)
-            if ($configuration->getApplication() === $this) {
-                $configuration->setApplication(null);
-            }
-        }
 
         return $this;
     }

@@ -476,6 +476,9 @@ class ZuiddrechtFixtures extends Fixture
             width: 100%;
             color: white;
         }
+
+
+
         ');
 
         $style->setfavicon($favicon);
