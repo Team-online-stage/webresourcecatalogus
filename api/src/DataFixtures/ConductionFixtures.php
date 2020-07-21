@@ -2078,24 +2078,12 @@ class ConductionFixtures extends Fixture
         $manager->persist($style);
 
         $manager->flush();
-        $id = Uuid::fromString('be1fd311-525b-4408-beb1-012d27af1ff3');
-        $stage = new Application();
-        $stage->setName('Stage');
-        $stage->setDescription('Website voor stage.conduction.nl');
-        $stage->setDomain('stage.conduction.nl');
-        $stage->setStyle($style);
-        $stage->setOrganization($conduction);
-        $manager->persist($stage);
-        $stage->setId($id);
-        $manager->persist($stage);
-        $manager->flush();
-        $stage = $manager->getRepository('App:Application')->findOneBy(['id'=> $id]);
+
 
         // Configuratie
         $configuration = new Configuration();
         $configuration->setName('stage.conduction.nl configuration');
         $configuration->setOrganization($conduction);
-        $configuration->setApplication($stage);
         $configuration->setConfiguration(
             [
                 'mainMenu'          => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'da3d55e3-6b7e-47f3-856d-eb158212d8af']),
@@ -2113,6 +2101,20 @@ class ConductionFixtures extends Fixture
             ]
         );
         $manager->persist($configuration);
+
+        $id = Uuid::fromString('be1fd311-525b-4408-beb1-012d27af1ff3');
+        $stage = new Application();
+        $stage->setName('Stage');
+        $stage->setDescription('Website voor stage.conduction.nl');
+        $stage->setDomain('stage.conduction.nl');
+        $stage->setStyle($style);
+        $stage->setOrganization($conduction);
+        $stage->setDefaultConfiguration($configuration);
+        $manager->persist($stage);
+        $stage->setId($id);
+        $manager->persist($stage);
+        $manager->flush();
+        $stage = $manager->getRepository('App:Application')->findOneBy(['id'=> $id]);
 
         // Menu
         $id = Uuid::fromString('da3d55e3-6b7e-47f3-856d-eb158212d8af');

@@ -518,26 +518,11 @@ class ZuiddrechtFixtures extends Fixture
         );
         $manager->persist($configuration);
 
-        // Website
-        $id = Uuid::fromString('1ef30b69-6b28-4fbd-a0cd-83d6ff3c505e');
-        $application = new Application();
-        $application->setName('Zuid-Drecht');
-        $application->setDescription('De website van de gemeente Zuid-Drecht');
-        $application->setDomain('zuid-drecht.nl');
-        $application->setOrganization($organization);
-        $application->setStyle($style);
-        $manager->persist($application);
-        $application->setId($id);
-        $manager->persist($application);
-        $manager->flush();
-        $application = $manager->getRepository('App:Application')->findOneBy(['id'=> $id]);
-
         // Configuratie
         $configuration = new Configuration();
         $configuration->setName('Website');
         $configuration->setDescription('De website van de gemeente Zuid-Drecht');
         $configuration->setOrganization($organization);
-        $configuration->setApplication($application);
         $configuration->setConfiguration(
             [
                 'sideMenu'          => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'915d5b04-c050-4b18-8f72-a068c2708883']),
@@ -554,6 +539,21 @@ class ZuiddrechtFixtures extends Fixture
                 'colorSchemeMenu'   => 'menuStyle', ]
         );
         $manager->persist($configuration);
+
+        // Website
+        $id = Uuid::fromString('1ef30b69-6b28-4fbd-a0cd-83d6ff3c505e');
+        $application = new Application();
+        $application->setName('Zuid-Drecht');
+        $application->setDescription('De website van de gemeente Zuid-Drecht');
+        $application->setDomain('zuid-drecht.nl');
+        $application->setOrganization($organization);
+        $application->setDefaultConfiguration($configuration);
+        $application->setStyle($style);
+        $manager->persist($application);
+        $application->setId($id);
+        $manager->persist($application);
+        $manager->flush();
+        $application = $manager->getRepository('App:Application')->findOneBy(['id'=> $id]);
 
         // Side menu
         $id = Uuid::fromString('915d5b04-c050-4b18-8f72-a068c2708883');
