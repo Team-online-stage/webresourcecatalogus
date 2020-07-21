@@ -2079,7 +2079,6 @@ class ConductionFixtures extends Fixture
 
         $manager->flush();
 
-
         // Configuratie
         $configuration = new Configuration();
         $configuration->setName('stage.conduction.nl configuration');
