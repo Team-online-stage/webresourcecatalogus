@@ -187,7 +187,7 @@ class Configuration
     public function setApplication(?Application $application): self
     {
         $this->application = $application;
-        
+
         return $this;
     }
 
