@@ -210,6 +210,7 @@ class WestfrieslandFixtures extends Fixture
         $id = Uuid::fromString('097ea88e-beb6-476e-a978-d07650f03d97');
         $template = new Template();
         $template->setName('Home');
+        $template->setTitle('Home');
         $template->setDescription('De (web) applicatie waarop begravenisen kunnen worden doorgegeven');
         $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Westfriesland/index.html.twig', 'r'));
         $template->setTemplateEngine('twig');
