@@ -809,6 +809,7 @@ class ZuiddrechtFixtures extends Fixture
         $id = Uuid::fromString('b4d411c7-17b3-469b-8a4a-2f334dbaeb4c');
         $template = new Template();
         $template->setName('concept');
+        $template->setTitle('Concept');
         $template->setDescription('Er is meer mogelijk met open source en specifiek Common Ground, dan de meeste mensen en gemeenten denken. Om dat te illustreren is de fictieve gemeente Zuid-Drecht in het leven geroepen. ');
         $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Zuiddrecht/website/concept.html.twig', 'r'));
         $template->setTemplateEngine('twig');
@@ -832,6 +833,7 @@ class ZuiddrechtFixtures extends Fixture
         $id = Uuid::fromString('22689f6d-9f62-4025-b880-18d8ba63818f');
         $template = new Template();
         $template->setName('functionaliteit');
+        $template->setTitle('Functionaliteit');
         $template->setDescription('De gemeente Zuid-Drecht stapt via een inktvlek model over op Common Ground, daarmee bedoelen dat we één voor één functionaliteiten zullen toevoegen aan deze omgeving.');
         $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Zuiddrecht/website/functionaliteit.html.twig', 'r'));
         $template->setTemplateEngine('twig');
@@ -855,6 +857,7 @@ class ZuiddrechtFixtures extends Fixture
         $id = Uuid::fromString('5bf63407-73dc-4c9b-a458-3350e9325457');
         $template = new Template();
         $template->setName('roadmap');
+        $template->setTitle('Roadmap');
         $template->setDescription('Dit is nog maar het begin van Zuid-Drecht, de volgende dingen staan op onze wishlist om zo snel mogelijk aan Zuid-Drecht toe te voegen');
         $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Zuiddrecht/website/roadmap.html.twig', 'r'));
         $template->setTemplateEngine('twig');
@@ -878,6 +881,7 @@ class ZuiddrechtFixtures extends Fixture
         $id = Uuid::fromString('55a98b6b-8ca7-4c2f-a0a0-2c559efeb189');
         $template = new Template();
         $template->setName('voor-developers');
+        $template->setTitle('Voor developers');
         $template->setDescription('De gemeente Zuid-Drecht is niet alleen bedoeld voor beslissers in gemeenten die zicht proberen te krijgen op de mogelijkheden rondom Common Ground, maar is tevens  ook een voorbeeld Common  Ground-ecosysteem.');
         $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Zuiddrecht/website/voor-developers.html.twig', 'r'));
         $template->setTemplateEngine('twig');
