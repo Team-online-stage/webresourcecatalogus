@@ -800,9 +800,9 @@ class ZuiddrechtFixtures extends Fixture
         $groupOver->setApplication($application);
         $groupOver->setName('Over');
         $groupOver->setDescription('Meer informatie over zuid drecht');
-        $manager->persist($groupNews);
+        $manager->persist($groupOver);
         $groupOver->setId($id);
-        $manager->persist($groupNews);
+        $manager->persist($groupOver);
         $manager->flush();
         $groupOver = $manager->getRepository('App:TemplateGroup')->findOneBy(['id'=> $id]);
 
@@ -878,7 +878,7 @@ class ZuiddrechtFixtures extends Fixture
         $id = Uuid::fromString('55a98b6b-8ca7-4c2f-a0a0-2c559efeb189');
         $template = new Template();
         $template->setName('voor-developers');
-        $template->setDescription('De gemeente Zuid-Drecht is niet alleen bedoeld voor beslissers in gemeenten die zicht proberen te krijgen op de mogelijkheden rondom Common Ground, maar is tevens  ook een voorbeeld Common  Ground-ecosysteem. Daarmee is het automatisch een interessante omgeving om je eigen applicaties tegenaan te testen.');
+        $template->setDescription('De gemeente Zuid-Drecht is niet alleen bedoeld voor beslissers in gemeenten die zicht proberen te krijgen op de mogelijkheden rondom Common Ground, maar is tevens  ook een voorbeeld Common  Ground-ecosysteem.');
         $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Zuiddrecht/website/voor-developers.html.twig', 'r'));
         $template->setTemplateEngine('twig');
         $manager->persist($template);
