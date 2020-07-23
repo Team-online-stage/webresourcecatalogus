@@ -185,11 +185,11 @@ class WestfrieslandFixtures extends Fixture
         $menu = $manager->getRepository('App:Menu')->findOneBy(['id'=> $id]);
 
         $menuItem = new MenuItem();
-        $menuItem->setName('Processen');
-        $menuItem->setDescription('Doe een aanvraag');
+        $menuItem->setName('Home');
+        $menuItem->setDescription('MenuItem naar home page');
         $menuItem->setOrder(1);
         $menuItem->setType('slug');
-        $menuItem->setHref('/process');
+        $menuItem->setHref('/');
         $menuItem->setMenu($menu);
         $manager->persist($menuItem);
 
@@ -197,11 +197,11 @@ class WestfrieslandFixtures extends Fixture
         $manager->persist($menu);
 
         $menuItem = new MenuItem();
-        $menuItem->setName('Verzoeken');
-        $menuItem->setDescription('Het inzien en voortzetten van mijn verzoeken');
-        $menuItem->setOrder(1);
+        $menuItem->setName('Processen');
+        $menuItem->setDescription('Doe een aanvraag');
+        $menuItem->setOrder(2);
         $menuItem->setType('slug');
-        $menuItem->setHref('/requests');
+        $menuItem->setHref('/process');
         $menuItem->setMenu($menu);
         $manager->persist($menuItem);
 
@@ -249,7 +249,7 @@ class WestfrieslandFixtures extends Fixture
         $style->setCss(':root {--primary: #233A79;--primary2: white;--secondary: #FFC926;--secondary2: #FFC926;}
         .main-title {color: var(--primary2) !important;}.logo-header {background: var(--primary);}.navbar-header
         {background: var(--primary);}.bg-primary-gradient {background: linear-gradient(-45deg, var(--secondary),
-         var(--secondary2)) !important;} #docs-nav {background: var(--primary)} #footer {background: var(--primary)}');
+         var(--secondary2)) !important;} #docs-nav {background: var(--primary)} #footer {background: var(--primary)} .begraaf-card {background: var(--primary); }');
 
         $style->setfavicon($favicon);
         $style->setOrganization($westfriesland);
