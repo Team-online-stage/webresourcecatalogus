@@ -195,18 +195,6 @@ class WestfrieslandFixtures extends Fixture
 
         $menu->addMenuItem($menuItem);
         $manager->persist($menu);
-
-        $menuItem = new MenuItem();
-        $menuItem->setName('Verzoeken');
-        $menuItem->setDescription('Het inzien en voortzetten van mijn verzoeken');
-        $menuItem->setOrder(1);
-        $menuItem->setType('slug');
-        $menuItem->setHref('/requests');
-        $menuItem->setMenu($menu);
-        $manager->persist($menuItem);
-
-        $menu->addMenuItem($menuItem);
-        $manager->persist($menu);
         $manager->flush();
 
         // Template groups
