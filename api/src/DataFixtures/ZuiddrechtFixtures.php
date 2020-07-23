@@ -526,6 +526,7 @@ class ZuiddrechtFixtures extends Fixture
         $configuration->setConfiguration(
             [
                 'sideMenu'          => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'915d5b04-c050-4b18-8f72-a068c2708883']),
+                'loggedIn'          => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'364350f5-d2a5-49f3-adab-484c357fa82f']),
                 'mainMenu'          => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'ca1ca0b4-4c8f-4638-9869-16974426e3df']),
                 'home'              => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'163f8616-abb7-411d-b7b2-0d11c6bd7dca']),
                 'footer1'           => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'0dca3fd2-0124-46fb-88c1-4f0860b2888c']),
@@ -555,6 +556,27 @@ class ZuiddrechtFixtures extends Fixture
         $manager->persist($application);
         $manager->flush();
         $application = $manager->getRepository('App:Application')->findOneBy(['id'=> $id]);
+
+        // loggedIn menu
+        $id = Uuid::fromString('364350f5-d2a5-49f3-adab-484c357fa82f');
+        $menu = new Menu();
+        $menu->setName('loggedIn');
+        $menu->setDescription('logged in menu');
+        $menu->setApplication($application);
+        $manager->persist($menu);
+        $menu->setId($id);
+        $manager->persist($menu);
+        $manager->flush();
+        $menu = $manager->getRepository('App:Menu')->findOneBy(['id'=> $id]);
+
+        $menuItem = new MenuItem();
+        $menuItem->setName('Mijn Zuid-Drecht');
+        $menuItem->setDescription('Stages');
+        $menuItem->setOrder(3);
+        $menuItem->setType('slug');
+        $menuItem->setHref('/request');
+        $menuItem->setMenu($menu);
+        $manager->persist($menuItem);
 
         // Side menu
         $id = Uuid::fromString('915d5b04-c050-4b18-8f72-a068c2708883');
@@ -748,6 +770,29 @@ class ZuiddrechtFixtures extends Fixture
         $template->addTemplateGroup($groupPages);
         $manager->persist($template);
         $manager->flush();
+
+        $id = Uuid::fromString('e16d97e0-e3ed-4768-88c6-02729660e7b5');
+        $template = new Template();
+        $template->setName('nieuwsbrief');
+        $template->setDescription('nieuwsbrief');
+        $template->setTitle('Nieuwsbrief');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Zuiddrecht/website/email.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('nieuwsbrief');
+        $slug->setSlug('nieuwsbrief');
+        $manager->persist($slug);
 
         $id = Uuid::fromString('42594401-3db2-42c5-b06a-0b6d5eaeb8c2');
         $template = new Template();
@@ -1341,7 +1386,7 @@ class ZuiddrechtFixtures extends Fixture
         $id = Uuid::fromString('67b1e403-4436-4cd9-a328-ce99e05511a1');
         $template = new Template();
         $template->setName('huwelijksplanner');
-        $template->setTitle('Zuid drecht lanceert huwelijksplanner');
+        $template->setTitle('Zuid-Drecht lanceert huwelijksplanner');
         $template->setDescription('De gemeente Zuid drecht heeft in samenwerking met het bedrijf Conduction een huwelijksplanner gelanceerd. Dit project is in leven gebracht om het aanvragen van een huwelijk een fijne en soepele ervaring te maken.');
         $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Zuiddrecht/website/nieuws/huwelijksplanner.html.twig', 'r'));
         $template->setTemplateEngine('twig');
