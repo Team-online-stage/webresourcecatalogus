@@ -6,7 +6,7 @@
     {% set article = commonground_resource({'component':'wrc','type':'templates','id':app.request.get('id')}) %}
     <div class="row">
         <div class="col-sm-12 col-md-8">
-            <h1>{{ article.name }}</h1>
+            <h1>{% if article.title is defined %}{{ article.title }}{% else %}{{ article.name }}{% endif %}</h1>
             <div class="content-background">
                 <div class="content">
                     <div style="margin-bottom: 15px;">
