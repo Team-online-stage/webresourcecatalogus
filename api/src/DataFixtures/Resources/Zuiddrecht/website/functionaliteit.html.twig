@@ -1,8 +1,27 @@
-{
-                        <p>De gemeente Zuid-Drecht stapt via een inktvlek model over op Common Ground, daarmee bedoelen dat we &eacute;&eacute;n voor &eacute;&eacute;n functionaliteiten zullen toevoegen aan deze omgeving. Voor een lijst met functionaliteiten die we willen toevoegen kan je kijken op de roadmap.</p>
+<p>De gemeente Zuid-Drecht stapt via een inktvlek model over op Common Ground, daarmee bedoelen dat we &eacute;&eacute;n voor &eacute;&eacute;n functionaliteiten zullen toevoegen aan deze omgeving. Voor een lijst met functionaliteiten die we willen toevoegen kan je kijken op de roadmap.</p>
 
-                        <p>Op dit moment ondersteunen we de volgende functionaliteiten User Interface en NL-Design Voor de grafische interface van Zuid Drecht wordt gebruik gemaakt  <lees meer> Headless CMS ad <lees meer></p>
+<p>Op dit moment ondersteunen we de volgende functionaliteiten, uiteraard zijn alle functionaliteiten beschikbaar zowel open source repositories, als plug and play componenten.</p>
 
-                        <p>Klantreizen adasad <lees meer></p>
+<h2>User Interface en NL-Design</h2>
+<p>Voor de grafische interface van Zuid-Drecht wordt gebruik gemaakt NL Design, ten goede en ten kwade (ja weten dat daar nog wat bugjes in inzitten ;), maar om dit goed te laten werken is er natuurlijk een proces laag nodig. Hierbij hebben we in lijn met de gedachten van het VNG Processen-team, de processen losgekoppeld van de daadwerkelijke UI. Dan blijft er een dunne code laag over die niks anders doet dan NL Design faciliteren van de juiste data en bepalen wanneer welke elementen met welke inhoud getoond moeten worden.</p>
 
-                        <p>Digispoof en e-Herkenning asdad <lees meer></p>
+<p><a href="https://www.conduction.nl/componenten/proto-applicatie">Proto Applicatie NL Design</a></p>
+
+<h2>Digispoof en e-Herkenning </h2>
+<p>Headless CMS Voor de grafische content, styling, pagina&rsquo;s, menu items enz., maken we gebruik van een Headless CMS als component (het web resource component). Dat betekent dat de CMS puur een API is zonder dashboard of user interface. Dit component kan op zichzelf (en met een beetje hulp van de UI) NL Design van voldoende informatie voorzien om Zuid-Drecht te genereren, maar is bewust ook zo ontworpen dat hij achter een OpenWeb installatie zou kunnen hangen (hoewel daarvoor nog wel een wordpress plugin nodig is).</p>
+
+<p><a href="https://www.conduction.nl/componenten/web-resource-catalogus">Web Resource Catalogus</a></p>
+
+<h2>Klantreizen</h2>
+<p>Voor klantreizen worden drie componenten geleend van de Common Ground verhuizen-, begraven- en huwelijksprocessen. Evenals wat extra kader van het VNG Processen-team. We gebruiken de Verzoektype Catalogus om een formulier vast te stellen, waarmee een klantvraag (zoals verhuizen) wordt opgehaald, om deze vervolgens met een procestype te verdelen in stappen en secties, zodat we er een voor de klant logische reis van maken. Het resultaat hiervan slaan we op als verzoek.</p>
+
+<p>
+    <a href="https://www.conduction.nl/componenten/verzoek-type-catalogus">Verzoek Type Catalogus</a><br />
+    <a href="https://www.conduction.nl/componenten/verzoek-registratie-component">Verzoek Registratie Component</a><br />
+    <a href="https://www.conduction.nl/componenten/proces-type-catalogus">Proces Type Catalogus</a>
+</p>
+
+<h2>Digispoof en e-Herkenning </h2>
+<p>Omdat wij wel graag willen laten zien hoe een klantreis met DigiD of E-Herkening werkt maar niet voor iedere POC een certificeringstraject bij logius kunnen / willen doorlopen, hebben we een tweetal mocks gemaakt die deze functionaliteit nabootsen.</p>
+
+<p><a href="https://www.conduction.nl/componenten/digispoof">Digispoof</a></p>
