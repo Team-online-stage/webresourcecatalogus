@@ -11,9 +11,9 @@
                 <h2>Partners</h2>
                 <ul class="list list--card list--card-small">
                     {% for organisatie in organisaties %}
-                        {% if organisatie.contact is defined and organization.contact is not empty %}
-                            {% set contact = commonground_resource(organization.contact) %}
-                            {% if contact.type is defined and contact.type is not empty and contact.type = 'Partner' %}
+                        {% if organisatie.contact is defined and organisatie.contact is not empty %}
+                            {% set contact = commonground_resource(organisatie.contact) %}
+                            {% if contact.type is defined and contact.type is not empty and contact.type == 'Partner' %}
                                 <li class="card card--small">
                                     <div class="card__content">
                                         <div class="card__thumb" style="background-image: url('https://picsum.photos/200')"></div>
@@ -40,12 +40,12 @@
                     {% endfor %}
                 </ul>
 
-                <h2>Participants</h2>
+                <h2>Participanten</h2>
                 <ul class="list list--card list--card-small">
                     {% for organisatie in organisaties %}
-                        {% if organisatie.contact is defined and organization.contact is not empty %}
-                            {% set contact = commonground_resource(organization.contact) %}
-                            {% if contact.type is defined and contact.type is not empty and contact.type = 'Participant' %}
+                        {% if organisatie.contact is defined and organisatie.contact is not empty %}
+                            {% set contact = commonground_resource(organisatie.contact) %}
+                            {% if contact.type is defined and contact.type is not empty and contact.type == 'Participant' %}
                                 <li class="card card--small">
                                     <div class="card__content">
                                         <div class="card__thumb" style="background-image: url('https://picsum.photos/200')"></div>
