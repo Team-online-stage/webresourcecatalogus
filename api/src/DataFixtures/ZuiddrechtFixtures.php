@@ -526,6 +526,7 @@ class ZuiddrechtFixtures extends Fixture
         $configuration->setConfiguration(
             [
                 'sideMenu'          => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'915d5b04-c050-4b18-8f72-a068c2708883']),
+                'loggedIn'          => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'364350f5-d2a5-49f3-adab-484c357fa82f']),
                 'mainMenu'          => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'ca1ca0b4-4c8f-4638-9869-16974426e3df']),
                 'home'              => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'163f8616-abb7-411d-b7b2-0d11c6bd7dca']),
                 'footer1'           => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'0dca3fd2-0124-46fb-88c1-4f0860b2888c']),
@@ -533,6 +534,7 @@ class ZuiddrechtFixtures extends Fixture
                 'footer3'           => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'facad633-27a9-499a-b3fc-4687215bf82a']),
                 'footer4'           => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'4bc966b6-e310-4bce-b459-a7cf65651ce0']),
                 'nieuws'            => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'template_groups', 'id'=>'5c59f238-1ce3-4c8d-8107-4bd8e2134648']),
+                'about'             => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'template_groups', 'id'=>'6b243aa1-5ae6-4aeb-93d5-2f509fb34cef']),
                 'newsimg'           => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'0e5b1531-4abb-4704-9bd3-feeb94717521']),
                 'headerimg'         => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'ff3ca823-234f-4874-9ee6-1067d47e4391']),
                 'colorSchemeFooter' => 'footerStyle',
@@ -554,6 +556,27 @@ class ZuiddrechtFixtures extends Fixture
         $manager->persist($application);
         $manager->flush();
         $application = $manager->getRepository('App:Application')->findOneBy(['id'=> $id]);
+
+        // loggedIn menu
+        $id = Uuid::fromString('364350f5-d2a5-49f3-adab-484c357fa82f');
+        $menu = new Menu();
+        $menu->setName('loggedIn');
+        $menu->setDescription('logged in menu');
+        $menu->setApplication($application);
+        $manager->persist($menu);
+        $menu->setId($id);
+        $manager->persist($menu);
+        $manager->flush();
+        $menu = $manager->getRepository('App:Menu')->findOneBy(['id'=> $id]);
+
+        $menuItem = new MenuItem();
+        $menuItem->setName('Mijn Zuid-Drecht');
+        $menuItem->setDescription('Stages');
+        $menuItem->setOrder(3);
+        $menuItem->setType('slug');
+        $menuItem->setHref('/request');
+        $menuItem->setMenu($menu);
+        $manager->persist($menuItem);
 
         // Side menu
         $id = Uuid::fromString('915d5b04-c050-4b18-8f72-a068c2708883');
@@ -597,6 +620,7 @@ class ZuiddrechtFixtures extends Fixture
         $menuItem->setMenu($menu);
         $manager->persist($menuItem);
 
+        /*
         $menuItem = new MenuItem();
         $menuItem->setName('Ondernemers');
         $menuItem->setDescription('Lijst van ondernemers');
@@ -614,6 +638,7 @@ class ZuiddrechtFixtures extends Fixture
         $menuItem->setHref('/producten');
         $menuItem->setMenu($menu);
         $manager->persist($menuItem);
+        */
 
         $menuItem = new MenuItem();
         $menuItem->setName('Nieuws');
@@ -746,6 +771,29 @@ class ZuiddrechtFixtures extends Fixture
         $manager->persist($template);
         $manager->flush();
 
+        $id = Uuid::fromString('e16d97e0-e3ed-4768-88c6-02729660e7b5');
+        $template = new Template();
+        $template->setName('nieuwsbrief');
+        $template->setDescription('nieuwsbrief');
+        $template->setTitle('Nieuwsbrief');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Zuiddrecht/website/email.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('nieuwsbrief');
+        $slug->setSlug('nieuwsbrief');
+        $manager->persist($slug);
+
         $id = Uuid::fromString('42594401-3db2-42c5-b06a-0b6d5eaeb8c2');
         $template = new Template();
         $template->setName('nieuwsoverzicht');
@@ -790,10 +838,24 @@ class ZuiddrechtFixtures extends Fixture
         $slug->setSlug('api');
         $manager->persist($slug);
 
+        // Template groups
+        $id = Uuid::fromString('6b243aa1-5ae6-4aeb-93d5-2f509fb34cef');
+        $groupOver = new TemplateGroup();
+        $groupOver->setOrganization($organization);
+        $groupOver->setApplication($application);
+        $groupOver->setName('Over');
+        $groupOver->setDescription('Meer informatie over zuid drecht');
+        $manager->persist($groupOver);
+        $groupOver->setId($id);
+        $manager->persist($groupOver);
+        $manager->flush();
+        $groupOver = $manager->getRepository('App:TemplateGroup')->findOneBy(['id'=> $id]);
+
         $id = Uuid::fromString('b4d411c7-17b3-469b-8a4a-2f334dbaeb4c');
         $template = new Template();
         $template->setName('concept');
-        $template->setDescription('concept');
+        $template->setTitle('Concept');
+        $template->setDescription('Er is meer mogelijk met open source en specifiek Common Ground, dan de meeste mensen en gemeenten denken. Om dat te illustreren is de fictieve gemeente Zuid-Drecht in het leven geroepen. ');
         $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Zuiddrecht/website/concept.html.twig', 'r'));
         $template->setTemplateEngine('twig');
         $manager->persist($template);
@@ -802,6 +864,7 @@ class ZuiddrechtFixtures extends Fixture
         $manager->flush();
         $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
         $template->addTemplateGroup($groupPages);
+        $template->addTemplateGroup($groupOver);
         $manager->persist($template);
         $manager->flush();
 
@@ -810,6 +873,78 @@ class ZuiddrechtFixtures extends Fixture
         $slug->setApplication($application);
         $slug->setName('concept');
         $slug->setSlug('concept');
+        $manager->persist($slug);
+
+        $id = Uuid::fromString('22689f6d-9f62-4025-b880-18d8ba63818f');
+        $template = new Template();
+        $template->setName('functionaliteit');
+        $template->setTitle('Functionaliteit');
+        $template->setDescription('De gemeente Zuid-Drecht stapt via een inktvlek model over op Common Ground, daarmee bedoelen dat we één voor één functionaliteiten zullen toevoegen aan deze omgeving.');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Zuiddrecht/website/functionaliteit.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $template->addTemplateGroup($groupOver);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('functionaliteit');
+        $slug->setSlug('functionaliteit');
+        $manager->persist($slug);
+
+        $id = Uuid::fromString('5bf63407-73dc-4c9b-a458-3350e9325457');
+        $template = new Template();
+        $template->setName('roadmap');
+        $template->setTitle('Roadmap');
+        $template->setDescription('Dit is nog maar het begin van Zuid-Drecht, de volgende dingen staan op onze wishlist om zo snel mogelijk aan Zuid-Drecht toe te voegen');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Zuiddrecht/website/roadmap.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $template->addTemplateGroup($groupOver);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('roadmap');
+        $slug->setSlug('roadmap');
+        $manager->persist($slug);
+
+        $id = Uuid::fromString('55a98b6b-8ca7-4c2f-a0a0-2c559efeb189');
+        $template = new Template();
+        $template->setName('voor-developers');
+        $template->setTitle('Voor developers');
+        $template->setDescription('De gemeente Zuid-Drecht is niet alleen bedoeld voor beslissers in gemeenten die zicht proberen te krijgen op de mogelijkheden rondom Common Ground, maar is tevens  ook een voorbeeld Common  Ground-ecosysteem.');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Zuiddrecht/website/voor-developers.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $template->addTemplateGroup($groupOver);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('voor-developers');
+        $slug->setSlug('voor-developers');
         $manager->persist($slug);
 
         $id = Uuid::fromString('9ab2a88c-b8f2-434d-bc63-76402a0166c9');
@@ -1251,7 +1386,7 @@ class ZuiddrechtFixtures extends Fixture
         $id = Uuid::fromString('67b1e403-4436-4cd9-a328-ce99e05511a1');
         $template = new Template();
         $template->setName('huwelijksplanner');
-        $template->setTitle('Zuid drecht lanceert huwelijksplanner');
+        $template->setTitle('Zuid-Drecht lanceert huwelijksplanner');
         $template->setDescription('De gemeente Zuid drecht heeft in samenwerking met het bedrijf Conduction een huwelijksplanner gelanceerd. Dit project is in leven gebracht om het aanvragen van een huwelijk een fijne en soepele ervaring te maken.');
         $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Zuiddrecht/website/nieuws/huwelijksplanner.html.twig', 'r'));
         $template->setTemplateEngine('twig');
