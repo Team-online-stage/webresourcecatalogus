@@ -163,13 +163,17 @@ class WestfrieslandFixtures extends Fixture
         $configuration->setApplication($application);
         $configuration->setConfiguration(
             [
-                'mainMenu'=> $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'cce26509-9710-4bd2-b01d-7d9f6e7f65c5']),
-                'home'    => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'d724c8dd-a32a-4092-b7e8-040065cf0600']), ]
+                'mainMenu'=> $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'0ff074bc-e6db-43ed-93ae-c027ad452f78']),
+                'home'    => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'097ea88e-beb6-476e-a978-d07650f03d97']), ]
         );
         $manager->persist($configuration);
 
+        $application->setDefaultConfiguration($configuration);
+        $manager->persist($application);
+        $manager->flush();
+
         // Menu
-        $id = Uuid::fromString('cce26509-9710-4bd2-b01d-7d9f6e7f65c5');
+        $id = Uuid::fromString('0ff074bc-e6db-43ed-93ae-c027ad452f78');
         $menu = new Menu();
         $menu->setName('Main Menu');
         $menu->setDescription('Het hoofdmenu van deze website');
@@ -187,6 +191,9 @@ class WestfrieslandFixtures extends Fixture
         $menuItem->setType('slug');
         $menuItem->setHref('/process');
         $menuItem->setMenu($menu);
+        $manager->persist($menuItem);
+
+        $menu->addMenuItem($menuItem);
         $manager->persist($menu);
 
         $menuItem = new MenuItem();
@@ -196,7 +203,11 @@ class WestfrieslandFixtures extends Fixture
         $menuItem->setType('slug');
         $menuItem->setHref('/requests');
         $menuItem->setMenu($menu);
+        $manager->persist($menuItem);
+
+        $menu->addMenuItem($menuItem);
         $manager->persist($menu);
+        $manager->flush();
 
         // Template groups
         $groupPages = new TemplateGroup();
@@ -207,9 +218,10 @@ class WestfrieslandFixtures extends Fixture
         $manager->persist($groupPages);
 
         // Pages
-        $id = Uuid::fromString('d724c8dd-a32a-4092-b7e8-040065cf0600');
+        $id = Uuid::fromString('097ea88e-beb6-476e-a978-d07650f03d97');
         $template = new Template();
         $template->setName('Home');
+        $template->setTitle('Home');
         $template->setDescription('De (web) applicatie waarop begravenisen kunnen worden doorgegeven');
         $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Westfriesland/index.html.twig', 'r'));
         $template->setTemplateEngine('twig');
@@ -237,15 +249,19 @@ class WestfrieslandFixtures extends Fixture
         $style->setCss(':root {--primary: #233A79;--primary2: white;--secondary: #FFC926;--secondary2: #FFC926;}
         .main-title {color: var(--primary2) !important;}.logo-header {background: var(--primary);}.navbar-header
         {background: var(--primary);}.bg-primary-gradient {background: linear-gradient(-45deg, var(--secondary),
-         var(--secondary2)) !important;}');
+         var(--secondary2)) !important;} #docs-nav {background: var(--primary)} #footer {background: var(--primary)}');
 
         $style->setfavicon($favicon);
         $style->setOrganization($westfriesland);
+
+        $application->setStyle($style);
+        $manager->persist($application);
 
         $manager->persist($westfriesland);
         $manager->persist($favicon);
         $manager->persist($logo);
         $manager->persist($style);
+        $manager->flush();
 
         $id = Uuid::fromString('76298171-e049-4492-ae7b-1d2fe231aa5f');
         $application = new Application();

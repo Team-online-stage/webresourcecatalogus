@@ -12347,6 +12347,11 @@ components:
           description: 'The description of this application.'
           type: string
           nullable: true
+        application:
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Application-read'
         configuration:
           type: array
           items:
@@ -12370,7 +12375,6 @@ components:
       required:
         - name
         - description
-        - application
         - organization
       properties:
         name:
@@ -12382,7 +12386,10 @@ components:
           type: string
           nullable: true
         application:
-          $ref: '#/components/schemas/Application-write'
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Application-write'
         organization:
           $ref: '#/components/schemas/Organization-write'
         configuration:
@@ -12417,6 +12424,11 @@ components:
           description: 'The description of this application.'
           type: string
           nullable: true
+        application:
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Application:jsonld-read'
         configuration:
           type: array
           items:
@@ -12440,7 +12452,6 @@ components:
       required:
         - name
         - description
-        - application
         - organization
       properties:
         '@context':
@@ -12461,7 +12472,10 @@ components:
           type: string
           nullable: true
         application:
-          $ref: '#/components/schemas/Application:jsonld-write'
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Application:jsonld-write'
         organization:
           $ref: '#/components/schemas/Organization:jsonld-write'
         configuration:
@@ -13907,6 +13921,7 @@ definitions:
       dateModified:
         description: 'The moment this request last Modified'
         type: \Datetime
+      application: []
     required:
       - name
       - description
@@ -13928,7 +13943,6 @@ definitions:
     required:
       - name
       - description
-      - application
       - organization
   Style-read:
     properties:
@@ -14377,12 +14391,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-07-20 14:26:01'
+        example: '2020-07-23 09:13:45'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-07-20 14:26:01'
+        example: '2020-07-23 09:13:45'
     required: []
   ChangeLog-write:
     properties:
@@ -14496,12 +14510,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-07-20 14:26:01'
+        example: '2020-07-23 09:13:45'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-07-20 14:26:01'
+        example: '2020-07-23 09:13:45'
     required: []
   AuditTrail-write:
     properties:

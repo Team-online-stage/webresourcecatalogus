@@ -476,6 +476,9 @@ class ZuiddrechtFixtures extends Fixture
             width: 100%;
             color: white;
         }
+
+
+
         ');
 
         $style->setfavicon($favicon);
@@ -515,26 +518,11 @@ class ZuiddrechtFixtures extends Fixture
         );
         $manager->persist($configuration);
 
-        // Website
-        $id = Uuid::fromString('1ef30b69-6b28-4fbd-a0cd-83d6ff3c505e');
-        $application = new Application();
-        $application->setName('Zuid-Drecht');
-        $application->setDescription('De website van de gemeente Zuid-Drecht');
-        $application->setDomain('zuid-drecht.nl');
-        $application->setOrganization($organization);
-        $application->setStyle($style);
-        $manager->persist($application);
-        $application->setId($id);
-        $manager->persist($application);
-        $manager->flush();
-        $application = $manager->getRepository('App:Application')->findOneBy(['id'=> $id]);
-
         // Configuratie
         $configuration = new Configuration();
         $configuration->setName('Website');
         $configuration->setDescription('De website van de gemeente Zuid-Drecht');
         $configuration->setOrganization($organization);
-        $configuration->setApplication($application);
         $configuration->setConfiguration(
             [
                 'sideMenu'          => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'915d5b04-c050-4b18-8f72-a068c2708883']),
@@ -545,12 +533,28 @@ class ZuiddrechtFixtures extends Fixture
                 'footer3'           => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'facad633-27a9-499a-b3fc-4687215bf82a']),
                 'footer4'           => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'4bc966b6-e310-4bce-b459-a7cf65651ce0']),
                 'nieuws'            => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'template_groups', 'id'=>'5c59f238-1ce3-4c8d-8107-4bd8e2134648']),
+                'about'             => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'template_groups', 'id'=>'6b243aa1-5ae6-4aeb-93d5-2f509fb34cef']),
                 'newsimg'           => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'0e5b1531-4abb-4704-9bd3-feeb94717521']),
                 'headerimg'         => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'ff3ca823-234f-4874-9ee6-1067d47e4391']),
                 'colorSchemeFooter' => 'footerStyle',
                 'colorSchemeMenu'   => 'menuStyle', ]
         );
         $manager->persist($configuration);
+
+        // Website
+        $id = Uuid::fromString('1ef30b69-6b28-4fbd-a0cd-83d6ff3c505e');
+        $application = new Application();
+        $application->setName('Zuid-Drecht');
+        $application->setDescription('De website van de gemeente Zuid-Drecht');
+        $application->setDomain('zuid-drecht.nl');
+        $application->setOrganization($organization);
+        $application->setDefaultConfiguration($configuration);
+        $application->setStyle($style);
+        $manager->persist($application);
+        $application->setId($id);
+        $manager->persist($application);
+        $manager->flush();
+        $application = $manager->getRepository('App:Application')->findOneBy(['id'=> $id]);
 
         // Side menu
         $id = Uuid::fromString('915d5b04-c050-4b18-8f72-a068c2708883');
@@ -594,6 +598,7 @@ class ZuiddrechtFixtures extends Fixture
         $menuItem->setMenu($menu);
         $manager->persist($menuItem);
 
+        /*
         $menuItem = new MenuItem();
         $menuItem->setName('Ondernemers');
         $menuItem->setDescription('Lijst van ondernemers');
@@ -611,6 +616,7 @@ class ZuiddrechtFixtures extends Fixture
         $menuItem->setHref('/producten');
         $menuItem->setMenu($menu);
         $manager->persist($menuItem);
+        */
 
         $menuItem = new MenuItem();
         $menuItem->setName('Nieuws');
@@ -787,10 +793,24 @@ class ZuiddrechtFixtures extends Fixture
         $slug->setSlug('api');
         $manager->persist($slug);
 
+        // Template groups
+        $id = Uuid::fromString('6b243aa1-5ae6-4aeb-93d5-2f509fb34cef');
+        $groupOver = new TemplateGroup();
+        $groupOver->setOrganization($organization);
+        $groupOver->setApplication($application);
+        $groupOver->setName('Over');
+        $groupOver->setDescription('Meer informatie over zuid drecht');
+        $manager->persist($groupOver);
+        $groupOver->setId($id);
+        $manager->persist($groupOver);
+        $manager->flush();
+        $groupOver = $manager->getRepository('App:TemplateGroup')->findOneBy(['id'=> $id]);
+
         $id = Uuid::fromString('b4d411c7-17b3-469b-8a4a-2f334dbaeb4c');
         $template = new Template();
         $template->setName('concept');
-        $template->setDescription('concept');
+        $template->setTitle('Concept');
+        $template->setDescription('Er is meer mogelijk met open source en specifiek Common Ground, dan de meeste mensen en gemeenten denken. Om dat te illustreren is de fictieve gemeente Zuid-Drecht in het leven geroepen. ');
         $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Zuiddrecht/website/concept.html.twig', 'r'));
         $template->setTemplateEngine('twig');
         $manager->persist($template);
@@ -799,6 +819,7 @@ class ZuiddrechtFixtures extends Fixture
         $manager->flush();
         $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
         $template->addTemplateGroup($groupPages);
+        $template->addTemplateGroup($groupOver);
         $manager->persist($template);
         $manager->flush();
 
@@ -807,6 +828,78 @@ class ZuiddrechtFixtures extends Fixture
         $slug->setApplication($application);
         $slug->setName('concept');
         $slug->setSlug('concept');
+        $manager->persist($slug);
+
+        $id = Uuid::fromString('22689f6d-9f62-4025-b880-18d8ba63818f');
+        $template = new Template();
+        $template->setName('functionaliteit');
+        $template->setTitle('Functionaliteit');
+        $template->setDescription('De gemeente Zuid-Drecht stapt via een inktvlek model over op Common Ground, daarmee bedoelen dat we één voor één functionaliteiten zullen toevoegen aan deze omgeving.');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Zuiddrecht/website/functionaliteit.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $template->addTemplateGroup($groupOver);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('functionaliteit');
+        $slug->setSlug('functionaliteit');
+        $manager->persist($slug);
+
+        $id = Uuid::fromString('5bf63407-73dc-4c9b-a458-3350e9325457');
+        $template = new Template();
+        $template->setName('roadmap');
+        $template->setTitle('Roadmap');
+        $template->setDescription('Dit is nog maar het begin van Zuid-Drecht, de volgende dingen staan op onze wishlist om zo snel mogelijk aan Zuid-Drecht toe te voegen');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Zuiddrecht/website/roadmap.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $template->addTemplateGroup($groupOver);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('roadmap');
+        $slug->setSlug('roadmap');
+        $manager->persist($slug);
+
+        $id = Uuid::fromString('55a98b6b-8ca7-4c2f-a0a0-2c559efeb189');
+        $template = new Template();
+        $template->setName('voor-developers');
+        $template->setTitle('Voor developers');
+        $template->setDescription('De gemeente Zuid-Drecht is niet alleen bedoeld voor beslissers in gemeenten die zicht proberen te krijgen op de mogelijkheden rondom Common Ground, maar is tevens  ook een voorbeeld Common  Ground-ecosysteem.');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Zuiddrecht/website/voor-developers.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $template->addTemplateGroup($groupOver);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('voor-developers');
+        $slug->setSlug('voor-developers');
         $manager->persist($slug);
 
         $id = Uuid::fromString('9ab2a88c-b8f2-434d-bc63-76402a0166c9');
