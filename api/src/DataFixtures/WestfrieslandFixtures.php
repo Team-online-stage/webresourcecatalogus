@@ -185,9 +185,21 @@ class WestfrieslandFixtures extends Fixture
         $menu = $manager->getRepository('App:Menu')->findOneBy(['id'=> $id]);
 
         $menuItem = new MenuItem();
+        $menuItem->setName('Home');
+        $menuItem->setDescription('MenuItem naar home page');
+        $menuItem->setOrder(1);
+        $menuItem->setType('slug');
+        $menuItem->setHref('/');
+        $menuItem->setMenu($menu);
+        $manager->persist($menuItem);
+
+        $menu->addMenuItem($menuItem);
+        $manager->persist($menu);
+
+        $menuItem = new MenuItem();
         $menuItem->setName('Processen');
         $menuItem->setDescription('Doe een aanvraag');
-        $menuItem->setOrder(1);
+        $menuItem->setOrder(2);
         $menuItem->setType('slug');
         $menuItem->setHref('/process');
         $menuItem->setMenu($menu);
