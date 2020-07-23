@@ -135,7 +135,7 @@
             {% endif %}
             <div class="container" style="display: flex; justify-content: space-between; padding-top: 5px; padding-bottom: 5px;">
                 {% if application.defaultConfiguration.configuration.nieuws is defined %}
-                    {% set nieuws = commonground_resource(application.defaultConfiguration.configuration.nieuws) %}
+                    {% set nieuws = commonground_resource(application.defaultConfiguration.configuration.about) %}
                     {% set templates = commonground_resource_list({'component': 'wrc', 'type': 'templates'},{'templateGroups.id':nieuws.id,'limit':4, 'order[dateCreated]':'desc'})['hydra:member'] %}
                     {% set value = 1 %}
                     {% for template in templates %}

@@ -168,6 +168,10 @@ class WestfrieslandFixtures extends Fixture
         );
         $manager->persist($configuration);
 
+        $application->setDefaultConfiguration($configuration);
+        $manager->persist($application);
+        $manager->flush();
+
         // Menu
         $id = Uuid::fromString('0ff074bc-e6db-43ed-93ae-c027ad452f78');
         $menu = new Menu();
@@ -189,6 +193,9 @@ class WestfrieslandFixtures extends Fixture
         $menuItem->setMenu($menu);
         $manager->persist($menuItem);
 
+        $menu->addMenuItem($menuItem);
+        $manager->persist($menu);
+
         $menuItem = new MenuItem();
         $menuItem->setName('Verzoeken');
         $menuItem->setDescription('Het inzien en voortzetten van mijn verzoeken');
@@ -197,6 +204,10 @@ class WestfrieslandFixtures extends Fixture
         $menuItem->setHref('/requests');
         $menuItem->setMenu($menu);
         $manager->persist($menuItem);
+
+        $menu->addMenuItem($menuItem);
+        $manager->persist($menu);
+        $manager->flush();
 
         // Template groups
         $groupPages = new TemplateGroup();
@@ -238,7 +249,7 @@ class WestfrieslandFixtures extends Fixture
         $style->setCss(':root {--primary: #233A79;--primary2: white;--secondary: #FFC926;--secondary2: #FFC926;}
         .main-title {color: var(--primary2) !important;}.logo-header {background: var(--primary);}.navbar-header
         {background: var(--primary);}.bg-primary-gradient {background: linear-gradient(-45deg, var(--secondary),
-         var(--secondary2)) !important;} #docs-nav {background: var(--primary)}');
+         var(--secondary2)) !important;} #docs-nav {background: var(--primary)} #footer {background: var(--primary)}');
 
         $style->setfavicon($favicon);
         $style->setOrganization($westfriesland);

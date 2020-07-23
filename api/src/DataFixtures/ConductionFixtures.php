@@ -48,6 +48,7 @@ class ConductionFixtures extends Fixture
         $conduction->setName('Conduction');
         $conduction->setDescription('Conduction');
         $conduction->setRsin('');
+        $conduction->setContact($this->commonGroundService->cleanUrl(['component'=>'cc', 'type'=>'organizations', 'id'=>'9650a44d-d7d1-454a-ab4f-2338c90e8c2f']));
         $manager->persist($conduction);
         $conduction->setId($id);
         $manager->persist($conduction);
@@ -1677,6 +1678,48 @@ class ConductionFixtures extends Fixture
         * stage.conduction.nl
         */
 
+        //organizations voor stage.conduction.nl (behalve Conduction die al is aangemaakt)
+        //Partners
+        //VNG
+        $id = Uuid::fromString('617c9ded-4ff8-4911-b9f0-ccbe6710a985');
+        $rocflevoland = new Organization();
+        $rocflevoland->setName('VNG');
+        $rocflevoland->setDescription('Vereniging van Nederlandse Gemeenten');
+        $rocflevoland->setRsin('');
+        $rocflevoland->setContact($this->commonGroundService->cleanUrl(['component'=>'cc', 'type'=>'organizations', 'id'=>'80a987a0-a5e0-4aa0-bd90-a931871d9283']));
+        $manager->persist($rocflevoland);
+        $rocflevoland->setId($id);
+        $manager->persist($rocflevoland);
+        $manager->flush();
+        $rocflevoland = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
+
+        //SIDN
+        $id = Uuid::fromString('33d7d716-509d-4e69-9cb1-66c1f6f9948f');
+        $rocflevoland = new Organization();
+        $rocflevoland->setName('SIDN');
+        $rocflevoland->setDescription('SIDN');
+        $rocflevoland->setRsin('');
+        $rocflevoland->setContact($this->commonGroundService->cleanUrl(['component'=>'cc', 'type'=>'organizations', 'id'=>'a30454f9-7e97-4e25-9094-245bab73cf9b']));
+        $manager->persist($rocflevoland);
+        $rocflevoland->setId($id);
+        $manager->persist($rocflevoland);
+        $manager->flush();
+        $rocflevoland = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
+
+        //Participanten
+        //ROC Flevoland
+        $id = Uuid::fromString('0a4b0573-b44a-4811-b962-a5b8c1aed68f');
+        $rocflevoland = new Organization();
+        $rocflevoland->setName('ROC Flevoland');
+        $rocflevoland->setDescription('ROC van Flevoland');
+        $rocflevoland->setRsin('');
+        $rocflevoland->setContact($this->commonGroundService->cleanUrl(['component'=>'cc', 'type'=>'organizations', 'id'=>'35e3862b-d446-4541-9780-7bfb19c40e01']));
+        $manager->persist($rocflevoland);
+        $rocflevoland->setId($id);
+        $manager->persist($rocflevoland);
+        $manager->flush();
+        $rocflevoland = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
+
         $favicon = new Image();
         $favicon->setName('stage Favicon');
         $favicon->setBase64('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjxzdmcKICAgeG1sbnM6ZGM9Imh0dHA6Ly9wdXJsLm9yZy9kYy9lbGVtZW50cy8xLjEvIgogICB4bWxuczpjYz0iaHR0cDovL2NyZWF0aXZlY29tbW9ucy5vcmcvbnMjIgogICB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiCiAgIHhtbG5zOnN2Zz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciCiAgIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICAgdmlld0JveD0iMCAwIDcwLjY2NjY2NCA2OS45NTQ5MzMiCiAgIGhlaWdodD0iNjkuOTU0OTMzIgogICB3aWR0aD0iNzAuNjY2NjY0IgogICB4bWw6c3BhY2U9InByZXNlcnZlIgogICBpZD0ic3ZnMiIKICAgdmVyc2lvbj0iMS4xIj48bWV0YWRhdGEKICAgICBpZD0ibWV0YWRhdGE4Ij48cmRmOlJERj48Y2M6V29yawogICAgICAgICByZGY6YWJvdXQ9IiI+PGRjOmZvcm1hdD5pbWFnZS9zdmcreG1sPC9kYzpmb3JtYXQ+PGRjOnR5cGUKICAgICAgICAgICByZGY6cmVzb3VyY2U9Imh0dHA6Ly9wdXJsLm9yZy9kYy9kY21pdHlwZS9TdGlsbEltYWdlIiAvPjwvY2M6V29yaz48L3JkZjpSREY+PC9tZXRhZGF0YT48ZGVmcwogICAgIGlkPSJkZWZzNiIgLz48ZwogICAgIHRyYW5zZm9ybT0ibWF0cml4KDEuMzMzMzMzMywwLDAsLTEuMzMzMzMzMywwLDY5Ljk1NDkzMykiCiAgICAgaWQ9ImcxMCI+PHBhdGgKICAgICAgIGlkPSJwYXRoMTIiCiAgICAgICBzdHlsZT0iZmlsbDojZmZmZmZmO2ZpbGwtb3BhY2l0eToxO2ZpbGwtcnVsZTpub256ZXJvO3N0cm9rZTpub25lIgogICAgICAgZD0iTSAwLDAgSCA1MyBWIDUyLjQ2NiBIIDAgWiIgLz48ZwogICAgICAgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNDIuMjI3NSwxNy4xNTMyKSIKICAgICAgIGlkPSJnMTQiPjxwYXRoCiAgICAgICAgIGlkPSJwYXRoMTYiCiAgICAgICAgIHN0eWxlPSJmaWxsOiM0Mzc2ZmM7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIGQ9Ik0gMCwwIC0xNS43MjgsLTkuMDgxIC0zMS40NTUsMCBWIDE4LjE2IEwgLTE1LjcyOCwyNy4yNDEgMCwxOC4xNiBaIE0gLTE1LjcyOCwzMy40NTIgLTM2LjgzNCwyMS4yNjYgViAtMy4xMDYgbCAyMS4xMDYsLTEyLjE4NiAyMS4xMDcsMTIuMTg2IHYgMjQuMzcyIHoiIC8+PC9nPjxnCiAgICAgICB0cmFuc2Zvcm09InRyYW5zbGF0ZSgyNi40NDgyLDMyLjM3KSIKICAgICAgIGlkPSJnMTgiPjxwYXRoCiAgICAgICAgIGlkPSJwYXRoMjAiCiAgICAgICAgIHN0eWxlPSJmaWxsOiM0Mzc2ZmM7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIGQ9Ik0gMCwwIDQuOTQzLC0yLjg1NCAxMC42OTUsMC40NjcgMCw2LjY0MiAtMTEuMDY3LDAuMjUzIHYgLTEyLjc4IEwgMCwtMTguOTE2IDEwLjY5NSwtMTIuNzQxIDQuOTQzLC05LjQyIDAsLTEyLjI3NCAtNS4zMTQsLTkuMjA1IHYgNi4xMzYgeiIgLz48L2c+PC9nPjwvc3ZnPg==');
@@ -2078,7 +2121,6 @@ class ConductionFixtures extends Fixture
         $manager->persist($style);
 
         $manager->flush();
-
 
         // Configuratie
         $configuration = new Configuration();
