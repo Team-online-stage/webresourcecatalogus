@@ -48,6 +48,7 @@ class ConductionFixtures extends Fixture
         $conduction->setName('Conduction');
         $conduction->setDescription('Conduction');
         $conduction->setRsin('');
+        $conduction->setContact($this->commonGroundService->cleanUrl(['component'=>'cc', 'type'=>'organizations', 'id'=>'9650a44d-d7d1-454a-ab4f-2338c90e8c2f']));
         $manager->persist($conduction);
         $conduction->setId($id);
         $manager->persist($conduction);
@@ -1676,6 +1677,48 @@ class ConductionFixtures extends Fixture
         /*
         * stage.conduction.nl
         */
+
+        //organizations voor stage.conduction.nl (behalve Conduction die al is aangemaakt)
+        //Partners
+        //VNG
+        $id = Uuid::fromString('617c9ded-4ff8-4911-b9f0-ccbe6710a985');
+        $rocflevoland = new Organization();
+        $rocflevoland->setName('VNG');
+        $rocflevoland->setDescription('Vereniging van Nederlandse Gemeenten');
+        $rocflevoland->setRsin('');
+        $rocflevoland->setContact($this->commonGroundService->cleanUrl(['component'=>'cc', 'type'=>'organizations', 'id'=>'80a987a0-a5e0-4aa0-bd90-a931871d9283']));
+        $manager->persist($rocflevoland);
+        $rocflevoland->setId($id);
+        $manager->persist($rocflevoland);
+        $manager->flush();
+        $rocflevoland = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
+
+        //SIDN
+        $id = Uuid::fromString('33d7d716-509d-4e69-9cb1-66c1f6f9948f');
+        $rocflevoland = new Organization();
+        $rocflevoland->setName('SIDN');
+        $rocflevoland->setDescription('SIDN');
+        $rocflevoland->setRsin('');
+        $rocflevoland->setContact($this->commonGroundService->cleanUrl(['component'=>'cc', 'type'=>'organizations', 'id'=>'a30454f9-7e97-4e25-9094-245bab73cf9b']));
+        $manager->persist($rocflevoland);
+        $rocflevoland->setId($id);
+        $manager->persist($rocflevoland);
+        $manager->flush();
+        $rocflevoland = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
+
+        //Participanten
+        //ROC Flevoland
+        $id = Uuid::fromString('0a4b0573-b44a-4811-b962-a5b8c1aed68f');
+        $rocflevoland = new Organization();
+        $rocflevoland->setName('ROC Flevoland');
+        $rocflevoland->setDescription('ROC van Flevoland');
+        $rocflevoland->setRsin('');
+        $rocflevoland->setContact($this->commonGroundService->cleanUrl(['component'=>'cc', 'type'=>'organizations', 'id'=>'35e3862b-d446-4541-9780-7bfb19c40e01']));
+        $manager->persist($rocflevoland);
+        $rocflevoland->setId($id);
+        $manager->persist($rocflevoland);
+        $manager->flush();
+        $rocflevoland = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
 
         $favicon = new Image();
         $favicon->setName('stage Favicon');
