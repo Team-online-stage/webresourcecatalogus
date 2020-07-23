@@ -771,6 +771,29 @@ class ZuiddrechtFixtures extends Fixture
         $manager->persist($template);
         $manager->flush();
 
+        $id = Uuid::fromString('e16d97e0-e3ed-4768-88c6-02729660e7b5');
+        $template = new Template();
+        $template->setName('nieuwsbrief');
+        $template->setDescription('nieuwsbrief');
+        $template->setTitle('Nieuwsbrief');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Zuiddrecht/website/nieuws/email.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('nieuwsbrief');
+        $slug->setSlug('nieuwsbrief');
+        $manager->persist($slug);
+
         $id = Uuid::fromString('42594401-3db2-42c5-b06a-0b6d5eaeb8c2');
         $template = new Template();
         $template->setName('nieuwsoverzicht');
