@@ -562,7 +562,7 @@ class ZuiddrechtFixtures extends Fixture
         $menu = new Menu();
         $menu->setName('loggedIn');
         $menu->setDescription('logged in menu');
-        $menu->setApplication($stage);
+        $menu->setApplication($application);
         $manager->persist($menu);
         $menu->setId($id);
         $manager->persist($menu);
