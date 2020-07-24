@@ -2,8 +2,83 @@
 
 {% extends 'base.html.twig' %}
 
-{% block body %}
+{% block content %}
 
     <h1>Commonground nu homepage</h1>
+
+    <div class="images-slider custom-slider">
+        <img src="https://picsum.photos/500/375">
+        <img src="https://picsum.photos/500/375">
+        <img src="https://picsum.photos/500/375">
+        <img src="https://picsum.photos/500/375">
+        <img src="https://picsum.photos/500/375">
+    </div>
+
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="content-background">
+                <div class="content custom-card">
+                    <span><i style="font-size: 25px; padding-right: 10px" class="fas fa-book"></i>Lorem ipsum</span>
+                    <img style="margin-left: -10px !important;" src="https://picsum.photos/275/175" width="275px"
+                         height="175px">
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="content-background">
+                <div class="content custom-card">
+                    <span><i style="font-size: 25px; padding-right: 10px" class="fas fa-book"></i>Lorem ipsum</span>
+                    <img style="margin-left: -10px !important;" src="https://picsum.photos/275/175" width="275px"
+                         height="175px">
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="content-background">
+                <div class="content custom-card">
+                    <span><i style="font-size: 25px; padding-right: 10px" class="fas fa-book"></i>Lorem ipsum</span>
+                    <img style="margin-left: -10px !important;" src="https://picsum.photos/275/175" width="275px"
+                         height="175px">
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="content-background">
+                <div class="content custom-card">
+                    <span><i style="font-size: 25px; padding-right: 10px" class="fas fa-book"></i>Lorem ipsum</span>
+                    <img style="margin-left: -10px !important;" src="https://picsum.photos/275/175" width="275px"
+                         height="175px">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $('.images-slider').slick({
+            centerMode: true,
+            centerPadding: '60px',
+            slidesToShow: 3,
+            responsive: [
+                {
+                    breakpoint: 768,
+                    settings: {
+                        arrows: false,
+                        centerMode: true,
+                        centerPadding: '40px',
+                        slidesToShow: 3
+                    }
+                },
+                {
+                    breakpoint: 480,
+                    settings: {
+                        arrows: false,
+                        centerMode: true,
+                        centerPadding: '40px',
+                        slidesToShow: 1
+                    }
+                }
+            ]
+        });
+    </script>
 
 {% endblock %}

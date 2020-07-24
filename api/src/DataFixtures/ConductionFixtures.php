@@ -1461,7 +1461,8 @@ class ConductionFixtures extends Fixture
         $style = new Style();
         $style->setName('commonground.nu');
         $style->setDescription('Huistlijl commonground.nu');
-        $style->setCss('');
+        $style->setCss(':root {--primary: #FFBC2C; --primary-txt-clr: black} #docs-nav {background: var(--primary); color: var(--primarytxtcolor)}
+        #footer {background: var(--primary); color: var(--primarytxtcolor) !important} .custom-card{padding: 10px !important;} .custom-slider{margin-bottom: 20px} ');
         $style->setfavicon($favicon);
         $style->setOrganization($conduction);
 
