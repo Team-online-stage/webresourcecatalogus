@@ -163,7 +163,7 @@ class WestfrieslandFixtures extends Fixture
         $configuration->setApplication($application);
         $configuration->setConfiguration(
             [
-                'loggedIn'=> $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'364350f5-d2a5-49f3-adab-484c357fa82f']),
+                'loggedIn'=> $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'a8496676-767a-4d1e-beab-be39a7b2c870']),
                 'mainMenu'=> $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'0ff074bc-e6db-43ed-93ae-c027ad452f78']),
                 'home'    => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'097ea88e-beb6-476e-a978-d07650f03d97']), ]
         );
