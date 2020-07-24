@@ -1458,6 +1458,16 @@ class ConductionFixtures extends Fixture
         $logo->setDescription('Logo Commonground.nu');
         $logo->setOrganization($conduction);
 
+        $logo = new Image();
+        $logo->setName('Commonground.nu Logo');
+        $logo->setDescription('Logo Commonground.nu');
+        $logo->setOrganization($conduction);
+
+        $logo = new Image();
+        $logo->setName('Commonground.nu Logo');
+        $logo->setDescription('Logo Commonground.nu');
+        $logo->setOrganization($conduction);
+
         $style = new Style();
         $style->setName('commonground.nu');
         $style->setDescription('Huistlijl commonground.nu');
