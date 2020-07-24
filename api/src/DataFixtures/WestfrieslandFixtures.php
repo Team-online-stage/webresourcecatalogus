@@ -163,6 +163,7 @@ class WestfrieslandFixtures extends Fixture
         $configuration->setApplication($application);
         $configuration->setConfiguration(
             [
+                'loggedIn'=> $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'a8496676-767a-4d1e-beab-be39a7b2c870']),
                 'mainMenu'=> $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'0ff074bc-e6db-43ed-93ae-c027ad452f78']),
                 'home'    => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'097ea88e-beb6-476e-a978-d07650f03d97']), ]
         );
@@ -171,6 +172,30 @@ class WestfrieslandFixtures extends Fixture
         $application->setDefaultConfiguration($configuration);
         $manager->persist($application);
         $manager->flush();
+
+        // loggedIn menu
+        $id = Uuid::fromString('a8496676-767a-4d1e-beab-be39a7b2c870');
+        $menu = new Menu();
+        $menu->setName('loggedIn');
+        $menu->setDescription('logged in menu');
+        $menu->setApplication($application);
+        $manager->persist($menu);
+        $menu->setId($id);
+        $manager->persist($menu);
+        $manager->flush();
+        $menu = $manager->getRepository('App:Menu')->findOneBy(['id'=> $id]);
+
+        $menuItem = new MenuItem();
+        $menuItem->setName('Mijn West-Friesland');
+        $menuItem->setDescription('Stages');
+        $menuItem->setOrder(3);
+        $menuItem->setType('slug');
+        $menuItem->setHref('/request');
+        $menuItem->setMenu($menu);
+        $manager->persist($menuItem);
+
+        $menu->addMenuItem($menuItem);
+        $manager->persist($menu);
 
         // Menu
         $id = Uuid::fromString('0ff074bc-e6db-43ed-93ae-c027ad452f78');
@@ -185,11 +210,11 @@ class WestfrieslandFixtures extends Fixture
         $menu = $manager->getRepository('App:Menu')->findOneBy(['id'=> $id]);
 
         $menuItem = new MenuItem();
-        $menuItem->setName('Processen');
-        $menuItem->setDescription('Doe een aanvraag');
+        $menuItem->setName('Home');
+        $menuItem->setDescription('MenuItem naar home page');
         $menuItem->setOrder(1);
         $menuItem->setType('slug');
-        $menuItem->setHref('/process');
+        $menuItem->setHref('/');
         $menuItem->setMenu($menu);
         $manager->persist($menuItem);
 
@@ -197,11 +222,11 @@ class WestfrieslandFixtures extends Fixture
         $manager->persist($menu);
 
         $menuItem = new MenuItem();
-        $menuItem->setName('Verzoeken');
-        $menuItem->setDescription('Het inzien en voortzetten van mijn verzoeken');
-        $menuItem->setOrder(1);
+        $menuItem->setName('Processen');
+        $menuItem->setDescription('Doe een aanvraag');
+        $menuItem->setOrder(2);
         $menuItem->setType('slug');
-        $menuItem->setHref('/requests');
+        $menuItem->setHref('/process');
         $menuItem->setMenu($menu);
         $manager->persist($menuItem);
 
@@ -249,7 +274,8 @@ class WestfrieslandFixtures extends Fixture
         $style->setCss(':root {--primary: #233A79;--primary2: white;--secondary: #FFC926;--secondary2: #FFC926;}
         .main-title {color: var(--primary2) !important;}.logo-header {background: var(--primary);}.navbar-header
         {background: var(--primary);}.bg-primary-gradient {background: linear-gradient(-45deg, var(--secondary),
-         var(--secondary2)) !important;} #docs-nav {background: var(--primary)} #footer {background: var(--primary)}');
+         var(--secondary2)) !important;} #docs-nav {background: var(--primary)} #footer {background: var(--primary)}
+          .begraaf-card {background: var(--primary); text-align:center; padding: 20px !important; }');
 
         $style->setfavicon($favicon);
         $style->setOrganization($westfriesland);
