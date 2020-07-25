@@ -163,6 +163,7 @@ class WestfrieslandFixtures extends Fixture
         $configuration->setApplication($application);
         $configuration->setConfiguration(
             [
+                'loggedIn'=> $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'a8496676-767a-4d1e-beab-be39a7b2c870']),
                 'mainMenu'=> $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'0ff074bc-e6db-43ed-93ae-c027ad452f78']),
                 'home'    => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'097ea88e-beb6-476e-a978-d07650f03d97']), ]
         );
@@ -171,6 +172,30 @@ class WestfrieslandFixtures extends Fixture
         $application->setDefaultConfiguration($configuration);
         $manager->persist($application);
         $manager->flush();
+
+        // loggedIn menu
+        $id = Uuid::fromString('a8496676-767a-4d1e-beab-be39a7b2c870');
+        $menu = new Menu();
+        $menu->setName('loggedIn');
+        $menu->setDescription('logged in menu');
+        $menu->setApplication($application);
+        $manager->persist($menu);
+        $menu->setId($id);
+        $manager->persist($menu);
+        $manager->flush();
+        $menu = $manager->getRepository('App:Menu')->findOneBy(['id'=> $id]);
+
+        $menuItem = new MenuItem();
+        $menuItem->setName('Mijn West-Friesland');
+        $menuItem->setDescription('Stages');
+        $menuItem->setOrder(3);
+        $menuItem->setType('slug');
+        $menuItem->setHref('/request');
+        $menuItem->setMenu($menu);
+        $manager->persist($menuItem);
+
+        $menu->addMenuItem($menuItem);
+        $manager->persist($menu);
 
         // Menu
         $id = Uuid::fromString('0ff074bc-e6db-43ed-93ae-c027ad452f78');
