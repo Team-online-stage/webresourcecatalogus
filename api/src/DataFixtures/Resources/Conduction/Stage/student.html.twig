@@ -7,16 +7,23 @@
         <a class="backlink" href="/studenten">Studenten</a>
     </header>
     <div class="row">
-        {# if user is defined and user is not null #}
+        {% if user is defined and user is not null %}
+        {% set person = commonground_resource(resource.person) %}
             <div class="col-sm-12 col-lg-8">
                 <div class="content-background">
                     <div class="content ">
                         <div class="row">
                             <div class="col-md-6">
-                                {% set studentContact = commonground_resource(resource.person) %}
-                                <h1>{{ studentContact.name|capitalize }}</h1>
-                                <p>{{ studentContact.formalName|capitalize }}</p>
-                                <b>Family Name: </b>{{ studentContact.familyName|capitalize }}
+                                {% if person['@type'] == 'Ingeschrevenpersoon' %}
+                                    <h1>{{ person.naam.voornamen|capitalize }} {{ person.naam.geslachtsnaam|capitalize }}</h1>
+                                    <p>{{ person.naam.aanschrijfwijze|capitalize }}</p>
+                                {% elseif person['@type'] == 'Person' %}
+                                    <h1>{{ person.name|capitalize }}</h1>
+                                    <p>{{ person.formalName|capitalize }}</p>
+                                    <b>Family Name: </b>{{ person.familyName|capitalize }}
+                                {% else %}
+                                    <h1>{{ person.name|capitalize }}</h1>
+                                {% endif %}
                             </div>
                             <div class="col-md-6">
                                 <img src="https://picsum.photos/350/250" alt="tender" width="100%">
@@ -31,19 +38,30 @@
                                             <span class="screenreader-only" data-contracted-i18n="ingeklapt"
                                                   data-expanded-i18n="uitgeklapt"></span>
                                         </i>
-                                        <span class="collapse__title">educationalOccupationalPrograms</span>
+                                        <span class="collapse__title">Programs</span>
                                     </div>
                                     <div class="collapse__details collapse__details--closed">
-                                        {% if resource.educationalOccupationalPrograms is defined and resource.educationalOccupationalPrograms is not empty %}
+                                        {% if resource.programs is defined and resource.programs is not empty %}
                                             <ul class="list list--card list--card-small">
-                                                {% for educationalOccupationalProgram in resource.educationalOccupationalPrograms %}
+                                                {% for program in resource.programs %}
                                                     <li class="card card--small">
                                                         <div class="card__content">
                                                             <div class="card__body">
                                                                 <div class="row" style=" height: 100%; width: 100%;">
                                                                     <div class="col-sm-12" style="padding-right: 0px;">
-                                                                        <span class="card__title">{{ educationalOccupationalProgram.name }}</span><br>
-                                                                        <span>{{ educationalOccupationalProgram.description }}</span>
+                                                                        <span class="card__title">{{ program.name }}</span><br>
+                                                                        <span>{{ program.description }}</span>
+                                                                        <br><br>
+                                                                        <div class="col-sm-12 col-md-6">
+                                                                            <div style="display: flex; flex-direction: column; justify-items: center;">
+                                                                                <a href="{{ path('app_education_program', {id: program.id}) }}"
+                                                                                   rel="noopener" class="btn btn--primary"
+                                                                                   target="_blank">
+                                                                                    Bekijk dit programma
+                                                                                    <span class="btn__icon icon icon-arr-forward" title="" role=""></span>
+                                                                                </a>
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -52,7 +70,7 @@
                                                 {% endfor %}
                                             </ul>
                                         {% else %}
-                                            <p style="color:lightgray">Er zijn nog geen educationalOccupationalPrograms.</p>
+                                            <p style="color:lightgray">Deze student is niet ingeschreven voor een program.</p>
                                         {% endif %}
                                     </div>
                                 </div>
@@ -67,12 +85,12 @@
                                             <span class="screenreader-only" data-contracted-i18n="ingeklapt"
                                                   data-expanded-i18n="uitgeklapt"></span>
                                         </i>
-                                        <span class="collapse__title">courses</span>
+                                        <span class="collapse__title">Courses</span>
                                     </div>
                                     <div class="collapse__details collapse__details--closed">
-                                        {% if resource.coursese is defined and resource.courses is not empty %}
+                                        {% if resource.courses is defined and resource.courses is not empty %}
                                             <ul class="list list--card list--card-small">
-                                                {% for course in resource.coursese %}
+                                                {% for course in resource.courses %}
                                                     <li class="card card--small">
                                                         <div class="card__content">
                                                             <div class="card__body">
@@ -80,6 +98,17 @@
                                                                     <div class="col-sm-12" style="padding-right: 0px;">
                                                                         <span class="card__title">{{ course.name }}</span><br>
                                                                         <span>{{ course.description }}</span>
+                                                                        <br><br>
+                                                                        <div class="col-sm-12 col-md-6">
+                                                                            <div style="display: flex; flex-direction: column; justify-items: center;">
+                                                                                <a href="{{ path('app_education_program', {id: course.id}) }}"
+                                                                                   rel="noopener" class="btn btn--primary"
+                                                                                   target="_blank">
+                                                                                    Bekijk deze course
+                                                                                    <span class="btn__icon icon icon-arr-forward" title="" role=""></span>
+                                                                                </a>
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -88,7 +117,7 @@
                                                 {% endfor %}
                                             </ul>
                                         {% else %}
-                                            <p style="color:lightgray">Er zijn nog geen courses.</p>
+                                            <p style="color:lightgray">Deze student is niet ingeschreven voor een course.</p>
                                         {% endif %}
                                     </div>
                                 </div>
@@ -97,46 +126,10 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-12 col-lg-4">
-                <div class="content-background">
-                    <div class="content ">
-                        <h1>Kenmerken</h1>
-                        {% if resource.submitters is defined and resource.submitters is not empty %}
-                            <b>Aangemaakt
-                                door:</b>{% for submitter in resource.submitters %} {{ submitter }},{% endfor %}
-                            <br>
-                        {% endif %}
-                        {% if resource.dateSubmitted is defined and resource.dateSubmitted is not empty %}
-                            <b>Ingediend op: </b>{{ resource.dateSubmitted|date("d-m-Y H:i", "Europe/Paris") }}
-                            <br>
-                        {% endif %}
-                        {% if resource.budget is defined and resource.budget is not empty %}
-                            <b>Beschikbaar budget: </b>&euro; {{ resource.budget }},-
-                            <br>
-                        {% endif %}
-                        {% if resource.dateClose is defined and resource.dateClose is not empty %}
-                            <b>Datum van beëindiging: </b>{{ resource.dateClose|date("d-m-Y H:i", "Europe/Paris") }}
-                            <br>
-                        {% endif %}
-                        {% if resource.kind is defined and resource.kind is not empty %}
-                            <b>Type: </b>{{ resource.kind }}
-                            <br>
-                        {% endif %}
-                        {% if resource.documents is defined and resource.documents is not empty %}
-                            <br>
-                            <h3>Documenten</h3>
-                            <ul class="list list--links list--chevrons">
-                                {% for document in resource.documents %}
-                                    <li><a href="#">{{ document }}</a></li>
-                                {% endfor %}
-                            </ul>
-                        {% endif %}
-                    </div>
-                </div>
         </div>
-        {# else %}
-            <h2>U bent nog niet ingelogd!</h2>
-        {% endif #}
+        {% else %}
+            <h2>U moet eerst inloggen voordat u deze pagina kunt bekijken!</h2>
+        {% endif %}
     </div>
 
     <script>
