@@ -275,7 +275,8 @@ class WestfrieslandFixtures extends Fixture
         .main-title {color: var(--primary2) !important;}.logo-header {background: var(--primary);}.navbar-header
         {background: var(--primary);}.bg-primary-gradient {background: linear-gradient(-45deg, var(--secondary),
          var(--secondary2)) !important;} #docs-nav {background: var(--primary)} #footer {background: var(--primary)}
-          .begraaf-card {background: var(--primary); text-align:center; padding: 20px !important; }');
+          .begraaf-card {background: var(--primary); text-align:center; padding: 20px !important; }
+          .header-logo{text-align: left !important; padding: 15px 0 5px 0px}');
 
         $style->setfavicon($favicon);
         $style->setOrganization($westfriesland);
