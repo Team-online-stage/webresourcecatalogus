@@ -128,7 +128,6 @@ class WestfrieslandFixtures extends Fixture
         $manager->flush();
         $favicon = $manager->getRepository('App:Image')->findOneBy(['id' => $id]);
 
-
         $logo = new Image();
         $logo->setName('West-Friesland Logo');
         $logo->setDescription('West-Friesland VNG');
@@ -173,7 +172,7 @@ class WestfrieslandFixtures extends Fixture
             [
                 'loggedIn' => $this->commonGroundService->cleanUrl(['component' => 'wrc', 'type' => 'menus', 'id' => 'a8496676-767a-4d1e-beab-be39a7b2c870']),
                 'mainMenu' => $this->commonGroundService->cleanUrl(['component' => 'wrc', 'type' => 'menus', 'id' => '0ff074bc-e6db-43ed-93ae-c027ad452f78']),
-                'home' => $this->commonGroundService->cleanUrl(['component' => 'wrc', 'type' => 'templates', 'id' => '097ea88e-beb6-476e-a978-d07650f03d97']),]
+                'home'     => $this->commonGroundService->cleanUrl(['component' => 'wrc', 'type' => 'templates', 'id' => '097ea88e-beb6-476e-a978-d07650f03d97']), ]
         );
         $manager->persist($configuration);
 
@@ -256,7 +255,7 @@ class WestfrieslandFixtures extends Fixture
         $template->setName('Home');
         $template->setTitle('Home');
         $template->setDescription('De (web) applicatie waarop begravenisen kunnen worden doorgegeven');
-        $template->setContent(file_get_contents(dirname(__FILE__) . '/Resources/Westfriesland/index.html.twig', 'r'));
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Westfriesland/index.html.twig', 'r'));
         $template->setTemplateEngine('twig');
         $manager->persist($template);
         $template->setId($id);
