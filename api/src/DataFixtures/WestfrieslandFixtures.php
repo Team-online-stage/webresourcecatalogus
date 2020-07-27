@@ -44,12 +44,12 @@ class WestfrieslandFixtures extends Fixture
         $westfriesland->setName('Westfriesland');
         $westfriesland->setDescription('Samenwerkingsverband Westfriesland');
         $westfriesland->setRsin('1234');
-        $westfriesland->setContact($this->commonGroundService->cleanUrl(['component'=>'cc', 'type'=>'organizations', 'id'=>'b294b0ae-fce4-48d3-bf50-eab1f82ddd7f']));
+        $westfriesland->setContact($this->commonGroundService->cleanUrl(['component' => 'cc', 'type' => 'organizations', 'id' => 'b294b0ae-fce4-48d3-bf50-eab1f82ddd7f']));
         $manager->persist($westfriesland);
         $westfriesland->setId($id);
         $manager->persist($westfriesland);
         $manager->flush();
-        $westfriesland = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
+        $westfriesland = $manager->getRepository('App:Organization')->findOneBy(['id' => $id]);
 
         // Opmeer
         $id = Uuid::fromString('16fd1092-c4d3-4011-8998-0e15e13239cf');
@@ -57,12 +57,12 @@ class WestfrieslandFixtures extends Fixture
         $opmeer->setName('Opmeer');
         $opmeer->setDescription('Gemeente Opmeer');
         $opmeer->setRsin('1234');
-        $opmeer->setContact($this->commonGroundService->cleanUrl(['component'=>'cc', 'type'=>'organizations', 'id'=>'26dee7a2-0fb6-4cc8-b5f6-0b5e2f8aa789']));
+        $opmeer->setContact($this->commonGroundService->cleanUrl(['component' => 'cc', 'type' => 'organizations', 'id' => '26dee7a2-0fb6-4cc8-b5f6-0b5e2f8aa789']));
         $manager->persist($opmeer);
         $opmeer->setId($id);
         $manager->persist($opmeer);
         $manager->flush();
-        $opmeer = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
+        $opmeer = $manager->getRepository('App:Organization')->findOneBy(['id' => $id]);
 
         // Medemblik
         $id = Uuid::fromString('429e66ef-4411-4ddb-8b83-c637b37e88b5');
@@ -70,12 +70,12 @@ class WestfrieslandFixtures extends Fixture
         $medemblik->setName('Medemblik');
         $medemblik->setDescription('Gemeente Medemblik');
         $medemblik->setRsin('1234');
-        $medemblik->setContact($this->commonGroundService->cleanUrl(['component'=>'cc', 'type'=>'organizations', 'id'=>'47c8c694-62bb-4dec-b054-556537e896fe']));
+        $medemblik->setContact($this->commonGroundService->cleanUrl(['component' => 'cc', 'type' => 'organizations', 'id' => '47c8c694-62bb-4dec-b054-556537e896fe']));
         $manager->persist($medemblik);
         $medemblik->setId($id);
         $manager->persist($medemblik);
         $manager->flush();
-        $medemblik = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
+        $medemblik = $manager->getRepository('App:Organization')->findOneBy(['id' => $id]);
 
         // SED
         $id = Uuid::fromString('7033eeb4-5c77-4d88-9f40-303b538f176f');
@@ -83,12 +83,12 @@ class WestfrieslandFixtures extends Fixture
         $sed->setName('SED');
         $sed->setDescription('Gemeenten Stede Broec, Enkhuizen en Drechterland');
         $sed->setRsin('1234');
-        $sed->setContact($this->commonGroundService->cleanUrl(['component'=>'cc', 'type'=>'organizations', 'id'=>'0012428b-dc06-444a-af20-17d3ee06a916']));
+        $sed->setContact($this->commonGroundService->cleanUrl(['component' => 'cc', 'type' => 'organizations', 'id' => '0012428b-dc06-444a-af20-17d3ee06a916']));
         $manager->persist($sed);
         $sed->setId($id);
         $manager->persist($sed);
         $manager->flush();
-        $sed = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
+        $sed = $manager->getRepository('App:Organization')->findOneBy(['id' => $id]);
 
         // Hoorn
         $id = Uuid::fromString('d736013f-ad6d-4885-b816-ce72ac3e1384');
@@ -96,12 +96,12 @@ class WestfrieslandFixtures extends Fixture
         $hoorn->setName('Hoorn');
         $hoorn->setDescription('Gemeente Hoorn');
         $hoorn->setRsin('1234');
-        $hoorn->setContact($this->commonGroundService->cleanUrl(['component'=>'cc', 'type'=>'organizations', 'id'=>'816395fc-4ba4-4fa5-90e9-780bb14a50c2']));
+        $hoorn->setContact($this->commonGroundService->cleanUrl(['component' => 'cc', 'type' => 'organizations', 'id' => '816395fc-4ba4-4fa5-90e9-780bb14a50c2']));
         $manager->persist($hoorn);
         $hoorn->setId($id);
         $manager->persist($hoorn);
         $manager->flush();
-        $hoorn = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
+        $hoorn = $manager->getRepository('App:Organization')->findOneBy(['id' => $id]);
 
         // Koggenland
         $id = Uuid::fromString('f050292c-973d-46ab-97ae-9d8830a59d15');
@@ -109,17 +109,24 @@ class WestfrieslandFixtures extends Fixture
         $koggenland->setName('Koggenland');
         $koggenland->setDescription('Gemeente Koggenland');
         $koggenland->setRsin('1234');
-        $koggenland->setContact($this->commonGroundService->cleanUrl(['component'=>'cc', 'type'=>'organizations', 'id'=>'5792b63d-afb5-4689-990b-51eec52b663b']));
+        $koggenland->setContact($this->commonGroundService->cleanUrl(['component' => 'cc', 'type' => 'organizations', 'id' => '5792b63d-afb5-4689-990b-51eec52b663b']));
         $manager->persist($koggenland);
         $koggenland->setId($id);
         $manager->persist($koggenland);
         $manager->flush();
-        $koggenland = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
+        $koggenland = $manager->getRepository('App:Organization')->findOneBy(['id' => $id]);
 
         $favicon = new Image();
+        $id = Uuid::fromString('0923599d-5182-4a1b-bc9b-72e18f88fc68');
         $favicon->setName('West-Friesland Favicon');
         $favicon->setDescription('West-Friesland VNG');
+        $favicon->setBase64('data:image/x-icon;base64,AAABAAEAEBAAAAEACABoBQAAFgAAACgAAAAQAAAAIAAAAAEACAAAAAAAAAEAAAAAAAAAAAAAAAEAAAAAAAAx0PkAjk8tAIxOMABOrssALtH/AIxLKAAv0f8AfWZZADDR/wAx0f8AQbjZACrX/wAy0f8ALtT/ACvX/wCNSisANM73APv9/wBNr8kALtL9AC/S/QCTQRMAct//AIpTNACMTSwAjEwvADjI8ADi+P8AQbzgAFHX/wCC4v8AhllFAC/S/gAw0v4AeHJrADHS/gC27f8AMtL+ACfb/gCHVj0AZ4qUAH1sYwA20v4APsHjAIxNLQD+/v4A//7+AEi42wA0y/EAj+X/AIZaQwA5xekAYdr/AIxMKAAu0v8AL9L/ADDS/wBD1f4AeWxkADHS/wDY9v4AWp6wAIJhUQA00v8ANdL/ACvV9wBhkqAAN9L/ADjS/wBq3f8A/f7/AP7+/wD//v8AMNH6AI1NLgCQRRsALdT6AIJgTACLTzEANc7yAEHV/wAu1v0AStX/AP///QCKTS8AeWxdAIxNLwCMUC8AgeP/AFqcrwCLTzIALtP+AC/T/gAw0/4AkUEXACbc/gBZnrIA/v/+AI5IJQD///4ALNX5ADLM8QB5bF4Ab97+AIdVOwAr0/8AMND/APT8/wAx0P8AL9P/AIxMKwBhlqgA+///ADfT/wD8//8A/f//AIxOLgD+//8A////ADDR/QBjj5sAMdH9ADLR/QBz3v8AxvL9ACvX/QCPSikAi04vAC7S+wCPRhwAjU4vAC3R/gAu0f4AL9H+ADDR/gAo2/sAj0snADHR/gB6cWsAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAdnZ2Y3V2R1Idc3V2dnZ2dnZ2dnZHewiFhXkeYXZ2dnZ2dlM0ajs7hoY7EwxFc0d2cnwhhAk7Ozs7O4WFdwwbdkgWO4M7DIYmDnoEAzY4WHYuhDsLaDJfYjVlCFlLiQl2c4Y7CUkfin14BV1aXoQ3dnMMhgCBiFZ0Ek4ibmk4IXYkiYaGTYJUf0p/GQ8oeTs8RAmECSw+AX6HQTArVyE7UD8lhoApYBgnGhdVZg0Ghjl2hlxRFT0COgoHbzNtFAlzdnZshhAvTxyGTGRCFAhwdXZ2a4Q7N1uJIDuGhjYRY3Z2dnZnIIYhO4kIhSMxYXZ2dnZhdggjQCpxQ4klRi12dgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=');
         $favicon->setOrganization($westfriesland);
+        $manager->persist($favicon);
+        $favicon->setId($id);
+        $manager->persist($favicon);
+        $manager->flush();
+        $favicon = $manager->getRepository('App:Image')->findOneBy(['id' => $id]);
 
         $logo = new Image();
         $logo->setName('West-Friesland Logo');
@@ -155,7 +162,7 @@ class WestfrieslandFixtures extends Fixture
         $application->setId($id);
         $manager->persist($application);
         $manager->flush();
-        $application = $manager->getRepository('App:Application')->findOneBy(['id'=> $id]);
+        $application = $manager->getRepository('App:Application')->findOneBy(['id' => $id]);
 
         // Configuratie van Begrafenisplanner
         $configuration = new Configuration();
@@ -163,9 +170,9 @@ class WestfrieslandFixtures extends Fixture
         $configuration->setApplication($application);
         $configuration->setConfiguration(
             [
-                'loggedIn'=> $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'a8496676-767a-4d1e-beab-be39a7b2c870']),
-                'mainMenu'=> $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'0ff074bc-e6db-43ed-93ae-c027ad452f78']),
-                'home'    => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'097ea88e-beb6-476e-a978-d07650f03d97']), ]
+                'loggedIn' => $this->commonGroundService->cleanUrl(['component' => 'wrc', 'type' => 'menus', 'id' => 'a8496676-767a-4d1e-beab-be39a7b2c870']),
+                'mainMenu' => $this->commonGroundService->cleanUrl(['component' => 'wrc', 'type' => 'menus', 'id' => '0ff074bc-e6db-43ed-93ae-c027ad452f78']),
+                'home'     => $this->commonGroundService->cleanUrl(['component' => 'wrc', 'type' => 'templates', 'id' => '097ea88e-beb6-476e-a978-d07650f03d97']), ]
         );
         $manager->persist($configuration);
 
@@ -183,7 +190,7 @@ class WestfrieslandFixtures extends Fixture
         $menu->setId($id);
         $manager->persist($menu);
         $manager->flush();
-        $menu = $manager->getRepository('App:Menu')->findOneBy(['id'=> $id]);
+        $menu = $manager->getRepository('App:Menu')->findOneBy(['id' => $id]);
 
         $menuItem = new MenuItem();
         $menuItem->setName('Mijn West-Friesland');
@@ -207,7 +214,7 @@ class WestfrieslandFixtures extends Fixture
         $menu->setId($id);
         $manager->persist($menu);
         $manager->flush();
-        $menu = $manager->getRepository('App:Menu')->findOneBy(['id'=> $id]);
+        $menu = $manager->getRepository('App:Menu')->findOneBy(['id' => $id]);
 
         $menuItem = new MenuItem();
         $menuItem->setName('Home');
@@ -254,7 +261,7 @@ class WestfrieslandFixtures extends Fixture
         $template->setId($id);
         $manager->persist($template);
         $manager->flush();
-        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template = $manager->getRepository('App:Template')->findOneBy(['id' => $id]);
         $template->addTemplateGroup($groupPages);
         $manager->persist($template);
 
@@ -276,7 +283,7 @@ class WestfrieslandFixtures extends Fixture
         {background: var(--primary);}.bg-primary-gradient {background: linear-gradient(-45deg, var(--secondary),
          var(--secondary2)) !important;} #docs-nav {background: var(--primary)} #footer {background: var(--primary)}
           .begraaf-card {background: var(--primary); text-align:center; padding: 20px !important; }
-          .header-logo{text-align: left !important; padding: 15px 0 5px 0px}');
+          .header-logo{text-align: left !important; padding: 15px 0 5px 0px} .nav-link:hover {background: var(--primary)}');
 
         $style->setfavicon($favicon);
         $style->setOrganization($westfriesland);
@@ -301,7 +308,7 @@ class WestfrieslandFixtures extends Fixture
         $application->setId($id);
         $manager->persist($application);
         $manager->flush();
-        $application = $manager->getRepository('App:Application')->findOneBy(['id'=> $id]);
+        $application = $manager->getRepository('App:Application')->findOneBy(['id' => $id]);
 
         // Configuratie
         $configuration = new Configuration();
