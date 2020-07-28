@@ -172,7 +172,12 @@ class WestfrieslandFixtures extends Fixture
             [
                 'loggedIn' => $this->commonGroundService->cleanUrl(['component' => 'wrc', 'type' => 'menus', 'id' => 'a8496676-767a-4d1e-beab-be39a7b2c870']),
                 'mainMenu' => $this->commonGroundService->cleanUrl(['component' => 'wrc', 'type' => 'menus', 'id' => '0ff074bc-e6db-43ed-93ae-c027ad452f78']),
-                'home'     => $this->commonGroundService->cleanUrl(['component' => 'wrc', 'type' => 'templates', 'id' => '097ea88e-beb6-476e-a978-d07650f03d97']), ]
+                'home'     => $this->commonGroundService->cleanUrl(['component' => 'wrc', 'type' => 'templates', 'id' => '097ea88e-beb6-476e-a978-d07650f03d97']),
+                'footer1'  => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'9e4130de-b2d7-481c-8681-87b2a174c8ae']),
+                'footer2'  => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'e16b153e-de8a-4f24-9886-fd3057ae93de']),
+                'footer3'  => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'f78d6861-783f-4441-82c4-2efcf5af677f']),
+                'footer4'  => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'c62eedef-ba28-4a5d-bdea-2eb9ef250b8e']),
+            ]
         );
         $manager->persist($configuration);
 
@@ -229,7 +234,7 @@ class WestfrieslandFixtures extends Fixture
         $manager->persist($menu);
 
         $menuItem = new MenuItem();
-        $menuItem->setName('Processen');
+        $menuItem->setName('Zelf regelen');
         $menuItem->setDescription('Doe een aanvraag');
         $menuItem->setOrder(2);
         $menuItem->setType('slug');
@@ -272,6 +277,66 @@ class WestfrieslandFixtures extends Fixture
         $slug->setSlug('home');
         $manager->persist($slug);
 
+        $manager->flush();
+
+        $id = Uuid::fromString('9e4130de-b2d7-481c-8681-87b2a174c8ae');
+        $template = new Template();
+        $template->setName('footer1');
+        $template->setDescription('Menu met links naar partners en juridische informatie van West-Friesland');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Westfriesland/footers/footer1.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
+
+        $id = Uuid::fromString('e16b153e-de8a-4f24-9886-fd3057ae93de');
+        $template = new Template();
+        $template->setName('footer2');
+        $template->setDescription('Menu met links naar gemeenten in West-Friesland');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Westfriesland/footers/footer2.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
+
+        $id = Uuid::fromString('f78d6861-783f-4441-82c4-2efcf5af677f');
+        $template = new Template();
+        $template->setName('footer3');
+        $template->setDescription('Formulier voor de nieuwsbrief van West-Friesland over begraven');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Westfriesland/footers/footer3.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
+
+        $id = Uuid::fromString('c62eedef-ba28-4a5d-bdea-2eb9ef250b8e');
+        $template = new Template();
+        $template->setName('footer4');
+        $template->setDescription('Contactgegevens van West-Friesland');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Westfriesland/footers/footer4.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
         $manager->flush();
 
         // Dashboard
