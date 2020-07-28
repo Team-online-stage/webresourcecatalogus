@@ -14508,7 +14508,7 @@
 		"apikey": [
 			{
 				"key": "value",
-				"value": "45c1a4b6-59d3-4a6e-86bf-88a872f35845",
+				"value": "{{authorization}}",
 				"type": "string"
 			},
 			{
@@ -14542,10 +14542,14 @@
 	],
 	"variable": [
 		{
-			"id": "392d3195-e11b-43f6-a899-452366933d38",
+			"id": "4ec525bc-d8c6-4074-83bc-54095539f436",
 			"key": "baseUrl",
-			"value": "wrc.dev.zuid-drecht.nl",
-			"type": "string"
+			"value": "localhost"
+		},
+		{
+			"id": "ef301e3f-11b3-484b-a1a1-838d79cd9c67",
+			"key": "authorization",
+			"value": "45c1a4b6-59d3-4a6e-86bf-88a872f35845"
 		}
 	],
 	"protocolProfileBehavior": {}
