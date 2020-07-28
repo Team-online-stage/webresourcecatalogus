@@ -2320,50 +2320,6 @@ class ConductionFixtures extends Fixture
         $slug->setSlug('over');
         $manager->persist($slug);
 
-        $id = Uuid::fromString('73332c62-c2bf-4aeb-a3ca-a397863e1d04');
-        $template = new Template();
-        $template->setName('Tutorials');
-        $template->setDescription('Stage Tutorials Page');
-        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Conduction/Stage/tutorials.html.twig', 'r'));
-        $template->setTemplateEngine('twig');
-        $manager->persist($template);
-        $template->setId($id);
-        $manager->persist($template);
-        $manager->flush();
-        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
-        $template->addTemplateGroup($groupPages);
-        $manager->persist($template);
-        $manager->flush();
-
-        $slug = new Slug();
-        $slug->setTemplate($template);
-        $slug->setApplication($stage);
-        $slug->setName('tutorials');
-        $slug->setSlug('tutorials');
-        $manager->persist($slug);
-
-        $id = Uuid::fromString('2e1c1eff-ae18-47c5-9caf-a19f2b50bea8');
-        $template = new Template();
-        $template->setName('Tutorial');
-        $template->setDescription('Stage Tutorial Page');
-        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Conduction/Stage/tutorial.html.twig', 'r'));
-        $template->setTemplateEngine('twig');
-        $manager->persist($template);
-        $template->setId($id);
-        $manager->persist($template);
-        $manager->flush();
-        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
-        $template->addTemplateGroup($groupPages);
-        $manager->persist($template);
-        $manager->flush();
-
-        $slug = new Slug();
-        $slug->setTemplate($template);
-        $slug->setApplication($stage);
-        $slug->setName('tutorial');
-        $slug->setSlug('tutorial');
-        $manager->persist($slug);
-
         $id = Uuid::fromString('cad4760e-703d-4de6-aefb-1ce11e9ff829');
         $template = new Template();
         $template->setName('Challenges');
@@ -2450,50 +2406,6 @@ class ConductionFixtures extends Fixture
         $slug->setApplication($stage);
         $slug->setName('oplossing');
         $slug->setSlug('oplossing');
-        $manager->persist($slug);
-
-        $id = Uuid::fromString('bb1ed90e-e529-4f80-a486-5c58583d835c');
-        $template = new Template();
-        $template->setName('Studenten');
-        $template->setDescription('Stage Studenten Page');
-        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Conduction/Stage/studenten.html.twig', 'r'));
-        $template->setTemplateEngine('twig');
-        $manager->persist($template);
-        $template->setId($id);
-        $manager->persist($template);
-        $manager->flush();
-        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
-        $template->addTemplateGroup($groupPages);
-        $manager->persist($template);
-        $manager->flush();
-
-        $slug = new Slug();
-        $slug->setTemplate($template);
-        $slug->setApplication($stage);
-        $slug->setName('studenten');
-        $slug->setSlug('studenten');
-        $manager->persist($slug);
-
-        $id = Uuid::fromString('c69a6bd9-b233-4d2b-8fd7-9f518c6e7274');
-        $template = new Template();
-        $template->setName('Student');
-        $template->setDescription('Stage Student Page');
-        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Conduction/Stage/student.html.twig', 'r'));
-        $template->setTemplateEngine('twig');
-        $manager->persist($template);
-        $template->setId($id);
-        $manager->persist($template);
-        $manager->flush();
-        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
-        $template->addTemplateGroup($groupPages);
-        $manager->persist($template);
-        $manager->flush();
-
-        $slug = new Slug();
-        $slug->setTemplate($template);
-        $slug->setApplication($stage);
-        $slug->setName('student');
-        $slug->setSlug('student');
         $manager->persist($slug);
 
         $id = Uuid::fromString('89ddaf33-9b5f-4651-9f12-c35122da5a34');
