@@ -1458,10 +1458,21 @@ class ConductionFixtures extends Fixture
         $logo->setDescription('Logo Commonground.nu');
         $logo->setOrganization($conduction);
 
+        $logo = new Image();
+        $logo->setName('Commonground.nu Logo');
+        $logo->setDescription('Logo Commonground.nu');
+        $logo->setOrganization($conduction);
+
+        $logo = new Image();
+        $logo->setName('Commonground.nu Logo');
+        $logo->setDescription('Logo Commonground.nu');
+        $logo->setOrganization($conduction);
+
         $style = new Style();
         $style->setName('commonground.nu');
         $style->setDescription('Huistlijl commonground.nu');
-        $style->setCss('');
+        $style->setCss(':root {--primary: #FFBC2C; --primary-txt-clr: black} #docs-nav {background: var(--primary); color: var(--primarytxtcolor)}
+        #footer {background: var(--primary); color: var(--primarytxtcolor) !important} .custom-card{padding: 10px !important;} .custom-slider{margin-bottom: 20px} ');
         $style->setfavicon($favicon);
         $style->setOrganization($conduction);
 
@@ -2175,7 +2186,7 @@ class ConductionFixtures extends Fixture
         $menuItem->setDescription('Stages');
         $menuItem->setOrder(3);
         $menuItem->setType('slug');
-        $menuItem->setHref('/stages');
+        $menuItem->setHref('/education/stages');
         $menuItem->setMenu($menu);
         $manager->persist($menuItem);
 
@@ -2309,94 +2320,6 @@ class ConductionFixtures extends Fixture
         $slug->setSlug('over');
         $manager->persist($slug);
 
-        $id = Uuid::fromString('3bfd1aba-c2af-4e50-be81-d7a86c9fe70b');
-        $template = new Template();
-        $template->setName('Stages');
-        $template->setDescription('Stage Stages Page');
-        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Conduction/Stage/stages.html.twig', 'r'));
-        $template->setTemplateEngine('twig');
-        $manager->persist($template);
-        $template->setId($id);
-        $manager->persist($template);
-        $manager->flush();
-        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
-        $template->addTemplateGroup($groupPages);
-        $manager->persist($template);
-        $manager->flush();
-
-        $slug = new Slug();
-        $slug->setTemplate($template);
-        $slug->setApplication($stage);
-        $slug->setName('stages');
-        $slug->setSlug('stages');
-        $manager->persist($slug);
-
-        $id = Uuid::fromString('d13a4b1b-90e2-49a9-b3b4-b3f9407c939f');
-        $template = new Template();
-        $template->setName('Stage');
-        $template->setDescription('Stage Stage Page');
-        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Conduction/Stage/stage.html.twig', 'r'));
-        $template->setTemplateEngine('twig');
-        $manager->persist($template);
-        $template->setId($id);
-        $manager->persist($template);
-        $manager->flush();
-        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
-        $template->addTemplateGroup($groupPages);
-        $manager->persist($template);
-        $manager->flush();
-
-        $slug = new Slug();
-        $slug->setTemplate($template);
-        $slug->setApplication($stage);
-        $slug->setName('stage');
-        $slug->setSlug('stage');
-        $manager->persist($slug);
-
-        $id = Uuid::fromString('73332c62-c2bf-4aeb-a3ca-a397863e1d04');
-        $template = new Template();
-        $template->setName('Tutorials');
-        $template->setDescription('Stage Tutorials Page');
-        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Conduction/Stage/tutorials.html.twig', 'r'));
-        $template->setTemplateEngine('twig');
-        $manager->persist($template);
-        $template->setId($id);
-        $manager->persist($template);
-        $manager->flush();
-        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
-        $template->addTemplateGroup($groupPages);
-        $manager->persist($template);
-        $manager->flush();
-
-        $slug = new Slug();
-        $slug->setTemplate($template);
-        $slug->setApplication($stage);
-        $slug->setName('tutorials');
-        $slug->setSlug('tutorials');
-        $manager->persist($slug);
-
-        $id = Uuid::fromString('2e1c1eff-ae18-47c5-9caf-a19f2b50bea8');
-        $template = new Template();
-        $template->setName('Tutorial');
-        $template->setDescription('Stage Tutorial Page');
-        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Conduction/Stage/tutorial.html.twig', 'r'));
-        $template->setTemplateEngine('twig');
-        $manager->persist($template);
-        $template->setId($id);
-        $manager->persist($template);
-        $manager->flush();
-        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
-        $template->addTemplateGroup($groupPages);
-        $manager->persist($template);
-        $manager->flush();
-
-        $slug = new Slug();
-        $slug->setTemplate($template);
-        $slug->setApplication($stage);
-        $slug->setName('tutorial');
-        $slug->setSlug('tutorial');
-        $manager->persist($slug);
-
         $id = Uuid::fromString('cad4760e-703d-4de6-aefb-1ce11e9ff829');
         $template = new Template();
         $template->setName('Challenges');
@@ -2485,50 +2408,6 @@ class ConductionFixtures extends Fixture
         $slug->setSlug('oplossing');
         $manager->persist($slug);
 
-        $id = Uuid::fromString('bb1ed90e-e529-4f80-a486-5c58583d835c');
-        $template = new Template();
-        $template->setName('Studenten');
-        $template->setDescription('Stage Studenten Page');
-        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Conduction/Stage/studenten.html.twig', 'r'));
-        $template->setTemplateEngine('twig');
-        $manager->persist($template);
-        $template->setId($id);
-        $manager->persist($template);
-        $manager->flush();
-        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
-        $template->addTemplateGroup($groupPages);
-        $manager->persist($template);
-        $manager->flush();
-
-        $slug = new Slug();
-        $slug->setTemplate($template);
-        $slug->setApplication($stage);
-        $slug->setName('studenten');
-        $slug->setSlug('studenten');
-        $manager->persist($slug);
-
-        $id = Uuid::fromString('c69a6bd9-b233-4d2b-8fd7-9f518c6e7274');
-        $template = new Template();
-        $template->setName('Student');
-        $template->setDescription('Stage Student Page');
-        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Conduction/Stage/student.html.twig', 'r'));
-        $template->setTemplateEngine('twig');
-        $manager->persist($template);
-        $template->setId($id);
-        $manager->persist($template);
-        $manager->flush();
-        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
-        $template->addTemplateGroup($groupPages);
-        $manager->persist($template);
-        $manager->flush();
-
-        $slug = new Slug();
-        $slug->setTemplate($template);
-        $slug->setApplication($stage);
-        $slug->setName('student');
-        $slug->setSlug('student');
-        $manager->persist($slug);
-
         $id = Uuid::fromString('89ddaf33-9b5f-4651-9f12-c35122da5a34');
         $template = new Template();
         $template->setName('Teams');
@@ -2549,50 +2428,6 @@ class ConductionFixtures extends Fixture
         $slug->setApplication($stage);
         $slug->setName('teams');
         $slug->setSlug('teams');
-        $manager->persist($slug);
-
-        $id = Uuid::fromString('6520071f-e40e-4a64-bb82-859a1216298e');
-        $template = new Template();
-        $template->setName('Organisaties');
-        $template->setDescription('Stage Organisaties Page');
-        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Conduction/Stage/organisaties.html.twig', 'r'));
-        $template->setTemplateEngine('twig');
-        $manager->persist($template);
-        $template->setId($id);
-        $manager->persist($template);
-        $manager->flush();
-        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
-        $template->addTemplateGroup($groupPages);
-        $manager->persist($template);
-        $manager->flush();
-
-        $slug = new Slug();
-        $slug->setTemplate($template);
-        $slug->setApplication($stage);
-        $slug->setName('organisaties');
-        $slug->setSlug('organisaties');
-        $manager->persist($slug);
-
-        $id = Uuid::fromString('52118ee2-df4f-4ae2-b535-e481f3eb93a3');
-        $template = new Template();
-        $template->setName('Organisatie');
-        $template->setDescription('Stage Organisatie Page');
-        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Conduction/Stage/organisatie.html.twig', 'r'));
-        $template->setTemplateEngine('twig');
-        $manager->persist($template);
-        $template->setId($id);
-        $manager->persist($template);
-        $manager->flush();
-        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
-        $template->addTemplateGroup($groupPages);
-        $manager->persist($template);
-        $manager->flush();
-
-        $slug = new Slug();
-        $slug->setTemplate($template);
-        $slug->setApplication($stage);
-        $slug->setName('organisatie');
-        $slug->setSlug('organisatie');
         $manager->persist($slug);
 
         $id = Uuid::fromString('09dfc502-19ce-4b11-8e0a-a7fc456a5c52');
