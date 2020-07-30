@@ -41,15 +41,6 @@
 
 {% block body %}
 
-    <!-- #geschiedenis -->
-    <div id="about" class="wrap-container8040">
-
-
-        <!-- .container end -->
-
-    </div>
-    <!-- /#geschiedenis -->
-
     <!-- .wrap-container -->
     <div class="wrap-container8040">
 
@@ -59,34 +50,36 @@
             <!-- .row -->
             <div class="row">
 
-                <div class="col-sm-10 col-md-6 col-lg-9 col-sm-offset-1 col-md-offset-0 text-center-sm text-center-xs">
-                    <div class="margin-bottom40">
+                <div class="col-sm-10 col-md-7 col-lg-7 ">
+                    <div class="col-text20 margin-bottom20">
                         <div class="post-heading-left">
                             <h1 style="color: #3D8FE2">"BRP" Basic Registration of Persons</h1>
 
+
+
+                            <h4 style="color: #3D8FE2">A data source/registration for all inhabitants in the Netherlands</h4>
+                            <p> The "BRP" or Basic Registration of Persons is a collection of all inhabitants in the Netherlands.
+                                This is the core data source which most dutch governmental organisations make use of. <br>Do we have a database of all the people in the Netherlands?
+                                No of course not that would be a gross violation of the GDPR and some other very important laws. But what is this then, I hear you ask.
+                                This is an API that functions as the BRP api currently developed by the dutch government.
+                                It can be filled with test persons which you then can use to develop or test your own solutions.
+                                <br>
+                                <br>
+                                If there is enough interest we will host a test BRP with a simple interface where you can upload your own person that fits for your solutions at the hackathon.
+                            </p>
+                            <br>
+                            <br>
+                            <a href="https://github.com/ConductionNL/brpservice" style="margin-right: 20px; font-weight: bold; text-transform: uppercase; font-size: 15px ;color: #4376FC; padding: 7.5px 15px 7.5px 15px; border-radius: 25px; border: 2.5px solid #4376FC;"><i class="fab fa-github"> </i> GitHub</a>
+
+                            &nbsp;  &nbsp;
+                            <a href="https://brp.dev.zuid-drecht.nl/" style="font-weight: bold; text-transform: uppercase; font-size: 15px ;color: #4376FC; padding: 7.5px 15px 7.5px 15px; border-radius: 25px; border: 2.5px solid #4376FC;"><i class="fa fa-book"></i>
+                                Redoc</a>
                         </div>
-
-                        <h4 style="color: #3D8FE2">A data source/registration for all inhabitants in the Netherlands</h4>
-                        <p style="color: black"> The "BRP" or Basic Registration of Persons is a collection of all inhabitants in the Netherlands.
-                            This is the core data source which most dutch governmental organisations make use of. <br>Do we have a database of all the people in the Netherlands?
-                            No of course not that would be a gross violation of the GDPR and some other very important laws. But what is this then, I hear you ask.
-                            This is an API that functions as the BRP api currently developed by the dutch government.
-                            It can be filled with test persons which you then can use to develop or test your own solutions.
-                            <br>
-                            <br>
-                            If there is enough interest we will at the hackathon host a test BRP with a simple interface where you can upload your own persons fit for you own solutions.
-                        </p>
-                        <br>
-                        <a href="https://github.com/ConductionNL/brpservice" class="btn-custom"><i class="fab fa-github"> </i> GitHub</a>
-
-                        &nbsp;  &nbsp;
-                        <a href="https://brp.zaakonline.nl/" class="btn-custom btn-icon"><i class="fa fa-book"></i>
-                            Redoc</a>
                     </div>
                 </div>
 
-                <div class="col-sm-10 col-md-6 col-lg-2 col-sm-offset-1 col-md-offset-0 col-lg-offset-1">
-                    <figure class="col-img40 margin-bottom40 animation" data-animation="animation-fade-in-right">
+                <div class="col-sm-10 col-md-5 col-lg-5">
+                    <figure class="col-img40 margin-bottom40 animation" data-animation="animation-fade-in-right" style="width: 600px !important;">
                         <a href="https://www.rijksoverheid.nl/onderwerpen/privacy-en-persoonsgegevens/basisregistratie-personen-brp">
                             <img src="{{ asset('images/content/Odyssey/RVO.png') }}" width="140%">
                         </a>
@@ -113,31 +106,31 @@
             <!-- .row -->
             <div class="row">
 
-                <div class="col-sm-10 col-md-6 col-lg-9 col-sm-offset-1 col-md-offset-0 text-center-sm text-center-xs">
-                    <div class="margin-bottom20">
-                        <div class="post-heading-left text-center-sm text-center-xs">
-                            <h1 style="color: #3D8FE2">DigISpoof</h1>
+                <div class="col-sm-10 col-md-7 col-lg-7 ">
+                    <div class="col-text20 margin-bottom20">
+                        <div class="post-heading-left">
+                            <h1 style="color: #3D8FE2">DigiSpoof</h1>
                             <h4 style="color: #3D8FE2">A mock version of the dutch national online identifier</h4>
+
+
+                            <p>DigiD is the mostly used method in which someone can identify themselves with the online services of the government.
+                                This component is a open source mock version of this method. This component contains a frontend to simulate the login and an API to handle the backend,
+                                from the outside it functions as the real thing. The DigiSpoof component works in tandem with the BRP building block mentioned above.
+                            </p>
+                            <br>
+                            <br>
+                            <a href="https://github.com/ConductionNL/bzk-mock" style="margin-right: 20px;font-weight: bold; text-transform: uppercase; font-size: 15px ;color: #4376FC; padding: 7.5px 15px 7.5px 15px; border-radius: 25px; border: 2.5px solid #4376FC;"><i class="fab fa-github"> </i> GitHub</a>
+                            <a href="https://ds.dev.zuid-drecht.nl/" style="font-weight: bold; text-transform: uppercase; font-size: 15px ;color: #4376FC; padding: 7.5px 15px 7.5px 15px; border-radius: 25px; border: 2.5px solid #4376FC;"><i class="fa fa-book"> </i> Demo</a>
                         </div>
-
-                        <p style="color: black">DigID is the mostly used method in which someone can identify themselves with the online services of the government.
-                            This component is a open source mock version of this method. This component contains a frontend to simulate the login and an API to handle the backend,
-                            from the outside it functions as the real thing. The DigISpoof component works in tandem with the BRP building block mentioned above.
-                        </p>
-                        <br>
-
-                        <a href="https://github.com/ConductionNL/bzk-mock" class="btn-custom"><i class="fab fa-github"> </i> GitHub</a>
                         &nbsp; &nbsp;
-                        <!--<a href="https://ds.zaakonline.nl" class="btn-custom btn-icon"><i-->
-                        <!--           class="fa fa-book"></i> Redoc</a>-->
                     </div>
                 </div>
 
-                <div class="col-sm-1 col-md-6 col-lg-2 col-sm-offset-1 col-md-offset-0 col-lg-offset-1">
-                    <figure class="col-img40 margin-bottom40 animation" data-animation="animation-fade-in-right">
+                <div class="col-sm-10 col-md-5 col-lg-5">
+                    <figure class="col-img40 margin-bottom40 animation" data-animation="animation-fade-in-right" style="width: 600px !important;">
                         <a href="https://digid.nl/en">
-                            <img src="{{ asset('images/content/Odyssey/digid2.png') }}"></figure>
-                    </a>
+                            <img src="{{ asset('images/content/Odyssey/digid2.png') }}"></a>
+                    </figure>
                 </div>
 
             </div>
@@ -160,28 +153,27 @@
             <div class="row">
 
 
-                <div class="col-sm-10 col-md-6 col-lg-9 col-sm-offset-1 col-md-offset-0 text-center-sm text-center-xs">
-                    <div class="margin-bottom20">
-                        <div class="post-heading-left margin-bottom20 text-center-sm text-center-xs">
+                <div class="col-sm-10 col-md-7 col-lg-7 ">
+                    <div class="col-text20 margin-bottom20">
+                        <div class="post-heading-left">
                             <h1 style="color: #3D8FE2">Assent/consent service</h1>
                             <h4 style="color: #3D8FE2">A service which formally facilitates assents asked and given.</h4>
+
+
+                            <p>The assent/consent service or “instemmingservice” in dutch handles the assent given by a person.
+                                Where would you use a service as this? To choose one example this service is used in a wedding scheduler in development by
+                                the municipality of Utrecht. The municipality must establish that assent is given by both parties of a wedding.
+                                But the assent service can be used for anything which requires an assent given by a party. A request for data to name one of them.
+                            </p>
+                            <br>
+                            <br>
+                            <a href="https://github.com/ConductionNL/instemmingservice" style="margin-right: 20px; font-weight: bold; text-transform: uppercase; font-size: 15px ;color: #4376FC; padding: 7.5px 15px 7.5px 15px; border-radius: 25px; border: 2.5px solid #4376FC;"><i class="fab fa-github"> </i> GitHub</a>
+                            <a href="https://irc.dev.zuid-drecht.nl/" style="font-weight: bold; text-transform: uppercase; font-size: 15px ;color: #4376FC; padding: 7.5px 15px 7.5px 15px; border-radius: 25px; border: 2.5px solid #4376FC;"> <i class="fa fa-book"></i> Redoc</a>
                         </div>
-
-                        <p style="color: black">The assent/consent service or “instemmingservice” in dutch handles the assent given by a person.
-                            Where would you use a service as this? To choose one example this service is used in a wedding scheduler in development by
-                            the municipality of Utrecht. The municipality must establish that assent is given by both parties of a wedding.
-                            But the assent service can be used for anything which requires an assent given by a party. A request for data to name one of them.
-                        </p>
-                        <br>
-
-                        <a href="https://github.com/ConductionNL/instemmingservice" class="btn-custom"><i class="fab fa-github"> </i> GitHub</a>
-
-                        &nbsp; &nbsp;
-                        <a href="https://irc.zaakonline.nl/" class="btn-custom btn-icon"> <i class="fa fa-book"></i> Redoc</a>
                     </div>
                 </div>
 
-                <div class="col-sm-1 col-md-6 col-lg-2 col-sm-offset-1 col-md-offset-0 col-lg-offset-1">
+                <div class="col-sm-10 col-md-5 col-lg-5">
                     <figure class="col-img40 margin-bottom40 animation" data-animation="animation-fade-in-right">
                         <img src="{{ asset('images/content/Odyssey/Assent.png') }}"></figure>
                 </div>
@@ -199,93 +191,91 @@
 
         <!-- .container -->
         <div class="container">
+                <!-- .row -->
+                <div class="row">
 
-            <!-- .row -->
-            <div class="row">
-
-                <div class="col-sm-10 col-md-6 col-lg-9 col-sm-offset-1 col-md-offset-0 text-center-sm text-center-xs">
-                    <div class="post-heading-left text-center-sm text-center-xs margin-bottom20">
-                        <h1 style="color: #3D8FE2">Requests</h1>
-                        <p style="color: black">If you want to arrange something with a (local) government you as an individual or organisation can send them a “request”.
-                            The (local) government will process your request and communicate the result back. The difficulty with this is that many municipalities have different
-                            systems to process requests which have limited interoperability. This method aims to tackle this problem by standardizing the collection of data.
-                            <br>
-                            The method is a bit abstract, let’s use an example to illustrate this subject. You as a person would like to have a parking permit in your street.
-                            Usually you will fill out an application form (either digitally or physically) and send this to the department of the municipality that has jurisdiction
-                            over this application. As an individual you are sending a “request” for a parking permit.
-                            What is a request in this context? An request is a way to structure the dataset. The request type describes what information is needed in an abstract way.
-                            The request is self contains the data needed for the processing of the request.
-                        </p>
+                    <div class="col-sm-10 col-md-7 col-lg-7 ">
+                        <div class="col-text20 margin-bottom20">
+                            <div class="post-heading-left">
+                                <h1 style="color: #3D8FE2">Requests</h1>
+                                <p>If you want to arrange something with a (local) government you as an individual or organisation can send them a “request”.
+                                    The (local) government will process your request and communicate the result back. The difficulty with this is that many municipalities have different
+                                    systems to process requests which have limited interoperability. This method aims to tackle this problem by standardizing the collection of data.
+                                    <br>
+                                    The method is a bit abstract, let’s use an example to illustrate this subject. You as a person would like to have a parking permit in your street.
+                                    Usually you will fill out an application form (either digitally or physically) and send this to the department of the municipality that has jurisdiction
+                                    over this application. As an individual you are sending a “request” for a parking permit.
+                                    What is a request in this context? An request is a way to structure the dataset. The request type describes what information is needed in an abstract way.
+                                    The request is self contains the data needed for the processing of the request.
+                                </p>
+                            </div>
+                        </div>
                     </div>
+
                 </div>
+                <!-- .row end -->
 
-                <div class="col-sm-1 col-md-6 col-lg-2 col-sm-offset-1 col-md-offset-0 col-lg-offset-1">
-                    <figure class="col-img40 margin-bottom40 animation" data-animation="animation-fade-in-right">
+                <!-- .row -->
+                <div class="row">
 
-                    </figure>
-                </div>
-
-            </div>
-            <!-- .row end -->
-
-            <!-- .row -->
-            <div class="row">
-
-                <div class="col-sm-10 col-md-6 col-lg-9 col-sm-offset-1 col-md-offset-0 text-center-sm text-center-xs">
-                    <div class="margin-bottom20">
-                        <h4 style="color: #3D8FE2">Request Type Catalogue  (VTC)</h4>
-                        <p style="color: black">The request type is a template of the dataset needed in an request. These templates are stored in a catalogue. The template is just a
-                            template and thus holds no data. It does describe what the requirement are for the data. For example a “date of birth” would have the type date and “name”
-                            would be a string. To maximize reusability of this building block there is no “business logic” within the request type. The business logic is stored in another
-                            component which we will release soon.
-                        </p>
-                        <br>
-                        <a href="https://github.com/ConductionNL/verzoektypecatalogus" class="btn-custom"><i class="fab fa-github"> </i> GitHub</a>
-                        &nbsp; &nbsp;
-                        <a href="https://vtc.zaakonline.nl/" class="btn-custom btn-icon"><i class="fa fa-book"></i> Redoc</a>
+                    <div class="col-sm-10 col-md-7 col-lg-7 ">
+                        <div class="col-text20 margin-bottom20">
+                            <div class="post-heading-left">
+                                <h2 style="color: #3D8FE2">Request Type Catalogue  (VTC)</h2>
+                                <p>The request type is a template of the dataset needed in an request. These templates are stored in a catalogue. The template is just a
+                                    template and thus holds no data. It does describe what the requirement are for the data. For example a “date of birth” would have the type date and “name”
+                                    would be a string. To maximize reusability of this building block there is no “business logic” within the request type. The business logic is stored in another
+                                    component which we will release soon.
+                                </p>
+                                <br>
+                                <br>
+                                <a href="https://github.com/ConductionNL/verzoektypecatalogus" style="margin-right: 20px; font-weight: bold; text-transform: uppercase; font-size: 15px ;color: #4376FC; padding: 7.5px 15px 7.5px 15px; border-radius: 25px; border: 2.5px solid #4376FC;"><i class="fab fa-github"> </i> GitHub</a>
+                                <a href="https://vtc.zaakonline.nl/" style="font-weight: bold; text-transform: uppercase; font-size: 15px ;color: #4376FC; padding: 7.5px 15px 7.5px 15px; border-radius: 25px; border: 2.5px solid #4376FC;"><i class="fa fa-book"></i> Redoc</a>
+                            </div>
+                        </div>
                     </div>
-                </div>
 
-                <div class="col-sm-1 col-md-6 col-lg-2 col-sm-offset-1 col-md-offset-0 col-lg-offset-1">
-                    <figure class="col-img40 margin-bottom40 animation" data-animation="animation-fade-in-right">
-                        <a href="https://vtc.zaakonline.nl/">
-                            <img src="{{ asset('images/content/Componenten/vtc/1280w/Geel_Vlak.png') }}">
-                        </a>
-                    </figure>
-                </div>
-
-            </div>
-            <!-- .row end -->
-
-            <!-- .row -->
-            <div class="row">
-
-                <div class="col-sm-10 col-md-6 col-lg-9 col-sm-offset-1 col-md-offset-0 text-center-sm text-center-xs">
-                    <div>
-                        <h4 style="color: #3D8FE2">Request registration Component  (VRC)</h4>
-                        <p style="color: black">A request it self is stored in a registration, the VRC (verzoek registratie component in Dutch). The request uses the request type to determine
-                            the template of the data set and collects the data. It can be saved and continued at any point in time, tis creates flexibility for the user who in example starts the
-                            request on their phone but finishes the request on a laptop. When the request is complete the status is set to “submitted”. It is then ready to be picked up by the
-                            concerning department of the municipality to be processed.
-                        </p>
-                        <br>
-                        <a href="https://github.com/ConductionNL/verzoekregistratiecomponent" class="btn-custom"><i class="fab fa-github"> </i> GitHub</a>
-                        &nbsp; &nbsp;
-                        <a href="https://vrc.zaakonline.nl/" class="btn-custom btn-icon"><i class="fa fa-book"></i> Redoc</a>
+                    <div class="col-sm-10 col-md-5 col-lg-5">
+                        <figure class="col-img40 margin-bottom40 animation" data-animation="animation-fade-in-right">
+                            <a href="https://vtc.dev.zuid-drecht.nl/">
+                                <img src="{{ asset('images/content/Componenten/vtc/1280w/Geel_Vlak.png') }}">
+                            </a>
+                        </figure>
                     </div>
+
                 </div>
+                <!-- .row end -->
 
-                <div class="col-sm-1 col-md-6 col-lg-2 col-sm-offset-1 col-md-offset-0 col-lg-offset-1">
-                    <figure class="col-img40 margin-bottom40 animation" data-animation="animation-fade-in-right">
-                        <a href="https://vrc.zaakonline.nl/">
-                            <img src="{{ asset('images/content/Componenten/vrc/1280w/Blauw_vlak.png') }}">
-                        </a>
-                    </figure>
+                <!-- .row -->
+                <div class="row">
+
+                    <div class="col-sm-10 col-md-7 col-lg-7 ">
+                        <div class="col-text20 margin-bottom20">
+                            <div class="post-heading-left">
+                                <h2 style="color: #3D8FE2">Request registration Component  (VRC)</h2>
+                                <p>A request it self is stored in a registration, the VRC (verzoek registratie component in Dutch). The request uses the request type to determine
+                                    the template of the data set and collects the data. It can be saved and continued at any point in time, tis creates flexibility for the user who in example starts the
+                                    request on their phone but finishes the request on a laptop. When the request is complete the status is set to “submitted”. It is then ready to be picked up by the
+                                    concerning department of the municipality to be processed.
+                                </p>
+                                <br>
+                                <br>
+                                <a href="https://github.com/ConductionNL/verzoekregistratiecomponent" style="margin-right: 20px; font-weight: bold; text-transform: uppercase; font-size: 15px ;color: #4376FC; padding: 7.5px 15px 7.5px 15px; border-radius: 25px; border: 2.5px solid #4376FC;"><i class="fab fa-github"> </i> GitHub</a>
+                                <a href="https://vrc.zaakonline.nl/" style="font-weight: bold; text-transform: uppercase; font-size: 15px ;color: #4376FC; padding: 7.5px 15px 7.5px 15px; border-radius: 25px; border: 2.5px solid #4376FC;"><i class="fa fa-book"></i> Redoc</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-10 col-md-5 col-lg-5">
+                        <figure class="col-img40 margin-bottom40 animation" data-animation="animation-fade-in-right">
+                            <a href="https://vrc.dev.zuid-drecht.nl/">
+                                <img src="{{ asset('images/content/Componenten/vrc/1280w/Blauw_vlak.png') }}">
+                            </a>
+                        </figure>
+                    </div>
+
                 </div>
-
-            </div>
-            <!-- .row end -->
-
+                <!-- .row end -->
         </div>
         <!-- .container end -->
 
@@ -301,21 +291,21 @@
             <div class="row">
 
 
-                <div class="col-sm-10 col-md-6 col-lg-9 col-sm-offset-1 col-md-offset-0 text-center-sm text-center-xs">
+                <div class="col-sm-10 col-md-7 col-lg-7 ">
                     <div class="col-text20 margin-bottom20">
-                        <div class="post-heading-left margin-bottom20 text-center-sm text-center-xs">
+                        <div class="post-heading-left">
                             <h1 style="color: #3D8FE2">More to come!</h1>
                             <h4 style="color: #3D8FE2"> We will add building blocks every week</h4>
+                            <p>The governmental ecosystem is vast and complex. We will add building blocks to this page every week. If you have a suggestion which building blocks you will need in the hackathon let us know and we will make those a priority!  </p>
+                            <br>
+                            <br>
+                            <a href="mailto:matthias@conduction.nl" style="font-weight: bold; text-transform: uppercase; font-size: 15px ;color: #4376FC; padding: 7.5px 15px 7.5px 15px; border-radius: 25px; border: 2.5px solid #4376FC;"><i
+                                    class="fa fa-envelope"></i> Mail the team Captain!</a>
                         </div>
-
-                        <p style="color: black">The governmental ecosystem is vast and complex. We will add building blocks to this page every week. If you have a suggestion which building blocks you will need in the hackathon let us know and we will make those a priority!  </p>
-                        <br>
-                        <a href="mailto:matthias@conduction.nl" class="btn-custom btn-icon"><i
-                                class="fa fa-envelope"></i> Mail the team Captain!</a>
                     </div>
                 </div>
 
-                <div class="col-sm-1 col-md-6 col-lg-2 col-sm-offset-1 col-md-offset-0 col-lg-offset-1">
+                <div class="col-sm-10 col-md-5 col-lg-5">
                     <figure class="col-img40 margin-bottom40 animation" data-animation="animation-fade-in-right">
                         <img src="{{ asset('images/Conduction-website_losgeknipt_0012_afb13.png') }}"></figure>
                 </div>
