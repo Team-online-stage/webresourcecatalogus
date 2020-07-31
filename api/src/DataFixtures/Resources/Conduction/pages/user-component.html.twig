@@ -23,14 +23,13 @@
                             <a href="https://github.com/ConductionNL/user-component/actions?query=workflow%3A\"Docker+Image+CI\"" target="_blank"><img src="https://github.com/ConductionNL/user-component/workflows/Docker%20Image%20CI/badge.svg?branch=master" alt="github"></a>
                             <a target="_blank" href="https://api-test.nl/server/4/904f55e1-54e6-48db-a637-2c193d4094b1/a973b118-ee34-4b83-bd75-553a5a204519/latest/"><img alt="" src="https://shields.api-test.nl/endpoint.svg?style=for-the-badge&url=https%3A//api-test.nl/api/v1/provider-latest-badge/a973b118-ee34-4b83-bd75-553a5a204519/"></a>
 
-                            <p>Het user component voert het beheer over gebruikersaccount en hun autorisaties.
-                            Hierbij kan in de traditionele zin worden gedacht aan aan een gebruik die behoort tot bepaald groepen die op hun beurt weer beschikken over bepaalde rechten.
-                            Waarbij het component tevens het bijhouden en valideren van wachtwoorden ondersteund (ten einde inlog mogelijkheden op bijvoorbeeld een dashboard of applicatie te faciliteren)
-                            maar in de wat abstracte context ondersteund het ook algemene inlogs systematieken.</p>
+                            <p>
+                                Het user component voert het beheer over gebruikersaccount en hun autorisaties. Hierbij kan in de traditionele zin worden gedacht aan aan een gebruik die behoort tot bepaald groepen die op hun beurt weer beschikken over bepaalde rechten. Waarbij het component tevens het bijhouden en valideren van wachtwoorden ondersteund (ten einde inlog mogelijkheden op bijvoorbeeld een dashboard of applicatie te faciliteren) maar in de wat abstracte context ondersteund het ook algemene inlogs systematieken.
+                            </p>
 
-                            <p>Zo kan het user component zelf functioneren als oAuth (2) bron en daarmee de bronhouder zijn voor een OpenId van een gebruiker  maar kan het ook alternatieve
-                            inlog stromen zoals AFC en SAML afhandelen (en daarmee digid).
-                            Als laatste kan het functioneren als ontvangende partij van oAuth inloggen en biedt het daarmee een inloggen met facebook, Google of Github mogelijkheid voor applicaties.</p>
+                            <p>
+                                Zo kan het user component zelf functioneren als oAuth 2.0 bron en daarmee de bronhouder zijn voor een OpenId van een gebruiker, maar kan het ook alternatieve inlog stromen zoals AFC en SAML afhandelen (en daarmee DigiD). Als laatste kan het functioneren als ontvangende partij van oAuth inloggen en biedt het daarmee een inloggen met facebook, Google of Github mogelijkheid voor applicaties.
+                            </p>
                              <br>
                             <br>
                             <a target="_blank" href="https://www.zuid-drecht.nl"><img alt="" width="110px" src="data:image/svg+xml;base64,PHN2ZyBpZD0iw5HDq8Ouw6lfMSIgZGF0YS1uYW1lPSLDkcOrw67DqSAxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA5MzkuNTcgMTA5OC44OSI+PGRlZnM+PHN0eWxlPi5jbHMtMXtmaWxsOiNjMDA7fS5jbHMtMntmaWxsOiMzNjY5YTU7fTwvc3R5bGU+PC9kZWZzPjx0aXRsZT56dWlkIERyZWNodCBOb3BheW9mZjwvdGl0bGU+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNNTc2LDk2Ny4xMWMtNTYsNDEuMzktMTAxLjQzLDY2LjA1LTExMSw3MS4xMWE0LDQsMCwwLDEtMy43MiwwYy0yNS41Ny0xMy41LTMwNy40OC0xNjctMzYxLjM3LTQwNmE0LDQsMCwwLDEsNy4zOC0yLjgxYzM4LjU0LDY4LjkzLDEyNS4zNywxMTkuMjYsMTg3LjUxLDE1Mi42OSw1Mi41LDI4LjIzLDExMy42Miw1MC4yMSwxNjguMzQsODAuMzZDNTA4LjIyLDg4Ny4yOSw1NDksOTE3LjY5LDU3Nyw5NjEuNzVBNCw0LDAsMCwxLDU3Niw5NjcuMTFaIi8+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNODM0LjcxLDIxNS44NFYxMDEuNjVhOC45LDguOSwwLDAsMC04LjktOC45MWgtMjczQTE0LjU5LDE0LjU5LDAsMCwwLDUzOS40MywxMDNsLTE5LDcwLjI4YTE0LjU4LDE0LjU4LDAsMCwxLTEzLjM1LDEwLjIxSDM4M1YxNDcuMTJjMzYuODQtMS4zNCw2Mi40Mi03LjQ1LDgwLjE2LTE1LjEsMjkuNDktMTIuNzQsMzcuMzUtMjkuNzgsMzkuMzYtMzYuNDRhMi4yMiwyLjIyLDAsMCwwLTIuMTMtMi44NEgzMzQuNjFjLTMzLjg4LDAtNjcuOTEsOS4yLTg2LjA4LDQwLjEtMTkuMzgsMzIuOTQtMTguMjQsNzguMDctMTYuNDksMTE0Ljg5LDAsMC01MC02Ni4yMi00MC43Ni0xNDguODdhNS41MSw1LjUxLDAsMCwwLTUuNDgtNi4xMkgxMDAuMzJhOC43OSw4Ljc5LDAsMCwwLTguNzgsOC43OVYxMjRjNC44Niw3OS4yNiw0OS4xNCwyODguNTcsMzcxLjU4LDM4NS40QzczNSw1OTEuMDYsNzc1LjQyLDcxNi4zLDc4My4zMiw3MzguMjRhMS4zOCwxLjM4LDAsMCwwLDIuNTMuMTdjNzUuMy0xNDMuOS04MS40OS0yNDcuNTItODEuNDktMjQ3LjUyLDMxLjMzLDAsNzkuMjMsMTcuOTQsMTE4LDM5Ljc5YTguMjgsOC4yOCwwLDAsMCwxMi4zNy03LjIxVjM2My44M2ExNC42LDE0LjYsMCwwLDAtMTguMTUtMTQuMTdjLTEzLjUsMy4zOS0zMCw2LjY4LTMyLjg3LDcuMjMtMzkuNDYsNy43Ny04NC43NSwxMS4xNS0xMjItOC43M3MtNDcuMjYtNjYuMjctMTguMzMtOTguMjNjMjUuMy0yOCw2NS41My0zNy41LDEwMi4yOS0zNSwyMy41NiwxLjYyLDU1LjE4LDcuNTksNzMuNzEsMTIuNjNBMTIuMTYsMTIuMTYsMCwwLDAsODM0LjcxLDIxNS44NFoiLz48cGF0aCBjbGFzcz0iY2xzLTIiIGQ9Ik02NTQuODcsOTAxLjVhNCw0LDAsMCwxLTYtLjExYy0xMy41Ni0xNi4yNS03NS40Ni04Ni0xODUuNzMtMTQ2LjQyQTc1Ni40NCw3NTYuNDQsMCwwLDAsMzgzLDcxN2MtMTczLjUzLTcwLjE3LTI4Mi42OS0xNDMuMy0yOTEuNDItMzM4LjF2LTYuMjJhNCw0LDAsMCwxLDcuMjEtMi4zNGM2My42MSw4NywxNDQuNjksMTM3LjksMjQzLjE2LDE4Ni43Nyw0MC4yOCwyMCw4MS4xNywzNi4zMiwxMjEuMjEsNTMuMjUsNjYuMTUsMjgsMTMwLDU3LjU0LDE4NC43MywxMDcuOCwxNi4xOCwxNC44NSwyOS4wOSwyOS4xNSwzNi44MSw1MEM2OTUuNzUsNzk4LjEzLDcwMi41NSw4NDkuMTcsNjU0Ljg3LDkwMS41WiIvPjwvc3ZnPg==" /></a>
@@ -39,13 +38,15 @@
                             <img src="{{ asset('images/overlijden.png') }}" width="110px" style="margin-left: 30px">
                             <br>
                             <br>
-                            <a href="https://github.com/ConductionNL/user-component" class="btn-custom btn-more-link " target="_blank"> Bekijk repository</a>
-                            <a href="https://uc.dev.zuid-drecht.nl" class="btn-custom btn-more-link " target="_blank"> bekijk documentatie</a>
+                            <a href="https://github.com/ConductionNL/user-component" style="margin-right: 20px; font-weight: bold; text-transform: uppercase; font-size: 15px ;color: #4376FC; padding: 7.5px 15px 7.5px 15px; border-radius: 25px; border: 2.5px solid #4376FC;" target="_blank"> Bekijk repository</a>
+                            <a href="https://uc.dev.zuid-drecht.nl" style="margin-right: 20px; font-weight: bold; text-transform: uppercase; font-size: 15px ;color: #4376FC; padding: 7.5px 15px 7.5px 15px; border-radius: 25px; border: 2.5px solid #4376FC;" target="_blank"> bekijk documentatie</a>
                         </div><!-- ./col-heading -->
                     </div><!-- ./col-text -->
                 </div><!-- ./col -->
                 <div class="col-sm-10 col-md-5 col-lg-5">
+                    <figure class="animation col-img40 margin-bottom40" data-animation="animation-fade-in-right" style="width: 600px !important;">
                     <img src={{ asset('images/content/Componenten/uc/1280w/Lichtblauw_vlak.png') }} width="100%">
+                    </figure>
                 </div><!-- ./col -->
             </div><!-- ./row -->
         </div><!-- ./container -->
