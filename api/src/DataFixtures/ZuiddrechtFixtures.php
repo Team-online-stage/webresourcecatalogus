@@ -538,7 +538,9 @@ class ZuiddrechtFixtures extends Fixture
                 'newsimg'           => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'0e5b1531-4abb-4704-9bd3-feeb94717521']),
                 'headerimg'         => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'ff3ca823-234f-4874-9ee6-1067d47e4391']),
                 'colorSchemeFooter' => 'footerStyle',
-                'colorSchemeMenu'   => 'menuStyle', ]
+                'colorSchemeMenu'   => 'menuStyle',
+                'hubspotId'   => '6108438',
+                'googleTagId'   => 'G-RHY411XSJN']
         );
         $manager->persist($configuration);
 
