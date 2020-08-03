@@ -1378,6 +1378,8 @@ class ConductionFixtures extends Fixture
             [
                 'mainMenu'=> $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'bb05a4b3-5eca-4cf0-83a9-8fcf41dcc40f']),
                 'home'    => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'6e01b18c-6751-4e11-9430-c69f629a6760']),
+                'hubspotId'   => '6108438',
+                'googleTagId'   => 'G-H2T0ZECZYM'
             ]
         );
         $manager->persist($configuration);
