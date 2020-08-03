@@ -2,19 +2,19 @@
 
 {% extends 'base.html.twig' %}
 
-{% block body %}              
+{% block body %}
             <!-- .row -->
-            <div class="row animation" data-animation="animation-fade-in" data-delay=" {% if app.session.flashbag.peekAll|length > 0 %}3400{%else%}200{% endif %}" >     
-            	{% if request.properties.type is defined and request.properties.type == 'omzetten' %}            	
-                
+            <div class="row animation" data-animation="animation-fade-in" data-delay=" {% if app.session.flashbag.peekAll|length > 0 %}3400{%else%}200{% endif %}" >
+            	{% if request.properties.type is defined and request.properties.type == 'omzetten' %}
+
                 	<div class="post-heading-center animation" data-animation="animation-fade-in-down">
                     	<h2>U heeft gekozen voor omzetten, en hoeft geen melding te doen</h2>
                    	</div>
                     <div class="col-md-12 text-center">
            				<i class="fas fa-check fa-6x " data-animation="animation-fade-in-down" ></i>
                     </div><!-- /.col -->
-               
-            	{% else %} 
+
+            	{% else %}
                 <div class="post-heading-center ">
                 	<h2>Melding voorgenomen huwelijk</h2>
                 </div>
@@ -29,7 +29,7 @@
                     	<li>U hebt toestemming nodig van de curator of rechtbank als u onder curatele staat  </li>
                     </ol>
                 </div><!-- /.col -->
-                
+
                 <div class="col-sm-2 col-md-5 col-lg-4 col-sm-offset-0 col-md-offset-0 col-lg-offset-1">
                 	<figure class="margin-bottom40 ">
                     	<img src="images/content/elements/MakeItKnown.png">
@@ -37,30 +37,30 @@
                 </div><!-- /.col -->
                 {% endif %}
             </div><!-- /.row -->
-            
-            {% if user is not empty %}       
+
+            {% if user is not empty %}
             <!-- .row -->
             <div class="row animation" {% if app.session.flashbag.peekAll|length > 0 %}data-animation="animation-fade-in" data-delay="400"{% endif %}>
                 <div class="col-sm-10 col-md-7 col-lg-6 col-sm-offset-0 col-md-offset-0 col-lg-offset-1">
                     {% if request['@id']  is defined %}
-        			<a href="{{ path('app_default_slug',{'requestType':'https://vtc.zaakonline.nl/request_types/146cb7c8-46b9-4911-8ad9-3238bab4313e','requestParent':'https://vrc.zaakonline.nl'~request['@id']}) }}" class="btn btn-primary btn-icon" >
-        				<i class="fas fa-share-square"></i> 
+        			<a href="{{ path('app_default_slug',{'requestType':'https://vtc.huwelijksplanner.online/request_types/146cb7c8-46b9-4911-8ad9-3238bab4313e','requestParent':request['@id'],'requestParentProperty':'melding'}) }}" class="btn btn-primary btn-icon" >
+        				<i class="fas fa-share-square"></i>
         			 	Doe melding
         		    </a>
                   {% endif %}
         			<a href="{{ path('app_default_slug',{'slug':'betalen'}) }}" class="btn btn-primary btn-icon" >
-        				<i class="fas fa-share-square"></i> 
+        				<i class="fas fa-share-square"></i>
         			 	Door naar betalen
         		    </a>
                 </div><!-- /.col -->
             </div>
             <!-- .row end -->
-            {% else %} 
+            {% else %}
             <!-- .row -->
             <div class="row animation" {% if app.session.flashbag.peekAll|length > 0 %}data-animation="animation-fade-in" data-delay="400"{% endif %}>
                 <div class="col-sm-10 col-md-7 col-lg-6 col-sm-offset-0 col-md-offset-0 col-lg-offset-1">
         			<a href="{{ path('app_default_index') }}" class="btn btn-primary btn-icon" >
-        				<i class="fas fa-share-square"></i> 
+        				<i class="fas fa-share-square"></i>
         			 	Terug naar home
         		    </a>
                 </div><!-- /.col -->

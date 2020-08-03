@@ -1,0 +1,350 @@
+{# templates/home/index.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block headercontent%}
+    <!-- .header-content -->
+    <div class="header-content">
+
+        <!-- .container -->
+        <div class="container">
+
+            <!-- .row -->
+            <div class="row">
+
+                <div class="col-sm-7">
+                    <div class="header-text" style="padding-top: 0">
+                        <div class="post-heading-left-white header-heading">
+                            <h1>Trouwen</h1>
+                            <h4 style="color: white; margin-top: 30px">
+                                <a class="linkWhite" style="font-weight: bold; text-transform: uppercase; font-size: 15px ;color: white; padding: 7.5px 15px 7.5px 15px; border-radius: 25px; border: 2.5px solid white;"
+                                   href="https://www.huwelijksplanner.online" target="_blank">Bezoek de Huwelijksplanner</a>
+                            </h4>
+                        </div>
+                        <br>
+                        <p style="margin-top: -35px">Samen met de gemeente Utrecht, Almere, Rotterdam en Westfriese
+                            gemeenten bouwen wij een online huwelijksplanner waarbij de burger centraal staat, waarvan
+                            de technische architectuur zo zuiver mogelijk is en deelbaar-herbruikbaar is voor andere
+                            gemeenten en applicaties.</p>
+                        <br>
+                        <img src="{{ asset('images/gemeenteutrecht.png') }}" width="110px">
+                        <img src="{{ asset('images/gemeentealmere.png') }}" width="110px">
+                        <img src="{{ asset('images/gemeentewestfrieslandblauw.png') }}" width="110px">
+                        <img src="{{ asset('images/gemeenterotterdam.png') }}" width="110px">
+                    </div>
+                </div><!-- /.col -->
+
+                <div class="col-sm-5">
+                    <div class="header-img">
+                        <figure class="animation col-img40 margin-bottom40" data-animation="animation-fade-in-right" style="width: 600px !important;">
+                        <img src="{{ asset('images/trouwenproject.png') }}" width="600px"></div>
+                        </figure>
+                    <br>
+                </div><!-- /.col -->
+
+            </div><!-- /.row -->
+        </div><!-- /.container -->
+    </div><!-- /.header-content -->
+{% endblock %}
+
+{% block body %}
+    <div class="wrap-container8040 bg-grey">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-10 col-md-7 col-lg-7 ">
+                    <div class="col-text20 margin-bottom20">
+                        <div class="post-heading-left">
+                            <h1 id="verhuizen" style="color: #4386FB">Verhuizen</h1>
+
+
+                            <p>Samen met de gemeente 's-Hertogenbosch, Eindhoven en de Solviteers hebben we een
+                                applicatie
+                                gebouwd voor het melden van een verhuizing. Waarbij wij ons vooral hebben gericht op het
+                                ontwikkelen van de backend en de Solviteers op de frontend.</p>
+                            <br>
+                            <img src="{{ asset('images/gemeenteeindhovengrijzeachtergrond.png') }}" width="110px">
+                            <img src="{{ asset('images/Gemeentedenboschgrijzeachtergrond.png') }}" width="110px">
+                            <img src="{{ asset('images/solviteersgrijzeachtergrond.png') }}" width="110px">
+                        </div><!-- ./col-heading -->
+                    </div><!-- ./col-text -->
+                </div><!-- ./col -->
+                <div class="col-sm-10 col-md-5 col-lg-5">
+                    <figure class="animation col-img40 margin-bottom40" data-animation="animation-fade-in-right" style="width: 600px !important;">
+                    <img src={{ asset('images/verhuizenproject.png') }} width="600px">
+                    </figure>
+                </div><!-- ./col -->
+            </div><!-- ./row -->
+        </div><!-- ./container -->
+    </div><!-- ./wrap-container -->
+
+    <div class="wrap-container8040">
+        <div class="container">
+            <div class="row">
+
+
+                <div class="col-sm-10 col-md-7 col-lg-7 ">
+                    <div class="col-text20 margin-bottom20">
+                        <div class="post-heading-left">
+                            <h2 id="overlijden" style="color: #4386FB">Overlijden</h2>
+
+                            <p>Samen met de Westfriese gemeenten zijn wij aan het ontwikkelen op de gebeurtenis
+                                overlijden,
+                                daar komt een hoop bij kijken. Zoals bijvoorbeeld de totale cyclus van een graf, van het
+                                plannen
+                                van de begrafenis tot het ruimen van een graf. Wij ondersteunen op de digitale
+                                ontwikkeling van
+                                dit proces, weer volgens het common ground principe: Data bij de bron, deelbaar en
+                                schaalbaar.</p>
+                            <br>
+                            <img src="{{ asset('images/gemeentewestfriesland.png') }}" width="110px">
+                            <img src="{{ asset('images/018-Logo-HTA.png') }}" width="110px" style="margin-left: 30px">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-10 col-md-5 col-lg-5">
+                    <figure class="animation col-img40 margin-bottom40" data-animation="animation-fade-in-right" style="width: 600px !important;">
+                    <img src={{ asset('images/overlijdenproject.png') }} width="600px">
+                    </figure>
+                </div>
+                <!-- ./col -->
+            </div>
+        </div>
+    </div>
+
+    <div class="wrap-container8040 bg-grey" id="stages">
+        <div class="container">
+            <div class="row">
+
+
+                <div class="col-sm-10 col-md-7 col-lg-7 ">
+                    <div class="col-text20 margin-bottom20">
+                        <div class="post-heading-left">
+                            <h2 id="overlijden" style="color: #4386FB">Digitale Stages</h2>
+                            <h4 style="color: #4386FB">Product: Online Platform</h4>
+                            <p>
+                                Op dit moment staat er in het onderwijs een stille ramp op stapel. Door het
+                                sluiten van kantoren, thuiswerken en de druk op organisaties, lukt het met
+                                name MBO- en in mindere mate HBO-studenten die een opleiding volgen voor
+                                een “kantoorbaan”, niet of nauwelijks om een stageplaats te vinden. Terwijl
+                                zij die wel nodig hebben om af te studeren. Het project digitale stages
+                                biedt hier een oplossing voor. Samen met het ROC Almere werken we nu dan
+                                ook aan een proof of concept voor ‘thuiswerk’-stages voor studenten
+                                applicatieontwikkeling.
+                            </p>
+                            <br>
+                            <img alt="SIDN Logo" src="{{ asset('images/SIDN_Logo.png') }}" width="110px">
+                            <img src={{ asset('images/logo-rocvf.png') }}  width="110px">
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-sm-10 col-md-5 col-lg-5">
+                    <figure class="animation col-img40 margin-bottom40" data-animation="animation-fade-in-right" style="width: 600px !important;">
+                    <img src={{ asset('images/content/DigitaleStage/1280w/Grijsvlak.png') }}  width="600px">
+                    </figure>
+                </div>
+                <!-- ./col -->
+            </div>
+        </div>
+    </div>
+
+    <div class="wrap-container8040">
+        <div class="container">
+            <div class="row">
+
+
+                <div class="col-sm-10 col-md-7 col-lg-7 ">
+                    <div class="col-text20 margin-bottom20">
+                        <div class="post-heading-left">
+                            <h2 id="overlijden" style="color: #4386FB">(Nood) Formulieren</h2>
+                            <h4 style="color: #4386FB">Product: Verzoeken en Stuf koppeling</h4>
+                            <p>
+                                Direct na het uitbreken van de Coronacrisis, wilden wij iets kunnen
+                                bijdragen. Wij wilden graag onze techniek ter beschikking stellen om te
+                                helpen bij het versnellen en vergemakkelijken van BBZ of Tozo aanvragen. We
+                                zijn samen met de gemeenten, waar wij onze Common Ground projecten mee
+                                doen, om de tafel gegaan. Binnen enkele dagen hebben we een generiek(e)
+                                applicatie/formulier op kunnen tuigen, gekoppeld aan Common Ground
+                                componenten. Je kunt hiermee allerlei formulieren maken die schaalbaar
+                                zijn. De mogelijkheden zijn onbegrensd.
+                            </p>
+                            <br>
+
+                            <br>
+                            <a href="/projecten/formulieren" style="font-weight: bold; text-transform: uppercase; font-size: 15px ;color: #4376FC; padding: 7.5px 15px 7.5px 15px; border-radius: 25px; border: 2.5px solid #4376FC;">
+                                Lees meer</a>
+
+
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="col-sm-10 col-md-5 col-lg-5">
+                    <figure class="animation col-img40 margin-bottom40" data-animation="animation-fade-in-right" style="width: 600px !important;">
+                    <img src={{ asset('images/content/Formulieren/1280w/Blauw_Vlak.png') }}  width="600px">
+                    </figure>
+                </div>
+                <!-- ./col -->
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="wrap-container8040 bg-grey">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-10 col-md-7 col-lg-7 ">
+                    <div class="col-text20 margin-bottom20">
+                        <div class="post-heading-left">
+                            <h2 id="overlijden" style="color: #4386FB">Nabijheids App</h2>
+                            <h4 style="color: #4386FB">Product: Online Platform</h4>
+
+                            <p>
+                                Het rijk wil de Corona crisis te lijf gaan met een nabijheids- app. We
+                                hebben de vraag van de overheid bestudeerd en begrijpen wat men probeert te
+                                bereiken. Dit moet wel op een privacy veilige manier, we wonen immers niet
+                                in een totalitaire staat:)
+                            </p>
+                            <p>
+                                We hebben de handschoen opgepakt en een oplossing bedacht waarbij de
+                                privacy en het maatschappelijke draagvlak leidend zijn.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-sm-10 col-md-5 col-lg-5">
+                    <figure class="animation col-img40 margin-bottom40" data-animation="animation-fade-in-right" style="width: 600px !important;">
+                    <img src={{ asset('images/content/NabijheidsApp/1280w/Grijsvlak.png') }}  width="600px">
+                    </figure>
+                </div>
+                <!-- ./col -->
+            </div>
+        </div>
+    </div>
+
+    <div class="wrap-container8040">
+        <div class="container">
+            <div class="row">
+
+
+                <div class="col-sm-10 col-md-7 col-lg-7 ">
+                    <div class="col-text20 margin-bottom20">
+                        <div class="post-heading-left">
+                            <h2 id="overlijden" style="color: #4386FB">Componenten</h2>
+                            <p>
+                                Het Afgelopen jaar is Conduction, in partnerschap met overheidsorganisaties,
+                                als ontwikkelpartij bezig geweest met het ontwikkelen van componenten en applicaties voor Common Ground.
+                                De huwelijksplanner samen met Utrecht en ‘verhuizen’ samen met ‘s Hertogenbosch, Eindhoven en de Solviteers,
+                                zijn onze eerste projecten en daar zijn wij reuze trots op. Alle componenten en applicaties zijn open source beschikbaar en deelbaar.
+                            </p>
+                            <br>
+
+                            <br>
+                            <a href="/componenten" style="font-weight: bold; text-transform: uppercase; font-size: 15px ;color: #4376FC; padding: 7.5px 15px 7.5px 15px; border-radius: 25px; border: 2.5px solid #4376FC;">
+                                Componenten overzicht</a>
+
+
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="col-sm-10 col-md-5 col-lg-5">
+                    <figure class="animation col-img40 margin-bottom40" data-animation="animation-fade-in-right" style="width: 600px !important;">
+                    <img src={{ asset('images/content/Componenten/proto/1280w/Blauw_vlak.png') }}>
+                    </figure>
+                </div>
+                <!-- ./col -->
+            </div>
+        </div>
+    </div>
+
+    <div class="wrap-container8040 bg-grey">
+        <div class="container">
+            <div class="row">
+
+
+                <div class="col-sm-10 col-md-7 col-lg-7 ">
+                    <div class="col-text20 margin-bottom20">
+                        <div class="post-heading-left">
+                            <h2 id="overlijden" style="color: #4386FB">Odyssey</h2>
+                            <p>
+                                Conduction is participating in the Odyssey 2020 hackathon! We are a startup in the public/civic tech and we build open source software for municipalities.
+                                Therefor we decided to participate in the SSI track and we want to share our common building blocks with the participants of Odyssey 2020. You could see us as your 7th team member.
+                                <br>
+                                <br>
+                                All building blocks listed  below are open source available. The building blocks shown here are commonly used in the world of municipalities. If you are looking for something specific drop us an email, we can probably help you!
+                            </p>
+                            <br>
+
+                            <br>
+                            <a href="/odyssey" style="font-weight: bold; text-transform: uppercase; font-size: 15px ;color: #4376FC; padding: 7.5px 15px 7.5px 15px; border-radius: 25px; border: 2.5px solid #4376FC;">
+                                Read more</a>
+
+
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="col-sm-10 col-md-5 col-lg-5">
+                    <figure class="animation col-img40 margin-bottom40" data-animation="animation-fade-in-right" style="width: 600px !important;">
+                        <img src={{ asset('images/Conduction-website_losgeknipt_0023_afb24.png') }}>
+                    </figure>
+                </div>
+                <!-- ./col -->
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- #contact -->
+    <div id="contact" class="wrap-container80 bg-color">
+
+        <!-- .container -->
+        <div class="container">
+
+            <!-- .row -->
+            <div class="row">
+
+
+                <div class="col-md-6">
+                    <div class="post-heading-center">
+                        <h4>Join!</h4>
+                        <h2 style="color: white">Ook werken of stage bij Conduction?</h2>
+                        <p>Ook een te gek idee voor een platform of project en op zoek naar techniek en meedenkend
+                            vermogen? Of wil je gewoon meer weten over wat wij doen en hoe wij dat doen? Bel, mail of
+                            stuur ons een berichtje via de chat!</p>
+
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <form action="/" method="post" class="affa-form-contact">
+                        <div class="submit-status"></div> <!-- submit status -->
+                        <input type="text" name="name" placeholder="Your Name"/>
+                        <input type="text" name="email" placeholder="Email Address *"/>
+                        <textarea name="message" placeholder="Message *"></textarea>
+                        <button type="submit" name="submit" class=" btn-block btn-custom2" style="padding: unset;">
+                            Join !
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+            <!-- .row end -->
+
+        </div>
+        <!-- .container end -->
+
+    </div>
+    <!-- #contact end -->
+
+
+
+{% endblock %}
+

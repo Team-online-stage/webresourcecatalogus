@@ -2,7 +2,12 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\BooleanFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\DateFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\OrderFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -17,8 +22,30 @@ use Symfony\Component\Validator\Constraints as Assert;
  * Application is the project of a website.
  *
  * @ApiResource(
+ *     attributes={"pagination_items_per_page"=30},
  *     normalizationContext={"groups"={"read"}, "enable_max_depth"=true},
  *     denormalizationContext={"groups"={"write"}, "enable_max_depth"=true},
+ *     itemOperations={
+ *          "get",
+ *          "put",
+ *          "delete",
+ *          "get_change_logs"={
+ *              "path"="/applications/{id}/change_log",
+ *              "method"="get",
+ *              "swagger_context" = {
+ *                  "summary"="Changelogs",
+ *                  "description"="Gets al the change logs for this resource"
+ *              }
+ *          },
+ *          "get_audit_trail"={
+ *              "path"="/applications/{id}/audit_trail",
+ *              "method"="get",
+ *              "swagger_context" = {
+ *                  "summary"="Audittrail",
+ *                  "description"="Gets the audit trail for this resource"
+ *              }
+ *          }
+ *     },
  *     collectionOperations={
  *     		"get",
  *     		"post",
@@ -32,8 +59,13 @@ use Symfony\Component\Validator\Constraints as Assert;
  *     		}
  *     }
  * )
- * @Gedmo\Loggable
+ * @Gedmo\Loggable(logEntryClass="Conduction\CommonGroundBundle\Entity\ChangeLog")
  * @ORM\Entity(repositoryClass="App\Repository\ApplicationRepository")
+ *
+ * @ApiFilter(BooleanFilter::class)
+ * @ApiFilter(OrderFilter::class)
+ * @ApiFilter(DateFilter::class, strategy=DateFilter::EXCLUDE_NULL)
+ * @ApiFilter(SearchFilter::class)
  */
 class Application
 {
@@ -56,6 +88,7 @@ class Application
      *
      * @example Webshop
      *
+     * @Gedmo\Versioned
      * @Assert\NotNull
      * @Assert\Length(
      *      max = 255
@@ -71,6 +104,7 @@ class Application
      *
      * @example Is the best site ever
      *
+     * @Gedmo\Versioned
      * @Assert\NotNull
      * @Assert\Length(
      *      max = 255
@@ -86,6 +120,7 @@ class Application
      *
      * @example https://www.example.org
      *
+     * @Gedmo\Versioned
      * @Assert\NotNull
      * @Assert\Length(
      *      max = 255
@@ -96,50 +131,61 @@ class Application
     private $domain;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Page", mappedBy="application")
-     * @MaxDepth(1)
-     */
-    private $pages;
-
-    /**
-     * @Groups({"read","write"})
-     * @ORM\OneToOne(targetEntity="App\Entity\Header", inversedBy="application", cascade={"persist", "remove"})
-     * @MaxDepth(1)
-     */
-    private $header;
-
-    /**
-     * @Groups({"read","write"})
-     * @ORM\OneToOne(targetEntity="App\Entity\Footer", inversedBy="application", cascade={"persist", "remove"})
-     * @MaxDepth(1)
-     */
-    private $footer;
-
-    /**
      * @ORM\OneToMany(targetEntity="App\Entity\Slug", mappedBy="application")
-     * @MaxDepth(1)
      */
     private $slugs;
-    
+
     /**
+     * @Assert\NotNull
      * @Groups({"read","write"})
      * @MaxDepth(1)
-     * @ORM\ManyToOne(targetEntity="App\Entity\Organization", inversedBy="applications")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Organization", inversedBy="applications", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $organization;
-    
+
     /**
-     * @var Datetime $dateCreated The moment this request was created
+     * @Groups({"read","write"})
+     * @MaxDepth(1)
+     * @ORM\OneToOne(targetEntity="App\Entity\Configuration")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $defaultConfiguration;
+
+    /**
+     * @Groups({"read","write"})
+     * @MaxDepth(1)
+     * @ORM\ManyToOne(targetEntity="App\Entity\Style")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $style;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Template", mappedBy="application", orphanRemoval=true)
+     */
+    private $templates;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\TemplateGroup", mappedBy="application", orphanRemoval=true)
+     */
+    private $templateGroups;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Menu", mappedBy="application", orphanRemoval=true)
+     */
+    private $menus;
+
+    /**
+     * @var Datetime The moment this request was created
      *
      * @Groups({"read"})
      * @Gedmo\Timestampable(on="create")
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $dateCreated;
-    
+
     /**
-     * @var Datetime $dateModified  The moment this request last Modified
+     * @var Datetime The moment this request last Modified
      *
      * @Groups({"read"})
      * @Gedmo\Timestampable(on="create")
@@ -149,8 +195,32 @@ class Application
 
     public function __construct()
     {
-        $this->pages = new ArrayCollection();
         $this->slugs = new ArrayCollection();
+        $this->templates = new ArrayCollection();
+    }
+
+    public function setDefaultConfiguration(Configuration $defaultConfiguration): self
+    {
+        $this->defaultConfiguration = $defaultConfiguration;
+
+        return $this;
+    }
+
+    public function getDefaultConfiguration()
+    {
+        return $this->defaultConfiguration;
+    }
+
+    public function setStyle(Style $style): self
+    {
+        $this->style = $style;
+
+        return $this;
+    }
+
+    public function getStyle()
+    {
+        return $this->style;
     }
 
     public function getId(): Uuid
@@ -202,61 +272,6 @@ class Application
     }
 
     /**
-     * @return Collection|Page[]
-     */
-    public function getPages(): Collection
-    {
-        return $this->pages;
-    }
-
-    public function addPage(Page $page): self
-    {
-        if (!$this->pages->contains($page)) {
-            $this->pages[] = $page;
-            $page->setApplication($this);
-        }
-
-        return $this;
-    }
-
-    public function removePage(Page $page): self
-    {
-        if ($this->pages->contains($page)) {
-            $this->pages->removeElement($page);
-            // set the owning side to null (unless already changed)
-            if ($page->getApplication() === $this) {
-                $page->setApplication(null);
-            }
-        }
-
-        return $this;
-    }
-
-    public function getHeader(): ?Header
-    {
-        return $this->header;
-    }
-
-    public function setHeader(?Header $header): self
-    {
-        $this->header = $header;
-
-        return $this;
-    }
-
-    public function getFooter(): ?Footer
-    {
-        return $this->footer;
-    }
-
-    public function setFooter(?Footer $footer): self
-    {
-        $this->footer = $footer;
-
-        return $this;
-    }
-
-    /**
      * @return Collection|Slug[]
      */
     public function getSlugs(): Collection
@@ -286,40 +301,102 @@ class Application
 
         return $this;
     }
-    
+
     public function getOrganization(): ?Organization
     {
-    	return $this->organization;
+        return $this->organization;
     }
-    
+
     public function setOrganization(?Organization $organization): self
     {
-    	$this->organization = $organization;
-    	
-    	return $this;
+        $this->organization = $organization;
+
+        return $this;
     }
-    
+
+    /**
+     * @return Collection|Templates[]
+     */
+    public function getTemplates(): Collection
+    {
+        return $this->templates;
+    }
+
+    public function addTemplate(Template $template): self
+    {
+        if (!$this->templates->contains($template)) {
+            $this->templates[] = $template;
+            $template->setApplication($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTemplate(Template $template): self
+    {
+        if ($this->templates->contains($template)) {
+            $this->templates->removeElement($template);
+            // set the owning side to null (unless already changed)
+            if ($template->getApplication() === $this) {
+                $template->setApplication(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Menus[]
+     */
+    public function getMenus(): Collection
+    {
+        return $this->menus;
+    }
+
+    public function addMenu(Menu $menu): self
+    {
+        if (!$this->menus->contains($menu)) {
+            $this->menus[] = $menu;
+            $menu->setApplication($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMenu(Menu $menu): self
+    {
+        if ($this->menus->contains($menu)) {
+            $this->menus->removeElement($menu);
+            // set the owning side to null (unless already changed)
+            if ($menu->getApplication() === $this) {
+                $menu->setApplication(null);
+            }
+        }
+
+        return $this;
+    }
+
     public function getDateCreated(): ?\DateTimeInterface
     {
-    	return $this->dateCreated;
+        return $this->dateCreated;
     }
-    
+
     public function setDateCreated(\DateTimeInterface $dateCreated): self
     {
-    	$this->dateCreated= $dateCreated;
-    	
-    	return $this;
+        $this->dateCreated = $dateCreated;
+
+        return $this;
     }
-    
+
     public function getDateModified(): ?\DateTimeInterface
     {
-    	return $this->dateModified;
+        return $this->dateModified;
     }
-    
+
     public function setDateModified(\DateTimeInterface $dateModified): self
     {
-    	$this->dateModified = $dateModified;
-    	
-    	return $this;
+        $this->dateModified = $dateModified;
+
+        return $this;
     }
 }

@@ -1,0 +1,42 @@
+{# templates/home/index.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    {% set article = commonground_resource({'component':'wrc','type':'templates','id':app.request.get('id')}) %}
+    <div class="row">
+        <div class="col-sm-12 col-md-8">
+            <h1>{% if article.title is defined %}{{ article.title }}{% else %}{{ article.name }}{% endif %}</h1>
+            <div class="content-background">
+                <div class="content">
+                    <div style="margin-bottom: 15px;">
+                        <span style="color: grey">aangemaakt op: {{ article.dateCreated|date("d-m-Y H:i", "Europe/Paris") }}</span><br>
+                        {% if article.dateCreated != article.dateModified %}
+                            <span style="color: grey">bewerkt op: {{ article.dateModified|date("d-m-Y H:i", "Europe/Paris") }}</span>
+                        {% endif %}
+                    </div>
+                    <div>
+                    {{ article.content|raw }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-4">
+            <h1>Lees meer</h1>
+            <div class="content-background">
+                <div class="content">
+                    {% if application.defaultConfiguration.configuration.nieuws is defined %}
+                    {% set nieuws = commonground_resource(application.defaultConfiguration.configuration.nieuws) %}
+                    {% set templates = commonground_resource_list({'component': 'wrc', 'type': 'templates'},{'templateGroups.id':nieuws.id, 'order[dateCreated]':'desc'})['hydra:member'] %}
+                    <ul class="list list--links list--chevrons">
+                    {% for template in templates %}
+                            <li><a href="/article?id={{ template.id }}">{{ template.title }}</a></li>
+                    {% endfor %}
+                    </ul>
+
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

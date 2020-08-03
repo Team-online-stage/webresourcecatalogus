@@ -1,0 +1,105 @@
+{# templates/home/index.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <h1>Aanbestedingen</h1>
+    <div class="row">
+        <div class="col-sm-12 col-lg-8">
+            {% if resources['hydra:member'] is defined and resources['hydra:member'] is not empty %}
+                {% set challenges = resources['hydra:member'] %}
+            {% elseif resources is defined and resources is not empty and resources['hydra:member'] is not defined %}
+                {% set challenges = resources %}
+            {% endif %}
+            {% if challenges is defined and challenges is not empty %}
+            <ul class="list list--card list--card-small">
+                {% for challenge in challenges %}
+                    <li class="card card--small">
+                        <div class="card__content">
+                            <div class="card__thumb challenge-card-picture"
+                                 style="background-image: url('https://picsum.photos/180'); width: 180px; height: 180px;"></div>
+                            <div class="card__body">
+                                <div class="row" style=" height: 100%; width: 100%;">
+                                    <div class="col-sm-6" style="padding-right: 0px;">
+                                        <span class="card__title">{{ challenge.name|capitalize }}</span>
+                                        <br>
+                                        <span><b>Deadline:</b> {{ challenge.dateClose|date("d-m-Y", "Europe/Paris") }}</b></span>
+                                        <br>
+                                        <span>{{ challenge.description|slice(0, 110)|raw ~ '...' }}</span>
+                                    </div>
+                                    <div class="col-sm-6">
+
+                                        <a style="margin-top: 45px; float: right; background: #ffea00"
+                                           href="{{ path('app_tender_challenge', {id: challenge.id}) }}"
+                                           rel="noopener" class="btn btn--primary"
+                                           >Bekijk deze aanbesteding<span
+                                                class="btn__icon icon icon-arr-forward"
+                                                title="" role=""></span></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                {% endfor %}
+                {% else %}
+                    <p>Er zijn op dit moment geen aanbestedingen</p>
+                {% endif %}
+            </ul>
+        </div>
+        <div class="col-sm-12 col-lg-4" style="background-color: lightgray">
+            <fieldset class="input filter">
+
+                <form action="{{ path('app_tender_challenges') }}" method="post">
+
+                    <legend class="filter__title">Filters
+                        <button class="btn btn-primary" style="float: right;" name="filter" type="submit">
+                            Filter
+                        </button>
+                    </legend>
+
+                    <div class="input__group input__group--text input__group--compact">
+
+                        <label class="input__label input__label--text" for="name">Titel:</label>
+                        <input type="text" name="name" id="name" class="input__control input__control--text">
+
+                        <br>
+
+                        <label class="input__label input__label--text" for="keywords">Trefwoord(en):</label>
+                        <input type="text" name="keywords" id="keywords" class="input__control input__control--text">
+
+                        <br>
+
+                        <label class="input__label input__label--text" for="dateSubmitted">Datum ingediend</label>
+                        <input style="padding: 8px 6px 8px 6px"
+                               class="input__control input__control--m input__control--text" type="date"
+                               name="dateSubmitted" id="dateSubmitted">
+
+                        <br>
+
+                        <label class="input__label" for="budget">Budget</label>
+                        <div class="input__control-group">
+                            <div>
+                                <label class="input__hint" for="minBudget">Minimaal</label>
+                                <input aria-label="minBudget" title="minBudget" name="minBudget" type="text"
+                                       id="minBudget"
+                                       class="input__control input__control--m input__control--text">
+                            </div>
+                            <div>
+                                <label class="input__hint" for="maxBudget">Maximaal</label>
+                                <input aria-label="maxBudget" title="maxBudget" name="maxBudget" type="text"
+                                       id="maxBudget"
+                                       class="input__control input__control--m input__control--text">
+                            </div>
+                        </div>
+
+                        <label class="input__label input__label--text" for="limit">Aanbieder</label>
+                        <input type="text" name="submitter" id="limit" class="input__control input__control--text">
+                    </div>
+
+                </form>
+
+            </fieldset>
+        </div>
+    </div>
+
+{% endblock %}

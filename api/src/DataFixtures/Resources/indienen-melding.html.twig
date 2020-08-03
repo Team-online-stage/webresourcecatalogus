@@ -1,0 +1,238 @@
+{# templates/home/index.html.twig id: ed2aa2c4-abd5-41fa-ac5d-e30408e7f466 #}
+
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {#    <ul>#}
+    {#        {% for key, property in request.properties %}#}
+    {#            {% if property is iterable %}#}
+    {#                <li><b>{{ key }}:</b>#}
+    {#                <ul>#}
+    {#                    {% for k, p in property %}#}
+    {#                        <li><b>{{ k }}:</b>: {{ p }}</li>#}
+    {#                    {% endfor %}#}
+    {#                </ul>>#}
+    {#            {% else %}#}
+    {#                <li><b>{{ key }}:</b> {{ property }}</li>#}
+    {#            {% endif %}#}
+    {#        {% endfor %}#}
+    {#    </ul>#}
+
+    <div style="margin: 20px 0 0 0" class="col-md-12">
+        <h4>Gegevens partners</h4>
+
+        {% if request.properties['partner-melding'].0 is defined and request.properties['partner-melding'].0 is not empty %}
+        {% set assent = commonground_resource(request.properties['partner-melding'].0) %}
+        {% set brp = commonground_resource('https://brp.huwelijksplanner.online/ingeschrevenpersonen/'~assent.person) %}
+        {% set contact = commonground_resource(assent.contact) %}
+
+        <div style="margin-bottom: 20px" class="col-md-6">
+
+            <b>Partner 1</b><br><br>
+
+            <b>Voorna(a)m(en): </b>{{ contact.givenName }}<br>
+            <b>Geslachtsnaam: </b>{{ contact.familyName }}<br>
+            {% if brp.geboorte.datum is defined and brp.geboorte.datum is not empty %}
+                <b>Geboortedatum: </b>{{ brp.geboorte.datum.date }}<br>
+            {% else %}
+                <b>Geboortedatum: </b>Onbekend<br>
+            {% endif %}
+            {% if brp.geboorte.land.omschrijving is defined and brp.geboorte.land.omschrijving is not empty and brp.geboorte.plaats.omschrijving is defined and brp.geboorte.plaats.omschrijving is not empty %}
+                <b>Geboorteplaats: </b>{{ brp.geboorte.plaats.omschrijving }}, {{ brp.geboorte.land.omschrijving }}<br>
+            {% else %}
+                <b>Geboorteplaats: </b>Onbekend<br>
+            {% endif %}
+            {% if brp.nationaliteit is defined and brp.nationaliteit is not empty %}
+            <b>Nationaliteiten: </b>{% for nationaliteit in brp.nationaliteit %}{{ nationaliteit }},{% endfor %}<br>
+            {% else %}
+            <b>Nationaliteiten: </b>Onbekend<br>
+            {% endif %}
+            <b>Burgerlijke staat: </b>Onbekend
+
+        </div>
+
+        {% endif %}
+
+        {% if request.properties['partner-melding'].1 is defined and request.properties['partner-melding'].1 is not empty %}
+        {% set assent2 = commonground_resource(request.properties['partner-melding'].1) %}
+        {% set brp = commonground_resource('https://brp.huwelijksplanner.online/ingeschrevenpersonen/'~assent2.person) %}
+        {% set contact2 = commonground_resource(assent2.contact) %}
+
+        <div class="col-md-6">
+
+            <b>Partner 2</b><br><br>
+
+            <b>Voorna(a)m(en): </b>{{ contact2.givenName }}<br>
+            <b>Geslachtsnaam: </b>{{ contact2.familyName }}<br>
+            {% if brp.geboorte.datum is defined and brp.geboorte.datum is not empty %}
+                <b>Geboortedatum: </b>{{ brp.geboorte.datum }}<br>
+            {% else %}
+                <b>Geboortedatum: </b>Onbekend<br>
+            {% endif %}
+            {% if brp.geboorte.land.omschrijving is defined and brp.geboorte.land.omschrijving is not empty and brp.geboorte.plaats.omschrijving is defined and brp.geboorte.plaats.omschrijving is not empty %}
+                <b>Geboorteplaats: </b>{{ brp.geboorte.plaats.omschrijving }}, {{ brp.geboorte.land.omschrijving }}<br>
+            {% else %}
+                <b>Geboorteplaats: </b>Onbekend<br>
+            {% endif %}
+            {% if brp.nationaliteit is defined and brp.nationaliteit is not empty %}
+            <b>Nationaliteiten: </b>{% for nationaliteit in brp.nationaliteit %}{{ nationaliteit }},{% endfor %}<br>
+            {% else %}
+            <b>Nationaliteiten: </b>Onbekend<br>
+            {% endif %}
+            <b>Burgerlijke staat: </b>Onbekend
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+    <div style="margin: 20px 0 0 20px" class="list-row">
+
+        <h4>Checklist</h4>
+
+        <p><b>Legenda</b><br>
+            <i style="color: red" class="fa fa-exclamation-triangle"></i> Nog te doen <br>
+            <i class="fa fas fa-check"></i> Gedaan
+        </p>
+
+        <div class="list-col">
+
+            <b>Gedaan:</b>
+            <ul class="list-icon">
+
+                {% if request.properties['info-melding']['meetsRequirements'] is defined and request.properties['info-melding']['meetsRequirements'] is not empty %}
+                    <li><b>Voorwaarden</b>
+                        <ul class="list-icon">
+                            <li>
+                                <!--  Trouwdatum -->
+                                <i class="fa fas fa-check"></i> Geaccepteerd
+                            </li>
+                        </ul>
+                    </li>
+                {% endif %}
+
+                {% if request.properties['datum-melding'] is defined and request.properties['datum-melding'] is not empty %}
+                    <li><b>Datum</b>
+                        <ul class="list-icon">
+                            <li>
+                                <!--  Trouwdatum -->
+                                <i class="fa fas fa-check"></i> {{ request.properties['datum-melding']|date("d-m-Y H:i", "Europe/Paris") }}
+                            </li>
+                        </ul>
+                    </li>
+                {% endif %}
+
+                {% if request.properties['partner-melding'].1 is defined and request.properties['partner-melding'].1 is not empty %}
+                    {% set assent2 = commonground_resource(request.properties['partner-melding'].1) %}
+                    {% set contact2 = commonground_resource(assent2.contact) %}
+                    <li><b>Partner</b>
+                        <ul class="list-icon">
+                            <li>
+                                <!--  Trouwdatum -->
+                                <i class="fa fas fa-check"></i> {{ contact2.name }}
+                            </li>
+                        </ul>
+                    </li>
+                {% endif %}
+
+                {% if request.properties['getuige-melding'] is defined and request.properties['getuige-melding'] is not empty %}
+                    <li>
+                        <b>Getuigen</b>
+                        <ul class="list-icon">
+                            {% for getuige in request.properties['getuige-melding'] %}
+                            {% set assent = commonground_resource(getuige) %}
+                            {% set contact = commonground_resource(assent.contact) %}
+                            <li>
+                                <!--  Trouwdatum -->
+                                <i class="fa {% if assent.status == "granted" %}fas fa-check{% else %}fa-exclamation-triangle{% endif %}"></i>{{ contact.formalName }} {% if assent.status == "granted" %}heeft ingestemd{% else %}heeft (nog) niet ingestemd{% endif %}
+                            <li>
+                                {% endfor %}
+                        </ul>
+                    </li>
+                {% endif %}
+            </ul>
+
+        </div><!-- /.list-col -->
+        <div class="list-col">
+            <b>Nog te doen:</b>
+            <ul class="list-icon">
+
+                {% if request.properties['info-melding']['meetsRequirements'] is not defined or request.properties['info-melding']['meetsRequirements'] is empty %}
+                    <li><b>Voorwaarden</b>
+                        <ul class="list-icon">
+                            <li>
+                                <!--  Trouwdatum -->
+                                <i style="color: red" class="fas fa-exclamation-triangle"></i> Voorwaarden nog niet
+                                geaccepteerd, u
+                                kunt deze <a
+                                    href="{{ path('app_default_slug',{'slug':'datum-melding'}) }} ">hier</a>
+                                lezen en accpeteren.
+                            </li>
+                        </ul>
+                    </li>
+                {% endif %}
+
+                {% if request.properties['datum-melding'] is not defined or request.properties['datum-melding'] is empty %}
+                    <li><b>Datum</b>
+                        <ul class="list-icon">
+                            <li>
+                                <!--  Trouwdatum -->
+                                <i style="color: red" class="fas fa-exclamation-triangle"></i> Geen
+                                datum, u
+                                kunt deze <a
+                                    href="{{ path('app_default_slug',{'slug':'datum-melding'}) }} ">hier</a>
+                                toevoegen.
+                            </li>
+                        </ul>
+                    </li>
+                {% endif %}
+
+                {% if request.properties['partner-melding'].1 is not defined or request.properties['partner-melding'].1 is empty %}
+                    <li><b>Partner</b>
+                        <ul class="list-icon">
+                            <li>
+                                <!--  Trouwdatum -->
+                                <i style="color: red" class="fas fa-exclamation-triangle"></i> Geen
+                                partner, u
+                                kunt deze <a
+                                    href="{{ path('app_default_slug',{'slug':'partner-melding'}) }} ">hier</a>
+                                uitnodigen.
+                            </li>
+                        </ul>
+                    </li>
+                {% endif %}
+
+                {% if request.properties['getuige-melding'] is not defined or request.properties['getuige-melding'] is empty or request.properties['getuige-melding']|length < 2 %}
+                    <li><b>Getuigen</b>
+                        <ul class="list-icon">
+                            <li>
+                                <!--  Trouwdatum -->
+                                <i style="color: red" class="fas fa-exclamation-triangle"></i>Niet genoeg getuigen, u
+                                kunt deze <a
+                                    href="{{ path('app_default_slug',{'slug':'getuige-melding'}) }} ">hier</a>
+                                uitnodigen.
+                            </li>
+                        </ul>
+                    </li>
+                {% endif %}
+            </ul>
+        </div><!-- /.list-col -->
+    </div>
+
+    <div class="col-md-6" style="padding: 0 10px 20px 0">
+        <a href="{{ path('app_default_index') }}?request={{ request.parent['@id'] }}"
+           class="btn btn-primary btn-icon col-md-12">
+            Terug naar hoofdverzoek
+        </a>
+    </div>
+
+    <div class="col-md-6" style="padding: 0 0 20px 10px">
+        <a href="{{ path('app_default_submitrequest') }}"
+           class="btn btn-primary btn-icon col-md-12">
+            <i class="fas fa-share-square"></i>
+            Melding indienen
+        </a>
+    </div>
+
+{% endblock %}

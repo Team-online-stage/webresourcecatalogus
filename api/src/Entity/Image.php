@@ -2,26 +2,56 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\BooleanFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\DateFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\OrderFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
-use Symfony\Component\Serializer\Annotation\MaxDepth;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Image speaks for itself.
  *
  * @ApiResource(
+ *     attributes={"pagination_items_per_page"=30},
  *     normalizationContext={"groups"={"read"}, "enable_max_depth"=true},
  *     denormalizationContext={"groups"={"write"}, "enable_max_depth"=true},
+ *     itemOperations={
+ *          "get",
+ *          "put",
+ *          "delete",
+ *          "get_change_logs"={
+ *              "path"="/adresses/{id}/change_log",
+ *              "method"="get",
+ *              "swagger_context" = {
+ *                  "summary"="Changelogs",
+ *                  "description"="Gets al the change logs for this resource"
+ *              }
+ *          },
+ *          "get_audit_trail"={
+ *              "path"="/adresses/{id}/audit_trail",
+ *              "method"="get",
+ *              "swagger_context" = {
+ *                  "summary"="Audittrail",
+ *                  "description"="Gets the audit trail for this resource"
+ *              }
+ *          }
+ *     }
  * )
- * @Gedmo\Loggable
  * @ORM\Entity(repositoryClass="App\Repository\ImageRepository")
+ * @Gedmo\Loggable(logEntryClass="Conduction\CommonGroundBundle\Entity\ChangeLog")
+ *
+ * @ApiFilter(BooleanFilter::class)
+ * @ApiFilter(OrderFilter::class)
+ * @ApiFilter(DateFilter::class, strategy=DateFilter::EXCLUDE_NULL)
+ * @ApiFilter(SearchFilter::class)
  */
 class Image
 {
@@ -44,6 +74,7 @@ class Image
      *
      * @example Flowers
      *
+     * @Gedmo\Versioned
      * @Assert\NotNull
      * @Assert\Length(
      *     max = 255
@@ -52,12 +83,13 @@ class Image
      * @ORM\Column(type="string", length=255)
      */
     private $name;
-    
+
     /**
      * @var string The description of this organisation.
      *
      * @example This is the manucipality of Utrecht
      *
+     * @Gedmo\Versioned
      * @Assert\NotNull
      * @Assert\Length(
      *     max = 255
@@ -72,6 +104,7 @@ class Image
      *
      * @example flowers
      *
+     * @Gedmo\Versioned
      * @Assert\Length(
      *     max = 255
      * )
@@ -85,6 +118,7 @@ class Image
      *
      * @example app_img_flowers
      *
+     * @Gedmo\Versioned
      * @Assert\Length(
      *     max = 255
      * )
@@ -92,8 +126,9 @@ class Image
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $href;
-        
+
     /**
+     * @Gedmo\Versioned
      * @Groups({"read","write"})
      * @ORM\Column(type="text", nullable=true)
      */
@@ -105,18 +140,18 @@ class Image
      * @ORM\JoinColumn(nullable=false)
      */
     private $organization;
-    
+
     /**
-     * @var Datetime $dateCreated The moment this request was created
+     * @var Datetime The moment this request was created
      *
      * @Groups({"read"})
      * @Gedmo\Timestampable(on="create")
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $dateCreated;
-    
+
     /**
-     * @var Datetime $dateModified  The moment this request last Modified
+     * @var Datetime The moment this request last Modified
      *
      * @Groups({"read"})
      * @Gedmo\Timestampable(on="create")
@@ -152,17 +187,17 @@ class Image
 
         return $this;
     }
-    
+
     public function getDescription(): ?string
     {
-    	return $this->description;
+        return $this->description;
     }
-    
+
     public function setDescription(?string $description): self
     {
-    	$this->description = $description;
-    	
-    	return $this;
+        $this->description = $description;
+
+        return $this;
     }
 
     public function getAlt(): ?string
@@ -188,17 +223,17 @@ class Image
 
         return $this;
     }
-    
+
     public function getBase64(): ?string
     {
-    	return $this->base64;
+        return $this->base64;
     }
-    
+
     public function setBase64(?string $base64): self
     {
-    	$this->base64 = $base64;
-    	
-    	return $this;
+        $this->base64 = $base64;
+
+        return $this;
     }
 
     public function getOrganization(): ?Organization
@@ -212,28 +247,28 @@ class Image
 
         return $this;
     }
-    
+
     public function getDateCreated(): ?\DateTimeInterface
     {
-    	return $this->dateModified;
+        return $this->dateModified;
     }
-    
+
     public function setDateCreated(\DateTimeInterface $dateCreated): self
     {
-    	$this->dateCreated= $dateCreated;
-    	
-    	return $this;
+        $this->dateCreated = $dateCreated;
+
+        return $this;
     }
-    
+
     public function getDateModified(): ?\DateTimeInterface
     {
-    	return $this->dateModified;
+        return $this->dateModified;
     }
-    
+
     public function setDateModified(\DateTimeInterface $dateModified): self
     {
-    	$this->dateModified = $dateModified;
-    	
-    	return $this;
+        $this->dateModified = $dateModified;
+
+        return $this;
     }
 }

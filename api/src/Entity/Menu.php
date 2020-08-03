@@ -2,7 +2,12 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\BooleanFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\DateFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\OrderFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -17,11 +22,39 @@ use Symfony\Component\Validator\Constraints as Assert;
  * Menu is your way of navigation inside your application.
  *
  * @ApiResource(
+ *     attributes={"pagination_items_per_page"=30},
  *     normalizationContext={"groups"={"read"}, "enable_max_depth"=true},
  *     denormalizationContext={"groups"={"write"}, "enable_max_depth"=true},
+ *     itemOperations={
+ *          "get",
+ *          "put",
+ *          "delete",
+ *          "get_change_logs"={
+ *              "path"="/adresses/{id}/change_log",
+ *              "method"="get",
+ *              "swagger_context" = {
+ *                  "summary"="Changelogs",
+ *                  "description"="Gets al the change logs for this resource"
+ *              }
+ *          },
+ *          "get_audit_trail"={
+ *              "path"="/adresses/{id}/audit_trail",
+ *              "method"="get",
+ *              "swagger_context" = {
+ *                  "summary"="Audittrail",
+ *                  "description"="Gets the audit trail for this resource"
+ *              }
+ *          }
+ *     }
  * )
- * @Gedmo\Loggable
  * @ORM\Entity(repositoryClass="App\Repository\MenuRepository")
+ * @Gedmo\Loggable(logEntryClass="Conduction\CommonGroundBundle\Entity\ChangeLog")
+ *
+ * @ApiFilter(BooleanFilter::class)
+ * @ApiFilter(OrderFilter::class)
+ * @ApiFilter(DateFilter::class, strategy=DateFilter::EXCLUDE_NULL)
+ * @ApiFilter(SearchFilter::class)
+ * @ApiFilter(SearchFilter::class, properties={"id": "exact", "application.id": "exact", "name": "partial", "description": "partial"})
  */
 class Menu
 {
@@ -44,6 +77,7 @@ class Menu
      *
      * @example webshop menu
      *
+     * @Gedmo\Versioned
      * @Assert\NotNull
      * @Assert\Length(
      *      max = 255
@@ -54,23 +88,46 @@ class Menu
     private $name;
 
     /**
+     * @var string The description of this menuItems
+     *
+     * @example This menuItems links to the about page
+     *
+     * @Gedmo\Versioned
+     * @Assert\Length(
+     *      max = 2555
+     * )
      * @Groups({"read","write"})
-     * @ORM\OneToMany(targetEntity="App\Entity\MenuItem", mappedBy="menu")
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $description;
+
+    /**
+     * @Groups({"read","write"})
+     * @ORM\OneToMany(targetEntity="App\Entity\MenuItem", mappedBy="menu",cascade={"persist"})
      * @MaxDepth(1)
      */
-    private $menuItem;
-    
+    private $menuItems;
+
     /**
-     * @var Datetime $dateCreated The moment this request was created
+     * @Groups({"read","write"})
+     * @Assert\NotNull
+     * @ORM\ManyToOne(targetEntity="App\Entity\Application", inversedBy="menus")
+     * @ORM\JoinColumn(nullable=false)
+     * @MaxDepth(1)
+     */
+    private $application;
+
+    /**
+     * @var Datetime The moment this request was created
      *
      * @Groups({"read"})
      * @Gedmo\Timestampable(on="create")
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $dateCreated;
-    
+
     /**
-     * @var Datetime $dateModified  The moment this request last Modified
+     * @var Datetime The moment this request last Modified
      *
      * @Groups({"read"})
      * @Gedmo\Timestampable(on="create")
@@ -80,7 +137,7 @@ class Menu
 
     public function __construct()
     {
-        $this->menuItem = new ArrayCollection();
+        $this->menuItems = new ArrayCollection();
     }
 
     public function getId(): Uuid
@@ -107,18 +164,30 @@ class Menu
         return $this;
     }
 
-    /**
-     * @return Collection|MenuItem[]
-     */
-    public function getMenuItem(): Collection
+    public function getDescription(): ?string
     {
-        return $this->menuItem;
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): self
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|menuItems[]
+     */
+    public function getMenuItems(): Collection
+    {
+        return $this->menuItems;
     }
 
     public function addMenuItem(MenuItem $menuItem): self
     {
-        if (!$this->menuItem->contains($menuItem)) {
-            $this->menuItem[] = $menuItem;
+        if (!$this->menuItems->contains($menuItem)) {
+            $this->menuItems[] = $menuItem;
             $menuItem->setMenu($this);
         }
 
@@ -127,8 +196,8 @@ class Menu
 
     public function removeMenuItem(MenuItem $menuItem): self
     {
-        if ($this->menuItem->contains($menuItem)) {
-            $this->menuItem->removeElement($menuItem);
+        if ($this->menuItems->contains($menuItem)) {
+            $this->menuItems->removeElement($menuItem);
             // set the owning side to null (unless already changed)
             if ($menuItem->getMenu() === $this) {
                 $menuItem->setMenu(null);
@@ -137,28 +206,40 @@ class Menu
 
         return $this;
     }
-    
+
+    public function getApplication(): ?Application
+    {
+        return $this->application;
+    }
+
+    public function setApplication(?Application $application): self
+    {
+        $this->application = $application;
+
+        return $this;
+    }
+
     public function getDateCreated(): ?\DateTimeInterface
     {
-    	return $this->dateModified;
+        return $this->dateModified;
     }
-    
+
     public function setDateCreated(\DateTimeInterface $dateCreated): self
     {
-    	$this->dateCreated= $dateCreated;
-    	
-    	return $this;
+        $this->dateCreated = $dateCreated;
+
+        return $this;
     }
-    
+
     public function getDateModified(): ?\DateTimeInterface
     {
-    	return $this->dateModified;
+        return $this->dateModified;
     }
-    
+
     public function setDateModified(\DateTimeInterface $dateModified): self
     {
-    	$this->dateModified = $dateModified;
-    	
-    	return $this;
+        $this->dateModified = $dateModified;
+
+        return $this;
     }
 }

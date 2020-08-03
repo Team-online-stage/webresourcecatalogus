@@ -1,0 +1,91 @@
+{# templates/home/index.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block headercontent %}
+    <!-- .header-content -->
+    <div class="header-content">
+
+        <!-- .container -->
+        <div class="container">
+
+            <!-- .row -->
+            <div class="row">
+
+                <div class="col-sm-7">
+                    <div class="header-text" style="padding-top: 0">
+                        <div class="post-heading-left-white header-heading">
+                            <h1>Digitale Stage</h1>
+                            <h4 style="color: white">Product: Online Platform</h4>
+                        </div>
+                        <br>
+                        <p style="margin-top: -35px"> Op dit moment, door de uitbraak van het Coronavirus, staat er in
+                            het
+                            onderwijs een stille ramp op stapel. Door het sluiten van kantoren,
+                            thuiswerken en de druk op organisaties lukt het met name MBO studenten (en
+                            in mindere mate HBO studenten) die een opleiding volgen voor een
+                            “kantoorbaan”, niet of nauwelijks een stageplaats te vinden. Terwijl zij
+                            die wel nodig hebben om af te studeren. Het niet kunnen afstuderen van een
+                            hele lichting studenten is een kleine economische ramp. De mogelijkheid dat
+                            de thuiswerk-regel na de zomervakantie nog steeds van kracht is, zou zelfs
+                            kunnen betekenen dat het hier om twee lichtingen gaat.</p>
+                        <br>
+                    </div>
+                </div><!-- /.col -->
+
+                <div class="col-sm-5">
+                    <div class="header-img">
+                        <!--
+                        <img src="{{ asset('images/trouwenproject.png') }}" width="600px"></div> -->
+                        <br>
+                    </div><!-- /.col -->
+
+                </div><!-- /.row -->
+            </div><!-- /.container -->
+        </div>
+    </div><!-- /.header-content -->
+{% endblock %}
+
+{% block body %}
+
+    <div class="wrap-container8040">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-10 col-md-7 col-lg-7 ">
+                    <div class="col-text20 margin-bottom20">
+                        <div class="post-heading-left">
+                            <h2 id="verhuizen" style="color: #4386FB">In samenwerking met ROC</h2>
+                            <p>
+                                Daarom wij werken samen met het ROC Almere aan een proof of concept voor
+                                ‘thuiswerk’-stages voor studenten applicatieontwikkeling. Hierbij is het uitgangspunt
+                                dat als werknemers op afstand kunnen werken, studenten dat ook kunnen doen. We
+                                faciliteren dit met een platform waarop bedrijven stageplaatsen kunnen aanbieden en
+                                studenten reageren, zover niets vernieuwends &#128578. Maar op dit platform kunnen ook online
+                                opdrachten worden geplaatst, een stagedossier en portfolio worden opgebouwd en er zijn
+                                instructievideo's te vinden rondom werken in een bedrijf. Dit combineren we met een
+                                integratie van thuiswerk-tools, waardoor we een mate van toezicht en contact creëren,
+                                die het mogelijk maken om waardevolle werkervaring op te doen.
+                            </p>
+                            <p>
+                                Hiernaast organiseren we challenges die groepen studenten uitdagen op hun
+                                vakinhoudelijke vaardigheden. We doen dit langs de lijnen van maatschappelijke
+                                problemen.
+                            </p>
+                        </div><!-- ./col-heading -->
+                    </div><!-- ./col-text -->
+                </div><!-- ./col -->
+                <div class="col-sm-10 col-md-5 col-lg-5">
+                    <br>
+                    <br>
+                    <br>
+                    <img src="{{ asset('images/logo-rocvf.png') }}" height="200px" width="400px">
+                </div><!-- ./col -->
+            </div><!-- ./row -->
+        </div><!-- ./container -->
+    </div><!-- ./wrap-container -->
+
+    {{ include('/widgets/contact.html.twig') }}
+
+
+{% endblock %}
+
