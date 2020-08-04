@@ -539,8 +539,9 @@ class ZuiddrechtFixtures extends Fixture
                 'headerimg'         => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'ff3ca823-234f-4874-9ee6-1067d47e4391']),
                 'colorSchemeFooter' => 'footerStyle',
                 'colorSchemeMenu'   => 'menuStyle',
-                'hubspotId'   => '6108438',
-                'googleTagId'   => 'G-RHY411XSJN']
+                'hubspotId'         => '6108438',
+                'googleTagId'       => 'G-RHY411XSJN',
+            ]
         );
         $manager->persist($configuration);
 

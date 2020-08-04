@@ -1376,10 +1376,10 @@ class ConductionFixtures extends Fixture
         $configuration->setApplication($zaakOnline);
         $configuration->setConfiguration(
             [
-                'mainMenu'=> $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'bb05a4b3-5eca-4cf0-83a9-8fcf41dcc40f']),
-                'home'    => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'6e01b18c-6751-4e11-9430-c69f629a6760']),
-                'hubspotId'   => '6108438',
-                'googleTagId'   => 'G-H2T0ZECZYM'
+                'mainMenu'      => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'bb05a4b3-5eca-4cf0-83a9-8fcf41dcc40f']),
+                'home'          => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'6e01b18c-6751-4e11-9430-c69f629a6760']),
+                'hubspotId'     => '6108438',
+                'googleTagId'   => 'G-H2T0ZECZYM',
             ]
         );
         $manager->persist($configuration);
@@ -1504,10 +1504,10 @@ class ConductionFixtures extends Fixture
         $configuration->setApplication($commongroundNu);
         $configuration->setConfiguration(
             [
-                'mainMenu'=> $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'447eb167-17b0-416a-9df4-7cd4d3cc417c']),
-                'home'    => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'83b365c9-33fe-4b89-99d0-d77ef676adb1']),
-                'hubspotId'   => '6108438',
-                'googleTagId'   => 'G-X24NEYKVXK'
+                'mainMenu'      => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'447eb167-17b0-416a-9df4-7cd4d3cc417c']),
+                'home'          => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'83b365c9-33fe-4b89-99d0-d77ef676adb1']),
+                'hubspotId'     => '6108438',
+                'googleTagId'   => 'G-X24NEYKVXK',
             ]
         );
         $manager->persist($configuration);
@@ -1621,10 +1621,10 @@ class ConductionFixtures extends Fixture
         $configuration->setApplication($commongroundDev);
         $configuration->setConfiguration(
             [
-                'mainMenu'=> $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'15db60f7-76f1-4bc0-8caf-cb9ed9d4066f']),
-                'home'    => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'cdc7b532-2084-470e-9032-935bb8e5bde4']),
-                'hubspotId'   => '6108438',
-                'googleTagId'   => 'G-FC090SHG18'
+                'mainMenu'      => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'15db60f7-76f1-4bc0-8caf-cb9ed9d4066f']),
+                'home'          => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'cdc7b532-2084-470e-9032-935bb8e5bde4']),
+                'hubspotId'     => '6108438',
+                'googleTagId'   => 'G-FC090SHG18',
             ]
         );
         $manager->persist($configuration);
@@ -2157,8 +2157,8 @@ class ConductionFixtures extends Fixture
                 'headerimg'         => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'0863d15c-286e-4ec4-90f6-27cebb107aa9']),
                 'colorSchemeFooter' => 'footerStyle',
                 'colorSchemeMenu'   => 'menuStyle',
-                'hubspotId'   => '6108438',
-                'googleTagId'   => 'G-2PYCJ13YC4'
+                'hubspotId'         => '6108438',
+                'googleTagId'       => 'G-2PYCJ13YC4',
             ]
         );
         $manager->persist($configuration);
@@ -2221,7 +2221,7 @@ class ConductionFixtures extends Fixture
         $menuItem->setDescription('Over');
         $menuItem->setOrder(2);
         $menuItem->setType('slug');
-        $menuItem->setHref('/over');
+        $menuItem->setHref('/about');
         $menuItem->setMenu($menu);
         $manager->persist($menuItem);
 
@@ -2310,7 +2310,7 @@ class ConductionFixtures extends Fixture
         $template = new Template();
         $template->setName('Over');
         $template->setDescription('Stage Over Page');
-        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Conduction/Stage/over.html.twig', 'r'));
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Conduction/Stage/about.html.twig', 'r'));
         $template->setTemplateEngine('twig');
         $manager->persist($template);
         $template->setId($id);
@@ -2324,8 +2324,8 @@ class ConductionFixtures extends Fixture
         $slug = new Slug();
         $slug->setTemplate($template);
         $slug->setApplication($stage);
-        $slug->setName('over');
-        $slug->setSlug('over');
+        $slug->setName('about');
+        $slug->setSlug('about');
         $manager->persist($slug);
 
         $id = Uuid::fromString('cad4760e-703d-4de6-aefb-1ce11e9ff829');
@@ -2390,8 +2390,8 @@ class ConductionFixtures extends Fixture
         $slug = new Slug();
         $slug->setTemplate($template);
         $slug->setApplication($stage);
-        $slug->setName('oplossingen');
-        $slug->setSlug('oplossingen');
+        $slug->setName('solutions');
+        $slug->setSlug('solutions');
         $manager->persist($slug);
 
         $id = Uuid::fromString('bef9c010-a9e6-416c-8b0a-1cc4860f9084');
@@ -2412,8 +2412,8 @@ class ConductionFixtures extends Fixture
         $slug = new Slug();
         $slug->setTemplate($template);
         $slug->setApplication($stage);
-        $slug->setName('oplossing');
-        $slug->setSlug('oplossing');
+        $slug->setName('solution');
+        $slug->setSlug('solution');
         $manager->persist($slug);
 
         $id = Uuid::fromString('89ddaf33-9b5f-4651-9f12-c35122da5a34');
