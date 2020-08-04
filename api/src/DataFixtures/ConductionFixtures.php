@@ -2199,8 +2199,8 @@ class ConductionFixtures extends Fixture
         $manager->persist($menuItem);
 
         $menuItem = new MenuItem();
-        $menuItem->setName('Tutorials');
-        $menuItem->setDescription('Tutorials');
+        $menuItem->setName('Programma\'s');
+        $menuItem->setDescription('Programma\'s');
         $menuItem->setOrder(4);
         $menuItem->setType('slug');
         $menuItem->setHref('/education/programs');
