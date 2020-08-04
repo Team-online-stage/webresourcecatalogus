@@ -2146,7 +2146,8 @@ class ConductionFixtures extends Fixture
         $configuration->setConfiguration(
             [
                 'mainMenu'          => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'da3d55e3-6b7e-47f3-856d-eb158212d8af']),
-                //'loggedOut'         => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'b239cf91-2440-495b-853f-3c1e0fe54ef7']),
+                'loggedOut'         => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'b239cf91-2440-495b-853f-3c1e0fe54ef7']),
+                'loggedIn'         => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'3d9b7bbd-cc5a-4b88-acd0-682cf506da7c']),
                 'home'              => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'6079cc7d-7b69-4db3-ad17-6bf972cca6a2']),
                 'footer1'           => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'09dfc502-19ce-4b11-8e0a-a7fc456a5c52']),
                 'footer2'           => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'23b58ab8-45a6-4fbf-a180-6aac96da4df6']),
@@ -2234,46 +2235,47 @@ class ConductionFixtures extends Fixture
         $menuItem->setMenu($menu);
         $manager->persist($menuItem);
 
-        /**
-         * // LoggedOut Menu
-         * $id = Uuid::fromString('b239cf91-2440-495b-853f-3c1e0fe54ef7');
-         * $menu = new Menu();
-         * $menu->setName('Logged Out Menu');
-         * $menu->setDescription('De login opties voor het menuItem inloggen');
-         * $menu->setApplication($stage);
-         * $manager->persist($menu);
-         * $menu->setId($id);
-         * $manager->persist($menu);
-         * $manager->flush();
-         * $menu = $manager->getRepository('App:Menu')->findOneBy(['id'=> $id]);.
-         *
-         * $menuItem = new MenuItem();
-         * $menuItem->setName('Student');
-         * $menuItem->setDescription('Student');
-         * $menuItem->setOrder(1);
-         * $menuItem->setType('slug');
-         * $menuItem->setHref('/home');
-         * $menuItem->setMenu($menu);
-         * $manager->persist($menuItem);
-         *
-         * $menuItem = new MenuItem();
-         * $menuItem->setName('Onderwijsinstelling');
-         * $menuItem->setDescription('Onderwijsinstelling');
-         * $menuItem->setOrder(2);
-         * $menuItem->setType('slug');
-         * $menuItem->setHref('/home');
-         * $menuItem->setMenu($menu);
-         * $manager->persist($menuItem);
-         *
-         * $menuItem = new MenuItem();
-         * $menuItem->setName('Gemeente of Organisatie');
-         * $menuItem->setDescription('Gemeente of Organisatie');
-         * $menuItem->setOrder(3);
-         * $menuItem->setType('slug');
-         * $menuItem->setHref('/home');
-         * $menuItem->setMenu($menu);
-         * $manager->persist($menuItem);
-         */
+        // LoggedOut Menu
+        $id = Uuid::fromString('b239cf91-2440-495b-853f-3c1e0fe54ef7');
+        $menu = new Menu();
+        $menu->setName('Logged Out Menu');
+        $menu->setDescription('De login opties voor het menuItem inloggen wanneer nog niet is ingelogd');
+        $menu->setApplication($stage);
+        $manager->persist($menu);
+        $menu->setId($id);
+        $manager->persist($menu);
+        $manager->flush();
+        $menu = $manager->getRepository('App:Menu')->findOneBy(['id'=> $id]);
+
+        $menuItem = new MenuItem();
+        $menuItem->setName('Registreren');
+        $menuItem->setDescription('Registreren');
+        $menuItem->setOrder(0);
+        $menuItem->setType('slug');
+        $menuItem->setHref('/education/register');
+        $menuItem->setMenu($menu);
+        $manager->persist($menuItem);
+
+        // LoggedIn Menu
+        $id = Uuid::fromString('3d9b7bbd-cc5a-4b88-acd0-682cf506da7c');
+        $menu = new Menu();
+        $menu->setName('Logged In Menu');
+        $menu->setDescription('De login opties voor het menuItem inloggen wanneer er al is ingelogd');
+        $menu->setApplication($stage);
+        $manager->persist($menu);
+        $menu->setId($id);
+        $manager->persist($menu);
+        $manager->flush();
+        $menu = $manager->getRepository('App:Menu')->findOneBy(['id'=> $id]);
+
+        $menuItem = new MenuItem();
+        $menuItem->setName('Mijn overzicht');
+        $menuItem->setDescription('Mijn overzicht');
+        $menuItem->setOrder(0);
+        $menuItem->setType('slug');
+        $menuItem->setHref('/education/overview');
+        $menuItem->setMenu($menu);
+        $manager->persist($menuItem);
 
         // Template groups
         $groupPages = new TemplateGroup();
