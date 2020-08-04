@@ -2213,7 +2213,7 @@ class ConductionFixtures extends Fixture
         $menuItem->setDescription('Over');
         $menuItem->setOrder(2);
         $menuItem->setType('slug');
-        $menuItem->setHref('/over');
+        $menuItem->setHref('/about');
         $menuItem->setMenu($menu);
         $manager->persist($menuItem);
 
@@ -2302,7 +2302,7 @@ class ConductionFixtures extends Fixture
         $template = new Template();
         $template->setName('Over');
         $template->setDescription('Stage Over Page');
-        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Conduction/Stage/over.html.twig', 'r'));
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Conduction/Stage/about.html.twig', 'r'));
         $template->setTemplateEngine('twig');
         $manager->persist($template);
         $template->setId($id);
@@ -2316,8 +2316,8 @@ class ConductionFixtures extends Fixture
         $slug = new Slug();
         $slug->setTemplate($template);
         $slug->setApplication($stage);
-        $slug->setName('over');
-        $slug->setSlug('over');
+        $slug->setName('about');
+        $slug->setSlug('about');
         $manager->persist($slug);
 
         $id = Uuid::fromString('cad4760e-703d-4de6-aefb-1ce11e9ff829');
@@ -2382,8 +2382,8 @@ class ConductionFixtures extends Fixture
         $slug = new Slug();
         $slug->setTemplate($template);
         $slug->setApplication($stage);
-        $slug->setName('oplossingen');
-        $slug->setSlug('oplossingen');
+        $slug->setName('solutions');
+        $slug->setSlug('solutions');
         $manager->persist($slug);
 
         $id = Uuid::fromString('bef9c010-a9e6-416c-8b0a-1cc4860f9084');
@@ -2404,8 +2404,8 @@ class ConductionFixtures extends Fixture
         $slug = new Slug();
         $slug->setTemplate($template);
         $slug->setApplication($stage);
-        $slug->setName('oplossing');
-        $slug->setSlug('oplossing');
+        $slug->setName('solution');
+        $slug->setSlug('solution');
         $manager->persist($slug);
 
         $id = Uuid::fromString('89ddaf33-9b5f-4651-9f12-c35122da5a34');
