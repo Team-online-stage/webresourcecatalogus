@@ -1378,6 +1378,8 @@ class ConductionFixtures extends Fixture
             [
                 'mainMenu'=> $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'bb05a4b3-5eca-4cf0-83a9-8fcf41dcc40f']),
                 'home'    => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'6e01b18c-6751-4e11-9430-c69f629a6760']),
+                'hubspotId'   => '6108438',
+                'googleTagId'   => 'G-H2T0ZECZYM'
             ]
         );
         $manager->persist($configuration);
@@ -1504,6 +1506,8 @@ class ConductionFixtures extends Fixture
             [
                 'mainMenu'=> $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'447eb167-17b0-416a-9df4-7cd4d3cc417c']),
                 'home'    => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'83b365c9-33fe-4b89-99d0-d77ef676adb1']),
+                'hubspotId'   => '6108438',
+                'googleTagId'   => 'G-X24NEYKVXK'
             ]
         );
         $manager->persist($configuration);
@@ -1619,6 +1623,8 @@ class ConductionFixtures extends Fixture
             [
                 'mainMenu'=> $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'15db60f7-76f1-4bc0-8caf-cb9ed9d4066f']),
                 'home'    => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'cdc7b532-2084-470e-9032-935bb8e5bde4']),
+                'hubspotId'   => '6108438',
+                'googleTagId'   => 'G-FC090SHG18'
             ]
         );
         $manager->persist($configuration);
@@ -2151,6 +2157,8 @@ class ConductionFixtures extends Fixture
                 'headerimg'         => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'0863d15c-286e-4ec4-90f6-27cebb107aa9']),
                 'colorSchemeFooter' => 'footerStyle',
                 'colorSchemeMenu'   => 'menuStyle',
+                'hubspotId'   => '6108438',
+                'googleTagId'   => 'G-2PYCJ13YC4'
             ]
         );
         $manager->persist($configuration);
