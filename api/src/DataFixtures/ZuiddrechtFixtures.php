@@ -91,7 +91,7 @@ class ZuiddrechtFixtures extends Fixture
 
         $style = new Style();
         $style->setName('Zuid-Drecht');
-        $style->setDescription('Huistlijl samenwerkingsverband West-Friesland');
+        $style->setDescription('Huistlijl Gemeente Zuid-Drecht');
         $style->setCss(':root {--primary: #CC0000;--primary2: white;--secondary: #3669A5;--secondary2: #FFC926;}
         .main-title {color: var(--primary2) !important;}.logo-header {background: var(--primary);}.navbar-header
         {background: var(--primary);}.bg-primary-gradient {background: linear-gradient(-45deg, var(--secondary),
