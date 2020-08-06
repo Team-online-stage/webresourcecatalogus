@@ -35,8 +35,6 @@ class VngFixtures extends Fixture
             return false;
         }
 
-
-
         // VNG
         $id = Uuid::fromString('6d879677-79e3-4daa-a50d-a29762b0064c');
         $organisation = new Organization();

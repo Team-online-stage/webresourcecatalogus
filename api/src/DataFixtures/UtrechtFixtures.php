@@ -534,7 +534,7 @@ class UtrechtFixtures extends Fixture
                 'colorSchemeFooter' => 'footerStyle',
                 'colorSchemeMenu'   => 'menuStyle',
                 'hubspotId'         => '6108438',
-                'googleTagId'       => 'G-RHY411XSJN']
+                'googleTagId'       => 'G-RHY411XSJN', ]
         );
         $manager->persist($configuration);
 
@@ -717,7 +717,6 @@ class UtrechtFixtures extends Fixture
         $manager->persist($template);
         $manager->flush();
 
-
         // Template groups
         $id = Uuid::fromString('a4e7c1a9-e59d-41f9-82ca-8a0e59865e26');
         $groupFaq = new TemplateGroup();
@@ -791,6 +790,5 @@ class UtrechtFixtures extends Fixture
         $manager->persist($groupNews);
         $manager->flush();
         $groupNews = $manager->getRepository('App:TemplateGroup')->findOneBy(['id'=> $id]);
-
     }
 }

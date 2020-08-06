@@ -117,7 +117,8 @@ class HuwelijksplannerFixtures extends Fixture
             'colorSchemeFooter' => 'footerStyle',
             'colorSchemeMenu'   => 'menuStyle',
             'hubspotId'         => '6108438',
-            'googleTagId'       => 'G-RHY411XSJN']);
+            'googleTagId'       => 'G-RHY411XSJN', ]
+        );
 
         $manager->persist($configuration);
 
