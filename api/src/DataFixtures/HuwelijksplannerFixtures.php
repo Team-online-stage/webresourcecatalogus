@@ -101,7 +101,7 @@ class HuwelijksplannerFixtures extends Fixture
         $configuration->setOrganization($utrecht);
         $configuration->setApplication($application);
 
-        $configuration->setConfiguration( [
+        $configuration->setConfiguration([
             'sideMenu'          => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'915d5b04-c050-4b18-8f72-a068c2708883']),
             'loggedIn'          => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'364350f5-d2a5-49f3-adab-484c357fa82f']),
             'mainMenu'          => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'ca1ca0b4-4c8f-4638-9869-16974426e3df']),
@@ -116,8 +116,8 @@ class HuwelijksplannerFixtures extends Fixture
             'headerimg'         => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'ff3ca823-234f-4874-9ee6-1067d47e4391']),
             'colorSchemeFooter' => 'footerStyle',
             'colorSchemeMenu'   => 'menuStyle',
-            'hubspotId'   => '6108438',
-            'googleTagId'   => 'G-RHY411XSJN']);
+            'hubspotId'         => '6108438',
+            'googleTagId'       => 'G-RHY411XSJN']);
 
         $manager->persist($configuration);
 
