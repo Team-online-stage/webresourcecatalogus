@@ -2418,28 +2418,6 @@ class ConductionFixtures extends Fixture
         $slug->setSlug('solution');
         $manager->persist($slug);
 
-        $id = Uuid::fromString('89ddaf33-9b5f-4651-9f12-c35122da5a34');
-        $template = new Template();
-        $template->setName('Teams');
-        $template->setDescription('Stage Teams Page');
-        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Conduction/Stage/teams.html.twig', 'r'));
-        $template->setTemplateEngine('twig');
-        $manager->persist($template);
-        $template->setId($id);
-        $manager->persist($template);
-        $manager->flush();
-        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
-        $template->addTemplateGroup($groupPages);
-        $manager->persist($template);
-        $manager->flush();
-
-        $slug = new Slug();
-        $slug->setTemplate($template);
-        $slug->setApplication($stage);
-        $slug->setName('teams');
-        $slug->setSlug('teams');
-        $manager->persist($slug);
-
         $id = Uuid::fromString('09dfc502-19ce-4b11-8e0a-a7fc456a5c52');
         $template = new Template();
         $template->setName('footer1');

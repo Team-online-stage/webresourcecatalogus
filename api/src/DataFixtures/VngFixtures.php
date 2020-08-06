@@ -2,16 +2,9 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\Application;
-use App\Entity\Configuration;
 use App\Entity\Image;
-use App\Entity\Menu;
-use App\Entity\MenuItem;
 use App\Entity\Organization;
-use App\Entity\Slug;
 use App\Entity\Style;
-use App\Entity\Template;
-use App\Entity\TemplateGroup;
 use Conduction\CommonGroundBundle\Service\CommonGroundService;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -41,8 +34,6 @@ class VngFixtures extends Fixture
         ) {
             return false;
         }
-
-
 
         // VNG
         $id = Uuid::fromString('6d879677-79e3-4daa-a50d-a29762b0064c');
