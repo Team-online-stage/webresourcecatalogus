@@ -3,7 +3,7 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
-</div>
+
 {% if application is defined and application.defaultConfiguration.configuration.headerimg is defined and application.defaultConfiguration.configuration.headerimg is not empty  %}
     {% set headerimg = commonground_resource(application.defaultConfiguration.configuration.headerimg) %}
 <div class="row content-background background--hemelblauw headerImage" style="background: url(data:image/file;base64,{{headerimg['base64']}})">
@@ -151,7 +151,4 @@
                 {% endif %}
             </div>
         </div>
-
-
-
-        {% endblock %}
+{% endblock %}
