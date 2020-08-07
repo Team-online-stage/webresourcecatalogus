@@ -414,9 +414,6 @@ class WestfrieslandFixtures extends Fixture
         $style->setfavicon($favicon);
         $style->setOrganization($westfriesland);
 
-        $application->setStyle($style);
-        $manager->persist($application);
-
         $manager->persist($westfriesland);
         $manager->persist($favicon);
         $manager->persist($logo);
