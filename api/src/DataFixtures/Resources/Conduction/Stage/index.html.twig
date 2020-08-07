@@ -61,7 +61,7 @@
     </div>
     {% if application is defined and application.defaultConfiguration.configuration.newsimg is defined and application.defaultConfiguration.configuration.newsimg is not empty  %}
     {% set newsimg = commonground_resource(application.defaultConfiguration.configuration.newsimg) %}
-    <div class="newsImage" style="background: #4376fc"> {# style="background: url(data:image/file;base64,{{newsimg['base64']}});" #}
+    <div class="newsImage"  style="background: url(data:image/file;base64,{{newsimg['base64']}});">
         {% else %}
         <div  style=" margin-top: 50px; padding: 25px; background: url(https://images.unsplash.com/photo-1563122089-71f56e4e8d06?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80) !important; background-size: cover !important;">
             {% endif %}
