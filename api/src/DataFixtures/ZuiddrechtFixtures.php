@@ -509,7 +509,6 @@ class ZuiddrechtFixtures extends Fixture
         $configuration->setName('Dashboard');
         $configuration->setDescription('Dashboard van Zuid-Drecht');
         $configuration->setOrganization($organization);
-        $configuration->setApplication($application);
         $configuration->setConfiguration(
             [
                 'sideMenu'          => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'915d5b04-c050-4b18-8f72-a068c2708883']),
