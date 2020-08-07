@@ -43,7 +43,7 @@ class WestfrieslandFixtures extends Fixture
         $westfriesland = new Organization();
         $westfriesland->setName('Westfriesland');
         $westfriesland->setDescription('Samenwerkingsverband Westfriesland');
-        $westfriesland->setRsin('1234');
+        $westfriesland->setRsin('999990482');
         $westfriesland->setContact($this->commonGroundService->cleanUrl(['component' => 'cc', 'type' => 'organizations', 'id' => 'b294b0ae-fce4-48d3-bf50-eab1f82ddd7f']));
         $manager->persist($westfriesland);
         $westfriesland->setId($id);
