@@ -43,7 +43,7 @@ class WestfrieslandFixtures extends Fixture
         $westfriesland = new Organization();
         $westfriesland->setName('Westfriesland');
         $westfriesland->setDescription('Samenwerkingsverband Westfriesland');
-        $westfriesland->setRsin('1234');
+        $westfriesland->setRsin('999990482');
         $westfriesland->setContact($this->commonGroundService->cleanUrl(['component' => 'cc', 'type' => 'organizations', 'id' => 'b294b0ae-fce4-48d3-bf50-eab1f82ddd7f']));
         $manager->persist($westfriesland);
         $westfriesland->setId($id);
@@ -235,6 +235,7 @@ class WestfrieslandFixtures extends Fixture
                 'footer2'  => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'e16b153e-de8a-4f24-9886-fd3057ae93de']),
                 'footer3'  => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'f78d6861-783f-4441-82c4-2efcf5af677f']),
                 'footer4'  => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'c62eedef-ba28-4a5d-bdea-2eb9ef250b8e']),
+                'newsGroup'=> ['4'],
             ]
         );
         $manager->persist($configuration);
@@ -412,9 +413,6 @@ class WestfrieslandFixtures extends Fixture
 
         $style->setfavicon($favicon);
         $style->setOrganization($westfriesland);
-
-        $application->setStyle($style);
-        $manager->persist($application);
 
         $manager->persist($westfriesland);
         $manager->persist($favicon);

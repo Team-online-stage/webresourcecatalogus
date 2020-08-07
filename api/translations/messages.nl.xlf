@@ -26,7 +26,7 @@
         <target>inkompleet</target>
       </trans-unit>
       <trans-unit id="7rv2RX5" resname="complete">
-        <source>complete</source>]
+        <source>complete</source>
         <target>kompleet</target>
       </trans-unit>
       <trans-unit id="WBkP_r_" resname="processed">
@@ -40,6 +40,7 @@
       <trans-unit id="UjZ6ZiK" resname="reference">
         <source>reference</source>
         <target>kenmerk</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
