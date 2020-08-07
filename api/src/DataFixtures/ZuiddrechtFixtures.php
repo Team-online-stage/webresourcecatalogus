@@ -491,21 +491,20 @@ class ZuiddrechtFixtures extends Fixture
 
         $manager->flush();
 
-        // Website
-        $id = Uuid::fromString('1163e443-5f9c-4aa6-802c-c619a14986c9');
-        $application = new Application();
-        $application->setName('Dashboard');
-        $application->setDescription('het Dashboard van de gemeente Zuid-Drecht');
-        $application->setDomain('db.zuid-drecht.nl');
-        $application->setOrganization($organization);
-        $application->setStyle($style);
-        $manager->persist($application);
-        $application->setId($id);
-        $manager->persist($application);
-        $manager->flush();
-        $application = $manager->getRepository('App:Application')->findOneBy(['id'=> $id]);
+        $styleDashboard = new Style();
+        $styleDashboard->setName('Zuid-Drecht');
+        $styleDashboard->setDescription('Huistlijl Gemeente Zuid-Drecht');
+        $styleDashboard->setCss(':root {--primary: #CC0000;--primary2: white;--secondary: #3669A5;--secondary2: #FFC926;}
+        .main-title {color: var(--primary2) !important;}.logo-header {background: var(--primary);}.navbar-header
+        {background: var(--primary);}.bg-primary-gradient {background: linear-gradient(-45deg, var(--secondary),
+         var(--secondary2)) !important;}');
+        $styleDashboard->setfavicon($favicon);
+        $styleDashboard->setOrganization($organization);
+        $manager->persist($styleDashboard);
 
-        // Configuratie
+        $manager->flush();
+
+        // Configuratie dashboard
         $configuration = new Configuration();
         $configuration->setName('Dashboard');
         $configuration->setDescription('Dashboard van Zuid-Drecht');
@@ -514,9 +513,25 @@ class ZuiddrechtFixtures extends Fixture
         $configuration->setConfiguration(
             [
                 'sideMenu'          => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'915d5b04-c050-4b18-8f72-a068c2708883']),
+                'userPage'          => '/ud/applications',
             ]
         );
         $manager->persist($configuration);
+
+        // Dashboard
+        $id = Uuid::fromString('1163e443-5f9c-4aa6-802c-c619a14986c9');
+        $application = new Application();
+        $application->setName('Dashboard');
+        $application->setDescription('het Dashboard van de gemeente Zuid-Drecht');
+        $application->setDomain('db.zuid-drecht.nl');
+        $application->setOrganization($organization);
+        $application->getDefaultConfiguration($configuration);
+        $application->setStyle($styleDashboard);
+        $manager->persist($application);
+        $application->setId($id);
+        $manager->persist($application);
+        $manager->flush();
+        $application = $manager->getRepository('App:Application')->findOneBy(['id'=> $id]);
 
         // Configuratie
         $configuration = new Configuration();
@@ -541,6 +556,7 @@ class ZuiddrechtFixtures extends Fixture
                 'colorSchemeMenu'   => 'menuStyle',
                 'hubspotId'         => '6108438',
                 'googleTagId'       => 'G-RHY411XSJN',
+                'newsGroup'         => ['1'],
             ]
         );
         $manager->persist($configuration);

@@ -1,17 +1,17 @@
 <span class="footer__header">Nieuwsbrief</span>
-<form action="#" method="post">
-
-    <div class="input">
-        <label class="input__label" for="naam">Naam</label>
-        <input required="" type="naam" id="naam" class="input__control input__control--text input__control--m">
-    </div>
+<form action="https://conduction.us3.list-manage.com/subscribe/post?u=92dbff3b134c8b2356ddc7ed4&amp;id=265fa0c5eb" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
 
     <div class="input">
         <label class="input__label" for="email">E-mailadres</label>
-        <input required="" type="email" id="email" class="input__control input__control--text input__control--m">
-    </div>
+        <input required type="email" value="" name="EMAIL" class="required email input__control input__control--text input__control--m" id="mce-EMAIL">
 
+    </div>
     <div class="input">
         <button type="submit" class="btn btn--primary">Inschrijven</button>
     </div>
+    {% if application.defaultConfiguration.configuration.newsGroups is defined and application.defaultConfiguration.configuration.newsGroups is not empty %}
+        {% for group in application.defaultConfiguration.configuration.newsGroups %}
+            <input type="hidden" value="{{ group }}" name="group[25353][{{ group }}]">
+        {% endfor %}
+    {% endif %}
 </form>
