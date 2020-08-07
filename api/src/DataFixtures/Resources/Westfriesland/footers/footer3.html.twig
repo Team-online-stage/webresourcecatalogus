@@ -4,13 +4,20 @@
     <div class="input">
         <label class="input__label" for="email">E-mailadres</label>
         <input required type="email" value="" name="EMAIL" class="required email input__control input__control--text input__control--m" id="mce-EMAIL">
-
+    </div>
+    <div class="input">
+        <label class="input__label" for="email">{{ 'first name'|trans|capitalize }}</label>
+        <input required type="text" value="" name="FNAME" class="required email input__control input__control--text input__control--m" id="mce-EMAIL">
+    </div>
+    <div class="input">
+        <label class="input__label" for="email">{{ 'last name'|trans|capitalize }}</label>
+        <input required type="text" value="" name="LNAME" class="required email input__control input__control--text input__control--m" id="mce-EMAIL">
     </div>
     <div class="input">
         <button type="submit" class="btn btn--primary">Inschrijven</button>
     </div>
-    {% if application.defaultConfiguration.configuration.newsGroups is defined and application.defaultConfiguration.configuration.newsGroups is not empty %}
-        {% for group in application.defaultConfiguration.configuration.newsGroups %}
+    {% if application.defaultConfiguration.configuration.newsGroup is defined and application.defaultConfiguration.configuration.newsGroup is not empty %}
+        {% for group in application.defaultConfiguration.configuration.newsGroup %}
             <input type="hidden" value="{{ group }}" name="group[25353][{{ group }}]">
         {% endfor %}
     {% endif %}
