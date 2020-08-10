@@ -43,7 +43,7 @@ class WestfrieslandFixtures extends Fixture
         $westfriesland = new Organization();
         $westfriesland->setName('Westfriesland');
         $westfriesland->setDescription('Samenwerkingsverband Westfriesland');
-        $westfriesland->setRsin('1234');
+        $westfriesland->setRsin('999990482');
         $westfriesland->setContact($this->commonGroundService->cleanUrl(['component' => 'cc', 'type' => 'organizations', 'id' => 'b294b0ae-fce4-48d3-bf50-eab1f82ddd7f']));
         $manager->persist($westfriesland);
         $westfriesland->setId($id);
@@ -128,6 +128,18 @@ class WestfrieslandFixtures extends Fixture
         $manager->flush();
         $favicon = $manager->getRepository('App:Image')->findOneBy(['id' => $id]);
 
+        $id = Uuid::fromString('2c60657d-a728-4e71-897d-ac407c134e10');
+        $headerimg = new Image();
+        $headerimg->setName('header image');
+        $headerimg->setBase64(base64_encode(file_get_contents(dirname(__FILE__).'/Resources/Westfriesland/afbeeldingen/westfrieslandheader.jfif', 'r')));
+        $headerimg->setDescription('Zuid-Drecht header');
+        $headerimg->setOrganization($westfriesland);
+        $manager->persist($headerimg);
+        $headerimg->setId($id);
+        $manager->persist($headerimg);
+        $manager->flush();
+        $headerimg = $manager->getRepository('App:Image')->findOneBy(['id'=> $id]);
+
         $logo = new Image();
         $logo->setName('West-Friesland Logo');
         $logo->setDescription('West-Friesland VNG');
@@ -196,6 +208,24 @@ class WestfrieslandFixtures extends Fixture
             .nav__item a {
                 background: var(--primary)
             }
+
+            @media only screen and (min-width: 1376px){
+                .headerImage {
+                    margin-top: -20px;
+                    height: 500px;
+                    background: none;
+                    background-size: 100% auto !important;
+                    background-position: center !important;
+                }
+            }
+
+        .headerImage {
+            margin-top: -20px;
+            height: 500px;
+            background: none;
+            background-size: cover !important;
+            background-position: center !important;
+        }
         ');
 
         $stylePan->setfavicon($favicon);
@@ -235,6 +265,7 @@ class WestfrieslandFixtures extends Fixture
                 'footer2'  => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'e16b153e-de8a-4f24-9886-fd3057ae93de']),
                 'footer3'  => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'f78d6861-783f-4441-82c4-2efcf5af677f']),
                 'footer4'  => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'c62eedef-ba28-4a5d-bdea-2eb9ef250b8e']),
+                'headerimg'=> $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'2c60657d-a728-4e71-897d-ac407c134e10']),
                 'newsGroup'=> ['4'],
             ]
         );
@@ -413,9 +444,6 @@ class WestfrieslandFixtures extends Fixture
 
         $style->setfavicon($favicon);
         $style->setOrganization($westfriesland);
-
-        $application->setStyle($style);
-        $manager->persist($application);
 
         $manager->persist($westfriesland);
         $manager->persist($favicon);
