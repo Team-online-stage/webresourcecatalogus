@@ -236,6 +236,7 @@ class WestfrieslandFixtures extends Fixture
                 'footer3'  => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'f78d6861-783f-4441-82c4-2efcf5af677f']),
                 'footer4'  => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'c62eedef-ba28-4a5d-bdea-2eb9ef250b8e']),
                 'newsGroup'=> ['4'],
+                'userPage' => '/persoonlijk',
             ]
         );
         $manager->persist($configuration);
@@ -312,6 +313,22 @@ class WestfrieslandFixtures extends Fixture
         $groupPages->setName('Pages');
         $groupPages->setDescription('Webpages that are presented to visitors');
         $manager->persist($groupPages);
+
+        // Persoonlijk
+        $template = new Template();
+        $template->setName('Persoonlijk');
+        $template->setDescription('persoonlijke overzichts pagine');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/persoonlijk.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('persoonlijk');
+        $slug->setSlug('persoonlijk');
+        $manager->persist($slug);
 
         // Pages
         $id = Uuid::fromString('097ea88e-beb6-476e-a978-d07650f03d97');

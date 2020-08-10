@@ -1380,6 +1380,7 @@ class ConductionFixtures extends Fixture
                 'home'          => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'6e01b18c-6751-4e11-9430-c69f629a6760']),
                 'hubspotId'     => '6108438',
                 'googleTagId'   => 'G-H2T0ZECZYM',
+                'userPage'      => '/persoonlijk',
             ]
         );
         $manager->persist($configuration);
@@ -1421,6 +1422,22 @@ class ConductionFixtures extends Fixture
         $groupPages->setName('Pages');
         $groupPages->setDescription('Webpages that are presented to visitors');
         $manager->persist($groupPages);
+
+        // Persoonlijk
+        $template = new Template();
+        $template->setName('Persoonlijk');
+        $template->setDescription('persoonlijke overzichts pagine');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/persoonlijk.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($zaakOnline);
+        $slug->setName('persoonlijk');
+        $slug->setSlug('persoonlijk');
+        $manager->persist($slug);
 
         // Pages
         $id = Uuid::fromString('6e01b18c-6751-4e11-9430-c69f629a6760');
@@ -1508,6 +1525,7 @@ class ConductionFixtures extends Fixture
                 'home'          => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'83b365c9-33fe-4b89-99d0-d77ef676adb1']),
                 'hubspotId'     => '6108438',
                 'googleTagId'   => 'G-X24NEYKVXK',
+                'userPage'      => '/persoonlijk',
             ]
         );
         $manager->persist($configuration);
@@ -1549,6 +1567,22 @@ class ConductionFixtures extends Fixture
         $groupPages->setName('Pages');
         $groupPages->setDescription('Webpages that are presented to visitors');
         $manager->persist($groupPages);
+
+        // Persoonlijk
+        $template = new Template();
+        $template->setName('Persoonlijk');
+        $template->setDescription('persoonlijke overzichts pagine');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/persoonlijk.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($commongroundNu);
+        $slug->setName('persoonlijk');
+        $slug->setSlug('persoonlijk');
+        $manager->persist($slug);
 
         // Pages
         $id = Uuid::fromString('83b365c9-33fe-4b89-99d0-d77ef676adb1');
@@ -1625,6 +1659,7 @@ class ConductionFixtures extends Fixture
                 'home'          => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'cdc7b532-2084-470e-9032-935bb8e5bde4']),
                 'hubspotId'     => '6108438',
                 'googleTagId'   => 'G-FC090SHG18',
+                'userPage'      => '/persoonlijk',
             ]
         );
         $manager->persist($configuration);
@@ -1666,6 +1701,22 @@ class ConductionFixtures extends Fixture
         $groupPages->setName('Pages');
         $groupPages->setDescription('Webpages that are presented to visitors');
         $manager->persist($groupPages);
+
+        // Persoonlijk
+        $template = new Template();
+        $template->setName('Persoonlijk');
+        $template->setDescription('persoonlijke overzichts pagine');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/persoonlijk.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($commongroundDev);
+        $slug->setName('persoonlijk');
+        $slug->setSlug('persoonlijk');
+        $manager->persist($slug);
 
         // Pages
         $id = Uuid::fromString('cdc7b532-2084-470e-9032-935bb8e5bde4');
@@ -2160,6 +2211,7 @@ class ConductionFixtures extends Fixture
                 'colorSchemeMenu'   => 'menuStyle',
                 'hubspotId'         => '6108438',
                 'googleTagId'       => 'G-2PYCJ13YC4',
+                'userPage'          => '/persoonlijk',
             ]
         );
         $manager->persist($configuration);
@@ -2284,6 +2336,38 @@ class ConductionFixtures extends Fixture
         $groupPages->setName('Pages');
         $groupPages->setDescription('Webpages that are presented to visitors');
         $manager->persist($groupPages);
+
+        // Persoonlijk
+        $template = new Template();
+        $template->setName('Persoonlijk');
+        $template->setDescription('persoonlijke overzichts pagine');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/persoonlijk.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($conduction);
+        $slug->setName('persoonlijk');
+        $slug->setSlug('persoonlijk');
+        $manager->persist($slug);
+
+        // Persoonlijk
+        $template = new Template();
+        $template->setName('Persoonlijk');
+        $template->setDescription('persoonlijke overzichts pagine');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/persoonlijk.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($stage);
+        $slug->setName('persoonlijk');
+        $slug->setSlug('persoonlijk');
+        $manager->persist($slug);
 
         // Pages
         $id = Uuid::fromString('6079cc7d-7b69-4db3-ad17-6bf972cca6a2');

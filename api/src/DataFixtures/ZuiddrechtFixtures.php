@@ -556,6 +556,7 @@ class ZuiddrechtFixtures extends Fixture
                 'hubspotId'         => '6108438',
                 'googleTagId'       => 'G-RHY411XSJN',
                 'newsGroup'         => ['1'],
+                'userPage'          => '/persoonlijk',
             ]
         );
         $manager->persist($configuration);
@@ -683,6 +684,22 @@ class ZuiddrechtFixtures extends Fixture
         $groupPages->setName('Pages');
         $groupPages->setDescription('Webpages that are presented to visitors');
         $manager->persist($groupPages);
+
+        // Persoonlijk
+        $template = new Template();
+        $template->setName('Persoonlijk');
+        $template->setDescription('persoonlijke overzichts pagine');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/persoonlijk.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('persoonlijk');
+        $slug->setSlug('persoonlijk');
+        $manager->persist($slug);
 
         // Pages
         $id = Uuid::fromString('163f8616-abb7-411d-b7b2-0d11c6bd7dca');
