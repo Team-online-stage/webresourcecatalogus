@@ -2348,7 +2348,7 @@ class ConductionFixtures extends Fixture
 
         $slug = new Slug();
         $slug->setTemplate($template);
-        $slug->setApplication($conduction);
+        $slug->setApplication($stage);
         $slug->setName('persoonlijk');
         $slug->setSlug('persoonlijk');
         $manager->persist($slug);
