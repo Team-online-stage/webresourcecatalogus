@@ -211,8 +211,7 @@ class WestfrieslandFixtures extends Fixture
 
             @media only screen and (min-width: 1376px){
                 .headerImage {
-                    margin-top: -20px;
-                    height: 500px;
+                    height: 400px;
                     background: none;
                     background-size: 100% auto !important;
                     background-position: center !important;
@@ -220,8 +219,7 @@ class WestfrieslandFixtures extends Fixture
             }
 
         .headerImage {
-            margin-top: -20px;
-            height: 500px;
+            height: 400px;
             background: none;
             background-size: cover !important;
             background-position: center !important;
