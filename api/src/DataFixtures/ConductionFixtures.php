@@ -1828,7 +1828,7 @@ class ConductionFixtures extends Fixture
         $style = new Style();
         $style->setName('stage');
         $style->setDescription('Huistlijl stage');
-        $style->setCss(':root {--primary: #ffbc2c;--primary2: black;--secondary: #ffc446;--secondary2: #ffc446;}
+        $style->setCss(':root {--primary: #0047BB;--primary2: black;--secondary: #ffc446;--secondary2: #ffc446;}
         .main-title {color: var(--primary2) !important;}.logo-header {background: var(--primary);}.navbar-header
         {background: var(--primary);}.bg-primary-gradient {background: linear-gradient(-45deg, var(--secondary),
          var(--secondary2)) !important;}
@@ -1884,6 +1884,7 @@ class ConductionFixtures extends Fixture
                 display: block;
                 margin-top: 50px;
                 padding: 25px;
+
                 margin-bottom: -50px;
                 background: none;
                 background-size: cover !important;
