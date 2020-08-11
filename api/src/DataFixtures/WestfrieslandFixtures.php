@@ -42,7 +42,7 @@ class WestfrieslandFixtures extends Fixture
         $id = Uuid::fromString('d280c4d3-6310-46db-9934-5285ec7d0d5e');
         $westfriesland = new Organization();
         $westfriesland->setName('Westfriesland');
-        $westfriesland->setDescription('Samenwerkingsverband Westfriesland');
+        $westfriesland->setDescription('Westfriese gemeenten Westfriesland');
         $westfriesland->setRsin('999990482');
         $westfriesland->setContact($this->commonGroundService->cleanUrl(['component' => 'cc', 'type' => 'organizations', 'id' => 'b294b0ae-fce4-48d3-bf50-eab1f82ddd7f']));
         $manager->persist($westfriesland);
@@ -147,7 +147,7 @@ class WestfrieslandFixtures extends Fixture
 
         $stylePan = new Style();
         $stylePan->setName('West-Friesland');
-        $stylePan->setDescription('Huistlijl samenwerkingsverband West-Friesland');
+        $stylePan->setDescription('Huistlijl Westfriese gemeenten West-Friesland');
         $stylePan->setCss(':root {--primary: #233A79;--primary2: white;--secondary: #FFC926;--secondary2: #FFC926;}
 
             .header-logo a:before {
@@ -447,7 +447,7 @@ class WestfrieslandFixtures extends Fixture
         // Dashboard
         $style = new Style();
         $style->setName('Dashboard');
-        $style->setDescription('Huistlijl samenwerkingsverband West-Friesland');
+        $style->setDescription('Huistlijl Westfriese gemeenten West-Friesland');
         $style->setCss(':root {--primary: #233A79;--primary2: white;--secondary: #FFC926;--secondary2: #FFC926;}
         .main-title {color: var(--primary2) !important;}.logo-header {background: var(--primary);}.navbar-header
         {background: var(--primary);}.bg-primary-gradient {background: linear-gradient(-45deg, var(--secondary),
