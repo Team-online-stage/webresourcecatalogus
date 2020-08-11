@@ -1526,6 +1526,7 @@ class ConductionFixtures extends Fixture
                 'hubspotId'     => '6108438',
                 'googleTagId'   => 'G-X24NEYKVXK',
                 'userPage'      => '/persoonlijk',
+                'header'          => false,
             ]
         );
         $manager->persist($configuration);
@@ -1660,6 +1661,7 @@ class ConductionFixtures extends Fixture
                 'hubspotId'     => '6108438',
                 'googleTagId'   => 'G-FC090SHG18',
                 'userPage'      => '/persoonlijk',
+                'header'          => false,
             ]
         );
         $manager->persist($configuration);
@@ -1904,10 +1906,6 @@ class ConductionFixtures extends Fixture
                 display: block;
             }
         }
-
-
-
-
 
         @media only screen and (min-width: 1376px){
             .headerImage {
@@ -2212,6 +2210,7 @@ class ConductionFixtures extends Fixture
                 'hubspotId'         => '6108438',
                 'googleTagId'       => 'G-2PYCJ13YC4',
                 'userPage'          => '/persoonlijk',
+                'header'          => false,
             ]
         );
         $manager->persist($configuration);

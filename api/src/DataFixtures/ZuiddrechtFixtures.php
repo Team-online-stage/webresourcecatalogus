@@ -557,6 +557,7 @@ class ZuiddrechtFixtures extends Fixture
                 'googleTagId'       => 'G-RHY411XSJN',
                 'newsGroup'         => ['1'],
                 'userPage'          => '/persoonlijk',
+                'header'          => true,
             ]
         );
         $manager->persist($configuration);
