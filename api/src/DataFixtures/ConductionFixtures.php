@@ -1526,6 +1526,7 @@ class ConductionFixtures extends Fixture
                 'hubspotId'     => '6108438',
                 'googleTagId'   => 'G-X24NEYKVXK',
                 'userPage'      => '/persoonlijk',
+                'header'          => false,
             ]
         );
         $manager->persist($configuration);
@@ -1660,6 +1661,7 @@ class ConductionFixtures extends Fixture
                 'hubspotId'     => '6108438',
                 'googleTagId'   => 'G-FC090SHG18',
                 'userPage'      => '/persoonlijk',
+                'header'          => false,
             ]
         );
         $manager->persist($configuration);
@@ -1826,25 +1828,21 @@ class ConductionFixtures extends Fixture
         $style = new Style();
         $style->setName('stage');
         $style->setDescription('Huistlijl stage');
-        $style->setCss(':root {--primary: #ffbc2c;--primary2: black;--secondary: #ffc446;--secondary2: #ffc446;}
-        .main-title {color: var(--primary2) !important;}.logo-header {background: var(--primary);}.navbar-header
-        {background: var(--primary);}.bg-primary-gradient {background: linear-gradient(-45deg, var(--secondary),
-         var(--secondary2)) !important;}
-
-        .processen i, span {
-            color: black;
+        $style->setCss(':
+        root {
+        --primary: #0047BB;
+        --primary2: white;
+        --secondary: #0047BB;
+        --secondary2: white;
         }
 
         a {
             text-decoration: none;
         }
 
-        .footer__nav a {
-            color: black !important;
-        }
 
-        .footer__nav {
-            color: black !important;
+        .processen i, span {
+            color: black;
         }
 
         a:focus:not(.btn):not(.pagination__link):not(.nav__link){
@@ -1870,7 +1868,7 @@ class ConductionFixtures extends Fixture
             background: none;
             background-size: cover !important;
             background-position: center !important;
-            }
+        }
 
         #news-1, #news-2, #news-3, #news-4 {
             display: none;
@@ -1882,6 +1880,7 @@ class ConductionFixtures extends Fixture
                 display: block;
                 margin-top: 50px;
                 padding: 25px;
+
                 margin-bottom: -50px;
                 background: none;
                 background-size: cover !important;
@@ -1904,10 +1903,6 @@ class ConductionFixtures extends Fixture
                 display: block;
             }
         }
-
-
-
-
 
         @media only screen and (min-width: 1376px){
             .headerImage {
@@ -2076,60 +2071,28 @@ class ConductionFixtures extends Fixture
             }
         }
 
-
-        .header-logo a:after{
-            background-image: none;
-        }
-
         .flex-center {
             display: flex;
             justify-content: center;
             align-items: center;
         }
 
-        .footerStyle {
-            background-color: #FFBC2C;
-            color: black;
-        }
-
-        .nav__link {
-            color: black !important;
-        }
-
-        .nav__link--parent {
-            color: black !important;
-        }
-
-        .nav__submenu {
-            background-color: #FFBC2C;
-        }
-
-        .top-nav-autoresize .nav__link:hover {
-            background-color: #ffc446;
-            color: black;
-        }
-
-        .menuStyle {
-            background-color: #ffbc2c;
-            color: black;
-        }
-
         .newsCard {
-        margin: 10px auto;
-        width: 240px;
-        background-color: white;
-        padding: 15px;
-        height:400px;
+            margin: 10px auto;
+            width: 240px;
+            background-color: white;
+            padding: 15px;
+            height:400px;
         }
 
         .contact {
-        background-color: #ffbc2c;
-        float:left;
-        width: 100%;
-        padding-left: 10px;
-        padding-right: 10px;
-        padding-top: 10px;
-        margin-left: 5px;
+            background-color: #ffbc2c;
+            float:left;
+            width: 100%;
+            padding-left: 10px;
+            padding-right: 10px;
+            padding-top: 10px;
+            margin-left: 5px;
         }
 
         @media only screen and (min-width: 960px) {
@@ -2212,6 +2175,7 @@ class ConductionFixtures extends Fixture
                 'hubspotId'         => '6108438',
                 'googleTagId'       => 'G-2PYCJ13YC4',
                 'userPage'          => '/persoonlijk',
+                'header'          => false,
             ]
         );
         $manager->persist($configuration);

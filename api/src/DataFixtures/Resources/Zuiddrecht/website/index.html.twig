@@ -6,10 +6,10 @@
 
 {% if application is defined and application.defaultConfiguration.configuration.headerimg is defined and application.defaultConfiguration.configuration.headerimg is not empty  %}
     {% set headerimg = commonground_resource(application.defaultConfiguration.configuration.headerimg) %}
-<div class="row content-background background--hemelblauw headerImage" style="background: url(data:image/file;base64,{{headerimg['base64']}})">
+    <div class="row content-background background--hemelblauw headerImage" style="background: url(data:image/file;base64,{{headerimg['base64']}})">
     {% else %}
     <div class="row content-background background--hemelblauw" style="margin-top: -20px; height: 500px; margin-top: 0px; background: url(https://images.unsplash.com/photo-1547499681-28dece7dba00?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80) !important; background-size: cover !important;">
-        {% endif %}
+    {% endif %}
         <div class="container" style="height: 500px; position: relative;">
             <div  style=" position: absolute; bottom: 15px; right: 15px; padding: 15px; margin: 0; background-color: #3669A5">
                 <h1>Nieuws</h1>
@@ -25,6 +25,7 @@
             </div>
         </div>
     </div>
+
     <div class="container" style="margin-top: 50px; margin-bottom: 0;">
         <div class="processen">
             <ul>
@@ -72,61 +73,62 @@
                 </li>
             </ul>
         </div>
-                <section class="contact">
-                    <h1 style="margin-bottom: 1px; ">Contact</h1>
-                    <h4 style="margin-top: 0;">Openingstijden</h4>
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <span>Maandag:</span>
-                        </div>
-                        <div class="col-sm-6">
-                            <span>09:00 - 17:00</span>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <span>Dinsdag:</span>
-                        </div>
-                        <div class="col-sm-6">
-                            <span>09:00 - 17:00</span>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <span>Woensdag:</span>
-                        </div>
-                        <div class="col-sm-6">
-                            <span>09:00 - 17:00</span>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <span>Donderdag:</span>
-                        </div>
-                        <div class="col-sm-6">
-                            <span>09:00 - 21:00</span>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <span>Vrijdag:</span>
-                        </div>
-                        <div class="col-sm-6">
-                            <span>09:00 - 17:00</span>
-                        </div>
-                    </div>
-                    </p>
-                    <p>
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <h4>Telefoon</h4>
-                            <span>14 020</span>
-                        </div>
-                    </div>
-                    <a href="{{ path('app_process_load',{"id":"32293766-8b3a-43ee-9f16-ed67234ac309"}) }}"><button class="btn btn--primary" style="width: 100%;">Maak een afspraak</button></a>
-                    </p>
-                </section>
+        <section class="contact">
+            <h1 style="margin-bottom: 1px; ">Contact</h1>
+            <h4 style="margin-top: 0;">Openingstijden</h4>
+            <div class="row">
+                <div class="col-sm-6">
+                    <span>Maandag:</span>
+                </div>
+                <div class="col-sm-6">
+                    <span>09:00 - 17:00</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <span>Dinsdag:</span>
+                </div>
+                <div class="col-sm-6">
+                    <span>09:00 - 17:00</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <span>Woensdag:</span>
+                </div>
+                <div class="col-sm-6">
+                    <span>09:00 - 17:00</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <span>Donderdag:</span>
+                </div>
+                <div class="col-sm-6">
+                    <span>09:00 - 21:00</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <span>Vrijdag:</span>
+                </div>
+                <div class="col-sm-6">
+                    <span>09:00 - 17:00</span>
+                </div>
+            </div>
+            </p>
+            <p>
+            <div class="row">
+                <div class="col-sm-6">
+                    <h4>Telefoon</h4>
+                    <span>14 020</span>
+                </div>
+            </div>
+            <a href="{{ path('app_process_load',{"id":"32293766-8b3a-43ee-9f16-ed67234ac309"}) }}"><button class="btn btn--primary" style="width: 100%;">Maak een afspraak</button></a>
+            </p>
+        </section>
     </div>
+
     {% if application is defined and application.defaultConfiguration.configuration.newsimg is defined and application.defaultConfiguration.configuration.newsimg is not empty  %}
     {% set newsimg = commonground_resource(application.defaultConfiguration.configuration.newsimg) %}
     <div class="newsImage"  style="background: url(data:image/file;base64,{{newsimg['base64']}});">
@@ -151,4 +153,5 @@
                 {% endif %}
             </div>
         </div>
+    </div>
 {% endblock %}
