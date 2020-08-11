@@ -2,7 +2,7 @@
 
 {% extends 'base.html.twig' %}
 
-{% block content %}
+{% block container %}
 
 {% if application is defined and application.defaultConfiguration.configuration.headerimg is defined and application.defaultConfiguration.configuration.headerimg is not empty  %}
     {% set headerimg = commonground_resource(application.defaultConfiguration.configuration.headerimg) %}

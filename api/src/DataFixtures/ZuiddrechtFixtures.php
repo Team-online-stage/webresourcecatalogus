@@ -159,6 +159,10 @@ class ZuiddrechtFixtures extends Fixture
             }
         }
 
+
+
+
+
         @media only screen and (min-width: 1376px){
             .headerImage {
                 margin-top: -20px;
@@ -473,8 +477,12 @@ class ZuiddrechtFixtures extends Fixture
             width: 100%;
             color: white;
         }
-        ');*/
 
+
+
+        ');
+        /*
+         *
         $style = new Style();
         $style->setName('Zuid-Drecht');
         $style->setDescription('Huistlijl Gemeente Zuid-Drecht');
@@ -484,7 +492,7 @@ class ZuiddrechtFixtures extends Fixture
         --primary2: white;
         --secondary: #3669A5;
         --secondary2: white;
-        }');
+        }');*/
 
         $style->setfavicon($favicon);
         $style->setOrganization($organization);
