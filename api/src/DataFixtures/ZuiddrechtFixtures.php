@@ -89,6 +89,7 @@ class ZuiddrechtFixtures extends Fixture
         $logo->setDescription('Zuid-Drecht VNG');
         $logo->setOrganization($organization);
 
+        /*
         $style = new Style();
         $style->setName('Zuid-Drecht');
         $style->setDescription('Huistlijl Gemeente Zuid-Drecht');
@@ -157,10 +158,6 @@ class ZuiddrechtFixtures extends Fixture
                 display: block;
             }
         }
-
-
-
-
 
         @media only screen and (min-width: 1376px){
             .headerImage {
@@ -476,10 +473,18 @@ class ZuiddrechtFixtures extends Fixture
             width: 100%;
             color: white;
         }
+        ');*/
 
-
-
-        ');
+        $style = new Style();
+        $style->setName('Zuid-Drecht');
+        $style->setDescription('Huistlijl Gemeente Zuid-Drecht');
+        $style->setCss('
+        root {
+        --primary: #CC0000;
+        --primary2: white;
+        --secondary: #3669A5;
+        --secondary2: white;
+        }');
 
         $style->setfavicon($favicon);
         $style->setOrganization($organization);
@@ -494,10 +499,14 @@ class ZuiddrechtFixtures extends Fixture
         $styleDashboard = new Style();
         $styleDashboard->setName('Zuid-Drecht');
         $styleDashboard->setDescription('Huistlijl Gemeente Zuid-Drecht');
-        $styleDashboard->setCss(':root {--primary: #CC0000;--primary2: white;--secondary: #3669A5;--secondary2: #FFC926;}
-        .main-title {color: var(--primary2) !important;}.logo-header {background: var(--primary);}.navbar-header
-        {background: var(--primary);}.bg-primary-gradient {background: linear-gradient(-45deg, var(--secondary),
-         var(--secondary2)) !important;}');
+        $styleDashboard->setCss('
+        root {
+        --primary: #CC0000;
+        --primary2: white;
+        --secondary: #3669A5;
+        --secondary2: white;
+        }');
+
         $styleDashboard->setfavicon($favicon);
         $styleDashboard->setOrganization($organization);
         $manager->persist($styleDashboard);
