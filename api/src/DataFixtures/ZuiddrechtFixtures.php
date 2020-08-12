@@ -490,7 +490,7 @@ class ZuiddrechtFixtures extends Fixture
                 --primary: #CC0000;
                 --primary-color: white;
                 --secondary: #3669A5;
-                --secondary-color: #FFC926;
+                --secondary-color: white;
 
                 --menu: #CC0000;
                 --menu-over: #3669A5;
