@@ -480,19 +480,24 @@ class ZuiddrechtFixtures extends Fixture
 
 
 
-        ');
-        /*
-         *
+        ');*/
+
         $style = new Style();
         $style->setName('Zuid-Drecht');
         $style->setDescription('Huistlijl Gemeente Zuid-Drecht');
         $style->setCss('
-        root {
-        --primary: #CC0000;
-        --primary2: white;
-        --secondary: #3669A5;
-        --secondary2: white;
-        }');*/
+        :root {
+                --primary: #CC0000;
+                --primary2: white;
+                --secondary: #3669A5;
+                --secondary2: #FFC926;
+
+                --menu: #CC0000;
+                --menu-over: #3669A5;
+                --menu-color: white;
+                --footer: #3669A5;
+                --footer-color: white;
+         }');
 
         $style->setfavicon($favicon);
         $style->setOrganization($organization);
