@@ -515,9 +515,15 @@ class ZuiddrechtFixtures extends Fixture
         $styleDashboard->setCss('
         root {
         --primary: #CC0000;
-        --primary2: white;
+        --primary-color: white;
         --secondary: #3669A5;
-        --secondary2: white;
+        --secondary-color: #FFC926;
+
+        --menu: #CC0000;
+        --menu-over: #3669A5;
+        --menu-color: white;
+        --footer: #3669A5;
+        --footer-color: white;
         }');
 
         $styleDashboard->setfavicon($favicon);
