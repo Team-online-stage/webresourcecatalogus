@@ -488,9 +488,9 @@ class ZuiddrechtFixtures extends Fixture
         $style->setCss('
         :root {
                 --primary: #CC0000;
-                --primary2: white;
+                --primary-color: white;
                 --secondary: #3669A5;
-                --secondary2: #FFC926;
+                --secondary-color: #FFC926;
 
                 --menu: #CC0000;
                 --menu-over: #3669A5;
