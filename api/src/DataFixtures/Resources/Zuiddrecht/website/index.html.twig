@@ -139,7 +139,8 @@
         </div><!-- /.row -->
     </div><!-- /.container -->
 
-    <div class="row background--primary background--image" style="padding-top: 20px">
+    {% set newsimg = commonground_resource(application.defaultConfiguration.configuration.newsimg) %}
+    <div class="row background--primary background--image" style="padding-top: 20px; background: url(data:image/file;base64,{{newsimg['base64']}})">
         <div class="container">
             <div class="col-md-12 no-padding">
                 <ul class="list list--card">
