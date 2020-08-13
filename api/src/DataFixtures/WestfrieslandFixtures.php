@@ -377,7 +377,6 @@ class WestfrieslandFixtures extends Fixture
         $manager->persist($template);
         $manager->flush();
 
-
         $id = Uuid::fromString('3807993a-ed98-4570-8a05-09c9454bcac5');
         $template = new Template();
         $template->setName('HO Akte Grafrecht');
