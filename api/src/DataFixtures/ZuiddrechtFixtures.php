@@ -512,7 +512,7 @@ class ZuiddrechtFixtures extends Fixture
         $styleDashboard = new Style();
         $styleDashboard->setName('dashboard');
         $styleDashboard->setDescription('Huistlijl Gemeente Zuid-Drecht');
-        $style->setCss(':root {--primary: #CC0000;--primary2: white;--secondary: #FFC926;--secondary2: #FFC926;}.main-title
+        $styleDashboard->setCss(':root {--primary: #CC0000;--primary2: white;--secondary: #FFC926;--secondary2: #FFC926;}.main-title
     	{color: var(--primary2) !important;}.logo-header {background: var(--primary);}.navbar-header {background: var(--primary);}
     	.bg-primary-gradient {background: linear-gradient(-45deg, var(--secondary), var(--secondary2)) !important;}');
         $styleDashboard->setfavicon($favicon);
