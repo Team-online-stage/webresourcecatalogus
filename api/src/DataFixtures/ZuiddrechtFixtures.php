@@ -751,6 +751,21 @@ class ZuiddrechtFixtures extends Fixture
         $slug->setSlug('home');
         $manager->persist($slug);
 
+        $id = Uuid::fromString('9a974240-adce-4a47-a3e6-52c2e81e35ea');
+        $template = new Template();
+        $template->setName('HO Akte Grafrecht');
+        $template->setDescription('HO Akte Grafrecht document');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Documents/HO_Akte_Grafrecht.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
+
         $id = Uuid::fromString('fc5cef2d-c64d-4cfc-ac8c-da0ea0c66063');
         $template = new Template();
         $template->setName('SubPage');

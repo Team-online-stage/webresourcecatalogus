@@ -384,6 +384,21 @@ class WestfrieslandFixtures extends Fixture
 
         $manager->flush();
 
+        $id = Uuid::fromString('3807993a-ed98-4570-8a05-09c9454bcac5');
+        $template = new Template();
+        $template->setName('HO Akte Grafrecht');
+        $template->setDescription('HO Akte Grafrecht document');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Documents/HO_Akte_Grafrecht.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
+
         $id = Uuid::fromString('9e4130de-b2d7-481c-8681-87b2a174c8ae');
         $template = new Template();
         $template->setName('footer1');
