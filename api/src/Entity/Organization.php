@@ -276,6 +276,9 @@ class Organization
         return $this;
     }
 
+    /**
+     * @return Collection|Style[]
+     */
     public function getStyles(): ?Collection
     {
         return $this->styles;
