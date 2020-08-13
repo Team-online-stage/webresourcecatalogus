@@ -510,22 +510,16 @@ class ZuiddrechtFixtures extends Fixture
         $manager->flush();
 
         $styleDashboard = new Style();
-        $styleDashboard->setName('Zuid-Drecht');
+        $styleDashboard->setName('dashboard');
         $styleDashboard->setDescription('Huistlijl Gemeente Zuid-Drecht');
-        $styleDashboard->setCss('
-        root {
-        --primary: #CC0000;
-        --primary-color: white;
-        --secondary: #3669A5;
-        --secondary-color: #FFC926;
-
-        --menu: #CC0000;
-        --menu-over: #3669A5;
-        --menu-color: white;
-        --footer: #3669A5;
-        --footer-color: white;
-        }');
-
+        $style->setCss(':root {--primary: #CC0000;--primary2: white;--secondary: #FFC926;--secondary2: #FFC926;}
+        .main-title {color: var(--primary2) !important;}.logo-header {background: var(--primary);}.navbar-header
+        {background: var(--primary);}.bg-primary-gradient {background: linear-gradient(-45deg, var(--secondary),
+         var(--secondary2)) !important;} #docs-nav {background: var(--primary)} #footer {background: var(--primary)}
+          .begraaf-card {background: var(--primary); text-align:center; padding: 20px !important; margin-bottom: 75px; }
+          .begraaf-card:active .begraaf-card:visited {background var(--primary) !important}
+          .header-logo{text-align: left !important; padding: 15px 0 5px 0px} .top-nav-autoresize .nav__link:hover {background: var(--primary)}
+          .nav__item a {background: var(--primary)}');
         $styleDashboard->setfavicon($favicon);
         $styleDashboard->addOrganization($organization);
         $manager->persist($styleDashboard);
