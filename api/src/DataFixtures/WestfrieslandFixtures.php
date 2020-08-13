@@ -69,7 +69,6 @@ class WestfrieslandFixtures extends Fixture
         $manager->persist($style);
         $manager->flush();
 
-
         // West-Friesland
         $id = Uuid::fromString('d280c4d3-6310-46db-9934-5285ec7d0d5e');
         $westfriesland = new Organization();
@@ -148,8 +147,6 @@ class WestfrieslandFixtures extends Fixture
         $manager->persist($medemblik);
         $manager->flush();
         $medemblik = $manager->getRepository('App:Organization')->findOneBy(['id' => $id]);
-
-
 
         // SED
         $id = Uuid::fromString('7033eeb4-5c77-4d88-9f40-303b538f176f');
