@@ -159,6 +159,10 @@ class ZuiddrechtFixtures extends Fixture
             }
         }
 
+
+
+
+
         @media only screen and (min-width: 1376px){
             .headerImage {
                 margin-top: -20px;
@@ -473,18 +477,27 @@ class ZuiddrechtFixtures extends Fixture
             width: 100%;
             color: white;
         }
+
+
+
         ');*/
 
         $style = new Style();
         $style->setName('Zuid-Drecht');
         $style->setDescription('Huistlijl Gemeente Zuid-Drecht');
         $style->setCss('
-        root {
-        --primary: #CC0000;
-        --primary2: white;
-        --secondary: #3669A5;
-        --secondary2: white;
-        }');
+        :root {
+                --primary: #CC0000;
+                --primary-color: white;
+                --secondary: #3669A5;
+                --secondary-color: white;
+
+                --menu: #CC0000;
+                --menu-over: #3669A5;
+                --menu-color: white;
+                --footer: #3669A5;
+                --footer-color: white;
+         }');
 
         $style->setfavicon($favicon);
         $style->setOrganization($organization);
@@ -502,9 +515,15 @@ class ZuiddrechtFixtures extends Fixture
         $styleDashboard->setCss('
         root {
         --primary: #CC0000;
-        --primary2: white;
+        --primary-color: white;
         --secondary: #3669A5;
-        --secondary2: white;
+        --secondary-color: #FFC926;
+
+        --menu: #CC0000;
+        --menu-over: #3669A5;
+        --menu-color: white;
+        --footer: #3669A5;
+        --footer-color: white;
         }');
 
         $styleDashboard->setfavicon($favicon);
@@ -560,8 +579,6 @@ class ZuiddrechtFixtures extends Fixture
                 'about'             => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'template_groups', 'id'=>'6b243aa1-5ae6-4aeb-93d5-2f509fb34cef']),
                 'newsimg'           => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'0e5b1531-4abb-4704-9bd3-feeb94717521']),
                 'headerimg'         => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'ff3ca823-234f-4874-9ee6-1067d47e4391']),
-                'colorSchemeFooter' => 'footerStyle',
-                'colorSchemeMenu'   => 'menuStyle',
                 'hubspotId'         => '6108438',
                 'googleTagId'       => 'G-RHY411XSJN',
                 'newsGroup'         => ['1'],

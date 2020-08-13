@@ -2,156 +2,167 @@
 
 {% extends 'base.html.twig' %}
 
-{% block content %}
+{% block container %}
 
-{% if application is defined and application.defaultConfiguration.configuration.headerimg is defined and application.defaultConfiguration.configuration.headerimg is not empty  %}
     {% set headerimg = commonground_resource(application.defaultConfiguration.configuration.headerimg) %}
-    <div class="row content-background background--hemelblauw headerImage" style="background: url(data:image/file;base64,{{headerimg['base64']}})">
-    {% else %}
-    <div class="row content-background background--hemelblauw" style="margin-top: -20px; height: 500px; margin-top: 0px; background: url(https://images.unsplash.com/photo-1547499681-28dece7dba00?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80) !important; background-size: cover !important;">
-    {% endif %}
-        <div class="container" style="height: 500px; position: relative;">
-            <div  style=" position: absolute; bottom: 15px; right: 15px; padding: 15px; margin: 0; background-color: #3669A5">
-                <h1>Nieuws</h1>
-                <ul class="list list--links list--chevrons">
-                    {% if application.defaultConfiguration.configuration.nieuws is defined %}
-                        {% set nieuws = commonground_resource(application.defaultConfiguration.configuration.nieuws) %}
-                        {% set templates = commonground_resource_list({'component': 'wrc', 'type': 'templates'},{'templateGroups.id':nieuws.id,'limit':4,'order[dateCreated]':'desc'})['hydra:member'] %}
-                        {% for template in templates %}
-                            <li><a href="/article?id={{ template.id }}" style="text-decoration: none;">{{ template.title }}</a></li>
-                        {% endfor %}
-                    {% endif %}
-                </ul>
-            </div>
-        </div>
-    </div>
+    <div class="row background--primary background--image" style="margin-top: -20px; background: url(data:image/file;base64,{{headerimg['base64']}})">
+        <div class="container" >
+            <div class="col-md-4 col-md-offset-8" style="height: 500px; position:relative;">
+                <div class="content-background background--secondary" style="position: absolute; bottom:0;">
+                    <div class="content">
+                        <h2>Nieuws</h2>
+                        <ul class="list list--links list--chevrons">
+                            {% if application.defaultConfiguration.configuration.nieuws is defined %}
+                                {% set nieuws = commonground_resource(application.defaultConfiguration.configuration.nieuws) %}
+                                {% set templates = commonground_resource_list({'component': 'wrc', 'type': 'templates'},{'templateGroups.id':nieuws.id,'limit':4,'order[dateCreated]':'desc'})['hydra:member'] %}
+                                {% for template in templates %}
+                                    <li><a href="/article?id={{ template.id }}" style="text-decoration: none;">{{ template.title }}</a></li>
+                                {% endfor %}
+                            {% endif %}
+                        </ul>
+                    </div><!-- /.content -->
+                </div><!-- /.content-background -->
+            </div><!-- /.col -->
+        </div><!-- /.container -->
+    </div><!-- /.row -->
 
-    <div class="container" style="margin-top: 50px; margin-bottom: 0;">
-        <div class="processen">
-            <ul>
-                <li>
-                    <a href="{{ path('app_process_load',{"id":"c8de2851-332d-4284-b86e-ba0615694427"}) }}">
-                        <i style="color: white; font-size: 2em;" class="fas fa-people-carry processIcon"></i>
-                        <br>
-                        <span class="card__title" style="color: white;">Verhuizen</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ path('app_process_load',{"id":"b8955949-2d8d-4bfb-9c73-e5275bffa427"}) }}">
-                        <i style="color: white; font-size: 2em;"  class="processIcon fas fa-ring"></i>
-                        <br>
-                        <span class="card__title" style="color: white;">Trouwen</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ path('app_process_load',{"id":"a8b8ce49-d5db-4270-9e42-4b47902fc817"}) }}">
-                        <i style="color: white; font-size: 2em;" class="fas fa-monument processIcon"></i>
-                        <br>
-                        <span class="card__title" style="color: white;">Begraven</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ path('app_process_load',{"id":"504b2a88-223f-4e35-8043-f061ea8a6623"}) }}">
-                        <i style="color: white; font-size: 2em;" class="fas fa-baby processIcon"></i>
-                        <br>
-                        <span class="card__title" style="color: white;">Geboorteaangifte</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ path('app_process_load',{"id":"8a3ec75e-186c-4085-bc7c-4e1c5bf250d0"}) }}">
-                        <i style="color: white; font-size: 2em;" class="fas fa-exclamation processIcon"></i>
-                        <br>
-                        <span class="card__title" style="color: white;">Melding openbare ruimte</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ path('app_process_load',{"id":"993cefcc-de42-46f5-9289-5f24df5dd3c7"}) }}">
-                        <i style="color: white; font-size: 2em;" class="fas fa-parking processIcon"></i>
-                        <br>
-                        <span class="card__title" style="color: white;">parkeervergunning</span>
-                    </a>
-                </li>
-            </ul>
-        </div>
-        <section class="contact">
-            <h1 style="margin-bottom: 1px; ">Contact</h1>
-            <h4 style="margin-top: 0;">Openingstijden</h4>
-            <div class="row">
-                <div class="col-sm-6">
-                    <span>Maandag:</span>
-                </div>
-                <div class="col-sm-6">
-                    <span>09:00 - 17:00</span>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-6">
-                    <span>Dinsdag:</span>
-                </div>
-                <div class="col-sm-6">
-                    <span>09:00 - 17:00</span>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-6">
-                    <span>Woensdag:</span>
-                </div>
-                <div class="col-sm-6">
-                    <span>09:00 - 17:00</span>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-6">
-                    <span>Donderdag:</span>
-                </div>
-                <div class="col-sm-6">
-                    <span>09:00 - 21:00</span>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-6">
-                    <span>Vrijdag:</span>
-                </div>
-                <div class="col-sm-6">
-                    <span>09:00 - 17:00</span>
-                </div>
-            </div>
-            </p>
-            <p>
-            <div class="row">
-                <div class="col-sm-6">
-                    <h4>Telefoon</h4>
-                    <span>14 020</span>
-                </div>
-            </div>
-            <a href="{{ path('app_process_load',{"id":"32293766-8b3a-43ee-9f16-ed67234ac309"}) }}"><button class="btn btn--primary" style="width: 100%;">Maak een afspraak</button></a>
-            </p>
-        </section>
-    </div>
+    <div class="container" style="margin-top: 20px">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="row">
+                    <div class="col-md-12">
+                    <ul class="list list--card">
+                        <li class="card background--primary card__hover">
+                            <a href="{{ path('app_process_load',{"id":"c8de2851-332d-4284-b86e-ba0615694427"}) }}" class="card__content">
+                                <div class="card__icon flex-center color--primary"><i class="fas fa-people-carry fa-4x"></i></div>
+                                <div class="card__body flex-center"><span class="card__title color--primary flex-center">Verhuizen</span></div>
+                            </a>
+                        </li>
+                        <li class="card background--primary card__hover">
+                            <a href="{{ path('app_process_load',{"id":"b8955949-2d8d-4bfb-9c73-e5275bffa427"}) }}" class="card__content">
+                                <div class="card__icon flex-center color--primary"><i class="fas fa-ring fa-4x"></i></div>
+                                <div class="card__body flex-center"><span class="card__title color--primary flex-center">Trouwen</span></div>
+                            </a>
+                        </li>
+                        <li class="card background--primary card__hover">
+                            <a href="{{ path('app_process_load',{"id":"a8b8ce49-d5db-4270-9e42-4b47902fc817"}) }}" class="card__content">
+                                <div class="card__icon flex-center color--primary"><i class="fas fa-monument fa-4x"></i></div>
+                                <div class="card__body flex-center"><span class="card__title color--primary flex-center">Begraven</span></div>
+                            </a>
+                        </li>
+                    </ul>
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <ul class="list list--card">
+                            <li class="card background--primary card__hover">
+                                <a href="{{ path('app_process_load',{"id":"504b2a88-223f-4e35-8043-f061ea8a6623"}) }}" class="card__content">
+                                    <div class="card__icon flex-center color--primary"><i class="fas fas fa-baby fa-4x"></i></div>
+                                    <div class="card__body flex-center"><span class="card__title color--primary flex-center">Geboorteaangifte</span></div>
+                                </a>
+                            </li>
+                            <li class="card background--primary card__hover flex-center">
+                                <a href="{{ path('app_process_load',{"id":"8a3ec75e-186c-4085-bc7c-4e1c5bf250d0"}) }}" class="card__content">
+                                    <div class="card__icon flex-center color--primary"><i class="fas fa-exclamation fa-4x"></i></div>
+                                    <div class="card__body flex-center"><span class="card__title color--primary ">Melding openbare ruimte</span></div>
+                                </a>
+                            </li>
+                            <li class="card background--primary card__hover flex-center">
+                                <a href="{{ path('app_process_load',{"id":"993cefcc-de42-46f5-9289-5f24df5dd3c7"}) }}" class="card__content">
+                                    <div class="card__icon flex-center color--primary"><i class="fas fa-exclamation fa-4x"></i> </div>
+                                    <div class="card__body flex-center"><span class="card__title color--primary">Parkeervergunning</span></div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </div><!-- /.col -->
+            <div class="col-md-4">
+                <div class="content-background background--secondary">
+                    <div class="content">
+                        <h2>Contact</h2>
+                        <h4>Openingstijden</h4>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <span>Maandag:</span>
+                            </div>
+                            <div class="col-sm-6">
+                                <span>09:00 - 17:00</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <span>Dinsdag:</span>
+                            </div>
+                            <div class="col-sm-6">
+                                <span>09:00 - 17:00</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <span>Woensdag:</span>
+                            </div>
+                            <div class="col-sm-6">
+                                <span>09:00 - 17:00</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <span>Donderdag:</span>
+                            </div>
+                            <div class="col-sm-6">
+                                <span>09:00 - 21:00</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <span>Vrijdag:</span>
+                            </div>
+                            <div class="col-sm-6">
+                                <span>09:00 - 17:00</span>
+                            </div>
+                        </div>
+                        </p>
+                        <p>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <h4>Telefoon</h4>
+                                <span>14 020</span>
+                            </div>
+                        </div>
+                        <a href="{{ path('app_process_load',{"id":"32293766-8b3a-43ee-9f16-ed67234ac309"}) }}"><button class="btn btn--primary" style="width: 100%;">Maak een afspraak</button></a>
+                        </p>
+                    </div><!-- /.content -->
+                </div><!-- /.content-background -->
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container -->
 
-    {% if application is defined and application.defaultConfiguration.configuration.newsimg is defined and application.defaultConfiguration.configuration.newsimg is not empty  %}
     {% set newsimg = commonground_resource(application.defaultConfiguration.configuration.newsimg) %}
-    <div class="newsImage"  style="background: url(data:image/file;base64,{{newsimg['base64']}});">
-        {% else %}
-        <div  style=" margin-top: 50px; padding: 25px; background: url(https://images.unsplash.com/photo-1563122089-71f56e4e8d06?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80) !important; background-size: cover !important;">
-            {% endif %}
-            <div class="container" style="display: flex; justify-content: space-between; padding-top: 5px; padding-bottom: 5px;">
-                {% if application.defaultConfiguration.configuration.nieuws is defined %}
+    <div class="row background--primary background--image" style="padding-top: 20px; background: url(data:image/file;base64,{{newsimg['base64']}})">
+        <div class="container">
+            <div class="col-md-12 no-padding">
+                <ul class="list list--card">
+                    {% if application.defaultConfiguration.configuration.nieuws is defined %}
                     {% set nieuws = commonground_resource(application.defaultConfiguration.configuration.about) %}
                     {% set templates = commonground_resource_list({'component': 'wrc', 'type': 'templates'},{'templateGroups.id':nieuws.id,'limit':4, 'order[dateCreated]':'desc'})['hydra:member'] %}
-                    {% set value = 1 %}
                     {% for template in templates %}
-                        <div class="newsCard" id="news-{{ value }}" style="position: relative">
-                            <h2>{{ template.title }}</h2>
-                            <p>
-                                {{ template.description }}
-                            </p>
-                            <a href="/article?id={{ template.id }}" style="position: absolute; bottom: 15px; right: 15px;">lees meer</a>
-                        </div>
-                    {% set value = value + 1 %}
+                    <li class="card">
+                        <a href="/article?id={{ template.id }}" class="card__content">
+                            {# <div class="card__thumb" style="background-image: url('../../images/img-1.png')"></div> #}
+                            <div class="card__body">
+                                <span class="card__title">{{ template.title }}</span>
+                                <span class="card__content">{{ template.description }}</span>
+                            </div>
+                            <span class="card__readmore">Read more</span>
+                        </a>
+                    </li>
                     {% endfor %}
-                {% endif %}
-            </div>
-        </div>
-    </div>
+                    {% endif %}
+                </ul>
+            </div><!-- /.col -->
+        </div><!-- /.container -->
+    </div><!-- /.row -->
+
 {% endblock %}
