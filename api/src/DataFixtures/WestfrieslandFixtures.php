@@ -327,7 +327,7 @@ class WestfrieslandFixtures extends Fixture
         $menuItem->setDescription('Doe een aanvraag');
         $menuItem->setOrder(2);
         $menuItem->setType('slug');
-        $menuItem->setHref('/process');
+        $menuItem->setHref('/ptc');
         $menuItem->setMenu($menu);
         $manager->persist($menuItem);
 
