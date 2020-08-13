@@ -662,7 +662,7 @@ class ZuiddrechtFixtures extends Fixture
         $menuItem->setDescription('Doe een aanvraag');
         $menuItem->setOrder(4);
         $menuItem->setType('slug');
-        $menuItem->setHref('/process');
+        $menuItem->setHref('/ptc');
         $menuItem->setMenu($menu);
         $manager->persist($menuItem);
 
