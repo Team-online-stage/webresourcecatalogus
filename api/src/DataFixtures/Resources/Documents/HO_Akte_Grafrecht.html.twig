@@ -1,27 +1,29 @@
-<p>{{ name }}</p>
-<p>{{ adres }}</p>
+{% set requestType = commonground_resource(request) %}
+{% set user = commonground_resource(requestType.submitters[0].brp) %}
+<p>{{ user.naam.aanschrijfwijze }}</p>
+<p>{{ user.verblijfplaats.straatnaam }} {{ user.verblijfplaats.huisnummer }}</p>
 <p></p>
 <p>Betreft: Bewijs van uitgifte graf</p>
 <p>Hoorn,</p>
-<p>&nbsp;Geachte heer/vrouw {{ name }},&nbsp;</p>
+<p>&nbsp;Geachte heer/vrouw {{ user.naam.aanschrijfwijze }},&nbsp;</p>
 <p>U ontvangt hierbij de Akte van grafrecht. Deze akte is het bewijs dat de gemeente het graf aan u heeft uitgegeven. Bewaar het document goed.</p>
 <p>Op de achterkant van de akte staat een toelichting. Daarin kunt u onder andere lezen welke rechten en plichten u heeft met deze akte.</p>
 <p>Wilt u grafbedekking plaatsen?</p>
 <p>U mag een gedenkteken of beplanting plaatsen op het graf. Voor het plaatsen van een gedenkteken heeft u een vergunning van de gemeente nodig. De vergunning kunt u of uw steenhouwer aanvragen bij bureau Groen en Reiniging van de gemeente. De gemeente rekent geen kosten voor de aanvraag en de vergunning.</p>
 <p>Op www.hoorn.nl/grafbedekking kunt u lezen aan welke eisen het gedenkteken moet voldoen en hoe u de vergunning aanvraagt. Voor beplanting op het graf heeft u geen vergunning nodig. U moet de grafbedekking netjes onderhouden en alles moet binnen de maat blijven.</p>
 <p>Heeft u nog vragen?</p>
-<p>Neemt u dan contact op met mevrouw {{ employee }} via 0229-252200 of gemeente@hoorn.nl.</p>
+<p>Neemt u dan contact op met mevrouw medewerker via 0229-252200 of gemeente@hoorn.nl.</p>
 <p>Met vriendelijke groet,</p>
-<p>{{ employee }}</p>
+<p>medewerker</p>
 <p>Team Stadsbeheer</p>
 <p></p>
 <p>GEMEENTE HOORN</p>
 <p>Akte Grafrecht: aktenummer</p>
 <p>Algemene Begraafplaatsen Gemeente Hoorn</p>
 <p>Burgemeester en Wethouders van de gemeente HOORN &nbsp;verklaren tot 21-01-2030 het recht tot begraven/bijzetten te hebben verleend aan:</p>
-<p>Naam &nbsp;{{ name }}</p>
+<p>Naam &nbsp;{{ user.naam.aanschrijfwijze }}</p>
 <p>&nbsp;</p>
-<p>Adres &nbsp; {{ adres }}</p>
+<p>Adres &nbsp; {{ user.verblijfplaats.straatnaam }} {{ user.verblijfplaats.huisnummer }}</p>
 <p>&nbsp;&nbsp;</p>
 <p>Voor het graf gelegen op de Algemene Begraafplaats Berkhouterweg Grafnummer, dit met uitsluiting van dit recht voor anderen.</p>
 <p>Naast deze verklaring zijn de wettelijke regels en bepalingen in werking van de meest actuele:</p>
@@ -30,7 +32,7 @@
 <p>⦁<span style="white-space:pre;">&nbsp; &nbsp;&nbsp;</span>Beheersverordening gemeentelijke begraafplaatsen Hoorn;</p>
 <p>⦁<span style="white-space:pre;">&nbsp; &nbsp;&nbsp;</span>Regels gemeentelijke begraafplaatsen.</p>
 <p>Hoorn, dinsdag 09 juni 2020 namens burgemeester en wethouders van de gemeente Hoorn,</p>
-<p>{{ owner }}</p>
+<p>beheerder</p>
 <p>Teammanager Stadsbeheer</p>
 <p></p>
 <p></p>
