@@ -39,25 +39,11 @@ class WestfrieslandFixtures extends Fixture
             return false;
         }
 
-        // West-Friesland
-        $id = Uuid::fromString('d280c4d3-6310-46db-9934-5285ec7d0d5e');
-        $westfriesland = new Organization();
-        $westfriesland->setName('Westfriesland');
-        $westfriesland->setDescription('Westfriese gemeenten Westfriesland');
-        $westfriesland->setRsin('999990482');
-        $westfriesland->setContact($this->commonGroundService->cleanUrl(['component' => 'cc', 'type' => 'organizations', 'id' => 'b294b0ae-fce4-48d3-bf50-eab1f82ddd7f']));
-        $manager->persist($westfriesland);
-        $westfriesland->setId($id);
-        $manager->persist($westfriesland);
-        $manager->flush();
-        $westfriesland = $manager->getRepository('App:Organization')->findOneBy(['id' => $id]);
-
         $favicon = new Image();
         $id = Uuid::fromString('0923599d-5182-4a1b-bc9b-72e18f88fc68');
         $favicon->setName('West-Friesland Favicon');
         $favicon->setDescription('West-Friesland VNG');
         $favicon->setBase64('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJ4TWlkWU1pZCBtZWV0IiB2aWV3Qm94PSIwIDAgNjQwIDY0MCIgd2lkdGg9IjY0MCIgaGVpZ2h0PSI2NDAiPjxkZWZzPjxwYXRoIGQ9Ik00MjAuMjQgODUuOEw0ODQuNTYgMTc0LjEzTDU1Ni4zNyAyNTYuNUw1MjcuNDEgMzYxLjg3TDUwNy43OSA0NjkuMzVMNDA3LjM0IDUxMi40MkwzMTEuMDggNTY0LjA4TDIxNC44IDUxMi40MkwxMTQuMzcgNDY5LjM1TDk0Ljc1IDM2MS44N0w2NS43OSAyNTYuNUwxMzcuNTggMTc0LjEzTDIwMS45MiA4NS44TDMxMS4wOCA5MC41OEwzMTEuMDggOTAuNThMNDIwLjI0IDg1LjhaIiBpZD0iZ2lWUXNjS1pNIj48L3BhdGg+PHBhdGggZD0iTTIxNi4zNCAyMjEuMzlDMjE2LjM0IDIyMS4zOSAyMDMuMjcgMjM5LjUyIDIwNi4xOCAyNDkuNTlDMjA2LjE4IDI0OS41OSAyMzMuMDEgMjgxLjQ5IDIzMy4wMSAyODEuNDlDMjMzLjAxIDI4MS40OSAyMzcuMzYgMjQ4Ljg3IDIzNi42NCAyMzkuNDRDMjM2LjY0IDIzOS40NCAyMzUuOTIgMjA4LjI1IDIzNS45MiAyMDguMjVDMjM1LjkyIDIwOC4yNSAyMzMuMDEgMTkxLjU2IDIzNS45MiAxOTAuMTJDMjM1LjkyIDE5MC4xMiAyNTEuMTMgMjAwLjk5IDI1MS4xMyAyMDAuOTlDMjUxLjEzIDIwMC45OSAyNjUuNjQgMTk2LjY0IDI3Mi4xOCAxOTguMUMyNzYuOTcgMTk5LjA4IDI4MS44MSAxOTkuODEgMjg2LjY4IDIwMC4yN0MyODguNDkgMTk5LjMzIDMwMi45OSAxOTEuNzggMzA0LjggMTkwLjg0QzMwNC44IDE5MC44NCAzMDEuOTEgMjEwLjQyIDI5OSAyMTMuMzNDMjk5IDIxMy4zMyAzMDMuMzQgMjM2LjUzIDMwMS45MSAyNDIuMzNDMzAwLjQ4IDI0OC4xMiAzMDguNDMgMjczLjUxIDMxNi40MiAyNzcuMTRDMzE2LjQyIDI3Ny4xNCAzMDMuMzQgMjkxLjY0IDMxNC4yMyAyOTAuOTJDMzI1LjEzIDI5MC4yIDM5MS43OSAyODAuMDUgNDI1LjE3IDMwMS4wN0M0MjUuMTcgMzAxLjA3IDQ0Ni4yMiAyNzIuODcgNDEzLjU5IDI3NS42OUMzODAuOTcgMjc4LjUxIDM4MC4yMyAyNjYuMjYgMzgwLjIzIDI2Ni4yNkMzODAuMjMgMjY2LjI2IDMyOC43MiAyNzMuNTEgMzI4LjcyIDIzNC4zNkMzMjguNzIgMTk1LjIxIDM2Ni40NCAyMDAuMjcgMzg2Ljc1IDIwMC4yN0M0MDcuMDUgMjAwLjI3IDQzMC4yNyAxODUuMDQgNDMwLjI3IDE4NS4wNEM0MzAuMjcgMTg1LjA0IDQ0NC43NiAxOTAuODQgNDM2Ljc5IDIwMy4xOEM0MjguODIgMjE1LjUyIDQxMC42OCAyMTkuODUgMzg2Ljc1IDIxOS44NUMzNjIuODEgMjE5Ljg1IDM0OC4zMiAyMjIuNzQgMzQ5LjA1IDIzMy42NEMzNDkuNzcgMjQ0LjUzIDM2OC42MyAyNDkuNSAzOTIuNTYgMjQ3LjQyQzQxNi41IDI0NS4zNCA0MzAuOTkgMjQ3LjQyIDQ0MS4xNCAyNTYuODNDNDUxLjMgMjY2LjI0IDQ3NC41MSAyOTkuNjMgNDM5LjcgMzE5LjE5QzQzOS43IDMxOS4xOSA0MzYuNzkgMzQ4LjIxIDQ0MC40MiAzNTQuMDFDNDQ0LjA1IDM1OS44MSA0NTkuMjggMzU5LjA4IDQ1OS4yOCAzNTkuMDhDNDU5LjI4IDM2NC4wOSA0NTkuMjggNDA0LjEyIDQ1OS4yOCA0MDkuMTNDNDU5LjI4IDQwOS4xMyA0NDkuODUgNDEwLjU3IDQ0OS4xMyA0MTYuMzlDNDQ5LjEzIDQxNi4zOSA0NDIuNTkgNDMyLjM0IDQzMi40NCA0MjYuNTRDNDMyLjQ0IDQyNi41NCA0MjMuMDEgNDI4LjczIDQxMi4xMyA0MjkuNDNDNDEyLjEzIDQyOS40MyAzOTYuOSA0MTIuNzYgNDAxLjI1IDQwNS41MUM0MDEuMjUgNDA1LjUxIDQyMC44NCA0MDAuNDIgNDI2LjY0IDQwMS4xNkM0MjYuNjQgNDAxLjE2IDQzOC45OCA0MDAuNDIgNDM4LjI0IDM5NS4zNkM0MzguMjQgMzk1LjM2IDQzNi43OSAzNzcuOTQgNDI5LjUzIDM3OC42N0M0MjkuNTMgMzc4LjY3IDQxMS40MSAzNzUuNzggNDA0Ljg1IDM2NC45QzQwNC44NSAzNjQuOSAzOTQuNyAzMzguOCAzOTQuNyAzMzguOEMzOTQuNyAzMzguOCAzNjcuODcgMzUxLjEzIDM3MC43NiAzNTkuODJDMzcwLjc2IDM1OS44MiAzNzcuMjggMzc5LjM5IDM3Ny4yOCAzNzkuMzlDMzc3LjI4IDM3OS4zOSAzNTQuODEgMzkyLjQ1IDM0OC4yOSA0MDEuMTZDMzQ4LjI5IDQwMS4xNiAzNDMuOTMgNDIwLjcyIDMzOC44NiA0MjEuNDZDMzM4Ljg2IDQyMS40NiAzMjEuNDQgNDEwLjU3IDMxNC4xOCA0MTIuNzZDMzE0LjE4IDQxMi43NiAzMDIuNTYgNDI1LjA5IDI5Ni43NiA0MjEuNDZDMjk2Ljc2IDQyMS40NiAyODYuNjMgNDA5Ljg3IDI3OS4zNyA0MDkuMTNDMjc5LjM3IDQwOS4xMyAyNzQuMjkgMzk1LjM2IDI4MyAzODguODRDMjgzIDM4OC44NCAzMDIuNTYgMzg5LjU0IDMwOS4xIDM5Mi4zNkMzMDkuMSAzOTIuMzYgMzI3Ljk2IDM4OC44NCAzMzIuMyAzODMuNjVDMzM0LjgyIDM4MC43NyAzMzcuMDEgMzc3LjYxIDMzOC44NCAzNzQuMjRDMzM4Ljg0IDM3NC4yNCAzMTcuODEgMzY0LjgxIDMxNS42MyAzNjYuOThDMzE1LjYzIDM2Ni45OCAzMzguODQgMzQ4LjEyIDMzOC44NCAzNDguMTJDMzM4Ljg0IDM0OC4xMiAzNTQuNzkgMzM0LjM1IDM1OC40MiAzMzAuNzJDMzU4LjQyIDMzMC43MiAzNTIuNjIgMzI2LjM3IDMzNS4yMSAzMzIuODlDMzE3Ljc5IDMzOS40MSAzMDEuMTIgMzU2LjgzIDI5NS4zMiAzNjAuNDZDMjg5LjUyIDM2NC4wOSAyODIuMjYgMzU1LjM4IDI4Mi4yNiAzNTUuMzhDMjc3LjU4IDM2Mi4yIDI3MS42OCAzNjguMTEgMjY0Ljg2IDM3Mi44QzI1My45OSAzODAuMDQgMjUwLjM3IDM4OC4wMyAyNDMuMTEgMzk4LjE2QzIzNS44NSA0MDguMyAyMjAuNjIgNDExLjk1IDIxNS41NCA0MDQuNjhDMjEwLjQ3IDM5Ny40MiAyMDMuOTQgNDAzLjI0IDE5OC4xNCA0MDcuNTlDMTkyLjM1IDQxMS45NSAxODIuMTkgNDA1LjQyIDE4Ny4yOSAzODkuNDVDMTkyLjM4IDM3My40OCAxOTkuNjMgMzc5LjMgMjEwLjQ4IDM3Ny44NkMyMjEuMzQgMzc2LjQxIDIzOC4wMyAzNzEuMzMgMjM4LjAzIDM0OC44NkMyMzguMDMgMzQ4Ljg2IDIyOS4zMyAzNDcuNCAyMTkuOTEgMzU0LjY0QzIxMC41IDM2MS44OSAxOTguMTQgMzQ0LjUxIDE5MC4xOCAzNDUuMjNDMTgyLjIxIDM0NS45NSAxNzguNjMgMzQyLjUgMTc4LjYzIDM0Mi41QzE3OC42MyAzNDIuNSAyMDkuODEgMzE0LjkzIDIwNC4wMSAzMTYuMzdDMjAwLjMzIDMxNy4xNyAxOTYuNDkgMzE2LjY2IDE5My4xNCAzMTQuOTNDMTk0LjE2IDMxMy45MSAyMDIuMjkgMzA1Ljc5IDIwMy4zMSAzMDQuNzhDMjAzLjMxIDMwNC43OCAxOTYuNzkgMjg4LjA4IDE5My44OCAyNzguNjdDMTkzLjg4IDI3OC42NyAxOTEuNjkgMjUzLjk5IDE4NS4xNyAyNTEuMUMxODUuMTcgMjUxLjEgMTc3LjkzIDI0My44NiAxODMuNzQgMjM2LjZDMTgzLjc0IDIzNi42IDE4NC40NSAyMTkuOTIgMTg1LjkxIDIxNC4xMkMxODcuMzcgMjA4LjMyIDIwMS4xMSAxOTUuMjYgMjA0Ljc0IDE5Ni43MUMyMDcuMDYgMjAxLjY0IDIxNi4zNCAyMDkuMDUgMjE2LjM0IDIyMS4zOVoiIGlkPSJpNWptT0gzNmkiPjwvcGF0aD48L2RlZnM+PGc+PGc+PGc+PHVzZSB4bGluazpocmVmPSIjZ2lWUXNjS1pNIiBvcGFjaXR5PSIxIiBmaWxsPSIjZmZjYjA0IiBmaWxsLW9wYWNpdHk9IjEiPjwvdXNlPjxnPjx1c2UgeGxpbms6aHJlZj0iI2dpVlFzY0taTSIgb3BhY2l0eT0iMSIgZmlsbC1vcGFjaXR5PSIwIiBzdHJva2U9IiMwMDAwMDAiIHN0cm9rZS13aWR0aD0iMSIgc3Ryb2tlLW9wYWNpdHk9IjAiPjwvdXNlPjwvZz48L2c+PGc+PHVzZSB4bGluazpocmVmPSIjaTVqbU9IMzZpIiBvcGFjaXR5PSIxIiBmaWxsPSIjMjYzMzcxIiBmaWxsLW9wYWNpdHk9IjEiPjwvdXNlPjxnPjx1c2UgeGxpbms6aHJlZj0iI2k1am1PSDM2aSIgb3BhY2l0eT0iMSIgZmlsbC1vcGFjaXR5PSIwIiBzdHJva2U9IiMwMDAwMDAiIHN0cm9rZS13aWR0aD0iMSIgc3Ryb2tlLW9wYWNpdHk9IjAiPjwvdXNlPjwvZz48L2c+PC9nPjwvZz48L3N2Zz4=');
-        $favicon->setOrganization($westfriesland);
         $manager->persist($favicon);
         $favicon->setId($id);
         $manager->persist($favicon);
@@ -78,11 +64,25 @@ class WestfrieslandFixtures extends Fixture
           .nav__item a {background: var(--primary)}');
 
         $style->setfavicon($favicon);
-        $style->setOrganization($westfriesland);
 
         $manager->persist($favicon);
         $manager->persist($style);
         $manager->flush();
+
+
+        // West-Friesland
+        $id = Uuid::fromString('d280c4d3-6310-46db-9934-5285ec7d0d5e');
+        $westfriesland = new Organization();
+        $westfriesland->addStyle($style);
+        $westfriesland->setName('Westfriesland');
+        $westfriesland->setDescription('Westfriese gemeenten Westfriesland');
+        $westfriesland->setRsin('999990482');
+        $westfriesland->setContact($this->commonGroundService->cleanUrl(['component' => 'cc', 'type' => 'organizations', 'id' => 'b294b0ae-fce4-48d3-bf50-eab1f82ddd7f']));
+        $manager->persist($westfriesland);
+        $westfriesland->setId($id);
+        $manager->persist($westfriesland);
+        $manager->flush();
+        $westfriesland = $manager->getRepository('App:Organization')->findOneBy(['id' => $id]);
 
         // Opmeer
         $id = Uuid::fromString('16fd1092-c4d3-4011-8998-0e15e13239cf');
@@ -118,19 +118,6 @@ class WestfrieslandFixtures extends Fixture
         $manager->flush();
 
         // Medemblik
-        $id = Uuid::fromString('429e66ef-4411-4ddb-8b83-c637b37e88b5');
-        $medemblik = new Organization();
-        $medemblik->setName('Medemblik');
-        $medemblik->setDescription('Gemeente Medemblik');
-        $medemblik->setRsin('1234');
-        $medemblik->setContact($this->commonGroundService->cleanUrl(['component' => 'cc', 'type' => 'organizations', 'id' => '47c8c694-62bb-4dec-b054-556537e896fe']));
-        $manager->persist($medemblik);
-        $medemblik->setId($id);
-        $manager->persist($medemblik);
-        $manager->flush();
-        $medemblik = $manager->getRepository('App:Organization')->findOneBy(['id' => $id]);
-
-        // Medemblik
         $style = new Style();
         $style->setName('Medemblik Style');
         $style->setDescription('Huistlijl Westfriese gemeenten West-Friesland');
@@ -144,11 +131,25 @@ class WestfrieslandFixtures extends Fixture
           .nav__item a {background: var(--primary)}');
 
         $style->setfavicon($favicon);
-        $style->setOrganization($medemblik);
-
         $manager->persist($favicon);
         $manager->persist($style);
         $manager->flush();
+
+        // Medemblik
+        $id = Uuid::fromString('429e66ef-4411-4ddb-8b83-c637b37e88b5');
+        $medemblik = new Organization();
+        $medemblik->addStyle($style);
+        $medemblik->setName('Medemblik');
+        $medemblik->setDescription('Gemeente Medemblik');
+        $medemblik->setRsin('1234');
+        $medemblik->setContact($this->commonGroundService->cleanUrl(['component' => 'cc', 'type' => 'organizations', 'id' => '47c8c694-62bb-4dec-b054-556537e896fe']));
+        $manager->persist($medemblik);
+        $medemblik->setId($id);
+        $manager->persist($medemblik);
+        $manager->flush();
+        $medemblik = $manager->getRepository('App:Organization')->findOneBy(['id' => $id]);
+
+
 
         // SED
         $id = Uuid::fromString('7033eeb4-5c77-4d88-9f40-303b538f176f');
@@ -184,19 +185,6 @@ class WestfrieslandFixtures extends Fixture
         $manager->flush();
 
         // Hoorn
-        $id = Uuid::fromString('d736013f-ad6d-4885-b816-ce72ac3e1384');
-        $hoorn = new Organization();
-        $hoorn->setName('Hoorn');
-        $hoorn->setDescription('Gemeente Hoorn');
-        $hoorn->setRsin('1234');
-        $hoorn->setContact($this->commonGroundService->cleanUrl(['component' => 'cc', 'type' => 'organizations', 'id' => '816395fc-4ba4-4fa5-90e9-780bb14a50c2']));
-        $manager->persist($hoorn);
-        $hoorn->setId($id);
-        $manager->persist($hoorn);
-        $manager->flush();
-        $hoorn = $manager->getRepository('App:Organization')->findOneBy(['id' => $id]);
-
-        // Hoorn
         $style = new Style();
         $style->setName('Hoorn Style');
         $style->setDescription('Huistlijl Westfriese gemeenten West-Friesland');
@@ -210,11 +198,23 @@ class WestfrieslandFixtures extends Fixture
           .nav__item a {background: var(--primary)}');
 
         $style->setfavicon($favicon);
-        $style->setOrganization($hoorn);
-
         $manager->persist($favicon);
         $manager->persist($style);
         $manager->flush();
+
+        // Hoorn
+        $id = Uuid::fromString('d736013f-ad6d-4885-b816-ce72ac3e1384');
+        $hoorn = new Organization();
+        $hoorn->addStyle($style);
+        $hoorn->setName('Hoorn');
+        $hoorn->setDescription('Gemeente Hoorn');
+        $hoorn->setRsin('1234');
+        $hoorn->setContact($this->commonGroundService->cleanUrl(['component' => 'cc', 'type' => 'organizations', 'id' => '816395fc-4ba4-4fa5-90e9-780bb14a50c2']));
+        $manager->persist($hoorn);
+        $hoorn->setId($id);
+        $manager->persist($hoorn);
+        $manager->flush();
+        $hoorn = $manager->getRepository('App:Organization')->findOneBy(['id' => $id]);
 
         // Koggenland
         $id = Uuid::fromString('f050292c-973d-46ab-97ae-9d8830a59d15');
