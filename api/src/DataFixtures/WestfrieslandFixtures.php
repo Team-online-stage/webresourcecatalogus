@@ -68,14 +68,9 @@ class WestfrieslandFixtures extends Fixture
         $style = new Style();
         $style->setName('Westfriesland Style');
         $style->setDescription('Huistlijl Westfriese gemeenten West-Friesland');
-        $style->setCss(':root {--primary: #233A79;--primary2: white;--secondary: #FFC926;--secondary2: #FFC926;}
-        .main-title {color: var(--primary2) !important;}.logo-header {background: var(--primary);}.navbar-header
-        {background: var(--primary);}.bg-primary-gradient {background: linear-gradient(-45deg, var(--secondary),
-         var(--secondary2)) !important;} #docs-nav {background: var(--primary)} #footer {background: var(--primary)}
-          .begraaf-card {background: var(--primary); text-align:center; padding: 20px !important; margin-bottom: 75px; }
-          .begraaf-card:active .begraaf-card:visited {background var(--primary) !important}
-          .header-logo{text-align: left !important; padding: 15px 0 5px 0px} .top-nav-autoresize .nav__link:hover {background: var(--primary)}
-          .nav__item a {background: var(--primary)}');
+        $style->setCss(':root {--primary: #233A79;--primary2: white;--secondary: #FFC926;--secondary2: #FFC926;}.main-title
+    	{color: var(--primary2) !important;}.logo-header {background: var(--primary);}.navbar-header {background: var(--primary);}
+    	.bg-primary-gradient {background: linear-gradient(-45deg, var(--secondary), var(--secondary2)) !important;}');
 
         $style->setfavicon($favicon);
         $style->addOrganization($westfriesland);
@@ -101,14 +96,9 @@ class WestfrieslandFixtures extends Fixture
         $style = new Style();
         $style->setName('Opmeer Style');
         $style->setDescription('Huistlijl Westfriese gemeenten West-Friesland');
-        $style->setCss(':root {--primary: #0F2F52;--primary2: white;--secondary: #4D9A08;--secondary2: #4D9A08;}
-        .main-title {color: var(--primary2) !important;}.logo-header {background: var(--primary);}.navbar-header
-        {background: var(--primary);}.bg-primary-gradient {background: linear-gradient(-45deg, var(--secondary),
-         var(--secondary2)) !important;} #docs-nav {background: var(--primary)} #footer {background: var(--primary)}
-          .begraaf-card {background: var(--primary); text-align:center; padding: 20px !important; margin-bottom: 75px; }
-          .begraaf-card:active .begraaf-card:visited {background var(--primary) !important}
-          .header-logo{text-align: left !important; padding: 15px 0 5px 0px} .top-nav-autoresize .nav__link:hover {background: var(--primary)}
-          .nav__item a {background: var(--primary)}');
+        $style->setCss(':root {--primary: #0F2F52;--primary2: white;--secondary: #4D9A08;--secondary2: #4D9A08;}.main-title
+    	{color: var(--primary2) !important;}.logo-header {background: var(--primary);}.navbar-header {background: var(--primary);}
+    	.bg-primary-gradient {background: linear-gradient(-45deg, var(--secondary), var(--secondary2)) !important;}');
 
         $style->setfavicon($favicon);
         $style->addOrganization($opmeer);
@@ -134,14 +124,9 @@ class WestfrieslandFixtures extends Fixture
         $style = new Style();
         $style->setName('Medemblik Style');
         $style->setDescription('Huistlijl Westfriese gemeenten West-Friesland');
-        $style->setCss(':root {--primary: #003E51;--primary2: white;--secondary: #509E2F;--secondary2: #509E2F;}
-        .main-title {color: var(--primary2) !important;}.logo-header {background: var(--primary);}.navbar-header
-        {background: var(--primary);}.bg-primary-gradient {background: linear-gradient(-45deg, var(--secondary),
-         var(--secondary2)) !important;} #docs-nav {background: var(--primary)} #footer {background: var(--primary)}
-          .begraaf-card {background: var(--primary); text-align:center; padding: 20px !important; margin-bottom: 75px; }
-          .begraaf-card:active .begraaf-card:visited {background var(--primary) !important}
-          .header-logo{text-align: left !important; padding: 15px 0 5px 0px} .top-nav-autoresize .nav__link:hover {background: var(--primary)}
-          .nav__item a {background: var(--primary)}');
+        $style->setCss(':root {--primary: #003E51;--primary2: white;--secondary: #509E2F;--secondary2: #509E2F;}.main-title
+    	{color: var(--primary2) !important;}.logo-header {background: var(--primary);}.navbar-header {background: var(--primary);}
+    	.bg-primary-gradient {background: linear-gradient(-45deg, var(--secondary), var(--secondary2)) !important;}');
 
         $style->setfavicon($favicon);
         $style->addOrganization($medemblik);
@@ -167,14 +152,9 @@ class WestfrieslandFixtures extends Fixture
         $style = new Style();
         $style->setName('SED Style');
         $style->setDescription('Huistlijl Westfriese gemeenten West-Friesland');
-        $style->setCss(':root {--primary: #003E51;--primary2: white;--secondary: #509E2F;--secondary2: #509E2F;}
-        .main-title {color: var(--primary2) !important;}.logo-header {background: var(--primary);}.navbar-header
-        {background: var(--primary);}.bg-primary-gradient {background: linear-gradient(-45deg, var(--secondary),
-         var(--secondary2)) !important;} #docs-nav {background: var(--primary)} #footer {background: var(--primary)}
-          .begraaf-card {background: var(--primary); text-align:center; padding: 20px !important; margin-bottom: 75px; }
-          .begraaf-card:active .begraaf-card:visited {background var(--primary) !important}
-          .header-logo{text-align: left !important; padding: 15px 0 5px 0px} .top-nav-autoresize .nav__link:hover {background: var(--primary)}
-          .nav__item a {background: var(--primary)}');
+        $style->setCss(':root {--primary: #003E51;--primary2: white;--secondary: #509E2F;--secondary2: #509E2F;}.main-title
+    	{color: var(--primary2) !important;}.logo-header {background: var(--primary);}.navbar-header {background: var(--primary);}
+    	.bg-primary-gradient {background: linear-gradient(-45deg, var(--secondary), var(--secondary2)) !important;}');
 
         $style->setfavicon($favicon);
         $style->addOrganization($sed);
@@ -200,14 +180,9 @@ class WestfrieslandFixtures extends Fixture
         $style = new Style();
         $style->setName('Hoorn Style');
         $style->setDescription('Huistlijl Westfriese gemeenten West-Friesland');
-        $style->setCss(':root {--primary: #266EA1;--primary2: white;--secondary: #F5AB63;--secondary2: #F5AB63;}
-        .main-title {color: var(--primary2) !important;}.logo-header {background: var(--primary);}.navbar-header
-        {background: var(--primary);}.bg-primary-gradient {background: linear-gradient(-45deg, var(--secondary),
-         var(--secondary2)) !important;} #docs-nav {background: var(--primary)} #footer {background: var(--primary)}
-          .begraaf-card {background: var(--primary); text-align:center; padding: 20px !important; margin-bottom: 75px; }
-          .begraaf-card:active .begraaf-card:visited {background var(--primary) !important}
-          .header-logo{text-align: left !important; padding: 15px 0 5px 0px} .top-nav-autoresize .nav__link:hover {background: var(--primary)}
-          .nav__item a {background: var(--primary)}');
+        $style->setCss(':root {--primary: #266EA1;--primary2: white;--secondary: #F5AB63;--secondary2: #F5AB63;}.main-title
+    	{color: var(--primary2) !important;}.logo-header {background: var(--primary);}.navbar-header {background: var(--primary);}
+    	.bg-primary-gradient {background: linear-gradient(-45deg, var(--secondary), var(--secondary2)) !important;}');
 
         $style->setfavicon($favicon);
         $style->addOrganization($hoorn);
@@ -233,14 +208,9 @@ class WestfrieslandFixtures extends Fixture
         $style = new Style();
         $style->setName('Koggenland Style');
         $style->setDescription('Huistlijl Westfriese gemeenten West-Friesland');
-        $style->setCss(':root {--primary: #22007A;--primary2: white;--secondary: #289728;--secondary2: #289728;}
-        .main-title {color: var(--primary2) !important;}.logo-header {background: var(--primary);}.navbar-header
-        {background: var(--primary);}.bg-primary-gradient {background: linear-gradient(-45deg, var(--secondary),
-         var(--secondary2)) !important;} #docs-nav {background: var(--primary)} #footer {background: var(--primary)}
-          .begraaf-card {background: var(--primary); text-align:center; padding: 20px !important; margin-bottom: 75px; }
-          .begraaf-card:active .begraaf-card:visited {background var(--primary) !important}
-          .header-logo{text-align: left !important; padding: 15px 0 5px 0px} .top-nav-autoresize .nav__link:hover {background: var(--primary)}
-          .nav__item a {background: var(--primary)}');
+        $style->setCss(':root {--primary: #22007A;--primary2: white;--secondary: #289728;--secondary2: #289728;}.main-title
+    	{color: var(--primary2) !important;}.logo-header {background: var(--primary);}.navbar-header {background: var(--primary);}
+    	.bg-primary-gradient {background: linear-gradient(-45deg, var(--secondary), var(--secondary2)) !important;}');
 
         $style->setfavicon($favicon);
         $style->addOrganization($hoorn);
@@ -532,14 +502,9 @@ class WestfrieslandFixtures extends Fixture
         $style = new Style();
         $style->setName('Dashboard');
         $style->setDescription('Huistlijl Westfriese gemeenten West-Friesland');
-        $style->setCss(':root {--primary: #233A79;--primary2: white;--secondary: #FFC926;--secondary2: #FFC926;}
-        .main-title {color: var(--primary2) !important;}.logo-header {background: var(--primary);}.navbar-header
-        {background: var(--primary);}.bg-primary-gradient {background: linear-gradient(-45deg, var(--secondary),
-         var(--secondary2)) !important;} #docs-nav {background: var(--primary)} #footer {background: var(--primary)}
-          .begraaf-card {background: var(--primary); text-align:center; padding: 20px !important; margin-bottom: 75px; }
-          .begraaf-card:active .begraaf-card:visited {background var(--primary) !important}
-          .header-logo{text-align: left !important; padding: 15px 0 5px 0px} .top-nav-autoresize .nav__link:hover {background: var(--primary)}
-          .nav__item a {background: var(--primary)}');
+        $style->setCss(':root {--primary: #233A79;--primary2: white;--secondary: #FFC926;--secondary2: #FFC926;}.main-title
+    	{color: var(--primary2) !important;}.logo-header {background: var(--primary);}.navbar-header {background: var(--primary);}
+    	.bg-primary-gradient {background: linear-gradient(-45deg, var(--secondary), var(--secondary2)) !important;}');
 
         $style->setfavicon($favicon);
         $style->addOrganization($westfriesland);
