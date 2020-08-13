@@ -70,7 +70,7 @@ class ConductionFixtures extends Fixture
         $style->setDescription('Huistlijl Conduction');
         $style->setCss('');
         $style->setfavicon($favicon);
-        $style->setOrganization($conduction);
+        $style->addOrganization($conduction);
 
         $conduction->setLogo($logo);
 
@@ -1348,7 +1348,7 @@ class ConductionFixtures extends Fixture
         $style->setDescription('Huistlijl ZaakOnline');
         $style->setCss('');
         $style->setfavicon($favicon);
-        $style->setOrganization($conduction);
+        $style->addOrganization($conduction);
 
         $manager->persist($conduction);
         $manager->persist($favicon);
@@ -1493,7 +1493,7 @@ class ConductionFixtures extends Fixture
         $style->setCss(':root {--primary: #FFBC2C; --primary-txt-clr: black} #docs-nav {background: var(--primary); color: var(--primarytxtcolor)}
         #footer {background: var(--primary); color: var(--primarytxtcolor) !important} .custom-card{padding: 10px !important;} .custom-slider{margin-bottom: 20px} ');
         $style->setfavicon($favicon);
-        $style->setOrganization($conduction);
+        $style->addOrganization($conduction);
 
         $manager->persist($conduction);
         $manager->persist($favicon);
@@ -1628,7 +1628,7 @@ class ConductionFixtures extends Fixture
         $style->setDescription('Huistlijl Common-ground.dev');
         $style->setCss('');
         $style->setfavicon($favicon);
-        $style->setOrganization($conduction);
+        $style->addOrganization($conduction);
 
         $manager->persist($conduction);
         $manager->persist($favicon);
@@ -2144,7 +2144,7 @@ class ConductionFixtures extends Fixture
 
         ');
         $style->setfavicon($favicon);
-        $style->setOrganization($conduction);
+        $style->addOrganization($conduction);
 
         $manager->persist($conduction);
         $manager->persist($favicon);

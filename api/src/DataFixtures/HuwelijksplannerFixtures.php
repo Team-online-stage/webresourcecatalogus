@@ -72,7 +72,7 @@ class HuwelijksplannerFixtures extends Fixture
     	.bg-primary-gradient {@include linear-gradient(-45deg, var(--secondary), var(--secondary2);}');
 
         $utrechtStyle->setfavicon($favicon);
-        $utrechtStyle->setOrganization($utrecht);
+        $utrechtStyle->addOrganization($utrecht);
         $utrecht->setLogo($logo);
 
         $manager->persist($utrecht);

@@ -63,7 +63,7 @@ class VngFixtures extends Fixture
         $style->setCss(':root {--primary: white;--primary2: #233A79;--secondary: #004488;--secondary2: #0277BD;}
         .main-title {color: var(--primary2) !important;}.logo-header {background: var(--primary);}.navbar-header
         {background: var(--primary);}.bg-primary-gradient {background: linear-gradient(-45deg, var(--secondary), var(--secondary2)) !important;}');
-        $style->setOrganization($organisation);
+        $style->addOrganization($organisation);
         $style->setfavicon($favicon);
 
         $organisation->setLogo($logo);

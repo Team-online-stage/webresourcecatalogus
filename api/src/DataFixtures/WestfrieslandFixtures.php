@@ -78,7 +78,7 @@ class WestfrieslandFixtures extends Fixture
           .nav__item a {background: var(--primary)}');
 
         $style->setfavicon($favicon);
-        $style->setOrganization($westfriesland);
+        $style->addOrganization($westfriesland);
 
         $manager->persist($favicon);
         $manager->persist($style);
@@ -111,7 +111,7 @@ class WestfrieslandFixtures extends Fixture
           .nav__item a {background: var(--primary)}');
 
         $style->setfavicon($favicon);
-        $style->setOrganization($opmeer);
+        $style->addOrganization($opmeer);
 
         $manager->persist($favicon);
         $manager->persist($style);
@@ -144,7 +144,7 @@ class WestfrieslandFixtures extends Fixture
           .nav__item a {background: var(--primary)}');
 
         $style->setfavicon($favicon);
-        $style->setOrganization($medemblik);
+        $style->addOrganization($medemblik);
 
         $manager->persist($favicon);
         $manager->persist($style);
@@ -177,7 +177,7 @@ class WestfrieslandFixtures extends Fixture
           .nav__item a {background: var(--primary)}');
 
         $style->setfavicon($favicon);
-        $style->setOrganization($sed);
+        $style->addOrganization($sed);
 
         $manager->persist($favicon);
         $manager->persist($style);
@@ -210,7 +210,7 @@ class WestfrieslandFixtures extends Fixture
           .nav__item a {background: var(--primary)}');
 
         $style->setfavicon($favicon);
-        $style->setOrganization($hoorn);
+        $style->addOrganization($hoorn);
 
         $manager->persist($favicon);
         $manager->persist($style);
@@ -243,7 +243,7 @@ class WestfrieslandFixtures extends Fixture
           .nav__item a {background: var(--primary)}');
 
         $style->setfavicon($favicon);
-        $style->setOrganization($hoorn);
+        $style->addOrganization($hoorn);
 
         $manager->persist($favicon);
         $manager->persist($style);
@@ -296,7 +296,7 @@ class WestfrieslandFixtures extends Fixture
         ');
 
         $stylePan->setfavicon($favicon);
-        $stylePan->setOrganization($westfriesland);
+        $stylePan->addOrganization($westfriesland);
 
         $manager->persist($westfriesland);
         $manager->persist($favicon);
@@ -542,7 +542,7 @@ class WestfrieslandFixtures extends Fixture
           .nav__item a {background: var(--primary)}');
 
         $style->setfavicon($favicon);
-        $style->setOrganization($westfriesland);
+        $style->addOrganization($westfriesland);
 
         $manager->persist($westfriesland);
         $manager->persist($favicon);

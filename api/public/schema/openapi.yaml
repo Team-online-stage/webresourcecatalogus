@@ -12511,7 +12511,10 @@ components:
           type: string
           nullable: true
         organization:
-          $ref: '#/components/schemas/Organization-read'
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Organization-read'
         dateCreated:
           description: 'The moment this request was created'
           type: string
@@ -12550,7 +12553,10 @@ components:
           type: string
           nullable: true
         organization:
-          $ref: '#/components/schemas/Organization-write'
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Organization-write'
     'Image:jsonld-read':
       type: object
       description: 'Image speaks for itself.'
@@ -12589,7 +12595,10 @@ components:
           type: string
           nullable: true
         organization:
-          $ref: '#/components/schemas/Organization:jsonld-read'
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Organization:jsonld-read'
         dateCreated:
           description: 'The moment this request was created'
           type: string
@@ -12637,7 +12646,10 @@ components:
           type: string
           nullable: true
         organization:
-          $ref: '#/components/schemas/Organization:jsonld-write'
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Organization:jsonld-write'
     Menu-read:
       type: object
       description: 'Menu is your way of navigation inside your application.'
@@ -12973,6 +12985,11 @@ components:
         description:
           description: 'The description of this organisation.'
           type: string
+        style:
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Style-read'
         dateCreated:
           description: 'The moment this request was created'
           type: string
@@ -13017,6 +13034,11 @@ components:
         description:
           description: 'The description of this organisation.'
           type: string
+        style:
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Style-write'
         contact:
           description: 'The contact for this organization'
           externalDocs:
@@ -13057,6 +13079,11 @@ components:
         description:
           description: 'The description of this organisation.'
           type: string
+        style:
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Style:jsonld-read'
         dateCreated:
           description: 'The moment this request was created'
           type: string
@@ -13110,6 +13137,11 @@ components:
         description:
           description: 'The description of this organisation.'
           type: string
+        style:
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Style:jsonld-write'
         contact:
           description: 'The contact for this organization'
           externalDocs:
@@ -13281,6 +13313,10 @@ components:
           type: string
         favicon:
           $ref: '#/components/schemas/Image-read'
+        organizations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Organization-read'
         dateCreated:
           description: 'The moment this request was created'
           type: string
@@ -13311,8 +13347,10 @@ components:
           type: string
         favicon:
           $ref: '#/components/schemas/Image-write'
-        organization:
-          $ref: '#/components/schemas/Organization-write'
+        organizations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Organization-write'
     'Style:jsonld-read':
       type: object
       description: 'Your style provides ccs and a favicon for an organisation.'
@@ -13343,6 +13381,10 @@ components:
           type: string
         favicon:
           $ref: '#/components/schemas/Image:jsonld-read'
+        organizations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Organization:jsonld-read'
         dateCreated:
           description: 'The moment this request was created'
           type: string
@@ -13382,8 +13424,10 @@ components:
           type: string
         favicon:
           $ref: '#/components/schemas/Image:jsonld-write'
-        organization:
-          $ref: '#/components/schemas/Organization:jsonld-write'
+        organizations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Organization:jsonld-write'
     Template-read:
       type: object
       description: 'Templates holds information your pages or include in messages.'
@@ -14102,6 +14146,7 @@ definitions:
         type: string
         format: url
         maxLength: 255
+      style: []
     required:
       - rsin
       - chamberOfComerce
@@ -14134,6 +14179,7 @@ definitions:
         type: string
         format: url
         maxLength: 255
+      style: []
     required:
       - rsin
       - chamberOfComerce
@@ -14209,6 +14255,7 @@ definitions:
         description: 'The moment this request last Modified'
         type: \Datetime
       favicon: []
+      organizations: []
     required:
       - name
       - description
@@ -14226,7 +14273,7 @@ definitions:
         maxLength: 255
       css: []
       favicon: []
-      organization: []
+      organizations: []
     required:
       - name
       - description
@@ -14457,12 +14504,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-08-13 14:26:08'
+        example: '2020-08-13 18:07:46'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-08-13 14:26:08'
+        example: '2020-08-13 18:07:46'
     required: []
   AuditTrail-write:
     properties:
@@ -14510,12 +14557,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-08-13 14:26:08'
+        example: '2020-08-13 18:07:46'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-08-13 14:26:08'
+        example: '2020-08-13 18:07:46'
     required: []
   ChangeLog-write:
     properties:
