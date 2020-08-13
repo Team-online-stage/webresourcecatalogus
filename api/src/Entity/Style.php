@@ -115,7 +115,7 @@ class Style
     private $favicon;
 
     /**
-     * @Groups({"write"})
+     * @Groups({"read", "write"})
      * @MaxDepth(1)
      * @ORM\ManyToOne(targetEntity="App\Entity\Organization", inversedBy="styles")
      * @ORM\JoinColumn(nullable=false)
