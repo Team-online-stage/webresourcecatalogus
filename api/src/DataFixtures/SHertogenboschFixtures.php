@@ -68,7 +68,7 @@ class SHertogenboschFixtures extends Fixture
         {color: white !important;}.logo-header {background: var(--primary);}.navbar-header {background: var(--primary);}
         .bg-primary-gradient {background: linear-gradient(-45deg, var(--secondary), var(--secondary2)) !important;}');
         $style->setfavicon($favicon);
-        $style->setOrganization($sHertogenbosch);
+        $style->addOrganization($sHertogenbosch);
 
         $manager->persist($favicon);
         $manager->persist($logo);

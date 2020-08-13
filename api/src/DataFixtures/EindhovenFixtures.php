@@ -66,7 +66,7 @@ class EindhovenFixtures extends Fixture
     	{color: var(--primary2) !important;}.logo-header {background: var(--primary);}.navbar-header {background: var(--primary);}
     	.bg-primary-gradient {background: linear-gradient(-45deg, var(--secondary), var(--secondary2)) !important;}');
         $style->setfavicon($favicon);
-        $style->setOrganization($eindhoven);
+        $style->addOrganization($eindhoven);
         $eindhoven->setLogo($logo);
 
         $manager->persist($eindhoven);

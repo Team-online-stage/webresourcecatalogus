@@ -500,7 +500,7 @@ class ZuiddrechtFixtures extends Fixture
          }');
 
         $style->setfavicon($favicon);
-        $style->setOrganization($organization);
+        $style->addOrganization($organization);
 
         $manager->persist($organization);
         $manager->persist($favicon);
@@ -527,7 +527,7 @@ class ZuiddrechtFixtures extends Fixture
         }');
 
         $styleDashboard->setfavicon($favicon);
-        $styleDashboard->setOrganization($organization);
+        $styleDashboard->addOrganization($organization);
         $manager->persist($styleDashboard);
 
         $manager->flush();
