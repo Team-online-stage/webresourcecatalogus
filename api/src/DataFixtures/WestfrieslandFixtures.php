@@ -150,20 +150,6 @@ class WestfrieslandFixtures extends Fixture
         $manager->persist($style);
         $manager->flush();
 
-        // Medemblik
-        $id = Uuid::fromString('429e66ef-4411-4ddb-8b83-c637b37e88b5');
-        $medemblik = new Organization();
-        $medemblik->addStyle($style);
-        $medemblik->setName('Medemblik');
-        $medemblik->setDescription('Gemeente Medemblik');
-        $medemblik->setRsin('1234');
-        $medemblik->setContact($this->commonGroundService->cleanUrl(['component' => 'cc', 'type' => 'organizations', 'id' => '47c8c694-62bb-4dec-b054-556537e896fe']));
-        $manager->persist($medemblik);
-        $medemblik->setId($id);
-        $manager->persist($medemblik);
-        $manager->flush();
-        $medemblik = $manager->getRepository('App:Organization')->findOneBy(['id' => $id]);
-
         // SED
         $id = Uuid::fromString('7033eeb4-5c77-4d88-9f40-303b538f176f');
         $sed = new Organization();
