@@ -242,15 +242,15 @@ class WestfrieslandFixtures extends Fixture
         $stylePan->setCss('
 
             root {
-            --primary: #551a8b;
+            --primary: #263371;
             --primary-color: white;
-            --secondary: #3669A5;
-            --secondary-color: #FFC926;
+            --secondary: #FFCB04;
+            --secondary-color: #263371;
 
-            --menu: #551a8b;
-            --menu-over: #3669A5;
+            --menu: #263371;
+            --menu-over: #FFCB04;
             --menu-color: white;
-            --footer: #551a8b;
+            --footer: #263371;
             --footer-color: white;
             }
 
