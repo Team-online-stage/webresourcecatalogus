@@ -566,7 +566,7 @@ class ZuiddrechtFixtures extends Fixture
                 'headerimg'         => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'ff3ca823-234f-4874-9ee6-1067d47e4391']),
                 //'changeRequest'=> $this->commonGroundService->cleanUrl(['component'=>'ptc', 'type'=>'process_types', 'id'=>'2c60657d-a728-4e71-897d-ac407c134e10']),
                 //'objectionRequest'=> $this->commonGroundService->cleanUrl(['component'=>'ptc', 'type'=>'process_types', 'id'=>'2c60657d-a728-4e71-897d-ac407c134e10']),
-                'login'=> ['digig'=>true,'eherkening'=>true],//,'employee'
+                'login'=> ['digid'=>true,'eherkening'=>true],//,'employee'
                 'hubspotId'         => '6108438',
                 'googleTagId'       => 'G-RHY411XSJN',
                 'newsGroup'         => ['1'],
