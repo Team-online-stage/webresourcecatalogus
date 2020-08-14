@@ -213,7 +213,7 @@ class WestfrieslandFixtures extends Fixture
     	.bg-primary-gradient {background: linear-gradient(-45deg, var(--secondary), var(--secondary2)) !important;}');
 
         $style->setfavicon($favicon);
-        $style->addOrganization($hoorn);
+        $style->addOrganization($koggenland);
 
         $manager->persist($favicon);
         $manager->persist($style);
