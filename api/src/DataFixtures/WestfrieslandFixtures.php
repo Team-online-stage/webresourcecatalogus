@@ -242,15 +242,15 @@ class WestfrieslandFixtures extends Fixture
         $stylePan->setCss('
 
             root {
-            --primary: #551a8b;
+            --primary: #263371;
             --primary-color: white;
-            --secondary: #3669A5;
-            --secondary-color: #FFC926;
+            --secondary: #FFCB04;
+            --secondary-color: #263371;
 
-            --menu: #551a8b;
-            --menu-over: #3669A5;
+            --menu: #263371;
+            --menu-over: #FFCB04;
             --menu-color: white;
-            --footer: #551a8b;
+            --footer: #263371;
             --footer-color: white;
             }
 
@@ -303,6 +303,9 @@ class WestfrieslandFixtures extends Fixture
                 'footer3'  => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'f78d6861-783f-4441-82c4-2efcf5af677f']),
                 'footer4'  => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'c62eedef-ba28-4a5d-bdea-2eb9ef250b8e']),
                 'headerimg'=> $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'2c60657d-a728-4e71-897d-ac407c134e10']),
+                //'changeRequest'=> $this->commonGroundService->cleanUrl(['component'=>'ptc', 'type'=>'process_types', 'id'=>'2c60657d-a728-4e71-897d-ac407c134e10']),
+                //'objectionRequest'=> $this->commonGroundService->cleanUrl(['component'=>'ptc', 'type'=>'process_types', 'id'=>'2c60657d-a728-4e71-897d-ac407c134e10']),
+                'login'=> ['eherkening'=>true],
                 'newsGroup'=> ['4'],
                 'userPage' => '/persoonlijk',
             ]

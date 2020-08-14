@@ -159,10 +159,6 @@ class ZuiddrechtFixtures extends Fixture
             }
         }
 
-
-
-
-
         @media only screen and (min-width: 1376px){
             .headerImage {
                 margin-top: -20px;
@@ -568,6 +564,9 @@ class ZuiddrechtFixtures extends Fixture
                 'about'             => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'template_groups', 'id'=>'6b243aa1-5ae6-4aeb-93d5-2f509fb34cef']),
                 'newsimg'           => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'0e5b1531-4abb-4704-9bd3-feeb94717521']),
                 'headerimg'         => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'ff3ca823-234f-4874-9ee6-1067d47e4391']),
+                //'changeRequest'=> $this->commonGroundService->cleanUrl(['component'=>'ptc', 'type'=>'process_types', 'id'=>'2c60657d-a728-4e71-897d-ac407c134e10']),
+                //'objectionRequest'=> $this->commonGroundService->cleanUrl(['component'=>'ptc', 'type'=>'process_types', 'id'=>'2c60657d-a728-4e71-897d-ac407c134e10']),
+                'login'=> ['digig'=>true,'eherkening'=>true],//,'employee'
                 'hubspotId'         => '6108438',
                 'googleTagId'       => 'G-RHY411XSJN',
                 'newsGroup'         => ['1'],
