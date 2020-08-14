@@ -5,13 +5,8 @@ namespace App\DataFixtures;
 use App\Entity\Application;
 use App\Entity\Configuration;
 use App\Entity\Image;
-use App\Entity\Menu;
-use App\Entity\MenuItem;
 use App\Entity\Organization;
-use App\Entity\Slug;
 use App\Entity\Style;
-use App\Entity\Template;
-use App\Entity\TemplateGroup;
 use Conduction\CommonGroundBundle\Service\CommonGroundService;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -71,7 +66,7 @@ class EindhovenFixtures extends Fixture
     	{color: var(--primary2) !important;}.logo-header {background: var(--primary);}.navbar-header {background: var(--primary);}
     	.bg-primary-gradient {background: linear-gradient(-45deg, var(--secondary), var(--secondary2)) !important;}');
         $style->setfavicon($favicon);
-        $style->setOrganization($eindhoven);
+        $style->addOrganization($eindhoven);
         $eindhoven->setLogo($logo);
 
         $manager->persist($eindhoven);

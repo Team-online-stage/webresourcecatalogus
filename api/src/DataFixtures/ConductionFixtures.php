@@ -70,7 +70,7 @@ class ConductionFixtures extends Fixture
         $style->setDescription('Huistlijl Conduction');
         $style->setCss('');
         $style->setfavicon($favicon);
-        $style->setOrganization($conduction);
+        $style->addOrganization($conduction);
 
         $conduction->setLogo($logo);
 
@@ -1348,7 +1348,7 @@ class ConductionFixtures extends Fixture
         $style->setDescription('Huistlijl ZaakOnline');
         $style->setCss('');
         $style->setfavicon($favicon);
-        $style->setOrganization($conduction);
+        $style->addOrganization($conduction);
 
         $manager->persist($conduction);
         $manager->persist($favicon);
@@ -1376,10 +1376,11 @@ class ConductionFixtures extends Fixture
         $configuration->setApplication($zaakOnline);
         $configuration->setConfiguration(
             [
-                'mainMenu'=> $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'bb05a4b3-5eca-4cf0-83a9-8fcf41dcc40f']),
-                'home'    => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'6e01b18c-6751-4e11-9430-c69f629a6760']),
-                'hubspotId'   => '6108438',
-                'googleTagId'   => 'G-H2T0ZECZYM'
+                'mainMenu'      => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'bb05a4b3-5eca-4cf0-83a9-8fcf41dcc40f']),
+                'home'          => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'6e01b18c-6751-4e11-9430-c69f629a6760']),
+                'hubspotId'     => '6108438',
+                'googleTagId'   => 'G-H2T0ZECZYM',
+                'userPage'      => '/persoonlijk',
             ]
         );
         $manager->persist($configuration);
@@ -1421,6 +1422,22 @@ class ConductionFixtures extends Fixture
         $groupPages->setName('Pages');
         $groupPages->setDescription('Webpages that are presented to visitors');
         $manager->persist($groupPages);
+
+        // Persoonlijk
+        $template = new Template();
+        $template->setName('Persoonlijk');
+        $template->setDescription('persoonlijke overzichts pagine');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/persoonlijk.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($zaakOnline);
+        $slug->setName('persoonlijk');
+        $slug->setSlug('persoonlijk');
+        $manager->persist($slug);
 
         // Pages
         $id = Uuid::fromString('6e01b18c-6751-4e11-9430-c69f629a6760');
@@ -1476,7 +1493,7 @@ class ConductionFixtures extends Fixture
         $style->setCss(':root {--primary: #FFBC2C; --primary-txt-clr: black} #docs-nav {background: var(--primary); color: var(--primarytxtcolor)}
         #footer {background: var(--primary); color: var(--primarytxtcolor) !important} .custom-card{padding: 10px !important;} .custom-slider{margin-bottom: 20px} ');
         $style->setfavicon($favicon);
-        $style->setOrganization($conduction);
+        $style->addOrganization($conduction);
 
         $manager->persist($conduction);
         $manager->persist($favicon);
@@ -1504,10 +1521,12 @@ class ConductionFixtures extends Fixture
         $configuration->setApplication($commongroundNu);
         $configuration->setConfiguration(
             [
-                'mainMenu'=> $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'447eb167-17b0-416a-9df4-7cd4d3cc417c']),
-                'home'    => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'83b365c9-33fe-4b89-99d0-d77ef676adb1']),
-                'hubspotId'   => '6108438',
-                'googleTagId'   => 'G-X24NEYKVXK'
+                'mainMenu'        => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'447eb167-17b0-416a-9df4-7cd4d3cc417c']),
+                'home'            => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'83b365c9-33fe-4b89-99d0-d77ef676adb1']),
+                'hubspotId'       => '6108438',
+                'googleTagId'     => 'G-X24NEYKVXK',
+                'userPage'        => '/persoonlijk',
+                'header'          => false,
             ]
         );
         $manager->persist($configuration);
@@ -1549,6 +1568,22 @@ class ConductionFixtures extends Fixture
         $groupPages->setName('Pages');
         $groupPages->setDescription('Webpages that are presented to visitors');
         $manager->persist($groupPages);
+
+        // Persoonlijk
+        $template = new Template();
+        $template->setName('Persoonlijk');
+        $template->setDescription('persoonlijke overzichts pagine');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/persoonlijk.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($commongroundNu);
+        $slug->setName('persoonlijk');
+        $slug->setSlug('persoonlijk');
+        $manager->persist($slug);
 
         // Pages
         $id = Uuid::fromString('83b365c9-33fe-4b89-99d0-d77ef676adb1');
@@ -1593,7 +1628,7 @@ class ConductionFixtures extends Fixture
         $style->setDescription('Huistlijl Common-ground.dev');
         $style->setCss('');
         $style->setfavicon($favicon);
-        $style->setOrganization($conduction);
+        $style->addOrganization($conduction);
 
         $manager->persist($conduction);
         $manager->persist($favicon);
@@ -1621,10 +1656,12 @@ class ConductionFixtures extends Fixture
         $configuration->setApplication($commongroundDev);
         $configuration->setConfiguration(
             [
-                'mainMenu'=> $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'15db60f7-76f1-4bc0-8caf-cb9ed9d4066f']),
-                'home'    => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'cdc7b532-2084-470e-9032-935bb8e5bde4']),
-                'hubspotId'   => '6108438',
-                'googleTagId'   => 'G-FC090SHG18'
+                'mainMenu'        => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'15db60f7-76f1-4bc0-8caf-cb9ed9d4066f']),
+                'home'            => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'cdc7b532-2084-470e-9032-935bb8e5bde4']),
+                'hubspotId'       => '6108438',
+                'googleTagId'     => 'G-FC090SHG18',
+                'userPage'        => '/persoonlijk',
+                'header'          => false,
             ]
         );
         $manager->persist($configuration);
@@ -1666,6 +1703,22 @@ class ConductionFixtures extends Fixture
         $groupPages->setName('Pages');
         $groupPages->setDescription('Webpages that are presented to visitors');
         $manager->persist($groupPages);
+
+        // Persoonlijk
+        $template = new Template();
+        $template->setName('Persoonlijk');
+        $template->setDescription('persoonlijke overzichts pagine');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/persoonlijk.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($commongroundDev);
+        $slug->setName('persoonlijk');
+        $slug->setSlug('persoonlijk');
+        $manager->persist($slug);
 
         // Pages
         $id = Uuid::fromString('cdc7b532-2084-470e-9032-935bb8e5bde4');
@@ -1775,25 +1828,21 @@ class ConductionFixtures extends Fixture
         $style = new Style();
         $style->setName('stage');
         $style->setDescription('Huistlijl stage');
-        $style->setCss(':root {--primary: #ffbc2c;--primary2: black;--secondary: #ffc446;--secondary2: #ffc446;}
-        .main-title {color: var(--primary2) !important;}.logo-header {background: var(--primary);}.navbar-header
-        {background: var(--primary);}.bg-primary-gradient {background: linear-gradient(-45deg, var(--secondary),
-         var(--secondary2)) !important;}
-
-        .processen i, span {
-            color: black;
+        $style->setCss(':
+        root {
+        --primary: #0047BB;
+        --primary2: white;
+        --secondary: #0047BB;
+        --secondary2: white;
         }
 
         a {
             text-decoration: none;
         }
 
-        .footer__nav a {
-            color: black !important;
-        }
 
-        .footer__nav {
-            color: black !important;
+        .processen i, span {
+            color: black;
         }
 
         a:focus:not(.btn):not(.pagination__link):not(.nav__link){
@@ -1819,7 +1868,7 @@ class ConductionFixtures extends Fixture
             background: none;
             background-size: cover !important;
             background-position: center !important;
-            }
+        }
 
         #news-1, #news-2, #news-3, #news-4 {
             display: none;
@@ -1831,6 +1880,7 @@ class ConductionFixtures extends Fixture
                 display: block;
                 margin-top: 50px;
                 padding: 25px;
+
                 margin-bottom: -50px;
                 background: none;
                 background-size: cover !important;
@@ -1853,10 +1903,6 @@ class ConductionFixtures extends Fixture
                 display: block;
             }
         }
-
-
-
-
 
         @media only screen and (min-width: 1376px){
             .headerImage {
@@ -2025,60 +2071,28 @@ class ConductionFixtures extends Fixture
             }
         }
 
-
-        .header-logo a:after{
-            background-image: none;
-        }
-
         .flex-center {
             display: flex;
             justify-content: center;
             align-items: center;
         }
 
-        .footerStyle {
-            background-color: #FFBC2C;
-            color: black;
-        }
-
-        .nav__link {
-            color: black !important;
-        }
-
-        .nav__link--parent {
-            color: black !important;
-        }
-
-        .nav__submenu {
-            background-color: #FFBC2C;
-        }
-
-        .top-nav-autoresize .nav__link:hover {
-            background-color: #ffc446;
-            color: black;
-        }
-
-        .menuStyle {
-            background-color: #ffbc2c;
-            color: black;
-        }
-
         .newsCard {
-        margin: 10px auto;
-        width: 240px;
-        background-color: white;
-        padding: 15px;
-        height:400px;
+            margin: 10px auto;
+            width: 240px;
+            background-color: white;
+            padding: 15px;
+            height:400px;
         }
 
         .contact {
-        background-color: #ffbc2c;
-        float:left;
-        width: 100%;
-        padding-left: 10px;
-        padding-right: 10px;
-        padding-top: 10px;
-        margin-left: 5px;
+            background-color: #ffbc2c;
+            float:left;
+            width: 100%;
+            padding-left: 10px;
+            padding-right: 10px;
+            padding-top: 10px;
+            margin-left: 5px;
         }
 
         @media only screen and (min-width: 960px) {
@@ -2130,7 +2144,7 @@ class ConductionFixtures extends Fixture
 
         ');
         $style->setfavicon($favicon);
-        $style->setOrganization($conduction);
+        $style->addOrganization($conduction);
 
         $manager->persist($conduction);
         $manager->persist($favicon);
@@ -2146,7 +2160,8 @@ class ConductionFixtures extends Fixture
         $configuration->setConfiguration(
             [
                 'mainMenu'          => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'da3d55e3-6b7e-47f3-856d-eb158212d8af']),
-                //'loggedOut'         => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'b239cf91-2440-495b-853f-3c1e0fe54ef7']),
+                'loggedOut'         => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'b239cf91-2440-495b-853f-3c1e0fe54ef7']),
+                'loggedIn'          => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'3d9b7bbd-cc5a-4b88-acd0-682cf506da7c']),
                 'home'              => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'6079cc7d-7b69-4db3-ad17-6bf972cca6a2']),
                 'footer1'           => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'09dfc502-19ce-4b11-8e0a-a7fc456a5c52']),
                 'footer2'           => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'23b58ab8-45a6-4fbf-a180-6aac96da4df6']),
@@ -2157,8 +2172,10 @@ class ConductionFixtures extends Fixture
                 'headerimg'         => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'0863d15c-286e-4ec4-90f6-27cebb107aa9']),
                 'colorSchemeFooter' => 'footerStyle',
                 'colorSchemeMenu'   => 'menuStyle',
-                'hubspotId'   => '6108438',
-                'googleTagId'   => 'G-2PYCJ13YC4'
+                'hubspotId'         => '6108438',
+                'googleTagId'       => 'G-2PYCJ13YC4',
+                'userPage'          => '/persoonlijk',
+                'header'            => false,
             ]
         );
         $manager->persist($configuration);
@@ -2194,13 +2211,13 @@ class ConductionFixtures extends Fixture
         $menuItem->setDescription('Stages');
         $menuItem->setOrder(3);
         $menuItem->setType('slug');
-        $menuItem->setHref('/education/stages');
+        $menuItem->setHref('/education/internships');
         $menuItem->setMenu($menu);
         $manager->persist($menuItem);
 
         $menuItem = new MenuItem();
-        $menuItem->setName('Tutorials');
-        $menuItem->setDescription('Tutorials');
+        $menuItem->setName('Programma\'s');
+        $menuItem->setDescription('Programma\'s');
         $menuItem->setOrder(4);
         $menuItem->setType('slug');
         $menuItem->setHref('/education/programs');
@@ -2221,7 +2238,7 @@ class ConductionFixtures extends Fixture
         $menuItem->setDescription('Over');
         $menuItem->setOrder(2);
         $menuItem->setType('slug');
-        $menuItem->setHref('/over');
+        $menuItem->setHref('/about');
         $menuItem->setMenu($menu);
         $manager->persist($menuItem);
 
@@ -2234,46 +2251,47 @@ class ConductionFixtures extends Fixture
         $menuItem->setMenu($menu);
         $manager->persist($menuItem);
 
-        /**
-         * // LoggedOut Menu
-         * $id = Uuid::fromString('b239cf91-2440-495b-853f-3c1e0fe54ef7');
-         * $menu = new Menu();
-         * $menu->setName('Logged Out Menu');
-         * $menu->setDescription('De login opties voor het menuItem inloggen');
-         * $menu->setApplication($stage);
-         * $manager->persist($menu);
-         * $menu->setId($id);
-         * $manager->persist($menu);
-         * $manager->flush();
-         * $menu = $manager->getRepository('App:Menu')->findOneBy(['id'=> $id]);.
-         *
-         * $menuItem = new MenuItem();
-         * $menuItem->setName('Student');
-         * $menuItem->setDescription('Student');
-         * $menuItem->setOrder(1);
-         * $menuItem->setType('slug');
-         * $menuItem->setHref('/home');
-         * $menuItem->setMenu($menu);
-         * $manager->persist($menuItem);
-         *
-         * $menuItem = new MenuItem();
-         * $menuItem->setName('Onderwijsinstelling');
-         * $menuItem->setDescription('Onderwijsinstelling');
-         * $menuItem->setOrder(2);
-         * $menuItem->setType('slug');
-         * $menuItem->setHref('/home');
-         * $menuItem->setMenu($menu);
-         * $manager->persist($menuItem);
-         *
-         * $menuItem = new MenuItem();
-         * $menuItem->setName('Gemeente of Organisatie');
-         * $menuItem->setDescription('Gemeente of Organisatie');
-         * $menuItem->setOrder(3);
-         * $menuItem->setType('slug');
-         * $menuItem->setHref('/home');
-         * $menuItem->setMenu($menu);
-         * $manager->persist($menuItem);
-         */
+        // LoggedOut Menu
+        $id = Uuid::fromString('b239cf91-2440-495b-853f-3c1e0fe54ef7');
+        $menu = new Menu();
+        $menu->setName('Logged Out Menu');
+        $menu->setDescription('De login opties voor het menuItem inloggen wanneer nog niet is ingelogd');
+        $menu->setApplication($stage);
+        $manager->persist($menu);
+        $menu->setId($id);
+        $manager->persist($menu);
+        $manager->flush();
+        $menu = $manager->getRepository('App:Menu')->findOneBy(['id'=> $id]);
+
+        $menuItem = new MenuItem();
+        $menuItem->setName('Registreren');
+        $menuItem->setDescription('Registreren');
+        $menuItem->setOrder(0);
+        $menuItem->setType('slug');
+        $menuItem->setHref('/education/register');
+        $menuItem->setMenu($menu);
+        $manager->persist($menuItem);
+
+        // LoggedIn Menu
+        $id = Uuid::fromString('3d9b7bbd-cc5a-4b88-acd0-682cf506da7c');
+        $menu = new Menu();
+        $menu->setName('Logged In Menu');
+        $menu->setDescription('De login opties voor het menuItem inloggen wanneer er al is ingelogd');
+        $menu->setApplication($stage);
+        $manager->persist($menu);
+        $menu->setId($id);
+        $manager->persist($menu);
+        $manager->flush();
+        $menu = $manager->getRepository('App:Menu')->findOneBy(['id'=> $id]);
+
+        $menuItem = new MenuItem();
+        $menuItem->setName('Mijn overzicht');
+        $menuItem->setDescription('Mijn overzicht');
+        $menuItem->setOrder(0);
+        $menuItem->setType('slug');
+        $menuItem->setHref('/education/overview');
+        $menuItem->setMenu($menu);
+        $manager->persist($menuItem);
 
         // Template groups
         $groupPages = new TemplateGroup();
@@ -2282,6 +2300,38 @@ class ConductionFixtures extends Fixture
         $groupPages->setName('Pages');
         $groupPages->setDescription('Webpages that are presented to visitors');
         $manager->persist($groupPages);
+
+        // Persoonlijk
+        $template = new Template();
+        $template->setName('Persoonlijk');
+        $template->setDescription('persoonlijke overzichts pagine');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/persoonlijk.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($stage);
+        $slug->setName('persoonlijk');
+        $slug->setSlug('persoonlijk');
+        $manager->persist($slug);
+
+        // Persoonlijk
+        $template = new Template();
+        $template->setName('Persoonlijk');
+        $template->setDescription('persoonlijke overzichts pagine');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/persoonlijk.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($stage);
+        $slug->setName('persoonlijk');
+        $slug->setSlug('persoonlijk');
+        $manager->persist($slug);
 
         // Pages
         $id = Uuid::fromString('6079cc7d-7b69-4db3-ad17-6bf972cca6a2');
@@ -2310,7 +2360,7 @@ class ConductionFixtures extends Fixture
         $template = new Template();
         $template->setName('Over');
         $template->setDescription('Stage Over Page');
-        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Conduction/Stage/over.html.twig', 'r'));
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Conduction/Stage/about.html.twig', 'r'));
         $template->setTemplateEngine('twig');
         $manager->persist($template);
         $template->setId($id);
@@ -2324,8 +2374,8 @@ class ConductionFixtures extends Fixture
         $slug = new Slug();
         $slug->setTemplate($template);
         $slug->setApplication($stage);
-        $slug->setName('over');
-        $slug->setSlug('over');
+        $slug->setName('about');
+        $slug->setSlug('about');
         $manager->persist($slug);
 
         $id = Uuid::fromString('cad4760e-703d-4de6-aefb-1ce11e9ff829');
@@ -2390,8 +2440,8 @@ class ConductionFixtures extends Fixture
         $slug = new Slug();
         $slug->setTemplate($template);
         $slug->setApplication($stage);
-        $slug->setName('oplossingen');
-        $slug->setSlug('oplossingen');
+        $slug->setName('solutions');
+        $slug->setSlug('solutions');
         $manager->persist($slug);
 
         $id = Uuid::fromString('bef9c010-a9e6-416c-8b0a-1cc4860f9084');
@@ -2412,30 +2462,8 @@ class ConductionFixtures extends Fixture
         $slug = new Slug();
         $slug->setTemplate($template);
         $slug->setApplication($stage);
-        $slug->setName('oplossing');
-        $slug->setSlug('oplossing');
-        $manager->persist($slug);
-
-        $id = Uuid::fromString('89ddaf33-9b5f-4651-9f12-c35122da5a34');
-        $template = new Template();
-        $template->setName('Teams');
-        $template->setDescription('Stage Teams Page');
-        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Conduction/Stage/teams.html.twig', 'r'));
-        $template->setTemplateEngine('twig');
-        $manager->persist($template);
-        $template->setId($id);
-        $manager->persist($template);
-        $manager->flush();
-        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
-        $template->addTemplateGroup($groupPages);
-        $manager->persist($template);
-        $manager->flush();
-
-        $slug = new Slug();
-        $slug->setTemplate($template);
-        $slug->setApplication($stage);
-        $slug->setName('teams');
-        $slug->setSlug('teams');
+        $slug->setName('solution');
+        $slug->setSlug('solution');
         $manager->persist($slug);
 
         $id = Uuid::fromString('09dfc502-19ce-4b11-8e0a-a7fc456a5c52');

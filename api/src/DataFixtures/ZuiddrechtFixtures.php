@@ -89,6 +89,7 @@ class ZuiddrechtFixtures extends Fixture
         $logo->setDescription('Zuid-Drecht VNG');
         $logo->setOrganization($organization);
 
+        /*
         $style = new Style();
         $style->setName('Zuid-Drecht');
         $style->setDescription('Huistlijl Gemeente Zuid-Drecht');
@@ -479,10 +480,27 @@ class ZuiddrechtFixtures extends Fixture
 
 
 
-        ');
+        ');*/
+
+        $style = new Style();
+        $style->setName('Zuid-Drecht');
+        $style->setDescription('Huistlijl Gemeente Zuid-Drecht');
+        $style->setCss('
+        :root {
+                --primary: #CC0000;
+                --primary-color: white;
+                --secondary: #3669A5;
+                --secondary-color: white;
+
+                --menu: #CC0000;
+                --menu-over: #3669A5;
+                --menu-color: white;
+                --footer: #3669A5;
+                --footer-color: white;
+         }');
 
         $style->setfavicon($favicon);
-        $style->setOrganization($organization);
+        $style->addOrganization($organization);
 
         $manager->persist($organization);
         $manager->persist($favicon);
@@ -491,32 +509,45 @@ class ZuiddrechtFixtures extends Fixture
 
         $manager->flush();
 
-        // Website
+        $styleDashboard = new Style();
+        $styleDashboard->setName('dashboard');
+        $styleDashboard->setDescription('Huistlijl Gemeente Zuid-Drecht');
+        $styleDashboard->setCss(':root {--primary: #CC0000;--primary2: white;--secondary: #FFC926;--secondary2: #FFC926;}.main-title
+    	{color: var(--primary2) !important;}.logo-header {background: var(--primary);}.navbar-header {background: var(--primary);}
+    	.bg-primary-gradient {background: linear-gradient(-45deg, var(--secondary), var(--secondary2)) !important;}');
+        $styleDashboard->setfavicon($favicon);
+        $styleDashboard->addOrganization($organization);
+        $manager->persist($styleDashboard);
+
+        $manager->flush();
+
+        // Configuratie dashboard
+        $configuration = new Configuration();
+        $configuration->setName('Dashboard');
+        $configuration->setDescription('Dashboard van Zuid-Drecht');
+        $configuration->setOrganization($organization);
+        $configuration->setConfiguration(
+            [
+                'sideMenu'          => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'915d5b04-c050-4b18-8f72-a068c2708883']),
+                'userPage'          => '/ud/applications',
+            ]
+        );
+        $manager->persist($configuration);
+
+        // Dashboard
         $id = Uuid::fromString('1163e443-5f9c-4aa6-802c-c619a14986c9');
         $application = new Application();
         $application->setName('Dashboard');
         $application->setDescription('het Dashboard van de gemeente Zuid-Drecht');
         $application->setDomain('db.zuid-drecht.nl');
         $application->setOrganization($organization);
-        $application->setStyle($style);
+        $application->getDefaultConfiguration($configuration);
+        $application->setStyle($styleDashboard);
         $manager->persist($application);
         $application->setId($id);
         $manager->persist($application);
         $manager->flush();
         $application = $manager->getRepository('App:Application')->findOneBy(['id'=> $id]);
-
-        // Configuratie
-        $configuration = new Configuration();
-        $configuration->setName('Dashboard');
-        $configuration->setDescription('Dashboard van Zuid-Drecht');
-        $configuration->setOrganization($organization);
-        $configuration->setApplication($application);
-        $configuration->setConfiguration(
-            [
-                'sideMenu'          => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'915d5b04-c050-4b18-8f72-a068c2708883']),
-            ]
-        );
-        $manager->persist($configuration);
 
         // Configuratie
         $configuration = new Configuration();
@@ -537,10 +568,12 @@ class ZuiddrechtFixtures extends Fixture
                 'about'             => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'template_groups', 'id'=>'6b243aa1-5ae6-4aeb-93d5-2f509fb34cef']),
                 'newsimg'           => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'0e5b1531-4abb-4704-9bd3-feeb94717521']),
                 'headerimg'         => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'ff3ca823-234f-4874-9ee6-1067d47e4391']),
-                'colorSchemeFooter' => 'footerStyle',
-                'colorSchemeMenu'   => 'menuStyle',
-                'hubspotId'   => '6108438',
-                'googleTagId'   => 'G-RHY411XSJN']
+                'hubspotId'         => '6108438',
+                'googleTagId'       => 'G-RHY411XSJN',
+                'newsGroup'         => ['1'],
+                'userPage'          => '/persoonlijk',
+                'header'            => true,
+            ]
         );
         $manager->persist($configuration);
 
@@ -618,7 +651,7 @@ class ZuiddrechtFixtures extends Fixture
         $menuItem->setDescription('Doe een aanvraag');
         $menuItem->setOrder(4);
         $menuItem->setType('slug');
-        $menuItem->setHref('/process');
+        $menuItem->setHref('/ptc');
         $menuItem->setMenu($menu);
         $manager->persist($menuItem);
 
@@ -668,6 +701,22 @@ class ZuiddrechtFixtures extends Fixture
         $groupPages->setDescription('Webpages that are presented to visitors');
         $manager->persist($groupPages);
 
+        // Persoonlijk
+        $template = new Template();
+        $template->setName('Persoonlijk');
+        $template->setDescription('persoonlijke overzichts pagine');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/persoonlijk.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('persoonlijk');
+        $slug->setSlug('persoonlijk');
+        $manager->persist($slug);
+
         // Pages
         $id = Uuid::fromString('163f8616-abb7-411d-b7b2-0d11c6bd7dca');
         $template = new Template();
@@ -690,6 +739,21 @@ class ZuiddrechtFixtures extends Fixture
         $slug->setName('home');
         $slug->setSlug('home');
         $manager->persist($slug);
+
+        $id = Uuid::fromString('9a974240-adce-4a47-a3e6-52c2e81e35ea');
+        $template = new Template();
+        $template->setName('HO Akte Grafrecht');
+        $template->setDescription('HO Akte Grafrecht document');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Documents/HO_Akte_Grafrecht.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
 
         $id = Uuid::fromString('fc5cef2d-c64d-4cfc-ac8c-da0ea0c66063');
         $template = new Template();

@@ -2,16 +2,9 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\Application;
-use App\Entity\Configuration;
 use App\Entity\Image;
-use App\Entity\Menu;
-use App\Entity\MenuItem;
 use App\Entity\Organization;
-use App\Entity\Slug;
 use App\Entity\Style;
-use App\Entity\Template;
-use App\Entity\TemplateGroup;
 use Conduction\CommonGroundBundle\Service\CommonGroundService;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -42,8 +35,6 @@ class VngFixtures extends Fixture
             return false;
         }
 
-
-
         // VNG
         $id = Uuid::fromString('6d879677-79e3-4daa-a50d-a29762b0064c');
         $organisation = new Organization();
@@ -72,7 +63,7 @@ class VngFixtures extends Fixture
         $style->setCss(':root {--primary: white;--primary2: #233A79;--secondary: #004488;--secondary2: #0277BD;}
         .main-title {color: var(--primary2) !important;}.logo-header {background: var(--primary);}.navbar-header
         {background: var(--primary);}.bg-primary-gradient {background: linear-gradient(-45deg, var(--secondary), var(--secondary2)) !important;}');
-        $style->setOrganization($organisation);
+        $style->addOrganization($organisation);
         $style->setfavicon($favicon);
 
         $organisation->setLogo($logo);

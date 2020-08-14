@@ -487,7 +487,7 @@ class UtrechtFixtures extends Fixture
         ');
 
         $style->setfavicon($favicon);
-        $style->setOrganization($organization);
+        $style->addOrganization($organization);
 
         $manager->persist($organization);
         $manager->persist($favicon);
@@ -527,14 +527,14 @@ class UtrechtFixtures extends Fixture
                 'footer3'           => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'facad633-27a9-499a-b3fc-4687215bf82a']),
                 'footer4'           => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'4bc966b6-e310-4bce-b459-a7cf65651ce0']),
                 'nieuws'            => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'template_groups', 'id'=>'a28db4f3-f579-43db-bde7-9e0188fdd717']),
-                'faq'             => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'template_groups', 'id'=>'6b243aa1-5ae6-4aeb-93d5-2f509fb34cef']),
+                'faq'               => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'template_groups', 'id'=>'6b243aa1-5ae6-4aeb-93d5-2f509fb34cef']),
                 'newsimg'           => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'726da4ad-9979-4c04-9048-2c0fa7bdb800']),
                 'headerimg'         => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'76b4c601-68a3-462b-a5fe-421c795d67bc']),
-                'favicon'         => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'98df315f-63f0-4dc8-8321-a2cfa53f666e']),
+                'favicon'           => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'98df315f-63f0-4dc8-8321-a2cfa53f666e']),
                 'colorSchemeFooter' => 'footerStyle',
                 'colorSchemeMenu'   => 'menuStyle',
-                'hubspotId'   => '6108438',
-                'googleTagId'   => 'G-RHY411XSJN']
+                'hubspotId'         => '6108438',
+                'googleTagId'       => 'G-RHY411XSJN', ]
         );
         $manager->persist($configuration);
 
@@ -717,7 +717,6 @@ class UtrechtFixtures extends Fixture
         $manager->persist($template);
         $manager->flush();
 
-
         // Template groups
         $id = Uuid::fromString('a4e7c1a9-e59d-41f9-82ca-8a0e59865e26');
         $groupFaq = new TemplateGroup();
@@ -791,6 +790,5 @@ class UtrechtFixtures extends Fixture
         $manager->persist($groupNews);
         $manager->flush();
         $groupNews = $manager->getRepository('App:TemplateGroup')->findOneBy(['id'=> $id]);
-
     }
 }
