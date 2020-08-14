@@ -159,10 +159,6 @@ class ZuiddrechtFixtures extends Fixture
             }
         }
 
-
-
-
-
         @media only screen and (min-width: 1376px){
             .headerImage {
                 margin-top: -20px;
