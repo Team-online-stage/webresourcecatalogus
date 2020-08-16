@@ -241,12 +241,13 @@ class WestfrieslandFixtures extends Fixture
         $stylePan->setDescription('Huistlijl Westfriese gemeenten West-Friesland');
         $stylePan->setCss('
 
-            root {
+            :root {
             --primary: #233A79;
             --primary-color: white;
             --secondary: #FFCB04;
             --secondary-color: #263371;
 
+            --header: white;
             --menu: #233A79;
             --menu-over: #FFCB04;
             --menu-color: white;
