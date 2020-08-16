@@ -564,8 +564,8 @@ class ZuiddrechtFixtures extends Fixture
                 'about'             => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'template_groups', 'id'=>'6b243aa1-5ae6-4aeb-93d5-2f509fb34cef']),
                 'newsimg'           => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'0e5b1531-4abb-4704-9bd3-feeb94717521']),
                 'headerimg'         => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'ff3ca823-234f-4874-9ee6-1067d47e4391']),
-                //'changeRequest'=> $this->commonGroundService->cleanUrl(['component'=>'ptc', 'type'=>'process_types', 'id'=>'2c60657d-a728-4e71-897d-ac407c134e10']),
-                //'objectionRequest'=> $this->commonGroundService->cleanUrl(['component'=>'ptc', 'type'=>'process_types', 'id'=>'2c60657d-a728-4e71-897d-ac407c134e10']),
+                'changeRequest'     => $this->commonGroundService->cleanUrl(['component'=>'ptc', 'type'=>'process_types', 'id'=>'7216b69d-e245-488e-af8f-0969241926e7']),
+                'objectionRequest'  => $this->commonGroundService->cleanUrl(['component'=>'ptc', 'type'=>'process_types', 'id'=>'2a95ba3e-a3f9-4fdf-8a6d-005d96aad405']),
                 'login'=> ['digid'=>true,'eherkening'=>true],//,'employee'
                 'hubspotId'         => '6108438',
                 'googleTagId'       => 'G-RHY411XSJN',
