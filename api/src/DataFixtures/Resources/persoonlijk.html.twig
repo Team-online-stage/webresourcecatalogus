@@ -6,7 +6,6 @@
     <section class="row">
         <div class="col-md-12">
             <div class="content">
-
                 <header class="content__header">
                     <a class="backlink" href="/">{{ 'home'|trans|capitalize }}</a>
                     <header class="content__header">
@@ -26,10 +25,17 @@
         </aside>
 
         <div class="col-xl-9 col-lg-8 col-md-9">
-            <div class="content-background">
-                <div class="content">
-                </div>
-            </div>
+            {% set processes = commounground_resourcelist(["component":"ptc","type":"process_types"]) %}
+            <ul class="list list--card">
+                {% for process in processes %}
+                <li class="card background--primary card__hover">
+                    <a href="{{ path('app_ptc_process_stage',{"id":process.id}) }}" class="card__content">
+                        <div class="card__icon flex-center color--primary"><i class="{{ process.icon }} fa-4x"></i></div>
+                        <div class="card__body flex-center"><span class="card__title color--primary flex-center">{{ process.name }}</span></div>
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
         </div>
     </div>
 {% endblock %}
