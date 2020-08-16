@@ -566,6 +566,8 @@ class ZuiddrechtFixtures extends Fixture
                 'headerimg'         => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'ff3ca823-234f-4874-9ee6-1067d47e4391']),
                 'changeRequest'     => $this->commonGroundService->cleanUrl(['component'=>'ptc', 'type'=>'process_types', 'id'=>'7216b69d-e245-488e-af8f-0969241926e7']),
                 'objectionRequest'  => $this->commonGroundService->cleanUrl(['component'=>'ptc', 'type'=>'process_types', 'id'=>'2a95ba3e-a3f9-4fdf-8a6d-005d96aad405']),
+                'orderTemplate'           => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'d52644b8-d0af-4102-976c-8737802e0b7c']),
+                'invoiceTemplate'           => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'d273afad-4a3d-426d-a621-55720cac5d4e']),
                 'login'=> ['digid'=>true,'eherkening'=>true],//,'employee'
                 'hubspotId'         => '6108438',
                 'googleTagId'       => 'G-RHY411XSJN',
@@ -1663,6 +1665,51 @@ class ZuiddrechtFixtures extends Fixture
         $slug->setName('home');
         $slug->setSlug('home');
         $manager->persist($slug);
+
+        $id = Uuid::fromString('bf8aff0a-ab65-4761-923b-890785c5d2fb');
+        $template = new Template();
+        $template->setName('Ontvangst Bevestiging Verzoek');
+        $template->setDescription('Ontvangst Bevestiging Verzoek');
+        $template->setContent('ontvangen');
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
+
+        $id = Uuid::fromString('d52644b8-d0af-4102-976c-8737802e0b7c');
+        $template = new Template();
+        $template->setName('Order');
+        $template->setDescription('Order');
+        $template->setContent('uw bestelling');
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
+
+        $id = Uuid::fromString('d273afad-4a3d-426d-a621-55720cac5d4e');
+        $template = new Template();
+        $template->setName('Factuur');
+        $template->setDescription('Factuur');
+        $template->setContent('uw factuur');
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
 
         $manager->flush();
     }
