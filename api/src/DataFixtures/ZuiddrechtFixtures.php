@@ -89,6 +89,7 @@ class ZuiddrechtFixtures extends Fixture
         $logo->setDescription('Zuid-Drecht VNG');
         $logo->setOrganization($organization);
 
+        /*
         $style = new Style();
         $style->setName('Zuid-Drecht');
         $style->setDescription('Huistlijl Gemeente Zuid-Drecht');
@@ -157,10 +158,6 @@ class ZuiddrechtFixtures extends Fixture
                 display: block;
             }
         }
-
-
-
-
 
         @media only screen and (min-width: 1376px){
             .headerImage {
@@ -479,10 +476,27 @@ class ZuiddrechtFixtures extends Fixture
 
 
 
-        ');
+        ');*/
+
+        $style = new Style();
+        $style->setName('Zuid-Drecht');
+        $style->setDescription('Huistlijl Gemeente Zuid-Drecht');
+        $style->setCss('
+        :root {
+                --primary: #CC0000;
+                --primary-color: white;
+                --secondary: #3669A5;
+                --secondary-color: white;
+
+                --menu: #CC0000;
+                --menu-over: #3669A5;
+                --menu-color: white;
+                --footer: #3669A5;
+                --footer-color: white;
+         }');
 
         $style->setfavicon($favicon);
-        $style->setOrganization($organization);
+        $style->addOrganization($organization);
 
         $manager->persist($organization);
         $manager->persist($favicon);
@@ -492,14 +506,13 @@ class ZuiddrechtFixtures extends Fixture
         $manager->flush();
 
         $styleDashboard = new Style();
-        $styleDashboard->setName('Zuid-Drecht');
+        $styleDashboard->setName('dashboard');
         $styleDashboard->setDescription('Huistlijl Gemeente Zuid-Drecht');
-        $styleDashboard->setCss(':root {--primary: #CC0000;--primary2: white;--secondary: #3669A5;--secondary2: #FFC926;}
-        .main-title {color: var(--primary2) !important;}.logo-header {background: var(--primary);}.navbar-header
-        {background: var(--primary);}.bg-primary-gradient {background: linear-gradient(-45deg, var(--secondary),
-         var(--secondary2)) !important;}');
+        $styleDashboard->setCss(':root {--primary: #CC0000;--primary2: white;--secondary: #FFC926;--secondary2: #FFC926;}.main-title
+    	{color: var(--primary2) !important;}.logo-header {background: var(--primary);}.navbar-header {background: var(--primary);}
+    	.bg-primary-gradient {background: linear-gradient(-45deg, var(--secondary), var(--secondary2)) !important;}');
         $styleDashboard->setfavicon($favicon);
-        $styleDashboard->setOrganization($organization);
+        $styleDashboard->addOrganization($organization);
         $manager->persist($styleDashboard);
 
         $manager->flush();
@@ -551,11 +564,16 @@ class ZuiddrechtFixtures extends Fixture
                 'about'             => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'template_groups', 'id'=>'6b243aa1-5ae6-4aeb-93d5-2f509fb34cef']),
                 'newsimg'           => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'0e5b1531-4abb-4704-9bd3-feeb94717521']),
                 'headerimg'         => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'ff3ca823-234f-4874-9ee6-1067d47e4391']),
-                'colorSchemeFooter' => 'footerStyle',
-                'colorSchemeMenu'   => 'menuStyle',
+                'changeRequest'     => '7216b69d-e245-488e-af8f-0969241926e7',
+                'objectionRequest'  => '2a95ba3e-a3f9-4fdf-8a6d-005d96aad405',
+                'orderTemplate'           => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'d52644b8-d0af-4102-976c-8737802e0b7c']),
+                'invoiceTemplate'           => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'d273afad-4a3d-426d-a621-55720cac5d4e']),
+                'login'=> ['digid'=>true,'eherkening'=>true],//,'employee'
                 'hubspotId'         => '6108438',
                 'googleTagId'       => 'G-RHY411XSJN',
                 'newsGroup'         => ['1'],
+                'userPage'          => '/persoonlijk',
+                'header'            => true,
             ]
         );
         $manager->persist($configuration);
@@ -634,7 +652,7 @@ class ZuiddrechtFixtures extends Fixture
         $menuItem->setDescription('Doe een aanvraag');
         $menuItem->setOrder(4);
         $menuItem->setType('slug');
-        $menuItem->setHref('/process');
+        $menuItem->setHref('/ptc');
         $menuItem->setMenu($menu);
         $manager->persist($menuItem);
 
@@ -684,6 +702,22 @@ class ZuiddrechtFixtures extends Fixture
         $groupPages->setDescription('Webpages that are presented to visitors');
         $manager->persist($groupPages);
 
+        // Persoonlijk
+        $template = new Template();
+        $template->setName('Persoonlijk');
+        $template->setDescription('persoonlijke overzichts pagine');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/persoonlijk.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('persoonlijk');
+        $slug->setSlug('persoonlijk');
+        $manager->persist($slug);
+
         // Pages
         $id = Uuid::fromString('163f8616-abb7-411d-b7b2-0d11c6bd7dca');
         $template = new Template();
@@ -706,6 +740,21 @@ class ZuiddrechtFixtures extends Fixture
         $slug->setName('home');
         $slug->setSlug('home');
         $manager->persist($slug);
+
+        $id = Uuid::fromString('9a974240-adce-4a47-a3e6-52c2e81e35ea');
+        $template = new Template();
+        $template->setName('HO Akte Grafrecht');
+        $template->setDescription('HO Akte Grafrecht document');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Documents/HO_Akte_Grafrecht.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
 
         $id = Uuid::fromString('fc5cef2d-c64d-4cfc-ac8c-da0ea0c66063');
         $template = new Template();
@@ -1616,6 +1665,51 @@ class ZuiddrechtFixtures extends Fixture
         $slug->setName('home');
         $slug->setSlug('home');
         $manager->persist($slug);
+
+        $id = Uuid::fromString('bf8aff0a-ab65-4761-923b-890785c5d2fb');
+        $template = new Template();
+        $template->setName('Ontvangst Bevestiging Verzoek');
+        $template->setDescription('Ontvangst Bevestiging Verzoek');
+        $template->setContent('ontvangen');
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
+
+        $id = Uuid::fromString('d52644b8-d0af-4102-976c-8737802e0b7c');
+        $template = new Template();
+        $template->setName('Order');
+        $template->setDescription('Order');
+        $template->setContent('uw bestelling');
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
+
+        $id = Uuid::fromString('d273afad-4a3d-426d-a621-55720cac5d4e');
+        $template = new Template();
+        $template->setName('Factuur');
+        $template->setDescription('Factuur');
+        $template->setContent('uw factuur');
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
 
         $manager->flush();
     }

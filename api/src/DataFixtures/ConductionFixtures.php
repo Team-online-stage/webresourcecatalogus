@@ -70,7 +70,7 @@ class ConductionFixtures extends Fixture
         $style->setDescription('Huistlijl Conduction');
         $style->setCss('');
         $style->setfavicon($favicon);
-        $style->setOrganization($conduction);
+        $style->addOrganization($conduction);
 
         $conduction->setLogo($logo);
 
@@ -1348,7 +1348,7 @@ class ConductionFixtures extends Fixture
         $style->setDescription('Huistlijl ZaakOnline');
         $style->setCss('');
         $style->setfavicon($favicon);
-        $style->setOrganization($conduction);
+        $style->addOrganization($conduction);
 
         $manager->persist($conduction);
         $manager->persist($favicon);
@@ -1380,6 +1380,7 @@ class ConductionFixtures extends Fixture
                 'home'          => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'6e01b18c-6751-4e11-9430-c69f629a6760']),
                 'hubspotId'     => '6108438',
                 'googleTagId'   => 'G-H2T0ZECZYM',
+                'userPage'      => '/persoonlijk',
             ]
         );
         $manager->persist($configuration);
@@ -1421,6 +1422,22 @@ class ConductionFixtures extends Fixture
         $groupPages->setName('Pages');
         $groupPages->setDescription('Webpages that are presented to visitors');
         $manager->persist($groupPages);
+
+        // Persoonlijk
+        $template = new Template();
+        $template->setName('Persoonlijk');
+        $template->setDescription('persoonlijke overzichts pagine');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/persoonlijk.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($zaakOnline);
+        $slug->setName('persoonlijk');
+        $slug->setSlug('persoonlijk');
+        $manager->persist($slug);
 
         // Pages
         $id = Uuid::fromString('6e01b18c-6751-4e11-9430-c69f629a6760');
@@ -1476,7 +1493,7 @@ class ConductionFixtures extends Fixture
         $style->setCss(':root {--primary: #FFBC2C; --primary-txt-clr: black} #docs-nav {background: var(--primary); color: var(--primarytxtcolor)}
         #footer {background: var(--primary); color: var(--primarytxtcolor) !important} .custom-card{padding: 10px !important;} .custom-slider{margin-bottom: 20px} ');
         $style->setfavicon($favicon);
-        $style->setOrganization($conduction);
+        $style->addOrganization($conduction);
 
         $manager->persist($conduction);
         $manager->persist($favicon);
@@ -1504,10 +1521,12 @@ class ConductionFixtures extends Fixture
         $configuration->setApplication($commongroundNu);
         $configuration->setConfiguration(
             [
-                'mainMenu'      => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'447eb167-17b0-416a-9df4-7cd4d3cc417c']),
-                'home'          => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'83b365c9-33fe-4b89-99d0-d77ef676adb1']),
-                'hubspotId'     => '6108438',
-                'googleTagId'   => 'G-X24NEYKVXK',
+                'mainMenu'        => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'447eb167-17b0-416a-9df4-7cd4d3cc417c']),
+                'home'            => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'83b365c9-33fe-4b89-99d0-d77ef676adb1']),
+                'hubspotId'       => '6108438',
+                'googleTagId'     => 'G-X24NEYKVXK',
+                'userPage'        => '/persoonlijk',
+                'header'          => false,
             ]
         );
         $manager->persist($configuration);
@@ -1549,6 +1568,22 @@ class ConductionFixtures extends Fixture
         $groupPages->setName('Pages');
         $groupPages->setDescription('Webpages that are presented to visitors');
         $manager->persist($groupPages);
+
+        // Persoonlijk
+        $template = new Template();
+        $template->setName('Persoonlijk');
+        $template->setDescription('persoonlijke overzichts pagine');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/persoonlijk.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($commongroundNu);
+        $slug->setName('persoonlijk');
+        $slug->setSlug('persoonlijk');
+        $manager->persist($slug);
 
         // Pages
         $id = Uuid::fromString('83b365c9-33fe-4b89-99d0-d77ef676adb1');
@@ -1593,7 +1628,7 @@ class ConductionFixtures extends Fixture
         $style->setDescription('Huistlijl Common-ground.dev');
         $style->setCss('');
         $style->setfavicon($favicon);
-        $style->setOrganization($conduction);
+        $style->addOrganization($conduction);
 
         $manager->persist($conduction);
         $manager->persist($favicon);
@@ -1621,10 +1656,12 @@ class ConductionFixtures extends Fixture
         $configuration->setApplication($commongroundDev);
         $configuration->setConfiguration(
             [
-                'mainMenu'      => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'15db60f7-76f1-4bc0-8caf-cb9ed9d4066f']),
-                'home'          => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'cdc7b532-2084-470e-9032-935bb8e5bde4']),
-                'hubspotId'     => '6108438',
-                'googleTagId'   => 'G-FC090SHG18',
+                'mainMenu'        => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'15db60f7-76f1-4bc0-8caf-cb9ed9d4066f']),
+                'home'            => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'cdc7b532-2084-470e-9032-935bb8e5bde4']),
+                'hubspotId'       => '6108438',
+                'googleTagId'     => 'G-FC090SHG18',
+                'userPage'        => '/persoonlijk',
+                'header'          => false,
             ]
         );
         $manager->persist($configuration);
@@ -1666,6 +1703,22 @@ class ConductionFixtures extends Fixture
         $groupPages->setName('Pages');
         $groupPages->setDescription('Webpages that are presented to visitors');
         $manager->persist($groupPages);
+
+        // Persoonlijk
+        $template = new Template();
+        $template->setName('Persoonlijk');
+        $template->setDescription('persoonlijke overzichts pagine');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/persoonlijk.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($commongroundDev);
+        $slug->setName('persoonlijk');
+        $slug->setSlug('persoonlijk');
+        $manager->persist($slug);
 
         // Pages
         $id = Uuid::fromString('cdc7b532-2084-470e-9032-935bb8e5bde4');
@@ -1775,25 +1828,21 @@ class ConductionFixtures extends Fixture
         $style = new Style();
         $style->setName('stage');
         $style->setDescription('Huistlijl stage');
-        $style->setCss(':root {--primary: #ffbc2c;--primary2: black;--secondary: #ffc446;--secondary2: #ffc446;}
-        .main-title {color: var(--primary2) !important;}.logo-header {background: var(--primary);}.navbar-header
-        {background: var(--primary);}.bg-primary-gradient {background: linear-gradient(-45deg, var(--secondary),
-         var(--secondary2)) !important;}
-
-        .processen i, span {
-            color: black;
+        $style->setCss(':
+        root {
+        --primary: #0047BB;
+        --primary2: white;
+        --secondary: #0047BB;
+        --secondary2: white;
         }
 
         a {
             text-decoration: none;
         }
 
-        .footer__nav a {
-            color: black !important;
-        }
 
-        .footer__nav {
-            color: black !important;
+        .processen i, span {
+            color: black;
         }
 
         a:focus:not(.btn):not(.pagination__link):not(.nav__link){
@@ -1819,7 +1868,7 @@ class ConductionFixtures extends Fixture
             background: none;
             background-size: cover !important;
             background-position: center !important;
-            }
+        }
 
         #news-1, #news-2, #news-3, #news-4 {
             display: none;
@@ -1831,6 +1880,7 @@ class ConductionFixtures extends Fixture
                 display: block;
                 margin-top: 50px;
                 padding: 25px;
+
                 margin-bottom: -50px;
                 background: none;
                 background-size: cover !important;
@@ -1853,10 +1903,6 @@ class ConductionFixtures extends Fixture
                 display: block;
             }
         }
-
-
-
-
 
         @media only screen and (min-width: 1376px){
             .headerImage {
@@ -2025,60 +2071,28 @@ class ConductionFixtures extends Fixture
             }
         }
 
-
-        .header-logo a:after{
-            background-image: none;
-        }
-
         .flex-center {
             display: flex;
             justify-content: center;
             align-items: center;
         }
 
-        .footerStyle {
-            background-color: #FFBC2C;
-            color: black;
-        }
-
-        .nav__link {
-            color: black !important;
-        }
-
-        .nav__link--parent {
-            color: black !important;
-        }
-
-        .nav__submenu {
-            background-color: #FFBC2C;
-        }
-
-        .top-nav-autoresize .nav__link:hover {
-            background-color: #ffc446;
-            color: black;
-        }
-
-        .menuStyle {
-            background-color: #ffbc2c;
-            color: black;
-        }
-
         .newsCard {
-        margin: 10px auto;
-        width: 240px;
-        background-color: white;
-        padding: 15px;
-        height:400px;
+            margin: 10px auto;
+            width: 240px;
+            background-color: white;
+            padding: 15px;
+            height:400px;
         }
 
         .contact {
-        background-color: #ffbc2c;
-        float:left;
-        width: 100%;
-        padding-left: 10px;
-        padding-right: 10px;
-        padding-top: 10px;
-        margin-left: 5px;
+            background-color: #ffbc2c;
+            float:left;
+            width: 100%;
+            padding-left: 10px;
+            padding-right: 10px;
+            padding-top: 10px;
+            margin-left: 5px;
         }
 
         @media only screen and (min-width: 960px) {
@@ -2130,7 +2144,7 @@ class ConductionFixtures extends Fixture
 
         ');
         $style->setfavicon($favicon);
-        $style->setOrganization($conduction);
+        $style->addOrganization($conduction);
 
         $manager->persist($conduction);
         $manager->persist($favicon);
@@ -2160,6 +2174,8 @@ class ConductionFixtures extends Fixture
                 'colorSchemeMenu'   => 'menuStyle',
                 'hubspotId'         => '6108438',
                 'googleTagId'       => 'G-2PYCJ13YC4',
+                'userPage'          => '/persoonlijk',
+                'header'            => false,
             ]
         );
         $manager->persist($configuration);
@@ -2284,6 +2300,38 @@ class ConductionFixtures extends Fixture
         $groupPages->setName('Pages');
         $groupPages->setDescription('Webpages that are presented to visitors');
         $manager->persist($groupPages);
+
+        // Persoonlijk
+        $template = new Template();
+        $template->setName('Persoonlijk');
+        $template->setDescription('persoonlijke overzichts pagine');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/persoonlijk.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($stage);
+        $slug->setName('persoonlijk');
+        $slug->setSlug('persoonlijk');
+        $manager->persist($slug);
+
+        // Persoonlijk
+        $template = new Template();
+        $template->setName('Persoonlijk');
+        $template->setDescription('persoonlijke overzichts pagine');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/persoonlijk.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($stage);
+        $slug->setName('persoonlijk');
+        $slug->setSlug('persoonlijk');
+        $manager->persist($slug);
 
         // Pages
         $id = Uuid::fromString('6079cc7d-7b69-4db3-ad17-6bf972cca6a2');

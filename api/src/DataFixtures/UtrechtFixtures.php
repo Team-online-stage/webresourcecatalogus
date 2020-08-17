@@ -487,7 +487,7 @@ class UtrechtFixtures extends Fixture
         ');
 
         $style->setfavicon($favicon);
-        $style->setOrganization($organization);
+        $style->addOrganization($organization);
 
         $manager->persist($organization);
         $manager->persist($favicon);
