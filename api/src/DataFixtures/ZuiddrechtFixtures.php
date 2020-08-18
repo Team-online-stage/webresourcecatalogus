@@ -694,6 +694,30 @@ class ZuiddrechtFixtures extends Fixture
         $menuItem->setMenu($menu);
         $manager->persist($menuItem);
 
+        // Template group: documents
+        $groupPages = new TemplateGroup();
+        $groupPages->setOrganization($organization);
+        $groupPages->setApplication($application);
+        $groupPages->setName('Documents');
+        $groupPages->setDescription('Document templates');
+        $manager->persist($groupPages);
+
+        // Pages
+        $id = Uuid::fromString('759cf6c0-08eb-49b8-9cf8-43a9e7e52f7a');
+        $template = new Template();
+        $template->setName('Order Template');
+        $template->setDescription('template for orders');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Documents/order.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
+
         // Template groups
         $groupPages = new TemplateGroup();
         $groupPages->setOrganization($organization);
