@@ -241,16 +241,17 @@ class WestfrieslandFixtures extends Fixture
         $stylePan->setDescription('Huistlijl Westfriese gemeenten West-Friesland');
         $stylePan->setCss('
 
-            root {
-            --primary: #551a8b;
+            :root {
+            --primary: #233A79;
             --primary-color: white;
-            --secondary: #3669A5;
-            --secondary-color: #FFC926;
+            --secondary: #FFCB04;
+            --secondary-color: #263371;
 
-            --menu: #551a8b;
-            --menu-over: #3669A5;
+            --header: white;
+            --menu: #233A79;
+            --menu-over: #FFCB04;
             --menu-color: white;
-            --footer: #551a8b;
+            --footer: #233A79;
             --footer-color: white;
             }
 
@@ -295,16 +296,21 @@ class WestfrieslandFixtures extends Fixture
         $configuration->setApplication($application);
         $configuration->setConfiguration(
             [
-                'loggedIn' => $this->commonGroundService->cleanUrl(['component' => 'wrc', 'type' => 'menus', 'id' => 'a8496676-767a-4d1e-beab-be39a7b2c870']),
-                'mainMenu' => $this->commonGroundService->cleanUrl(['component' => 'wrc', 'type' => 'menus', 'id' => '0ff074bc-e6db-43ed-93ae-c027ad452f78']),
-                'home'     => $this->commonGroundService->cleanUrl(['component' => 'wrc', 'type' => 'templates', 'id' => '097ea88e-beb6-476e-a978-d07650f03d97']),
-                'footer1'  => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'9e4130de-b2d7-481c-8681-87b2a174c8ae']),
-                'footer2'  => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'e16b153e-de8a-4f24-9886-fd3057ae93de']),
-                'footer3'  => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'f78d6861-783f-4441-82c4-2efcf5af677f']),
-                'footer4'  => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'c62eedef-ba28-4a5d-bdea-2eb9ef250b8e']),
-                'headerimg'=> $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'2c60657d-a728-4e71-897d-ac407c134e10']),
-                'newsGroup'=> ['4'],
-                'userPage' => '/persoonlijk',
+                'loggedIn'          => $this->commonGroundService->cleanUrl(['component' => 'wrc', 'type' => 'menus', 'id' => 'a8496676-767a-4d1e-beab-be39a7b2c870']),
+                'mainMenu'          => $this->commonGroundService->cleanUrl(['component' => 'wrc', 'type' => 'menus', 'id' => '0ff074bc-e6db-43ed-93ae-c027ad452f78']),
+                'home'              => $this->commonGroundService->cleanUrl(['component' => 'wrc', 'type' => 'templates', 'id' => '097ea88e-beb6-476e-a978-d07650f03d97']),
+                'footer1'           => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'9e4130de-b2d7-481c-8681-87b2a174c8ae']),
+                'footer2'           => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'e16b153e-de8a-4f24-9886-fd3057ae93de']),
+                'footer3'           => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'f78d6861-783f-4441-82c4-2efcf5af677f']),
+                'footer4'           => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'c62eedef-ba28-4a5d-bdea-2eb9ef250b8e']),
+                'headerimg'         => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'2c60657d-a728-4e71-897d-ac407c134e10']),
+                'changeRequest'     => '7216b69d-e245-488e-af8f-0969241926e7',
+                'objectionRequest'  => '2a95ba3e-a3f9-4fdf-8a6d-005d96aad405',
+                'orderTemplate'     => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'b92c9562-acdc-40ad-9156-9d98b539d885']),
+                'invoiceTemplate'   => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'fc5a7f58-aaf6-4775-bed8-f4ca00c132c0']),
+                'login'             => ['eherkening'=>true],
+                'newsGroup'         => ['4'],
+                'userPage'          => '/persoonlijk',
             ]
         );
         $manager->persist($configuration);
@@ -488,6 +494,51 @@ class WestfrieslandFixtures extends Fixture
         $template->setName('footer4');
         $template->setDescription('Contactgegevens van West-Friesland');
         $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Westfriesland/footers/footer4.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
+
+        $id = Uuid::fromString('7a3d7d9a-269f-4699-a622-2ad0114d8e86');
+        $template = new Template();
+        $template->setName('Ontvangst Bevestiging Verzoek');
+        $template->setDescription('Ontvangst Bevestiging Verzoek');
+        $template->setContent('ontvangen');
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
+
+        $id = Uuid::fromString('b92c9562-acdc-40ad-9156-9d98b539d885');
+        $template = new Template();
+        $template->setName('Order');
+        $template->setDescription('Order');
+        $template->setContent('uw bestelling');
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
+
+        $id = Uuid::fromString('fc5a7f58-aaf6-4775-bed8-f4ca00c132c0');
+        $template = new Template();
+        $template->setName('Factuur');
+        $template->setDescription('Factuur');
+        $template->setContent('uw factuur');
         $template->setTemplateEngine('twig');
         $manager->persist($template);
         $template->setId($id);
