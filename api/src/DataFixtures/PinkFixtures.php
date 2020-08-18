@@ -91,7 +91,7 @@ class PinkFixtures extends Fixture
 ');
 
         $style->setfavicon($favicon);
-        $style->setOrganization($organisation);
+        $style->addOrganization($organisation);
 
         $manager->persist($organisation);
         $manager->persist($favicon);

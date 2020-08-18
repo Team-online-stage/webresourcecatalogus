@@ -15,6 +15,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Serializer\Annotation\MaxDepth;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -136,9 +137,12 @@ class Organization
     private $logo;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Style", mappedBy="organization", orphanRemoval=true)
+     * @Groups({"read", "write"})
+     * @MaxDepth(1)
+     * @ORM\ManyToOne(targetEntity="App\Entity\Style", inversedBy="organizations")
+     * @ORM\JoinColumn(nullable=true)
      */
-    private $styles;
+    private $style;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Application", mappedBy="organization")
@@ -197,7 +201,6 @@ class Organization
 
     public function __construct()
     {
-        $this->styles = new ArrayCollection();
         $this->applications = new ArrayCollection();
         $this->images = new ArrayCollection();
         $this->configurations = new ArrayCollection();
@@ -276,30 +279,14 @@ class Organization
         return $this;
     }
 
-    public function getStyles(): ?Collection
+    public function getStyle(): ?Style
     {
-        return $this->styles;
+        return $this->style;
     }
 
-    public function addStyle(Style $style): self
+    public function setStyle(?Style $style): self
     {
-        if (!$this->styles->contains($style)) {
-            $this->styles[] = $style;
-            $style->setOrganization($this);
-        }
-
-        return $this;
-    }
-
-    public function removeStyle(Style $style): self
-    {
-        if ($this->styles->contains($style)) {
-            $this->styles->removeElement($style);
-            // set the owning side to null (unless already changed)
-            if ($style->getOrganization() === $this) {
-                $style->setOrganization(null);
-            }
-        }
+        $this->style = $style;
 
         return $this;
     }

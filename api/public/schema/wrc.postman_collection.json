@@ -442,7 +442,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"rsin\": \"<string>\",\n    \"chamberOfComerce\": \"<string>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"contact\": \"https://www.test.nl/\"\n}",
+							"raw": "{\n    \"rsin\": \"<string>\",\n    \"chamberOfComerce\": \"<string>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"contact\": \"https://cc.dev.conduction.nl/organizations/a1321118-2780-4b68-a9dc-a232c4b54fa6\"\n}",
 							"options": {
 								"raw": {}
 							}
@@ -14542,12 +14542,12 @@
 	],
 	"variable": [
 		{
-			"id": "4ec525bc-d8c6-4074-83bc-54095539f436",
+			"id": "203dce1b-e8b9-41a9-9219-0ac8b0f0a8ae",
 			"key": "baseUrl",
 			"value": "localhost"
 		},
 		{
-			"id": "ef301e3f-11b3-484b-a1a1-838d79cd9c67",
+			"id": "361f4e86-81f7-4b26-9070-8726e35f337a",
 			"key": "authorization",
 			"value": "45c1a4b6-59d3-4a6e-86bf-88a872f35845"
 		}
