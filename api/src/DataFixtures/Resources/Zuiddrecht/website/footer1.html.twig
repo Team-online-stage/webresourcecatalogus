@@ -1,12 +1,12 @@
 <span class="footer__header">Voor inwoners</span>
 <ul class="list list--links list--chevrons footer__nav" >
-    <li><a style="color: white" href="/request">Mijn Zuid Drecht</a></li>
-    {#<li><a style="color: white" href="{{ path('app_tender_pitches') }}">Initiatieven</a></li>#}
-    <li><a style="color: white" href="{{ path('app_process_load',{"id":"c8de2851-332d-4284-b86e-ba0615694427"}) }}">Verhuizen</a></li>
-    <li><a style="color: white" href="{{ path('app_process_load',{"id":"b8955949-2d8d-4bfb-9c73-e5275bffa427"}) }}">Trouwen</a></li>
-    <li><a style="color: white" href="{{ path('app_process_load',{"id":"a8b8ce49-d5db-4270-9e42-4b47902fc817"}) }}">Begraven</a></li>
-    <li><a style="color: white" href="{{ path('app_process_load',{"id":"504b2a88-223f-4e35-8043-f061ea8a6623"}) }}">Geboorteaangifte</a></li>
-    <li><a style="color: white" href="{{ path('app_process_load',{"id":"8a3ec75e-186c-4085-bc7c-4e1c5bf250d0"}) }}">Melding openbare ruimte</a></li>
-    <li><a style="color: white" href="{{ path('app_process_load',{"id":"993cefcc-de42-46f5-9289-5f24df5dd3c7"}) }}">Aanvraag parkeervergunning</a></li>
+    <li><a href="/request">Mijn Zuid Drecht</a></li>
+    {#<li><a href="{{ path('app_tender_pitches') }}">Initiatieven</a></li>#}
+    <li><a href="{{ path('app_ptc_process_stage',{"id":"c8de2851-332d-4284-b86e-ba0615694427","stage":"start"}) }}">Verhuizen</a></li>
+    <li><a href="{{ path('app_ptc_process_stage',{"id":"b8955949-2d8d-4bfb-9c73-e5275bffa427","stage":"start"}) }}">Trouwen</a></li>
+    <li><a href="{{ path('app_ptc_process_stage',{"id":"a8b8ce49-d5db-4270-9e42-4b47902fc817","stage":"start"}) }}">Begraven</a></li>
+    <li><a href="{{ path('app_ptc_process_stage',{"id":"504b2a88-223f-4e35-8043-f061ea8a6623","stage":"start"}) }}">Geboorteaangifte</a></li>
+    <li><a href="{{ path('app_ptc_process_stage',{"id":"8a3ec75e-186c-4085-bc7c-4e1c5bf250d0","stage":"start"}) }}">Melding openbare ruimte</a></li>
+    <li><a href="{{ path('app_ptc_process_stage',{"id":"993cefcc-de42-46f5-9289-5f24df5dd3c7","stage":"start"}) }}">Aanvraag parkeervergunning</a></li>
 </ul>
 

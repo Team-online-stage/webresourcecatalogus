@@ -1,0 +1,41 @@
+{# templates/home/index.html.twig #}
+
+{% extends 'content.html.twig' %}
+
+{% block content %}
+    <section class="row">
+        <div class="col-md-12">
+            <div class="content">
+                <header class="content__header">
+                    <a class="backlink" href="/">{{ 'home'|trans|capitalize }}</a>
+                    <header class="content__header">
+                        <h1 class="content__header-title">{{ 'personal'|trans|capitalize }}</h1>
+                    </header>
+                </header>
+            </div><!-- ./content -->
+        </div><!-- ./col -->
+    </section>
+
+
+    <div class="row">
+        <aside class="col-xl-3 col-lg-4 col-md-3 col-sm-modal">
+            <nav class="sidenav">
+                {%  include 'uc/widgets/menu.html.twig' %}
+            </nav>
+        </aside>
+
+        <div class="col-xl-9 col-lg-8 col-md-9">
+            {% set processes = commonground_resource_list({"component":"ptc","type":"process_types"})["hydra:member"] %}
+            <ul class="list list--card">
+                {% for process in processes %}
+                <li class="card background--primary card__hover">
+                    <a href="{{ path('app_ptc_process_stage',{"id":process.id}) }}" class="card__content">
+                        <div class="card__icon flex-center color--primary"><i class="{{ process.icon }} fa-4x"></i></div>
+                        <div class="card__body flex-center"><span class="card__title color--primary flex-center">{{ process.name }}</span></div>
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+{% endblock %}
