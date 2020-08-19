@@ -30,7 +30,7 @@
                 {% for process in processes %}
                 <li class="card background--primary card__hover">
                     <a href="{{ path('app_ptc_process_stage',{"id":process.id}) }}" class="card__content">
-                        <div class="card__icon flex-center color--primary"><i class="{{ process.icon }} fa-4x"></i></div>
+                        <div class="card__icon flex-center color--primary"><i class="{{ process.icon|raw }} fa-4x"></i></div>
                         <div class="card__body flex-center"><span class="card__title color--primary flex-center">{{ process.name }}</span></div>
                     </a>
                 </li>
