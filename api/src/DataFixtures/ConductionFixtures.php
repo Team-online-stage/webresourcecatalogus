@@ -1490,7 +1490,7 @@ class ConductionFixtures extends Fixture
         $style = new Style();
         $style->setName('commonground.nu');
         $style->setDescription('Huistlijl commonground.nu');
-        $style->setCss(':root {--primary: #FFBC2C; --primary-txt-clr: black} #docs-nav {background: var(--primary); color: var(--primarytxtcolor)}
+        $style->setCss(':root {--primary: #4376FC; --menu: #4376FC; --menu-color: white;  --footer: #4376FC; --footer-color: white} #docs-nav {background: var(--primary); color: var(--primarytxtcolor)}
         #footer {background: var(--primary); color: var(--primarytxtcolor) !important} .custom-card{padding: 10px !important;} .custom-slider{margin-bottom: 20px} ');
         $style->setfavicon($favicon);
         $style->addOrganization($conduction);
@@ -1664,6 +1664,7 @@ class ConductionFixtures extends Fixture
                 'hubspotId'       => '6108438',
                 'googleTagId'     => 'G-FC090SHG18',
                 'userPage'        => '/persoonlijk',
+                'login'           => ['user'=>true],
                 'header'          => false,
             ]
         );

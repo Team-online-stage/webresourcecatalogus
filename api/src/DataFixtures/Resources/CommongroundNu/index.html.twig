@@ -1,49 +1,75 @@
 {# templates/home/index.html.twig #}
 
-{% extends 'base.html.twig' %}
+{% extends 'content.html.twig' %}
 
 {% block content %}
 
-    <h1>Commonground nu homepage</h1>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="content">
 
-    <div class="images-slider custom-slider">
-        <img src="/images/conduction/Corona_Blauw_Vlak.png">
-        <img src="/images/conduction/Opensource_Lichtblauw_Vlak.png">
-        <img src="/images/conduction/Product_Geel_Vlak.png">
-        <img src="/images/conduction/Samen_Blauw_Vlak.png">
-        <img src="/images/conduction/Wrc_Geel_Vlak.png">
+                <div class="col-md-6">
+                    <h1>Commonground.nu homepage</h1>
+
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas pretium ultricies sem, in
+                        commodo massa dapibus vel. Etiam faucibus sed libero a mollis. Duis sit amet ante sodales,
+                        vehicula quam lobortis, molestie odio. Nam vulputate maximus justo id imperdiet. Vivamus et
+                        augue finibus, porttitor dui eu, varius tortor. Curabitur mollis, magna sed mollis vulputate.</p>
+                </div>
+                {#                    <div class="images-slider custom-slider">#}
+                {#                        <img src="/images/conduction/Corona_Blauw_Vlak.png">#}
+                {#                        <img src="/images/conduction/Opensource_Lichtblauw_Vlak.png">#}
+                {#                        <img src="/images/conduction/Product_Geel_Vlak.png">#}
+                {#                        <img src="/images/conduction/Samen_Blauw_Vlak.png">#}
+                {#                        <img src="/images/conduction/Wrc_Geel_Vlak.png">#}
+                {#                    </div>#}
+
+                {#                    <div class="row">#}
+                {#                        <div class="col-sm-3">#}
+                {#                            <div class="content-background">#}
+                {#                                <div class="content custom-card">#}
+                {#                                    <span><i style="font-size: 25px; padding-right: 10px" class="fas fa-book"></i>Lorem ipsum</span>#}
+                {#                                    <img src="https://picsum.photos/255/155">#}
+                {#                                </div>#}
+                {#                            </div>#}
+                {#                        </div>#}
+                {#                        <div class="col-sm-3">#}
+                {#                            <div class="content-background">#}
+                {#                                <div class="content custom-card">#}
+                {#                                    <span><i style="font-size: 25px; padding-right: 10px" class="fas fa-book"></i>Lorem ipsum</span>#}
+                {#                                    <img src="https://picsum.photos/255/155">#}
+                {#                                </div>#}
+                {#                            </div>#}
+                {#                        </div>#}
+                {#                        <div class="col-sm-3">#}
+                {#                            <div class="content-background">#}
+                {#                                <div class="content custom-card">#}
+                {#                                    <span><i style="font-size: 25px; padding-right: 10px" class="fas fa-book"></i>Lorem ipsum</span>#}
+                {#                                    <img src="https://picsum.photos/255/155">#}
+                {#                                </div>#}
+                {#                            </div>#}
+                {#                        </div>#}
+                {#                        <div class="col-sm-3">#}
+                {#                            <div class="content-background">#}
+                {#                                <div class="content custom-card">#}
+                {#                                    <span><i style="font-size: 25px; padding-right: 10px" class="fas fa-book"></i>Lorem ipsum</span>#}
+                {#                                    <img src="https://picsum.photos/255/155">#}
+                {#                                </div>#}
+                {#                            </div>#}
+                {#                        </div>#}
+                {#                    </div>#}
+
+            </div>
+        </div>
     </div>
 
     <div class="row">
-        <div class="col-sm-3">
+        <div class="col-md-4 col-md-offset-1">
             <div class="content-background">
-                <div class="content custom-card">
-                    <span><i style="font-size: 25px; padding-right: 10px" class="fas fa-book"></i>Lorem ipsum</span>
-                    <img src="https://picsum.photos/255/155">
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-3">
-            <div class="content-background">
-                <div class="content custom-card">
-                    <span><i style="font-size: 25px; padding-right: 10px" class="fas fa-book"></i>Lorem ipsum</span>
-                    <img src="https://picsum.photos/255/155">
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-3">
-            <div class="content-background">
-                <div class="content custom-card">
-                    <span><i style="font-size: 25px; padding-right: 10px" class="fas fa-book"></i>Lorem ipsum</span>
-                    <img src="https://picsum.photos/255/155">
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-3">
-            <div class="content-background">
-                <div class="content custom-card">
-                    <span><i style="font-size: 25px; padding-right: 10px" class="fas fa-book"></i>Lorem ipsum</span>
-                    <img src="https://picsum.photos/255/155">
+                <div class="content">
+
+                    {% include 'uc/widgets/login.html.twig' %}
+
                 </div>
             </div>
         </div>
