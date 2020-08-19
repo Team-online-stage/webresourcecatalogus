@@ -1530,6 +1530,9 @@ class ConductionFixtures extends Fixture
             ]
         );
         $manager->persist($configuration);
+        $commongroundNu->setDefaultConfiguration($configuration);
+        $manager->persist($commongroundNu);
+        $manager->flush();
 
         // Menu
         $id = Uuid::fromString('447eb167-17b0-416a-9df4-7cd4d3cc417c');
