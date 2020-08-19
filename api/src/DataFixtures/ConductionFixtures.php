@@ -1526,6 +1526,7 @@ class ConductionFixtures extends Fixture
                 'hubspotId'       => '6108438',
                 'googleTagId'     => 'G-X24NEYKVXK',
                 'userPage'        => '/persoonlijk',
+                'login'           => ['user'=>true],
                 'header'          => false,
             ]
         );
@@ -1664,7 +1665,6 @@ class ConductionFixtures extends Fixture
                 'hubspotId'       => '6108438',
                 'googleTagId'     => 'G-FC090SHG18',
                 'userPage'        => '/persoonlijk',
-                'login'           => ['user'=>true],
                 'header'          => false,
             ]
         );
