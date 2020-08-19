@@ -566,6 +566,10 @@ class ZuiddrechtFixtures extends Fixture
                 'headerimg'         => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'ff3ca823-234f-4874-9ee6-1067d47e4391']),
                 'changeRequest'     => '7216b69d-e245-488e-af8f-0969241926e7',
                 'objectionRequest'  => '2a95ba3e-a3f9-4fdf-8a6d-005d96aad405',
+                'nameChangeRequest'  => '2a95ba3e-a3f9-4fdf-8a6d-005d96aad405',
+                'familyChangeRequest'  => '2a95ba3e-a3f9-4fdf-8a6d-005d96aad405',
+                'genderRequest'  => '2a95ba3e-a3f9-4fdf-8a6d-005d96aad405',
+                'moveRequest'  => '2a95ba3e-a3f9-4fdf-8a6d-005d96aad405',
                 'orderTemplate'           => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'d52644b8-d0af-4102-976c-8737802e0b7c']),
                 'invoiceTemplate'           => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'d273afad-4a3d-426d-a621-55720cac5d4e']),
                 'login'=> ['digid'=>true,'eherkening'=>true],//,'employee'

@@ -25,8 +25,24 @@
         </aside>
 
         <div class="col-xl-9 col-lg-8 col-md-9">
-            {% set processes = commonground_resource_list({"component":"ptc","type":"process_types"})["hydra:member"] %}
+            {% for row in processes|batch(4) %}
             <ul class="list list--card">
+                    {% for process in row %}
+                        <li class="card background--primary card__hover">
+                            <a href="{{ path('app_ptc_process_stage',{"id":process.id}) }}" class="card__content">
+                                <div class="card__icon flex-center color--primary"><i class="{{ process.icon }} fa-4x"></i></div>
+                                <div class="card__body flex-center"><span class="card__title color--primary flex-center">{{ process.name }}</span></div>
+                            </a>
+                        </li>
+                    {% endfor %}
+                </tr>
+            </ul>
+            {% endfor %}
+        </div>
+
+        {#
+        <div class="col-xl-9 col-lg-8 col-md-9">
+            {% set processes = commonground_resource_list({"component":"ptc","type":"process_types"})["hydra:member"] %}
                 {% for process in processes %}
                 <li class="card background--primary card__hover">
                     <a href="{{ path('app_ptc_process_stage',{"id":process.id}) }}" class="card__content">
@@ -35,7 +51,8 @@
                     </a>
                 </li>
                 {% endfor %}
-            </ul>
         </div>
+        #}
+
     </div>
 {% endblock %}
