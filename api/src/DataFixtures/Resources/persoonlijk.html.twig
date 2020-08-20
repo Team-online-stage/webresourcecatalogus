@@ -25,6 +25,8 @@
         </aside>
 
         <div class="col-xl-9 col-lg-8 col-md-9">
+
+            {% set processes = commonground_resourecelist({"component":"ptc","type":"process_types"}) %}
             {% for row in processes|batch(4) %}
             <ul class="list list--card">
                     {% for process in row %}
