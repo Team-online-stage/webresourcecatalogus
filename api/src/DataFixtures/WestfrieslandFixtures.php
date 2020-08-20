@@ -311,7 +311,7 @@ class WestfrieslandFixtures extends Fixture
                 'invoiceTemplate'   => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'fc5a7f58-aaf6-4775-bed8-f4ca00c132c0']),
                 'login'             => ['eherkening'=>true],
                 'newsGroup'         => ['4'],
-                'userPage'          => '/persoonlijk',
+                'userPage'          => 'persoonlijk',
             ]
         );
         $manager->persist($configuration);
