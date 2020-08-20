@@ -1832,11 +1832,15 @@ class ConductionFixtures extends Fixture
         $style = new Style();
         $style->setName('stage');
         $style->setDescription('Huistlijl stage');
-        $style->setCss(':
-        root {
-        --primary: #0047BB;
+        $style->setCss('
+        :root {
+        --menu: #ffffff00;
+        --menu-color: white;
+        --footer: #4376FC;
+        --menu-color: white;
+        --primary: #4376FC;
         --primary2: white;
-        --secondary: #0047BB;
+        --secondary: #4376FC;
         --secondary2: white;
         }
 
@@ -1845,9 +1849,9 @@ class ConductionFixtures extends Fixture
         }
 
 
-        .processen i, span {
+        /* .processen i, span {
             color: black;
-        }
+        } */
 
         a:focus:not(.btn):not(.pagination__link):not(.nav__link){
             background: #FFCC5F;
@@ -2160,6 +2164,7 @@ class ConductionFixtures extends Fixture
         // Configuratie
         $configuration = new Configuration();
         $configuration->setName('stage.conduction.nl configuration');
+        $configuration->setDescription('De configuratie van de stage applicatie');
         $configuration->setOrganization($conduction);
         $configuration->setConfiguration(
             [
@@ -2180,6 +2185,7 @@ class ConductionFixtures extends Fixture
                 'googleTagId'       => 'G-2PYCJ13YC4',
                 'userPage'          => '/persoonlijk',
                 'header'            => false,
+                'stickyMenu'            => true
             ]
         );
         $manager->persist($configuration);
