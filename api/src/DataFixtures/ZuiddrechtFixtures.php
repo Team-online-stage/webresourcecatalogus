@@ -572,7 +572,7 @@ class ZuiddrechtFixtures extends Fixture
                 'hubspotId'                 => '6108438',
                 'googleTagId'               => 'G-RHY411XSJN',
                 'newsGroup'                 => ['1'],
-                'userPage'                  => '/persoonlijk',
+                'userPage'                  => 'persoonlijk',
                 'header'                    => true,
             ]
         );
