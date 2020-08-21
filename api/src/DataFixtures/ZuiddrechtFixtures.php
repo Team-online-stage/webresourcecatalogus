@@ -579,7 +579,6 @@ class ZuiddrechtFixtures extends Fixture
                 'userPage'                  => 'persoonlijk',
                 'header'                    => true,
                 'search'                    => true,
-                'stickyMenu'                    => true
             ]
         );
         $manager->persist($configuration);
