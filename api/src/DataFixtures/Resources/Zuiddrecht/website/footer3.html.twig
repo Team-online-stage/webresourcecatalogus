@@ -1,17 +1,24 @@
-<span class="footer__header">Over Zuid Drecht</span>
-<ul class="list list--links list--chevrons footer__nav" style="color: white;" >
-    <li><a href="/article?id=b4d411c7-17b3-469b-8a4a-2f334dbaeb4c">Concept</a></li>
-    <li><a href="/article?id=22689f6d-9f62-4025-b880-18d8ba63818f">Functionaliteit</a></li>
-    <li><a href="/article?id=5bf63407-73dc-4c9b-a458-3350e9325457">Roadmap</a></li>
-    <li><a href="/article?id=55a98b6b-8ca7-4c2f-a0a0-2c559efeb189">Voor developers</a></li>
-    <li><a href="/newsletter">Nieuwsbrief</a></li>
-    <li><a href="/contact">Contact</a></li>
-</ul>
+<span class="footer__header">{{ 'newsletter'|trans|capitalize }}</span>
+<form action="https://conduction.us3.list-manage.com/subscribe/post?u=92dbff3b134c8b2356ddc7ed4&amp;id=265fa0c5eb" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
 
-<span class="footer__header">Over de website</span>
-<ul class="list list--links list--chevrons footer__nav" style="color: white;" >
-    <li><a href="/privacy">Privacy</a></li>
-    <li><a href="/proclaimer">Proclaimer</a></li>
-    <li><a href="/cookies">Cookies</a></li>
-</ul>
-
+    <div class="input">
+        <label class="input__label" for="email">{{ 'e-mail'|trans|capitalize }}</label>
+        <input required type="email" value="" name="EMAIL" class="required email input__control input__control--text input__control--m" id="mce-EMAIL">
+    </div>
+    <div class="input">
+        <label class="input__label" for="email">{{ 'first name'|trans|capitalize }}</label>
+        <input required type="text" value="" name="FNAME" class="required email input__control input__control--text input__control--m" id="mce-EMAIL">
+    </div>
+    <div class="input">
+        <label class="input__label" for="email">{{ 'last name'|trans|capitalize }}</label>
+        <input required type="text" value="" name="LNAME" class="required email input__control input__control--text input__control--m" id="mce-EMAIL">
+    </div>
+    <div class="input">
+        <button type="submit" class="btn btn--primary">{{ 'subscribe'|trans|capitalize }}</button>
+    </div>
+    {% if application.defaultConfiguration.configuration.newsGroup is defined and application.defaultConfiguration.configuration.newsGroup is not empty %}
+        {% for group in application.defaultConfiguration.configuration.newsGroup %}
+            <input type="hidden" value="{{ group }}" name="group[25353][{{ group }}]">
+        {% endfor %}
+    {% endif %}
+</form>
