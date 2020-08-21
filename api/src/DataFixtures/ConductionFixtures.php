@@ -2162,6 +2162,49 @@ class ConductionFixtures extends Fixture
 
         $manager->flush();
 
+        // CheckIn
+        $configuration = new Configuration();
+        $configuration->setName('stage.conduction.nl configuration');
+        $configuration->setDescription('De configuratie van de stage applicatie');
+        $configuration->setOrganization($conduction);
+        $configuration->setConfiguration(
+            [
+                'mainMenu'              => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'da3d55e3-6b7e-47f3-856d-eb158212d8af']),
+                'loggedOut'             => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'b239cf91-2440-495b-853f-3c1e0fe54ef7']),
+                'loggedIn'              => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'3d9b7bbd-cc5a-4b88-acd0-682cf506da7c']),
+                'home'                  => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'6079cc7d-7b69-4db3-ad17-6bf972cca6a2']),
+                'footer1'               => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'09dfc502-19ce-4b11-8e0a-a7fc456a5c52']),
+                'footer2'               => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'23b58ab8-45a6-4fbf-a180-6aac96da4df6']),
+                'footer3'               => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'b86881b2-7911-4598-826d-875acc899845']),
+                'footer4'               => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'b0c69fb9-852f-4c54-80c7-7b0f931e779a']),
+                'nieuws'                => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'template_groups', 'id'=>'f2729540-2740-4fbf-98ae-f0a069a1f43f']),
+                'newsimg'               => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'b0e3e803-2cb6-41ed-ab32-d6e5451c119d']),
+                'headerimg'             => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'0863d15c-286e-4ec4-90f6-27cebb107aa9']),
+                'colorSchemeFooter'     => 'footerStyle',
+                'colorSchemeMenu'       => 'menuStyle',
+                'hubspotId'             => '6108438',
+                'googleTagId'           => 'G-2PYCJ13YC4',
+                'userPage'              => '/persoonlijk',
+                'header'                => false,
+                'stickyMenu'            => true,
+            ]
+        );
+        $manager->persist($configuration);
+
+        $id = Uuid::fromString('31a2ad29-ee03-4aa9-be81-abf1fda7bbcc');
+        $application = new Application();
+        $application->setName('CheckIn');
+        $application->setDescription('Website voor checkin.conduction.nl');
+        $application->setDomain('checkin.conduction.nl');
+        $application->setStyle($style);
+        $application->setOrganization($conduction);
+        $application->setDefaultConfiguration($configuration);
+        $manager->persist($application);
+        $application->setId($id);
+        $manager->persist($application);
+        $manager->flush();
+        $application = $manager->getRepository('App:Application')->findOneBy(['id'=> $id]);
+
         // Configuratie
         $configuration = new Configuration();
         $configuration->setName('stage.conduction.nl configuration');
