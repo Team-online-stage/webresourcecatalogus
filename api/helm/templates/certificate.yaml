@@ -1,4 +1,4 @@
-{{ if false }}
+{{ if or (eq .Values.settings.type "application") .Values.settings.web }}
 apiVersion: cert-manager.io/v1alpha2
 kind: Certificate
 metadata:
