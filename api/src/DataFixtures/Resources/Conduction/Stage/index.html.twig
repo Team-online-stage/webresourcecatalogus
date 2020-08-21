@@ -28,14 +28,26 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="col-md-6 col-sm-12">
                     <div class="content">
-                        <div class="images-slider custom-slider" style="height: 400px">
-                            <img src="/images/conduction/Corona_Blauw_Vlak.png">
-                            <img src="/images/conduction/Opensource_Lichtblauw_Vlak.png">
-                            <img src="/images/conduction/Product_Geel_Vlak.png">
-                            <img src="/images/conduction/Samen_Blauw_Vlak.png">
-                            <img src="/images/conduction/Wrc_Geel_Vlak.png">
+                        <div class="images-slider-1 custom-slider" style="height: 400px">
+                            <a href="#">
+                                <img src="/images/conduction/Corona_Blauw_Vlak.png" height="300px" width="500px">
+                            </a>
+                            <a href="#">
+                                <img src="/images/conduction/Opensource_Lichtblauw_Vlak.png" height="300px" width="500px">
+                            </a>
+                            <a href="#">
+                                <img src="/images/conduction/Product_Geel_Vlak.png" height="300px" width="500px">
+                            </a>
+                            <a href="#">
+                                <img src="/images/conduction/Samen_Blauw_Vlak.png" height="300px" width="500px">
+                            </a>
+                            <a href="#">
+                                <img src="/images/conduction/Wrc_Geel_Vlak.png" height="300px" width="500px">
+                            </a>
+
                         </div>
                     </div>
                 </div>
@@ -53,26 +65,30 @@
                         <a href="#" class="card__content">
                             <div class="card__thumb" style="background-image: url('https://picsum.photos/200')"></div>
                             <div class="card__body">
-                                <span class="card__title">Vooraan﻿&#8203;kondiging nieuwe werkwijze relatief verzuim</span>
+                                <span
+                                    class="card__title">Vooraan﻿&#8203;kondiging nieuwe werkwijze relatief verzuim</span>
                             </div>
                         </a>
                     </li>
                     <li class="card">
                         <a href="#" class="card__content">
                             <div class="card__thumb" style="background-image: url('https://picsum.photos/200')"></div>
-                            <div class="card__body"><span class="card__title">Verzuimloket niet uitgefaseerd</span></div>
+                            <div class="card__body"><span class="card__title">Verzuimloket niet uitgefaseerd</span>
+                            </div>
                         </a>
                     </li>
                     <li class="card">
                         <a href="#" class="card__content">
                             <div class="card__thumb" style="background-image: url('https://picsum.photos/200')"></div>
-                            <div class="card__body"><span class="card__title">Opschonen vrijstellingen&#8203;register</span></div>
+                            <div class="card__body"><span
+                                    class="card__title">Opschonen vrijstellingen&#8203;register</span></div>
                         </a>
                     </li>
                     <li class="card">
                         <a href="#" class="card__content">
                             <div class="card__thumb" style="background-image: url('https://picsum.photos/200')"></div>
-                            <div class="card__body"><span class="card__title">Opschonen vrijstellingen&#8203;register</span></div>
+                            <div class="card__body"><span
+                                    class="card__title">Opschonen vrijstellingen&#8203;register</span></div>
                         </a>
                     </li>
                 </ul>
@@ -83,39 +99,197 @@
     <div class="container" style="padding-top: 20px; padding-bottom: 20px">
         <div class="row">
             <h2>Cursussen</h2>
-            <div class="col-md-4 text-center">
-                <img class="responsive" src="/images/conduction/Wrc_Geel_Vlak.png" width="350px">
-            </div>
-            <div class="col-md-4 text-center">
-                <img class="responsive" src="/images/conduction/Samen_Blauw_Vlak.png" width="350px">
-            </div>
-            <div class="col-md-4 text-center">
-                <img class="responsive" src="/images/conduction/Opensource_Lichtblauw_Vlak.png" width="350px">
+
+            <div class="images-slider-3 custom-slider" style="height: 400px">
+
+                {% if 'localhost' in app.request.uri or 'dev.' in app.request.uri %}
+                    {% set courses = commonground_resource_list('https://edu.dev.conduction.nl/courses')['hydra:member'] %}
+                {% else %}
+                    {% set courses = commonground_resource_list('https://edu.conduction.nl/courses')['hydra:member'] %}
+                {% endif %}
+
+                {% if courses is defined and courses is not empty %}
+
+                    {% for item in courses %}
+
+                        <li class="card">
+                            <a href="#" class="card__content">
+                                <div class="card__thumb"
+                                     style="background-image: url('https://picsum.photos/300/100')"></div>
+                                <div class="card__body">
+                                    <span class="card__title">{{ item.name }}</span>
+                                    <span class="card__content">{{ item.description }}</span>
+                                </div>
+                                <span class="card__readmore">{{ 'read more'|trans|capitalize }}</span>
+                            </a>
+                        </li>
+
+                    {% endfor %}
+
+                    {#                   If we have less then 5 objects we run the loop twice for the image-slider        #}
+
+                    {% if courses|length < 5 %}
+
+                        {% for item in courses %}
+
+                            <li class="card">
+                                <a href="#" class="card__content">
+                                    <div class="card__thumb"
+                                         style="background-image: url('https://picsum.photos/300/100')"></div>
+                                    <div class="card__body">
+                                        <span class="card__title">{{ item.name }}</span>
+                                        <span class="card__content">{{ item.description }}</span>
+                                    </div>
+                                    <span class="card__readmore">{{ 'read more'|trans|capitalize }}</span>
+                                </a>
+                            </li>
+
+                        {% endfor %}
+
+                    {% endif %}
+
+                {% else %}
+
+                    <p class="text-center">Er zijn geen cursussen gevonden.</p>
+
+                {% endif %}
+
             </div>
         </div>
     </div>
 
 
-    <div style="background: #87cefa; width: 100%; padding-top: 20px; padding-bottom: 20px"">
+    <div style="background: #87cefa; width: 100%; padding-top: 20px; padding-bottom: 20px">
         <div class="container">
             <div class="row">
-                <h2>Stages</h2>
-                <div class="col-md-4 text-center">
-                    <img class="responsive" src="/images/conduction/Wrc_Geel_Vlak.png" width="350px">
-                </div>
-                <div class="col-md-4 text-center">
-                    <img class="responsive" src="/images/conduction/Samen_Blauw_Vlak.png" width="350px">
-                </div>
-                <div class="col-md-4 text-center">
-                    <img class="responsive" src="/images/conduction/Opensource_Lichtblauw_Vlak.png" width="350px">
-                </div>
 
+                <h2>Stages</h2>
+
+                <div class="images-slider-3 custom-slider" style="height: 400px">
+
+                    {% if 'localhost' in app.request.uri or 'dev.' in app.request.uri %}
+                        {% set stages = commonground_resource_list('https://edu.dev.conduction.nl/programs')['hydra:member'] %}
+                    {% else %}
+                        {% set stages = commonground_resource_list('https://edu.conduction.nl/programs')['hydra:member'] %}
+                    {% endif %}
+
+                    {% if stages is defined and stages is not empty %}
+
+                        {% for item in stages %}
+
+                            <li class="card">
+                                <a href="#" class="card__content">
+                                    <div class="card__thumb"
+                                         style="background-image: url('https://picsum.photos/300/100')"></div>
+                                    <div class="card__body">
+                                        <span class="card__title">{{ item.name }}</span>
+                                        <span class="card__content">{{ item.description }}</span>
+                                    </div>
+                                    <span class="card__readmore">{{ 'read more'|trans|capitalize }}</span>
+                                </a>
+                            </li>
+
+                        {% endfor %}
+
+                        {#                      If we have less then 5 objects we run the loop twice for the image-slider        #}
+                        {% if stages|length < 5 %}
+
+                            {% for item in stages %}
+
+                                <li class="card">
+                                    <a href="#" class="card__content">
+                                        <div class="card__thumb"
+                                             style="background-image: url('https://picsum.photos/300/100')"></div>
+                                        <div class="card__body">
+                                            <span class="card__title">{{ item.name }}</span>
+                                            <span class="card__content">{{ item.description }}</span>
+                                        </div>
+                                        <span class="card__readmore">{{ 'read more'|trans|capitalize }}</span>
+                                    </a>
+                                </li>
+
+                            {% endfor %}
+
+                        {% endif %}
+
+                    {% else %}
+
+                        <p class="text-center">Er zijn geen stages gevonden.</p>
+
+                    {% endif %}
+                    {#                <div class="col-md-4 text-center">#}
+                    {#                    <img class="responsive" src="/images/conduction/Wrc_Geel_Vlak.png" width="350px">#}
+                    {#                </div>#}
+                    {#                <div class="col-md-4 text-center">#}
+                    {#                    <img class="responsive" src="/images/conduction/Samen_Blauw_Vlak.png" width="350px">#}
+                    {#                </div>#}
+                    {#                <div class="col-md-4 text-center">#}
+                    {#                    <img class="responsive" src="/images/conduction/Opensource_Lichtblauw_Vlak.png" width="350px">#}
+                    {#                </div>#}
+
+                </div>
             </div>
         </div>
     </div>
 
     <script>
-        $('.images-slider').slick();
+        $('.images-slider-1').slick({
+            slidesToScroll: 1,
+            autoplay: true,
+            autoplaySpeed: 3000,
+        });
+
+        $('.images-slider-2').slick({
+            centerMode: true,
+            centerPadding: '60px',
+            slidesToShow: 3,
+            responsive: [
+                {
+                    breakpoint: 768,
+                    settings: {
+                        arrows: false,
+                        centerMode: true,
+                        centerPadding: '40px',
+                        slidesToShow: 3
+                    }
+                },
+                {
+                    breakpoint: 480,
+                    settings: {
+                        arrows: false,
+                        centerMode: true,
+                        centerPadding: '40px',
+                        slidesToShow: 1
+                    }
+                }
+            ]
+        });
+
+        $('.images-slider-3').slick({
+            centerMode: true,
+            centerPadding: '60px',
+            slidesToShow: 3,
+            responsive: [
+                {
+                    breakpoint: 768,
+                    settings: {
+                        arrows: false,
+                        centerMode: true,
+                        centerPadding: '40px',
+                        slidesToShow: 3
+                    }
+                },
+                {
+                    breakpoint: 480,
+                    settings: {
+                        arrows: false,
+                        centerMode: true,
+                        centerPadding: '40px',
+                        slidesToShow: 1
+                    }
+                }
+            ]
+        });
 
         // $('.images-slider').slick({
         //     centerMode: true,
