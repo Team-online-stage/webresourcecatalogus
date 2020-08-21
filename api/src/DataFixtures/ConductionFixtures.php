@@ -1834,6 +1834,7 @@ class ConductionFixtures extends Fixture
         $style->setDescription('Huistlijl stage');
         $style->setCss('
         :root {
+        --background: #4376FC;
         --menu: #ffffff00;
         --menu-color: white;
         --footer: #4376FC;
