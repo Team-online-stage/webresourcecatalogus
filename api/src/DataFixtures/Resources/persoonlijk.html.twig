@@ -15,17 +15,18 @@
             </div><!-- ./content -->
         </div><!-- ./col -->
     </section>
-
-
     <div class="row">
-        <aside class="col-xl-3 col-lg-4 col-md-3 col-sm-modal">
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+
+        <aside class="col-md-4 col-sm-modal">
             <nav class="sidenav">
                 {%  include 'uc/widgets/menu.html.twig' %}
             </nav>
         </aside>
 
-        <div class="col-xl-9 col-lg-8 col-md-9">
-            {% for row in processes|batch(4) %}
+        <div class="col-md-8">
+            {% set processes = commonground_resource_list({"component":"ptc","type":"process_types"})['hydra:member'] %}
+            {% for row in processes|batch(3) %}
             <ul class="list list--card">
                     {% for process in row %}
                         <li class="card background--primary card__hover">
@@ -39,20 +40,21 @@
             </ul>
             {% endfor %}
         </div>
-
-        {#
-        <div class="col-xl-9 col-lg-8 col-md-9">
-            {% set processes = commonground_resource_list({"component":"ptc","type":"process_types"})["hydra:member"] %}
-                {% for process in processes %}
-                <li class="card background--primary card__hover">
-                    <a href="{{ path('app_ptc_process_stage',{"id":process.id}) }}" class="card__content">
-                        <div class="card__icon flex-center color--primary"><i class="{{ process.icon }} fa-4x"></i></div>
-                        <div class="card__body flex-center"><span class="card__title color--primary flex-center">{{ process.name }}</span></div>
-                    </a>
-                </li>
-                {% endfor %}
-        </div>
-        #}
-
+        {% else %}
+            <div class="col-md-12">
+                <div class="content-background" >
+                    <div class="content">
+                        <aside class="hint">
+                            <h2 class="hint__title">{{ 'login required'|trans|capitalize}}</h2>
+                            {{ 'you need to login before you can view this page'|trans|capitalize}}
+                        </aside>
+                        <a href="{{ path('app_user_login') }}?backUrl={{ absolute_url(path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params'))) }}" title="Login" class="btn btn--icon">
+                            <i style="margin-right: 10px"  class="icon fas fa-lock"></i>
+                            <span>{{ 'login'|trans|capitalize }}</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
     </div>
 {% endblock %}
