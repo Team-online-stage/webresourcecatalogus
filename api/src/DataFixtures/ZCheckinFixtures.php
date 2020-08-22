@@ -164,9 +164,17 @@ class ZCheckinFixtures extends Fixture
         $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
         $manager->persist($template);
 
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('home');
+        $slug->setSlug('home');
+        $manager->persist($slug);
+        $manager->flush();
+
         $id = Uuid::fromString('d1e07882-e130-45da-b2ae-617c09cf0ad3');
         $template = new Template();
-        $template->setName('CheckIn.nu Home');
+        $template->setName('me');
         $template->setDescription('Homepage voor CheckIn.nu');
         $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/CheckIn/me.html.twig', 'r'));
         $template->setTemplateEngine('twig');
