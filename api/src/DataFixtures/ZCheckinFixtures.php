@@ -57,15 +57,15 @@ class ZCheckinFixtures extends Fixture
         $style->setDescription('Huistlijl Gemeente Zuid-Drecht');
         $style->setCss('
         :root {
-                --primary: #CC0000;
+                --primary: #01689b;
                 --primary-color: white;
-                --secondary: #3669A5;
-                --secondary-color: white;
+                --secondary: #cce0f1;
+                --secondary-color: #2b2b2b;
 
-                --menu: #CC0000;
+                --menu: #01689b;
                 --menu-over: #3669A5;
-                --menu-color: white;
-                --footer: #3669A5;
+                --menu-color: #2b2b2b;
+                --footer: #01689b;
                 --footer-color: white;
          }');
         $style->setfavicon($favicon);
