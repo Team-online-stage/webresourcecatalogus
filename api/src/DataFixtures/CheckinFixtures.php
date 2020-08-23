@@ -3,6 +3,7 @@
 namespace App\DataFixtures;
 
 use App\DataFixtures\ConductionFixtures;
+use App\DataFixtures\ZuiddrechtFixtures;
 use App\Entity\Application;
 use App\Entity\Configuration;
 use App\Entity\Image;
@@ -16,10 +17,11 @@ use App\Entity\TemplateGroup;
 use Conduction\CommonGroundBundle\Service\CommonGroundService;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Ramsey\Uuid\Uuid;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 
-class ZCheckinFixtures extends Fixture
+class CheckinFixtures extends Fixture implements DependentFixtureInterface
 {
     private $params;
     /**
@@ -33,6 +35,14 @@ class ZCheckinFixtures extends Fixture
         $this->commonGroundService = $commonGroundService;
     }
 
+    public function getDependencies()
+    {
+        return array(
+            ConductionFixtures::class,
+            ZuiddrechtFixtures::class,
+        );
+    }
+
     public function load(ObjectManager $manager)
     {
         // Lets make sure we only run these fixtures on larping enviroment
@@ -42,7 +52,7 @@ class ZCheckinFixtures extends Fixture
             return false;
         }
 
-        $organization = $this->getReference(ConductionFixtures::ORGANIZATION_ZUIDDRECHT);
+        $organization = $this->getReference(ZuiddrechtFixtures::ORGANIZATION_ZUIDDRECHT);
 
         $favicon = new Image();
         $favicon->setName('CheckIN Favicon');
@@ -192,12 +202,5 @@ class ZCheckinFixtures extends Fixture
         $slug->setSlug('me');
         $manager->persist($slug);
         $manager->flush();
-    }
-
-    public function getDependencies()
-    {
-        return array(
-            ConductionFixtures::class,
-        );
     }
 }
