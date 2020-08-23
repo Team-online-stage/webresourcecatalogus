@@ -3,6 +3,7 @@
 {% extends 'base.html.twig' %}
 
 {% block container %}
+<form method="post" action="{{ path('app_chin_checkin') }}" class="form">
     <div class="row background--primary">
         <div class="container" >
             <div class="col-md-4 col-sm-12">
@@ -28,19 +29,31 @@
             </div><!-- /.col -->
         </div><!-- /.container -->
     </div><!-- /.row -->
+</form>
 
-    <div class="row">
-        <div class="container" >
-            <div class="col-md-12">
-                <div class="content">
-                    <h2>Wat is checkin?<h2>
-                    <p>Checkin is de veilige manier om je gegevens achter te laten bij de horeca</p>
-                    <h2>Hoe werkt checkin?<h2>
-                    <p>Als je via checkin incheckt bij een horeca gelegenheid ontvangt deze gelegenheid alleen een token, je contact gegevens zijn alleen inzochtenlijk voor het platform en worden na twee weken automatisch verwijder.</p>
-                    <h2>Wat als ik mogenlijk in contact ben geweest met iemand met corona?<h2>
-                    <p>Als de GGD constateerd dat er op dezelfde dat en tijd iemand met COVID-19 in dezelfde horeca gelegenheid is geweest nemen ze contact op met checkin. Checkin draagt vervolgens de contact gegevens van iedereen die op de zelfde dag en dag en tijd in de horeca gelegenheid was over aan de GGD. Ook in dat geval komen je contact gegevens niet bij de horeca gelegenheid terecht, de GGD neemt vanuit hun contacten onderzoek zelf contact met je op.</p>
-                </div><!-- /.content -->
-            </div><!-- /.col -->
-        </div><!-- /.container -->
-    </div><!-- /.row -->
+<div class="row">
+    <div class="container" >
+        <div class="col-md-12">
+            <div class="content">
+                <h2>Wat is checkin?<h2>
+                <p>Checkin is de veilige manier om je gegevens achter te laten bij de horeca</p>
+                <h2>Hoe werkt checkin?<h2>
+                <p>Als je via checkin incheckt bij een horeca gelegenheid ontvangt deze gelegenheid alleen een token, je contact gegevens zijn alleen inzochtenlijk voor het platform en worden na twee weken automatisch verwijder.</p>
+                <h2>Wat als ik mogenlijk in contact ben geweest met iemand met corona?<h2>
+                <p>Als de GGD constateerd dat er op dezelfde dat en tijd iemand met COVID-19 in dezelfde horeca gelegenheid is geweest nemen ze contact op met checkin. Checkin draagt vervolgens de contact gegevens van iedereen die op de zelfde dag en dag en tijd in de horeca gelegenheid was over aan de GGD. Ook in dat geval komen je contact gegevens niet bij de horeca gelegenheid terecht, de GGD neemt vanuit hun contacten onderzoek zelf contact met je op.</p>
+            </div><!-- /.content -->
+        </div><!-- /.col -->
+    </div><!-- /.container -->
+</div><!-- /.row -->
+
+<div class="row">
+    <div class="container" >
+        <div class="col-md-12">
+            <div class="content">
+                <h2>Wie zitten er achter checkin?<h2>
+                <p>Checkin is een samenerwerking verband van de Rabo Bank en Konlijklijke Horeca Nederland, uitvoering en realisatie word begeleid door Conduction</p>
+            </div><!-- /.content -->
+        </div><!-- /.col -->
+    </div><!-- /.container -->
+</div><!-- /.row -->
 {% endblock %}

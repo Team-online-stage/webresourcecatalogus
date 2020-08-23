@@ -78,7 +78,13 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
                 --menu-color: #2b2b2b;
                 --footer: #01689b;
                 --footer-color: white;
-         }');
+         }
+
+
+         .main {
+            padding-top: 00px;
+        }
+         ');
         $style->setfavicon($favicon);
         $style->addOrganization($organization);
         $manager->persist($style);
