@@ -26,6 +26,8 @@ class ZuiddrechtFixtures extends Fixture
      */
     private $commonGroundService;
 
+    public const ORGANIZATION_ZUIDDRECHT = 'organization-zuiddrecht';
+
     public function __construct(ParameterBagInterface $params, CommonGroundService $commonGroundService)
     {
         $this->params = $params;
@@ -53,6 +55,8 @@ class ZuiddrechtFixtures extends Fixture
         $manager->persist($organization);
         $manager->flush();
         $organization = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
+
+        $this->addReference(self::ORGANIZATION_ZUIDDRECHT, $organization);
 
         $favicon = new Image();
         $favicon->setName('Zuid-Drecht Favicon');

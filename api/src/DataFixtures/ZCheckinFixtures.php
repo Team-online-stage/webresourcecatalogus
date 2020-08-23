@@ -42,7 +42,7 @@ class ZCheckinFixtures extends Fixture
             return false;
         }
 
-        $organization = $this->getReference(ConductionFixtures::ORGANIZATION_CONDUCTION);
+        $organization = $this->getReference(ConductionFixtures::ORGANIZATION_ZUIDDRECHT);
 
         $favicon = new Image();
         $favicon->setName('CheckIN Favicon');
