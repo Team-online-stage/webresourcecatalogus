@@ -2,76 +2,45 @@
 
 {% extends 'base.html.twig' %}
 
-{% block body %}        
-            <!-- .row -->
-            <div class="row animation" data-animation="animation-fade-in" data-delay=" {% if app.session.flashbag.peekAll|length > 0 %}3400{%else%}200{% endif %}" >          
-                <div class="col-sm-12 col-md-6 col-sm-offset-1 col-md-offset-0 text-center-sm text-center-xs">
-                	<div class="margin-bottom40">
-                    	<div class="post-heading-left text-center-sm text-center-xs" >
-                        	<h4>{{ assent.name|raw }}   </h4>
-                            <h2>Instemmings verzoek</h2>
-                        </div>
-                        {{ assent.description|raw }}     
-                        <br/>
-                        
-                    </div>
-                </div>
-                
-                <div class="col-sm-12 col-md-6 col-lg-5 col-sm-offset-1 col-md-offset-0 col-lg-offset-1">
-                	<div class="post-heading-left text-center-sm text-center-xs" >
-                    	<h4>Uw bij ons bekende gegevens </h4>
-                        <h2>
-                        		
-			   					{% set contact = commonground_resource(assent.contact) %}
-								Status:  {{ assent.status }} 
-                        </h2>
-	                           
-                        	    <br><b>Voornaam:</b> {{ contact.givenName }}
-                                <br><b>Achternaam:</b> {{ contact.familyName }}
-                                
-	                            {% if contact['_embedded']['emails'] is defined   %}
-                        	    <br><b>Email:</b> {{ contact1['_embedded']['emails'][0].email }}
-                        	    {% endif %}
-	                            {% if contact['_embedded']['telephones'] is defined   %}
-                                <br><b>Telefoon</b></b> {{ contact1['_embedded']['telephones'][0].telephone }}
-                                {% endif %}                                   
-                                
-    	                        {% if contact['_embedded']['adresses'] is defined   %}
-                                <p>
-                                    <br> {{ contact['_embedded']['adresses'][0].street }}  {{ contact1['_embedded']['adresses'][0].houseNumber }}
-                                    <br> {{ contact['_embedded']['adresses'][0].postalCode }}  {{ contact1['_embedded']['adresses'][0].locality }}
-                                 <br />
-                                </p>   
-                                {% endif %}
-                    </div>                    
-                </div>
-            </div>
-            <!-- .row end -->  
-                
-            <!-- .row -->
-            <div class="row animation" data-animation="animation-fade-in" data-delay=" {% if app.session.flashbag.peekAll|length > 0 %}3400{%else%}400{% endif %}" > 
-                {% if  assent.status == "requested" %}
-                <div class="col-sm-5 col-md-6 col-lg-5 col-sm-offset-1 col-md-offset-0 col-lg-offset-1">          
-                			<a href="{{ path('app_default_assentstatus',{'id':assent.id,'status':'granted'}) }}" class="btn btn-block btn-primary btn-icon" >
-    							<i class="fas fa-share-square"></i> 
-    							Ik stem hier WEL mee in 
-    		           		</a>
-                <div class="col-sm-5 col-md-6 col-lg-5 col-sm-offset-1 col-md-offset-0 col-lg-offset-1">   
-                </div>
-    		            	<a href="{{ path('app_default_assentstatus',{'id':assent.id,'status':'declined'}) }}" class="btn btn-block btn-danger btn-icon" >
-    							<i class="fas fa-share-square"></i>
-    							Ik stem hier NIET mee in 
-    		           		</a>
-                </div>
-                {% elseif assent.status == "granted"  %}
-                <div class="col-sm-12 col-md-6 col-lg-5 col-sm-offset-1 col-md-offset-0 col-lg-offset-1">          
-                			<a href="{{ path('app_default_slug',{'slug':'checklist'}) }}" class="btn btn-primary btn-icon" >
-    							<i class="fas fa-share-square"></i> 
-    							Ga door naar aanvraag
-    		           		</a>
-                </div>
-                {% endif %}
-                
-            </div>
-            <!-- .row end -->       
+{% block container %}
+    <div class="row background--primary">
+        <div class="container" >
+            <div class="col-md-4 col-sm-12">
+                <div class="content-background background--secondary" >
+                    <div class="content">
+                        scan qr code
+                    </div><!-- /.content -->
+                </div><!-- /.content-background -->
+            </div><!-- /.col -->
+            <div class="col-md-4 col-sm-12">
+                <div class="content-background background--secondary" >
+                    <div class="content">
+                        Geeft een checkin code op
+                    </div><!-- /.content -->
+                </div><!-- /.content-background -->
+            </div><!-- /.col -->
+            <div class="col-md-4">
+                <div class="content-background background--secondary" >
+                    <div class="content">
+                        Selecteer een locatie
+                    </div><!-- /.content -->
+                </div><!-- /.content-background -->
+            </div><!-- /.col -->
+        </div><!-- /.container -->
+    </div><!-- /.row -->
+
+    <div class="row">
+        <div class="container" >
+            <div class="col-md-12">
+                <div class="content">
+                    <h2>Wat is checkin?<h2>
+                    <p>Checkin is de veilige manier om je gegevens achter te laten bij de horeca</p>
+                    <h2>Hoe werkt checkin?<h2>
+                    <p>Als je via checkin incheckt bij een horeca gelegenheid ontvangt deze gelegenheid alleen een token, je contact gegevens zijn alleen inzochtenlijk voor het platform en worden na twee weken automatisch verwijder.</p>
+                    <h2>Wat als ik mogenlijk in contact ben geweest met iemand met corona?<h2>
+                    <p>Als de GGD constateerd dat er op dezelfde dat en tijd iemand met COVID-19 in dezelfde horeca gelegenheid is geweest nemen ze contact op met checkin. Checkin draagt vervolgens de contact gegevens van iedereen die op de zelfde dag en dag en tijd in de horeca gelegenheid was over aan de GGD. Ook in dat geval komen je contact gegevens niet bij de horeca gelegenheid terecht, de GGD neemt vanuit hun contacten onderzoek zelf contact met je op.</p>
+                </div><!-- /.content -->
+            </div><!-- /.col -->
+        </div><!-- /.container -->
+    </div><!-- /.row -->
 {% endblock %}
