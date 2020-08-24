@@ -1,8 +1,10 @@
 {% set order = commonground_resource(resource) %}
 {% set person = commonground_resource(order.customer) %}
-{% set organization = commonground_resource(order.organization) %}
+{% set organization = commonground_resource(order.targetOrganization) %}
 
 <h1>{{ organization.name }}</h1>
+
+<p></p>
 
 <h3>{{ 'persoonsgegevens'|trans|capitalize }}:</h3>
 <p>{{ person.naam.voornamen }} {{ person.naam.geslachtsnaam }}</p>
@@ -18,12 +20,12 @@
 
 <table>
     <thead>
-        <tr>
-            <th>{{ 'name'|trans|capitalize }}</th>
-            <th>{{ 'description'|trans|capitalize }}</th>
-            <th>{{ 'quantity'|trans|capitalize }}</th>
-            <th>{{ 'price'|trans|capitalize }}</th>
-        </tr>
+    <tr>
+        <th>{{ 'name'|trans|capitalize }}</th>
+        <th>{{ 'description'|trans|capitalize }}</th>
+        <th>{{ 'quantity'|trans|capitalize }}</th>
+        <th>{{ 'price'|trans|capitalize }}</th>
+    </tr>
     </thead>
     <tbody>
     {% for item in order.items %}
