@@ -1,8 +1,10 @@
 {% set order = commonground_resource(resource) %}
 {% set person = commonground_resource(order.customer) %}
-{% set organization = commonground_resource(order.organization) %}
+{% set organization = commonground_resource(order.targetOrganization) %}
 
 <h1>{{ organization.name }}</h1>
+
+<p></p>
 
 <h3>{{ 'persoonsgegevens'|trans|capitalize }}:</h3>
 <p>{{ person.naam.voornamen }} {{ person.naam.geslachtsnaam }}</p>
