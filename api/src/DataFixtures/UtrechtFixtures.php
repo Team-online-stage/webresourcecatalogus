@@ -102,23 +102,17 @@ class UtrechtFixtures extends Fixture
         $configuration->setOrganization($organization);
         $configuration->setConfiguration(
             [
-                'sideMenu'          => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'f6015c2e-1238-4726-8c31-6a3809e9e1ac']),
-                'loggedIn'          => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'d99faa7b-4dc3-4423-85bc-fc6af769c858']),
                 'mainMenu'          => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'afea3e07-ba59-4318-a6f3-3fad9a044584']),
                 'home'              => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'8b630178-85a8-4f10-b19c-c421fdfa5299']),
                 'footer1'           => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'9be5ac5d-35ce-4056-b5a9-ae6a7cf24ef8']),
                 'footer2'           => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'2a85bdc1-3370-4847-b330-e8e6d9cd82b1']),
                 'footer3'           => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'facad633-27a9-499a-b3fc-4687215bf82a']),
                 'footer4'           => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'4bc966b6-e310-4bce-b459-a7cf65651ce0']),
-                'nieuws'            => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'template_groups', 'id'=>'a28db4f3-f579-43db-bde7-9e0188fdd717']),
                 'faq'               => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'template_groups', 'id'=>'6b243aa1-5ae6-4aeb-93d5-2f509fb34cef']),
+                'about'               => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'template_groups', 'id'=>'99764e34-3c49-4550-8cbd-0b7e2683e4c5']),
                 'newsimg'           => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'726da4ad-9979-4c04-9048-2c0fa7bdb800']),
                 'headerimg'         => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'76b4c601-68a3-462b-a5fe-421c795d67bc']),
-                'favicon'           => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'98df315f-63f0-4dc8-8321-a2cfa53f666e']),
-                'colorSchemeFooter' => 'footerStyle',
-                'colorSchemeMenu'   => 'menuStyle',
-                'hubspotId'         => '6108438',
-                'googleTagId'       => 'G-RHY411XSJN', ]
+                'favicon'           => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'98df315f-63f0-4dc8-8321-a2cfa53f666e']),]
         );
         $manager->persist($configuration);
 
@@ -136,6 +130,20 @@ class UtrechtFixtures extends Fixture
         $manager->persist($application);
         $manager->flush();
         $application = $manager->getRepository('App:Application')->findOneBy(['id'=> $id]);
+
+        // Images
+        $id = Uuid::fromString('76b4c601-68a3-462b-a5fe-421c795d67bc');
+        $headerimg = new Image();
+        $headerimg->setName('header image');
+        $headerimg->setBase64(base64_encode(file_get_contents(dirname(__FILE__).'/Resources/Zuiddrecht/afbeeldingen/zuiddrecht_header.jpg', 'r')));
+        $headerimg->setDescription('Zuid-Drecht header');
+        $headerimg->setOrganization($organization);
+        $manager->persist($headerimg);
+        $headerimg->setId($id);
+        $manager->persist($headerimg);
+        $manager->flush();
+        $headerimg = $manager->getRepository('App:Image')->findOneBy(['id'=> $id]);
+
 
         // loggedIn menu
         $id = Uuid::fromString('d99faa7b-4dc3-4423-85bc-fc6af769c858');
@@ -237,8 +245,8 @@ class UtrechtFixtures extends Fixture
         $id = Uuid::fromString('8b630178-85a8-4f10-b19c-c421fdfa5299');
         $template = new Template();
         $template->setName('Home');
-        $template->setDescription('Zuid drecht home page');
-        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Zuiddrecht/website/index.html.twig', 'r'));
+        $template->setDescription('Utrecht home page');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Utrecht/website/home.html.twig', 'r'));
         $template->setTemplateEngine('twig');
         $manager->persist($template);
         $template->setId($id);
@@ -378,16 +386,112 @@ class UtrechtFixtures extends Fixture
         $manager->persist($slug);
 
         // Template groups
-        $id = Uuid::fromString('a28db4f3-f579-43db-bde7-9e0188fdd717');
-        $groupNews = new TemplateGroup();
-        $groupNews->setOrganization($organization);
-        $groupNews->setApplication($application);
-        $groupNews->setName('Nieuws');
-        $groupNews->setDescription('Webpages about news articles');
-        $manager->persist($groupNews);
-        $groupNews->setId($id);
-        $manager->persist($groupNews);
+        $id = Uuid::fromString('99764e34-3c49-4550-8cbd-0b7e2683e4c5');
+        $group = new TemplateGroup();
+        $group->setOrganization($organization);
+        $group->setApplication($application);
+        $group->setName('Over trouwen');
+        $group->setDescription('Over trouwen');
+        $manager->persist($group);
+        $group->setId($id);
+        $manager->persist($group);
         $manager->flush();
-        $groupNews = $manager->getRepository('App:TemplateGroup')->findOneBy(['id'=> $id]);
+        $group = $manager->getRepository('App:TemplateGroup')->findOneBy(['id'=> $id]);
+
+        $template = new Template();
+        $template->setName('ambtenaren');
+        $template->setDescription('ambtenaren');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Utrecht/website/ambtenaren.html.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $template->addTemplateGroup($group);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('ambtenaren');
+        $slug->setSlug('ambtenaren');
+        $manager->persist($slug);
+
+        $template = new Template();
+        $template->setName('ceremonies');
+        $template->setDescription('ceremonies');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Utrecht/website/ceremonies.html.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $template->addTemplateGroup($group);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('ceremonies');
+        $slug->setSlug('ceremonies');
+        $manager->persist($slug);
+
+        $template = new Template();
+        $template->setName('getuigen');
+        $template->setDescription('getuigen');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Utrecht/website/getuigen.html.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $template->addTemplateGroup($group);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('getuigen');
+        $slug->setSlug('getuigen');
+        $manager->persist($slug);
+
+        $template = new Template();
+        $template->setName('locaties');
+        $template->setDescription('locaties');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Utrecht/website/locaties.html.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $template->addTemplateGroup($group);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('locaties');
+        $slug->setSlug('locaties');
+        $manager->persist($slug);
+
+        $template = new Template();
+        $template->setName('melding');
+        $template->setDescription('melding');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Utrecht/website/melding.html.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $template->addTemplateGroup($group);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('melding');
+        $slug->setSlug('melding');
+        $manager->persist($slug);
+
+        $template = new Template();
+        $template->setName('naamsgebruik');
+        $template->setDescription('naamsgebruik');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Utrecht/website/naamsgebruik.html.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $template->addTemplateGroup($group);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('naamsgebruik');
+        $slug->setSlug('naamsgebruik');
+        $manager->persist($slug);
     }
 }
