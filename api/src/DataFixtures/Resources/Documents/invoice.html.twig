@@ -9,21 +9,21 @@
 <p>{{ person.verblijfplaats.straatnaam }} {{ person.verblijfplaats.huisnummer }}</p>
 <p>{{ person.verblijfplaats.postcode }}</p>
 
-<br>
+<p></p>
 
 <p>{{ 'reference'|trans|capitalize }}: {{ order.reference }}</p>
 <p>{{ 'order date'|trans|capitalize }}: {{ order.dateCreated }}</p>
 
-<br>
+<p></p>
 
 <table>
     <thead>
-        <tr>
-            <th>{{ 'name'|trans|capitalize }}</th>
-            <th>{{ 'description'|trans|capitalize }}</th>
-            <th>{{ 'quantity'|trans|capitalize }}</th>
-            <th>{{ 'price'|trans|capitalize }}</th>
-        </tr>
+    <tr>
+        <th>{{ 'name'|trans|capitalize }}</th>
+        <th>{{ 'description'|trans|capitalize }}</th>
+        <th>{{ 'quantity'|trans|capitalize }}</th>
+        <th>{{ 'price'|trans|capitalize }}</th>
+    </tr>
     </thead>
     <tbody>
     {% for item in order.items %}
