@@ -401,7 +401,7 @@ class UtrechtFixtures extends Fixture
         $template = new Template();
         $template->setName('ambtenaren');
         $template->setDescription('ambtenaren');
-        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Utrecht/website/about/ambtenaren.html.html.twig', 'r'));
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Utrecht/website/about/ambtenaren.html.twig', 'r'));
         $template->setTemplateEngine('twig');
         $template->addTemplateGroup($group);
         $manager->persist($template);
@@ -417,7 +417,7 @@ class UtrechtFixtures extends Fixture
         $template = new Template();
         $template->setName('ceremonies');
         $template->setDescription('ceremonies');
-        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Utrecht/website/about/ceremonies.html.html.twig', 'r'));
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Utrecht/website/about/ceremonies.html.twig', 'r'));
         $template->setTemplateEngine('twig');
         $template->addTemplateGroup($group);
         $manager->persist($template);
@@ -433,7 +433,7 @@ class UtrechtFixtures extends Fixture
         $template = new Template();
         $template->setName('getuigen');
         $template->setDescription('getuigen');
-        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Utrecht/website/about/getuigen.html.html.twig', 'r'));
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Utrecht/website/about/getuigen.html.twig', 'r'));
         $template->setTemplateEngine('twig');
         $template->addTemplateGroup($group);
         $manager->persist($template);
@@ -449,7 +449,7 @@ class UtrechtFixtures extends Fixture
         $template = new Template();
         $template->setName('locaties');
         $template->setDescription('locaties');
-        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Utrecht/website/about/locaties.html.html.twig', 'r'));
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Utrecht/website/about/locaties.html.twig', 'r'));
         $template->setTemplateEngine('twig');
         $template->addTemplateGroup($group);
         $manager->persist($template);
@@ -465,7 +465,7 @@ class UtrechtFixtures extends Fixture
         $template = new Template();
         $template->setName('melding');
         $template->setDescription('melding');
-        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Utrecht/website/about/melding.html.html.twig', 'r'));
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Utrecht/website/about/melding.html.twig', 'r'));
         $template->setTemplateEngine('twig');
         $template->addTemplateGroup($group);
         $manager->persist($template);
@@ -481,7 +481,7 @@ class UtrechtFixtures extends Fixture
         $template = new Template();
         $template->setName('naamsgebruik');
         $template->setDescription('naamsgebruik');
-        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Utrecht/website/about/naamsgebruik.html.html.twig', 'r'));
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Utrecht/website/about/naamsgebruik.html.twig', 'r'));
         $template->setTemplateEngine('twig');
         $template->addTemplateGroup($group);
         $manager->persist($template);
