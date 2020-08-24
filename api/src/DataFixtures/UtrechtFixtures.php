@@ -141,8 +141,8 @@ class UtrechtFixtures extends Fixture
         $id = Uuid::fromString('76b4c601-68a3-462b-a5fe-421c795d67bc');
         $headerimg = new Image();
         $headerimg->setName('header image');
-        $headerimg->setBase64(base64_encode(file_get_contents(dirname(__FILE__).'/Resources/Zuiddrecht/afbeeldingen/zuiddrecht_header.jpg', 'r')));
-        $headerimg->setDescription('Zuid-Drecht header');
+        $headerimg->setBase64(base64_encode(file_get_contents(dirname(__FILE__).'/Resources/Utrecht/afbeeldingen/header.jpg', 'r')));
+        $headerimg->setDescription('Urecht header');
         $headerimg->setOrganization($organization);
         $manager->persist($headerimg);
         $headerimg->setId($id);
