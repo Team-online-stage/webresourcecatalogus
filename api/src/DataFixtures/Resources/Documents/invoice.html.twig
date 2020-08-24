@@ -1,5 +1,5 @@
 {% set order = commonground_resource(resource) %}
-{% set person = commonground_resource(order.costumer) %}
+{% set person = commonground_resource(order.customer) %}
 {% set organization = commonground_resource(order.organization) %}
 
 <h1>{{ organization.name }}</h1>
