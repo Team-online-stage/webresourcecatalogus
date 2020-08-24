@@ -26,6 +26,8 @@ class ConductionFixtures extends Fixture
      */
     private $commonGroundService;
 
+    public const ORGANIZATION_CONDUCTION = 'organization-conduction';
+
     public function __construct(ParameterBagInterface $params, CommonGroundService $commonGroundService)
     {
         $this->params = $params;
@@ -54,6 +56,8 @@ class ConductionFixtures extends Fixture
         $manager->persist($conduction);
         $manager->flush();
         $conduction = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
+
+        $this->addReference(self::ORGANIZATION_CONDUCTION, $conduction);
 
         $favicon = new Image();
         $favicon->setName('Conduction Favicon');
@@ -1829,14 +1833,21 @@ class ConductionFixtures extends Fixture
         $logo->setDescription('Logo stage');
         $logo->setOrganization($conduction);
 
+        // Stage
+
         $style = new Style();
         $style->setName('stage');
         $style->setDescription('Huistlijl stage');
-        $style->setCss(':
-        root {
-        --primary: #0047BB;
+        $style->setCss('
+        :root {
+        --background: #4376FC;
+        --menu: #ffffff00;
+        --menu-color: white;
+        --footer: #4376FC;
+        --menu-color: white;
+        --primary: #4376FC;
         --primary2: white;
-        --secondary: #0047BB;
+        --secondary: #4376FC;
         --secondary2: white;
         }
 
@@ -1845,9 +1856,9 @@ class ConductionFixtures extends Fixture
         }
 
 
-        .processen i, span {
+        /* .processen i, span {
             color: black;
-        }
+        } */
 
         a:focus:not(.btn):not(.pagination__link):not(.nav__link){
             background: #FFCC5F;
@@ -2156,30 +2167,30 @@ class ConductionFixtures extends Fixture
         $manager->persist($style);
 
         $manager->flush();
-
-        // Configuratie
         $configuration = new Configuration();
         $configuration->setName('stage.conduction.nl configuration');
+        $configuration->setDescription('De configuratie van de stage applicatie');
         $configuration->setOrganization($conduction);
         $configuration->setConfiguration(
             [
-                'mainMenu'          => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'da3d55e3-6b7e-47f3-856d-eb158212d8af']),
-                'loggedOut'         => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'b239cf91-2440-495b-853f-3c1e0fe54ef7']),
-                'loggedIn'          => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'3d9b7bbd-cc5a-4b88-acd0-682cf506da7c']),
-                'home'              => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'6079cc7d-7b69-4db3-ad17-6bf972cca6a2']),
-                'footer1'           => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'09dfc502-19ce-4b11-8e0a-a7fc456a5c52']),
-                'footer2'           => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'23b58ab8-45a6-4fbf-a180-6aac96da4df6']),
-                'footer3'           => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'b86881b2-7911-4598-826d-875acc899845']),
-                'footer4'           => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'b0c69fb9-852f-4c54-80c7-7b0f931e779a']),
-                'nieuws'            => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'template_groups', 'id'=>'f2729540-2740-4fbf-98ae-f0a069a1f43f']),
-                'newsimg'           => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'b0e3e803-2cb6-41ed-ab32-d6e5451c119d']),
-                'headerimg'         => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'0863d15c-286e-4ec4-90f6-27cebb107aa9']),
-                'colorSchemeFooter' => 'footerStyle',
-                'colorSchemeMenu'   => 'menuStyle',
-                'hubspotId'         => '6108438',
-                'googleTagId'       => 'G-2PYCJ13YC4',
-                'userPage'          => '/persoonlijk',
-                'header'            => false,
+                'mainMenu'              => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'da3d55e3-6b7e-47f3-856d-eb158212d8af']),
+                'loggedOut'             => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'b239cf91-2440-495b-853f-3c1e0fe54ef7']),
+                'loggedIn'              => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'3d9b7bbd-cc5a-4b88-acd0-682cf506da7c']),
+                'home'                  => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'6079cc7d-7b69-4db3-ad17-6bf972cca6a2']),
+                'footer1'               => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'09dfc502-19ce-4b11-8e0a-a7fc456a5c52']),
+                'footer2'               => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'23b58ab8-45a6-4fbf-a180-6aac96da4df6']),
+                'footer3'               => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'b86881b2-7911-4598-826d-875acc899845']),
+                'footer4'               => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'b0c69fb9-852f-4c54-80c7-7b0f931e779a']),
+                'nieuws'                => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'template_groups', 'id'=>'f2729540-2740-4fbf-98ae-f0a069a1f43f']),
+                'newsimg'               => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'b0e3e803-2cb6-41ed-ab32-d6e5451c119d']),
+                'headerimg'             => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'0863d15c-286e-4ec4-90f6-27cebb107aa9']),
+                'colorSchemeFooter'     => 'footerStyle',
+                'colorSchemeMenu'       => 'menuStyle',
+                'hubspotId'             => '6108438',
+                'googleTagId'           => 'G-2PYCJ13YC4',
+                'userPage'              => '/persoonlijk',
+                'header'                => false,
+                'stickyMenu'            => true,
             ]
         );
         $manager->persist($configuration);

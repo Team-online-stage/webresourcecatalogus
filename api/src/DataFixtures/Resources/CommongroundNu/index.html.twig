@@ -9,13 +9,19 @@
             <div class="content">
 
                 <div class="col-md-6">
-                    <h1>Commonground.nu homepage</h1>
+                    <h1 style="margin-top: 40px">Commonground.nu homepage</h1>
 
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas pretium ultricies sem, in
                         commodo massa dapibus vel. Etiam faucibus sed libero a mollis. Duis sit amet ante sodales,
                         vehicula quam lobortis, molestie odio. Nam vulputate maximus justo id imperdiet. Vivamus et
-                        augue finibus, porttitor dui eu, varius tortor. Curabitur mollis, magna sed mollis vulputate.</p>
+                        augue finibus, porttitor dui eu, varius tortor. Curabitur mollis, magna sed mollis
+                        vulputate.</p>
                 </div>
+
+                <div class="col-md-6">
+                    <img class="responsive" src="/images/conduction/Opensource_Lichtblauw_Vlak.png" height="350px" width="500px">
+                </div>
+
                 {#                    <div class="images-slider custom-slider">#}
                 {#                        <img src="/images/conduction/Corona_Blauw_Vlak.png">#}
                 {#                        <img src="/images/conduction/Opensource_Lichtblauw_Vlak.png">#}
@@ -63,6 +69,13 @@
         </div>
     </div>
 
+    {#    </div>#}
+
+    {#    #}{#    Custom Container #}
+    {#    #}{#    <div class="container" style="background: white !important;">#}
+    {#    <div style="width: 100%;min-height: 450px; margin-top: 100px !important">#}
+    {#        <div class="container">#}
+
     <div class="row">
         <div class="col-md-4 col-md-offset-1">
             <div class="content-background">
@@ -75,32 +88,87 @@
         </div>
     </div>
 
-    <script>
-        $('.images-slider').slick({
-            centerMode: true,
-            centerPadding: '60px',
-            slidesToShow: 3,
-            responsive: [
-                {
-                    breakpoint: 768,
-                    settings: {
-                        arrows: false,
-                        centerMode: true,
-                        centerPadding: '40px',
-                        slidesToShow: 3
-                    }
-                },
-                {
-                    breakpoint: 480,
-                    settings: {
-                        arrows: false,
-                        centerMode: true,
-                        centerPadding: '40px',
-                        slidesToShow: 1
-                    }
-                }
-            ]
-        });
-    </script>
+    <div class="row">
+
+        <div class="col-md-6">
+        </div>
+
+        <div class="col-md-6" style="margin-top: -150px">
+            <div class="content-background">
+                <div class="content">
+
+                    <h3>Lorem ipsum</h3>
+                    <p>Praesent malesuada ex sed enim ultrices, non convallis turpis imperdiet. In hac habitasse
+                        platea dictumst. Phasellus suscipit elit est, eget malesuada eros egestas nec. Proin non
+                        nisl eget leo dapibus finibus. Nullam interdum, velit ut imperdiet malesuada, justo sem
+                        lacinia erat, sed tempor est tellus a purus.</p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+                <div class="content">
+                    <div class="row">
+
+                        <div class="col-md-3">
+                            <a href="">
+                                <img style="display: block; margin: auto;"
+                                     src="https://www.conduction.nl/images/Gemeentedenbosch.png" width="128px">
+                            </a>
+                        </div>
+                        <div class="col-md-3">
+                            <a href="">
+                                <img style="display: block; margin: auto;"
+                                     src="https://www.conduction.nl/images/gemeentewestfriesland.png" width="128px">
+                            </a>
+                        </div>
+                        <div class="col-md-3">
+                            <a href="">
+                                <img style="display: block; margin: 20px auto 20px auto"
+                                     src="https://cyso.com/wp-content/themes/cyso/assets/img/logos/cyso-logo--diap.svg"
+                                     width="128px">
+                            </a>
+                        </div>
+                        <div class="col-md-3">
+                            <a href="">
+                                <img style="display: block; margin: 20px auto 20px auto"
+                                     src="https://www.conduction.nl/images/logo.png" width="170px">
+                            </a>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+
+{#        <script>#}
+{#            $('.images-slider').slick({#}
+{#                centerMode: true,#}
+{#                centerPadding: '60px',#}
+{#                slidesToShow: 3,#}
+{#                responsive: [#}
+{#                    {#}
+{#                        breakpoint: 768,#}
+{#                        settings: {#}
+{#                            arrows: false,#}
+{#                            centerMode: true,#}
+{#                            centerPadding: '40px',#}
+{#                            slidesToShow: 3#}
+{#                        }#}
+{#                    },#}
+{#                    {#}
+{#                        breakpoint: 480,#}
+{#                        settings: {#}
+{#                            arrows: false,#}
+{#                            centerMode: true,#}
+{#                            centerPadding: '40px',#}
+{#                            slidesToShow: 1#}
+{#                        }#}
+{#                    }#}
+{#                ]#}
+{#            });#}
+{#        </script>#}
 
 {% endblock %}
