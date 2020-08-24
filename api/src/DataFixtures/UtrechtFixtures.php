@@ -56,11 +56,17 @@ class UtrechtFixtures extends Fixture
 
         $this->addReference(self::ORGANIZATION_UTRECHT, $organization);
 
+        $id = Uuid::fromString('bb8a51a5-3cb5-49ac-9e00-61c6b1c32b9b');
         $favicon = new Image();
         $favicon->setName('Utrecht Favicon');
         $favicon->setDescription('Utrecht VNG');
         $favicon->setBase64(base64_encode(file_get_contents(dirname(__FILE__).'/Resources/Utrecht/afbeeldingen/wapen-utrecht-rood.svg', 'r')));
         $favicon->setOrganization($organization);
+        $manager->persist($favicon);
+        $favicon->setId($id);
+        $manager->persist($favicon);
+        $manager->flush();
+        $favicon = $manager->getRepository('App:Image')->findOneBy(['id'=> $id]);
 
         $logo = new Image();
         $logo->setName('Utrecht Logo');
@@ -104,15 +110,15 @@ class UtrechtFixtures extends Fixture
             [
                 'mainMenu'          => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'afea3e07-ba59-4318-a6f3-3fad9a044584']),
                 'home'              => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'8b630178-85a8-4f10-b19c-c421fdfa5299']),
-                //'footer1'           => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'9be5ac5d-35ce-4056-b5a9-ae6a7cf24ef8']),
-                //'footer2'           => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'2a85bdc1-3370-4847-b330-e8e6d9cd82b1']),
-                //'footer3'           => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'facad633-27a9-499a-b3fc-4687215bf82a']),
-                //'footer4'           => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'4bc966b6-e310-4bce-b459-a7cf65651ce0']),
+                'footer1'           => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'9be5ac5d-35ce-4056-b5a9-ae6a7cf24ef8']),
+                'footer2'           => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'2a85bdc1-3370-4847-b330-e8e6d9cd82b1']),
+                'footer3'           => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'1ad67f5d-eda7-4ff6-8b23-7539e8d703d2']),
+                'footer4'           => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'1a1a540c-21dc-42c7-9aaf-162bc8819e5f']),
                 'faq'               => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'template_groups', 'id'=>'6b243aa1-5ae6-4aeb-93d5-2f509fb34cef']),
                 'about'               => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'template_groups', 'id'=>'99764e34-3c49-4550-8cbd-0b7e2683e4c5']),
                 'newsimg'           => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'726da4ad-9979-4c04-9048-2c0fa7bdb800']),
                 'headerimg'         => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'76b4c601-68a3-462b-a5fe-421c795d67bc']),
-                'favicon'           => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'98df315f-63f0-4dc8-8321-a2cfa53f666e']),]
+                'favicon'           => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'bb8a51a5-3cb5-49ac-9e00-61c6b1c32b9b']),]
         );
         $manager->persist($configuration);
 
