@@ -26,6 +26,8 @@ class ZuiddrechtFixtures extends Fixture
      */
     private $commonGroundService;
 
+    public const ORGANIZATION_ZUIDDRECHT = 'organization-zuiddrecht';
+
     public function __construct(ParameterBagInterface $params, CommonGroundService $commonGroundService)
     {
         $this->params = $params;
@@ -53,6 +55,8 @@ class ZuiddrechtFixtures extends Fixture
         $manager->persist($organization);
         $manager->flush();
         $organization = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
+
+        $this->addReference(self::ORGANIZATION_ZUIDDRECHT, $organization);
 
         $favicon = new Image();
         $favicon->setName('Zuid-Drecht Favicon');
@@ -706,22 +710,6 @@ class ZuiddrechtFixtures extends Fixture
         $groupPages->setName('Documents');
         $groupPages->setDescription('Document templates');
         $manager->persist($groupPages);
-
-        // Pages
-        $id = Uuid::fromString('759cf6c0-08eb-49b8-9cf8-43a9e7e52f7a');
-        $template = new Template();
-        $template->setName('Order Template');
-        $template->setDescription('template for orders');
-        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Documents/order.html.twig', 'r'));
-        $template->setTemplateEngine('twig');
-        $manager->persist($template);
-        $template->setId($id);
-        $manager->persist($template);
-        $manager->flush();
-        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
-        $template->addTemplateGroup($groupPages);
-        $manager->persist($template);
-        $manager->flush();
 
         // Template groups
         $groupPages = new TemplateGroup();
@@ -1714,7 +1702,7 @@ class ZuiddrechtFixtures extends Fixture
         $template = new Template();
         $template->setName('Order');
         $template->setDescription('Order');
-        $template->setContent('uw bestelling');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Documents/order.html.twig', 'r'));
         $template->setTemplateEngine('twig');
         $manager->persist($template);
         $template->setId($id);
@@ -1729,7 +1717,7 @@ class ZuiddrechtFixtures extends Fixture
         $template = new Template();
         $template->setName('Factuur');
         $template->setDescription('Factuur');
-        $template->setContent('uw factuur');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Documents/invoice.html.twig', 'r'));
         $template->setTemplateEngine('twig');
         $manager->persist($template);
         $template->setId($id);

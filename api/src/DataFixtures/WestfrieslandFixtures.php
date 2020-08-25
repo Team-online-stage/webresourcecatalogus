@@ -552,7 +552,7 @@ class WestfrieslandFixtures extends Fixture
         $template = new Template();
         $template->setName('Order');
         $template->setDescription('Order');
-        $template->setContent('uw bestelling');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Documents/order.html.twig', 'r'));
         $template->setTemplateEngine('twig');
         $manager->persist($template);
         $template->setId($id);
@@ -567,7 +567,7 @@ class WestfrieslandFixtures extends Fixture
         $template = new Template();
         $template->setName('Factuur');
         $template->setDescription('Factuur');
-        $template->setContent('uw factuur');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Documents/invoice.html.twig', 'r'));
         $template->setTemplateEngine('twig');
         $manager->persist($template);
         $template->setId($id);

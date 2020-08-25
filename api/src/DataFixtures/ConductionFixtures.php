@@ -26,6 +26,8 @@ class ConductionFixtures extends Fixture
      */
     private $commonGroundService;
 
+    public const ORGANIZATION_CONDUCTION = 'organization-conduction';
+
     public function __construct(ParameterBagInterface $params, CommonGroundService $commonGroundService)
     {
         $this->params = $params;
@@ -54,6 +56,8 @@ class ConductionFixtures extends Fixture
         $manager->persist($conduction);
         $manager->flush();
         $conduction = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
+
+        $this->addReference(self::ORGANIZATION_CONDUCTION, $conduction);
 
         $favicon = new Image();
         $favicon->setName('Conduction Favicon');
@@ -1829,6 +1833,8 @@ class ConductionFixtures extends Fixture
         $logo->setDescription('Logo stage');
         $logo->setOrganization($conduction);
 
+        // Stage
+
         $style = new Style();
         $style->setName('stage');
         $style->setDescription('Huistlijl stage');
@@ -2161,8 +2167,6 @@ class ConductionFixtures extends Fixture
         $manager->persist($style);
 
         $manager->flush();
-
-        // Configuratie
         $configuration = new Configuration();
         $configuration->setName('stage.conduction.nl configuration');
         $configuration->setDescription('De configuratie van de stage applicatie');
