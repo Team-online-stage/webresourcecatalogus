@@ -104,7 +104,7 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
                 'hubspotId'             => '6108438',
                 'googleTagId'           => 'G-2PYCJ13YC4',
                 'userPage'              => '/me',
-                'login'                 => ['user'=>true],
+                'login'                 => ['user'=>true, 'idin'=>true],
                 'header'                => false,
                 'stickyMenu'            => true,
             ]
