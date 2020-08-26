@@ -94,10 +94,10 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
             [
                 'mainMenu'              => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'f0faccbd-3067-45fb-9ab7-2938fbbbf492']),
                 'home'                  => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'0e3ec00f-c17b-4237-b6dd-070f800eb784']),
-                //'footer1'               => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'09dfc502-19ce-4b11-8e0a-a7fc456a5c52']),
-                //'footer2'               => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'23b58ab8-45a6-4fbf-a180-6aac96da4df6']),
-                //'footer3'               => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'b86881b2-7911-4598-826d-875acc899845']),
-                //'footer4'               => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'b0c69fb9-852f-4c54-80c7-7b0f931e779a']),
+                'footer1'               => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'3895915c-a992-462e-848d-3be73a954d51']),
+                'footer2'               => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'93477f57-c092-4609-b9ae-8767495fead1']),
+                'footer3'               => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'d44e0e0e-6c5b-461a-91df-0a77d44e2efb']),
+                'footer4'               => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'11c2c0eb-125c-4546-835f-26f30d924b06']),
                 //'nieuws'                => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'template_groups', 'id'=>'f2729540-2740-4fbf-98ae-f0a069a1f43f']),
                 //'newsimg'               => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'b0e3e803-2cb6-41ed-ab32-d6e5451c119d']),
                 //'headerimg'             => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'0863d15c-286e-4ec4-90f6-27cebb107aa9']),
@@ -128,7 +128,7 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         // Menu
         $id = Uuid::fromString('f0faccbd-3067-45fb-9ab7-2938fbbbf492');
         $menu = new Menu();
-        $menu->setName('commonground.nu Main Menu');
+        $menu->setName('CheckIn Main Menu');
         $menu->setDescription('Het hoofdmenu van deze website');
         $menu->setApplication($application);
         $manager->persist($menu);
@@ -138,31 +138,41 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $menu = $manager->getRepository('App:Menu')->findOneBy(['id'=> $id]);
 
         $menuItem = new MenuItem();
-        $menuItem->setName('Hoe werkt het?');
-        $menuItem->setDescription('Doe een aanvraag');
+        $menuItem->setName('Over');
+        $menuItem->setDescription('Wat is CheckIn');
         $menuItem->setOrder(1);
         $menuItem->setType('slug');
-        $menuItem->setHref('/how');
+        $menuItem->setHref('#wat');
         $menuItem->setMenu($menu);
         $manager->persist($menu);
 
-        $menuItem = new MenuItem();
-        $menuItem->setName('Over checkin');
-        $menuItem->setDescription('Het inzien en voortzetten van mijn verzoeken');
-        $menuItem->setOrder(1);
-        $menuItem->setType('slug');
-        $menuItem->setHref('/about');
-        $menuItem->setMenu($menu);
+        $menu->addMenuItem($menuItem);
         $manager->persist($menu);
 
         $menuItem = new MenuItem();
-        $menuItem->setName('Voor de horeca');
-        $menuItem->setDescription('Het inzien en voortzetten van mijn verzoeken');
-        $menuItem->setOrder(1);
+        $menuItem->setName('Hoe');
+        $menuItem->setDescription('Hoe werkt CheckIn');
+        $menuItem->setOrder(2);
         $menuItem->setType('slug');
-        $menuItem->setHref('/locations');
+        $menuItem->setHref('#hoe');
         $menuItem->setMenu($menu);
         $manager->persist($menu);
+
+        $menu->addMenuItem($menuItem);
+        $manager->persist($menu);
+
+        $menuItem = new MenuItem();
+        $menuItem->setName('Wie');
+        $menuItem->setDescription('Wie zitten achter CheckIn');
+        $menuItem->setOrder(3);
+        $menuItem->setType('slug');
+        $menuItem->setHref('#wie');
+        $menuItem->setMenu($menu);
+        $manager->persist($menu);
+
+        $menu->addMenuItem($menuItem);
+        $manager->persist($menu);
+        $manager->flush();
 
         // Pages
         $id = Uuid::fromString('0e3ec00f-c17b-4237-b6dd-070f800eb784');
@@ -205,6 +215,62 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $slug->setName('me');
         $slug->setSlug('me');
         $manager->persist($slug);
+        $manager->flush();
+
+        $id = Uuid::fromString('3895915c-a992-462e-848d-3be73a954d51');
+        $template = new Template();
+        $template->setName('footer1');
+        $template->setDescription('footer1');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/CheckIn/footers/footer1.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $manager->persist($template);
+        $manager->flush();
+
+        $id = Uuid::fromString('93477f57-c092-4609-b9ae-8767495fead1');
+        $template = new Template();
+        $template->setName('footer2');
+        $template->setDescription('footer2');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/CheckIn/footers/footer2.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $manager->persist($template);
+        $manager->flush();
+
+        $id = Uuid::fromString('d44e0e0e-6c5b-461a-91df-0a77d44e2efb');
+        $template = new Template();
+        $template->setName('footer3');
+        $template->setDescription('footer3');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/CheckIn/footers/footer3.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $manager->persist($template);
+        $manager->flush();
+
+        $id = Uuid::fromString('11c2c0eb-125c-4546-835f-26f30d924b06');
+        $template = new Template();
+        $template->setName('footer4');
+        $template->setDescription('footer4');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/CheckIn/footers/footer4.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $manager->persist($template);
         $manager->flush();
     }
 }
