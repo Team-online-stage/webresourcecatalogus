@@ -128,7 +128,7 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         // Menu
         $id = Uuid::fromString('f0faccbd-3067-45fb-9ab7-2938fbbbf492');
         $menu = new Menu();
-        $menu->setName('commonground.nu Main Menu');
+        $menu->setName('CheckIn Main Menu');
         $menu->setDescription('Het hoofdmenu van deze website');
         $menu->setApplication($application);
         $manager->persist($menu);
@@ -138,31 +138,41 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $menu = $manager->getRepository('App:Menu')->findOneBy(['id'=> $id]);
 
         $menuItem = new MenuItem();
-        $menuItem->setName('Hoe werkt het?');
-        $menuItem->setDescription('Doe een aanvraag');
+        $menuItem->setName('Over');
+        $menuItem->setDescription('Wat is CheckIn');
         $menuItem->setOrder(1);
         $menuItem->setType('slug');
-        $menuItem->setHref('/how');
+        $menuItem->setHref('#wat');
         $menuItem->setMenu($menu);
         $manager->persist($menu);
 
-        $menuItem = new MenuItem();
-        $menuItem->setName('Over checkin');
-        $menuItem->setDescription('Het inzien en voortzetten van mijn verzoeken');
-        $menuItem->setOrder(1);
-        $menuItem->setType('slug');
-        $menuItem->setHref('/about');
-        $menuItem->setMenu($menu);
+        $menu->addMenuItem($menuItem);
         $manager->persist($menu);
 
         $menuItem = new MenuItem();
-        $menuItem->setName('Voor de horeca');
-        $menuItem->setDescription('Het inzien en voortzetten van mijn verzoeken');
-        $menuItem->setOrder(1);
+        $menuItem->setName('Hoe');
+        $menuItem->setDescription('Hoe werkt CheckIn');
+        $menuItem->setOrder(2);
         $menuItem->setType('slug');
-        $menuItem->setHref('/locations');
+        $menuItem->setHref('#hoe');
         $menuItem->setMenu($menu);
         $manager->persist($menu);
+
+        $menu->addMenuItem($menuItem);
+        $manager->persist($menu);
+
+        $menuItem = new MenuItem();
+        $menuItem->setName('Wie');
+        $menuItem->setDescription('Wie zitten achter CheckIn');
+        $menuItem->setOrder(3);
+        $menuItem->setType('slug');
+        $menuItem->setHref('#wie');
+        $menuItem->setMenu($menu);
+        $manager->persist($menu);
+
+        $menu->addMenuItem($menuItem);
+        $manager->persist($menu);
+        $manager->flush();
 
         // Pages
         $id = Uuid::fromString('0e3ec00f-c17b-4237-b6dd-070f800eb784');
