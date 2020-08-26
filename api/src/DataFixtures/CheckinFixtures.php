@@ -103,7 +103,7 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
                 //'headerimg'             => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'0863d15c-286e-4ec4-90f6-27cebb107aa9']),
                 'hubspotId'             => '6108438',
                 'googleTagId'           => 'G-2PYCJ13YC4',
-                'userPage'              => '/me',
+                'userPage'              => 'me',
                 'login'                 => ['user'=>true, 'idin'=>true],
                 'header'                => false,
                 'stickyMenu'            => true,
