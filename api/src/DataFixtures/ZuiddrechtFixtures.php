@@ -1630,7 +1630,6 @@ class ZuiddrechtFixtures extends Fixture
         $manager->persist($slug);
         $manager->flush();
 
-
         $id = Uuid::fromString('06ec69cb-8af2-4c3c-8d75-436c3efa707b');
         $template = new Template();
         $template->setName('Herinnering melding');
@@ -1784,9 +1783,6 @@ class ZuiddrechtFixtures extends Fixture
         $template->addTemplateGroup($groupPages);
         $manager->persist($template);
         $manager->flush();
-
-
-
 
         $manager->flush();
     }
