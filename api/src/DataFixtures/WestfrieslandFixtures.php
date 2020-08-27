@@ -219,6 +219,34 @@ class WestfrieslandFixtures extends Fixture
         $manager->persist($style);
         $manager->flush();
 
+        // Hogeland
+        $id = Uuid::fromString('79ad319b-1ff6-4e21-919b-4ea002b5f233');
+        $hogeland = new Organization();
+        $hogeland->setName('Hogeland');
+        $hogeland->setDescription('Gemeente Hogeland');
+        $hogeland->setRsin('1234');
+//        $hogeland->setContact($this->commonGroundService->cleanUrl(['component' => 'cc', 'type' => 'organizations', 'id' => '5792b63d-afb5-4689-990b-51eec52b663b']));
+        $manager->persist($hogeland);
+        $hogeland->setId($id);
+        $manager->persist($hogeland);
+        $manager->flush();
+        $hogeland = $manager->getRepository('App:Organization')->findOneBy(['id' => $id]);
+
+        // Hogeland
+        $style = new Style();
+        $style->setName('Hogeland Style');
+        $style->setDescription('Huistlijl Westfriese gemeente Hogeland');
+        $style->setCss(':root {background: white;--primary: #1BB7BA;--primary-color: white;--secondary: #FFCC00;--secondary-color: black;}.main-title
+    	{color: var(--primary2) !important;}.logo-header {background: var(--primary);}.navbar-header {background: var(--primary);}
+    	.bg-primary-gradient {background: linear-gradient(-45deg, var(--secondary), var(--secondary2)) !important;}');
+
+        $style->setfavicon($favicon);
+        $style->addOrganization($hogeland);
+
+        $manager->persist($favicon);
+        $manager->persist($style);
+        $manager->flush();
+
         $id = Uuid::fromString('2c60657d-a728-4e71-897d-ac407c134e10');
         $headerimg = new Image();
         $headerimg->setName('header image');
@@ -524,7 +552,7 @@ class WestfrieslandFixtures extends Fixture
         $template = new Template();
         $template->setName('Order');
         $template->setDescription('Order');
-        $template->setContent('uw bestelling');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Documents/order.html.twig', 'r'));
         $template->setTemplateEngine('twig');
         $manager->persist($template);
         $template->setId($id);
@@ -539,7 +567,7 @@ class WestfrieslandFixtures extends Fixture
         $template = new Template();
         $template->setName('Factuur');
         $template->setDescription('Factuur');
-        $template->setContent('uw factuur');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Documents/invoice.html.twig', 'r'));
         $template->setTemplateEngine('twig');
         $manager->persist($template);
         $template->setId($id);
