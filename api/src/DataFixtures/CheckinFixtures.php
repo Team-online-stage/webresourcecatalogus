@@ -71,7 +71,7 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
 
                 --menu: #01689b;
                 --menu-over: #3669A5;
-                --menu-color: #2b2b2b;
+                --menu-color: white;
                 --footer: #01689b;
                 --footer-color: white;
          }
