@@ -1598,6 +1598,63 @@ class ZuiddrechtFixtures extends Fixture
         $slug->setSlug('beste-gemeente');
         $manager->persist($slug);
 
+        // Template groups
+        $groupEmails = new TemplateGroup();
+        $groupEmails->setOrganization($organization);
+        $groupEmails->setApplication($application);
+        $groupEmails->setName('E-mails');
+        $groupEmails->setDescription('E-mails that are send out');
+        $manager->persist($groupEmails);
+
+        $id = Uuid::fromString('3ad00211-9cc9-4100-9fef-effa8731b104');
+        $template = new Template();
+        $template->setName('Wijziging verzoek');
+        $template->setTitle('Uw verzoek is gewijzigd');
+        $template->setDescription('Bevestiging dat een verzoek is gewijzigd');
+        $template->setContent('Beste {{ receiver.givenName }},<p>Uw verzoek met referentie {{ resource.reference }} is met succes gewijzigd.</p><p>Met vriendelijke groet,</p>{{ sender.name }}');
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupEmails);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('e-mail-wijziging');
+        $slug->setSlug('e-mail-wijziging');
+        $manager->persist($slug);
+        $manager->flush();
+
+
+        $id = Uuid::fromString('06ec69cb-8af2-4c3c-8d75-436c3efa707b');
+        $template = new Template();
+        $template->setName('Herinnering melding');
+        $template->setTitle('Vergeet geen melding te doen van uw huwelijk!');
+        $template->setDescription('Herinnering voor het doen van een melding voor het huwelijk');
+        $template->setContent('Beste {{ receiver.givenName }},<p>Vergeet niet om melding te doen van uw aanstaande huwelijk! U heeft nog 14 dagen.</p><p>Met vriendelijke groet,</p>{{ sender.name }}');
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupEmails);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('e-mail-herinnering');
+        $slug->setSlug('e-mail-herinnering');
+        $manager->persist($slug);
+        $manager->flush();
+
         // Mijn Zuid Decht
         $id = Uuid::fromString('64f60afd-7506-48e0-928b-6bbede045812');
         $application = new Application();
@@ -1727,6 +1784,9 @@ class ZuiddrechtFixtures extends Fixture
         $template->addTemplateGroup($groupPages);
         $manager->persist($template);
         $manager->flush();
+
+
+
 
         $manager->flush();
     }
