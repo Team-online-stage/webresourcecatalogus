@@ -137,9 +137,21 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $menu = $manager->getRepository('App:Menu')->findOneBy(['id'=> $id]);
 
         $menuItem = new MenuItem();
+        $menuItem->setName('Home');
+        $menuItem->setDescription('home page');
+        $menuItem->setOrder(1);
+        $menuItem->setType('slug');
+        $menuItem->setHref('/home');
+        $menuItem->setMenu($menu);
+        $manager->persist($menu);
+
+        $menu->addMenuItem($menuItem);
+        $manager->persist($menu);
+
+        $menuItem = new MenuItem();
         $menuItem->setName('Over');
         $menuItem->setDescription('Wat is CheckIn');
-        $menuItem->setOrder(1);
+        $menuItem->setOrder(2);
         $menuItem->setType('slug');
         $menuItem->setHref('#wat');
         $menuItem->setMenu($menu);
@@ -151,7 +163,7 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $menuItem = new MenuItem();
         $menuItem->setName('Hoe');
         $menuItem->setDescription('Hoe werkt CheckIn');
-        $menuItem->setOrder(2);
+        $menuItem->setOrder(3);
         $menuItem->setType('slug');
         $menuItem->setHref('#hoe');
         $menuItem->setMenu($menu);
@@ -163,7 +175,7 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $menuItem = new MenuItem();
         $menuItem->setName('Wie');
         $menuItem->setDescription('Wie zitten achter CheckIn');
-        $menuItem->setOrder(3);
+        $menuItem->setOrder(4);
         $menuItem->setType('slug');
         $menuItem->setHref('#wie');
         $menuItem->setMenu($menu);
