@@ -13,7 +13,11 @@
     <div class="row">
         <aside class="col-xl-3 col-lg-4 col-md-3 col-sm-modal">
             <nav class="sidenav">
-                {% include 'uc/widgets/menu.html.twig' %}
+                {% if app.user.type == 'organization' %}
+                    {% include 'uc/widgets/organizationMenu.html.twig' %}
+                {% else %}
+                    {% include 'uc/widgets/menu.html.twig' %}
+                {% endif %}
             </nav>
         </aside>
 
