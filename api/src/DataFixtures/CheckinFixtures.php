@@ -71,7 +71,7 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
 
                 --menu: #01689b;
                 --menu-over: #3669A5;
-                --menu-color: #2b2b2b;
+                --menu-color: white;
                 --footer: #01689b;
                 --footer-color: white;
          }
@@ -101,7 +101,6 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
                 //'nieuws'                => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'template_groups', 'id'=>'f2729540-2740-4fbf-98ae-f0a069a1f43f']),
                 //'newsimg'               => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'b0e3e803-2cb6-41ed-ab32-d6e5451c119d']),
                 //'headerimg'             => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'0863d15c-286e-4ec4-90f6-27cebb107aa9']),
-                'hubspotId'             => '6108438',
                 'googleTagId'           => 'G-2PYCJ13YC4',
                 'userPage'              => 'me',
                 'login'                 => ['user'=>true, 'idin'=>true],
@@ -193,6 +192,27 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $slug->setApplication($application);
         $slug->setName('home');
         $slug->setSlug('home');
+        $manager->persist($slug);
+        $manager->flush();
+
+        $id = Uuid::fromString('39c9ed21-a1b7-4610-8190-f99ccd179f0f');
+        $template = new Template();
+        $template->setName('CheckIn.nu Techniek');
+        $template->setDescription('Techniek page voor CheckIn.nu');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/CheckIn/techniek.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $manager->persist($template);
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('techniek');
+        $slug->setSlug('techniek');
         $manager->persist($slug);
         $manager->flush();
 
