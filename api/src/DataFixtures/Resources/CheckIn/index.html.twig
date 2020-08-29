@@ -3,10 +3,24 @@
 {% extends 'base.html.twig' %}
 {% block container %}
     <form method="post" action="{{ path('app_chin_checkin') }}" class="form">
-        <div style="background-color: #FFFFFF" class="row">
+        <div class="row">
             <div class="container">
                 {% include 'chin/widgets/checkin_widget.html.twig' %}
             </div><!-- /.container -->
         </div><!-- /.row -->
     </form>
+
+    <!-- Page Break -->
+    <div class="background--primary" style="height: 20px"></div>
+
+    <div class="container background--primary">
+        <div class="row">
+            <div class="col-md-6 col-md-12">
+                <div class="content">
+                    <h2><a id="wat" class="anchor"></a> Waarom moet in inchecken?</h2>
+                    <p>In verband met corona richtlijnen vanuit de rijksoverheid is de horeca verplicht om contact gegevens van gasten voor 14 dagen op te slaan</p>
+                </div><!-- /.content -->
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container -->
 {% endblock %}
