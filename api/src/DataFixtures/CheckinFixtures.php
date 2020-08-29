@@ -80,7 +80,11 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
          .main {
             padding-top: 00px;
         }
-         ');
+
+        h1, h2 {
+            font-family: \'Lobster\', cursive;
+        }
+        ');
         $style->setfavicon($favicon);
         $style->addOrganization($organization);
         $manager->persist($style);
