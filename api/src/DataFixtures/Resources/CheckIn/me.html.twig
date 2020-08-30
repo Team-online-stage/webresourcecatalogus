@@ -31,9 +31,6 @@
                     </div>
                 </div>
             {% else %}
-                {% if app.session.get('newcheckin') is defined and  app.session.get('newcheckin') %}
-                    Show modal
-                {% endif %}
                 <ul class="list list--card">
                     {% if checkins|length > 0 %}
                         <li class="card background--primary card__hover">
@@ -75,6 +72,7 @@
                 checkingModal.open();
             }
 
+            {% if app.session.get('newcheckin') is defined and  app.session.get('newcheckin') %}
             // Lets always show the last login
             $(window).on('load',function(){
                 setTimeout(
@@ -83,6 +81,7 @@
                         openCheckinModal();
                     }, 1000);
             });
+            {% endif %}
 
         </script>
 
