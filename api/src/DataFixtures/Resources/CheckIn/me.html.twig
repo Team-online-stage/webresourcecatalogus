@@ -4,7 +4,7 @@
 
 {% block content %}
 
-    {% set checkins =  commonground_resource_list({'component': 'chin', 'type': 'checkins'},{'user':app.user.id,'limit':1,'order[dateCreated]':'desc'})['hydra:member'] %}
+    {% set checkins =  commonground_resource_list({'component': 'chin', 'type': 'checkins'},{'user':app.user.person,'limit':1,'order[dateCreated]':'desc'})['hydra:member'] %}
 
     <section class="row">
         <header class="content__header">
