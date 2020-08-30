@@ -34,7 +34,7 @@
                 <ul class="list list--card">
                     {% if checkins|length > 0 %}
                         <li class="card background--primary card__hover">
-                            <a href="#" class="card__content"  href="#" data-toggle="modal" data-target="#myModal{{ checkins[0].id }}" onclick="openCheckinModal{{ checkins[0].id }}()">
+                            <a href="#" class="card__content"  href="#" data-toggle="modal" data-target="#myModal{{ checkins[0].id }}" onclick="openCheckinModal()">
                                 <div class="card__icon flex-center color--primary"><i class="fas fa-qrcode fa-4x"></i></div>
                                 <div class="card__body flex-center"><span class="card__title color--primary flex-center">{{ 'last checkin'|trans|capitalize }}</span></div>
                             </a>
@@ -61,15 +61,15 @@
     {% if checkins|length > 0 %}
     {% include 'chin/modals/checkin_modal.html.twig' with { 'item':checkins[0] } %}
         <script>
-            let myModal{{ checkins[0].id }};
+            let checkingModal;
             // Load modal component
             System.import('/uno/components/modal/modal.js').then(function (module) {
-                myModal{{ checkins[0].id }} = new module.Modal(document.getElementById('checkin-{{ checkins[0].id }}'));
+                checkingModal = new module.Modal(document.getElementById('checkin-{{ checkins[0].id }}'));
             });
 
             // Called when the user clicks the button
-            function openCheckinModal{{ checkins[0].id }}() {
-                myModal{{ checkins[0].id }}.open();
+            function openCheckinModal() {
+                checkingModal.open();
             }
 
             // Lets always show the last login
@@ -77,7 +77,7 @@
                 setTimeout(
                     function()
                     {
-                        myModal{{ checkins[0].id }}();
+                        checkingModal();
                     }, 1000);
             });
 
