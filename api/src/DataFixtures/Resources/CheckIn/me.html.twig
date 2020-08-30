@@ -34,7 +34,7 @@
                 <ul class="list list--card">
                     {% if checkins|length > 0 %}
                         <li class="card background--primary card__hover">
-                            <a href="#" class="card__content"  href="#" data-toggle="modal" data-target="#myModal{{ checkins[0].id }}" onclick="openCheckinModal()">
+                            <a href="#" class="card__content"  href="#" data-toggle="modal" data-target="#myModal{{ checkins[0].id }}" onclick="openCheckinModal{{ checkins[0].id }}()">
                                 <div class="card__icon flex-center color--primary"><i class="fas fa-qrcode fa-4x"></i></div>
                                 <div class="card__body flex-center"><span class="card__title color--primary flex-center">{{ 'last checkin'|trans|capitalize }}</span></div>
                             </a>
