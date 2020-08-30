@@ -165,11 +165,11 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $manager->persist($menu);
 
         $menuItem = new MenuItem();
-        $menuItem->setName('Hoe');
+        $menuItem->setName('Over');
         $menuItem->setDescription('Hoe werkt CheckIn');
         $menuItem->setOrder(3);
         $menuItem->setType('slug');
-        $menuItem->setHref('#hoe');
+        $menuItem->setHref('/about');
         $menuItem->setMenu($menu);
         $manager->persist($menu);
 
@@ -177,11 +177,20 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $manager->persist($menu);
 
         $menuItem = new MenuItem();
-        $menuItem->setName('Wie');
+        $menuItem->setName('Privacy');
         $menuItem->setDescription('Wie zitten achter CheckIn');
         $menuItem->setOrder(4);
         $menuItem->setType('slug');
-        $menuItem->setHref('#wie');
+        $menuItem->setHref('/privacy');
+        $menuItem->setMenu($menu);
+        $manager->persist($menu);
+
+        $menuItem = new MenuItem();
+        $menuItem->setName('Proclaimer');
+        $menuItem->setDescription('Wie zitten achter CheckIn');
+        $menuItem->setOrder(4);
+        $menuItem->setType('slug');
+        $menuItem->setHref('/proclaimer');
         $menuItem->setMenu($menu);
         $manager->persist($menu);
 
@@ -229,6 +238,49 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $slug->setApplication($application);
         $slug->setName('about');
         $slug->setSlug('about');
+        $manager->persist($slug);
+        $manager->flush();
+
+        $id = Uuid::fromString('1374e3da-b4cb-49a7-8969-6bada9f26b12');
+        $template = new Template();
+        $template->setName('pProclaimer');
+        $template->setDescription('Proclaimer');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/CheckIn/about.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $manager->persist($template);
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('proclaimer');
+        $slug->setSlug('proclaimer');
+        $manager->persist($slug);
+        $manager->flush();
+
+
+        $id = Uuid::fromString('c381a552-c7b8-45d8-92f4-3f2ec5c50470');
+        $template = new Template();
+        $template->setName('Privacy');
+        $template->setDescription('Privacy');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/CheckIn/privacy.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $manager->persist($template);
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('privacy');
+        $slug->setSlug('privacy');
         $manager->persist($slug);
         $manager->flush();
 
