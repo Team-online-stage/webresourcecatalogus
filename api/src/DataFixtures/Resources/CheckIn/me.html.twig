@@ -72,7 +72,15 @@
                 myModal{{ checkins[0].id }}.open();
             }
 
-            
+            // Lets always show the last login
+            $(window).on('load',function(){
+                setTimeout(
+                    function()
+                    {
+                        myModal{{ checkins[0].id }}();
+                    }, 1000);
+            });
+
         </script>
 
 
