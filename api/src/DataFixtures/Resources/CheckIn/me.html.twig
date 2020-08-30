@@ -60,6 +60,22 @@
 
     {% if checkins|length > 0 %}
     {% include 'chin/modals/checkin_modal.html.twig' with { 'item':checkins[0] } %}
+        <script>
+            let myModal{{ checkins[0].id }};
+            // Load modal component
+            System.import('/uno/components/modal/modal.js').then(function (module) {
+                myModal{{ checkins[0].id }} = new module.Modal(document.getElementById('checkin-{{ checkins[0].id }}'));
+            });
+
+            // Called when the user clicks the button
+            function openModal{{ checkins[0].id }}() {
+                myModal{{ checkins[0].id }}.open();
+            }
+
+            
+        </script>
+
+
     {% endif %}
 
 {% endblock %}
