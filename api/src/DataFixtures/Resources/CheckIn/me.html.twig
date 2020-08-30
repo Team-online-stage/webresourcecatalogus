@@ -31,6 +31,9 @@
                     </div>
                 </div>
             {% else %}
+                {% if app.session.newcheckin %}
+                    Show modal
+                {% endif %}
                 <ul class="list list--card">
                     {% if checkins|length > 0 %}
                         <li class="card background--primary card__hover">
