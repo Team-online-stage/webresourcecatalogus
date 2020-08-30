@@ -31,7 +31,7 @@
                     </div>
                 </div>
             {% else %}
-                {% if app.session.newcheckin %}
+                {% if app.session.get('newcheckin') is defined and  app.session.get('newcheckin') %}
                     Show modal
                 {% endif %}
                 <ul class="list list--card">
