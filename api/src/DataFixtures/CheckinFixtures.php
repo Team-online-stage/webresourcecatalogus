@@ -154,20 +154,8 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
 
         $menuItem = new MenuItem();
         $menuItem->setName('Over');
-        $menuItem->setDescription('Wat is CheckIn');
-        $menuItem->setOrder(2);
-        $menuItem->setType('slug');
-        $menuItem->setHref('#wat');
-        $menuItem->setMenu($menu);
-        $manager->persist($menu);
-
-        $menu->addMenuItem($menuItem);
-        $manager->persist($menu);
-
-        $menuItem = new MenuItem();
-        $menuItem->setName('Over');
         $menuItem->setDescription('Hoe werkt CheckIn');
-        $menuItem->setOrder(3);
+        $menuItem->setOrder(2);
         $menuItem->setType('slug');
         $menuItem->setHref('/about');
         $menuItem->setMenu($menu);
@@ -179,7 +167,7 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $menuItem = new MenuItem();
         $menuItem->setName('Privacy');
         $menuItem->setDescription('Wie zitten achter CheckIn');
-        $menuItem->setOrder(4);
+        $menuItem->setOrder(3);
         $menuItem->setType('slug');
         $menuItem->setHref('/privacy');
         $menuItem->setMenu($menu);
