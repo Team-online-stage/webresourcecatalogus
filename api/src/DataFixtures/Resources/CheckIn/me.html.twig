@@ -3,30 +3,148 @@
 {% extends 'content.html.twig' %}
 
 {% block content %}
-    <section class="row">
-        <header class="content__header">
-            <h1 class="content__header-title">{{ 'personal'|trans|capitalize }}</h1>
-        </header>
-    </section>
+
+    {% if app.user.person is defined and app.user.person is not empty %}
+        {% set checkins =  commonground_resource_list({'component': 'chin', 'type': 'checkins'},{'user':app.user.person,'limit':1,'order[dateCreated]':'desc'})['hydra:member'] %}
+    {% else %}
+        {% set checkins =  commonground_resource_list({'component': 'chin', 'type': 'checkins'},{'person':session.person['@id'],'limit':1,'order[dateCreated]':'desc'})['hydra:member'] %}
+    {% endif %}
+
+<section class="row">
+    <header class="content__header">
+        <h1 class="content__header-title">{{ 'personal'|trans|capitalize }}</h1>
+    </header>
+</section>
 
 
-    <div class="row">
-        <aside class="col-xl-3 col-lg-4 col-md-3 col-sm-modal">
-            <nav class="sidenav">
-                {% if app.user.type == 'organization' %}
-                    {% include 'uc/widgets/organizationMenu.html.twig' %}
-                {% else %}
-                    {% include 'uc/widgets/menu.html.twig' %}
-                {% endif %}
-            </nav>
-        </aside>
+<div class="row">
+    <aside class="col-xl-3 col-lg-4 col-md-3 col-sm-modal">
+        <nav class="sidenav">
+            {% if app.user.type is defined and app.user.type == 'organization' %}
+                {% include 'uc/widgets/organizationMenu.html.twig' %}
+            {% elseif app.user is defined and app.user is not empty %}
+                {% include 'uc/widgets/menu.html.twig' %}
+            {% elseif session.person is defined and session.person is not empty %}
+                <div class="content-background">
+                    <div class="content">
+                        {% if session.person.name is defined and session.person.name is not empty %}
+                            <div class="definition-list__item">
+                                <b>{{ 'your name'|trans|capitalize }}:</b><br> {{ session.person.name }}
+                            </div>
+                        {% endif %}
+                        {% if session.person.emails[0] is defined and session.person.emails[0] is not empty %}
+                            {% set email = commonground_resource(session.person.emails[0]['@id']) %}
+                            <div class="definition-list__item">
+                                <b>{{ 'your e-mail'|trans|capitalize }}:</b><br> {{ email.email }} <br>
+                            </div>
+                        {% endif %}
+                        {% if session.person.telephones[0] is defined and session.person.telephones[0] is not empty %}
+                            {% set telephone = commonground_resource(session.person.telephones[0]['@id']) %}
+                            <div class="definition-list__item">
+                                <b>{{ 'your phone number'|trans|capitalize }}:</b><br> {{ telephone.telephone }} <br>
+                            </div>
+                        {% endif %}
 
-        <div class="col-xl-9 col-lg-8 col-md-9">
-            <div class="content-background">
-                <div class="content">
+                    </div>
                 </div>
-            </div>
-        </div>
-    </div>
 
-{% endblock %}
+            {% endif %}
+        </nav>
+    </aside>
+
+    {% if app.user is defined and app.user is not empty %}
+        <div class="col-xl-9 col-lg-8 col-md-9">
+            {% if app.user.type is defined and app.user.type == 'organization' %}
+                <div class="content-background">
+                    <div class="content">
+                    </div>
+                </div>
+            {% else %}
+                <ul class="list list--card">
+                    {% if checkins|length > 0 %}
+                        <li class="card background--primary card__hover">
+                            <a href="#" class="card__content" href="#" data-toggle="modal"
+                               data-target="#myModal{{ checkins[0].id }}" onclick="openCheckinModal()">
+                                <div class="card__icon flex-center color--primary"><i
+                                        class="fas fa-qrcode fa-4x"></i>
+                                </div>
+                                <div class="card__body flex-center"><span
+                                        class="card__title color--primary flex-center">{{ 'last checkin'|trans|capitalize }}</span>
+                                </div>
+                            </a>
+                        </li>
+                    {% endif %}
+                    <li class="card background--primary card__hover">
+                        <a href="{{ path('app_chin_checkinuser') }}" class="card__content">
+                            <div class="card__icon flex-center color--primary"><i
+                                    class="fas fa-map-marker-alt fa-4x"></i></div>
+                            <div class="card__body flex-center"><span
+                                    class="card__title color--primary flex-center">{{ 'all checkins'|trans|capitalize }}</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="card background--primary card__hover">
+                        <a href="{{ path('app_user_logout') }}" class="card__content">
+                            <div class="card__icon flex-center color--primary"><i class="fas fa-unlock fa-4x"></i>
+                            </div>
+                            <div class="card__body flex-center"><span
+                                    class="card__title color--primary flex-center">{{ 'logout'|trans|capitalize }}</span>
+                            </div>
+                        </a>
+                    </li>
+                    </tr>
+                </ul>
+            {% endif %}
+        </div>
+    {% else %}
+        <div class="col-md-9">
+            <ul class="list list--card">
+                {% if checkins|length > 0 %}
+                    <li class="card background--primary card__hover">
+                        <a href="#" class="card__content" href="#" data-toggle="modal"
+                           data-target="#myModal{{ checkins[0].id }}" onclick="openCheckinModal()">
+                            <div class="card__icon flex-center color--primary"><i
+                                    class="fas fa-qrcode fa-4x"></i>
+                            </div>
+                            <div class="card__body flex-center"><span
+                                    class="card__title color--primary flex-center">{{ 'last checkin'|trans|capitalize }}</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li></li>
+                    <li></li>
+                {% endif %}
+            </ul>
+        </div>
+    {% endif %}
+
+    {% if checkins|length > 0 %}
+        {% include 'chin/modals/checkin_modal.html.twig' with { 'item':checkins[0] } %}
+        <script>
+            let checkingModal;
+            // Load modal component
+            System.import('/uno/components/modal/modal.js').then(function (module) {
+                checkingModal = new module.Modal(document.getElementById('checkin-{{ checkins[0].id }}'));
+            });
+
+            // Called when the user clicks the button
+            function openCheckinModal() {
+                checkingModal.open();
+            }
+
+            {% if app.session.get('newcheckin') is defined and  app.session.get('newcheckin') %}
+            // Lets always show the last login
+            $(window).on('load', function () {
+                setTimeout(
+                    function () {
+                        openCheckinModal();
+                    }, 1000);
+            });
+            {% endif %}
+
+        </script>
+
+
+    {% endif %}
+
+    {% endblock %}

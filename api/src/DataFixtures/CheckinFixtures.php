@@ -80,7 +80,11 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
          .main {
             padding-top: 00px;
         }
-         ');
+
+        h1, h2 {
+            font-family: \'Lobster\', cursive;
+        }
+        ');
         $style->setfavicon($favicon);
         $style->addOrganization($organization);
         $manager->persist($style);
@@ -143,47 +147,43 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $menuItem->setType('slug');
         $menuItem->setHref('/home');
         $menuItem->setMenu($menu);
-        $manager->persist($menu);
-
-        $menu->addMenuItem($menuItem);
-        $manager->persist($menu);
+        $manager->persist($menuItem);
 
         $menuItem = new MenuItem();
         $menuItem->setName('Over');
-        $menuItem->setDescription('Wat is CheckIn');
+        $menuItem->setDescription('Hoe werkt CheckIn');
         $menuItem->setOrder(2);
         $menuItem->setType('slug');
-        $menuItem->setHref('#wat');
+        $menuItem->setHref('/about');
         $menuItem->setMenu($menu);
-        $manager->persist($menu);
-
-        $menu->addMenuItem($menuItem);
-        $manager->persist($menu);
+        $manager->persist($menuItem);
 
         $menuItem = new MenuItem();
-        $menuItem->setName('Hoe');
-        $menuItem->setDescription('Hoe werkt CheckIn');
+        $menuItem->setName('Onboarding');
+        $menuItem->setDescription('Registreer uw onderneming');
         $menuItem->setOrder(3);
         $menuItem->setType('slug');
-        $menuItem->setHref('#hoe');
+        $menuItem->setHref('/ptc/process/fdb7186c-0ce9-4050-bd6d-cf83b0c162eb');
         $menuItem->setMenu($menu);
-        $manager->persist($menu);
-
-        $menu->addMenuItem($menuItem);
-        $manager->persist($menu);
+        $manager->persist($menuItem);
 
         $menuItem = new MenuItem();
-        $menuItem->setName('Wie');
+        $menuItem->setName('Privacy');
         $menuItem->setDescription('Wie zitten achter CheckIn');
         $menuItem->setOrder(4);
         $menuItem->setType('slug');
-        $menuItem->setHref('#wie');
+        $menuItem->setHref('/privacy');
         $menuItem->setMenu($menu);
-        $manager->persist($menu);
+        $manager->persist($menuItem);
 
-        $menu->addMenuItem($menuItem);
-        $manager->persist($menu);
-        $manager->flush();
+        $menuItem = new MenuItem();
+        $menuItem->setName('Proclaimer');
+        $menuItem->setDescription('Wie zitten achter CheckIn');
+        $menuItem->setOrder(5);
+        $menuItem->setType('slug');
+        $menuItem->setHref('/proclaimer');
+        $menuItem->setMenu($menu);
+        $manager->persist($menuItem);
 
         // Pages
         $id = Uuid::fromString('0e3ec00f-c17b-4237-b6dd-070f800eb784');
@@ -204,6 +204,69 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $slug->setApplication($application);
         $slug->setName('home');
         $slug->setSlug('home');
+        $manager->persist($slug);
+        $manager->flush();
+
+        $id = Uuid::fromString('567f97d8-89dd-4ef3-8119-179ea4001a4f');
+        $template = new Template();
+        $template->setName('About');
+        $template->setDescription('About CheckIng.nu');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/CheckIn/about.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $manager->persist($template);
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('about');
+        $slug->setSlug('about');
+        $manager->persist($slug);
+        $manager->flush();
+
+        $id = Uuid::fromString('1374e3da-b4cb-49a7-8969-6bada9f26b12');
+        $template = new Template();
+        $template->setName('Proclaimer');
+        $template->setDescription('Proclaimer');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/CheckIn/proclaimer.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $manager->persist($template);
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('proclaimer');
+        $slug->setSlug('proclaimer');
+        $manager->persist($slug);
+        $manager->flush();
+
+        $id = Uuid::fromString('c381a552-c7b8-45d8-92f4-3f2ec5c50470');
+        $template = new Template();
+        $template->setName('Privacy');
+        $template->setDescription('Privacy');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/CheckIn/privacy.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $manager->persist($template);
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('privacy');
+        $slug->setSlug('privacy');
         $manager->persist($slug);
         $manager->flush();
 
