@@ -250,7 +250,6 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $manager->persist($slug);
         $manager->flush();
 
-
         $id = Uuid::fromString('c381a552-c7b8-45d8-92f4-3f2ec5c50470');
         $template = new Template();
         $template->setName('Privacy');
