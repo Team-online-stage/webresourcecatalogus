@@ -163,7 +163,7 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $menuItem->setDescription('Registreer uw onderneming');
         $menuItem->setOrder(3);
         $menuItem->setType('slug');
-        $menuItem->setHref('/process/fdb7186c-0ce9-4050-bd6d-cf83b0c162eb');
+        $menuItem->setHref('/ptc/process/fdb7186c-0ce9-4050-bd6d-cf83b0c162eb');
         $menuItem->setMenu($menu);
         $manager->persist($menuItem);
 
@@ -230,9 +230,9 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
 
         $id = Uuid::fromString('1374e3da-b4cb-49a7-8969-6bada9f26b12');
         $template = new Template();
-        $template->setName('pProclaimer');
+        $template->setName('Proclaimer');
         $template->setDescription('Proclaimer');
-        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/CheckIn/about.html.twig', 'r'));
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/CheckIn/proclaimer.html.twig', 'r'));
         $template->setTemplateEngine('twig');
         $manager->persist($template);
         $template->setId($id);
