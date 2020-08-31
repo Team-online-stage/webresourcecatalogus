@@ -6,7 +6,7 @@
 
     {% if app.user.person is defined and app.user.person is not empty %}
         {% set checkins =  commonground_resource_list({'component': 'chin', 'type': 'checkins'},{'user':app.user.person,'limit':1,'order[dateCreated]':'desc'})['hydra:member'] %}
-    {% else %}
+    {% elseif session.person is defined and session.person is not empty %}
         {% set checkins =  commonground_resource_list({'component': 'chin', 'type': 'checkins'},{'person':session.person['@id'],'limit':1,'order[dateCreated]':'desc'})['hydra:member'] %}
     {% endif %}
 
@@ -61,7 +61,7 @@
                 </div>
             {% else %}
                 <ul class="list list--card">
-                    {% if checkins|length > 0 %}
+                    {% if checkins is defined and checkins is not empty and checkins|length > 0 %}
                         <li class="card background--primary card__hover">
                             <a href="#" class="card__content" href="#" data-toggle="modal"
                                data-target="#myModal{{ checkins[0].id }}" onclick="openCheckinModal()">
@@ -118,7 +118,7 @@
         </div>
     {% endif %}
 
-    {% if checkins|length > 0 %}
+    {% if checkins is defined and checkins is not empty and checkins|length > 0 %}
         {% include 'chin/modals/checkin_modal.html.twig' with { 'item':checkins[0] } %}
         <script>
             let checkingModal;
