@@ -147,10 +147,7 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $menuItem->setType('slug');
         $menuItem->setHref('/home');
         $menuItem->setMenu($menu);
-        $manager->persist($menu);
-
-        $menu->addMenuItem($menuItem);
-        $manager->persist($menu);
+        $manager->persist($menuItem);
 
         $menuItem = new MenuItem();
         $menuItem->setName('Over');
@@ -159,32 +156,34 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $menuItem->setType('slug');
         $menuItem->setHref('/about');
         $menuItem->setMenu($menu);
-        $manager->persist($menu);
+        $manager->persist($menuItem);
 
-        $menu->addMenuItem($menuItem);
-        $manager->persist($menu);
+        $menuItem = new MenuItem();
+        $menuItem->setName('Onboarding');
+        $menuItem->setDescription('Registreer uw onderneming');
+        $menuItem->setOrder(3);
+        $menuItem->setType('slug');
+        $menuItem->setHref('/ptc/process/fdb7186c-0ce9-4050-bd6d-cf83b0c162eb');
+        $menuItem->setMenu($menu);
+        $manager->persist($menuItem);
 
         $menuItem = new MenuItem();
         $menuItem->setName('Privacy');
         $menuItem->setDescription('Wie zitten achter CheckIn');
-        $menuItem->setOrder(3);
+        $menuItem->setOrder(4);
         $menuItem->setType('slug');
         $menuItem->setHref('/privacy');
         $menuItem->setMenu($menu);
-        $manager->persist($menu);
+        $manager->persist($menuItem);
 
         $menuItem = new MenuItem();
         $menuItem->setName('Proclaimer');
         $menuItem->setDescription('Wie zitten achter CheckIn');
-        $menuItem->setOrder(4);
+        $menuItem->setOrder(5);
         $menuItem->setType('slug');
         $menuItem->setHref('/proclaimer');
         $menuItem->setMenu($menu);
-        $manager->persist($menu);
-
-        $menu->addMenuItem($menuItem);
-        $manager->persist($menu);
-        $manager->flush();
+        $manager->persist($menuItem);
 
         // Pages
         $id = Uuid::fromString('0e3ec00f-c17b-4237-b6dd-070f800eb784');
@@ -231,9 +230,9 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
 
         $id = Uuid::fromString('1374e3da-b4cb-49a7-8969-6bada9f26b12');
         $template = new Template();
-        $template->setName('pProclaimer');
+        $template->setName('Proclaimer');
         $template->setDescription('Proclaimer');
-        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/CheckIn/about.html.twig', 'r'));
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/CheckIn/proclaimer.html.twig', 'r'));
         $template->setTemplateEngine('twig');
         $manager->persist($template);
         $template->setId($id);
