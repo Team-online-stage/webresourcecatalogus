@@ -72,7 +72,7 @@ class HuwelijksplannerFixtures extends Fixture
     	.bg-primary-gradient {@include linear-gradient(-45deg, var(--secondary), var(--secondary2);}');
 
         $utrechtStyle->setfavicon($favicon);
-        $utrechtStyle->setOrganization($utrecht);
+        $utrechtStyle->addOrganization($utrecht);
         $utrecht->setLogo($logo);
 
         $manager->persist($utrecht);
@@ -119,6 +119,7 @@ class HuwelijksplannerFixtures extends Fixture
                 'colorSchemeMenu'   => 'menuStyle',
                 'hubspotId'         => '6108438',
                 'googleTagId'       => 'G-RHY411XSJN',
+                'userPage'          => '/persoonlijk',
             ]
         );
 
@@ -181,6 +182,22 @@ class HuwelijksplannerFixtures extends Fixture
         $manager->persist($groupTexts);
         $manager->flush();
         $groupTexts = $manager->getRepository('App:TemplateGroup')->findOneBy(['id'=> $id]);
+
+        // Persoonlijk
+        $template = new Template();
+        $template->setName('Persoonlijk');
+        $template->setDescription('persoonlijke overzichts pagine');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/persoonlijk.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('persoonlijk');
+        $slug->setSlug('persoonlijk');
+        $manager->persist($slug);
 
         // Berichten
         $id = Uuid::fromString('c20cc285-0246-4bf8-b3d0-781543b03270');

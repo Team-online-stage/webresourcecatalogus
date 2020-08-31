@@ -1,89 +1,397 @@
 {# templates/home/index.html.twig #}
-
+{# Template id: 6079cc7d-7b69-4db3-ad17-6bf972cca6a2 #}
 {% extends 'base.html.twig' %}
 
-{% block content %}
-</div>
-{% if application is defined and application.defaultConfiguration.configuration.headerimg is defined and application.defaultConfiguration.configuration.headerimg is not empty  %}
-    {% set headerimg = commonground_resource(application.defaultConfiguration.configuration.headerimg) %}
-<div class="row content-background background--donkergeel headerImage" style="background: url(data:image/file;base64,{{headerimg['base64']}})">
-    {% else %}
-    <div class="row content-background background--donkergeel" style="margin-top: -20px; height: 500px; margin-top: 0px; background: url(https://images.unsplash.com/photo-1547499681-28dece7dba00?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80) !important; background-size: cover !important;">
-        {% endif %}
-        <div class="container" style="height: 500px; position: relative;">
-            <div  style=" position: absolute; bottom: 15px; right: 15px; padding: 15px; margin: 0; background-color: #FFBC2C">
-                <h1>Nieuws</h1>
-                <ul class="list list--links list--chevrons">
-                    {% if application.defaultConfiguration.configuration.nieuws is defined %}
-                        {% set nieuws = commonground_resource(application.defaultConfiguration.configuration.nieuws) %}
-                        {% set templates = commonground_resource_list({'component': 'wrc', 'type': 'templates'},{'templateGroups.id':nieuws.id,'limit':4,'order[dateCreated]':'desc'})['hydra:member'] %}
-                        {% for template in templates %}
-                            <li><a href="/article?id={{ template.id }}" style="text-decoration: none;">{{ template.title }}</a></li>
-                        {% endfor %}
-                    {% endif %}
+{% block container %}
+
+
+    <div style="background: #4376FC; width: 100%; padding-top: 20px">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-md-6 col-sm-12">
+                    <div class="content">
+                        <h1 style="color: white;">Titel</h1>
+                        <p style="color: white;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
+                            finibus, diam non gravida fringilla, ex ante faucibus urna, eu ultrices arcu mi nec ante.
+                            Integer tortor massa, dapibus vel nisi quis, mollis euismod nisl. Etiam ac pharetra magna,
+                            in pellentesque libero. Quisque at tempus est. Nullam quis rutrum tortor, ut sollicitudin
+                            massa. Aliquam tempus ut neque sit amet euismod. Nulla eget consequat tellus, ut commodo
+                            felis.</p>
+
+                        <div class="inner-section inner-section--no-border background--donkergeel-tint-2">
+                            <h3>Titel van sectie</h3>
+                            <p>Nulla eget velit in erat ultrices volutpat. Sed et nibh fringilla,
+                                pellentesque elit non, tristique mi. Nunc urna eros, vehicula non
+                                nunc sit amet, suscipit gravida nibh. Donec imperdiet tincidunt
+                                laoreet. </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-sm-12">
+                    <div class="content">
+                        <div class="images-slider-1 custom-slider" style="height: 400px">
+                            <a href="#">
+                                <img src="/images/conduction/Corona_Blauw_Vlak.png" height="300px" width="500px">
+                            </a>
+                            <a href="#">
+                                <img src="/images/conduction/Opensource_Lichtblauw_Vlak.png" height="300px" width="500px">
+                            </a>
+                            <a href="#">
+                                <img src="/images/conduction/Product_Geel_Vlak.png" height="300px" width="500px">
+                            </a>
+                            <a href="#">
+                                <img src="/images/conduction/Samen_Blauw_Vlak.png" height="300px" width="500px">
+                            </a>
+                            <a href="#">
+                                <img src="/images/conduction/Wrc_Geel_Vlak.png" height="300px" width="500px">
+                            </a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <div style="background: #F4F5F9; width: 100%; padding-top: 20px">
+        <div class="container">
+            <div class="row">
+                <ul class="list list--card">
+                    <li class="card">
+                        <a href="#" class="card__content">
+                            <div class="card__thumb" style="background-image: url('https://picsum.photos/200')"></div>
+                            <div class="card__body">
+                                <span
+                                    class="card__title">Vooraan﻿&#8203;kondiging nieuwe werkwijze relatief verzuim</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="card">
+                        <a href="#" class="card__content">
+                            <div class="card__thumb" style="background-image: url('https://picsum.photos/200')"></div>
+                            <div class="card__body"><span class="card__title">Verzuimloket niet uitgefaseerd</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="card">
+                        <a href="#" class="card__content">
+                            <div class="card__thumb" style="background-image: url('https://picsum.photos/200')"></div>
+                            <div class="card__body"><span
+                                    class="card__title">Opschonen vrijstellingen&#8203;register</span></div>
+                        </a>
+                    </li>
+                    <li class="card">
+                        <a href="#" class="card__content">
+                            <div class="card__thumb" style="background-image: url('https://picsum.photos/200')"></div>
+                            <div class="card__body"><span
+                                    class="card__title">Opschonen vrijstellingen&#8203;register</span></div>
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>
     </div>
-    <div class="container" style="margin-top: 50px; margin-bottom: 0;">
-        <div class="processen">
-            <ul>
-                <li>
-                    <a href="/education/programs">
-                        <i style="color: black; font-size: 2em;" class="fas fa-chalkboard-teacher processIcon"></i>
-                        <br>
-                        <span class="card__title" style="color: black;">Programma's</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="/education/internships">
-                        <i style="color: black; font-size: 2em;"  class="fas fa-briefcase processIcon"></i>
-                        <br>
-                        <span class="card__title" style="color: black;">Stage plaatsen</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="/challenges">
-                        <i style="color: black; font-size: 2em;" class="fas fa-exclamation processIcon"></i>
-                        <br>
-                        <span class="card__title" style="color: black;">Challenges</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="/solutions">
-                        <i style="color: black; font-size: 2em;" class="fas fa-lightbulb processIcon"></i>
-                        <br>
-                        <span class="card__title" style="color: black;">Oplossingen</span>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
-    {% if application is defined and application.defaultConfiguration.configuration.newsimg is defined and application.defaultConfiguration.configuration.newsimg is not empty  %}
-    {% set newsimg = commonground_resource(application.defaultConfiguration.configuration.newsimg) %}
-    <div class="newsImage"  style="background: url(data:image/file;base64,{{newsimg['base64']}});">
-        {% else %}
-        <div  style=" margin-top: 50px; padding: 25px; background: url(https://images.unsplash.com/photo-1563122089-71f56e4e8d06?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80) !important; background-size: cover !important;">
-            {% endif %}
-            <div class="container" style="display: flex; justify-content: space-between; padding-top: 5px; padding-bottom: 5px;">
-                {% if application.defaultConfiguration.configuration.nieuws is defined %}
-                    {% set nieuws = commonground_resource(application.defaultConfiguration.configuration.nieuws) %}
-                    {% set templates = commonground_resource_list({'component': 'wrc', 'type': 'templates'},{'templateGroups.id':nieuws.id,'limit':4, 'order[dateCreated]':'desc'})['hydra:member'] %}
-                    {% set value = 1 %}
-                    {% for template in templates %}
-                        <div class="newsCard" id="news-{{ value }}" style="position: relative">
-                            <h2>{{ template.title }}</h2>
-                            <p>
-                                {{ template.description }}
-                            </p>
-                            <a href="/article?id={{ template.id }}" style="position: absolute; bottom: 15px; right: 15px;">lees meer</a>
-                        </div>
-                        {% set value = value + 1 %}
-                    {% endfor %}
+
+    <div class="container" style="padding-top: 20px; padding-bottom: 20px">
+        <div class="row">
+            <h2>Cursussen</h2>
+
+            <div class="images-slider-3 custom-slider" style="height: 400px">
+
+                {% if 'localhost' in app.request.uri or 'dev.' in app.request.uri %}
+                    {% set courses = commonground_resource_list('https://edu.dev.conduction.nl/courses')['hydra:member'] %}
+                {% else %}
+                    {% set courses = commonground_resource_list('https://edu.conduction.nl/courses')['hydra:member'] %}
                 {% endif %}
+
+                {% if courses is defined and courses is not empty %}
+
+                    {% for item in courses %}
+
+                        <li class="card">
+                            <a href="#" class="card__content">
+                                <div class="card__thumb"
+                                     style="background-image: url('https://picsum.photos/300/100')"></div>
+                                <div class="card__body">
+                                    <span class="card__title">{{ item.name }}</span>
+                                    <span class="card__content">{{ item.description }}</span>
+                                </div>
+                                <span class="card__readmore">{{ 'read more'|trans|capitalize }}</span>
+                            </a>
+                        </li>
+
+                    {% endfor %}
+
+                    {#                   If we have less then 5 objects we run the loop twice for the image-slider        #}
+
+                    {% if courses|length < 5 %}
+
+                        {% for item in courses %}
+
+                            <li class="card">
+                                <a href="#" class="card__content">
+                                    <div class="card__thumb"
+                                         style="background-image: url('https://picsum.photos/300/100')"></div>
+                                    <div class="card__body">
+                                        <span class="card__title">{{ item.name }}</span>
+                                        <span class="card__content">{{ item.description }}</span>
+                                    </div>
+                                    <span class="card__readmore">{{ 'read more'|trans|capitalize }}</span>
+                                </a>
+                            </li>
+
+                        {% endfor %}
+
+                    {% endif %}
+
+                {% else %}
+
+                    <p class="text-center">Er zijn geen cursussen gevonden.</p>
+
+                {% endif %}
+
             </div>
         </div>
+    </div>
 
 
+    <div style="background: #87cefa; width: 100%; padding-top: 20px; padding-bottom: 20px">
+        <div class="container">
+            <div class="row">
+
+                <h2>Stages</h2>
+
+                <div class="images-slider-3 custom-slider" style="height: 400px">
+
+                    {% if 'localhost' in app.request.uri or 'dev.' in app.request.uri %}
+                        {% set stages = commonground_resource_list('https://edu.dev.conduction.nl/programs')['hydra:member'] %}
+                    {% else %}
+                        {% set stages = commonground_resource_list('https://edu.conduction.nl/programs')['hydra:member'] %}
+                    {% endif %}
+
+                    {% if stages is defined and stages is not empty %}
+
+                        {% for item in stages %}
+
+                            <li class="card">
+                                <a href="#" class="card__content">
+                                    <div class="card__thumb"
+                                         style="background-image: url('https://picsum.photos/300/100')"></div>
+                                    <div class="card__body">
+                                        <span class="card__title">{{ item.name }}</span>
+                                        <span class="card__content">{{ item.description }}</span>
+                                    </div>
+                                    <span class="card__readmore">{{ 'read more'|trans|capitalize }}</span>
+                                </a>
+                            </li>
+
+                        {% endfor %}
+
+                        {#                      If we have less then 5 objects we run the loop twice for the image-slider        #}
+                        {% if stages|length < 5 %}
+
+                            {% for item in stages %}
+
+                                <li class="card">
+                                    <a href="#" class="card__content">
+                                        <div class="card__thumb"
+                                             style="background-image: url('https://picsum.photos/300/100')"></div>
+                                        <div class="card__body">
+                                            <span class="card__title">{{ item.name }}</span>
+                                            <span class="card__content">{{ item.description }}</span>
+                                        </div>
+                                        <span class="card__readmore">{{ 'read more'|trans|capitalize }}</span>
+                                    </a>
+                                </li>
+
+                            {% endfor %}
+
+                        {% endif %}
+
+                    {% else %}
+
+                        <p class="text-center">Er zijn geen stages gevonden.</p>
+
+                    {% endif %}
+                    {#                <div class="col-md-4 text-center">#}
+                    {#                    <img class="responsive" src="/images/conduction/Wrc_Geel_Vlak.png" width="350px">#}
+                    {#                </div>#}
+                    {#                <div class="col-md-4 text-center">#}
+                    {#                    <img class="responsive" src="/images/conduction/Samen_Blauw_Vlak.png" width="350px">#}
+                    {#                </div>#}
+                    {#                <div class="col-md-4 text-center">#}
+                    {#                    <img class="responsive" src="/images/conduction/Opensource_Lichtblauw_Vlak.png" width="350px">#}
+                    {#                </div>#}
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $('.images-slider-1').slick({
+            slidesToScroll: 1,
+            autoplay: true,
+            autoplaySpeed: 3000,
+        });
+
+        $('.images-slider-2').slick({
+            centerMode: true,
+            centerPadding: '60px',
+            slidesToShow: 3,
+            responsive: [
+                {
+                    breakpoint: 768,
+                    settings: {
+                        arrows: false,
+                        centerMode: true,
+                        centerPadding: '40px',
+                        slidesToShow: 3
+                    }
+                },
+                {
+                    breakpoint: 480,
+                    settings: {
+                        arrows: false,
+                        centerMode: true,
+                        centerPadding: '40px',
+                        slidesToShow: 1
+                    }
+                }
+            ]
+        });
+
+        $('.images-slider-3').slick({
+            centerMode: true,
+            centerPadding: '60px',
+            slidesToShow: 3,
+            responsive: [
+                {
+                    breakpoint: 768,
+                    settings: {
+                        arrows: false,
+                        centerMode: true,
+                        centerPadding: '40px',
+                        slidesToShow: 3
+                    }
+                },
+                {
+                    breakpoint: 480,
+                    settings: {
+                        arrows: false,
+                        centerMode: true,
+                        centerPadding: '40px',
+                        slidesToShow: 1
+                    }
+                }
+            ]
+        });
+
+        // $('.images-slider').slick({
+        //     centerMode: true,
+        //     centerPadding: '60px',
+        //     slidesToShow: 1,
+        //     responsive: [
+        //         {
+        //             breakpoint: 768,
+        //             settings: {
+        //                 arrows: false,
+        //                 centerMode: true,
+        //                 centerPadding: '40px',
+        //                 slidesToShow: 1
+        //             }
+        //         },
+        //         {
+        //             breakpoint: 480,
+        //             settings: {
+        //                 arrows: false,
+        //                 centerMode: true,
+        //                 centerPadding: '40px',
+        //                 slidesToShow: 1
+        //             }
+        //         }
+        //     ]
+        // });
+    </script>
+
+    {#    <div class="container" style="height: 500px; position: relative;">#}
+    {#        <div  style=" position: absolute; bottom: 15px; right: 15px; padding: 15px; margin: 0; background-color: #FFBC2C">#}
+    {#            <h1>Nieuws</h1>#}
+    {#            <ul class="list list--links list--chevrons">#}
+    {#                {% if application.defaultConfiguration.configuration.nieuws is defined %}#}
+    {#                    {% set nieuws = commonground_resource(application.defaultConfiguration.configuration.nieuws) %}#}
+    {#                    {% set templates = commonground_resource_list({'component': 'wrc', 'type': 'templates'},{'templateGroups.id':nieuws.id,'limit':4,'order[dateCreated]':'desc'})['hydra:member'] %}#}
+    {#                    {% for template in templates %}#}
+    {#                        <li><a href="/article?id={{ template.id }}" style="text-decoration: none;">{{ template.title }}</a></li>#}
+    {#                    {% endfor %}#}
+    {#                {% endif %}#}
+    {#            </ul>#}
+    {#        </div>#}
+    {#    </div>#}
+
+    {#    <div class="container" style="margin-top: 50px; margin-bottom: 0;">#}
+    {#        <div class="processen">#}
+    {#            <ul>#}
+    {#                <li>#}
+    {#                    <a href="/education/programs">#}
+    {#                        <i style="color: black; font-size: 2em;" class="fas fa-chalkboard-teacher processIcon"></i>#}
+    {#                        <br>#}
+    {#                        <span class="card__title" style="color: black;">Programma's</span>#}
+    {#                    </a>#}
+    {#                </li>#}
+    {#                <li>#}
+    {#                    <a href="/education/internships">#}
+    {#                        <i style="color: black; font-size: 2em;"  class="fas fa-briefcase processIcon"></i>#}
+    {#                        <br>#}
+    {#                        <span class="card__title" style="color: black;">Stage plaatsen</span>#}
+    {#                    </a>#}
+    {#                </li>#}
+    {#                <li>#}
+    {#                    <a href="/challenges">#}
+    {#                        <i style="color: black; font-size: 2em;" class="fas fa-exclamation processIcon"></i>#}
+    {#                        <br>#}
+    {#                        <span class="card__title" style="color: black;">Challenges</span>#}
+    {#                    </a>#}
+    {#                </li>#}
+    {#                <li>#}
+    {#                    <a href="/solutions">#}
+    {#                        <i style="color: black; font-size: 2em;" class="fas fa-lightbulb processIcon"></i>#}
+    {#                        <br>#}
+    {#                        <span class="card__title" style="color: black;">Oplossingen</span>#}
+    {#                    </a>#}
+    {#                </li>#}
+    {#            </ul>#}
+    {#        </div>#}
+    {#    </div>#}
+
+    {#    {% if application is defined and application.defaultConfiguration.configuration.newsimg is defined and application.defaultConfiguration.configuration.newsimg is not empty  %}#}
+    {#    {% set newsimg = commonground_resource(application.defaultConfiguration.configuration.newsimg) %}#}
+    {#    <div class="newsImage"  style="background-color: #4376fc">#}
+    {#        {% else %}#}
+    {#        <div  style=" margin-top: 50px; padding: 25px; background: url(https://images.unsplash.com/photo-1563122089-71f56e4e8d06?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80) !important; background-size: cover !important;">#}
+    {#            {% endif %}#}
+    {#            <div class="container" style="display: flex; justify-content: space-between; padding-top: 5px; padding-bottom: 5px;">#}
+    {#                {% if application.defaultConfiguration.configuration.nieuws is defined %}#}
+    {#                    {% set nieuws = commonground_resource(application.defaultConfiguration.configuration.nieuws) %}#}
+    {#                    {% set templates = commonground_resource_list({'component': 'wrc', 'type': 'templates'},{'templateGroups.id':nieuws.id,'limit':4, 'order[dateCreated]':'desc'})['hydra:member'] %}#}
+    {#                    {% set value = 1 %}#}
+    {#                    {% for template in templates %}#}
+    {#                        <div class="newsCard" id="news-{{ value }}" style="position: relative">#}
+    {#                            <h2>{{ template.title }}</h2>#}
+    {#                            <p>#}
+    {#                                {{ template.description }}#}
+    {#                            </p>#}
+    {#                            <a href="/article?id={{ template.id }}" style="position: absolute; bottom: 15px; right: 15px;">lees meer</a>#}
+    {#                        </div>#}
+    {#                        {% set value = value + 1 %}#}
+    {#                    {% endfor %}#}
+    {#                {% endif %}#}
+    {#            </div>#}
+    {#        </div>#}
+    {#    </div>#}
 
 {% endblock %}

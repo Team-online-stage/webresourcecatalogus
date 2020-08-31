@@ -137,7 +137,7 @@ class Image
     /**
      * @Groups({"read","write"})
      * @ORM\ManyToOne(targetEntity="App\Entity\Organization", inversedBy="images")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $organization;
 

@@ -62,7 +62,7 @@ class RotterdamFixtures extends Fixture
         $style->setDescription('Huistlijl Gemeente Utrecht');
         $style->setCss('');
         $style->setfavicon($favicon);
-        $style->setOrganization($rotterdam);
+        $style->addOrganization($rotterdam);
 
         $rotterdam->setLogo($logo);
 

@@ -76,7 +76,7 @@ class LarpingFixtures extends Fixture
         $style->setDescription('Stijldefinities voor de Larping applicatie');
         $style->setCss('');
         $style->setFavicon($image);
-        $style->setOrganization($larping);
+        $style->addOrganization($larping);
         $manager->persist($style);
 
         // Menu

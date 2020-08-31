@@ -26,6 +26,8 @@ class ZuiddrechtFixtures extends Fixture
      */
     private $commonGroundService;
 
+    public const ORGANIZATION_ZUIDDRECHT = 'organization-zuiddrecht';
+
     public function __construct(ParameterBagInterface $params, CommonGroundService $commonGroundService)
     {
         $this->params = $params;
@@ -53,6 +55,8 @@ class ZuiddrechtFixtures extends Fixture
         $manager->persist($organization);
         $manager->flush();
         $organization = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
+
+        $this->addReference(self::ORGANIZATION_ZUIDDRECHT, $organization);
 
         $favicon = new Image();
         $favicon->setName('Zuid-Drecht Favicon');
@@ -89,6 +93,7 @@ class ZuiddrechtFixtures extends Fixture
         $logo->setDescription('Zuid-Drecht VNG');
         $logo->setOrganization($organization);
 
+        /*
         $style = new Style();
         $style->setName('Zuid-Drecht');
         $style->setDescription('Huistlijl Gemeente Zuid-Drecht');
@@ -157,10 +162,6 @@ class ZuiddrechtFixtures extends Fixture
                 display: block;
             }
         }
-
-
-
-
 
         @media only screen and (min-width: 1376px){
             .headerImage {
@@ -479,10 +480,27 @@ class ZuiddrechtFixtures extends Fixture
 
 
 
-        ');
+        ');*/
+
+        $style = new Style();
+        $style->setName('Zuid-Drecht');
+        $style->setDescription('Huistlijl Gemeente Zuid-Drecht');
+        $style->setCss('
+        :root {
+                --primary: #CC0000;
+                --primary-color: white;
+                --secondary: #3669A5;
+                --secondary-color: white;
+
+                --menu: #CC0000;
+                --menu-over: #3669A5;
+                --menu-color: white;
+                --footer: #3669A5;
+                --footer-color: white;
+         }');
 
         $style->setfavicon($favicon);
-        $style->setOrganization($organization);
+        $style->addOrganization($organization);
 
         $manager->persist($organization);
         $manager->persist($favicon);
@@ -492,14 +510,13 @@ class ZuiddrechtFixtures extends Fixture
         $manager->flush();
 
         $styleDashboard = new Style();
-        $styleDashboard->setName('Zuid-Drecht');
+        $styleDashboard->setName('dashboard');
         $styleDashboard->setDescription('Huistlijl Gemeente Zuid-Drecht');
-        $styleDashboard->setCss(':root {--primary: #CC0000;--primary2: white;--secondary: #3669A5;--secondary2: #FFC926;}
-        .main-title {color: var(--primary2) !important;}.logo-header {background: var(--primary);}.navbar-header
-        {background: var(--primary);}.bg-primary-gradient {background: linear-gradient(-45deg, var(--secondary),
-         var(--secondary2)) !important;}');
+        $styleDashboard->setCss(':root {--primary: #CC0000;--primary2: white;--secondary: #FFC926;--secondary2: #FFC926;}.main-title
+    	{color: var(--primary2) !important;}.logo-header {background: var(--primary);}.navbar-header {background: var(--primary);}
+    	.bg-primary-gradient {background: linear-gradient(-45deg, var(--secondary), var(--secondary2)) !important;}');
         $styleDashboard->setfavicon($favicon);
-        $styleDashboard->setOrganization($organization);
+        $styleDashboard->addOrganization($organization);
         $manager->persist($styleDashboard);
 
         $manager->flush();
@@ -539,23 +556,33 @@ class ZuiddrechtFixtures extends Fixture
         $configuration->setOrganization($organization);
         $configuration->setConfiguration(
             [
-                'sideMenu'          => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'915d5b04-c050-4b18-8f72-a068c2708883']),
-                'loggedIn'          => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'364350f5-d2a5-49f3-adab-484c357fa82f']),
-                'mainMenu'          => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'ca1ca0b4-4c8f-4638-9869-16974426e3df']),
-                'home'              => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'163f8616-abb7-411d-b7b2-0d11c6bd7dca']),
-                'footer1'           => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'0dca3fd2-0124-46fb-88c1-4f0860b2888c']),
-                'footer2'           => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'68003cd6-7729-4807-af24-d58a1dfe0870']),
-                'footer3'           => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'facad633-27a9-499a-b3fc-4687215bf82a']),
-                'footer4'           => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'4bc966b6-e310-4bce-b459-a7cf65651ce0']),
-                'nieuws'            => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'template_groups', 'id'=>'5c59f238-1ce3-4c8d-8107-4bd8e2134648']),
-                'about'             => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'template_groups', 'id'=>'6b243aa1-5ae6-4aeb-93d5-2f509fb34cef']),
-                'newsimg'           => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'0e5b1531-4abb-4704-9bd3-feeb94717521']),
-                'headerimg'         => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'ff3ca823-234f-4874-9ee6-1067d47e4391']),
-                'colorSchemeFooter' => 'footerStyle',
-                'colorSchemeMenu'   => 'menuStyle',
-                'hubspotId'         => '6108438',
-                'googleTagId'       => 'G-RHY411XSJN',
-                'newsGroup'         => ['1'],
+                'sideMenu'                  => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'915d5b04-c050-4b18-8f72-a068c2708883']),
+                'loggedIn'                  => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'364350f5-d2a5-49f3-adab-484c357fa82f']),
+                'mainMenu'                  => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'ca1ca0b4-4c8f-4638-9869-16974426e3df']),
+                'home'                      => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'163f8616-abb7-411d-b7b2-0d11c6bd7dca']),
+                'footer1'                   => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'0dca3fd2-0124-46fb-88c1-4f0860b2888c']),
+                'footer2'                   => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'68003cd6-7729-4807-af24-d58a1dfe0870']),
+                'footer3'                   => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'facad633-27a9-499a-b3fc-4687215bf82a']),
+                'footer4'                   => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'4bc966b6-e310-4bce-b459-a7cf65651ce0']),
+                'news'                      => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'template_groups', 'id'=>'5c59f238-1ce3-4c8d-8107-4bd8e2134648']),
+                'about'                     => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'template_groups', 'id'=>'6b243aa1-5ae6-4aeb-93d5-2f509fb34cef']),
+                'newsimg'                   => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'0e5b1531-4abb-4704-9bd3-feeb94717521']),
+                'headerimg'                 => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'ff3ca823-234f-4874-9ee6-1067d47e4391']),
+                'changeRequest'             => '7216b69d-e245-488e-af8f-0969241926e7',
+                'objectionRequest'          => '2a95ba3e-a3f9-4fdf-8a6d-005d96aad405',
+                'nameChangeRequest'         => '2a95ba3e-a3f9-4fdf-8a6d-005d96aad405',
+                'familyChangeRequest'       => '2a95ba3e-a3f9-4fdf-8a6d-005d96aad405',
+                'genderRequest'             => '2a95ba3e-a3f9-4fdf-8a6d-005d96aad405',
+                'moveRequest'               => '2a95ba3e-a3f9-4fdf-8a6d-005d96aad405',
+                'orderTemplate'             => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'d52644b8-d0af-4102-976c-8737802e0b7c']),
+                'invoiceTemplate'           => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'d273afad-4a3d-426d-a621-55720cac5d4e']),
+                'login'                     => ['digid'=>true, 'eherkening'=>true], //,'employee'
+                'hubspotId'                 => '6108438',
+                'googleTagId'               => 'G-RHY411XSJN',
+                'newsGroup'                 => ['1'],
+                'userPage'                  => 'persoonlijk',
+                'header'                    => true,
+                'search'                    => true,
             ]
         );
         $manager->persist($configuration);
@@ -634,7 +661,7 @@ class ZuiddrechtFixtures extends Fixture
         $menuItem->setDescription('Doe een aanvraag');
         $menuItem->setOrder(4);
         $menuItem->setType('slug');
-        $menuItem->setHref('/process');
+        $menuItem->setHref('/ptc');
         $menuItem->setMenu($menu);
         $manager->persist($menuItem);
 
@@ -676,6 +703,14 @@ class ZuiddrechtFixtures extends Fixture
         $menuItem->setMenu($menu);
         $manager->persist($menuItem);
 
+        // Template group: documents
+        $groupPages = new TemplateGroup();
+        $groupPages->setOrganization($organization);
+        $groupPages->setApplication($application);
+        $groupPages->setName('Documents');
+        $groupPages->setDescription('Document templates');
+        $manager->persist($groupPages);
+
         // Template groups
         $groupPages = new TemplateGroup();
         $groupPages->setOrganization($organization);
@@ -683,6 +718,22 @@ class ZuiddrechtFixtures extends Fixture
         $groupPages->setName('Pages');
         $groupPages->setDescription('Webpages that are presented to visitors');
         $manager->persist($groupPages);
+
+        // Persoonlijk
+        $template = new Template();
+        $template->setName('Persoonlijk');
+        $template->setDescription('persoonlijke overzichts pagine');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/persoonlijk.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('persoonlijk');
+        $slug->setSlug('persoonlijk');
+        $manager->persist($slug);
 
         // Pages
         $id = Uuid::fromString('163f8616-abb7-411d-b7b2-0d11c6bd7dca');
@@ -706,6 +757,21 @@ class ZuiddrechtFixtures extends Fixture
         $slug->setName('home');
         $slug->setSlug('home');
         $manager->persist($slug);
+
+        $id = Uuid::fromString('9a974240-adce-4a47-a3e6-52c2e81e35ea');
+        $template = new Template();
+        $template->setName('HO Akte Grafrecht');
+        $template->setDescription('HO Akte Grafrecht document');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Documents/HO_Akte_Grafrecht.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
 
         $id = Uuid::fromString('fc5cef2d-c64d-4cfc-ac8c-da0ea0c66063');
         $template = new Template();
@@ -1532,6 +1598,62 @@ class ZuiddrechtFixtures extends Fixture
         $slug->setSlug('beste-gemeente');
         $manager->persist($slug);
 
+        // Template groups
+        $groupEmails = new TemplateGroup();
+        $groupEmails->setOrganization($organization);
+        $groupEmails->setApplication($application);
+        $groupEmails->setName('E-mails');
+        $groupEmails->setDescription('E-mails that are send out');
+        $manager->persist($groupEmails);
+
+        $id = Uuid::fromString('3ad00211-9cc9-4100-9fef-effa8731b104');
+        $template = new Template();
+        $template->setName('Wijziging verzoek');
+        $template->setTitle('Uw verzoek is gewijzigd');
+        $template->setDescription('Bevestiging dat een verzoek is gewijzigd');
+        $template->setContent('Beste {{ receiver.givenName }},<p>Uw verzoek met referentie {{ resource.reference }} is met succes gewijzigd.</p><p>Met vriendelijke groet,</p>{{ sender.name }}');
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupEmails);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('e-mail-wijziging');
+        $slug->setSlug('e-mail-wijziging');
+        $manager->persist($slug);
+        $manager->flush();
+
+        $id = Uuid::fromString('06ec69cb-8af2-4c3c-8d75-436c3efa707b');
+        $template = new Template();
+        $template->setName('Herinnering melding');
+        $template->setTitle('Vergeet geen melding te doen van uw huwelijk!');
+        $template->setDescription('Herinnering voor het doen van een melding voor het huwelijk');
+        $template->setContent('Beste {{ receiver.givenName }},<p>Vergeet niet om melding te doen van uw aanstaande huwelijk! U heeft nog 14 dagen.</p><p>Met vriendelijke groet,</p>{{ sender.name }}');
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupEmails);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('e-mail-herinnering');
+        $slug->setSlug('e-mail-herinnering');
+        $manager->persist($slug);
+        $manager->flush();
+
         // Mijn Zuid Decht
         $id = Uuid::fromString('64f60afd-7506-48e0-928b-6bbede045812');
         $application = new Application();
@@ -1616,6 +1738,51 @@ class ZuiddrechtFixtures extends Fixture
         $slug->setName('home');
         $slug->setSlug('home');
         $manager->persist($slug);
+
+        $id = Uuid::fromString('bf8aff0a-ab65-4761-923b-890785c5d2fb');
+        $template = new Template();
+        $template->setName('Ontvangst Bevestiging Verzoek');
+        $template->setDescription('Ontvangst Bevestiging Verzoek');
+        $template->setContent('ontvangen');
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
+
+        $id = Uuid::fromString('d52644b8-d0af-4102-976c-8737802e0b7c');
+        $template = new Template();
+        $template->setName('Order');
+        $template->setDescription('Order');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Documents/order.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
+
+        $id = Uuid::fromString('d273afad-4a3d-426d-a621-55720cac5d4e');
+        $template = new Template();
+        $template->setName('Factuur');
+        $template->setDescription('Factuur');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Documents/invoice.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
 
         $manager->flush();
     }
