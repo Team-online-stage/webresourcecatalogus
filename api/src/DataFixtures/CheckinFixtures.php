@@ -163,7 +163,7 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $menuItem->setDescription('Registreer uw onderneming');
         $menuItem->setOrder(3);
         $menuItem->setType('slug');
-        $menuItem->setHref('/chin/onboarding');
+        $menuItem->setHref('/process/fdb7186c-0ce9-4050-bd6d-cf83b0c162eb');
         $menuItem->setMenu($menu);
         $manager->persist($menuItem);
 
