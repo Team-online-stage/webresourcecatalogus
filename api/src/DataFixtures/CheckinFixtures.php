@@ -230,9 +230,9 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
 
         $id = Uuid::fromString('1374e3da-b4cb-49a7-8969-6bada9f26b12');
         $template = new Template();
-        $template->setName('pProclaimer');
+        $template->setName('Proclaimer');
         $template->setDescription('Proclaimer');
-        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/CheckIn/about.html.twig', 'r'));
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/CheckIn/proclaimer.html.twig', 'r'));
         $template->setTemplateEngine('twig');
         $manager->persist($template);
         $template->setId($id);
