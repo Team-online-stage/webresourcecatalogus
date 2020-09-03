@@ -159,7 +159,7 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $manager->persist($menuItem);
 
         $menuItem = new MenuItem();
-        $menuItem->setName('Ondernemer');
+        $menuItem->setName('Onboarding');
         $menuItem->setDescription('Registreer uw onderneming');
         $menuItem->setOrder(3);
         $menuItem->setType('slug');
