@@ -185,49 +185,6 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $menuItem->setMenu($menu);
         $manager->persist($menuItem);
 
-        // Pages
-        $id = Uuid::fromString('0e3ec00f-c17b-4237-b6dd-070f800eb784');
-        $template = new Template();
-        $template->setName('CheckIn.nu Home');
-        $template->setDescription('Homepage voor CheckIn.nu');
-        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/CheckIn/index.html.twig', 'r'));
-        $template->setTemplateEngine('twig');
-        $manager->persist($template);
-        $template->setId($id);
-        $manager->persist($template);
-        $manager->flush();
-        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
-        $manager->persist($template);
-
-        $slug = new Slug();
-        $slug->setTemplate($template);
-        $slug->setApplication($application);
-        $slug->setName('home');
-        $slug->setSlug('home');
-        $manager->persist($slug);
-        $manager->flush();
-
-        $id = Uuid::fromString('567f97d8-89dd-4ef3-8119-179ea4001a4f');
-        $template = new Template();
-        $template->setName('About');
-        $template->setDescription('About CheckIng.nu');
-        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/CheckIn/about.html.twig', 'r'));
-        $template->setTemplateEngine('twig');
-        $manager->persist($template);
-        $template->setId($id);
-        $manager->persist($template);
-        $manager->flush();
-        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
-        $manager->persist($template);
-
-        $slug = new Slug();
-        $slug->setTemplate($template);
-        $slug->setApplication($application);
-        $slug->setName('about');
-        $slug->setSlug('about');
-        $manager->persist($slug);
-        $manager->flush();
-
         $id = Uuid::fromString('1374e3da-b4cb-49a7-8969-6bada9f26b12');
         $template = new Template();
         $template->setName('Proclaimer');
