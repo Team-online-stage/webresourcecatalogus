@@ -141,33 +141,6 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $menu = $manager->getRepository('App:Menu')->findOneBy(['id'=> $id]);
 
         $menuItem = new MenuItem();
-        $menuItem->setName('Home');
-        $menuItem->setDescription('home page');
-        $menuItem->setOrder(1);
-        $menuItem->setType('slug');
-        $menuItem->setHref('/home');
-        $menuItem->setMenu($menu);
-        $manager->persist($menuItem);
-
-        $menuItem = new MenuItem();
-        $menuItem->setName('Over');
-        $menuItem->setDescription('Hoe werkt CheckIn');
-        $menuItem->setOrder(2);
-        $menuItem->setType('slug');
-        $menuItem->setHref('/about');
-        $menuItem->setMenu($menu);
-        $manager->persist($menuItem);
-
-        $menuItem = new MenuItem();
-        $menuItem->setName('Ondernemer');
-        $menuItem->setDescription('Registreer uw onderneming');
-        $menuItem->setOrder(3);
-        $menuItem->setType('slug');
-        $menuItem->setHref('/ptc/process/fdb7186c-0ce9-4050-bd6d-cf83b0c162eb');
-        $menuItem->setMenu($menu);
-        $manager->persist($menuItem);
-
-        $menuItem = new MenuItem();
         $menuItem->setName('Privacy');
         $menuItem->setDescription('Wie zitten achter CheckIn');
         $menuItem->setOrder(4);
