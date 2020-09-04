@@ -45,7 +45,7 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
             !$this->params->get('app_build_all_fixtures') &&
             $this->params->get('app_domain') != 'zuiddrecht.nl' && strpos($this->params->get('app_domain'), 'zuiddrecht.nl') == false &&
             $this->params->get('app_domain') != 'zuid-drecht.nl' && strpos($this->params->get('app_domain'), 'zuid-drecht.nl') == false &&
-        $this->params->get('app_domain') != 'conduction.academy' && strpos($this->params->get('app_domain'), 'conduction.academy') == false &&
+            $this->params->get('app_domain') != 'conduction.academy' && strpos($this->params->get('app_domain'), 'conduction.academy') == false
         ) {
             return false;
         }
@@ -116,7 +116,7 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
         );
         $manager->persist($configuration);
 
-        $id = Uuid::fromString('fbebe8d7-dead-4191-b38a-d90c4cc37b70');
+        $id = Uuid::fromString('5265828b-85fb-4ad5-acd5-ade4da3fc593');
         $application = new Application();
         $application->setName('CheckIn');
         $application->setDescription('Website voor checkin.conduction.nl');
@@ -131,7 +131,7 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
         $application = $manager->getRepository('App:Application')->findOneBy(['id'=> $id]);
 
         // Menu
-        $id = Uuid::fromString('f0faccbd-3067-45fb-9ab7-2938fbbbf492');
+        $id = Uuid::fromString('179069a4-fb86-44db-8787-a74ccb2729d5');
         $menu = new Menu();
         $menu->setName('Stage Main Menu');
         $menu->setDescription('Het hoofdmenu van deze website');
@@ -170,7 +170,7 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
         $manager->persist($menuItem);
 
         // Pages
-        $id = Uuid::fromString('0e3ec00f-c17b-4237-b6dd-070f800eb784');
+        $id = Uuid::fromString('cfa78a3f-17ca-4204-aacb-bee421af1d97');
         $template = new Template();
         $template->setName('CheckIn.nu Home');
         $template->setDescription('Homepage voor CheckIn.nu');
