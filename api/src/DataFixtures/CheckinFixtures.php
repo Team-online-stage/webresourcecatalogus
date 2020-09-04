@@ -66,6 +66,7 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         :root {
                 --primary: #01689b;
                 --primary-color: white;
+                --background: #01689b;
                 --secondary: #cce0f1;
                 --secondary-color: #2b2b2b;
 
