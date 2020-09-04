@@ -17,7 +17,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Ramsey\Uuid\Uuid;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 
-class CheckinFixtures extends Fixture implements DependentFixtureInterface
+class StageFixtures extends Fixture implements DependentFixtureInterface
 {
     private $params;
     /**
@@ -44,7 +44,8 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         if (
             !$this->params->get('app_build_all_fixtures') &&
             $this->params->get('app_domain') != 'zuiddrecht.nl' && strpos($this->params->get('app_domain'), 'zuiddrecht.nl') == false &&
-            $this->params->get('app_domain') != 'zuid-drecht.nl' && strpos($this->params->get('app_domain'), 'zuid-drecht.nl') == false
+            $this->params->get('app_domain') != 'zuid-drecht.nl' && strpos($this->params->get('app_domain'), 'zuid-drecht.nl') == false &&
+        $this->params->get('app_domain') != 'conduction.academy' && strpos($this->params->get('app_domain'), 'conduction.academy') == false &&
         ) {
             return false;
         }
@@ -85,6 +86,7 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
             font-family: \'Lobster\', cursive;
         }
         ');
+
         $style->setfavicon($favicon);
         $style->addOrganization($organization);
         $manager->persist($style);
@@ -105,15 +107,16 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
                 //'nieuws'                => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'template_groups', 'id'=>'f2729540-2740-4fbf-98ae-f0a069a1f43f']),
                 //'newsimg'               => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'b0e3e803-2cb6-41ed-ab32-d6e5451c119d']),
                 //'headerimg'             => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'0863d15c-286e-4ec4-90f6-27cebb107aa9']),
+                'googleTagId'           => 'G-2PYCJ13YC4',
                 'userPage'              => 'me',
-                'login'                 => ['user'=>true, 'idin'=>true],
+                'login'                 => ['facebook'=>true, 'github'=>true],
                 'header'                => false,
                 'stickyMenu'            => true,
             ]
         );
         $manager->persist($configuration);
 
-        $id = Uuid::fromString('31a2ad29-ee03-4aa9-be81-abf1fda7bbcc');
+        $id = Uuid::fromString('fbebe8d7-dead-4191-b38a-d90c4cc37b70');
         $application = new Application();
         $application->setName('CheckIn');
         $application->setDescription('Website voor checkin.conduction.nl');
@@ -130,7 +133,7 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         // Menu
         $id = Uuid::fromString('f0faccbd-3067-45fb-9ab7-2938fbbbf492');
         $menu = new Menu();
-        $menu->setName('CheckIn Main Menu');
+        $menu->setName('Stage Main Menu');
         $menu->setDescription('Het hoofdmenu van deze website');
         $menu->setApplication($application);
         $manager->persist($menu);
@@ -171,7 +174,7 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $template = new Template();
         $template->setName('CheckIn.nu Home');
         $template->setDescription('Homepage voor CheckIn.nu');
-        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/CheckIn/index.html.twig', 'r'));
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Stage/index.html.twig', 'r'));
         $template->setTemplateEngine('twig');
         $manager->persist($template);
         $template->setId($id);
@@ -188,177 +191,5 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $manager->persist($slug);
         $manager->flush();
 
-        $id = Uuid::fromString('567f97d8-89dd-4ef3-8119-179ea4001a4f');
-        $template = new Template();
-        $template->setName('About');
-        $template->setDescription('About CheckIng.nu');
-        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/CheckIn/about.html.twig', 'r'));
-        $template->setTemplateEngine('twig');
-        $manager->persist($template);
-        $template->setId($id);
-        $manager->persist($template);
-        $manager->flush();
-        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
-        $manager->persist($template);
-
-        $slug = new Slug();
-        $slug->setTemplate($template);
-        $slug->setApplication($application);
-        $slug->setName('about');
-        $slug->setSlug('about');
-        $manager->persist($slug);
-        $manager->flush();
-
-        $id = Uuid::fromString('1374e3da-b4cb-49a7-8969-6bada9f26b12');
-        $template = new Template();
-        $template->setName('Proclaimer');
-        $template->setDescription('Proclaimer');
-        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/CheckIn/proclaimer.html.twig', 'r'));
-        $template->setTemplateEngine('twig');
-        $manager->persist($template);
-        $template->setId($id);
-        $manager->persist($template);
-        $manager->flush();
-        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
-        $manager->persist($template);
-
-        $slug = new Slug();
-        $slug->setTemplate($template);
-        $slug->setApplication($application);
-        $slug->setName('proclaimer');
-        $slug->setSlug('proclaimer');
-        $manager->persist($slug);
-        $manager->flush();
-
-        $id = Uuid::fromString('c381a552-c7b8-45d8-92f4-3f2ec5c50470');
-        $template = new Template();
-        $template->setName('Privacy');
-        $template->setDescription('Privacy');
-        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/CheckIn/privacy.html.twig', 'r'));
-        $template->setTemplateEngine('twig');
-        $manager->persist($template);
-        $template->setId($id);
-        $manager->persist($template);
-        $manager->flush();
-        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
-        $manager->persist($template);
-
-        $slug = new Slug();
-        $slug->setTemplate($template);
-        $slug->setApplication($application);
-        $slug->setName('privacy');
-        $slug->setSlug('privacy');
-        $manager->persist($slug);
-        $manager->flush();
-
-        $id = Uuid::fromString('39c9ed21-a1b7-4610-8190-f99ccd179f0f');
-        $template = new Template();
-        $template->setName('CheckIn.nu Techniek');
-        $template->setDescription('Techniek page voor CheckIn.nu');
-        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/CheckIn/techniek.html.twig', 'r'));
-        $template->setTemplateEngine('twig');
-        $manager->persist($template);
-        $template->setId($id);
-        $manager->persist($template);
-        $manager->flush();
-        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
-        $manager->persist($template);
-
-        $slug = new Slug();
-        $slug->setTemplate($template);
-        $slug->setApplication($application);
-        $slug->setName('techniek');
-        $slug->setSlug('techniek');
-        $manager->persist($slug);
-        $manager->flush();
-
-        $id = Uuid::fromString('d1e07882-e130-45da-b2ae-617c09cf0ad3');
-        $template = new Template();
-        $template->setName('me');
-        $template->setDescription('Homepage voor CheckIn.nu');
-        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/CheckIn/me.html.twig', 'r'));
-        $template->setTemplateEngine('twig');
-        $manager->persist($template);
-        $template->setId($id);
-        $manager->persist($template);
-        $manager->flush();
-        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
-        $manager->persist($template);
-
-        $slug = new Slug();
-        $slug->setTemplate($template);
-        $slug->setApplication($application);
-        $slug->setName('me');
-        $slug->setSlug('me');
-        $manager->persist($slug);
-        $manager->flush();
-
-        $id = Uuid::fromString('3895915c-a992-462e-848d-3be73a954d51');
-        $template = new Template();
-        $template->setName('footer1');
-        $template->setDescription('footer1');
-        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/CheckIn/footers/footer1.html.twig', 'r'));
-        $template->setTemplateEngine('twig');
-        $manager->persist($template);
-        $template->setId($id);
-        $manager->persist($template);
-        $manager->flush();
-        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
-        $manager->persist($template);
-        $manager->flush();
-
-        $id = Uuid::fromString('93477f57-c092-4609-b9ae-8767495fead1');
-        $template = new Template();
-        $template->setName('footer2');
-        $template->setDescription('footer2');
-        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/CheckIn/footers/footer2.html.twig', 'r'));
-        $template->setTemplateEngine('twig');
-        $manager->persist($template);
-        $template->setId($id);
-        $manager->persist($template);
-        $manager->flush();
-        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
-        $manager->persist($template);
-        $manager->flush();
-
-        $id = Uuid::fromString('d44e0e0e-6c5b-461a-91df-0a77d44e2efb');
-        $template = new Template();
-        $template->setName('footer3');
-        $template->setDescription('footer3');
-        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/CheckIn/footers/footer3.html.twig', 'r'));
-        $template->setTemplateEngine('twig');
-        $manager->persist($template);
-        $template->setId($id);
-        $manager->persist($template);
-        $manager->flush();
-        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
-        $manager->persist($template);
-        $manager->flush();
-
-        $id = Uuid::fromString('11c2c0eb-125c-4546-835f-26f30d924b06');
-        $template = new Template();
-        $template->setName('footer4');
-        $template->setDescription('footer4');
-        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/CheckIn/footers/footer4.html.twig', 'r'));
-        $template->setTemplateEngine('twig');
-        $manager->persist($template);
-        $template->setId($id);
-        $manager->persist($template);
-        $manager->flush();
-        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
-        $manager->persist($template);
-        $manager->flush();
-
-        $id = Uuid::fromString('b7049936-bef1-45a1-a70e-9160f795a6cd');
-        $template = new Template();
-        $template->setName('verwerkersOvereenkomst');
-        $template->setDescription('verwerkersOvereenkomst');
-        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/CheckIn/verwerkersOvereenkomst.html.twig', 'r'));
-        $template->setTemplateEngine('twig');
-        $manager->persist($template);
-        $template->setId($id);
-        $manager->persist($template);
-        $manager->flush();
-        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
     }
 }
