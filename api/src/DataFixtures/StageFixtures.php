@@ -45,7 +45,7 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
             !$this->params->get('app_build_all_fixtures') &&
             $this->params->get('app_domain') != 'zuiddrecht.nl' && strpos($this->params->get('app_domain'), 'zuiddrecht.nl') == false &&
             $this->params->get('app_domain') != 'zuid-drecht.nl' && strpos($this->params->get('app_domain'), 'zuid-drecht.nl') == false &&
-        $this->params->get('app_domain') != 'conduction.academy' && strpos($this->params->get('app_domain'), 'conduction.academy') == false &&
+        $this->params->get('app_domain') != 'conduction.academy' && strpos($this->params->get('app_domain'), 'conduction.academy') == false
         ) {
             return false;
         }
@@ -189,6 +189,44 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
         $slug->setName('home');
         $slug->setSlug('home');
         $manager->persist($slug);
+        $manager->flush();
+
+        //About page
+        $id = Uuid::fromString('bac14ce2-2cc3-4c53-903d-bf9f2129c2a6');
+        $template = new Template();
+        $template->setName('Stageplatform Conduction About');
+        $template->setDescription('Aboutpage voor stage.dev.conduction.nl');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Stage/about.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $manager->persist($template);
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('about');
+        $slug->setSlug('about');
+        $manager->persist($slug);
+        $manager->flush();
+
+        //footer
+        $id = Uuid::fromString('afa4c1f6-17b7-40a2-b289-57640bb141d9');
+        $template = new Template();
+        $template->setName('footer');
+        $template->setDescription('footer');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Stage/footer.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
         $manager->flush();
 
     }
