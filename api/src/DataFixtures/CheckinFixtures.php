@@ -349,5 +349,17 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
         $manager->persist($template);
         $manager->flush();
+
+        $id = Uuid::fromString('b7049936-bef1-45a1-a70e-9160f795a6cd');
+        $template = new Template();
+        $template->setName('verwerkersOvereenkomst');
+        $template->setDescription('verwerkersOvereenkomst');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/CheckIn/verwerkersOvereenkomst.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
     }
 }
