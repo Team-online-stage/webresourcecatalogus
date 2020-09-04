@@ -190,6 +190,5 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
         $slug->setSlug('home');
         $manager->persist($slug);
         $manager->flush();
-
     }
 }
