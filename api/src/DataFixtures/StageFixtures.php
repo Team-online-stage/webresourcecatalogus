@@ -98,8 +98,8 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
         $configuration->setOrganization($organization);
         $configuration->setConfiguration(
             [
-                'mainMenu'              => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'f0faccbd-3067-45fb-9ab7-2938fbbbf492']),
-                'home'                  => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'0e3ec00f-c17b-4237-b6dd-070f800eb784']),
+                'mainMenu'              => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'ce44d655-a255-42f2-819b-100f1832a4ad']),
+                'home'                  => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'d6127f56-c334-4eb7-bade-c70e97631aec']),
                 'footer1'               => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'3895915c-a992-462e-848d-3be73a954d51']),
                 'footer2'               => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'93477f57-c092-4609-b9ae-8767495fead1']),
                 'footer3'               => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'d44e0e0e-6c5b-461a-91df-0a77d44e2efb']),
@@ -131,7 +131,7 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
         $application = $manager->getRepository('App:Application')->findOneBy(['id'=> $id]);
 
         // Menu
-        $id = Uuid::fromString('179069a4-fb86-44db-8787-a74ccb2729d5');
+        $id = Uuid::fromString('ce44d655-a255-42f2-819b-100f1832a4ad');
         $menu = new Menu();
         $menu->setName('Stage Main Menu');
         $menu->setDescription('Het hoofdmenu van deze website');
@@ -170,7 +170,7 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
         $manager->persist($menuItem);
 
         // Pages
-        $id = Uuid::fromString('cfa78a3f-17ca-4204-aacb-bee421af1d97');
+        $id = Uuid::fromString('d6127f56-c334-4eb7-bade-c70e97631aec');
         $template = new Template();
         $template->setName('CheckIn.nu Home');
         $template->setDescription('Homepage voor CheckIn.nu');
