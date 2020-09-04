@@ -116,7 +116,7 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
         );
         $manager->persist($configuration);
 
-        $id = Uuid::fromString('fbebe8d7-dead-4191-b38a-d90c4cc37b70');
+        $id = Uuid::fromString('5265828b-85fb-4ad5-acd5-ade4da3fc593');
         $application = new Application();
         $application->setName('CheckIn');
         $application->setDescription('Website voor checkin.conduction.nl');
@@ -190,6 +190,5 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
         $slug->setSlug('home');
         $manager->persist($slug);
         $manager->flush();
-
     }
 }
