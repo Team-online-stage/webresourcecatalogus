@@ -142,7 +142,7 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $menu = $manager->getRepository('App:Menu')->findOneBy(['id'=> $id]);
 
         $menuItem = new MenuItem();
-        $menuItem->setName('Ondernemer');
+        $menuItem->setName('Voor ondernemers');
         $menuItem->setDescription('Registreer uw onderneming');
         $menuItem->setOrder(3);
         $menuItem->setType('slug');
