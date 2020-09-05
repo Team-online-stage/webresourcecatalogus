@@ -110,6 +110,7 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
                 'login'                 => ['user'=>true, 'idin'=>true],
                 'header'                => false,
                 'stickyMenu'            => true,
+                'newsGroup'             => '1024',
             ]
         );
         $manager->persist($configuration);
