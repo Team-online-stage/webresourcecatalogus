@@ -58,6 +58,7 @@
 
     {% if app.user is defined and app.user is not empty %}
         <div class="col-xl-9 col-lg-8 col-md-9">
+
             {% if app.user.type is defined and app.user.type == 'organization' %}
                 <div class="content-background">
                     <div class="content">
