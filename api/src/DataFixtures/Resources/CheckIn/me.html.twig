@@ -1,8 +1,8 @@
 {# templates/home/index.html.twig #}
 
-{% extends 'content.html.twig' %}
+{% extends 'base.html.twig' %}
 
-{% block content %}
+{% block container %}
 
     {% if app.user.person is defined and app.user.person is not empty %}
         {% set checkins =  commonground_resource_list({'component': 'chin', 'type': 'checkins'},{'user':app.user.person,'limit':1,'order[dateCreated]':'desc'})['hydra:member'] %}
@@ -51,21 +51,76 @@
 
                     </div>
                 </div>
-
             {% endif %}
         </nav>
     </aside>
 
     {% if app.user is defined and app.user is not empty %}
         <div class="col-xl-9 col-lg-8 col-md-9">
+            <ul class="list list--card">
+            {% if app.user.roles is defined and 'scope.lc.place.write' in app.user.roles %}
 
-            {% if app.user.type is defined and app.user.type == 'organization' %}
-                <div class="content-background">
-                    <div class="content">
-                    </div>
-                </div>
+                <li class="card background--primary card__hover">
+                    <a href="{{ path('app_chin_nodes') }}" class="card__content">
+                        <div class="card__icon flex-center color--primary"><i
+                                class="fas fa-map-marker-alt fa-4x"></i></div>
+                        <div class="card__body flex-center"><span
+                                class="card__title color--primary flex-center">{{ 'nodes'|trans|capitalize }}</span>
+                        </div>
+                    </a>
+                </li>
+
+                <li class="card background--primary card__hover">
+                    <a href="{{ path('app_lc_places') }}" class="card__content">
+                        <div class="card__icon flex-center color--primary"><i
+                                class="fas fa-map-marker-alt fa-4x"></i></div>
+                        <div class="card__body flex-center"><span
+                                class="card__title color--primary flex-center">{{ 'places'|trans|capitalize }}</span>
+                        </div>
+                    </a>
+                </li>
+
+                <li class="card background--primary card__hover">
+                    <a href="{{ path('app_wrc_organization') }}" class="card__content">
+                        <div class="card__icon flex-center color--primary"><i
+                                class="fas fa-map-marker-alt fa-4x"></i></div>
+                        <div class="card__body flex-center"><span
+                                class="card__title color--primary flex-center">{{ 'organization'|trans|capitalize }}</span>
+                        </div>
+                    </a>
+                </li>
+
+                <li class="card background--primary card__hover">
+                    <a href="{{ path('app_orc_orders') }}" class="card__content">
+                        <div class="card__icon flex-center color--primary"><i
+                                class="fas fa-map-marker-alt fa-4x"></i></div>
+                        <div class="card__body flex-center"><span
+                                class="card__title color--primary flex-center">{{ 'subscribtion'|trans|capitalize }}</span>
+                        </div>
+                    </a>
+                </li>
+
+                <li class="card background--primary card__hover">
+                    <a href="{{ path('app_bc_invoices') }}" class="card__content">
+                        <div class="card__icon flex-center color--primary"><i
+                                class="fas fa-map-marker-alt fa-4x"></i></div>
+                        <div class="card__body flex-center"><span
+                                class="card__title color--primary flex-center">{{ 'invoices'|trans|capitalize }}</span>
+                        </div>
+                    </a>
+                </li>
+
+                <li class="card background--primary card__hover">
+                    <a href="{{ path('app_ptc_process',["id":"7ea9a041-d96f-4f4b-adc1-e1a46ea8463d"]) }}" class="card__content">
+                        <div class="card__icon flex-center color--primary"><i
+                                class="fas fa-map-marker-alt fa-4x"></i></div>
+                        <div class="card__body flex-center"><span
+                                class="card__title color--primary flex-center">{{ 'data request'|trans|capitalize }}</span>
+                        </div>
+                    </a>
+                </li>
+
             {% else %}
-                <ul class="list list--card">
                     {% if checkins is defined and checkins is not empty and checkins|length > 0 %}
                         <li class="card background--primary card__hover">
                             <a href="#" class="card__content" href="#" data-toggle="modal"
@@ -89,17 +144,25 @@
                         </a>
                     </li>
                     <li class="card background--primary card__hover">
-                        <a href="{{ path('app_user_logout') }}" class="card__content">
-                            <div class="card__icon flex-center color--primary"><i class="fas fa-unlock fa-4x"></i>
-                            </div>
+                        <a href="{{ path('app_ptc_process',["id":"7f5bd18e-e3dd-4864-a2fb-24d118462396"]) }}" class="card__content">
+                            <div class="card__icon flex-center color--primary"><i
+                                    class="fas fa-map-marker-alt fa-4x"></i></div>
                             <div class="card__body flex-center"><span
-                                    class="card__title color--primary flex-center">{{ 'logout'|trans|capitalize }}</span>
+                                    class="card__title color--primary flex-center">{{ 'request data'|trans|capitalize }}</span>
                             </div>
                         </a>
                     </li>
-                    </tr>
-                </ul>
             {% endif %}
+                <li class="card background--primary card__hover">
+                    <a href="{{ path('app_user_logout') }}" class="card__content">
+                        <div class="card__icon flex-center color--primary"><i class="fas fa-unlock fa-4x"></i>
+                        </div>
+                        <div class="card__body flex-center"><span
+                                class="card__title color--primary flex-center">{{ 'logout'|trans|capitalize }}</span>
+                        </div>
+                    </a>
+                </li>
+            </ul>
         </div>
     {% else %}
         <div class="col-md-9">
@@ -116,8 +179,6 @@
                             </div>
                         </a>
                     </li>
-                    <li></li>
-                    <li></li>
                 {% endif %}
             </ul>
         </div>
@@ -152,5 +213,4 @@
 
 
     {% endif %}
-
-    {% endblock %}
+ {% endblock %}
