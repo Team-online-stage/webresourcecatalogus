@@ -89,8 +89,7 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
                 --footer-color: white;
          }
 
-
-         .main {
+        .main {
             padding-top: 00px;
         }
 
@@ -125,7 +124,7 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
         );
         $manager->persist($configuration);
 
-        $id = Uuid::fromString('fbebe8d7-dead-4191-b38a-d90c4cc37b70');
+        $id = Uuid::fromString('5265828b-85fb-4ad5-acd5-ade4da3fc593');
         $application = new Application();
         $application->setName('academy stage');
         $application->setDescription('Website voor academy');
@@ -199,7 +198,7 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
         $manager->persist($groupPages);
 
         // Pages
-        $id = Uuid::fromString('0e3ec00f-c17b-4237-b6dd-070f800eb784');
+        $id = Uuid::fromString('d6127f56-c334-4eb7-bade-c70e97631aec');
         $template = new Template();
         $template->setName('CheckIn.nu Home');
         $template->setDescription('Homepage voor CheckIn.nu');
