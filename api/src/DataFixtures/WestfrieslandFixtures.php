@@ -330,6 +330,8 @@ class WestfrieslandFixtures extends Fixture
                 'home'              => $this->commonGroundService->cleanUrl(['component' => 'wrc', 'type' => 'templates', 'id' => '097ea88e-beb6-476e-a978-d07650f03d97']),
                 'footer1'           => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'9e4130de-b2d7-481c-8681-87b2a174c8ae']),
                 'footer2'           => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'e16b153e-de8a-4f24-9886-fd3057ae93de']),
+                //'footer3'           => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'f78d6861-783f-4441-82c4-2efcf5af677f']),
+                //'footer4'           => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'c62eedef-ba28-4a5d-bdea-2eb9ef250b8e']),
                 'headerimg'         => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'2c60657d-a728-4e71-897d-ac407c134e10']),
                 'changeRequest'     => '7216b69d-e245-488e-af8f-0969241926e7',
                 'objectionRequest'  => '2a95ba3e-a3f9-4fdf-8a6d-005d96aad405',
@@ -486,6 +488,21 @@ class WestfrieslandFixtures extends Fixture
         $manager->persist($template);
         $manager->flush();
 
+        $id = Uuid::fromString('f78d6861-783f-4441-82c4-2efcf5af677f');
+        $template = new Template();
+        $template->setName('footer3');
+        $template->setDescription('Formulier voor de nieuwsbrief van West-Friesland over begraven');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Westfriesland/footers/footer3.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
+
         $id = Uuid::fromString('3807993a-ed98-4570-8a05-09c9454bcac5');
         $template = new Template();
         $template->setName('HO Akte Grafrecht');
@@ -500,7 +517,22 @@ class WestfrieslandFixtures extends Fixture
         $template->addTemplateGroup($groupPages);
         $manager->persist($template);
         $manager->flush();
-        
+
+        $id = Uuid::fromString('c62eedef-ba28-4a5d-bdea-2eb9ef250b8e');
+        $template = new Template();
+        $template->setName('footer4');
+        $template->setDescription('Contactgegevens van West-Friesland');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Westfriesland/footers/footer4.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
+
         $id = Uuid::fromString('7a3d7d9a-269f-4699-a622-2ad0114d8e86');
         $template = new Template();
         $template->setName('Ontvangst Bevestiging Verzoek');
