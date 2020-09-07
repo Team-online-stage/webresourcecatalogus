@@ -15,7 +15,16 @@
         <div class="col-md-12">
             <div class="content">
                 <header class="content__header" style="margin-top: 20px">
-                    <h1 class="content__header-title">{{ 'personal'|trans|capitalize }}</h1>
+                    {% if app.user.organization is defined and app.user.organization is not empty %}
+                        {% set organization = commonground_resource({'component':'kvk','type':'companies', 'id': app.user.organization}) %}
+                        {% if organization.name is defined and organization.name is not empty %}
+                            <h1 class="content__header-title">{{ organization.name }}</h1>
+                        {% else %}
+                            <h1 class="content__header-title">{{ 'personal'|trans|capitalize }}</h1>
+                        {% endif %}
+                    {% else %}
+                        <h1 class="content__header-title">{{ 'personal'|trans|capitalize }}</h1>
+                    {% endif %}
                 </header>
             </div><!-- ./content -->
         </div><!-- ./col -->
