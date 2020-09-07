@@ -500,8 +500,7 @@ class WestfrieslandFixtures extends Fixture
         $template->addTemplateGroup($groupPages);
         $manager->persist($template);
         $manager->flush();
-
-
+        
         $id = Uuid::fromString('7a3d7d9a-269f-4699-a622-2ad0114d8e86');
         $template = new Template();
         $template->setName('Ontvangst Bevestiging Verzoek');
