@@ -200,7 +200,7 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
         // Pages
         $id = Uuid::fromString('d6127f56-c334-4eb7-bade-c70e97631aec');
         $template = new Template();
-        $template->setName('CheckIn.nu Home');
+        $template->setName('Academy Home');
         $template->setDescription('Homepage voor CheckIn.nu');
         $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Stage/index.html.twig', 'r'));
         $template->setTemplateEngine('twig');
@@ -224,7 +224,7 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
         $template = new Template();
         $template->setName('bedrijfspagina');
         $template->setDescription('stage pagina voor bedrijven');
-        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Stage/index.html.twig', 'r'));
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Stage/bedrijf.html.twig', 'r'));
         $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
         $manager->persist($template);
         $template->setId($id);
