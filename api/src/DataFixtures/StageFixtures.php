@@ -167,7 +167,7 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
         $menuItem->setDescription('Studenten pagina');
         $menuItem->setOrder(3);
         $menuItem->setType('slug');
-        $menuItem->setHref('/ptc/process/fdb7186c-0ce9-4050-bd6d-cf83b0c162eb');
+        $menuItem->setHref('/studenten');
         $menuItem->setMenu($menu);
         $manager->persist($menuItem);
 
@@ -237,7 +237,7 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
         $slug->setTemplate($template);
         $slug->setApplication($application);
         $slug->setName('bedrijf');
-        $slug->setSlug('bedrijf');
+        $slug->setSlug('bedrijven');
         $manager->persist($slug);
         $manager->flush();
 
