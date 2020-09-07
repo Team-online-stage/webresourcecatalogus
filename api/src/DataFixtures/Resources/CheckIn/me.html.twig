@@ -62,12 +62,21 @@
         <div class="col-xl-9 col-lg-8 col-md-9">
             {% if app.user.type is defined and app.user.type == 'user' %}
                 <ul class="list list--card">
+                    <li class="card background--primary card__hover col-md-3">
+                        <a href="{{ path('app_chin_nodesorganization') }}" class="card__content">
+                            <div class="card__icon flex-center color--primary"><i
+                                    class="fas fa-map-marker-alt fa-4x"></i></div>
+                            <div class="card__body flex-center"><span
+                                    class="card__title color--primary flex-center">{{ 'nodes'|trans|capitalize }}</span>
+                            </div>
+                        </a>
+                    </li>
                     <li class="card background--primary card__hover">
                         <a href="{{ path('app_lc_organization') }}" class="card__content">
                             <div class="card__icon flex-center color--primary"><i
                                     class="fas fa-search-location fa-4x"></i></div>
                             <div class="card__body flex-center"><span
-                                    class="card__title color--primary flex-center">{{ 'locations'|trans|capitalize }}</span>
+                                    class="card__title color--primary flex-center">{{ 'places'|trans|capitalize }}</span>
                             </div>
                         </a>
                     </li>
@@ -80,6 +89,15 @@
                             </div>
                         </a>
                     </li>
+                    <li class="card background--primary card__hover col-md-3">
+                        <a href="{{ path('app_wrc_organization') }}" class="card__content">
+                            <div class="card__icon flex-center color--primary"><i
+                                    class="fas fa-map-marker-alt fa-4x"></i></div>
+                            <div class="card__body flex-center"><span
+                                    class="card__title color--primary flex-center">{{ 'organization'|trans|capitalize }}</span>
+                            </div>
+                        </a>
+                    </li>
                     <li class="card background--primary card__hover">
                         <a href="#" class="card__content">
                             <div class="card__icon flex-center color--primary"><i
@@ -89,12 +107,21 @@
                             </div>
                         </a>
                     </li>
-                    <li class="card background--primary card__hover">
-                        <a href="#" class="card__content">
+                    <li class="card background--primary card__hover col-md-3">
+                        <a href="{{ path('app_bc_organization') }}" class="card__content">
                             <div class="card__icon flex-center color--primary"><i
-                                    class="fas fa-passport fa-4x"></i></div>
+                                    class="fas fa-map-marker-alt fa-4x"></i></div>
                             <div class="card__body flex-center"><span
-                                    class="card__title color--primary flex-center">{{ 'request information'|trans|capitalize }}</span>
+                                    class="card__title color--primary flex-center">{{ 'invoices'|trans|capitalize }}</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="card background--primary card__hover col-md-3">
+                        <a href="{{ path('app_ptc_process',{"id":"7ea9a041-d96f-4f4b-adc1-e1a46ea8463d"}) }}" class="card__content">
+                            <div class="card__icon flex-center color--primary"><i
+                                    class="fas fa-map-marker-alt fa-4x"></i></div>
+                            <div class="card__body flex-center"><span
+                                    class="card__title color--primary flex-center">{{ 'data request'|trans|capitalize }}</span>
                             </div>
                         </a>
                     </li>
