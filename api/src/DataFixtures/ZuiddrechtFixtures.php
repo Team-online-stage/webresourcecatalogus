@@ -487,9 +487,9 @@ class ZuiddrechtFixtures extends Fixture
         $style->setDescription('Huistlijl Gemeente Zuid-Drecht');
         $style->setCss('
         :root {
-                --primary: #CC0000;
+                --primary: #406377;
                 --primary-color: white;
-                --secondary: #3669A5;
+                --secondary: #263846;
                 --secondary-color: white;
 
                 --menu: #CC0000;
