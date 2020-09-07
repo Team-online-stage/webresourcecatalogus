@@ -10,6 +10,7 @@ use App\Entity\MenuItem;
 use App\Entity\Slug;
 use App\Entity\Style;
 use App\Entity\Template;
+use App\Entity\TemplateGroup;
 use Conduction\CommonGroundBundle\Service\CommonGroundService;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
@@ -73,7 +74,7 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
         $headerimg = $manager->getRepository('App:Image')->findOneBy(['id'=> $id]);
 
         $style = new Style();
-        $style->setName('CheckIn');
+        $style->setName('academy');
         $style->setDescription('Huistlijl Gemeente Zuid-Drecht');
         $style->setCss('
         :root {
@@ -104,7 +105,7 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
         $manager->flush();
 
         $configuration = new Configuration();
-        $configuration->setName('checkin.conduction.nl configuration');
+        $configuration->setName('conduction.academy configuration');
         $configuration->setDescription('De configuratie van de stage applicatie');
         $configuration->setOrganization($organization);
         $configuration->setConfiguration(
@@ -114,11 +115,6 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
                 'home'                  => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'0e3ec00f-c17b-4237-b6dd-070f800eb784']),
                 'studenten'             => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'a4a9a984-d83e-44ac-b27d-c77cd74b0d21']),
                 'footer1'               => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'3895915c-a992-462e-848d-3be73a954d51']),
-                'footer2'               => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'93477f57-c092-4609-b9ae-8767495fead1']),
-                'footer3'               => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'d44e0e0e-6c5b-461a-91df-0a77d44e2efb']),
-                'footer4'               => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'11c2c0eb-125c-4546-835f-26f30d924b06']),
-                //'nieuws'                => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'template_groups', 'id'=>'f2729540-2740-4fbf-98ae-f0a069a1f43f']),
-                //'newsimg'               => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'b0e3e803-2cb6-41ed-ab32-d6e5451c119d']),
                 'headerimg'             => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'da8af35b-afca-455e-a722-6d0052f7367d']),
                 'googleTagId'           => 'G-2PYCJ13YC4',
                 'userPage'              => 'me',
@@ -131,9 +127,9 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
 
         $id = Uuid::fromString('fbebe8d7-dead-4191-b38a-d90c4cc37b70');
         $application = new Application();
-        $application->setName('CheckIn');
-        $application->setDescription('Website voor checkin.conduction.nl');
-        $application->setDomain('checkin.conduction.nl');
+        $application->setName('academy stage');
+        $application->setDescription('Website voor academy');
+        $application->setDomain('conduction.academy');
         $application->setStyle($style);
         $application->setOrganization($organization);
         $application->setDefaultConfiguration($configuration);
@@ -194,6 +190,14 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
         $menuItem->setMenu($menu);
         $manager->persist($menuItem);
 
+        // Template groups
+        $groupPages = new TemplateGroup();
+        $groupPages->setOrganization($organization);
+        $groupPages->setApplication($application);
+        $groupPages->setName('Pages');
+        $groupPages->setDescription('Webpages that are presented to visitors');
+        $manager->persist($groupPages);
+
         // Pages
         $id = Uuid::fromString('0e3ec00f-c17b-4237-b6dd-070f800eb784');
         $template = new Template();
@@ -215,7 +219,6 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
         $slug->setSlug('home');
         $manager->persist($slug);
         $manager->flush();
-
 
         //bedrijfs pagina
         $id = Uuid::fromString('9243d64e-ee93-11ea-adc1-0242ac120002');
@@ -259,9 +262,6 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
         $manager->persist($slug);
         $manager->flush();
 
-
-
-
         //About page
         $id = Uuid::fromString('bac14ce2-2cc3-4c53-903d-bf9f2129c2a6');
         $template = new Template();
@@ -287,9 +287,9 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
         //footer
         $id = Uuid::fromString('afa4c1f6-17b7-40a2-b289-57640bb141d9');
         $template = new Template();
-        $template->setName('footer');
-        $template->setDescription('footer');
-        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Stage/footer.html.twig', 'r'));
+        $template->setName('footer1');
+        $template->setDescription('footer1');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Stage/footer1.html.twig', 'r'));
         $template->setTemplateEngine('twig');
         $manager->persist($template);
         $template->setId($id);
@@ -299,6 +299,5 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
         $template->addTemplateGroup($groupPages);
         $manager->persist($template);
         $manager->flush();
-
     }
 }
