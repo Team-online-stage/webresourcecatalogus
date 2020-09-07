@@ -1320,8 +1320,8 @@ class ConductionFixtures extends Fixture
         // Dashboard applicatie
         $id = Uuid::fromString('6ce4dc4c-3db5-417c-ab15-4b823b81605c');
         $dashboard = new Application();
-        $dashboard->setName('Huwelijksplanner');
-        $dashboard->setDescription('Huwelijksplanner');
+        $dashboard->setName('Commonground Dashboard');
+        $dashboard->setDescription('Commonground Dashboard');
         $dashboard->setDomain('db.conduction.nl');
         $dashboard->setOrganization($conduction);
         $dashboard->setStyle($style);
