@@ -77,8 +77,7 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
                 --footer-color: white;
          }
 
-
-         .main {
+        .main {
             padding-top: 00px;
         }
 
