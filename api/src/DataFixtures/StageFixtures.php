@@ -209,7 +209,6 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
         $manager->persist($template);
         $manager->flush();
         $template = $manager->getRepository('App:Template')->findOneBy(['id' => $id]);
-        $manager->persist($template);
 
         $slug = new Slug();
         $slug->setTemplate($template);
