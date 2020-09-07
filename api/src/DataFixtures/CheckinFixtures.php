@@ -11,6 +11,7 @@ use App\Entity\Organization;
 use App\Entity\Slug;
 use App\Entity\Style;
 use App\Entity\Template;
+use App\Entity\TemplateGroup;
 use Conduction\CommonGroundBundle\Service\CommonGroundService;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
@@ -172,6 +173,38 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $menuItem->setHref('/proclaimer');
         $menuItem->setMenu($menu);
         $manager->persist($menuItem);
+
+        // Template groups
+        $groupEmails = new TemplateGroup();
+        $groupEmails->setOrganization($organization);
+        $groupEmails->setApplication($application);
+        $groupEmails->setName('E-mails');
+        $groupEmails->setDescription('E-mails that are send out');
+        $manager->persist($groupEmails);
+
+        $id = Uuid::fromString('2ca5b662-e941-46c9-ae87-ae0c68d0aa5d');
+        $template = new Template();
+        $template->setName('Nieuw verzoek');
+        $template->setTitle('U heeft een nieuw verzoek ingediend');
+        $template->setDescription('Bevestiging dat u een verzoek heeft ingediend');
+        $template->setContent('Beste {{ receiver.givenName }},<p>Uw verzoek met referentie {{ resource.reference }} is met succes ingediend.</p><p>Met vriendelijke groet,</p>{{ sender.name }}');
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupEmails);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('e-mail-indiening');
+        $slug->setSlug('e-mail-indiening');
+        $manager->persist($slug);
+        $manager->flush();
 
         // Pages
         $id = Uuid::fromString('0e3ec00f-c17b-4237-b6dd-070f800eb784');
