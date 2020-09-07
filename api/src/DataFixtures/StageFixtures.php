@@ -209,6 +209,7 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
         $manager->persist($template);
         $manager->flush();
         $template = $manager->getRepository('App:Template')->findOneBy(['id' => $id]);
+        $manager->persist($template);
 
         $slug = new Slug();
         $slug->setTemplate($template);
@@ -224,12 +225,13 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
         $template->setName('bedrijfspagina');
         $template->setDescription('stage pagina voor bedrijven');
         $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Stage/bedrijf.html.twig', 'r'));
-        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->setTemplateEngine('twig');
         $manager->persist($template);
         $template->setId($id);
         $manager->persist($template);
         $manager->flush();
         $template = $manager->getRepository('App:Template')->findOneBy(['id' => $id]);
+        $manager->persist($template);
 
         $slug = new Slug();
         $slug->setTemplate($template);
@@ -251,6 +253,7 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
         $manager->persist($template);
         $manager->flush();
         $template = $manager->getRepository('App:Template')->findOneBy(['id' => $id]);
+        $manager->persist($template);
 
         $slug = new Slug();
         $slug->setTemplate($template);
@@ -272,6 +275,7 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
         $manager->persist($template);
         $manager->flush();
         $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $manager->persist($template);
 
         $slug = new Slug();
         $slug->setTemplate($template);
