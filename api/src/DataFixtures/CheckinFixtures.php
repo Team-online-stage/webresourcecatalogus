@@ -7,6 +7,7 @@ use App\Entity\Configuration;
 use App\Entity\Image;
 use App\Entity\Menu;
 use App\Entity\MenuItem;
+use App\Entity\Organization;
 use App\Entity\Slug;
 use App\Entity\Style;
 use App\Entity\Template;
@@ -80,11 +81,15 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
 
 
          .main {
-            padding-top: 00px;
+            padding-top: 0px;
         }
 
         h1, h2 {
             font-family: \'Lobster\', cursive;
+        }
+
+        .footer {
+            padding-top: 0px;
         }
         ');
         $style->setfavicon($favicon);
@@ -111,6 +116,7 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
                 'login'                 => ['user'=>true, 'idin'=>true],
                 'header'                => false,
                 'stickyMenu'            => true,
+                'newsGroup'             => '1024',
             ]
         );
         $manager->persist($configuration);
@@ -394,5 +400,45 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $manager->persist($template);
         $manager->flush();
         $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+
+        /*
+         * Then we need some example organizations
+         */
+
+        // Zuid-Drecht
+        $id = Uuid::fromString('2106575d-50f3-4f2b-8f0f-a2d6bc188222');
+        $organization = new Organization();
+        $organization->setName('Cafe de zotte raaf');
+        $organization->setDescription('Het gezeligste dijkcafe van nederland');
+        $organization->setRsin('809642451');
+        $manager->persist($organization);
+        $organization->setId($id);
+        $manager->persist($organization);
+        $manager->flush();
+        $organization = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
+
+        // Zuid-Drecht
+        $id = Uuid::fromString('a9398c45-7497-4dbd-8dd1-1be4f3384ed7');
+        $organization = new Organization();
+        $organization->setName('Restautant Goudlust');
+        $organization->setDescription('In deze vormalige dijkgraaf woning geniet u van voortreffelijk eten bereid met locale ingredienten');
+        $organization->setRsin('809642451');
+        $manager->persist($organization);
+        $organization->setId($id);
+        $manager->persist($organization);
+        $manager->flush();
+        $organization = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
+
+        // Zuid-Drecht
+        $id = Uuid::fromString('8812dc58-6bbe-4028-8e36-96f402bf63dd');
+        $organization = new Organization();
+        $organization->setName('Hotel Dijkzicht');
+        $organization->setDescription('Gevestigd in een oud-tol huis kijkt dit prachtige hotel uit op de drechtse dijk');
+        $organization->setRsin('809642451');
+        $manager->persist($organization);
+        $organization->setId($id);
+        $manager->persist($organization);
+        $manager->flush();
+        $organization = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
     }
 }

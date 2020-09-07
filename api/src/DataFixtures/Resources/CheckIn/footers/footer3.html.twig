@@ -6,14 +6,6 @@
         <input required type="email" value="" name="EMAIL" class="required email input__control input__control--text input__control--m" id="mce-EMAIL">
     </div>
     <div class="input">
-        <label class="input__label" for="email">{{ 'first name'|trans|capitalize }}</label>
-        <input required type="text" value="" name="FNAME" class="required email input__control input__control--text input__control--m" id="mce-EMAIL">
-    </div>
-    <div class="input">
-        <label class="input__label" for="email">{{ 'last name'|trans|capitalize }}</label>
-        <input required type="text" value="" name="LNAME" class="required email input__control input__control--text input__control--m" id="mce-EMAIL">
-    </div>
-    <div class="input">
         <button type="submit" class="btn btn--primary">{{ 'subscribe'|trans|capitalize }}</button>
     </div>
     {% if application.defaultConfiguration.configuration.newsGroup is defined and application.defaultConfiguration.configuration.newsGroup is not empty %}
