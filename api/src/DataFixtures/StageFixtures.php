@@ -76,7 +76,7 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
         $id = Uuid::fromString('62685881-e5a2-4f73-b08f-a155b6dab74c');
         $kladimg = new Image();
         $kladimg->setName('klad image');
-        $kladimg->setBase64(base64_encode(file_get_contents(dirname(__FILE__).'/Resources/stage/afbeeldingen/klad.jpg', 'r')));
+        $kladimg->setBase64(base64_encode(file_get_contents(dirname(__FILE__).'/Resources/Stage/afbeeldingen/Klad.png', 'r')));
         $kladimg->setDescription('stageplattform klad image ');
         $kladimg->setOrganization($organization);
         $manager->persist($kladimg);
