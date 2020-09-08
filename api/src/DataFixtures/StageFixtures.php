@@ -73,6 +73,19 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
         $manager->flush();
         $headerimg = $manager->getRepository('App:Image')->findOneBy(['id'=> $id]);
 
+        //raket img
+        $id = Uuid::fromString('cdaad46c-f1b3-11ea-adc1-0242ac120002');
+        $raketimg = new Image();
+        $raketimg->setName('raket image');
+        $raketimg->setBase64(base64_encode(file_get_contents(dirname(__FILE__).'/Resources/Stage/afbeeldingen/Raket-rechts-onder.png', 'r')));
+        $raketimg->setDescription('stageplattform raket voor rechts onder ');
+        $raketimg->setOrganization($organization);
+        $manager->persist($raketimg);
+        $raketimg->setId($id);
+        $manager->persist($raketimg);
+        $manager->flush();
+        $raketimg = $manager->getRepository('App:Image')->findOneBy(['id'=> $id]);
+
         $style = new Style();
         $style->setName('academy');
         $style->setDescription('Huistlijl Gemeente Zuid-Drecht');
