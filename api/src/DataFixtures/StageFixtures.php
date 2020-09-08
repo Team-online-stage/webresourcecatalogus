@@ -91,9 +91,9 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
         $raketimg->setBase64(base64_encode(file_get_contents(dirname(__FILE__).'/Resources/Stage/afbeeldingen/Raket-rechts-onder.png', 'r')));
         $raketimg->setDescription('stageplattform raket voor rechts onder ');
         $raketimg->setOrganization($organization);
-        $manager->persist($kladimg);
+        $manager->persist($raketimg);
         $raketimg->setId($id);
-        $manager->persist($kladimg);
+        $manager->persist($raketimg);
         $manager->flush();
         $raketimg = $manager->getRepository('App:Image')->findOneBy(['id'=> $id]);
 
