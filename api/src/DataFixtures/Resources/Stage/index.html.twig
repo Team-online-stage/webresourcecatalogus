@@ -3,6 +3,7 @@
 {% extends 'base.html.twig' %}
 {% block container %}
 
+<div style="background: white; width: 100%">
     {% set headerimg = commonground_resource(application.defaultConfiguration.configuration.headerimg) %}
     <div class="row background--primary background--image" style="margin-top: -20px; background: url(data:image/file;base64,{{headerimg['base64']}})">
         <div class="container" >
@@ -58,6 +59,10 @@
             </div><!-- /.col -->
         </div>
     </div><!-- /.row -->
+</div>
+    <div style="width: 100%; background: #263846; height: 500px">
+
+    </div>
 
     {% set kladimg = commonground_resource(application.defaultConfiguration.configuration.kladimg) %}
     <div class="row background--primary background--image" style="margin-top: -20px; background: url(data:image/file;base64,{{kladimg['base64']}})">
@@ -80,5 +85,10 @@
             </div><!-- /.col -->
         </div><!-- /.container -->
     </div><!-- /.row -->
+
+    <div style="background: white; width: 100%; height: 400px">
+    </div>
+
+
 
 {% endblock %}
