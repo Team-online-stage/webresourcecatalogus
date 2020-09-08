@@ -87,7 +87,7 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
 
         $id = Uuid::fromString('cdaad46c-f1b3-11ea-adc1-0242ac120002');
         $raketimg = new Image();
-        $raketimg->setName('klad image');
+        $raketimg->setName('raket image');
         $raketimg->setBase64(base64_encode(file_get_contents(dirname(__FILE__).'/Resources/Stage/afbeeldingen/Raket-rechts-onder.png', 'r')));
         $raketimg->setDescription('stageplattform raket voor rechts onder ');
         $raketimg->setOrganization($organization);
