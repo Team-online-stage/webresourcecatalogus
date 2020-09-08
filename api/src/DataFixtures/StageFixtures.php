@@ -85,6 +85,18 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
         $manager->flush();
         $kladimg = $manager->getRepository('App:Image')->findOneBy(['id'=> $id]);
 
+        $id = Uuid::fromString('cdaad46c-f1b3-11ea-adc1-0242ac120002');
+        $raketimg = new Image();
+        $raketimg->setName('klad image');
+        $raketimg->setBase64(base64_encode(file_get_contents(dirname(__FILE__).'/Resources/Stage/afbeeldingen/Raket-rechts-onder.png', 'r')));
+        $raketimg->setDescription('stageplattform raket voor rechts onder ');
+        $raketimg->setOrganization($organization);
+        $manager->persist($kladimg);
+        $raketimg->setId($id);
+        $manager->persist($kladimg);
+        $manager->flush();
+        $raketimg = $manager->getRepository('App:Image')->findOneBy(['id'=> $id]);
+
         $style = new Style();
         $style->setName('academy');
         $style->setDescription('Huistlijl Gemeente Zuid-Drecht');
@@ -128,6 +140,7 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
                 'footer1'               => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'3895915c-a992-462e-848d-3be73a954d51']),
                 'headerimg'             => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'da8af35b-afca-455e-a722-6d0052f7367d']),
                 'kladimg'               => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'62685881-e5a2-4f73-b08f-a155b6dab74c']),
+                'kladimg'               => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'cdaad46c-f1b3-11ea-adc1-0242ac120002']),
                 'googleTagId'           => 'G-2PYCJ13YC4',
                 'userPage'              => 'me',
                 'login'                 => ['facebook'=>true, 'github'=>true],

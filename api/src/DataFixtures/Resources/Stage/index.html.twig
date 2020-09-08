@@ -65,9 +65,9 @@
     </div>
 
     {% set kladimg = commonground_resource(application.defaultConfiguration.configuration.kladimg) %}
-    <div class="row background--primary background--image" style="margin-top: -20px; background: url(data:image/file;base64,{{kladimg['base64']}})">
+    <div class="row background--primary background--image" style="padding: 20px; background: url(data:image/file;base64,{{kladimg['base64']}})">
         <div class="container" >
-            <div class="col-md-12" style="height: 500px; position:relative;">
+            <div class="col-md-12" style="height: 300px; position:relative;">
                 <div class="content-background background--secondary" style="position: absolute; bottom:0;">
                     <div class="content">
                         <h2>{{ 'news'|trans|capitalize }}</h2>
@@ -89,6 +89,30 @@
     <div style="background: white; width: 100%; height: 400px">
     </div>
 
+    //footer met raket
+    <div style="background: #406377; width: 100%; height: 250px">
+        {% set raketimg = commonground_resource(application.defaultConfiguration.configuration.raketimg) %}
+        <div class="row background--primary background--image" style="float: right; background: url(data:image/file;base64,{{raketimg['base64']}})">
+            <div class="container" >
+                <div class="col-md-16" style="height: 300px; position:relative;">
+                    <div class="content-background background--secondary" style="position: absolute; bottom:0;">
+                        <div class="content">
+                            <h2>{{ 'news'|trans|capitalize }}</h2>
+                            <ul class="list list--links list--chevrons">
+                                {% if application.defaultConfiguration.configuration.news is defined %}
+                                    {% set news = commonground_resource(application.defaultConfiguration.configuration.news) %}
+                                    {% set templates = commonground_resource_list({'component': 'wrc', 'type': 'templates'},{'templateGroups.id':news.id,'limit':4,'order[dateCreated]':'desc'})['hydra:member'] %}
+                                    {% for template in templates %}
+                                        <li><a href="/article?id={{ template.id }}" style="text-decoration: none;">{{ template.title }}</a></li>
+                                    {% endfor %}
+                                {% endif %}
+                            </ul>
+                        </div><!-- /.content -->
+                    </div><!-- /.content-background -->
+                </div><!-- /.col -->
+            </div><!-- /.container -->
+        </div><!-- /.row -->
+    </div>
 
 
 {% endblock %}
