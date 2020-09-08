@@ -76,7 +76,7 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
         $id = Uuid::fromString('62685881-e5a2-4f73-b08f-a155b6dab74c');
         $kladimg = new Image();
         $kladimg->setName('klad image');
-        $kladimg->setBase64(base64_encode(file_get_contents(dirname(__FILE__).'/Resources/stage/afbeeldingen/klad.jpg', 'r')));
+        $kladimg->setBase64(base64_encode(file_get_contents(dirname(__FILE__).'/Resources/Stage/afbeeldingen/Klad.png', 'r')));
         $kladimg->setDescription('stageplattform klad image ');
         $kladimg->setOrganization($organization);
         $manager->persist($kladimg);
@@ -127,6 +127,7 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
                 'studenten'             => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'a4a9a984-d83e-44ac-b27d-c77cd74b0d21']),
                 'footer1'               => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'3895915c-a992-462e-848d-3be73a954d51']),
                 'headerimg'             => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'da8af35b-afca-455e-a722-6d0052f7367d']),
+                'kladimg'               => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'62685881-e5a2-4f73-b08f-a155b6dab74c']),
                 'googleTagId'           => 'G-2PYCJ13YC4',
                 'userPage'              => 'me',
                 'login'                 => ['facebook'=>true, 'github'=>true],
