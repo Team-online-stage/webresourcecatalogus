@@ -73,18 +73,7 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
         $manager->flush();
         $headerimg = $manager->getRepository('App:Image')->findOneBy(['id'=> $id]);
 
-        $id = Uuid::fromString('62685881-e5a2-4f73-b08f-a155b6dab74c');
-        $kladimg = new Image();
-        $kladimg->setName('klad image');
-        $kladimg->setBase64(base64_encode(file_get_contents(dirname(__FILE__).'/Resources/Stage/afbeeldingen/Klad.png', 'r')));
-        $kladimg->setDescription('stageplattform klad image ');
-        $kladimg->setOrganization($organization);
-        $manager->persist($kladimg);
-        $kladimg->setId($id);
-        $manager->persist($kladimg);
-        $manager->flush();
-        $kladimg = $manager->getRepository('App:Image')->findOneBy(['id'=> $id]);
-
+        //raket img
         $id = Uuid::fromString('cdaad46c-f1b3-11ea-adc1-0242ac120002');
         $raketimg = new Image();
         $raketimg->setName('raket image');
@@ -102,14 +91,14 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
         $style->setDescription('Huistlijl Gemeente Zuid-Drecht');
         $style->setCss('
         :root {
-                --primary: #01689b;
+                --primary: #406377;
                 --primary-color: white;
                 --secondary: #cce0f1;
                 --secondary-color: #2b2b2b;
                 --menu: #01689b;
                 --menu-over: #3669A5;
                 --menu-color: white;
-                --footer: #01689b;
+                --footer: #406377;
                 --footer-color: white;
          }
 
@@ -137,15 +126,15 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
                 'loggedIn'              => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'58873338-3ef1-4764-a1a8-72a8787625f4']),
                 'home'                  => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'0e3ec00f-c17b-4237-b6dd-070f800eb784']),
                 'studenten'             => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'a4a9a984-d83e-44ac-b27d-c77cd74b0d21']),
-                'footer1'               => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'3895915c-a992-462e-848d-3be73a954d51']),
+                'footer1'               => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'afa4c1f6-17b7-40a2-b289-57640bb141d9']),
                 'headerimg'             => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'da8af35b-afca-455e-a722-6d0052f7367d']),
-                'kladimg'               => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'62685881-e5a2-4f73-b08f-a155b6dab74c']),
-                'raketimg'               => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'cdaad46c-f1b3-11ea-adc1-0242ac120002']),
+                'footer4img'            => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'e49586fb-ec10-4f92-8ad5-f78e323ac104']),
                 'googleTagId'           => 'G-2PYCJ13YC4',
                 'userPage'              => 'me',
                 'login'                 => ['facebook'=>true, 'github'=>true],
                 'header'                => true,
                 'stickyMenu'            => true,
+                'footer4'               => true,
             ]
         );
         $manager->persist($configuration);
@@ -189,9 +178,18 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
         $menu = $manager->getRepository('App:Menu')->findOneBy(['id' => $id]);
 
         $menuItem = new MenuItem();
+        $menuItem->setName('Home');
+        $menuItem->setDescription('Homepagina');
+        $menuItem->setOrder(0);
+        $menuItem->setType('slug');
+        $menuItem->setHref('/home');
+        $menuItem->setMenu($menu);
+        $manager->persist($menuItem);
+
+        $menuItem = new MenuItem();
         $menuItem->setName('Studenten');
         $menuItem->setDescription('Studenten pagina');
-        $menuItem->setOrder(3);
+        $menuItem->setOrder(1);
         $menuItem->setType('slug');
         $menuItem->setHref('/studenten');
         $menuItem->setMenu($menu);
@@ -200,7 +198,7 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
         $menuItem = new MenuItem();
         $menuItem->setName('Bedrijven');
         $menuItem->setDescription('Bedrijven pagina');
-        $menuItem->setOrder(4);
+        $menuItem->setOrder(2);
         $menuItem->setType('slug');
         $menuItem->setHref('/bedrijven');
         $menuItem->setMenu($menu);
@@ -209,7 +207,7 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
         $menuItem = new MenuItem();
         $menuItem->setName('About');
         $menuItem->setDescription('Wie zitten achter CheckIn');
-        $menuItem->setOrder(5);
+        $menuItem->setOrder(3);
         $menuItem->setType('slug');
         $menuItem->setHref('/about');
         $menuItem->setMenu($menu);
@@ -326,5 +324,17 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
         $template->addTemplateGroup($groupPages);
         $manager->persist($template);
         $manager->flush();
+
+        $id = Uuid::fromString('e49586fb-ec10-4f92-8ad5-f78e323ac104');
+        $footer4img = new Image();
+        $footer4img->setName('footer4img');
+        $footer4img->setBase64(base64_encode(file_get_contents(dirname(__FILE__).'/Resources/Stage/afbeeldingen/Raket-rechts-onder.png', 'r')));
+        $footer4img->setDescription('Academy footer');
+        $footer4img->setOrganization($organization);
+        $manager->persist($footer4img);
+        $footer4img->setId($id);
+        $manager->persist($footer4img);
+        $manager->flush();
+        $footer4img = $manager->getRepository('App:Image')->findOneBy(['id'=> $id]);
     }
 }

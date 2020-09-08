@@ -10,7 +10,6 @@
             <div class="col-md-4 col-md-offset-8" style="height: 500px; position:relative;">
                 <div class="content-background background--secondary" style="position: absolute; bottom:0;">
                     <div class="content">
-                        <h2>{{ 'news'|trans|capitalize }}</h2>
                         <ul class="list list--links list--chevrons">
                             {% if application.defaultConfiguration.configuration.news is defined %}
                                 {% set news = commonground_resource(application.defaultConfiguration.configuration.news) %}
@@ -28,7 +27,7 @@
 
     {#  Blokjes voorpagina  #}
     <div class="row">
-        <div class="col-md-8" style="text-align: center; margin-top: 10%;">
+        <div class="col-md-8" style="text-align: center; margin-top: 5%;">
             <div class="col-md-12">
                 <ul class="list list--card">
                     <li class="card background--primary card__hover">
@@ -70,7 +69,6 @@
             <div class="col-md-12" style="height: 300px; position:relative;">
                 <div class="content-background background--secondary" style="position: absolute; bottom:0;">
                     <div class="content">
-                        <h2>{{ 'news'|trans|capitalize }}</h2>
                         <ul class="list list--links list--chevrons">
                             {% if application.defaultConfiguration.configuration.news is defined %}
                                 {% set news = commonground_resource(application.defaultConfiguration.configuration.news) %}
@@ -97,7 +95,6 @@
                 <div class="col-md-16" style="height: 300px; position:relative;">
                     <div class="content-background background--secondary" style="position: absolute; bottom:0;">
                         <div class="content">
-                            <h2>{{ 'news'|trans|capitalize }}</h2>
                             <ul class="list list--links list--chevrons">
                                 {% if application.defaultConfiguration.configuration.news is defined %}
                                     {% set news = commonground_resource(application.defaultConfiguration.configuration.news) %}
