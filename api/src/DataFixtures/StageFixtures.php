@@ -73,6 +73,18 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
         $manager->flush();
         $headerimg = $manager->getRepository('App:Image')->findOneBy(['id'=> $id]);
 
+        $id = Uuid::fromString('62685881-e5a2-4f73-b08f-a155b6dab74c');
+        $kladimg = new Image();
+        $kladimg->setName('klad image');
+        $kladimg->setBase64(base64_encode(file_get_contents(dirname(__FILE__).'/Resources/stage/afbeeldingen/klad.jpg', 'r')));
+        $kladimg->setDescription('stageplattform klad image ');
+        $kladimg->setOrganization($organization);
+        $manager->persist($kladimg);
+        $kladimg->setId($id);
+        $manager->persist($kladimg);
+        $manager->flush();
+        $kladimg = $manager->getRepository('App:Image')->findOneBy(['id'=> $id]);
+
         $style = new Style();
         $style->setName('academy');
         $style->setDescription('Huistlijl Gemeente Zuid-Drecht');
