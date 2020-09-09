@@ -248,7 +248,7 @@ class WestfrieslandFixtures extends Fixture
         $manager->persist($style);
         $manager->flush();
         */
-        
+
         $id = Uuid::fromString('2c60657d-a728-4e71-897d-ac407c134e10');
         $headerimg = new Image();
         $headerimg->setName('header image');
