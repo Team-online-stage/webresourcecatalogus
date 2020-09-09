@@ -35,7 +35,7 @@
 
 <div class="row background--grijs-2">
     <div class="container">
-    <aside class="col-xl-3 col-lg-4 col-md-3 col-sm-modal">
+    <aside class="col-md-3 col-sm-modal">
         <nav class="sidenav">
             {% if app.user.type is defined and app.user.type == 'user' %}
                 {% include 'uc/widgets/organizationMenu.html.twig' %}
@@ -69,7 +69,7 @@
     </aside>
 
     {% if app.user is defined and app.user is not empty %}
-        <div class="col-xl-9 col-lg-8 col-md-9">
+        <div class="col-md-9 col-sm-12">
             {% if app.user.type is defined and app.user.type == 'user' %}
 
                 <ul class="list list--card">
