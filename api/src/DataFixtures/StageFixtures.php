@@ -148,6 +148,7 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
                 'login'                 => ['facebook'=>true, 'github'=>true],
                 'header'                => true,
                 'stickyMenu'            => true,
+                'footer4'               => true,
             ]
         );
         $manager->persist($configuration);
