@@ -3,6 +3,88 @@
 {% extends 'base.html.twig' %}
 {% block container %}
 
-    hier mijn pagina
+    <div style="background: white; width: 100%">
+        {% set headerimg = commonground_resource(application.defaultConfiguration.configuration.headerimg) %}
+        <div class="row background--primary background--image" style="margin-top: -20px; background: url(data:image/file;base64,{{headerimg['base64']}})">
+            <div class="container" >
+                <div class="col-md-4 col-md-offset-8" style="height: 500px; position:relative;">
+                    <div class="content-background background--secondary" style="position: absolute; bottom:0;">
+                        <div class="content">
+                        </div><!-- /.content -->
+                    </div><!-- /.content-background -->
+                </div><!-- /.col -->
+            </div><!-- /.container -->
+        </div><!-- /.row -->
+
+        {#  Blokjes voorpagina  #}
+        <div class="row">
+            <div class="col-md-8" style="text-align: center; margin-top: 5%;">
+                <div class="col-md-12">
+                    <ul class="list list--card">
+                        <li class="card background--primary card__hover">
+                            <a href="#" class="card__content">
+                                <div class="card__icon flex-center color--primary"><i class="fas fa-laptop-house fa-5x" aria-hidden="true"></i></div>
+                                <div class="card__body flex-center"><span class="card__title color--primary flex-center">Stages</span></div>
+                            </a>
+                        </li>
+                        <li class="card background--primary card__hover">
+                            <a href="#" class="card__content">
+                                <div class="card__icon flex-center color--primary"><i class="fas fa-chalkboard-teacher fa-5x" aria-hidden="true"></i></div>
+                                <div class="card__body flex-center"><span class="card__title color--primary flex-center">Tutorials</span></div>
+                            </a>
+                        </li>
+                        <li class="card background--primary card__hover">
+                            <a href="#" class="card__content">
+                                <div class="card__icon flex-center color--primary"><i class="fas fa-child fa-5x" aria-hidden="true"></i></div>
+                                <div class="card__body flex-center"><span class="card__title color--primary flex-center">Studenten vinden</span></div>
+                            </a>
+                        </li>
+                        <li class="card background--primary card__hover">
+                            <a href="#" class="card__content">
+                                <div class="card__icon flex-center color--primary"><i class="fas fa-bullseye fa-5x" aria-hidden="true"></i></div>
+                                <div class="card__body flex-center"><span class="card__title color--primary flex-center">Doelen</span></div>
+                            </a>
+                        </li>
+                    </ul>
+                </div><!-- /.col -->
+            </div>
+        </div><!-- /.row -->
+    </div>
+    <div style="width: 100%; background: #263846; height: 500px">
+
+    </div>
+
+    {% set kladimg = commonground_resource(application.defaultConfiguration.configuration.kladimg) %}
+    <div class="row background--primary background--image" style="padding: 20px; background: url(data:image/file;base64,{{kladimg['base64']}})">
+        <div class="container" >
+            <div class="col-md-12" style="height: 300px; position:relative;">
+                <div class="content-background background--secondary" style="position: absolute; bottom:0;">
+                    <div class="content">
+                    </div><!-- /.content -->
+                </div><!-- /.content-background -->
+            </div><!-- /.col -->
+        </div><!-- /.container -->
+    </div><!-- /.row -->
+</div>
+    <div style="width: 100%; background: #263846; height: 500px">
+
+    <div style="background: white; width: 100%; height: 400px">
+    </div>
+
+    //footer met raket
+    <div style="background: #406377; width: 100%; height: 250px">
+        {% set raketimg = commonground_resource(application.defaultConfiguration.configuration.raketimg) %}
+        <div class="row background--primary background--image" style="float: right; background: url(data:image/file;base64,{{raketimg['base64']}})">
+            <div class="container" >
+                <div class="col-md-16" style="height: 300px; position:relative;">
+                    <div class="content-background background--secondary" style="position: absolute; bottom:0;">
+                        <div class="content">
+                        </div><!-- /.content -->
+                    </div><!-- /.content-background -->
+                </div><!-- /.col -->
+            </div><!-- /.container -->
+        </div><!-- /.row -->
+    </div>
+
 
 {% endblock %}
