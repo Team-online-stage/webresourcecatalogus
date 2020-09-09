@@ -354,6 +354,5 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
         $template->addTemplateGroup($groupPages);
         $manager->persist($template);
         $manager->flush();
-
     }
 }
