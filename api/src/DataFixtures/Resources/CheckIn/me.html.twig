@@ -71,6 +71,7 @@
     {% if app.user is defined and app.user is not empty %}
         <div class="col-xl-9 col-lg-8 col-md-9">
             {% if app.user.type is defined and app.user.type == 'user' %}
+
                 <ul class="list list--card">
                     <li class="card background--primary card__hover col-md-3">
                         <a href="{{ path('app_chin_nodesorganization') }}" class="card__content">
@@ -127,7 +128,7 @@
                         </a>
                     </li>
                     <li class="card background--primary card__hover">
-                        <a href="{{ path('app_chin_statistics') }}" class="card__content">
+                        <a href="#" class="card__content">
                             <div class="card__icon flex-center color--primary"><i
                                     class="fas fa-search-location fa-4x"></i></div>
                             <div class="card__body flex-center"><span
