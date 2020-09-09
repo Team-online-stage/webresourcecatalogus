@@ -7,9 +7,11 @@ use App\Entity\Configuration;
 use App\Entity\Image;
 use App\Entity\Menu;
 use App\Entity\MenuItem;
+use App\Entity\Organization;
 use App\Entity\Slug;
 use App\Entity\Style;
 use App\Entity\Template;
+use App\Entity\TemplateGroup;
 use Conduction\CommonGroundBundle\Service\CommonGroundService;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
@@ -66,6 +68,7 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         :root {
                 --primary: #01689b;
                 --primary-color: white;
+                --background: #01689b;
                 --secondary: #cce0f1;
                 --secondary-color: #2b2b2b;
 
@@ -78,9 +81,17 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
 
 
          .main {
-            padding-top: 00px;
+            padding-top: 0px;
         }
-         ');
+
+        h1, h2 {
+            font-family: \'Lobster\', cursive;
+        }
+
+        .footer {
+            padding-top: 0px;
+        }
+        ');
         $style->setfavicon($favicon);
         $style->addOrganization($organization);
         $manager->persist($style);
@@ -101,11 +112,11 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
                 //'nieuws'                => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'template_groups', 'id'=>'f2729540-2740-4fbf-98ae-f0a069a1f43f']),
                 //'newsimg'               => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'b0e3e803-2cb6-41ed-ab32-d6e5451c119d']),
                 //'headerimg'             => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'0863d15c-286e-4ec4-90f6-27cebb107aa9']),
-                'googleTagId'           => 'G-2PYCJ13YC4',
                 'userPage'              => 'me',
-                'login'                 => ['user'=>true, 'idin'=>true],
+                'login'                 => ['user'=>true, 'idin'=>true], //, 'facebook'=>true, 'gmail'=>true
                 'header'                => false,
                 'stickyMenu'            => true,
+                'newsGroup'             => '1024',
             ]
         );
         $manager->persist($configuration);
@@ -137,40 +148,96 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $menu = $manager->getRepository('App:Menu')->findOneBy(['id'=> $id]);
 
         $menuItem = new MenuItem();
-        $menuItem->setName('Over');
-        $menuItem->setDescription('Wat is CheckIn');
-        $menuItem->setOrder(1);
-        $menuItem->setType('slug');
-        $menuItem->setHref('#wat');
-        $menuItem->setMenu($menu);
-        $manager->persist($menu);
-
-        $menu->addMenuItem($menuItem);
-        $manager->persist($menu);
-
-        $menuItem = new MenuItem();
-        $menuItem->setName('Hoe');
-        $menuItem->setDescription('Hoe werkt CheckIn');
-        $menuItem->setOrder(2);
-        $menuItem->setType('slug');
-        $menuItem->setHref('#hoe');
-        $menuItem->setMenu($menu);
-        $manager->persist($menu);
-
-        $menu->addMenuItem($menuItem);
-        $manager->persist($menu);
-
-        $menuItem = new MenuItem();
-        $menuItem->setName('Wie');
-        $menuItem->setDescription('Wie zitten achter CheckIn');
+        $menuItem->setName('Voor ondernemers');
+        $menuItem->setDescription('Registreer uw onderneming');
         $menuItem->setOrder(3);
         $menuItem->setType('slug');
-        $menuItem->setHref('#wie');
+        $menuItem->setHref('/ptc/process/fdb7186c-0ce9-4050-bd6d-cf83b0c162eb');
         $menuItem->setMenu($menu);
-        $manager->persist($menu);
+        $manager->persist($menuItem);
 
-        $menu->addMenuItem($menuItem);
-        $manager->persist($menu);
+        $menuItem = new MenuItem();
+        $menuItem->setName('Privacy');
+        $menuItem->setDescription('Wie zitten achter CheckIn');
+        $menuItem->setOrder(4);
+        $menuItem->setType('slug');
+        $menuItem->setHref('/privacy');
+        $menuItem->setMenu($menu);
+        $manager->persist($menuItem);
+
+        $menuItem = new MenuItem();
+        $menuItem->setName('Proclaimer');
+        $menuItem->setDescription('Wie zitten achter CheckIn');
+        $menuItem->setOrder(5);
+        $menuItem->setType('slug');
+        $menuItem->setHref('/proclaimer');
+        $menuItem->setMenu($menu);
+        $manager->persist($menuItem);
+
+        // Template groups
+        // E-mails
+        $groupEmails = new TemplateGroup();
+        $groupEmails->setOrganization($organization);
+        $groupEmails->setApplication($application);
+        $groupEmails->setName('E-mails');
+        $groupEmails->setDescription('E-mails that are send out');
+        $manager->persist($groupEmails);
+
+        // Invoices
+        $groupInvoices = new TemplateGroup();
+        $groupInvoices->setOrganization($organization);
+        $groupInvoices->setApplication($application);
+        $groupInvoices->setName('Invoices');
+        $groupInvoices->setDescription('Invoice templates that are filled in using invoices');
+        $manager->persist($groupInvoices);
+
+        // E-mail templates
+        $id = Uuid::fromString('2ca5b662-e941-46c9-ae87-ae0c68d0aa5d');
+        $template = new Template();
+        $template->setName('Nieuw verzoek');
+        $template->setTitle('U heeft een nieuw verzoek ingediend');
+        $template->setDescription('Bevestiging dat u een verzoek heeft ingediend');
+        $template->setContent('Beste {{ receiver.givenName }},<p>Uw verzoek met referentie {{ resource.reference }} is met succes ingediend.</p><p>Met vriendelijke groet,</p>{{ sender.name }}');
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupEmails);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('e-mail-indiening');
+        $slug->setSlug('e-mail-indiening');
+        $manager->persist($slug);
+        $manager->flush();
+
+        // Invoice templates
+        $id = Uuid::fromString('4f313197-1321-4e6d-a206-d5d80bb11b07');
+        $template = new Template();
+        $template->setName('Voorbeeld Factuur');
+        $template->setDescription('Een voorbeeld factuur sjabloon');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/CheckIn/facturen/voorbeeld.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupInvoices);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('invoice-voorbeeld');
+        $slug->setSlug('invoice-voorbeeld');
+        $manager->persist($slug);
         $manager->flush();
 
         // Pages
@@ -192,6 +259,69 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $slug->setApplication($application);
         $slug->setName('home');
         $slug->setSlug('home');
+        $manager->persist($slug);
+        $manager->flush();
+
+        $id = Uuid::fromString('567f97d8-89dd-4ef3-8119-179ea4001a4f');
+        $template = new Template();
+        $template->setName('About');
+        $template->setDescription('About CheckIng.nu');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/CheckIn/about.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $manager->persist($template);
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('about');
+        $slug->setSlug('about');
+        $manager->persist($slug);
+        $manager->flush();
+
+        $id = Uuid::fromString('1374e3da-b4cb-49a7-8969-6bada9f26b12');
+        $template = new Template();
+        $template->setName('Proclaimer');
+        $template->setDescription('Proclaimer');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/CheckIn/proclaimer.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $manager->persist($template);
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('proclaimer');
+        $slug->setSlug('proclaimer');
+        $manager->persist($slug);
+        $manager->flush();
+
+        $id = Uuid::fromString('c381a552-c7b8-45d8-92f4-3f2ec5c50470');
+        $template = new Template();
+        $template->setName('Privacy');
+        $template->setDescription('Privacy');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/CheckIn/privacy.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $manager->persist($template);
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('privacy');
+        $slug->setSlug('privacy');
         $manager->persist($slug);
         $manager->flush();
 
@@ -292,5 +422,57 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
         $manager->persist($template);
         $manager->flush();
+
+        $id = Uuid::fromString('b7049936-bef1-45a1-a70e-9160f795a6cd');
+        $template = new Template();
+        $template->setName('verwerkersOvereenkomst');
+        $template->setDescription('verwerkersOvereenkomst');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/CheckIn/verwerkersOvereenkomst.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+
+        /*
+         * Then we need some example organizations
+         */
+
+        // Zuid-Drecht
+        $id = Uuid::fromString('2106575d-50f3-4f2b-8f0f-a2d6bc188222');
+        $organization = new Organization();
+        $organization->setName('Cafe de zotte raaf');
+        $organization->setDescription('Het gezeligste dijkcafe van nederland');
+        $organization->setRsin('809642451');
+        $manager->persist($organization);
+        $organization->setId($id);
+        $manager->persist($organization);
+        $manager->flush();
+        $organization = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
+
+        // Zuid-Drecht
+        $id = Uuid::fromString('a9398c45-7497-4dbd-8dd1-1be4f3384ed7');
+        $organization = new Organization();
+        $organization->setName('Restautant Goudlust');
+        $organization->setDescription('In deze vormalige dijkgraaf woning geniet u van voortreffelijk eten bereid met locale ingredienten');
+        $organization->setRsin('809642451');
+        $manager->persist($organization);
+        $organization->setId($id);
+        $manager->persist($organization);
+        $manager->flush();
+        $organization = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
+
+        // Zuid-Drecht
+        $id = Uuid::fromString('8812dc58-6bbe-4028-8e36-96f402bf63dd');
+        $organization = new Organization();
+        $organization->setName('Hotel Dijkzicht');
+        $organization->setDescription('Gevestigd in een oud-tol huis kijkt dit prachtige hotel uit op de drechtse dijk');
+        $organization->setRsin('809642451');
+        $manager->persist($organization);
+        $organization->setId($id);
+        $manager->persist($organization);
+        $manager->flush();
+        $organization = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
     }
 }

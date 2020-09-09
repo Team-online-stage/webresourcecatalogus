@@ -1,0 +1,97 @@
+{# templates/home/index.html.twig #}
+
+{% extends 'base.html.twig' %}
+{% block container %}
+    {% set headerimg = commonground_resource(application.defaultConfiguration.configuration.headerimg) %}
+    //zoekbalk
+    <div class="input combobox" id="example_combobox_obj" style="width: 50%; text-align: center;">
+        <label class="input__label" for="object-opleiding">Zoek op opleiding</label>
+        <div class="input__hint">Naam opleiding of crebo-nummer</div>
+        <input class="combobox__input input__control input__control--text input__control--xl input__control--select" id="object-opleiding" style="text-align: center;">
+    </div>
+
+    <script>
+        System.import('/uno/components/form/combobox.js').then(function (module) {
+            var objCombobox = new module.Combobox(document.getElementById('example_combobox_obj'));
+            objCombobox.data = [
+                {
+                    "kwalificatie": "10773",
+                    "kwalificatieNaam": "Leidinggevende Versindustrie"
+                },
+                {
+                    "kwalificatie": "22240",
+                    "kwalificatieNaam": "Operator"
+                },
+                {
+                    "kwalificatie": "22243",
+                    "kwalificatieNaam": "Productiemedewerker versindustrie"
+                },
+                {
+                    "kwalificatie": "22244",
+                    "kwalificatieNaam": "Medewerker versdetailhandel"
+                }
+            ];
+            objCombobox.labelField = 'label';
+
+
+            objCombobox.filterFunction = function(item) {
+                return;
+                item.kwalificatieNaam.toString().toLowerCase().indexOf(objCombobox.query.toLowerCase())  > -1 ||
+                item.kwalificatie.toString().toLowerCase().indexOf(objCombobox.query.toLowerCase())  > -1;
+            };
+
+            objCombobox.labelFunction = (value) => {
+                return `${value.kwalificatie} - ${value.kwalificatieNaam}`;
+            };
+
+            document.getElementById('example_combobox_obj').addEventListener('combobox-select', function(e) {
+                //Doe iets met het event
+            })
+        });
+    </script>
+
+    //buttons
+    <div class="row">
+        <div class="col-md-8" style="text-align: center; ">
+            <div class="col-md-8" style="text-align: center;">
+                <div class="col-md-12">
+                    <ul class="list list--card">
+                        <li class="card background--primary card__hover" style="margin-left: 50px;">
+                            <a href="#" class="card__content">
+                                <div class="card__icon flex-center color--primary"><i class="fas fa-laptop-house fa-5x" aria-hidden="true"></i></div>
+                                <div class="card__body flex-center"><span class="card__title color--primary flex-center">Stageplaatsen</span></div>
+                            </a>
+                        </li>
+                        <li class="card background--primary card__hover" style="margin-left: 50px;">
+                            <a href="#" class="card__content">
+                                <div class="card__icon flex-center color--primary"><i class="fas fa-child fa-5x" aria-hidden="true"></i></div>
+                                <div class="card__body flex-center"><span class="card__title color--primary flex-center">Tutorials</span></div>
+                            </a>
+                        </li>
+                        <li class="card background--primary card__hover" style="margin-left: 50px;">
+                            <a href="#" class="card__content">
+                                <div class="card__icon flex-center color--primary"><i class="fas fa-bullseye fa-5x" aria-hidden="true"></i></div>
+                                <div class="card__body flex-center"><span class="card__title color--primary flex-center">Challenges</span></div>
+                            </a>
+                        </li>
+                    </ul>
+                </div><!-- /.col -->
+            </div>
+        </div><!-- /.row -->
+    </div>
+
+    <ul class="list list--card list--card-small" style="column-count: auto">
+        <li class="card card--small">
+            <a href="#" class="card__content">
+                <div class="card__thumb" style="background-image: url('../../images/img-1.png')"></div>
+                <div class="card__body"><span class="card__title">Vooraankondiging nieuwe werkwijze relatief verzuim</span></div>
+            </a>
+        </li>
+        <li class="card card--small">
+            <a href="#" class="card__content">
+                <div class="card__thumb" style="background-image: url('../../images/img-1.png')"></div>
+                <div class="card__body"><span class="card__title">Vooraankondiging nieuwe werkwijze relatief verzuim</span></div>
+            </a>
+        </li>
+    </ul>
+{% endblock %}
