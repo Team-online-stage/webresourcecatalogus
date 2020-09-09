@@ -14,8 +14,18 @@
     <div class="container">
         <div class="col-md-12">
             <div class="content">
+                <a class="backlink" href="/">{{ 'back'|trans|capitalize }}</a>
                 <header class="content__header" style="margin-top: 20px">
-                    <h1 class="content__header-title">{{ 'personal'|trans|capitalize }}</h1>
+                    {% if app.user.organization is defined and app.user.organization is not empty %}
+                        {% set organization = commonground_resource({'component':'kvk','type':'companies', 'id': app.user.organization}) %}
+                        {% if organization.name is defined and organization.name is not empty %}
+                            <h1 class="content__header-title">{{ organization.name }}</h1>
+                        {% else %}
+                            <h1 class="content__header-title">{{ 'personal'|trans|capitalize }}</h1>
+                        {% endif %}
+                    {% else %}
+                        <h1 class="content__header-title">{{ 'personal'|trans|capitalize }}</h1>
+                    {% endif %}
                 </header>
             </div><!-- ./content -->
         </div><!-- ./col -->
@@ -61,6 +71,7 @@
     {% if app.user is defined and app.user is not empty %}
         <div class="col-xl-9 col-lg-8 col-md-9">
             {% if app.user.type is defined and app.user.type == 'user' %}
+
                 <ul class="list list--card">
                     <li class="card background--primary card__hover col-md-3">
                         <a href="{{ path('app_chin_nodesorganization') }}" class="card__content">
@@ -113,6 +124,15 @@
                                     class="fas fa-map-marker-alt fa-4x"></i></div>
                             <div class="card__body flex-center"><span
                                     class="card__title color--primary flex-center">{{ 'invoices'|trans|capitalize }}</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="card background--primary card__hover">
+                        <a href="#" class="card__content">
+                            <div class="card__icon flex-center color--primary"><i
+                                    class="fas fa-search-location fa-4x"></i></div>
+                            <div class="card__body flex-center"><span
+                                    class="card__title color--primary flex-center">{{ 'statistics'|trans|capitalize }}</span>
                             </div>
                         </a>
                     </li>
