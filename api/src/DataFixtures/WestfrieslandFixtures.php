@@ -276,12 +276,13 @@ class WestfrieslandFixtures extends Fixture
         $manager->flush();
 
         // Hogeland
+        /*
         $id = Uuid::fromString('79ad319b-1ff6-4e21-919b-4ea002b5f233');
         $hogeland = new Organization();
         $hogeland->setName('Hogeland');
         $hogeland->setDescription('Gemeente Hogeland');
         $hogeland->setRsin('1234');
-//        $hogeland->setContact($this->commonGroundService->cleanUrl(['component' => 'cc', 'type' => 'organizations', 'id' => '5792b63d-afb5-4689-990b-51eec52b663b']));
+//      $hogeland->setContact($this->commonGroundService->cleanUrl(['component' => 'cc', 'type' => 'organizations', 'id' => '5792b63d-afb5-4689-990b-51eec52b663b']));
         $manager->persist($hogeland);
         $hogeland->setId($id);
         $manager->persist($hogeland);
@@ -302,6 +303,7 @@ class WestfrieslandFixtures extends Fixture
         $manager->persist($favicon);
         $manager->persist($style);
         $manager->flush();
+        */
 
         $id = Uuid::fromString('2c60657d-a728-4e71-897d-ac407c134e10');
         $headerimg = new Image();
