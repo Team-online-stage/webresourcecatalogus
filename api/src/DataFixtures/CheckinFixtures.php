@@ -114,7 +114,7 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
                 //'newsimg'               => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'b0e3e803-2cb6-41ed-ab32-d6e5451c119d']),
                 //'headerimg'             => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'0863d15c-286e-4ec4-90f6-27cebb107aa9']),
                 'userPage'              => 'me',
-                'login'                 => ['user'=>true, 'idin'=>true, 'facebook'=>true, 'gmail'=>true],
+                'login'                 => ['user'=>true, 'idin'=>true], //, 'facebook'=>true, 'gmail'=>true
                 'header'                => false,
                 'stickyMenu'            => true,
                 'newsGroup'             => '1024',
@@ -185,6 +185,7 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $manager->persist($menuItem);
 
         // Template groups
+        // E-mails
         $groupEmails = new TemplateGroup();
         $groupEmails->setOrganization($organization);
         $groupEmails->setApplication($application);
@@ -192,6 +193,15 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $groupEmails->setDescription('E-mails that are send out');
         $manager->persist($groupEmails);
 
+        // Invoices
+        $groupInvoices = new TemplateGroup();
+        $groupInvoices->setOrganization($organization);
+        $groupInvoices->setApplication($application);
+        $groupInvoices->setName('Invoices');
+        $groupInvoices->setDescription('Invoice templates that are filled in using invoices');
+        $manager->persist($groupInvoices);
+
+        // E-mail templates
         $id = Uuid::fromString('2ca5b662-e941-46c9-ae87-ae0c68d0aa5d');
         $template = new Template();
         $template->setName('Nieuw verzoek');
@@ -213,6 +223,30 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $slug->setApplication($application);
         $slug->setName('e-mail-indiening');
         $slug->setSlug('e-mail-indiening');
+        $manager->persist($slug);
+        $manager->flush();
+
+        // Invoice templates
+        $id = Uuid::fromString('4f313197-1321-4e6d-a206-d5d80bb11b07');
+        $template = new Template();
+        $template->setName('Voorbeeld Factuur');
+        $template->setDescription('Een voorbeeld factuur sjabloon');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/CheckIn/facturen/voorbeeld.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupInvoices);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('invoice-voorbeeld');
+        $slug->setSlug('invoice-voorbeeld');
         $manager->persist($slug);
         $manager->flush();
 
