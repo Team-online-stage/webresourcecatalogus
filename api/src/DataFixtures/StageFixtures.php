@@ -1,5 +1,4 @@
 <?php
-
 namespace App\DataFixtures;
 
 use App\Entity\Application;
@@ -53,14 +52,6 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
 
         $organization = $this->getReference(ZuiddrechtFixtures::ORGANIZATION_ZUIDDRECHT);
 
-        $favicon = new Image();
-        $favicon->setName('CheckIN Favicon');
-        $favicon->setDescription('CheckIN Favicon');
-        $favicon->setBase64('data:image/svg+xml;base64,PHN2ZyBpZD0iw5HDq8Ouw6lfMSIgZGF0YS1uYW1lPSLDkcOrw67DqSAxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA5MzkuNTcgMTA5OC44OSI+PGRlZnM+PHN0eWxlPi5jbHMtMXtmaWxsOiNjMDA7fS5jbHMtMntmaWxsOiMzNjY5YTU7fTwvc3R5bGU+PC9kZWZzPjx0aXRsZT56dWlkIERyZWNodCBOb3BheW9mZjwvdGl0bGU+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNNTc2LDk2Ny4xMWMtNTYsNDEuMzktMTAxLjQzLDY2LjA1LTExMSw3MS4xMWE0LDQsMCwwLDEtMy43MiwwYy0yNS41Ny0xMy41LTMwNy40OC0xNjctMzYxLjM3LTQwNmE0LDQsMCwwLDEsNy4zOC0yLjgxYzM4LjU0LDY4LjkzLDEyNS4zNywxMTkuMjYsMTg3LjUxLDE1Mi42OSw1Mi41LDI4LjIzLDExMy42Miw1MC4yMSwxNjguMzQsODAuMzZDNTA4LjIyLDg4Ny4yOSw1NDksOTE3LjY5LDU3Nyw5NjEuNzVBNCw0LDAsMCwxLDU3Niw5NjcuMTFaIi8+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNODM0LjcxLDIxNS44NFYxMDEuNjVhOC45LDguOSwwLDAsMC04LjktOC45MWgtMjczQTE0LjU5LDE0LjU5LDAsMCwwLDUzOS40MywxMDNsLTE5LDcwLjI4YTE0LjU4LDE0LjU4LDAsMCwxLTEzLjM1LDEwLjIxSDM4M1YxNDcuMTJjMzYuODQtMS4zNCw2Mi40Mi03LjQ1LDgwLjE2LTE1LjEsMjkuNDktMTIuNzQsMzcuMzUtMjkuNzgsMzkuMzYtMzYuNDRhMi4yMiwyLjIyLDAsMCwwLTIuMTMtMi44NEgzMzQuNjFjLTMzLjg4LDAtNjcuOTEsOS4yLTg2LjA4LDQwLjEtMTkuMzgsMzIuOTQtMTguMjQsNzguMDctMTYuNDksMTE0Ljg5LDAsMC01MC02Ni4yMi00MC43Ni0xNDguODdhNS41MSw1LjUxLDAsMCwwLTUuNDgtNi4xMkgxMDAuMzJhOC43OSw4Ljc5LDAsMCwwLTguNzgsOC43OVYxMjRjNC44Niw3OS4yNiw0OS4xNCwyODguNTcsMzcxLjU4LDM4NS40QzczNSw1OTEuMDYsNzc1LjQyLDcxNi4zLDc4My4zMiw3MzguMjRhMS4zOCwxLjM4LDAsMCwwLDIuNTMuMTdjNzUuMy0xNDMuOS04MS40OS0yNDcuNTItODEuNDktMjQ3LjUyLDMxLjMzLDAsNzkuMjMsMTcuOTQsMTE4LDM5Ljc5YTguMjgsOC4yOCwwLDAsMCwxMi4zNy03LjIxVjM2My44M2ExNC42LDE0LjYsMCwwLDAtMTguMTUtMTQuMTdjLTEzLjUsMy4zOS0zMCw2LjY4LTMyLjg3LDcuMjMtMzkuNDYsNy43Ny04NC43NSwxMS4xNS0xMjItOC43M3MtNDcuMjYtNjYuMjctMTguMzMtOTguMjNjMjUuMy0yOCw2NS41My0zNy41LDEwMi4yOS0zNSwyMy41NiwxLjYyLDU1LjE4LDcuNTksNzMuNzEsMTIuNjNBMTIuMTYsMTIuMTYsMCwwLDAsODM0LjcxLDIxNS44NFoiLz48cGF0aCBjbGFzcz0iY2xzLTIiIGQ9Ik02NTQuODcsOTAxLjVhNCw0LDAsMCwxLTYtLjExYy0xMy41Ni0xNi4yNS03NS40Ni04Ni0xODUuNzMtMTQ2LjQyQTc1Ni40NCw3NTYuNDQsMCwwLDAsMzgzLDcxN2MtMTczLjUzLTcwLjE3LTI4Mi42OS0xNDMuMy0yOTEuNDItMzM4LjF2LTYuMjJhNCw0LDAsMCwxLDcuMjEtMi4zNGM2My42MSw4NywxNDQuNjksMTM3LjksMjQzLjE2LDE4Ni43Nyw0MC4yOCwyMCw4MS4xNywzNi4zMiwxMjEuMjEsNTMuMjUsNjYuMTUsMjgsMTMwLDU3LjU0LDE4NC43MywxMDcuOCwxNi4xOCwxNC44NSwyOS4wOSwyOS4xNSwzNi44MSw1MEM2OTUuNzUsNzk4LjEzLDcwMi41NSw4NDkuMTcsNjU0Ljg3LDkwMS41WiIvPjwvc3ZnPg==');
-        $favicon->setOrganization($organization);
-        $manager->persist($favicon);
-        $manager->flush();
-
         $id = Uuid::fromString('da8af35b-afca-455e-a722-6d0052f7367d');
         $headerimg = new Image();
         $headerimg->setName('header image');
@@ -73,7 +64,18 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
         $manager->flush();
         $headerimg = $manager->getRepository('App:Image')->findOneBy(['id'=> $id]);
 
-        //raket img
+        $id = Uuid::fromString('62685881-e5a2-4f73-b08f-a155b6dab74c');
+        $kladimg = new Image();
+        $kladimg->setName('klad image');
+        $kladimg->setBase64(base64_encode(file_get_contents(dirname(__FILE__).'/Resources/Stage/afbeeldingen/Klad.png', 'r')));
+        $kladimg->setDescription('stageplattform klad image ');
+        $kladimg->setOrganization($organization);
+        $manager->persist($kladimg);
+        $kladimg->setId($id);
+        $manager->persist($kladimg);
+        $manager->flush();
+        $kladimg = $manager->getRepository('App:Image')->findOneBy(['id'=> $id]);
+
         $id = Uuid::fromString('cdaad46c-f1b3-11ea-adc1-0242ac120002');
         $raketimg = new Image();
         $raketimg->setName('raket image');
@@ -90,26 +92,27 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
         $style->setName('academy');
         $style->setDescription('Huistlijl Gemeente Zuid-Drecht');
         $style->setCss('
-        :root {
-                --primary: #406377;
-                --primary-color: white;
-                --secondary: #cce0f1;
-                --secondary-color: #2b2b2b;
-                --menu: #01689b;
-                --menu-over: #3669A5;
-                --menu-color: white;
-                --footer: #406377;
-                --footer-color: white;
-         }
-        .main {
-            padding-top: 00px;
-        }
-        h1, h2 {
-            font-family: \'Lobster\', cursive;
-        }
-        ');
+               :root {
+                       --primary: #01689b;
+                       --primary-color: white;
+                       --secondary: #cce0f1;
+                       --secondary-color: #2b2b2b;
+                       --menu: #01689b;
+                       --menu-over: #3669A5;
+                       --menu-color: white;
+                       --footer: #01689b;
+                       --footer-color: white;
+                }
 
-        $style->setfavicon($favicon);
+               .main {
+                   padding-top: 00px;
+               }
+
+               h1, h2 {
+                   font-family: \'Lobster\', cursive;
+               }
+               ');
+
         $style->addOrganization($organization);
         $manager->persist($style);
         $manager->flush();
@@ -124,8 +127,10 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
                 'loggedIn'              => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'58873338-3ef1-4764-a1a8-72a8787625f4']),
                 'home'                  => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'0e3ec00f-c17b-4237-b6dd-070f800eb784']),
                 'studenten'             => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'a4a9a984-d83e-44ac-b27d-c77cd74b0d21']),
-                'footer1'               => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'afa4c1f6-17b7-40a2-b289-57640bb141d9']),
+                'footer1'               => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'3895915c-a992-462e-848d-3be73a954d51']),
                 'headerimg'             => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'da8af35b-afca-455e-a722-6d0052f7367d']),
+                'kladimg'               => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'62685881-e5a2-4f73-b08f-a155b6dab74c']),
+                'raketimg'               => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'cdaad46c-f1b3-11ea-adc1-0242ac120002']),
                 'footer4img'            => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'e49586fb-ec10-4f92-8ad5-f78e323ac104']),
                 'googleTagId'           => 'G-2PYCJ13YC4',
                 'userPage'              => 'me',
