@@ -76,7 +76,7 @@ class TemplateSubscriber implements EventSubscriberInterface
         $stamp = microtime();
         switch ($contentType) {
             case 'application/ld+json':
-            case 'applicaiton/json':
+            case 'application/json':
             case 'application/hal+json':
             case 'application/xml':
                 return $result;
