@@ -192,7 +192,7 @@ class WestfrieslandFixtures extends Fixture
         $manager->flush();
 
         // stedebroec
-        $id = Uuid::fromString('e7d5368d-4d95-454d-9c0e-d4466889e2bd');
+        $id = Uuid::fromString('a5567d87-ca05-45e9-a888-184494a3c79c');
         $stedebroec = new Organization();
         $stedebroec->setName('Stedebroec');
         $stedebroec->setDescription('Gemeenten Stedebroec');
