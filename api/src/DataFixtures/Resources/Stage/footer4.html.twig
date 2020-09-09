@@ -1,0 +1,12 @@
+{# templates/home/index.html.twig #}
+
+{% extends 'base.html.twig' %}
+{% block container %}
+
+{% set raketimg = commonground_resource(application.defaultConfiguration.configuration.raketimg) %}
+<div class="row background--primary background--image"
+     style="float: right; width: 30%; background: url(data:image/file;base64,{{ raketimg['base64'] }})">
+    <div class="container">
+    </div><!-- /.container -->
+</div><!-- /.row -->
+{% endblock %}

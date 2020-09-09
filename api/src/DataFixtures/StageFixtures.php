@@ -1,5 +1,4 @@
 <?php
-
 namespace App\DataFixtures;
 
 use App\Entity\Application;
@@ -73,12 +72,23 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
         $manager->flush();
         $headerimg = $manager->getRepository('App:Image')->findOneBy(['id'=> $id]);
 
-        //raket img
+        $id = Uuid::fromString('62685881-e5a2-4f73-b08f-a155b6dab74c');
+        $kladimg = new Image();
+        $kladimg->setName('klad image');
+        $kladimg->setBase64(base64_encode(file_get_contents(dirname(__FILE__).'/Resources/Stage/afbeeldingen/Klad.png', 'r')));
+        $kladimg->setDescription('stageplatform klad image ');
+        $kladimg->setOrganization($organization);
+        $manager->persist($kladimg);
+        $kladimg->setId($id);
+        $manager->persist($kladimg);
+        $manager->flush();
+        $kladimg = $manager->getRepository('App:Image')->findOneBy(['id'=> $id]);
+
         $id = Uuid::fromString('cdaad46c-f1b3-11ea-adc1-0242ac120002');
         $raketimg = new Image();
         $raketimg->setName('raket image');
         $raketimg->setBase64(base64_encode(file_get_contents(dirname(__FILE__).'/Resources/Stage/afbeeldingen/Raket-rechts-onder.png', 'r')));
-        $raketimg->setDescription('stageplattform raket voor rechts onder ');
+        $raketimg->setDescription('stageplatform raket voor rechts onder ');
         $raketimg->setOrganization($organization);
         $manager->persist($raketimg);
         $raketimg->setId($id);
@@ -87,29 +97,32 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
         $raketimg = $manager->getRepository('App:Image')->findOneBy(['id'=> $id]);
 
         $style = new Style();
+        $style->setfavicon($favicon);
         $style->setName('academy');
         $style->setDescription('Huistlijl Gemeente Zuid-Drecht');
         $style->setCss('
-        :root {
-                --primary: #406377;
-                --primary-color: white;
-                --secondary: #cce0f1;
-                --secondary-color: #2b2b2b;
-                --menu: #01689b;
-                --menu-over: #3669A5;
-                --menu-color: white;
-                --footer: #406377;
-                --footer-color: white;
-         }
-        .main {
-            padding-top: 00px;
-        }
-        h1, h2 {
-            font-family: \'Lobster\', cursive;
-        }
-        ');
+               :root {
+                       --primary: #01689b;
+                       --primary-color: white;
+                       --secondary: #cce0f1;
+                       --secondary-color: #2b2b2b;
+                       --menu: #01689b;
+                       --menu-over: #3669A5;
+                       --menu-color: white;
+                       --footer: #01689b;
+                       --footer-color: white;
+                }
 
-        $style->setfavicon($favicon);
+               .main {
+                   padding-top: 00px;
+                   height
+               }
+
+               h1, h2 {
+                   font-family: \'Lobster\', cursive;
+               }
+               ');
+
         $style->addOrganization($organization);
         $manager->persist($style);
         $manager->flush();
@@ -124,8 +137,11 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
                 'loggedIn'              => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'58873338-3ef1-4764-a1a8-72a8787625f4']),
                 'home'                  => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'0e3ec00f-c17b-4237-b6dd-070f800eb784']),
                 'studenten'             => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'a4a9a984-d83e-44ac-b27d-c77cd74b0d21']),
-                'footer1'               => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'afa4c1f6-17b7-40a2-b289-57640bb141d9']),
+                'footer1'               => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'3895915c-a992-462e-848d-3be73a954d51']),
+                'footer4'               => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'0c663ab8-f9d5-42c5-8866-1a51fcf74a12']),
                 'headerimg'             => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'da8af35b-afca-455e-a722-6d0052f7367d']),
+                'kladimg'               => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'62685881-e5a2-4f73-b08f-a155b6dab74c']),
+                'raketimg'               => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'cdaad46c-f1b3-11ea-adc1-0242ac120002']),
                 'footer4img'            => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'e49586fb-ec10-4f92-8ad5-f78e323ac104']),
                 'googleTagId'           => 'G-2PYCJ13YC4',
                 'userPage'              => 'me',
@@ -307,7 +323,7 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
         $manager->persist($slug);
         $manager->flush();
 
-        //footer
+        //footer1
         $id = Uuid::fromString('afa4c1f6-17b7-40a2-b289-57640bb141d9');
         $template = new Template();
         $template->setName('footer1');
@@ -323,16 +339,21 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
         $manager->persist($template);
         $manager->flush();
 
-        $id = Uuid::fromString('e49586fb-ec10-4f92-8ad5-f78e323ac104');
-        $footer4img = new Image();
-        $footer4img->setName('footer4img');
-        $footer4img->setBase64(base64_encode(file_get_contents(dirname(__FILE__).'/Resources/Stage/afbeeldingen/Raket-rechts-onder.png', 'r')));
-        $footer4img->setDescription('Academy footer');
-        $footer4img->setOrganization($organization);
-        $manager->persist($footer4img);
-        $footer4img->setId($id);
-        $manager->persist($footer4img);
+        //footer4
+        $id = Uuid::fromString('0c663ab8-f9d5-42c5-8866-1a51fcf74a12');
+        $template = new Template();
+        $template->setName('footer4');
+        $template->setDescription('footer4');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Stage/footer4.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
         $manager->flush();
-        $footer4img = $manager->getRepository('App:Image')->findOneBy(['id'=> $id]);
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
+
     }
 }

@@ -14373,6 +14373,7 @@ definitions:
         maxLength: 255
       dateCreated:
         description: 'The moment this request was created'
+<<<<<<< Updated upstream
         type: \Datetime
       dateModified:
         description: 'The moment this request last Modified'
@@ -14383,6 +14384,18 @@ definitions:
       - name
       - description
   TemplateGroup-write:
+=======
+        type: string
+        format: date-time
+        example: '2020-09-04 14:27:48'
+      dateModified:
+        description: 'The moment this request last Modified'
+        type: string
+        format: date-time
+        example: '2020-09-04 14:27:48'
+    required: []
+  ChangeLog-write:
+>>>>>>> Stashed changes
     properties:
       name:
         description: 'The internal name of this menu'
@@ -14504,12 +14517,20 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
+<<<<<<< Updated upstream
         example: '2020-09-07 08:13:16'
+=======
+        example: '2020-09-04 14:27:48'
+>>>>>>> Stashed changes
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
+<<<<<<< Updated upstream
         example: '2020-09-07 08:13:16'
+=======
+        example: '2020-09-04 14:27:48'
+>>>>>>> Stashed changes
     required: []
   AuditTrail-write:
     properties:
