@@ -135,29 +135,85 @@ class WestfrieslandFixtures extends Fixture
         $manager->persist($style);
         $manager->flush();
 
-        // SED
+        // Enkhuizen
         $id = Uuid::fromString('7033eeb4-5c77-4d88-9f40-303b538f176f');
-        $sed = new Organization();
-        $sed->setName('SED');
-        $sed->setDescription('Gemeenten Stede Broec, Enkhuizen en Drechterland');
-        $sed->setRsin('1234');
-        $sed->setContact($this->commonGroundService->cleanUrl(['component' => 'cc', 'type' => 'organizations', 'id' => '0012428b-dc06-444a-af20-17d3ee06a916']));
-        $manager->persist($sed);
-        $sed->setId($id);
-        $manager->persist($sed);
+        $enkhuizen = new Organization();
+        $enkhuizen->setName('Enkhuizen');
+        $enkhuizen->setDescription('Gemeenten Enkhuizen');
+        $enkhuizen->setRsin('1234');
+        $enkhuizen->setContact($this->commonGroundService->cleanUrl(['component' => 'cc', 'type' => 'organizations', 'id' => '0012428b-dc06-444a-af20-17d3ee06a916']));
+        $manager->persist($enkhuizen);
+        $enkhuizen->setId($id);
+        $manager->persist($enkhuizen);
         $manager->flush();
-        $sed = $manager->getRepository('App:Organization')->findOneBy(['id' => $id]);
+        $enkhuizen = $manager->getRepository('App:Organization')->findOneBy(['id' => $id]);
 
-        // SED
+        // Enkhuizen
         $style = new Style();
-        $style->setName('SED Style');
+        $style->setName('Enkhuizen Style');
         $style->setDescription('Huistlijl Westfriese gemeenten West-Friesland');
         $style->setCss(':root {--primary: #003E51;--primary2: white;--secondary: #509E2F;--secondary2: #509E2F;}.main-title
     	{color: var(--primary2) !important;}.logo-header {background: var(--primary);}.navbar-header {background: var(--primary);}
     	.bg-primary-gradient {background: linear-gradient(-45deg, var(--secondary), var(--secondary2)) !important;}');
 
         $style->setfavicon($favicon);
-        $style->addOrganization($sed);
+        $style->addOrganization($enkhuizen);
+
+        $manager->persist($favicon);
+        $manager->persist($style);
+        $manager->flush();
+
+        // Drechterland
+        $id = Uuid::fromString('e7d5368d-4d95-454d-9c0e-d4466889e2bd');
+        $drechterland = new Organization();
+        $drechterland->setName('Drechterland');
+        $drechterland->setDescription('Gemeenten Drechterland');
+        $drechterland->setRsin('1234');
+        $drechterland->setContact($this->commonGroundService->cleanUrl(['component' => 'cc', 'type' => 'organizations', 'id' => '756e50b8-4fd7-44d4-99d6-7f8ef47c3678']));
+        $manager->persist($drechterland);
+        $drechterland->setId($id);
+        $manager->persist($drechterland);
+        $manager->flush();
+        $drechterland = $manager->getRepository('App:Organization')->findOneBy(['id' => $id]);
+
+        // Drechterland
+        $style = new Style();
+        $style->setName('Drechterland Style');
+        $style->setDescription('Huistlijl Westfriese gemeenten West-Friesland');
+        $style->setCss(':root {--primary: #003E51;--primary2: white;--secondary: #509E2F;--secondary2: #509E2F;}.main-title
+    	{color: var(--primary2) !important;}.logo-header {background: var(--primary);}.navbar-header {background: var(--primary);}
+    	.bg-primary-gradient {background: linear-gradient(-45deg, var(--secondary), var(--secondary2)) !important;}');
+
+        $style->setfavicon($favicon);
+        $style->addOrganization($drechterland);
+
+        $manager->persist($favicon);
+        $manager->persist($style);
+        $manager->flush();
+
+        // stedebroec
+        $id = Uuid::fromString('a5567d87-ca05-45e9-a888-184494a3c79c');
+        $stedebroec = new Organization();
+        $stedebroec->setName('Stedebroec');
+        $stedebroec->setDescription('Gemeenten Stedebroec');
+        $stedebroec->setRsin('1234');
+        $stedebroec->setContact($this->commonGroundService->cleanUrl(['component' => 'cc', 'type' => 'organizations', 'id' => '93a892a9-d164-4d37-bfa5-a37c52ab3840']));
+        $manager->persist($stedebroec);
+        $stedebroec->setId($id);
+        $manager->persist($stedebroec);
+        $manager->flush();
+        $stedebroec = $manager->getRepository('App:Organization')->findOneBy(['id' => $id]);
+
+        // stedebroec
+        $style = new Style();
+        $style->setName('Stedebroec Style');
+        $style->setDescription('Huistlijl Westfriese gemeenten West-Friesland');
+        $style->setCss(':root {--primary: #003E51;--primary2: white;--secondary: #509E2F;--secondary2: #509E2F;}.main-title
+    	{color: var(--primary2) !important;}.logo-header {background: var(--primary);}.navbar-header {background: var(--primary);}
+    	.bg-primary-gradient {background: linear-gradient(-45deg, var(--secondary), var(--secondary2)) !important;}');
+
+        $style->setfavicon($favicon);
+        $style->addOrganization($stedebroec);
 
         $manager->persist($favicon);
         $manager->persist($style);
@@ -220,12 +276,13 @@ class WestfrieslandFixtures extends Fixture
         $manager->flush();
 
         // Hogeland
+        /*
         $id = Uuid::fromString('79ad319b-1ff6-4e21-919b-4ea002b5f233');
         $hogeland = new Organization();
         $hogeland->setName('Hogeland');
         $hogeland->setDescription('Gemeente Hogeland');
         $hogeland->setRsin('1234');
-//        $hogeland->setContact($this->commonGroundService->cleanUrl(['component' => 'cc', 'type' => 'organizations', 'id' => '5792b63d-afb5-4689-990b-51eec52b663b']));
+//      $hogeland->setContact($this->commonGroundService->cleanUrl(['component' => 'cc', 'type' => 'organizations', 'id' => '5792b63d-afb5-4689-990b-51eec52b663b']));
         $manager->persist($hogeland);
         $hogeland->setId($id);
         $manager->persist($hogeland);
@@ -246,6 +303,7 @@ class WestfrieslandFixtures extends Fixture
         $manager->persist($favicon);
         $manager->persist($style);
         $manager->flush();
+        */
 
         $id = Uuid::fromString('2c60657d-a728-4e71-897d-ac407c134e10');
         $headerimg = new Image();

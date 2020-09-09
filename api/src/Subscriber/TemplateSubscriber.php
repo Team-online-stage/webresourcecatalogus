@@ -74,7 +74,7 @@ class TemplateSubscriber implements EventSubscriberInterface
                 break;
         }
         $stamp = microtime();
-        switch($contentType){
+        switch ($contentType) {
             case 'application/ld+json':
             case 'application/json':
             case 'application/hal+json':
@@ -118,7 +118,6 @@ class TemplateSubscriber implements EventSubscriberInterface
                 unlink($filenameDocx); // deletes the temporary file
                 exit;
         }
-
 
         return $result;
     }

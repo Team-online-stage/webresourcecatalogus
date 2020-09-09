@@ -113,7 +113,7 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
                 //'newsimg'               => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'b0e3e803-2cb6-41ed-ab32-d6e5451c119d']),
                 //'headerimg'             => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'0863d15c-286e-4ec4-90f6-27cebb107aa9']),
                 'userPage'              => 'me',
-                'login'                 => ['user'=>true, 'idin'=>true, 'facebook'=>true, 'gmail'=>true],
+                'login'                 => ['user'=>true, 'idin'=>true], //, 'facebook'=>true, 'gmail'=>true
                 'header'                => false,
                 'stickyMenu'            => true,
                 'newsGroup'             => '1024',
