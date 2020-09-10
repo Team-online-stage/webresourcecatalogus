@@ -1,3 +1,8 @@
+{#
+    Work in progress
+    "detail": "Warning: DOMDocument::loadXML(): Opening and ending tag mismatch: meta line 1 and head in Entity, line: 1",
+#}
+
 {% set invoice = commonground_resource(resource) %} {# bc/invoices #}
 {% set customer = commonground_resource(invoice.customer) %} {# cc/people or brp/ingeschrevenpersonen (or even cc/organizations?) #}
 {% set organization = commonground_resource(invoice.targetOrganization) %} {# wrc/organizations #}
