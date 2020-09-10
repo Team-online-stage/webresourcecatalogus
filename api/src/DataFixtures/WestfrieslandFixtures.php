@@ -644,7 +644,7 @@ class WestfrieslandFixtures extends Fixture
         $manager->persist($template);
         $manager->flush();
 
-        $id = Uuid::fromString('3ad00211-9cc9-4100-9fef-effa8731b104');
+        $id = Uuid::fromString('87c8eae6-c1e1-4e89-90a7-8f7ce655bd7f');
         $template = new Template();
         $template->setName('Ingediend verzoek');
         $template->setTitle('Uw verzoek is ontvangen');
