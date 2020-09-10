@@ -14231,6 +14231,7 @@ definitions:
         maxLength: 255
       dateCreated:
         description: 'The moment this request was created'
+<<<<<<< Updated upstream
         type: \Datetime
       dateModified:
         description: 'The moment this request last Modified'
@@ -14241,6 +14242,18 @@ definitions:
       - name
       - description
   TemplateGroup-write:
+=======
+        type: string
+        format: date-time
+        example: '2020-09-04 14:27:48'
+      dateModified:
+        description: 'The moment this request last Modified'
+        type: string
+        format: date-time
+        example: '2020-09-04 14:27:48'
+    required: []
+  ChangeLog-write:
+>>>>>>> Stashed changes
     properties:
       name:
         description: 'The internal name of this menu'
