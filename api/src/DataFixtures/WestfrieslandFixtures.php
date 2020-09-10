@@ -644,15 +644,12 @@ class WestfrieslandFixtures extends Fixture
         $manager->persist($template);
         $manager->flush();
 
-        $id = Uuid::fromString('87c8eae6-c1e1-4e89-90a7-8f7ce655bd7f');
         $template = new Template();
         $template->setName('Ingediend verzoek');
         $template->setTitle('Uw verzoek is ontvangen');
         $template->setDescription('Bevestiging dat een verzoek is gewijzigd');
         $template->setContent('Beste {{ receiver.givenName }},<p>Wij hebben uw ingediende verzoek met referentie {{ resource.reference }} succesvol ontvangen. We nemen uw verzoek zo snel mogelijk in behandeling.</p><p>Met vriendelijke groet,</p>{{ sender.name }}');
         $template->setTemplateEngine('twig');
-        $manager->persist($template);
-        $template->setId($id);
         $manager->persist($template);
         $manager->flush();
         $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
@@ -665,6 +662,90 @@ class WestfrieslandFixtures extends Fixture
         $slug->setApplication($application);
         $slug->setName('e-mail-bevestiging');
         $slug->setSlug('e-mail-bevestiging');
+        $manager->persist($slug);
+        $manager->flush();
+
+        $template = new Template();
+        $template->setName('Verzoek in behandeling');
+        $template->setTitle('Uw verzoek is in behandeling genomen');
+        $template->setDescription('Bevestiging dat een verzoek is gewijzigd');
+        $template->setContent('Beste {{ receiver.givenName }},<p>Wij hebben uw ingediende verzoek met referentie {{ resource.reference }} in behandeling genomen. Wij reageren zo spoedig mogelijk.</p><p>Met vriendelijke groet,</p>{{ sender.name }}');
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupEmails);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('e-mail-behandeling');
+        $slug->setSlug('e-mail-behandeling');
+        $manager->persist($slug);
+        $manager->flush();
+
+        $template = new Template();
+        $template->setName('Verzoek afgewezen');
+        $template->setTitle('Uw verzoek is afgewezen');
+        $template->setDescription('Bevestiging dat een verzoek is gewijzigd');
+        $template->setContent('Beste {{ receiver.givenName }},<p>Wij hebben uw ingediende verzoek met referentie {{ resource.reference }} helaas moeten afwijzen. U kunt een nieuw verzoek aanmaken, of contact met ons opnemen via</p><p>Met vriendelijke groet,</p>{{ sender.name }}');
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupEmails);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('e-mail-afwijzing');
+        $slug->setSlug('e-mail-afwijzing');
+        $manager->persist($slug);
+        $manager->flush();
+
+        $template = new Template();
+        $template->setName('Verzoek afgehandeld');
+        $template->setTitle('Uw verzoek afgehandeld');
+        $template->setDescription('Bevestiging dat een verzoek is gewijzigd');
+        $template->setContent('Beste {{ receiver.givenName }},<p>Wij hebben uw ingediende verzoek met referentie {{ resource.reference }} afgehandeld.</p><p>Met vriendelijke groet,</p>{{ sender.name }}');
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupEmails);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('e-mail-afgehandeld');
+        $slug->setSlug('e-mail-afgehandeldg');
+        $manager->persist($slug);
+        $manager->flush();
+
+        $template = new Template();
+        $template->setName('Ontvangen reservering');
+        $template->setTitle('Er is een reservering ontvangen voor uw begraafplaats');
+        $template->setDescription('Bevestiging dat een verzoek is gewijzigd');
+        $template->setContent('{% set cemetery = resource.properties.begraafplaats %}{% set date = resource.properties.datum %}Beste {{ receiver.givenName }},<p>Er is een verzoek met referentie {{ resource.reference }} aangemaakt met een reservering op de aan u toegewezen begraafplaats {{ begraafplaats.name }} op {{ request.properties.datum|date("d-m-Y om H:i", "Europe/Paris") }}.</p><p>Met vriendelijke groet,</p>{{ sender.name }}');
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupEmails);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('e-mail-reservering');
+        $slug->setSlug('e-mail-reservering');
         $manager->persist($slug);
         $manager->flush();
 
