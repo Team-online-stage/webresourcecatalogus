@@ -644,7 +644,6 @@ class WestfrieslandFixtures extends Fixture
         $manager->persist($template);
         $manager->flush();
 
-        $id = Uuid::fromString('87c8eae6-c1e1-4e89-90a7-8f7ce655bd7f');
         $template = new Template();
         $template->setName('Ingediend verzoek');
         $template->setTitle('Uw verzoek is ontvangen');
@@ -737,7 +736,6 @@ class WestfrieslandFixtures extends Fixture
         $manager->persist($slug);
         $manager->flush();
 
-        $id = Uuid::fromString('daf23ce0-12ac-48c8-ab58-b655dd99ea81 ');
         $template = new Template();
         $template->setName('Ontvangen reservering');
         $template->setTitle('Er is een reservering ontvangen voor uw begraafplaats');
