@@ -113,7 +113,7 @@
         {% endif %}
     {% elseif customer['@type'] == 'Ingeschrevenpersoon' %}
         {% if customer.verblijfplaats is defined and customer.verblijfplaats is not empty %}
-            <p style="position:absolute;top:355px;left:106px;white-space:nowrap" class="ft117">&nbsp;<br><b>&nbsp;<br>{{ customer.naam.voornamen }} {{ customer.naam.geslachtsnaam }}&nbsp;<br></b>{{ customer.verblijftplaats.straatnaam }}&nbsp;{{ customer.verblijftplaats.huisnummer }}&nbsp;<br>{{ customer.verblijftplaats.postcode }}&nbsp;{{ customer.verblijftplaats.woonplaatsnaam }}&nbsp;<br>&nbsp;<br></p>
+            <p style="position:absolute;top:355px;left:106px;white-space:nowrap" class="ft117">&nbsp;<br><b>&nbsp;<br>{{ customer.naam.voornamen }} {{ customer.naam.geslachtsnaam }}&nbsp;<br></b>{{ customer.verblijfplaats.straatnaam }}&nbsp;{{ customer.verblijfplaats.huisnummer }}&nbsp;<br>{{ customer.verblijfplaats.postcode }}&nbsp;{{ customer.verblijfplaats.woonplaatsnaam }}&nbsp;<br>&nbsp;<br></p>
         {% else %}
             <p style="position:absolute;top:355px;left:106px;white-space:nowrap" class="ft117">&nbsp;<br><b>&nbsp;<br>{{ customer.naam.voornamen }} {{ customer.naam.geslachtsnaam }}&nbsp;<br></b>Straatnaam&nbsp;12&nbsp;<br>1234AB&nbsp;Plaatsnaam&nbsp;<br>&nbsp;<br></p>
         {% endif %}
