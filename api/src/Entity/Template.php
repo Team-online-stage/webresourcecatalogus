@@ -34,6 +34,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *         "method"="POST",
  *         "path"="/templates/{id}/render",
  *         "controller"=DefaultController::class,
+ *         "formats"={"json", "jsonld", "jsonhal", "xml", "pdf"={"application/pdf"}, "word"={"application/vnd.ms-word", "application/vnd.openxmlformats-officedocument.wordprocessing"}}
  *     		},
  *     "get_change_logs"={
  *              "path"="/templates/{id}/change_log",
