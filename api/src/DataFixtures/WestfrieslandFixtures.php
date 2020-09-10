@@ -651,8 +651,6 @@ class WestfrieslandFixtures extends Fixture
         $template->setContent('Beste {{ receiver.givenName }},<p>Wij hebben uw ingediende verzoek met referentie {{ resource.reference }} succesvol ontvangen. We nemen uw verzoek zo snel mogelijk in behandeling.</p><p>Met vriendelijke groet,</p>{{ sender.name }}');
         $template->setTemplateEngine('twig');
         $manager->persist($template);
-        $template->setId($id);
-        $manager->persist($template);
         $manager->flush();
         $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
         $template->addTemplateGroup($groupEmails);
@@ -673,8 +671,6 @@ class WestfrieslandFixtures extends Fixture
         $template->setDescription('Bevestiging dat een verzoek is gewijzigd');
         $template->setContent('Beste {{ receiver.givenName }},<p>Wij hebben uw ingediende verzoek met referentie {{ resource.reference }} in behandeling genomen. Wij reageren zo spoedig mogelijk.</p><p>Met vriendelijke groet,</p>{{ sender.name }}');
         $template->setTemplateEngine('twig');
-        $manager->persist($template);
-        $template->setId($id);
         $manager->persist($template);
         $manager->flush();
         $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
@@ -697,8 +693,6 @@ class WestfrieslandFixtures extends Fixture
         $template->setContent('Beste {{ receiver.givenName }},<p>Wij hebben uw ingediende verzoek met referentie {{ resource.reference }} helaas moeten afwijzen. U kunt een nieuw verzoek aanmaken, of contact met ons opnemen via</p><p>Met vriendelijke groet,</p>{{ sender.name }}');
         $template->setTemplateEngine('twig');
         $manager->persist($template);
-        $template->setId($id);
-        $manager->persist($template);
         $manager->flush();
         $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
         $template->addTemplateGroup($groupEmails);
@@ -720,8 +714,6 @@ class WestfrieslandFixtures extends Fixture
         $template->setContent('Beste {{ receiver.givenName }},<p>Wij hebben uw ingediende verzoek met referentie {{ resource.reference }} afgehandeld.</p><p>Met vriendelijke groet,</p>{{ sender.name }}');
         $template->setTemplateEngine('twig');
         $manager->persist($template);
-        $template->setId($id);
-        $manager->persist($template);
         $manager->flush();
         $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
         $template->addTemplateGroup($groupEmails);
@@ -742,8 +734,6 @@ class WestfrieslandFixtures extends Fixture
         $template->setDescription('Bevestiging dat een verzoek is gewijzigd');
         $template->setContent('{% set cemetery = resource.properties.begraafplaats %}{% set date = resource.properties.datum %}Beste {{ receiver.givenName }},<p>Er is een verzoek met referentie {{ resource.reference }} aangemaakt met een reservering op de aan u toegewezen begraafplaats {{ begraafplaats.name }} op {{ request.properties.datum|date("d-m-Y om H:i", "Europe/Paris") }}.</p><p>Met vriendelijke groet,</p>{{ sender.name }}');
         $template->setTemplateEngine('twig');
-        $manager->persist($template);
-        $template->setId($id);
         $manager->persist($template);
         $manager->flush();
         $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
