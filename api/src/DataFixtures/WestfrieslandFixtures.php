@@ -394,7 +394,7 @@ class WestfrieslandFixtures extends Fixture
                 'changeRequest'     => '7216b69d-e245-488e-af8f-0969241926e7',
                 'objectionRequest'  => '2a95ba3e-a3f9-4fdf-8a6d-005d96aad405',
                 'orderTemplate'     => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'b92c9562-acdc-40ad-9156-9d98b539d885']),
-                'invoiceTemplate'   => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'fc5a7f58-aaf6-4775-bed8-f4ca00c132c0']),
+                'invoiceTemplate'   => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'fc5a7f58-aaf6-4775-bed8-f4ca00c132c0']),
                 'login'             => ['eherkening'=>true],
                 'newsGroup'         => ['4'],
                 'userPage'          => 'persoonlijk',
