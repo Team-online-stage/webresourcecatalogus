@@ -4,17 +4,17 @@
 
 {% if organization.contact is defined and organization.contact is not null %}
     {% set organizationContact = commonground_resource(organization.contact) %} {# cc/organizations #}
-    {% set organizationAdresses = commonground_resource_list_(organizationContact.adresses) %} {# cc/adresses #}
+    {% set organizationAdresses = commonground_resource_list(organizationContact.adresses) %} {# cc/adresses #}
     {% if organizationAdresses|length >0 %}
         {% set organizationAdres = organizationAdresses[0] %}
     {% endif %}
 
-    {% set organizationTelephones = commonground_resource_list_(organizationContact.telephones) %} {# cc/telephones #}
+    {% set organizationTelephones = commonground_resource_list(organizationContact.telephones) %} {# cc/telephones #}
     {% if organizationTelephones|length >0 %}
         {% set organizationTelephone = organizationTelephones[0] %}
     {% endif %}
 
-    {% set organizationEmails = commonground_resource_list_(organizationContact.emails) %} {# cc/emails #}
+    {% set organizationEmails = commonground_resource_list(organizationContact.emails) %} {# cc/emails #}
     {% if organizationEmails|length >0 %}
         {% set organizationEmail = organizationEmails[0] %}
     {% endif %}
@@ -102,7 +102,7 @@
 
     {# klant informatie #}
     {% if customer['@type'] == 'Person' %}
-        {% set customerAdresses = commonground_resource_list_(customer.adresses) %} {# cc/adresses #}
+        {% set customerAdresses = commonground_resource_list(customer.adresses) %} {# cc/adresses #}
         {% if customerAdresses|length >0 %}
             {% set customerAdres = customerAdresses[0] %}
         {% endif %}
@@ -120,7 +120,7 @@
     {% elseif customer['@type'] == 'Organization' %}
         {% if customer.contact is defined and customer.contact is not null %}
             {% set customerContact = commonground_resource(customer.contact) %} {# cc/organizations #}
-            {% set customerAdresses = commonground_resource_list_(customerContact.adresses) %} {# cc/adresses #}
+            {% set customerAdresses = commonground_resource_list(customerContact.adresses) %} {# cc/adresses #}
             {% if customerAdresses|length >0 %}
                 {% set customerAdres = customerAdresses[0] %}
             {% endif %}
