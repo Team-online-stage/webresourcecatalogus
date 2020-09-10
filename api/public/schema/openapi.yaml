@@ -11678,6 +11678,15 @@ paths:
         201:
           description: 'Template resource created'
           content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Template-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/Template-read'
+            application/json+health:
+              schema:
+                $ref: '#/components/schemas/Template-read'
             application/ld+json:
               schema:
                 $ref: '#/components/schemas/Template:jsonld-read'
@@ -11690,31 +11699,16 @@ paths:
             application/json+hal:
               schema:
                 $ref: '#/components/schemas/Template-read'
-            application/vnd.api+json:
-              schema:
-                $ref: '#/components/schemas/Template-read'
-            application/json+vnd.api:
-              schema:
-                $ref: '#/components/schemas/Template-read'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Template-read'
-            application/health+json:
-              schema:
-                $ref: '#/components/schemas/Template-read'
-            application/json+health:
-              schema:
-                $ref: '#/components/schemas/Template-read'
             application/xml:
               schema:
                 $ref: '#/components/schemas/Template-read'
-            application/x-yaml:
+            application/pdf:
               schema:
                 $ref: '#/components/schemas/Template-read'
-            text/csv:
+            application/vnd.ms-word:
               schema:
                 $ref: '#/components/schemas/Template-read'
-            text/html:
+            application/vnd.openxmlformats-officedocument.wordprocessing:
               schema:
                 $ref: '#/components/schemas/Template-read'
           links:
@@ -11729,6 +11723,15 @@ paths:
           description: 'Resource not found'
       requestBody:
         content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Template-write'
+          application/health+json:
+            schema:
+              $ref: '#/components/schemas/Template-write'
+          application/json+health:
+            schema:
+              $ref: '#/components/schemas/Template-write'
           application/ld+json:
             schema:
               $ref: '#/components/schemas/Template:jsonld-write'
@@ -11741,31 +11744,16 @@ paths:
           application/json+hal:
             schema:
               $ref: '#/components/schemas/Template-write'
-          application/vnd.api+json:
-            schema:
-              $ref: '#/components/schemas/Template-write'
-          application/json+vnd.api:
-            schema:
-              $ref: '#/components/schemas/Template-write'
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Template-write'
-          application/health+json:
-            schema:
-              $ref: '#/components/schemas/Template-write'
-          application/json+health:
-            schema:
-              $ref: '#/components/schemas/Template-write'
           application/xml:
             schema:
               $ref: '#/components/schemas/Template-write'
-          application/x-yaml:
+          application/pdf:
             schema:
               $ref: '#/components/schemas/Template-write'
-          text/csv:
+          application/vnd.ms-word:
             schema:
               $ref: '#/components/schemas/Template-write'
-          text/html:
+          application/vnd.openxmlformats-officedocument.wordprocessing:
             schema:
               $ref: '#/components/schemas/Template-write'
         description: 'The new Template resource'
@@ -14451,12 +14439,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-09-08 21:53:35'
+        example: '2020-09-10 08:25:13'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-09-08 21:53:35'
+        example: '2020-09-10 08:25:13'
     required: []
   ChangeLog-write:
     properties:
@@ -14570,12 +14558,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-09-09 12:37:53'
+        example: '2020-09-10 08:25:13'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-09-09 12:37:53'
+        example: '2020-09-10 08:25:13'
     required: []
   AuditTrail-write:
     properties:
@@ -14583,59 +14571,6 @@ definitions:
         description: 'A note conserning this log lin'
         type: string
         example: 'This log line looks suspicius'
-        maxLength: 2555
-    required: []
-  ChangeLog-read:
-    properties:
-      id:
-        description: 'The UUID identifier of this object'
-        type: string
-        example: e2984465-190a-4562-829e-a8cca81aa35d
-        format: uuid
-      note:
-        description: 'A note conserning this log lin'
-        type: string
-        example: 'This log line is suspicius'
-        maxLength: 2555
-      action:
-        description: ''
-        type: string
-      objectId:
-        description: ''
-        type: string
-      objectClass:
-        description: ''
-        type: string
-      version:
-        description: ''
-        type: int
-      data:
-        description: ''
-        type: array
-      username:
-        description: ''
-        type: string
-      session:
-        description: 'The moment this request was created'
-        type: string
-        maxLength: 255
-      dateCreated:
-        description: 'The moment this request was created'
-        type: string
-        format: date-time
-        example: '2020-09-09 12:37:53'
-      dateModified:
-        description: 'The moment this request last Modified'
-        type: string
-        format: date-time
-        example: '2020-09-09 12:37:53'
-    required: []
-  ChangeLog-write:
-    properties:
-      note:
-        description: 'A note conserning this log lin'
-        type: string
-        example: 'This log line is suspicius'
         maxLength: 2555
     required: []
 tags:
