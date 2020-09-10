@@ -475,6 +475,14 @@ class WestfrieslandFixtures extends Fixture
         $groupPages->setDescription('Webpages that are presented to visitors');
         $manager->persist($groupPages);
 
+        // Template groups
+        $groupEmails = new TemplateGroup();
+        $groupEmails->setOrganization($westfriesland);
+        $groupEmails->setApplication($application);
+        $groupEmails->setName('E-mails');
+        $groupEmails->setDescription('E-mail messages that are sent by the system');
+        $manager->persist($groupEmails);
+
         // Persoonlijk
         $template = new Template();
         $template->setName('Persoonlijk');
@@ -634,6 +642,30 @@ class WestfrieslandFixtures extends Fixture
         $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
         $template->addTemplateGroup($groupPages);
         $manager->persist($template);
+        $manager->flush();
+
+        $id = Uuid::fromString('3ad00211-9cc9-4100-9fef-effa8731b104');
+        $template = new Template();
+        $template->setName('Ingediend verzoek');
+        $template->setTitle('Uw verzoek is ontvangen');
+        $template->setDescription('Bevestiging dat een verzoek is gewijzigd');
+        $template->setContent('Beste {{ receiver.givenName }},<p>Wij hebben uw ingediende verzoek met referentie {{ resource.reference }} succesvol ontvangen. We nemen uw verzoek zo snel mogelijk in behandeling.</p><p>Met vriendelijke groet,</p>{{ sender.name }}');
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupEmails);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('e-mail-bevestiging');
+        $slug->setSlug('e-mail-bevestiging');
+        $manager->persist($slug);
         $manager->flush();
 
         // Dashboard
