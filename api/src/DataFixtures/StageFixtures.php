@@ -109,13 +109,14 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
                        --menu: #01689b;
                        --menu-over: #3669A5;
                        --menu-color: white;
+                       --menu-height: 100px;
                        --footer: #01689b;
                        --footer-color: white;
                 }
 
                .main {
                    padding-top: 00px;
-                   height
+                   height: 50px;
                }
 
                h1, h2 {
@@ -137,11 +138,10 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
                 'loggedIn'              => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'58873338-3ef1-4764-a1a8-72a8787625f4']),
                 'home'                  => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'0e3ec00f-c17b-4237-b6dd-070f800eb784']),
                 'studenten'             => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'a4a9a984-d83e-44ac-b27d-c77cd74b0d21']),
-                'footer1'               => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'3895915c-a992-462e-848d-3be73a954d51']),
-                'footer4'               => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'0c663ab8-f9d5-42c5-8866-1a51fcf74a12']),
+                'footer1'               => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'afa4c1f6-17b7-40a2-b289-57640bb141d9']),
                 'headerimg'             => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'da8af35b-afca-455e-a722-6d0052f7367d']),
                 'kladimg'               => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'62685881-e5a2-4f73-b08f-a155b6dab74c']),
-                'raketimg'               => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'cdaad46c-f1b3-11ea-adc1-0242ac120002']),
+                'raketimg'              => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'cdaad46c-f1b3-11ea-adc1-0242ac120002']),
                 'footer4img'            => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'e49586fb-ec10-4f92-8ad5-f78e323ac104']),
                 'googleTagId'           => 'G-2PYCJ13YC4',
                 'userPage'              => 'me',
@@ -337,22 +337,5 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
         $template->addTemplateGroup($groupPages);
         $manager->persist($template);
         $manager->flush();
-
-        //footer4
-        $id = Uuid::fromString('0c663ab8-f9d5-42c5-8866-1a51fcf74a12');
-        $template = new Template();
-        $template->setName('footer4');
-        $template->setDescription('footer4');
-        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Stage/footer4.html.twig', 'r'));
-        $template->setTemplateEngine('twig');
-        $manager->persist($template);
-        $template->setId($id);
-        $manager->persist($template);
-        $manager->flush();
-        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
-        $template->addTemplateGroup($groupPages);
-        $manager->persist($template);
-        $manager->flush();
-
     }
 }
