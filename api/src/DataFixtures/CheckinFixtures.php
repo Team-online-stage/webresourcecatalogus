@@ -104,7 +104,7 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $configuration->setConfiguration(
             [
                 'mainMenu'                         => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'f0faccbd-3067-45fb-9ab7-2938fbbbf492']),
-                'home'                             => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'0e3ec00f-c17b-4237-b6dd-070f800eb784']),
+                'home'                             => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'513ee2e3-cf32-4f1e-a85e-ccbe5743c418']),
                 'footer1'                          => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'3895915c-a992-462e-848d-3be73a954d51']),
                 'footer2'                          => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'93477f57-c092-4609-b9ae-8767495fead1']),
                 'footer3'                          => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'d44e0e0e-6c5b-461a-91df-0a77d44e2efb']),
@@ -260,7 +260,7 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $manager->flush();
 
         // Pages
-        $id = Uuid::fromString('0e3ec00f-c17b-4237-b6dd-070f800eb784');
+        $id = Uuid::fromString('513ee2e3-cf32-4f1e-a85e-ccbe5743c418');
         $template = new Template();
         $template->setName('CheckIn.nu Home');
         $template->setDescription('Homepage voor CheckIn.nu');
@@ -281,6 +281,7 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $manager->persist($slug);
         $manager->flush();
 
+        $id = Uuid::fromString('8e8007b8-e3c0-4253-ac57-09680789a351');
         $template = new Template();
         $template->setName('Ondernemer');
         $template->setDescription('Informatie voor ondernemers');
