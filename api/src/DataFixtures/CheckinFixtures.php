@@ -226,12 +226,36 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $manager->persist($slug);
         $manager->flush();
 
+        $id = Uuid::fromString('4016c529-cf9e-415e-abb1-2aba8bfa539e');
+        $template = new Template();
+        $template->setName('Verzoek geannuleerd');
+        $template->setTitle('U heeft uw verzoek geannuleerd');
+        $template->setDescription('Bevestiging dat u een verzoek heeft geannuleerd');
+        $template->setContent('Beste {{ receiver.givenName }},<p>Uw verzoek met referentie {{ resource.reference }} is geannuleerd.</p><p>Met vriendelijke groet,</p>{{ sender.name }}');
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupEmails);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('e-mail-annulering');
+        $slug->setSlug('e-mail-annulering');
+        $manager->persist($slug);
+        $manager->flush();
+
         // Invoice templates
         $id = Uuid::fromString('4f313197-1321-4e6d-a206-d5d80bb11b07');
         $template = new Template();
         $template->setName('Voorbeeld Factuur');
         $template->setDescription('Een voorbeeld factuur sjabloon');
-        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/CheckIn/facturen/voorbeeld.html.twig', 'r'));
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/CheckIn/facturen/tempVoorbeeld.html.twig', 'r'));
         $template->setTemplateEngine('twig');
         $manager->persist($template);
         $template->setId($id);
