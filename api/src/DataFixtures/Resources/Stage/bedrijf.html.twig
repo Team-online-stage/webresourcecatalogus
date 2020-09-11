@@ -4,12 +4,7 @@
 {% block container %}
 
 
-    <div style="display: flex; justify-content: center; margin-top: 5%">
-        <div id="zoekbalk" style="background-color: #01689b; display: inline-block; padding: 20px"><h2
-                style="color: white">ik zoek een stagiair in de sector:</h2><input type="text" id="Input"
-                                                                                   onkeyup="stagefilter()"
-                                                                                   placeholder="ICT"></div>
-    </div>
+
 
 
     <div class="container" style="margin-top: 20px">
@@ -62,36 +57,109 @@
     </div>
     <main class="skiplink-target main" id="content" tabindex="-1">
         <div id="filters">
+            <div style="display: flex; justify-content: center; margin-top: 5%">
+                <div id="zoekbalk" style="background-color: #01689b; display: inline-block; padding: 20px"><h2
+                        style="color: white">ik zoek een stagiair in de sector:</h2><input type="text" id="Input"
+                                                                                           onkeyup="stagefilter()"
+                                                                                           placeholder="ICT"></div>
+            </div>
             <div id="kaarten">
-                <ul class="list list--card list--card-small" id="stages">
-                    <li class="card card--small">
+                <ul class="list list--card list--card-small" id="stages" style="display: flex; flex-wrap: wrap;justify-content: center;
+  align-items: center">
+                    <li class="card card--small" style="width: 30%; margin: 5px">
                         <a href="#" class="card__content">
                             <div class="card__thumb" style="border: #0d5aa7"></div>
                             <div class="card__body"><span class="card__title">naam</span>
                                 <p class="card__content">opleiding</p>
-                                <p class="card__content">sector</p>
+                                <p class="card__content">ICT</p>
                                 <p class="card__content">leeftijd</p>
                                 <p class="card__content">leerjaar</p>
                             </div>
                         </a>
                     </li>
-                    <li class="card card--small">
+                    <li class="card card--small" style="width: 30%; margin: 5px">
                         <a href="#" class="card__content">
                             <div class="card__thumb" style="border: #0d5aa7"></div>
                             <div class="card__body"><span class="card__title">naam</span>
                                 <p class="card__content">opleiding</p>
-                                <p class="card__content">sector</p>
+                                <p class="card__content">Zorg</p>
                                 <p class="card__content">leeftijd</p>
                                 <p class="card__content">leerjaar</p>
                             </div>
                         </a>
                     </li>
-                    <li class="card card--small">
+                    <li class="card card--small" style="width: 30%; margin: 5px">
                         <a href="#" class="card__content">
                             <div class="card__thumb" style="border: #0d5aa7"></div>
                             <div class="card__body"><span class="card__title">naam</span>
                                 <p class="card__content">opleiding</p>
-                                <p class="card__content">sector</p>
+                                <p class="card__content">Horeca</p>
+                                <p class="card__content">leeftijd</p>
+                                <p class="card__content">leerjaar</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="card card--small" style="width: 30%; margin: 5px">
+                        <a href="#" class="card__content">
+                            <div class="card__thumb" style="border: #0d5aa7"></div>
+                            <div class="card__body"><span class="card__title">naam</span>
+                                <p class="card__content">opleiding</p>
+                                <p class="card__content">ICT</p>
+                                <p class="card__content">leeftijd</p>
+                                <p class="card__content">leerjaar</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="card card--small" style="width: 30%; margin: 5px">
+                        <a href="#" class="card__content">
+                            <div class="card__thumb" style="border: #0d5aa7"></div>
+                            <div class="card__body"><span class="card__title">naam</span>
+                                <p class="card__content">opleiding</p>
+                                <p class="card__content">Bouw</p>
+                                <p class="card__content">leeftijd</p>
+                                <p class="card__content">leerjaar</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="card card--small" style="width: 30%; margin: 5px">
+                        <a href="#" class="card__content">
+                            <div class="card__thumb" style="border: #0d5aa7"></div>
+                            <div class="card__body"><span class="card__title">naam</span>
+                                <p class="card__content">opleiding</p>
+                                <p class="card__content">Bouw</p>
+                                <p class="card__content">leeftijd</p>
+                                <p class="card__content">leerjaar</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="card card--small" style="width: 30%; margin: 5px">
+                        <a href="#" class="card__content">
+                            <div class="card__thumb" style="border: #0d5aa7"></div>
+                            <div class="card__body"><span class="card__title">naam</span>
+                                <p class="card__content">opleiding</p>
+                                <p class="card__content">Sport</p>
+                                <p class="card__content">leeftijd</p>
+                                <p class="card__content">leerjaar</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="card card--small" style="width: 30%; margin: 5px">
+                        <a href="#" class="card__content">
+                            <div class="card__thumb" style="border: #0d5aa7"></div>
+                            <div class="card__body"><span class="card__title">naam</span>
+                                <p class="card__content">opleiding</p>
+                                <p class="card__content">Geneeskunde</p>
+                                <p class="card__content">leeftijd</p>
+                                <p class="card__content">leerjaar</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="card card--small" style="width: 30%; margin: 5px">
+                        <a href="#" class="card__content">
+                            <div class="card__thumb" style="border: #0d5aa7"></div>
+                            <div class="card__body"><span class="card__title">naam</span>
+                                <p class="card__content">opleiding</p>
+                                <p class="card__content">Geneeskunde</p>
                                 <p class="card__content">leeftijd</p>
                                 <p class="card__content">leerjaar</p>
                             </div>
@@ -101,5 +169,28 @@
             </div>
         </div>
     </main>
+
+    <script>
+
+        function stagefilter() {
+            // Declare variables
+            var input, filter, ul, li, a, i, txtValue;
+            input = document.getElementById('Input');
+            filter = input.value.toUpperCase();
+            ul = document.getElementById("filters");
+            li = ul.getElementsByTagName('li');
+
+            for (i = 0; i < li.length; i++) {
+                a = li[i].getElementsByTagName("a")[0];
+                txtValue = a.textContent || a.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    li[i].style.display = "";
+                } else {
+                    li[i].style.display = "none";
+                }
+            }
+        }
+
+    </script>
 {% endblock %}
 
