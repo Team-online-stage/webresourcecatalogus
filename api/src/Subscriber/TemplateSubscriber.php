@@ -5,6 +5,9 @@ namespace App\Subscriber;
 use ApiPlatform\Core\EventListener\EventPriorities;
 use App\Entity\Template;
 use Doctrine\ORM\EntityManagerInterface;
+use PhpOffice\PhpWord\IOFactory;
+use PhpOffice\PhpWord\PhpWord;
+use PhpOffice\PhpWord\Settings;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -40,6 +43,10 @@ class TemplateSubscriber implements EventSubscriberInterface
         $result = $event->getControllerResult();
         $method = $event->getRequest()->getMethod();
         $route = $event->getRequest()->attributes->get('_route');
+        $contentType = $event->getRequest()->headers->get('accept');
+        if (!$contentType) {
+            $contentType = $event->getRequest()->headers->get('Accept');
+        }
 
         if (!$result instanceof Template || $route != 'api_templates_render_template_item' || $method != 'POST') {
             return;
@@ -57,14 +64,59 @@ class TemplateSubscriber implements EventSubscriberInterface
             case 'twig':
 
                 $template = $this->templating->createTemplate($result->getContent());
-                $reponce = $template->render($variables);
-                $result->setContent($reponce);
+                $response = $template->render($variables);
+                $result->setContent($response);
 
                 break;
             case 'md':
-                $reponce = $result->getContent();
-                $result->setContent($reponce);
+                $response = $result->getContent();
+                $result->setContent($response);
                 break;
+        }
+        $stamp = microtime();
+        switch ($contentType) {
+            case 'application/ld+json':
+            case 'application/json':
+            case 'application/hal+json':
+            case 'application/xml':
+                return $result;
+            case 'application/vnd.ms-word':
+            case 'vnd.openxmlformats-officedocument.wordprocessing':
+
+                $phpWord = new PhpWord();
+                $section = $phpWord->addSection();
+                \PhpOffice\PhpWord\Shared\Html::addHtml($section, $response);
+                $objWriter = IOFactory::createWriter($phpWord, 'Word2007');
+                $filename = dirname(__FILE__, 3)."/var/{$template->getTemplateName()}_$stamp.docx";
+                $objWriter->save($filename);
+                header('Content-Type: application/vnd.ms-word');
+                header("Content-Disposition: attachment; filename={$template->getTemplateName()}_$stamp.docx.docx");
+                header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+                flush();
+                readfile($filename);
+                unlink($filename); // deletes the temporary file
+                exit;
+            case 'application/pdf':
+                $phpWord = new PhpWord();
+                $section = $phpWord->addSection();
+                \PhpOffice\PhpWord\Shared\Html::addHtml($section, $response);
+                $objWriter = IOFactory::createWriter($phpWord, 'Word2007');
+                $filenameDocx = dirname(__FILE__, 3)."/var/{$template->getTemplateName()}_$stamp.docx";
+                $objWriter->save($filenameDocx);
+                $phpWord = \PhpOffice\PhpWord\IOFactory::load($filenameDocx);
+                $rendererName = Settings::PDF_RENDERER_DOMPDF;
+                $rendererLibraryPath = realpath('../vendor/dompdf/dompdf');
+                Settings::setPdfRenderer($rendererName, $rendererLibraryPath);
+                $xmlWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'PDF');
+                $filename = dirname(__FILE__, 3)."/var/{$template->getTemplateName()}_$stamp.pdf";
+                $xmlWriter->save($filename);
+                header("Content-Disposition: attachment; filename={$template->getTemplateName()}_$stamp.pdf");
+                header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+                flush();
+                readfile($filename);
+                unlink($filename); // deletes the temporary file
+                unlink($filenameDocx); // deletes the temporary file
+                exit;
         }
 
         return $result;

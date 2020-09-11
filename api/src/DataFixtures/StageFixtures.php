@@ -1,4 +1,5 @@
 <?php
+
 namespace App\DataFixtures;
 
 use App\Entity\Application;
@@ -148,7 +149,6 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
                 'login'                 => ['facebook'=>true, 'github'=>true],
                 'header'                => true,
                 'stickyMenu'            => true,
-                'footer4'               => true,
             ]
         );
         $manager->persist($configuration);
@@ -329,6 +329,22 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
         $template->setName('footer1');
         $template->setDescription('footer1');
         $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Stage/footer1.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
+
+        //footer4
+        $id = Uuid::fromString('0c663ab8-f9d5-42c5-8866-1a51fcf74a12');
+        $template = new Template();
+        $template->setName('footer4');
+        $template->setDescription('footer4');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Stage/footer4.html.twig', 'r'));
         $template->setTemplateEngine('twig');
         $manager->persist($template);
         $template->setId($id);
