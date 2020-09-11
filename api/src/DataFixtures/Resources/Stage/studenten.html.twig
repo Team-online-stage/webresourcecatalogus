@@ -2,20 +2,67 @@
 
 {% extends 'base.html.twig' %}
 {% block container %}
-<row>
-    <div class="row">
-        <p>
-            LLorem ipsum dolor sit amet, consectetuer adipiscing elit.
-            Aenean commodo ligula eget dolor. Aenean massa.
-            Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-            Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.
-            Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.
-            In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium.
-            Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus.
-            Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in,
-            viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum.
-            Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui.
-        </p>
+    {% set headerimg = commonground_resource(application.defaultConfiguration.configuration.headerimg) %}
+    <div style="display: flex; justify-content: center; margin-top: 5%">
+        <div id="zoekbalk" style="background-color: #01689b; display: inline-block; padding: 20px"><h2
+                style="color: white">Vind je ideale stage:</h2><input type="text" id="Input"
+                                                                                  onkeyup="stagefilter()"
+                                                                                  placeholder="Vul hier je zoekterm in"></div>
     </div>
-</row>
+
+
+    <div class="container" style="margin-top: 20px">
+        <div class="row">
+            <div class="col-md-8" style="float: none;margin: auto">
+                <div class="row">
+                    <div class="col-md-12">
+                        <ul class="list list--card">
+                            <li class="card background--primary card__hover">
+                                <a href="#" class="card__content">
+                                    <div class="card__icon flex-center color--primary"><i
+                                            class="fas fa-user-check fa-5x"></i></div>
+                                    <div class="card__body flex-center"><span
+                                            class="card__title color--primary flex-center">Stages</span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="card background--primary card__hover">
+                                <a href="#" class="card__content">
+                                    <div class="card__icon flex-center color--primary"><i
+                                            class="fas fa-stopwatch fa-5x"></i></div>
+                                    <div class="card__body flex-center"><span
+                                            class="card__title color--primary flex-center">Challenges</span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="card background--primary card__hover">
+                                <a href="#" class="card__content">
+                                    <div class="card__icon flex-center color--primary"><i
+                                            class="fas fa-chalkboard-teacher fa-5x"></i></div>
+                                    <div class="card__body flex-center"><span
+                                            class="card__title color--primary flex-center">Tutorials</span>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </div>
+        </div>
+    </div>
+
+    <ul class="list list--card list--card-small" style="column-count: auto">
+        <li class="card card--small">
+            <a href="#" class="card__content">
+                <div class="card__thumb" style="background-image: url('../../images/img-1.png')"></div>
+                <div class="card__body"><span class="card__title">Vooraankondiging nieuwe werkwijze relatief verzuim</span></div>
+            </a>
+        </li>
+        <li class="card card--small">
+            <a href="#" class="card__content">
+                <div class="card__thumb" style="background-image: url('../../images/img-1.png')"></div>
+                <div class="card__body"><span class="card__title">Vooraankondiging nieuwe werkwijze relatief verzuim</span></div>
+            </a>
+        </li>
+    </ul>
 {% endblock %}
