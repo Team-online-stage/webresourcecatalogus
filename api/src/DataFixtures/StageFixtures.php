@@ -115,14 +115,6 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
                        --footer-color: white;
                 }
 
-               .main {
-                   padding-top: 00px;
-                   height: 50px;
-               }
-
-               h1, h2 {
-                   font-family: \'Lobster\', cursive;
-               }
                ');
 
         $style->addOrganization($organization);
