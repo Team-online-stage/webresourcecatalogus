@@ -652,7 +652,6 @@ class WestfrieslandFixtures extends Fixture
         $template->setTemplateEngine('twig');
         $manager->persist($template);
         $manager->flush();
-        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
         $template->addTemplateGroup($groupEmails);
         $manager->persist($template);
         $manager->flush();
@@ -673,7 +672,6 @@ class WestfrieslandFixtures extends Fixture
         $template->setTemplateEngine('twig');
         $manager->persist($template);
         $manager->flush();
-        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
         $template->addTemplateGroup($groupEmails);
         $manager->persist($template);
         $manager->flush();
@@ -694,7 +692,6 @@ class WestfrieslandFixtures extends Fixture
         $template->setTemplateEngine('twig');
         $manager->persist($template);
         $manager->flush();
-        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
         $template->addTemplateGroup($groupEmails);
         $manager->persist($template);
         $manager->flush();
@@ -715,7 +712,6 @@ class WestfrieslandFixtures extends Fixture
         $template->setTemplateEngine('twig');
         $manager->persist($template);
         $manager->flush();
-        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
         $template->addTemplateGroup($groupEmails);
         $manager->persist($template);
         $manager->flush();
@@ -736,7 +732,6 @@ class WestfrieslandFixtures extends Fixture
         $template->setTemplateEngine('twig');
         $manager->persist($template);
         $manager->flush();
-        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
         $template->addTemplateGroup($groupEmails);
         $manager->persist($template);
         $manager->flush();
