@@ -7,9 +7,11 @@ use App\Entity\Configuration;
 use App\Entity\Image;
 use App\Entity\Menu;
 use App\Entity\MenuItem;
+use App\Entity\Organization;
 use App\Entity\Slug;
 use App\Entity\Style;
 use App\Entity\Template;
+use App\Entity\TemplateGroup;
 use Conduction\CommonGroundBundle\Service\CommonGroundService;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
@@ -79,11 +81,15 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
 
 
          .main {
-            padding-top: 00px;
+            padding-top: 0px;
         }
 
         h1, h2 {
             font-family: \'Lobster\', cursive;
+        }
+
+        .footer {
+            padding-top: 0px;
         }
         ');
         $style->setfavicon($favicon);
@@ -97,19 +103,23 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $configuration->setOrganization($organization);
         $configuration->setConfiguration(
             [
-                'mainMenu'              => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'f0faccbd-3067-45fb-9ab7-2938fbbbf492']),
-                'home'                  => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'0e3ec00f-c17b-4237-b6dd-070f800eb784']),
-                'footer1'               => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'3895915c-a992-462e-848d-3be73a954d51']),
-                'footer2'               => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'93477f57-c092-4609-b9ae-8767495fead1']),
-                'footer3'               => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'d44e0e0e-6c5b-461a-91df-0a77d44e2efb']),
-                'footer4'               => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'11c2c0eb-125c-4546-835f-26f30d924b06']),
+                'mainMenu'                         => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'f0faccbd-3067-45fb-9ab7-2938fbbbf492']),
+                'home'                             => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'0e3ec00f-c17b-4237-b6dd-070f800eb784']),
+                'footer1'                          => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'3895915c-a992-462e-848d-3be73a954d51']),
+                'footer2'                          => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'93477f57-c092-4609-b9ae-8767495fead1']),
+                'footer3'                          => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'d44e0e0e-6c5b-461a-91df-0a77d44e2efb']),
+                'footer4'                          => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'11c2c0eb-125c-4546-835f-26f30d924b06']),
+                'Horeca ondernemers'               => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'dde7b026-de93-4bed-b26d-5df2150244d1']),
                 //'nieuws'                => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'template_groups', 'id'=>'f2729540-2740-4fbf-98ae-f0a069a1f43f']),
                 //'newsimg'               => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'b0e3e803-2cb6-41ed-ab32-d6e5451c119d']),
                 //'headerimg'             => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'0863d15c-286e-4ec4-90f6-27cebb107aa9']),
                 'userPage'              => 'me',
-                'login'                 => ['user'=>true, 'idin'=>true],
+                'invoiceTemplate'       => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'4f313197-1321-4e6d-a206-d5d80bb11b07']),
+                'login'                 => ['user'=>true, 'idin'=>true], //, 'facebook'=>true, 'gmail'=>true
                 'header'                => false,
                 'stickyMenu'            => true,
+                'newsGroup'             => '1024',
+                'onboardId'             => 'fdb7186c-0ce9-4050-bd6d-cf83b0c162eb',
             ]
         );
         $manager->persist($configuration);
@@ -141,7 +151,7 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $menu = $manager->getRepository('App:Menu')->findOneBy(['id'=> $id]);
 
         $menuItem = new MenuItem();
-        $menuItem->setName('Ondernemer');
+        $menuItem->setName('Voor ondernemers');
         $menuItem->setDescription('Registreer uw onderneming');
         $menuItem->setOrder(3);
         $menuItem->setType('slug');
@@ -150,9 +160,18 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $manager->persist($menuItem);
 
         $menuItem = new MenuItem();
+        $menuItem->setName('Horeca ondernemers');
+        $menuItem->setDescription('Registreer uw horeca onderneming');
+        $menuItem->setOrder(4);
+        $menuItem->setType('slug');
+        $menuItem->setHref('/ptc/process/fdb7186c-0ce9-4050-bd6d-cf83b0c162eb');
+        $menuItem->setMenu($menu);
+        $manager->persist($menuItem);
+
+        $menuItem = new MenuItem();
         $menuItem->setName('Privacy');
         $menuItem->setDescription('Wie zitten achter CheckIn');
-        $menuItem->setOrder(4);
+        $menuItem->setOrder(5);
         $menuItem->setType('slug');
         $menuItem->setHref('/privacy');
         $menuItem->setMenu($menu);
@@ -161,11 +180,93 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $menuItem = new MenuItem();
         $menuItem->setName('Proclaimer');
         $menuItem->setDescription('Wie zitten achter CheckIn');
-        $menuItem->setOrder(5);
+        $menuItem->setOrder(6);
         $menuItem->setType('slug');
         $menuItem->setHref('/proclaimer');
         $menuItem->setMenu($menu);
         $manager->persist($menuItem);
+
+        // Template groups
+        // E-mails
+        $groupEmails = new TemplateGroup();
+        $groupEmails->setOrganization($organization);
+        $groupEmails->setApplication($application);
+        $groupEmails->setName('E-mails');
+        $groupEmails->setDescription('E-mails that are send out');
+        $manager->persist($groupEmails);
+
+        // Invoices
+        $groupInvoices = new TemplateGroup();
+        $groupInvoices->setOrganization($organization);
+        $groupInvoices->setApplication($application);
+        $groupInvoices->setName('Invoices');
+        $groupInvoices->setDescription('Invoice templates that are filled in using invoices');
+        $manager->persist($groupInvoices);
+
+        // E-mail templates
+        $id = Uuid::fromString('2ca5b662-e941-46c9-ae87-ae0c68d0aa5d');
+        $template = new Template();
+        $template->setName('Nieuw verzoek');
+        $template->setTitle('U heeft een nieuw verzoek ingediend');
+        $template->setDescription('Bevestiging dat u een verzoek heeft ingediend');
+        $template->setContent('Beste {{ receiver.givenName }},<p>Uw verzoek met referentie {{ resource.reference }} is met succes ingediend.</p><p>Met vriendelijke groet,</p>{{ sender.name }}');
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupEmails);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('e-mail-indiening');
+        $slug->setSlug('e-mail-indiening');
+        $manager->persist($slug);
+        $manager->flush();
+
+        $id = Uuid::fromString('4016c529-cf9e-415e-abb1-2aba8bfa539e');
+        $template = new Template();
+        $template->setName('Verzoek geannuleerd');
+        $template->setTitle('U heeft uw verzoek geannuleerd');
+        $template->setDescription('Bevestiging dat u een verzoek heeft geannuleerd');
+        $template->setContent('Beste {{ receiver.givenName }},<p>Uw verzoek met referentie {{ resource.reference }} is geannuleerd.</p><p>Met vriendelijke groet,</p>{{ sender.name }}');
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupEmails);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('e-mail-annulering');
+        $slug->setSlug('e-mail-annulering');
+        $manager->persist($slug);
+        $manager->flush();
+
+        // Invoice templates
+        $id = Uuid::fromString('4f313197-1321-4e6d-a206-d5d80bb11b07');
+        $template = new Template();
+        $template->setName('Voorbeeld Factuur');
+        $template->setDescription('Een voorbeeld factuur sjabloon');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/CheckIn/facturen/tempVoorbeeld.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupInvoices);
+        $manager->persist($template);
+        $manager->flush();
 
         // Pages
         $id = Uuid::fromString('0e3ec00f-c17b-4237-b6dd-070f800eb784');
@@ -294,6 +395,21 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $manager->persist($slug);
         $manager->flush();
 
+        $id = Uuid::fromString('dde7b026-de93-4bed-b26d-5df2150244d1');
+        $template = new Template();
+        $template->setName('Horeca ondernemer');
+        $template->setTitle('Horeca ondernemer pagina');
+        $template->setDescription('Horeca ondernemer pagina');
+        $template->setContent('Hier komt de horeca ondernemer pagina');
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $manager->persist($template);
+        $manager->flush();
+
         $id = Uuid::fromString('3895915c-a992-462e-848d-3be73a954d51');
         $template = new Template();
         $template->setName('footer1');
@@ -361,5 +477,45 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $manager->persist($template);
         $manager->flush();
         $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+
+        /*
+         * Then we need some example organizations
+         */
+
+        // Zuid-Drecht
+        $id = Uuid::fromString('2106575d-50f3-4f2b-8f0f-a2d6bc188222');
+        $organization = new Organization();
+        $organization->setName('Cafe de zotte raaf');
+        $organization->setDescription('Het gezeligste dijkcafe van nederland');
+        $organization->setRsin('809642451');
+        $manager->persist($organization);
+        $organization->setId($id);
+        $manager->persist($organization);
+        $manager->flush();
+        $organization = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
+
+        // Zuid-Drecht
+        $id = Uuid::fromString('a9398c45-7497-4dbd-8dd1-1be4f3384ed7');
+        $organization = new Organization();
+        $organization->setName('Restautant Goudlust');
+        $organization->setDescription('In deze vormalige dijkgraaf woning geniet u van voortreffelijk eten bereid met locale ingredienten');
+        $organization->setRsin('809642451');
+        $manager->persist($organization);
+        $organization->setId($id);
+        $manager->persist($organization);
+        $manager->flush();
+        $organization = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
+
+        // Zuid-Drecht
+        $id = Uuid::fromString('8812dc58-6bbe-4028-8e36-96f402bf63dd');
+        $organization = new Organization();
+        $organization->setName('Hotel Dijkzicht');
+        $organization->setDescription('Gevestigd in een oud-tol huis kijkt dit prachtige hotel uit op de drechtse dijk');
+        $organization->setRsin('809642451');
+        $manager->persist($organization);
+        $organization->setId($id);
+        $manager->persist($organization);
+        $manager->flush();
+        $organization = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
     }
 }

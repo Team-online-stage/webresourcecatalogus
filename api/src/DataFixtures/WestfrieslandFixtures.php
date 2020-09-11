@@ -135,29 +135,85 @@ class WestfrieslandFixtures extends Fixture
         $manager->persist($style);
         $manager->flush();
 
-        // SED
+        // Enkhuizen
         $id = Uuid::fromString('7033eeb4-5c77-4d88-9f40-303b538f176f');
-        $sed = new Organization();
-        $sed->setName('SED');
-        $sed->setDescription('Gemeenten Stede Broec, Enkhuizen en Drechterland');
-        $sed->setRsin('1234');
-        $sed->setContact($this->commonGroundService->cleanUrl(['component' => 'cc', 'type' => 'organizations', 'id' => '0012428b-dc06-444a-af20-17d3ee06a916']));
-        $manager->persist($sed);
-        $sed->setId($id);
-        $manager->persist($sed);
+        $enkhuizen = new Organization();
+        $enkhuizen->setName('Enkhuizen');
+        $enkhuizen->setDescription('Gemeenten Enkhuizen');
+        $enkhuizen->setRsin('1234');
+        $enkhuizen->setContact($this->commonGroundService->cleanUrl(['component' => 'cc', 'type' => 'organizations', 'id' => '0012428b-dc06-444a-af20-17d3ee06a916']));
+        $manager->persist($enkhuizen);
+        $enkhuizen->setId($id);
+        $manager->persist($enkhuizen);
         $manager->flush();
-        $sed = $manager->getRepository('App:Organization')->findOneBy(['id' => $id]);
+        $enkhuizen = $manager->getRepository('App:Organization')->findOneBy(['id' => $id]);
 
-        // SED
+        // Enkhuizen
         $style = new Style();
-        $style->setName('SED Style');
+        $style->setName('Enkhuizen Style');
         $style->setDescription('Huistlijl Westfriese gemeenten West-Friesland');
         $style->setCss(':root {--primary: #003E51;--primary2: white;--secondary: #509E2F;--secondary2: #509E2F;}.main-title
     	{color: var(--primary2) !important;}.logo-header {background: var(--primary);}.navbar-header {background: var(--primary);}
     	.bg-primary-gradient {background: linear-gradient(-45deg, var(--secondary), var(--secondary2)) !important;}');
 
         $style->setfavicon($favicon);
-        $style->addOrganization($sed);
+        $style->addOrganization($enkhuizen);
+
+        $manager->persist($favicon);
+        $manager->persist($style);
+        $manager->flush();
+
+        // Drechterland
+        $id = Uuid::fromString('e7d5368d-4d95-454d-9c0e-d4466889e2bd');
+        $drechterland = new Organization();
+        $drechterland->setName('Drechterland');
+        $drechterland->setDescription('Gemeenten Drechterland');
+        $drechterland->setRsin('1234');
+        $drechterland->setContact($this->commonGroundService->cleanUrl(['component' => 'cc', 'type' => 'organizations', 'id' => '756e50b8-4fd7-44d4-99d6-7f8ef47c3678']));
+        $manager->persist($drechterland);
+        $drechterland->setId($id);
+        $manager->persist($drechterland);
+        $manager->flush();
+        $drechterland = $manager->getRepository('App:Organization')->findOneBy(['id' => $id]);
+
+        // Drechterland
+        $style = new Style();
+        $style->setName('Drechterland Style');
+        $style->setDescription('Huistlijl Westfriese gemeenten West-Friesland');
+        $style->setCss(':root {--primary: #003E51;--primary2: white;--secondary: #509E2F;--secondary2: #509E2F;}.main-title
+    	{color: var(--primary2) !important;}.logo-header {background: var(--primary);}.navbar-header {background: var(--primary);}
+    	.bg-primary-gradient {background: linear-gradient(-45deg, var(--secondary), var(--secondary2)) !important;}');
+
+        $style->setfavicon($favicon);
+        $style->addOrganization($drechterland);
+
+        $manager->persist($favicon);
+        $manager->persist($style);
+        $manager->flush();
+
+        // stedebroec
+        $id = Uuid::fromString('a5567d87-ca05-45e9-a888-184494a3c79c');
+        $stedebroec = new Organization();
+        $stedebroec->setName('Stedebroec');
+        $stedebroec->setDescription('Gemeenten Stedebroec');
+        $stedebroec->setRsin('1234');
+        $stedebroec->setContact($this->commonGroundService->cleanUrl(['component' => 'cc', 'type' => 'organizations', 'id' => '93a892a9-d164-4d37-bfa5-a37c52ab3840']));
+        $manager->persist($stedebroec);
+        $stedebroec->setId($id);
+        $manager->persist($stedebroec);
+        $manager->flush();
+        $stedebroec = $manager->getRepository('App:Organization')->findOneBy(['id' => $id]);
+
+        // stedebroec
+        $style = new Style();
+        $style->setName('Stedebroec Style');
+        $style->setDescription('Huistlijl Westfriese gemeenten West-Friesland');
+        $style->setCss(':root {--primary: #003E51;--primary2: white;--secondary: #509E2F;--secondary2: #509E2F;}.main-title
+    	{color: var(--primary2) !important;}.logo-header {background: var(--primary);}.navbar-header {background: var(--primary);}
+    	.bg-primary-gradient {background: linear-gradient(-45deg, var(--secondary), var(--secondary2)) !important;}');
+
+        $style->setfavicon($favicon);
+        $style->addOrganization($stedebroec);
 
         $manager->persist($favicon);
         $manager->persist($style);
@@ -220,12 +276,13 @@ class WestfrieslandFixtures extends Fixture
         $manager->flush();
 
         // Hogeland
+        /*
         $id = Uuid::fromString('79ad319b-1ff6-4e21-919b-4ea002b5f233');
         $hogeland = new Organization();
         $hogeland->setName('Hogeland');
         $hogeland->setDescription('Gemeente Hogeland');
         $hogeland->setRsin('1234');
-//        $hogeland->setContact($this->commonGroundService->cleanUrl(['component' => 'cc', 'type' => 'organizations', 'id' => '5792b63d-afb5-4689-990b-51eec52b663b']));
+//      $hogeland->setContact($this->commonGroundService->cleanUrl(['component' => 'cc', 'type' => 'organizations', 'id' => '5792b63d-afb5-4689-990b-51eec52b663b']));
         $manager->persist($hogeland);
         $hogeland->setId($id);
         $manager->persist($hogeland);
@@ -246,6 +303,7 @@ class WestfrieslandFixtures extends Fixture
         $manager->persist($favicon);
         $manager->persist($style);
         $manager->flush();
+        */
 
         $id = Uuid::fromString('2c60657d-a728-4e71-897d-ac407c134e10');
         $headerimg = new Image();
@@ -330,13 +388,13 @@ class WestfrieslandFixtures extends Fixture
                 'home'              => $this->commonGroundService->cleanUrl(['component' => 'wrc', 'type' => 'templates', 'id' => '097ea88e-beb6-476e-a978-d07650f03d97']),
                 'footer1'           => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'9e4130de-b2d7-481c-8681-87b2a174c8ae']),
                 'footer2'           => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'e16b153e-de8a-4f24-9886-fd3057ae93de']),
-                'footer3'           => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'f78d6861-783f-4441-82c4-2efcf5af677f']),
-                'footer4'           => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'c62eedef-ba28-4a5d-bdea-2eb9ef250b8e']),
+                //'footer3'           => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'f78d6861-783f-4441-82c4-2efcf5af677f']),
+                //'footer4'           => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'c62eedef-ba28-4a5d-bdea-2eb9ef250b8e']),
                 'headerimg'         => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'2c60657d-a728-4e71-897d-ac407c134e10']),
                 'changeRequest'     => '7216b69d-e245-488e-af8f-0969241926e7',
                 'objectionRequest'  => '2a95ba3e-a3f9-4fdf-8a6d-005d96aad405',
                 'orderTemplate'     => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'b92c9562-acdc-40ad-9156-9d98b539d885']),
-                'invoiceTemplate'   => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'fc5a7f58-aaf6-4775-bed8-f4ca00c132c0']),
+                'invoiceTemplate'   => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'fc5a7f58-aaf6-4775-bed8-f4ca00c132c0']),
                 'login'             => ['eherkening'=>true],
                 'newsGroup'         => ['4'],
                 'userPage'          => 'persoonlijk',
@@ -416,6 +474,14 @@ class WestfrieslandFixtures extends Fixture
         $groupPages->setName('Pages');
         $groupPages->setDescription('Webpages that are presented to visitors');
         $manager->persist($groupPages);
+
+        // Template groups
+        $groupEmails = new TemplateGroup();
+        $groupEmails->setOrganization($westfriesland);
+        $groupEmails->setApplication($application);
+        $groupEmails->setName('E-mails');
+        $groupEmails->setDescription('E-mail messages that are sent by the system');
+        $manager->persist($groupEmails);
 
         // Persoonlijk
         $template = new Template();
@@ -576,6 +642,106 @@ class WestfrieslandFixtures extends Fixture
         $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
         $template->addTemplateGroup($groupPages);
         $manager->persist($template);
+        $manager->flush();
+
+        $template = new Template();
+        $template->setName('Ingediend verzoek');
+        $template->setTitle('Uw verzoek is ontvangen');
+        $template->setDescription('Bevestiging dat een verzoek is gewijzigd');
+        $template->setContent('Beste {{ receiver.givenName }},<p>Wij hebben uw ingediende verzoek met referentie {{ resource.reference }} succesvol ontvangen. We nemen uw verzoek zo snel mogelijk in behandeling.</p><p>Met vriendelijke groet,</p>{{ sender.name }}');
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $manager->flush();
+        $template->addTemplateGroup($groupEmails);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('e-mail-bevestiging');
+        $slug->setSlug('e-mail-bevestiging');
+        $manager->persist($slug);
+        $manager->flush();
+
+        $template = new Template();
+        $template->setName('Verzoek in behandeling');
+        $template->setTitle('Uw verzoek is in behandeling genomen');
+        $template->setDescription('Bevestiging dat een verzoek is gewijzigd');
+        $template->setContent('Beste {{ receiver.givenName }},<p>Wij hebben uw ingediende verzoek met referentie {{ resource.reference }} in behandeling genomen. Wij reageren zo spoedig mogelijk.</p><p>Met vriendelijke groet,</p>{{ sender.name }}');
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $manager->flush();
+        $template->addTemplateGroup($groupEmails);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('e-mail-behandeling');
+        $slug->setSlug('e-mail-behandeling');
+        $manager->persist($slug);
+        $manager->flush();
+
+        $template = new Template();
+        $template->setName('Verzoek afgewezen');
+        $template->setTitle('Uw verzoek is afgewezen');
+        $template->setDescription('Bevestiging dat een verzoek is gewijzigd');
+        $template->setContent('Beste {{ receiver.givenName }},<p>Wij hebben uw ingediende verzoek met referentie {{ resource.reference }} helaas moeten afwijzen. U kunt een nieuw verzoek aanmaken, of contact met ons opnemen via</p><p>Met vriendelijke groet,</p>{{ sender.name }}');
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $manager->flush();
+        $template->addTemplateGroup($groupEmails);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('e-mail-afwijzing');
+        $slug->setSlug('e-mail-afwijzing');
+        $manager->persist($slug);
+        $manager->flush();
+
+        $template = new Template();
+        $template->setName('Verzoek afgehandeld');
+        $template->setTitle('Uw verzoek afgehandeld');
+        $template->setDescription('Bevestiging dat een verzoek is gewijzigd');
+        $template->setContent('Beste {{ receiver.givenName }},<p>Wij hebben uw ingediende verzoek met referentie {{ resource.reference }} afgehandeld.</p><p>Met vriendelijke groet,</p>{{ sender.name }}');
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $manager->flush();
+        $template->addTemplateGroup($groupEmails);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('e-mail-afgehandeld');
+        $slug->setSlug('e-mail-afgehandeldg');
+        $manager->persist($slug);
+        $manager->flush();
+
+        $template = new Template();
+        $template->setName('Ontvangen reservering');
+        $template->setTitle('Er is een reservering ontvangen voor uw begraafplaats');
+        $template->setDescription('Bevestiging dat een verzoek is gewijzigd');
+        $template->setContent('{% set cemetery = resource.properties.begraafplaats %}{% set date = resource.properties.datum %}Beste {{ receiver.givenName }},<p>Er is een verzoek met referentie {{ resource.reference }} aangemaakt met een reservering op de aan u toegewezen begraafplaats {{ begraafplaats.name }} op {{ request.properties.datum|date("d-m-Y om H:i", "Europe/Paris") }}.</p><p>Met vriendelijke groet,</p>{{ sender.name }}');
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $manager->flush();
+        $template->addTemplateGroup($groupEmails);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('e-mail-reservering');
+        $slug->setSlug('e-mail-reservering');
+        $manager->persist($slug);
         $manager->flush();
 
         // Dashboard
