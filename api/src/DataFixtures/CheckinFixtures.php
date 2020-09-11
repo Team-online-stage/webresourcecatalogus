@@ -118,6 +118,7 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
                 'header'                => false,
                 'stickyMenu'            => true,
                 'newsGroup'             => '1024',
+                'onboardId'             => 'fdb7186c-0ce9-4050-bd6d-cf83b0c162eb',
             ]
         );
         $manager->persist($configuration);
