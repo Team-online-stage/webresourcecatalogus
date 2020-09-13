@@ -51,6 +51,68 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
             return false;
         }
 
+        // Cafe de zotte raaf
+        $id = Uuid::fromString('8b3f28c4-4163-47f1-9242-a4050bc26ede');
+        $organization = new Organization();
+        $organization->setName('Cafe de zotte raaf');
+        $organization->setDescription('Cafe de zotte raaf');
+        $manager->persist($organization);
+        $organization->setId($id);
+        $manager->persist($organization);
+        $manager->flush();
+        $organization = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
+
+        $id = Uuid::fromString('a3c5906a-5cd2-4a51-82a6-5833bfa094e1');
+        $organization = new Organization();
+        $organization->setName('Restautant Goudlust');
+        $organization->setDescription('Restautant Goudlust');
+        $manager->persist($organization);
+        $organization->setId($id);
+        $manager->persist($organization);
+        $manager->flush();
+        $organization = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
+
+        $id = Uuid::fromString('f302b75e-a233-4ddf-95b5-f8603f2e80e9');
+        $organization = new Organization();
+        $organization->setName('Hotel Dijkzicht');
+        $organization->setDescription('Hotel Dijkzicht');
+        $manager->persist($organization);
+        $organization->setId($id);
+        $manager->persist($organization);
+        $manager->flush();
+        $organization = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
+
+        $id = Uuid::fromString('0d3b7b6d-5ab2-442b-b4ff-472fd4112922');
+        $organization = new Organization();
+        $organization->setName('Camping de alpen koe');
+        $organization->setDescription('Camping de alpen koe');
+        $manager->persist($organization);
+        $organization->setId($id);
+        $manager->persist($organization);
+        $manager->flush();
+        $organization = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
+
+        $id = Uuid::fromString('e3137e4f-e44d-4400-adbd-0fa1b4be9d65');
+        $organization = new Organization();
+        $organization->setName('Mc Donalds Zuid-Drecht');
+        $organization->setDescription('Mc Donalds Zuid-Drecht');
+        $manager->persist($organization);
+        $organization->setId($id);
+        $manager->persist($organization);
+        $manager->flush();
+        $organization = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
+
+        $id = Uuid::fromString('62bff497-cb91-443e-9da9-21a0b38cd536');
+        $organization = new Organization();
+        $organization->setName('Creative Ground');
+        $organization->setDescription('Creative Ground');
+        $manager->persist($organization);
+        $organization->setId($id);
+        $manager->persist($organization);
+        $manager->flush();
+        $organization = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
+
+        // Dan zuidrecht secifieke dingen
         $organization = $this->getReference(ZuiddrechtFixtures::ORGANIZATION_ZUIDDRECHT);
 
         $favicon = new Image();
@@ -297,8 +359,8 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $slug = new Slug();
         $slug->setTemplate($template);
         $slug->setApplication($application);
-        $slug->setName('about');
-        $slug->setSlug('about');
+        $slug->setName('ondernemers');
+        $slug->setSlug('ondernemers');
         $manager->persist($slug);
         $manager->flush();
 
