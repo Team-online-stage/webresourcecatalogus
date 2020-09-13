@@ -62,6 +62,23 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $manager->flush();
         $organization = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
 
+        $favicon = new Image();
+        $favicon->setName('favicon');
+        $favicon->setDescription('favicon');
+        $favicon->setBase64('');
+        $favicon->setOrganization($organization);
+        $manager->persist($favicon);
+        $manager->flush();
+
+        $style = new Style();
+        $style->setName('Cafe de zotte raaf');
+        $style->setDescription('Huistlijl Cafe de zotte raaf');
+        $style->setCss('');
+        $style->setfavicon($favicon);
+        $style->addOrganization($organization);
+        $manager->persist($style);
+        $manager->flush();
+
         $id = Uuid::fromString('a3c5906a-5cd2-4a51-82a6-5833bfa094e1');
         $organization = new Organization();
         $organization->setName('Restautant Goudlust');
@@ -71,6 +88,23 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $manager->persist($organization);
         $manager->flush();
         $organization = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
+
+        $favicon = new Image();
+        $favicon->setName('favicon');
+        $favicon->setDescription('favicon');
+        $favicon->setBase64('');
+        $favicon->setOrganization($organization);
+        $manager->persist($favicon);
+        $manager->flush();
+
+        $style = new Style();
+        $style->setName('Restautant Goudlust');
+        $style->setDescription('Huistlijl Restautant Goudlust');
+        $style->setCss('');
+        $style->setfavicon($favicon);
+        $style->addOrganization($organization);
+        $manager->persist($style);
+        $manager->flush();
 
         $id = Uuid::fromString('f302b75e-a233-4ddf-95b5-f8603f2e80e9');
         $organization = new Organization();
@@ -82,6 +116,23 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $manager->flush();
         $organization = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
 
+        $favicon = new Image();
+        $favicon->setName('favicon');
+        $favicon->setDescription('favicon');
+        $favicon->setBase64('');
+        $favicon->setOrganization($organization);
+        $manager->persist($favicon);
+        $manager->flush();
+
+        $style = new Style();
+        $style->setName('Hotel Dijkzicht');
+        $style->setDescription('Huistlijl otel Dijkzicht');
+        $style->setCss('');
+        $style->setfavicon($favicon);
+        $style->addOrganization($organization);
+        $manager->persist($style);
+        $manager->flush();
+
         $id = Uuid::fromString('0d3b7b6d-5ab2-442b-b4ff-472fd4112922');
         $organization = new Organization();
         $organization->setName('Camping de alpen koe');
@@ -91,6 +142,23 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $manager->persist($organization);
         $manager->flush();
         $organization = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
+
+        $favicon = new Image();
+        $favicon->setName('favicon');
+        $favicon->setDescription('favicon');
+        $favicon->setBase64('');
+        $favicon->setOrganization($organization);
+        $manager->persist($favicon);
+        $manager->flush();
+
+        $style = new Style();
+        $style->setName('Camping de alpen koe');
+        $style->setDescription('Huistlijl Camping de alpen koe');
+        $style->setCss('');
+        $style->setfavicon($favicon);
+        $style->addOrganization($organization);
+        $manager->persist($style);
+        $manager->flush();
 
         $id = Uuid::fromString('e3137e4f-e44d-4400-adbd-0fa1b4be9d65');
         $organization = new Organization();
@@ -102,6 +170,23 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $manager->flush();
         $organization = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
 
+        $favicon = new Image();
+        $favicon->setName('favicon');
+        $favicon->setDescription('favicon');
+        $favicon->setBase64('');
+        $favicon->setOrganization($organization);
+        $manager->persist($favicon);
+        $manager->flush();
+
+        $style = new Style();
+        $style->setName('Mc Donalds Zuid-Drecht');
+        $style->setDescription('Huistlijl Mc Donalds Zuid-DrechtGround');
+        $style->setCss('');
+        $style->setfavicon($favicon);
+        $style->addOrganization($organization);
+        $manager->persist($style);
+        $manager->flush();
+
         $id = Uuid::fromString('62bff497-cb91-443e-9da9-21a0b38cd536');
         $organization = new Organization();
         $organization->setName('Creative Ground');
@@ -111,6 +196,23 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $manager->persist($organization);
         $manager->flush();
         $organization = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
+
+        $favicon = new Image();
+        $favicon->setName('favicon');
+        $favicon->setDescription('favicon');
+        $favicon->setBase64('data:image/svg+xml;base64,PHN2ZyBpZD0iw5HDq8Ouw6lfMSIgZGF0YS1uYW1lPSLDkcOrw67DqSAxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA5MzkuNTcgMTA5OC44OSI+PGRlZnM+PHN0eWxlPi5jbHMtMXtmaWxsOiNjMDA7fS5jbHMtMntmaWxsOiMzNjY5YTU7fTwvc3R5bGU+PC9kZWZzPjx0aXRsZT56dWlkIERyZWNodCBOb3BheW9mZjwvdGl0bGU+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNNTc2LDk2Ny4xMWMtNTYsNDEuMzktMTAxLjQzLDY2LjA1LTExMSw3MS4xMWE0LDQsMCwwLDEtMy43MiwwYy0yNS41Ny0xMy41LTMwNy40OC0xNjctMzYxLjM3LTQwNmE0LDQsMCwwLDEsNy4zOC0yLjgxYzM4LjU0LDY4LjkzLDEyNS4zNywxMTkuMjYsMTg3LjUxLDE1Mi42OSw1Mi41LDI4LjIzLDExMy42Miw1MC4yMSwxNjguMzQsODAuMzZDNTA4LjIyLDg4Ny4yOSw1NDksOTE3LjY5LDU3Nyw5NjEuNzVBNCw0LDAsMCwxLDU3Niw5NjcuMTFaIi8+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNODM0LjcxLDIxNS44NFYxMDEuNjVhOC45LDguOSwwLDAsMC04LjktOC45MWgtMjczQTE0LjU5LDE0LjU5LDAsMCwwLDUzOS40MywxMDNsLTE5LDcwLjI4YTE0LjU4LDE0LjU4LDAsMCwxLTEzLjM1LDEwLjIxSDM4M1YxNDcuMTJjMzYuODQtMS4zNCw2Mi40Mi03LjQ1LDgwLjE2LTE1LjEsMjkuNDktMTIuNzQsMzcuMzUtMjkuNzgsMzkuMzYtMzYuNDRhMi4yMiwyLjIyLDAsMCwwLTIuMTMtMi44NEgzMzQuNjFjLTMzLjg4LDAtNjcuOTEsOS4yLTg2LjA4LDQwLjEtMTkuMzgsMzIuOTQtMTguMjQsNzguMDctMTYuNDksMTE0Ljg5LDAsMC01MC02Ni4yMi00MC43Ni0xNDguODdhNS41MSw1LjUxLDAsMCwwLTUuNDgtNi4xMkgxMDAuMzJhOC43OSw4Ljc5LDAsMCwwLTguNzgsOC43OVYxMjRjNC44Niw3OS4yNiw0OS4xNCwyODguNTcsMzcxLjU4LDM4NS40QzczNSw1OTEuMDYsNzc1LjQyLDcxNi4zLDc4My4zMiw3MzguMjRhMS4zOCwxLjM4LDAsMCwwLDIuNTMuMTdjNzUuMy0xNDMuOS04MS40OS0yNDcuNTItODEuNDktMjQ3LjUyLDMxLjMzLDAsNzkuMjMsMTcuOTQsMTE4LDM5Ljc5YTguMjgsOC4yOCwwLDAsMCwxMi4zNy03LjIxVjM2My44M2ExNC42LDE0LjYsMCwwLDAtMTguMTUtMTQuMTdjLTEzLjUsMy4zOS0zMCw2LjY4LTMyLjg3LDcuMjMtMzkuNDYsNy43Ny04NC43NSwxMS4xNS0xMjItOC43M3MtNDcuMjYtNjYuMjctMTguMzMtOTguMjNjMjUuMy0yOCw2NS41My0zNy41LDEwMi4yOS0zNSwyMy41NiwxLjYyLDU1LjE4LDcuNTksNzMuNzEsMTIuNjNBMTIuMTYsMTIuMTYsMCwwLDAsODM0LjcxLDIxNS44NFoiLz48cGF0aCBjbGFzcz0iY2xzLTIiIGQ9Ik02NTQuODcsOTAxLjVhNCw0LDAsMCwxLTYtLjExYy0xMy41Ni0xNi4yNS03NS40Ni04Ni0xODUuNzMtMTQ2LjQyQTc1Ni40NCw3NTYuNDQsMCwwLDAsMzgzLDcxN2MtMTczLjUzLTcwLjE3LTI4Mi42OS0xNDMuMy0yOTEuNDItMzM4LjF2LTYuMjJhNCw0LDAsMCwxLDcuMjEtMi4zNGM2My42MSw4NywxNDQuNjksMTM3LjksMjQzLjE2LDE4Ni43Nyw0MC4yOCwyMCw4MS4xNywzNi4zMiwxMjEuMjEsNTMuMjUsNjYuMTUsMjgsMTMwLDU3LjU0LDE4NC43MywxMDcuOCwxNi4xOCwxNC44NSwyOS4wOSwyOS4xNSwzNi44MSw1MEM2OTUuNzUsNzk4LjEzLDcwMi41NSw4NDkuMTcsNjU0Ljg3LDkwMS41WiIvPjwvc3ZnPg==');
+        $favicon->setOrganization($organization);
+        $manager->persist($favicon);
+        $manager->flush();
+
+        $style = new Style();
+        $style->setName('Creative Ground');
+        $style->setDescription('Huistlijl Creative Ground');
+        $style->setCss('');
+        $style->setfavicon($favicon);
+        $style->addOrganization($organization);
+        $manager->persist($style);
+        $manager->flush();
 
         // Dan zuidrecht secifieke dingen
         $organization = $this->getReference(ZuiddrechtFixtures::ORGANIZATION_ZUIDDRECHT);
