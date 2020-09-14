@@ -104,7 +104,7 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $configuration->setConfiguration(
             [
                 'mainMenu'                         => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'f0faccbd-3067-45fb-9ab7-2938fbbbf492']),
-                'home'                             => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'0e3ec00f-c17b-4237-b6dd-070f800eb784']),
+                'home'                             => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'513ee2e3-cf32-4f1e-a85e-ccbe5743c418']),
                 'footer1'                          => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'3895915c-a992-462e-848d-3be73a954d51']),
                 'footer2'                          => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'93477f57-c092-4609-b9ae-8767495fead1']),
                 'footer3'                          => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'d44e0e0e-6c5b-461a-91df-0a77d44e2efb']),
@@ -114,10 +114,12 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
                 //'newsimg'               => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'b0e3e803-2cb6-41ed-ab32-d6e5451c119d']),
                 //'headerimg'             => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'0863d15c-286e-4ec4-90f6-27cebb107aa9']),
                 'userPage'              => 'me',
+                'invoiceTemplate'       => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'4f313197-1321-4e6d-a206-d5d80bb11b07']),
                 'login'                 => ['user'=>true, 'idin'=>true], //, 'facebook'=>true, 'gmail'=>true
                 'header'                => false,
                 'stickyMenu'            => true,
                 'newsGroup'             => '1024',
+                'onboardId'             => 'fdb7186c-0ce9-4050-bd6d-cf83b0c162eb',
             ]
         );
         $manager->persist($configuration);
@@ -153,16 +155,7 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $menuItem->setDescription('Registreer uw onderneming');
         $menuItem->setOrder(3);
         $menuItem->setType('slug');
-        $menuItem->setHref('/ptc/process/fdb7186c-0ce9-4050-bd6d-cf83b0c162eb');
-        $menuItem->setMenu($menu);
-        $manager->persist($menuItem);
-
-        $menuItem = new MenuItem();
-        $menuItem->setName('Horeca ondernemers');
-        $menuItem->setDescription('Registreer uw horeca onderneming');
-        $menuItem->setOrder(4);
-        $menuItem->setType('slug');
-        $menuItem->setHref('/ptc/process/fdb7186c-0ce9-4050-bd6d-cf83b0c162eb');
+        $menuItem->setHref('/ondernemers');
         $menuItem->setMenu($menu);
         $manager->persist($menuItem);
 
@@ -226,12 +219,36 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $manager->persist($slug);
         $manager->flush();
 
+        $id = Uuid::fromString('4016c529-cf9e-415e-abb1-2aba8bfa539e');
+        $template = new Template();
+        $template->setName('Verzoek geannuleerd');
+        $template->setTitle('U heeft uw verzoek geannuleerd');
+        $template->setDescription('Bevestiging dat u een verzoek heeft geannuleerd');
+        $template->setContent('Beste {{ receiver.givenName }},<p>Uw verzoek met referentie {{ resource.reference }} is geannuleerd.</p><p>Met vriendelijke groet,</p>{{ sender.name }}');
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupEmails);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('e-mail-annulering');
+        $slug->setSlug('e-mail-annulering');
+        $manager->persist($slug);
+        $manager->flush();
+
         // Invoice templates
         $id = Uuid::fromString('4f313197-1321-4e6d-a206-d5d80bb11b07');
         $template = new Template();
         $template->setName('Voorbeeld Factuur');
         $template->setDescription('Een voorbeeld factuur sjabloon');
-        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/CheckIn/facturen/voorbeeld.html.twig', 'r'));
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/CheckIn/facturen/tempVoorbeeld.html.twig', 'r'));
         $template->setTemplateEngine('twig');
         $manager->persist($template);
         $template->setId($id);
@@ -242,16 +259,8 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $manager->persist($template);
         $manager->flush();
 
-        $slug = new Slug();
-        $slug->setTemplate($template);
-        $slug->setApplication($application);
-        $slug->setName('invoice-voorbeeld');
-        $slug->setSlug('invoice-voorbeeld');
-        $manager->persist($slug);
-        $manager->flush();
-
         // Pages
-        $id = Uuid::fromString('0e3ec00f-c17b-4237-b6dd-070f800eb784');
+        $id = Uuid::fromString('513ee2e3-cf32-4f1e-a85e-ccbe5743c418');
         $template = new Template();
         $template->setName('CheckIn.nu Home');
         $template->setDescription('Homepage voor CheckIn.nu');
@@ -269,6 +278,27 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $slug->setApplication($application);
         $slug->setName('home');
         $slug->setSlug('home');
+        $manager->persist($slug);
+        $manager->flush();
+
+        $id = Uuid::fromString('8e8007b8-e3c0-4253-ac57-09680789a351');
+        $template = new Template();
+        $template->setName('Ondernemer');
+        $template->setDescription('Informatie voor ondernemers');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/CheckIn/ondernemers.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $manager->persist($template);
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('about');
+        $slug->setSlug('about');
         $manager->persist($slug);
         $manager->flush();
 
