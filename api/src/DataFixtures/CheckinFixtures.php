@@ -584,7 +584,7 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $template = new Template();
         $template->setName('tip');
         $template->setDescription('tip');
-        $template->setContent(file_get_contents('Hier komt een tip template');
+        $template->setContent('Hier komt een tip template');
         $template->setTemplateEngine('twig');
         $manager->persist($template);
         $template->setId($id);
