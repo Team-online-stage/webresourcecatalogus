@@ -550,6 +550,7 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $manager->persist($slug);
         $manager->flush();
 
+
         $id = Uuid::fromString('d1e07882-e130-45da-b2ae-617c09cf0ad3');
         $template = new Template();
         $template->setName('me');
@@ -568,6 +569,50 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $slug->setApplication($application);
         $slug->setName('me');
         $slug->setSlug('me');
+        $manager->persist($slug);
+        $manager->flush();
+
+        $id = Uuid::fromString('27dfcd18-b71d-4ff1-99bb-1295a33042bf');
+        $template = new Template();
+        $template->setName('tip');
+        $template->setDescription('tip');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/CheckIn/modals/checking_tip_modal.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('tip');
+        $slug->setSlug('tip');
+        $manager->persist($slug);
+        $manager->flush();
+
+        $id = Uuid::fromString('a59a2fc9-ec62-4f69-a5db-5404e175bf4f');
+        $template = new Template();
+        $template->setName('contact');
+        $template->setDescription('contact');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/CheckIn/modals/checking_contact_modal.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('contact');
+        $slug->setSlug('contact');
         $manager->persist($slug);
         $manager->flush();
 
