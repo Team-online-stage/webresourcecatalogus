@@ -71,7 +71,7 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
         $headerimg->setId($id);
         $manager->persist($headerimg);
         $manager->flush();
-        $headerimg = $manager->getRepository('App:Image')->findOneBy(['id'=> $id]);
+        $headerimg = $manager->getRepository('App:Image')->findOneBy(['id' => $id]);
 
         $id = Uuid::fromString('62685881-e5a2-4f73-b08f-a155b6dab74c');
         $kladimg = new Image();
@@ -83,7 +83,7 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
         $kladimg->setId($id);
         $manager->persist($kladimg);
         $manager->flush();
-        $kladimg = $manager->getRepository('App:Image')->findOneBy(['id'=> $id]);
+        $kladimg = $manager->getRepository('App:Image')->findOneBy(['id' => $id]);
 
         $id = Uuid::fromString('cdaad46c-f1b3-11ea-adc1-0242ac120002');
         $raketimg = new Image();
@@ -95,7 +95,7 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
         $raketimg->setId($id);
         $manager->persist($raketimg);
         $manager->flush();
-        $raketimg = $manager->getRepository('App:Image')->findOneBy(['id'=> $id]);
+        $raketimg = $manager->getRepository('App:Image')->findOneBy(['id' => $id]);
 
         $style = new Style();
         $style->setfavicon($favicon);
@@ -169,7 +169,7 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
         $menu->setId($id);
         $manager->persist($menu);
         $manager->flush();
-        $menu = $manager->getRepository('App:Menu')->findOneBy(['id'=> $id]);
+        $menu = $manager->getRepository('App:Menu')->findOneBy(['id' => $id]);
 
         // Menu
         $id = Uuid::fromString('fccb7e65-2b56-49a2-8720-724f823f2b00');
@@ -304,7 +304,7 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
         $template->setId($id);
         $manager->persist($template);
         $manager->flush();
-        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template = $manager->getRepository('App:Template')->findOneBy(['id' => $id]);
         $manager->persist($template);
 
         $slug = new Slug();
@@ -326,7 +326,7 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
         $template->setId($id);
         $manager->persist($template);
         $manager->flush();
-        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template = $manager->getRepository('App:Template')->findOneBy(['id' => $id]);
         $template->addTemplateGroup($groupPages);
         $manager->persist($template);
         $manager->flush();
@@ -342,7 +342,7 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
         $template->setId($id);
         $manager->persist($template);
         $manager->flush();
-        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template = $manager->getRepository('App:Template')->findOneBy(['id' => $id]);
         $template->addTemplateGroup($groupPages);
         $manager->persist($template);
         $manager->flush();

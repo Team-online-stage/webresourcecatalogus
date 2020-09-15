@@ -18,6 +18,7 @@ settings:
   domain: huwelijksplanner.online
   subdomain: wrc
   subpath: wrc
+  subpathRouting: true
   organisationName: Conduction
   email: info@conduction.nl
   country: Netherlands
