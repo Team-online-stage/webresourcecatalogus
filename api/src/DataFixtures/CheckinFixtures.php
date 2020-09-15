@@ -373,7 +373,7 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $template->setName('Nieuw verzoek');
         $template->setTitle('U heeft een nieuw verzoek ingediend');
         $template->setDescription('Bevestiging dat u een verzoek heeft ingediend');
-        $template->setContent('Beste {{ receiver.givenName }},<p>Uw verzoek met referentie {{ resource.reference }} is met succes ingediend.</p><p>Met vriendelijke groet,</p>{{ sender.name }}');
+        $template->setContent('Beste {{ receiver.givenName }},<p>Uw verzoek met referentie {{ resource.reference }} is met succes ingediend.</p><p>U kunt nu inloggen op https://dev.checking.nu/ met de volgende gegevens:</p><p>Gebruikersnaam: {% if receiver.emails|length >0 %}{% set receiverEmail = receiver.emails[0] %}{% endif %}{% if receiverEmail is defined and receiverEmail is not empty %}{{ receiverEmail.email }}{% endif %}<br>Wachtwoord: test1234</p><p>Met vriendelijke groet,</p>{{ sender.name }}');
         $template->setTemplateEngine('twig');
         $manager->persist($template);
         $template->setId($id);
@@ -559,7 +559,6 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $manager->persist($slug);
         $manager->flush();
 
-
         $id = Uuid::fromString('d1e07882-e130-45da-b2ae-617c09cf0ad3');
         $template = new Template();
         $template->setName('me');
@@ -585,7 +584,7 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $template = new Template();
         $template->setName('tip');
         $template->setDescription('tip');
-        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/CheckIn/modals/checking_tip_modal.html.twig', 'r'));
+        $template->setContent('Hier komt een tip template');
         $template->setTemplateEngine('twig');
         $manager->persist($template);
         $template->setId($id);
@@ -607,7 +606,7 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $template = new Template();
         $template->setName('contact');
         $template->setDescription('contact');
-        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/CheckIn/modals/checking_contact_modal.html.twig', 'r'));
+        $template->setContent('Hier komt een contact template');
         $template->setTemplateEngine('twig');
         $manager->persist($template);
         $template->setId($id);
