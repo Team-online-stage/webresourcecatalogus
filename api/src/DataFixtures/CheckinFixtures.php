@@ -317,25 +317,34 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $menuItem = new MenuItem();
         $menuItem->setName('Voor ondernemers');
         $menuItem->setDescription('Registreer uw onderneming');
-        $menuItem->setOrder(3);
+        $menuItem->setOrder(1);
         $menuItem->setType('slug');
         $menuItem->setHref('/ondernemers');
         $menuItem->setMenu($menu);
         $manager->persist($menuItem);
 
         $menuItem = new MenuItem();
+        $menuItem->setName('Hoe werkt het');
+        $menuItem->setDescription('Hoe werkt checkin');
+        $menuItem->setOrder(2);
+        $menuItem->setType('slug');
+        $menuItem->setHref('/about');
+        $menuItem->setMenu($menu);
+        $manager->persist($menuItem);
+
+        $menuItem = new MenuItem();
         $menuItem->setName('Privacy');
         $menuItem->setDescription('Wie zitten achter CheckIn');
-        $menuItem->setOrder(5);
+        $menuItem->setOrder(3);
         $menuItem->setType('slug');
         $menuItem->setHref('/privacy');
         $menuItem->setMenu($menu);
         $manager->persist($menuItem);
 
         $menuItem = new MenuItem();
-        $menuItem->setName('Proclaimer');
+        $menuItem->setName('Voorwaarden');
         $menuItem->setDescription('Wie zitten achter CheckIn');
-        $menuItem->setOrder(6);
+        $menuItem->setOrder(4);
         $menuItem->setType('slug');
         $menuItem->setHref('/proclaimer');
         $menuItem->setMenu($menu);
