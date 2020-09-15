@@ -283,7 +283,7 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
         $slug->setSlug('studenten');
         $manager->persist($slug);
         $manager->flush();
-        
+
         //footer1
         $id = Uuid::fromString('afa4c1f6-17b7-40a2-b289-57640bb141d9');
         $template = new Template();
