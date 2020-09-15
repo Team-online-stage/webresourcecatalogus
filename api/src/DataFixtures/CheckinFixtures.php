@@ -364,7 +364,7 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $template->setName('Nieuw verzoek');
         $template->setTitle('U heeft een nieuw verzoek ingediend');
         $template->setDescription('Bevestiging dat u een verzoek heeft ingediend');
-        $template->setContent('Beste {{ receiver.givenName }},<p>Uw verzoek met referentie {{ resource.reference }} is met succes ingediend.</p><p>Met vriendelijke groet,</p>{{ sender.name }}');
+        $template->setContent('Beste {{ receiver.givenName }},<p>Uw verzoek met referentie {{ resource.reference }} is met succes ingediend.</p><p>U kunt nu inloggen op https://dev.checking.nu/ met de volgende gegevens:</p><p>Gebruikersnaam: {% set receiverEmails = commonground_resource_list(receiver.emails)[\'hydra:member\'] %}{% if receiverEmails|length >0 %}{% set receiverEmail = receiverEmails[0] %}{% endif %}{% if organizationEmail is defined and organizationEmail is not empty %}{{ receiverEmail.email }}{% endif %}<br>Wachtwoord: test1234</p><p>Met vriendelijke groet,</p>{{ sender.name }}');
         $template->setTemplateEngine('twig');
         $manager->persist($template);
         $template->setId($id);
