@@ -63,7 +63,7 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
         $id = Uuid::fromString('da8af35b-afca-455e-a722-6d0052f7367d');
         $headerimg = new Image();
         $headerimg->setName('header image');
-        $headerimg->setBase64(base64_encode(file_get_contents(dirname(__FILE__) . '/Resources/Stage/afbeeldingen/Header.png', 'r')));
+        $headerimg->setBase64(base64_encode(file_get_contents(dirname(__FILE__).'/Resources/Stage/afbeeldingen/Header.png', 'r')));
         $headerimg->setDescription('Stage header');
         $headerimg->setOrganization($organization);
         $manager->persist($headerimg);
@@ -75,7 +75,7 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
         $id = Uuid::fromString('62685881-e5a2-4f73-b08f-a155b6dab74c');
         $kladimg = new Image();
         $kladimg->setName('klad image');
-        $kladimg->setBase64(base64_encode(file_get_contents(dirname(__FILE__) . '/Resources/Stage/afbeeldingen/Klad.png', 'r')));
+        $kladimg->setBase64(base64_encode(file_get_contents(dirname(__FILE__).'/Resources/Stage/afbeeldingen/Klad.png', 'r')));
         $kladimg->setDescription('stageplatform klad image ');
         $kladimg->setOrganization($organization);
         $manager->persist($kladimg);
@@ -87,7 +87,7 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
         $id = Uuid::fromString('cdaad46c-f1b3-11ea-adc1-0242ac120002');
         $raketimg = new Image();
         $raketimg->setName('raket image');
-        $raketimg->setBase64(base64_encode(file_get_contents(dirname(__FILE__) . '/Resources/Stage/afbeeldingen/Raket-rechts-onder.png', 'r')));
+        $raketimg->setBase64(base64_encode(file_get_contents(dirname(__FILE__).'/Resources/Stage/afbeeldingen/Raket-rechts-onder.png', 'r')));
         $raketimg->setDescription('stageplatform raket voor rechts onder ');
         $raketimg->setOrganization($organization);
         $manager->persist($raketimg);
@@ -231,7 +231,7 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
         $template = new Template();
         $template->setName('Academy Home');
         $template->setDescription('Homepage voor CheckIn.nu');
-        $template->setContent(file_get_contents(dirname(__FILE__) . '/Resources/Stage/index.html.twig', 'r'));
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Stage/index.html.twig', 'r'));
         $template->setTemplateEngine('twig');
         $manager->persist($template);
         $template->setId($id);
@@ -253,7 +253,7 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
         $template = new Template();
         $template->setName('bedrijfspagina');
         $template->setDescription('stage pagina voor bedrijven');
-        $template->setContent(file_get_contents(dirname(__FILE__) . '/Resources/Stage/bedrijf.html.twig', 'r'));
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Stage/bedrijf.html.twig', 'r'));
         $template->setTemplateEngine('twig');
         $manager->persist($template);
         $template->setId($id);
@@ -275,7 +275,7 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
         $template = new Template();
         $template->setName('Studenten');
         $template->setDescription('Studenten pagina');
-        $template->setContent(file_get_contents(dirname(__FILE__) . '/Resources/Stage/studenten.html.twig', 'r'));
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Stage/studenten.html.twig', 'r'));
         $template->setTemplateEngine('twig');
         $manager->persist($template);
         $template->setId($id);
@@ -297,7 +297,7 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
         $template = new Template();
         $template->setName('Stageplatform Conduction About');
         $template->setDescription('Aboutpage voor stage.dev.conduction.nl');
-        $template->setContent(file_get_contents(dirname(__FILE__) . '/Resources/Stage/about.html.twig', 'r'));
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Stage/about.html.twig', 'r'));
         $template->setTemplateEngine('twig');
         $manager->persist($template);
         $template->setId($id);
@@ -319,7 +319,7 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
         $template = new Template();
         $template->setName('footer1');
         $template->setDescription('footer1');
-        $template->setContent(file_get_contents(dirname(__FILE__) . '/Resources/Stage/footer1.html.twig', 'r'));
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Stage/footer1.html.twig', 'r'));
         $template->setTemplateEngine('twig');
         $manager->persist($template);
         $template->setId($id);
@@ -335,7 +335,7 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
         $template = new Template();
         $template->setName('footer4');
         $template->setDescription('footer4');
-        $template->setContent(file_get_contents(dirname(__FILE__) . '/Resources/Stage/footer4.html.twig', 'r'));
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Stage/footer4.html.twig', 'r'));
         $template->setTemplateEngine('twig');
         $manager->persist($template);
         $template->setId($id);
