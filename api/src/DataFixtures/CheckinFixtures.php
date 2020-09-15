@@ -584,7 +584,7 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $template = new Template();
         $template->setName('tip');
         $template->setDescription('tip');
-        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/CheckIn/modals/checking_tip_modal.html.twig', 'r'));
+        $template->setContent('Hier komt een tip template');
         $template->setTemplateEngine('twig');
         $manager->persist($template);
         $template->setId($id);
@@ -606,7 +606,7 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $template = new Template();
         $template->setName('contact');
         $template->setDescription('contact');
-        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/CheckIn/modals/checking_contact_modal.html.twig', 'r'));
+        $template->setContent('Hier komt een contact template');
         $template->setTemplateEngine('twig');
         $manager->persist($template);
         $template->setId($id);
