@@ -279,7 +279,7 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
                 //'headerimg'             => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'0863d15c-286e-4ec4-90f6-27cebb107aa9']),
                 'userPage'              => 'me',
                 'invoiceTemplate'       => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'4f313197-1321-4e6d-a206-d5d80bb11b07']),
-                'login'                 => ['user'=>true, 'idin'=>true], //, 'facebook'=>true, 'gmail'=>true
+                'login'                 => ['user'=>true, 'idin'=>true, 'facebook'=>true, 'gmail'=>true],
                 'header'                => false,
                 'stickyMenu'            => true,
                 'newsGroup'             => '1024',
@@ -373,7 +373,7 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $template->setName('Nieuw verzoek');
         $template->setTitle('U heeft een nieuw verzoek ingediend');
         $template->setDescription('Bevestiging dat u een verzoek heeft ingediend');
-        $template->setContent('Beste {{ receiver.givenName }},<p>Uw verzoek met referentie {{ resource.reference }} is met succes ingediend.</p><p>U kunt nu inloggen op https://dev.checking.nu/ met de volgende gegevens:</p><p>Gebruikersnaam: {% set receiverEmails = commonground_resource_list(receiver.emails)[\'hydra:member\'] %}{% if receiverEmails|length >0 %}{% set receiverEmail = receiverEmails[0] %}{% endif %}{% if organizationEmail is defined and organizationEmail is not empty %}{{ receiverEmail.email }}{% endif %}<br>Wachtwoord: test1234</p><p>Met vriendelijke groet,</p>{{ sender.name }}');
+        $template->setContent('Beste {{ receiver.givenName }},<p>Uw verzoek met referentie {{ resource.reference }} is met succes ingediend.</p><p>U kunt nu inloggen op https://dev.checking.nu/ met de volgende gegevens:</p><p>Gebruikersnaam: {% if receiver.emails|length >0 %}{% set receiverEmail = receiver.emails[0] %}{% endif %}{% if receiverEmail is defined and receiverEmail is not empty %}{{ receiverEmail.email }}{% endif %}<br>Wachtwoord: test1234</p><p>Met vriendelijke groet,</p>{{ sender.name }}');
         $template->setTemplateEngine('twig');
         $manager->persist($template);
         $template->setId($id);
