@@ -13,10 +13,11 @@
          style="height: 500px; background: url(data:image/file;base64,{{ headerimg['base64'] }})">
         <div class="container">
         </div><!-- /.container -->
+        <h1 style="float: right; margin-right: 17%; margin-top: 3%; color: #406377; font-size: 42px">Conduction academy</h1>
     </div><!-- /.row -->
 
-    <div class="row">
-        <div class="container" style="width: 100%">
+    <div class="row" style=" background-color: #222222;">
+        <div class="container" style="width: 100%;">
             <div class="content" style="text-align: justify; float: left; width: 50%">
                 <br>
                 <h2 style="color: white">Over Conduction Acedemy</h2><br>
@@ -34,27 +35,26 @@
     </div>
 
     {#  Blokjes voorpagina  #}
-    <div style="background-color: #1A1D21">
+    <div style="background-color: #263846">
         <div class="container"><br>
             <div class="row">
                 <div class="col-md-8" style="float: none;margin: auto">
                     <div class="row">
                         <div class="col-md-12">
-                            <ul class="list list--card">
+                            <ul class="list list--card" style="z-index: 0;">
+
                                 <li class="card background--primary card__hover">
-                                    <a href="#" class="card__content">
-                                        <div class="card__icon flex-center color--primary"><i
-                                                class="fas fa-laptop-house fa-5x"></i></div>
-                                        <div class="card__body flex-center"><span
-                                                class="card__title color--primary flex-center">Studenten</span></div>
+                                    <a href="/studenten" class="card__content">
+                                        <img src="afbeeldingen/Studenenten-los_06.png" style="position: absolute; z-index: 1">
+                                        <div class="card__icon flex-center color--primary"><i class="fas fa-laptop-house fa-5x"></i></div>
+                                        <div class="card__body flex-center"><span class="card__title color--primary flex-center">Studenten</span></div>
                                     </a>
                                 </li>
                                 <li class="card background--primary card__hover">
-                                    <a href="#" class="card__content">
-                                        <div class="card__icon flex-center color--primary"><i
-                                                class="fas fa-building fa-5x"></i></div>
-                                        <div class="card__body flex-center"><span
-                                                class="card__title color--primary flex-center">Bedrijven</span></div>
+                                    <a href="/bedrijven" class="card__content">
+                                        <img src="afbeeldingen/Studenenten-los_06.png" style="position: absolute; z-index: 1">
+                                        <div class="card__icon flex-center color--primary"><i class="fas fa-building fa-5x"></i></div>
+                                        <div class="card__body flex-center"><span class="card__title color--primary flex-center">Bedrijven</span></div>
                                     </a>
                                 </li>
                             </ul>
@@ -67,10 +67,10 @@
     {# Klas image #}
     {% set kladimg = commonground_resource(application.defaultConfiguration.configuration.kladimg) %}
     <div class="row background--primary background--image"
-         style="padding: 20px; height: 500px; background: url(data:image/file;base64,{{ kladimg['base64'] }})">
+         style="padding: 20px; height: 500px; background-color: #221F1B !important; background: url(data:image/file;base64,{{ kladimg['base64'] }})">
         <div class="container">
         </div><!-- /.container -->
     </div><!-- /.row -->
     {# Zwart vlak#}
-    <div style="background-color: #1A1D21; width: 100%; height: 400px"></div>
+    <div style="background-color: #222222; width: 100%; height: 400px"></div>
 {% endblock %}
