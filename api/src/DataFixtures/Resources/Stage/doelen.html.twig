@@ -1,0 +1,25 @@
+{# templates/home/index.html.twig #}
+{% extends 'base.html.twig' %}
+{% block container %}
+    <style>
+        main {
+            background-color: white;
+        }
+    </style>
+    <h2 style="margin-left: 20px">Doelen</h2>
+    <div style="margin-left: 20px; float: left; background-color: #263846; width: 250px; height: 250px"></div>
+    <ul class="list list--card list--card-small" style="margin-left: 25%; margin-right: 60px">
+        <li class="card card--small" style="background-color: lightgray;">
+            <img src="afbeeldingen/Studenenten-los_06.png" style="position: relative; z-index: 1;">
+            <div class="card__body flex-center"></div>
+        </li>
+        <li class="card card--small" style="background-color: lightgray;">
+            <img src="afbeeldingen/Studenenten-los_04.png" style="position: relative; z-index: 1;">
+            <div class="card__body flex-center"></div>
+        </li>
+        <li class="card card--small" style="background-color: lightgray;">
+            <img src="afbeeldingen/Studenenten-los_02.png" style="position: relative; z-index: 1;">
+            <div class="card__body flex-center"></div>
+        </li>
+    </ul>
+{% endblock %}
