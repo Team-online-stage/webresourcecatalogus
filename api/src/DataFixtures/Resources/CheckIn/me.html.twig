@@ -75,7 +75,7 @@
                 <li class="card background--primary card__hover">
                     <a href="{{ path('app_chin_nodesorganization') }}" class="card__content">
                         <div class="card__icon flex-center color--primary">
-                            <i class="fas fa-map-marker-alt fa-4x"></i></div>
+                            <i class="fas fa-qrcode fa-4x"></i></div>
                         <div class="card__body flex-center">
                             <span class="card__title color--primary flex-center">{{ 'nodes'|trans|capitalize }}</span>
                         </div>
@@ -91,20 +91,22 @@
                     </a>
                 </li>
                 <li class="card background--primary card__hover">
-                    <a href="#" class="card__content">
-                        <div class="card__icon flex-center color--primary"><i
-                                class="fas fa-qrcode fa-4x"></i></div>
+                    <a href="{{ path('app_chin_checkinstatistics') }}"  class="card__content">
+                        {% set yesterday = 'now' | date_modify('-1 days') %}
+                        {% set checkinslast24hours = commonground_resource({'component': 'chin', 'type': 'checkins'},{'organization':organization, 'dateCreated[after]':yesterday})['hydra:member']|length %}
+                        <div class="card__icon flex-center color--primary">{{ checkinslast24hours }}</div>
                         <div class="card__body flex-center"><span
-                                class="card__title color--primary flex-center">{{ 'code'|trans|capitalize }}</span>
+                                class="card__title color--primary flex-center">{{ 'checkins'|trans|capitalize }}</span>
                         </div>
                     </a>
                 </li>
+
             </ul>
             <ul class="list list--card" style="margin-bottom: 0;">
                 <li class="card background--primary card__hover">
                     <a href="{{ path('app_wrc_organization') }}" class="card__content">
                         <div class="card__icon flex-center color--primary"><i
-                                class="fas fa-map-marker-alt fa-4x"></i></div>
+                                class="fas fa-building fa-4x"></i></div>
                         <div class="card__body flex-center"><span
                                 class="card__title color--primary flex-center">{{ 'organization'|trans|capitalize }}</span>
                         </div>
@@ -122,7 +124,7 @@
                 <li class="card background--primary card__hover">
                     <a href="{{ path('app_bc_organization') }}" class="card__content">
                         <div class="card__icon flex-center color--primary"><i
-                                class="fas fa-map-marker-alt fa-4x"></i></div>
+                                class="fas fa-file-invoice-dollar fa-4x"></i></div>
                         <div class="card__body flex-center"><span
                                 class="card__title color--primary flex-center">{{ 'invoices'|trans|capitalize }}</span>
                         </div>
@@ -131,20 +133,9 @@
             </ul>
             <ul class="list list--card">
                 <li class="card background--primary card__hover">
-                    <a href="{{ path('app_chin_checkinstatistics') }}"  class="card__content">
-                        <div class="card__icon flex-center color--primary"><i
-                                class="fas fa-search-location fa-4x"></i></div>
-                        {% set yesterday = 'now' | date_modify('-1 days') %}
-                        {% set checkinslast24hours = commonground_resource({'component': 'chin', 'type': 'checkins'},{'organization':organization, 'dateCreated[after]':yesterday})['hydra:member']|length %}
-                        <div class="card__body flex-center"><span
-                                class="card__title color--primary flex-center">{{ checkinslast24hours }}</span>
-                        </div>
-                    </a>
-                </li>
-                <li class="card background--primary card__hover">
                     <a href="{{ path('app_ptc_process',{"id":"7ea9a041-d96f-4f4b-adc1-e1a46ea8463d"}) }}" class="card__content">
                         <div class="card__icon flex-center color--primary"><i
-                                class="fas fa-map-marker-alt fa-4x"></i></div>
+                                class="fas fa-file-medical fa-4x"></i></div>
                         <div class="card__body flex-center"><span
                                 class="card__title color--primary flex-center">{{ 'data request'|trans|capitalize }}</span>
                         </div>
