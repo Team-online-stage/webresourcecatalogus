@@ -103,7 +103,7 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
         $style->setDescription('Huistlijl Gemeente Zuid-Drecht');
         $style->setCss('
                :root {
-                       --primary: #01689b;
+                       --primary: #406377;
                        --primary-color: white;
                        --secondary: #cce0f1;
                        --secondary-color: #2b2b2b;
@@ -111,7 +111,7 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
                        --menu-over: #3669A5;
                        --menu-color: white;
                        --menu-height: 100px;
-                       --footer: #01689b;
+                       --footer: #406377;
                        --footer-color: white;
                 }
 
@@ -203,7 +203,7 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
         $manager->persist($menuItem);
 
         $menuItem = new MenuItem();
-        $menuItem->setName('Bedrijven');
+        $menuItem->setName('Bedrijven/Organisaties');
         $menuItem->setDescription('Bedrijven pagina');
         $menuItem->setOrder(2);
         $menuItem->setType('slug');
