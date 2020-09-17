@@ -70,7 +70,7 @@
 
     {% if app.user is defined and app.user is not empty %}
         <div class="col-md-8">
-            {% if app.user.type is defined and app.user.type == 'user' %}
+            {% if 'group.adminr' in app.user.roles %}
             <ul class="list list--card" style="margin-bottom: 0;">
                 <li class="card background--primary card__hover">
                     <a href="{{ path('app_chin_nodesorganization') }}" class="card__content">
