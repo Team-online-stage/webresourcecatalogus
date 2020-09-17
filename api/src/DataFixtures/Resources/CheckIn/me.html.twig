@@ -21,7 +21,7 @@
                             {% else %}
                                 {% set organization = commonground_resource({'component':'kvk','type':'companies', 'id': app.user.organization}) %}
                             {% endif %}
-                            {% if organization.name is defined and organization.name is not empty %}
+                            {% if 'group.admin' in app.user.roles %}
                                 <h1 class="content__header-title">{{ organization.name }}</h1>
                             {% else %}
                                 <h1 class="content__header-title">{{ 'personal'|trans|capitalize }}</h1>
@@ -70,7 +70,7 @@
 
     {% if app.user is defined and app.user is not empty %}
         <div class="col-md-8">
-            {% if 'group.adminr' in app.user.roles %}
+            {% if 'group.admin' in app.user.roles %}
             <ul class="list list--card" style="margin-bottom: 0;">
                 <li class="card background--primary card__hover">
                     <a href="{{ path('app_chin_nodesorganization') }}" class="card__content">
@@ -175,6 +175,7 @@
                                 </div>
                             </a>
                         </li>
+                        <!--
                         <li class="card background--primary card__hover">
                             <a href="{{ path('app_ptc_process',{"id":"7f5bd18e-e3dd-4864-a2fb-24d118462396"}) }}" class="card__content">
                                 <div class="card__icon flex-center color--primary"><i
@@ -185,6 +186,7 @@
                             </a>
                         </li>
                     </ul>
+                    -->
             <ul class="list list--card">
                         <li class="card background--primary card__hover">
                             <a href="{{ path('app_user_logout') }}" class="card__content">
