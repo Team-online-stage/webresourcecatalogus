@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+{% block container %}
+    <style>
+        body main{
+            background-color: #263846;
+        }
+    </style>
+
+    <div class="row">
+        <div class="container">
+            <div class="content">
+                <div class="col-md-12">
+                    <ul class="list list--card">
+                        <li class="card background--primary card__hover">
+                            <a href="#" class="card__content">
+                                <div class="card__icon flex-center color--primary"><i class="fas fa-male fa-5x"></i></div>
+                                <div class="card__body flex-center"><span
+                                        class="card__title color--primary flex-center">Aanmelden als stagiaire</span></div>
+                            </a>
+                        </li>
+                        <li class="card background--primary card__hover">
+                            <a href="#" class="card__content">
+                                <div class="card__icon flex-center color--primary"><i class="fas fa-building fa-5x"></i></div>
+                                <div class="card__body flex-center"><span
+                                        class="card__title color--primary flex-center">Aanmelden als bedrijf</span></div>
+                            </a>
+                        </li>
+                    </ul>
+                </div><!-- /.col -->
+            </div><!-- /content -->
+        </div><!-- /container-->
+    </div><!-- /row-->
+{% endblock %}
