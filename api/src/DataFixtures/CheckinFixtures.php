@@ -370,10 +370,10 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         // E-mail templates
         $id = Uuid::fromString('2ca5b662-e941-46c9-ae87-ae0c68d0aa5d');
         $template = new Template();
-        $template->setName('Nieuw verzoek');
-        $template->setTitle('U heeft een nieuw verzoek ingediend');
+        $template->setName('Welkom');
+        $template->setTitle('Welkom bij checkin!');
         $template->setDescription('Bevestiging dat u een verzoek heeft ingediend');
-        $template->setContent('Beste {{ receiver.givenName }},<p>Uw verzoek met referentie {{ resource.reference }} is met succes ingediend.</p><p>U kunt nu inloggen op https://dev.checking.nu/ met de volgende gegevens:</p><p>Gebruikersnaam: {% if receiver.emails|length >0 %}{% set receiverEmail = receiver.emails[0] %}{% endif %}{% if receiverEmail is defined and receiverEmail is not empty %}{{ receiverEmail.email }}{% endif %}<br>Wachtwoord: test1234</p><p>Met vriendelijke groet,</p>{{ sender.name }}');
+        $template->setContent('Beste {{ receiver.givenName }},<p>Welkom bij checkin!</p>><p>Uw verzoek tot deelname van checkin met referentie {{ resource.reference }} is met succes ingediend.</p>{% set organization = commonground_resource(request.properties[\'horeca_onderneming_contact\']) %}<p>De door u opgegeven gegevens van uw organisatie: <br>Naam: {{organization.name}}<br>Kvk: {% if organization.kvk is defined and organization.kvk is not empty %}{{organization.kvk}}{% else %}{request.properties[\'kvk\']}{% endif %}</p>{% set nodes =  commonground_resource_list({\'component\': \'chin\', \'type\': \'nodes\'},{\'organization\':organization[\'@id\']})[\'hydra:member\'] %}{% if nodes|length > 0 %}{% set node = nodes[0] %}{% endif %}<p>Hierbij hebben wij alvast een voorbeeld QR-code voor u: <br><img src="{{ qr_code_data_uri( absolute_url(path(\'app_chin_checkin\',{"code":node.reference})) , { writer: \'svg\', size: 150 }) }}" /></p><p>Algemene voorwaarden.</p><p>Verwerkings overeenkomst.</p><p>Met vriendelijke groet,</p>{{ sender.name }}');
         $template->setTemplateEngine('twig');
         $manager->persist($template);
         $template->setId($id);
@@ -387,8 +387,56 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $slug = new Slug();
         $slug->setTemplate($template);
         $slug->setApplication($application);
-        $slug->setName('e-mail-indiening');
-        $slug->setSlug('e-mail-indiening');
+        $slug->setName('e-mail-welkom');
+        $slug->setSlug('e-mail-welkom');
+        $manager->persist($slug);
+        $manager->flush();
+
+        $id = Uuid::fromString('f19ef1f8-a031-412f-9894-67d54e1147dd');
+        $template = new Template();
+        $template->setName('Uw accountgegevens');
+        $template->setTitle('Uw inlognaam voor checkin');
+        $template->setDescription('Uw inlognaam voor uw account op checking.nu');
+        $template->setContent('Beste {{ receiver.givenName }},<p><p>U kunt nu inloggen op https://dev.checking.nu/ met de volgende inlognaam:</p><p>Gebruikersnaam: {% if receiver.emails|length >0 %}{% set receiverEmail = receiver.emails[0] %}{% endif %}{% if receiverEmail is defined and receiverEmail is not empty %}{{ receiverEmail.email }}{% endif %}</p><p>Met vriendelijke groet,</p>{{ sender.name }}');
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupEmails);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('e-mail-inlognaam');
+        $slug->setSlug('e-mail-inlognaam');
+        $manager->persist($slug);
+        $manager->flush();
+
+        $id = Uuid::fromString('07075add-89c7-4911-b255-9392bae724b3');
+        $template = new Template();
+        $template->setName('Uw accountgegevens');
+        $template->setTitle('Uw wachtwoord voor checkin');
+        $template->setDescription('Uw wachtwoord voor uw account op checking.nu');
+        $template->setContent('Beste {{ receiver.givenName }},<p>U kunt nu inloggen op https://dev.checking.nu/ met het volgende wachtwoord: test1234</p><p>Klik <a href="https://dev.checking.nu/me">hier</a> om uw wachtwoord te wijzigen.</p><p>Met vriendelijke groet,</p>{{ sender.name }}');
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupEmails);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('e-mail-wachtwoord');
+        $slug->setSlug('e-mail-wachtwoord');
         $manager->persist($slug);
         $manager->flush();
 
