@@ -2,25 +2,17 @@
 
 {% extends 'base.html.twig' %}
 {% block container %}
-
-    <div style="background: white; width: 100%">
-        {% set headerimg = commonground_resource(application.defaultConfiguration.configuration.headerimg) %}
-        <div class="row background--primary background--image" style="margin-top: -20px; background: url(data:image/file;base64,{{headerimg['base64']}})">
-            <div class="container" >
-                <div class="col-md-4 col-md-offset-8" style="height: 500px; position:relative;">
-                    <div class="content-background background--secondary" style="position: absolute; bottom:0;">
-                    </div><!-- /.content-background -->
-                </div><!-- /.col -->
-            </div><!-- /.container -->
-        </div><!-- /.row -->
-    </div>
-
+    <style>
+        main{
+            background-color: #263846;
+        }
+    </style>
     <div class="row" style="background-color: #263846">
-        <div class="container" style="width: 100%; background-color: white; opacity: 0.8; height: 500px; margin-top: 5%">
+        <div class="container" style="width: 100%; height: 500px; margin-top: 5%">
             <div class="content">
                 <br>
-                <h2>Over Conduction Acedemy</h2><br>
-                <p class="paragraph-s">
+                <h2 style="color: white">Over Conduction Acedemy</h2><br>
+                <p class="paragraph-s" style="color: white">
                     Lorem ipsum dolor sit amet, consectetuer adipiscing elit.Aenean commodo ligula eget dolor.
                     Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
                     Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.
@@ -33,13 +25,7 @@
         </div>
     </div>
 
-    <div style="width: 100%; background: #DEDEDE; height: 500px"></div>
-
-    {% set kladimg = commonground_resource(application.defaultConfiguration.configuration.kladimg) %}
-    <div class="row background--primary background--image"
-         style="padding: 20px; height: 350px; background: url(data:image/file;base64,{{ kladimg['base64'] }})">
-        <div class="container">
-        </div><!-- /.container -->
-    </div><!-- /.row -->
+    <div style="width: 100%; background: white; height: 30%"></div>
 
 {% endblock %}
+
