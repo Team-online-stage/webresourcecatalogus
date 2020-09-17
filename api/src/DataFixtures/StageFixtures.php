@@ -316,5 +316,27 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
         $template->addTemplateGroup($groupPages);
         $manager->persist($template);
         $manager->flush();
+
+        //profiel aanmaaken
+        $id = Uuid::fromString('c71569c8-7f11-4e18-a85d-823bc207125b');
+        $template = new Template();
+        $template->setName('AcademyProfile');
+        $template->setDescription('pagina voor aanmaken van profielen');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Stage/signUp.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $manager->persist($template);
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('aanmelden');
+        $slug->setSlug('aanmelden');
+        $manager->persist($slug);
+        $manager->flush();
     }
 }
