@@ -13916,7 +13916,7 @@ definitions:
       description:
         description: 'The description of this organisation.'
         type: string
-        example: 'This is the manucipality of Utrecht'
+        example: 'Is the best site ever'
         maxLength: 255
       alt:
         description: 'The alt of of this image for people with poor eyesight'
@@ -14492,12 +14492,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-09-15 05:06:55'
+        example: '2020-09-17 11:24:43'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-09-15 05:06:55'
+        example: '2020-09-17 11:24:43'
     required: []
   AuditTrail-write:
     properties:
@@ -14545,12 +14545,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-09-15 05:06:55'
+        example: '2020-09-17 11:01:15'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-09-15 05:06:55'
+        example: '2020-09-17 11:01:15'
     required: []
   ChangeLog-write:
     properties:
