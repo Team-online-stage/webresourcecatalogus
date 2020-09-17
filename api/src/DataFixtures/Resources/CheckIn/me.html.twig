@@ -151,7 +151,7 @@
                     </a>
                 </li>
             </ul>
-                    {% elseif app.user.type is defined and app.user.type == 'idin' %}
+                    {% else %}
                     <ul class="list list--card">
                         {% if checkins is defined and checkins is not empty and checkins|length > 0 %}
                             <li class="card background--primary card__hover">
