@@ -189,8 +189,8 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
 
         $id = Uuid::fromString('62bff497-cb91-443e-9da9-21a0b38cd536');
         $organization = new Organization();
-        $organization->setName('Creative Ground');
-        $organization->setDescription('Creative Ground');
+        $organization->setName('Creative Grounds');
+        $organization->setDescription('Creative Grounds');
         $manager->persist($organization);
         $organization->setId($id);
         $manager->persist($organization);
