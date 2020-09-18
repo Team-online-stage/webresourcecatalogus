@@ -328,6 +328,7 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $menuItem->setName('Home');
         $menuItem->setDescription('Ga terug naar de home page');
         $menuItem->setOrder(1);
+        $menuItem->setIcon('fas fa-home');
         $menuItem->setType('slug');
         $menuItem->setHref('/');
         $menuItem->setMenu($menu);
