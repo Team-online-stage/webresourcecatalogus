@@ -103,7 +103,7 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
         $style->setDescription('Huistlijl Gemeente Zuid-Drecht');
         $style->setCss('
                :root {
-                       --primary: #01689b;
+                       --primary: #406377;
                        --primary-color: white;
                        --secondary: #cce0f1;
                        --secondary-color: #2b2b2b;
@@ -111,7 +111,7 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
                        --menu-over: #3669A5;
                        --menu-color: white;
                        --menu-height: 100px;
-                       --footer: #01689b;
+                       --footer: #406377;
                        --footer-color: white;
                 }
 
@@ -132,6 +132,7 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
                 'home'                  => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'d6127f56-c334-4eb7-bade-c70e97631aec']),
                 'studenten'             => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'a4a9a984-d83e-44ac-b27d-c77cd74b0d21']),
                 'footer1'               => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'afa4c1f6-17b7-40a2-b289-57640bb141d9']),
+                'footer4'               => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'0c663ab8-f9d5-42c5-8866-1a51fcf74a12']),
                 'headerimg'             => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'da8af35b-afca-455e-a722-6d0052f7367d']),
                 'kladimg'               => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'62685881-e5a2-4f73-b08f-a155b6dab74c']),
                 'raketimg'              => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'cdaad46c-f1b3-11ea-adc1-0242ac120002']),
@@ -202,7 +203,7 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
         $manager->persist($menuItem);
 
         $menuItem = new MenuItem();
-        $menuItem->setName('Bedrijven');
+        $menuItem->setName('Bedrijven/Organisaties');
         $menuItem->setDescription('Bedrijven pagina');
         $menuItem->setOrder(2);
         $menuItem->setType('slug');
@@ -314,6 +315,28 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
         $template = $manager->getRepository('App:Template')->findOneBy(['id' => $id]);
         $template->addTemplateGroup($groupPages);
         $manager->persist($template);
+        $manager->flush();
+
+        //profiel aanmaaken
+        $id = Uuid::fromString('c71569c8-7f11-4e18-a85d-823bc207125b');
+        $template = new Template();
+        $template->setName('AcademyProfile');
+        $template->setDescription('pagina voor aanmaken van profielen');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Stage/signUp.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $manager->persist($template);
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('aanmelden');
+        $slug->setSlug('aanmelden');
+        $manager->persist($slug);
         $manager->flush();
     }
 }
