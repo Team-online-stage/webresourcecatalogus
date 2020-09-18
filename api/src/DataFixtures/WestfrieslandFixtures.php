@@ -135,29 +135,85 @@ class WestfrieslandFixtures extends Fixture
         $manager->persist($style);
         $manager->flush();
 
-        // SED
+        // Enkhuizen
         $id = Uuid::fromString('7033eeb4-5c77-4d88-9f40-303b538f176f');
-        $sed = new Organization();
-        $sed->setName('SED');
-        $sed->setDescription('Gemeenten Stede Broec, Enkhuizen en Drechterland');
-        $sed->setRsin('1234');
-        $sed->setContact($this->commonGroundService->cleanUrl(['component' => 'cc', 'type' => 'organizations', 'id' => '0012428b-dc06-444a-af20-17d3ee06a916']));
-        $manager->persist($sed);
-        $sed->setId($id);
-        $manager->persist($sed);
+        $enkhuizen = new Organization();
+        $enkhuizen->setName('Enkhuizen');
+        $enkhuizen->setDescription('Gemeenten Enkhuizen');
+        $enkhuizen->setRsin('1234');
+        $enkhuizen->setContact($this->commonGroundService->cleanUrl(['component' => 'cc', 'type' => 'organizations', 'id' => '0012428b-dc06-444a-af20-17d3ee06a916']));
+        $manager->persist($enkhuizen);
+        $enkhuizen->setId($id);
+        $manager->persist($enkhuizen);
         $manager->flush();
-        $sed = $manager->getRepository('App:Organization')->findOneBy(['id' => $id]);
+        $enkhuizen = $manager->getRepository('App:Organization')->findOneBy(['id' => $id]);
 
-        // SED
+        // Enkhuizen
         $style = new Style();
-        $style->setName('SED Style');
+        $style->setName('Enkhuizen Style');
         $style->setDescription('Huistlijl Westfriese gemeenten West-Friesland');
         $style->setCss(':root {--primary: #003E51;--primary2: white;--secondary: #509E2F;--secondary2: #509E2F;}.main-title
     	{color: var(--primary2) !important;}.logo-header {background: var(--primary);}.navbar-header {background: var(--primary);}
     	.bg-primary-gradient {background: linear-gradient(-45deg, var(--secondary), var(--secondary2)) !important;}');
 
         $style->setfavicon($favicon);
-        $style->addOrganization($sed);
+        $style->addOrganization($enkhuizen);
+
+        $manager->persist($favicon);
+        $manager->persist($style);
+        $manager->flush();
+
+        // Drechterland
+        $id = Uuid::fromString('e7d5368d-4d95-454d-9c0e-d4466889e2bd');
+        $drechterland = new Organization();
+        $drechterland->setName('Drechterland');
+        $drechterland->setDescription('Gemeenten Drechterland');
+        $drechterland->setRsin('1234');
+        $drechterland->setContact($this->commonGroundService->cleanUrl(['component' => 'cc', 'type' => 'organizations', 'id' => '756e50b8-4fd7-44d4-99d6-7f8ef47c3678']));
+        $manager->persist($drechterland);
+        $drechterland->setId($id);
+        $manager->persist($drechterland);
+        $manager->flush();
+        $drechterland = $manager->getRepository('App:Organization')->findOneBy(['id' => $id]);
+
+        // Drechterland
+        $style = new Style();
+        $style->setName('Drechterland Style');
+        $style->setDescription('Huistlijl Westfriese gemeenten West-Friesland');
+        $style->setCss(':root {--primary: #003E51;--primary2: white;--secondary: #509E2F;--secondary2: #509E2F;}.main-title
+    	{color: var(--primary2) !important;}.logo-header {background: var(--primary);}.navbar-header {background: var(--primary);}
+    	.bg-primary-gradient {background: linear-gradient(-45deg, var(--secondary), var(--secondary2)) !important;}');
+
+        $style->setfavicon($favicon);
+        $style->addOrganization($drechterland);
+
+        $manager->persist($favicon);
+        $manager->persist($style);
+        $manager->flush();
+
+        // stedebroec
+        $id = Uuid::fromString('a5567d87-ca05-45e9-a888-184494a3c79c');
+        $stedebroec = new Organization();
+        $stedebroec->setName('Stedebroec');
+        $stedebroec->setDescription('Gemeenten Stedebroec');
+        $stedebroec->setRsin('1234');
+        $stedebroec->setContact($this->commonGroundService->cleanUrl(['component' => 'cc', 'type' => 'organizations', 'id' => '93a892a9-d164-4d37-bfa5-a37c52ab3840']));
+        $manager->persist($stedebroec);
+        $stedebroec->setId($id);
+        $manager->persist($stedebroec);
+        $manager->flush();
+        $stedebroec = $manager->getRepository('App:Organization')->findOneBy(['id' => $id]);
+
+        // stedebroec
+        $style = new Style();
+        $style->setName('Stedebroec Style');
+        $style->setDescription('Huistlijl Westfriese gemeenten West-Friesland');
+        $style->setCss(':root {--primary: #003E51;--primary2: white;--secondary: #509E2F;--secondary2: #509E2F;}.main-title
+    	{color: var(--primary2) !important;}.logo-header {background: var(--primary);}.navbar-header {background: var(--primary);}
+    	.bg-primary-gradient {background: linear-gradient(-45deg, var(--secondary), var(--secondary2)) !important;}');
+
+        $style->setfavicon($favicon);
+        $style->addOrganization($stedebroec);
 
         $manager->persist($favicon);
         $manager->persist($style);
@@ -213,11 +269,41 @@ class WestfrieslandFixtures extends Fixture
     	.bg-primary-gradient {background: linear-gradient(-45deg, var(--secondary), var(--secondary2)) !important;}');
 
         $style->setfavicon($favicon);
-        $style->addOrganization($hoorn);
+        $style->addOrganization($koggenland);
 
         $manager->persist($favicon);
         $manager->persist($style);
         $manager->flush();
+
+        // Hogeland
+        /*
+        $id = Uuid::fromString('79ad319b-1ff6-4e21-919b-4ea002b5f233');
+        $hogeland = new Organization();
+        $hogeland->setName('Hogeland');
+        $hogeland->setDescription('Gemeente Hogeland');
+        $hogeland->setRsin('1234');
+//      $hogeland->setContact($this->commonGroundService->cleanUrl(['component' => 'cc', 'type' => 'organizations', 'id' => '5792b63d-afb5-4689-990b-51eec52b663b']));
+        $manager->persist($hogeland);
+        $hogeland->setId($id);
+        $manager->persist($hogeland);
+        $manager->flush();
+        $hogeland = $manager->getRepository('App:Organization')->findOneBy(['id' => $id]);
+
+        // Hogeland
+        $style = new Style();
+        $style->setName('Hogeland Style');
+        $style->setDescription('Huistlijl Westfriese gemeente Hogeland');
+        $style->setCss(':root {background: white;--primary: #1BB7BA;--primary-color: white;--secondary: #FFCC00;--secondary-color: black;}.main-title
+    	{color: var(--primary2) !important;}.logo-header {background: var(--primary);}.navbar-header {background: var(--primary);}
+    	.bg-primary-gradient {background: linear-gradient(-45deg, var(--secondary), var(--secondary2)) !important;}');
+
+        $style->setfavicon($favicon);
+        $style->addOrganization($hogeland);
+
+        $manager->persist($favicon);
+        $manager->persist($style);
+        $manager->flush();
+        */
 
         $id = Uuid::fromString('2c60657d-a728-4e71-897d-ac407c134e10');
         $headerimg = new Image();
@@ -241,20 +327,22 @@ class WestfrieslandFixtures extends Fixture
         $stylePan->setDescription('Huistlijl Westfriese gemeenten West-Friesland');
         $stylePan->setCss('
 
-            root {
-            --primary: #263371;
+            :root {
+            --primary: #233A79;
             --primary-color: white;
             --secondary: #FFCB04;
             --secondary-color: #263371;
 
-            --menu: #263371;
+            --header: white;
+            --menu: #233A79;
             --menu-over: #FFCB04;
             --menu-color: white;
-            --footer: #263371;
+            --footer: #233A79;
             --footer-color: white;
             }
 
             .header-logo a:before {
+            margin-left: -30px;
             background: url("data:image/svg+xml;base64,PHN2ZyBpZD0iTGFhZ18xIiBkYXRhLW5hbWU9IkxhYWcgMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2aWV3Qm94PSIwIDAgMzYzLjA5IDMyMC4zNSI+PGRlZnM+PHN0eWxlPi5jbHMtMXtmaWxsOiMyNjMzNzE7fS5jbHMtMntmaWxsOiNmZmNiMDQ7fTwvc3R5bGU+PC9kZWZzPjx0aXRsZT5sb2dvIFdlc3Rmcmllc2xhbmQgdmVjdG9yPC90aXRsZT48cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Ik0yNjUuNSw0NTIuNDNsNy0xOC40YTUuNDgsNS40OCwwLDAsMSwyLjI2LDEuMzMsNSw1LDAsMCwxLC43Mi45Myw0LjU4LDQuNTgsMCwwLDEsLjQ5LDEuMjMsNiw2LDAsMCwxLC4xNCwxLjU4LDcuNzEsNy43MSwwLDAsMS0uMzMsMmMtLjM4LDEtLjc4LDIuMTEtMS4yLDMuMjNsLTEuMjMsMy4zYy0uNCwxLjA4LS43OSwyLjExLTEuMTYsMy4xbC0xLDIuNjVjLS4zLjc4LS41NCwxLjQzLS43MywxLjk0bC0uMzcsMWMtLjQxLDEuMTEtLjgxLDIuMDgtMS4xOSwyLjlzLS43NCwxLjU0LTEuMDcsMi4xM2ExNi4xMywxNi4xMywwLDAsMS0uOTUsMS41LDgsOCwwLDAsMS0uODEsMSwyLjM0LDIuMzQsMCwwLDEtMS41Ni44NmwtNi4wNi0xNS40Ny02LjA3LDE1LjQ3YTIuMzQsMi4zNCwwLDAsMS0xLjU1LS44Niw3LjIsNy4yLDAsMCwxLS44MS0xLDE0LjI3LDE0LjI3LDAsMCwxLS45NS0xLjVjLS4zNC0uNTktLjY5LTEuMy0xLjA3LTIuMTNzLS43Ni0xLjc5LTEuMTctMi45bC0uMzctMWMtLjE5LS41MS0uNDMtMS4xNi0uNzMtMS45NHMtLjYzLTEuNjYtMS0yLjY1bC0xLjE3LTMuMXEtLjYyLTEuNjItMS4yMy0zLjNsLTEuMjEtMy4yM2E3LjcxLDcuNzEsMCwwLDEtLjMzLTIsNS41OSw1LjU5LDAsMCwxLC4xNS0xLjU4LDQuMjcsNC4yNywwLDAsMSwuNDktMS4yMyw1LjQxLDUuNDEsMCwwLDEsLjcxLS45Myw1LjU4LDUuNTgsMCwwLDEsMi4yNy0xLjMzbDcsMTguNCw3LTE2LjczWiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTI0MC43OSAtMTQ0LjI3KSIvPjxwYXRoIGNsYXNzPSJjbHMtMSIgZD0iTTMwNC41NSw0NjQuMDZIMjgyVjQzNC40N2gyMi41MWE2LDYsMCwwLDEtLjI1LDEuODUsNC40Niw0LjQ2LDAsMCwxLS42NSwxLjM1LDQuMzcsNC4zNywwLDAsMS0uOTMuOTQsNS45LDUuOSwwLDAsMS0xLjA3LjU4LDcsNywwLDAsMS0yLjg4LjQ1SDI4Ny40OHY2LjY1aDExLjlhNi40OCw2LjQ4LDAsMCwxLS4yMSwxLjc0LDQuOTQsNC45NCwwLDAsMS0uNTgsMS4zMSw0LDQsMCwwLDEtLjguOTIsNS41LDUuNSwwLDAsMS0uOTIuNjIsNiw2LDAsMCwxLTIuNTEuNmgtNi44OHY3LjQxaDEyYTYuMyw2LjMsMCwwLDEsMS43Mi4yMiw0LjYsNC42LDAsMCwxLDEuMjguNTksMy44NCwzLjg0LDAsMCwxLC45MS44Myw1LjExLDUuMTEsMCwwLDEsLjU5LDFBNi40Myw2LjQzLDAsMCwxLDMwNC41NSw0NjQuMDZaIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtMjQwLjc5IC0xNDQuMjcpIi8+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMzE3LjQ2LDQzOS43MWEzLjU2LDMuNTYsMCwwLDAtMS4xNy4xMSwzLjc5LDMuNzksMCwwLDAtLjUuMTgsMi42NSwyLjY1LDAsMCwwLS41Mi4yOCwyLjcyLDIuNzIsMCwwLDAtLjUuNDIsMy40MiwzLjQyLDAsMCwwLS40NS41OCwzLjMzLDMuMzMsMCwwLDAtLjQ3LDEuMzQsMy40NywzLjQ3LDAsMCwwLDAsMS4wOSwzLjA2LDMuMDYsMCwwLDAsLjQyLDEsMi44OCwyLjg4LDAsMCwwLC42OC43NywzLjk0LDMuOTQsMCwwLDAsMi40Ni43OEgzMjRhOS4xNSw5LjE1LDAsMCwxLDYuNDYsMi4zMyw3LjIsNy4yLDAsMCwxLDEuODksMi43LDkuMzIsOS4zMiwwLDAsMSwuNjEsMy40OWwwLC42YTkuMzQsOS4zNCwwLDAsMS0uNjIsMy40OCw3LjMzLDcuMzMsMCwwLDEtMS44OCwyLjcxQTkuMTMsOS4xMywwLDAsMSwzMjQsNDYzLjloLTkuNDZhNi4xNyw2LjE3LDAsMCwxLTIuNjEtLjUyLDUsNSwwLDAsMS0uOTUtLjU4LDMuODcsMy44NywwLDAsMS0uODQtLjkxLDUuMSw1LjEsMCwwLDEtLjU5LTEuMzEsNi4zLDYuMywwLDAsMS0uMjMtMS43OGgxNC45NGE0LjUxLDQuNTEsMCwwLDAsMS4xLS4yNSw0LjMxLDQuMzEsMCwwLDAsLjk1LS40OSwyLjY5LDIuNjksMCwwLDAsLjgyLS45MSwzLjc5LDMuNzksMCwwLDAsLjQtLjc3LDQuNDEsNC40MSwwLDAsMCwuMTgtLjc0LDMuODgsMy44OCwwLDAsMCwwLS42NywzLjQ5LDMuNDksMCwwLDAtLjA4LS42LDMuNCwzLjQsMCwwLDAtLjUxLTEuMjEsNC42Niw0LjY2LDAsMCwwLS43Ny0uODMsMy42NSwzLjY1LDAsMCwwLS40My0uMzEsMy4wNSwzLjA1LDAsMCwwLS41MS0uMjcsMy44MiwzLjgyLDAsMCwwLS42LS4xOSwzLjExLDMuMTEsMCwwLDAtLjY5LS4wN0gzMTcuMmE4Ljc1LDguNzUsMCwwLDEtNi4yMS0yLjIzLDcuNzIsNy43MiwwLDAsMS0yLjQxLTUuOTVsMC0uNThBNy43OCw3Ljc4LDAsMCwxLDMxMSw0MzYuOGE4Ljg1LDguODUsMCwwLDEsNi4yMS0yLjIzbDkuNzgsMGE1Ljg4LDUuODgsMCwwLDEsMi42MS40OCw1LjExLDUuMTEsMCwwLDEsMSwuNTksMy41MywzLjUzLDAsMCwxLC44My45Miw0LjcxLDQuNzEsMCwwLDEsLjU4LDEuMzQsNi42OCw2LjY4LDAsMCwxLC4yMiwxLjg0WiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTI0MC43OSAtMTQ0LjI3KSIvPjxwYXRoIGNsYXNzPSJjbHMtMSIgZD0iTTM1Myw0MzkuNzZoLTMuMzN2MTkuM2E2LjU2LDYuNTYsMCwwLDEtLjI0LDEuODgsNC45NCw0Ljk0LDAsMCwxLS42MSwxLjM3LDQsNCwwLDAsMS0uODguOTQsNC43NCw0Ljc0LDAsMCwxLTEsLjYsNi4zNSw2LjM1LDAsMCwxLTIuNzQuNDhWNDM5Ljc2aC0zYTcuMjksNy4yOSwwLDAsMS0yLjgxLS41OCw1LjgsNS44LDAsMCwxLTEtLjYxLDQsNCwwLDAsMS0uOS0uOTMsNC43Nyw0Ljc3LDAsMCwxLS42NC0xLjMyLDUuOTQsNS45NCwwLDAsMS0uMjQtMS43OGgyMi43MmE1Ljg5LDUuODksMCwwLDEtLjUzLDIuNjEsNC43NSw0Ljc1LDAsMCwxLS42LDEsMy44NiwzLjg2LDAsMCwxLS45NS44Myw1LjM5LDUuMzksMCwwLDEtMS4zNy41OUE2LjgzLDYuODMsMCwwLDEsMzUzLDQzOS43NloiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC0yNDAuNzkgLTE0NC4yNykiLz48cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Ik0zNjcuMDYsNDU5YTUuNiw1LjYsMCwwLDEtLjI0LDEuNzMsNC42Miw0LjYyLDAsMCwxLS42MiwxLjI4LDMuNzMsMy43MywwLDAsMS0uODcuOSw0Ljk0LDQuOTQsMCwwLDEtMSwuNTksNi43NCw2Ljc0LDAsMCwxLTIuNzIuNTZWNDM0LjQ4aDIyLjUyYTYuMzQsNi4zNCwwLDAsMS0uMjQsMS44NSw0LjkyLDQuOTIsMCwwLDEtLjY2LDEuMzYsNC4xLDQuMSwwLDAsMS0uOTMuOTMsNS41Niw1LjU2LDAsMCwxLTEuMDYuNTgsNyw3LDAsMCwxLTIuODkuNDVIMzY3LjA2djYuNjZIMzc5YTYuNDgsNi40OCwwLDAsMS0uMjEsMS43NCw1LjI4LDUuMjgsMCwwLDEtLjU3LDEuMzEsNC4yNyw0LjI3LDAsMCwxLS44MS45Miw0LjY1LDQuNjUsMCwwLDEtLjkyLjYyLDYsNiwwLDAsMS0yLjUxLjZoLTYuODhaIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtMjQwLjc5IC0xNDQuMjcpIi8+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMzk1LjgxLDQ1My4xM0gzOTIuOXY1LjIxYTkuMTksOS4xOSwwLDAsMS0uMjMsMi4yNCw2LjIzLDYuMjMsMCwwLDEtLjYxLDEuNjIsNC4yNiw0LjI2LDAsMCwxLS44NywxLjA5LDUsNSwwLDAsMS0xLC42Nyw1LjI0LDUuMjQsMCwwLDEtMi43MS40NVY0MzQuNTNoMTMuOTNhMTEuMzUsMTEuMzUsMCwwLDEsMy4zNy40NiwxMC44NiwxMC44NiwwLDAsMSwyLjY3LDEuMTksOS41NSw5LjU1LDAsMCwxLDIsMS42OCwxMS40NSwxMS40NSwwLDAsMSwxLjM5LDEuOTQsOC42OSw4LjY5LDAsMCwxLC44LDEuOTMsNi42NCw2LjY0LDAsMCwxLC4yNiwxLjY5LDExLjg1LDExLjg1LDAsMCwxLS4xNywyLDguMzYsOC4zNiwwLDAsMS0uNTMsMS43Niw4LjExLDguMTEsMCwwLDEtLjg3LDEuNTgsMTIuNjksMTIuNjksMCwwLDEtMS4yMywxLjQ2LDkuNDgsOS40OCwwLDAsMS00LjMzLDIuNDRsLS4wNywwTDQxMi41LDQ2NGgtNi43OGwtNS42NC04LjY3YTMuNjIsMy42MiwwLDAsMC0uODYtMS4xMWMtLjE3LS4xNC0uMzYtLjI3LS41Ny0uNDFhMy45MiwzLjkyLDAsMCwwLS43NC0uMzUsNS41Nyw1LjU3LDAsMCwwLS45NC0uMjVBNS45LDUuOSwwLDAsMCwzOTUuODEsNDUzLjEzWm0xMC42OS05LjcxYTMuMTMsMy4xMywwLDAsMC0uMS0uNzcsMi44NiwyLjg2LDAsMCwwLS4zNC0uODIsMy4zMiwzLjMyLDAsMCwwLS42NC0uNzksMy45NCwzLjk0LDAsMCwwLTEtLjY4LDYuNTgsNi41OCwwLDAsMC0xLjQ0LS40NywxMC4wNywxMC4wNywwLDAsMC0xLjk0LS4xN0gzOTIuOXY2LjE0YTIuNDEsMi40MSwwLDAsMCwuNDYuNzUsMy4wNiwzLjA2LDAsMCwwLC42NS41NCw0LjU0LDQuNTQsMCwwLDAsLjc3LjM3LDcuNjIsNy42MiwwLDAsMCwuODIuMjIsOC43Niw4Ljc2LDAsMCwwLDIsLjE2SDQwMWE2LjY3LDYuNjcsMCwwLDAsMi4zOC0uMzksNC44NCw0Ljg0LDAsMCwwLDEuNzQtMS4xYy4yMi0uMjMuNDItLjQ0LjU5LS42NWEzLjU4LDMuNTgsMCwwLDAsLjQyLS42NSwyLjY2LDIuNjYsMCwwLDAsLjI2LS43NUE0LjI4LDQuMjgsMCwwLDAsNDA2LjUsNDQzLjQyWiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTI0MC43OSAtMTQ0LjI3KSIvPjxwYXRoIGNsYXNzPSJjbHMtMSIgZD0iTTQyMi44Miw0NjRoLTUuNDZWNDM0YTYuMjgsNi4yOCwwLDAsMSwyLjc1LjUsNS4yNSw1LjI1LDAsMCwxLDEsLjYzLDQuMTgsNC4xOCwwLDAsMSwuODgsMSw1LjMsNS4zLDAsMCwxLC42MywxLjQ0LDcuMjUsNy4yNSwwLDAsMSwuMjMsMnYzLjI2YzAsLjgsMCwxLjcsMCwyLjY4djMuMDljMCwxLjA3LDAsMi4xNywwLDMuMjl2My4yOGMwLDEuMDcsMCwyLjEsMCwzLjA3djIuNjRjMCwuNzksMCwxLjQ1LDAsMloiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC0yNDAuNzkgLTE0NC4yNykiLz48cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Ik00NTMuMjksNDY0LjA2SDQzMC43N1Y0MzQuNDdoMjIuNTJhNiw2LDAsMCwxLS4yNSwxLjg1LDQuMjUsNC4yNSwwLDAsMS0uNjYsMS4zNSw0LDQsMCwwLDEtLjkzLjk0LDUuODIsNS44MiwwLDAsMS0xLjA2LjU4LDcsNywwLDAsMS0yLjg5LjQ1SDQzNi4yMXY2LjY1aDExLjkxYTYuNDYsNi40NiwwLDAsMS0uMjIsMS43NCw0LjYzLDQuNjMsMCwwLDEtLjU3LDEuMzEsNC4yNyw0LjI3LDAsMCwxLS44MS45Miw1LjA2LDUuMDYsMCwwLDEtLjkxLjYyLDYsNiwwLDAsMS0yLjUxLjZoLTYuODl2Ny40MWgxMmE2LjM4LDYuMzgsMCwwLDEsMS43My4yMiw0Ljg4LDQuODgsMCwwLDEsMS4yOC41OSwzLjc4LDMuNzgsMCwwLDEsLjkuODMsNC42OSw0LjY5LDAsMCwxLC42LDFBNi40Myw2LjQzLDAsMCwxLDQ1My4yOSw0NjQuMDZaIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtMjQwLjc5IC0xNDQuMjcpIi8+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNNDY2LjE5LDQzOS43MWEzLjUsMy41LDAsMCwwLTEuMTYuMTEsNC41LDQuNSwwLDAsMC0uNTEuMTgsMi41OCwyLjU4LDAsMCwwLS41MS4yOCwyLjQzLDIuNDMsMCwwLDAtLjUuNDIsMywzLDAsMCwwLS40NS41OCwzLjM2LDMuMzYsMCwwLDAtLjQ4LDEuMzQsMy43NywzLjc3LDAsMCwwLC4wNiwxLjA5LDMuMDYsMy4wNiwwLDAsMCwuNDIsMSwyLjcyLDIuNzIsMCwwLDAsLjY4Ljc3LDMuNTYsMy41NiwwLDAsMCwxLC41MywzLjg0LDMuODQsMCwwLDAsMS40OS4yNWg2LjUzYTkuMTgsOS4xOCwwLDAsMSw2LjQ3LDIuMzMsNy4yOSw3LjI5LDAsMCwxLDEuODgsMi43LDkuMzIsOS4zMiwwLDAsMSwuNjIsMy40OWwwLC42YTkuMzQsOS4zNCwwLDAsMS0uNjEsMy40OCw3LjU4LDcuNTgsMCwwLDEtMS44OCwyLjcxLDkuMTcsOS4xNywwLDAsMS02LjQ1LDIuMzFoLTkuNDZhNi4xNiw2LjE2LDAsMCwxLTIuNi0uNTIsNS4xMSw1LjExLDAsMCwxLTEtLjU4LDMuODQsMy44NCwwLDAsMS0uODMtLjkxLDQuNzgsNC43OCwwLDAsMS0uNTktMS4zMSw2LjMsNi4zLDAsMCwxLS4yMy0xLjc4SDQ3M2E0LjcsNC43LDAsMCwwLDEuMTEtLjI1LDQuMjUsNC4yNSwwLDAsMCwuOTQtLjQ5LDIuNzIsMi43MiwwLDAsMCwuODMtLjkxLDMuNzIsMy43MiwwLDAsMCwuMzktLjc3LDMuNjEsMy42MSwwLDAsMCwuMTgtLjc0LDMuMTMsMy4xMywwLDAsMCwwLS42NywzLjQ5LDMuNDksMCwwLDAtLjA4LS42LDMuOCwzLjgsMCwwLDAtLjUxLTEuMjEsNC4zNyw0LjM3LDAsMCwwLS43OC0uODMsNC41Niw0LjU2LDAsMCwwLS40Mi0uMzEsNC4xMSw0LjExLDAsMCwwLS41MS0uMjcsMy42MywzLjYzLDAsMCwwLS42MS0uMTksMywzLDAsMCwwLS42OS0uMDdoLTYuOTNhOC43MSw4LjcxLDAsMCwxLTYuMjEtMi4yMyw3LjY4LDcuNjgsMCwwLDEtMi40MS01Ljk1bDAtLjU4YTcuNzgsNy43OCwwLDAsMSwyLjM5LTUuOTMsOC44MSw4LjgxLDAsMCwxLDYuMjEtMi4yM2w5Ljc4LDBhNS44Niw1Ljg2LDAsMCwxLDIuNi40OCw0Ljg3LDQuODcsMCwwLDEsMSwuNTksMy41MywzLjUzLDAsMCwxLC44My45Miw1LDUsMCwwLDEsLjU4LDEuMzQsNi42OCw2LjY4LDAsMCwxLC4yMiwxLjg0WiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTI0MC43OSAtMTQ0LjI3KSIvPjxwYXRoIGNsYXNzPSJjbHMtMSIgZD0iTTUwOS41Nyw0NjRINDg3LjIyVjQzNC40OGg1LjQydjI0LjM3aDExLjVhNyw3LDAsMCwxLDEuODguMjIsNS4wNiw1LjA2LDAsMCwxLDEuMzkuNTksNCw0LDAsMCwxLDEsLjgzLDQuODMsNC44MywwLDAsMSwuNjMuOTRBNS44NSw1Ljg1LDAsMCwxLDUwOS41Nyw0NjRaIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtMjQwLjc5IC0xNDQuMjcpIi8+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNNTMzLjYxLDQ1OC42NmwtNy44LDBhNi4yOCw2LjI4LDAsMCwxLTIuNzMtLjQ4LDQuNjQsNC42NCwwLDAsMS0xLS41NywzLjY1LDMuNjUsMCwwLDEtLjg3LS45Miw0Ljc0LDQuNzQsMCwwLDEtLjYyLTEuMzIsNi41NSw2LjU1LDAsMCwxLS4yMy0xLjgyaDEzLjI4di02YTEwLjgzLDEwLjgzLDAsMCwwLS41NS0zLjU5LDcuODcsNy44NywwLDAsMC0xLjYzLTIuNzcsNy4xNyw3LjE3LDAsMCwwLTUuNDktMi4zOCw3LjYsNy42LDAsMCwwLTMsLjU5LDYuOTIsNi45MiwwLDAsMC0yLjQ1LDEuNzksOSw5LDAsMCwwLTIuMTksNi4zNlY0NjRoLTUuNVY0NDYuMzhhMTIuNjMsMTIuNjMsMCwwLDEsNy45LTExLjg0LDE1LjM3LDE1LjM3LDAsMCwxLDEwLjUzLDAsMTIuMDgsMTIuMDgsMCwwLDEsNC4xOSwyLjgxLDEyLjM2LDEyLjM2LDAsMCwxLDMuNzIsOVY0NjRoLTUuNTF2LTUuMzdaIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtMjQwLjc5IC0xNDQuMjcpIi8+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNNTY4LjQ2LDQzOS42OHYxNi45NWMwLC44OC4wNiwxLjY3LDAsMi4zNnMtLjA2LDEuMy0uMTIsMS44NGExMi41NCwxMi41NCwwLDAsMS0uMjIsMS4zOCw2LjI2LDYuMjYsMCwwLDEtLjI4LDEsMi41NCwyLjU0LDAsMCwxLS44NCwxLjI4bC0xNy41OS0xNy42NXYxNy40OWE0LjI2LDQuMjYsMCwwLDEtMi43OC0uMzEsNC4xNiw0LjE2LDAsMCwxLTEtLjc1LDQuOCw0LjgsMCwwLDEtLjg5LTEuMjksOC4yMSw4LjIxLDAsMCwxLS42My0yLDEzLjksMTMuOSwwLDAsMS0uMjQtMi43OHYtMTUuM2EzMC44NSwzMC44NSwwLDAsMSwuMTEtMy44MywxMi45MywxMi45MywwLDAsMSwuMTktMS40MSw4LjQ3LDguNDcsMCwwLDEsLjMxLTEuMjMsMi43NSwyLjc1LDAsMCwxLC40OC0uODcuODguODgsMCwwLDEsLjY4LS4zM2MuMTguMi40Ni40OC44Mi44NWwxLjI2LDEuMzEsMS42MSwxLjY3LDEuODYsMS45MywyLDIuMDksMi4wNiwyLjE0LDcuOTIsOC4yN3YtMTguM2E1LjcyLDUuNzIsMCwwLDEsMi42My40Nyw0LjYsNC42LDAsMCwxLDEsLjYyLDQsNCwwLDAsMSwuODUsMSw1LjA5LDUuMDksMCwwLDEsLjYsMS40M0E3LjU2LDcuNTYsMCwwLDEsNTY4LjQ2LDQzOS42OFoiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC0yNDAuNzkgLTE0NC4yNykiLz48cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Ik01ODMuMiw0NTguOWg1LjI3YTEyLjIzLDEyLjIzLDAsMCwwLDUtMS4yNiw5LjcxLDkuNzEsMCwwLDAsMS44NC0xLjIxLDgsOCwwLDAsMCwxLjYxLTEuODMsOS42NSw5LjY1LDAsMCwwLDEuMTQtMi41NSwxMiwxMiwwLDAsMCwuNDMtMy40LDYuNTIsNi41MiwwLDAsMC0uMTctMS41NSw4LjM2LDguMzYsMCwwLDAtLjQ0LTEuMzksOC44NCw4Ljg0LDAsMCwwLS42Mi0xLjIzYy0uMjQtLjM3LS40OC0uNzItLjcyLTFhMTEuMTMsMTEuMTMsMCwwLDAtMS45NS0xLjkzLDExLDExLDAsMCwwLTEuNy0uOTQsMTIuNDcsMTIuNDcsMCwwLDAtMS45MS0uNjUsOS4zMiw5LjMyLDAsMCwwLTIuNDQtLjNoLTcuMzRsLS4wNiwyNC40MWgtNS40VjQzNC40N2gxMi40YTE4LjA1LDE4LjA1LDAsMCwxLDYuNDYsMS4wOSwxNC41MSwxNC41MSwwLDAsMSw5LjI3LDEzLjY2LDE0LDE0LDAsMCwxLTQuMjUsMTAuMzVBMTUuMzgsMTUuMzgsMCwwLDEsNTg4LjQ3LDQ2NGE1Ljc0LDUuNzQsMCwwLDEtMi42NC0uNDMsNC4zOSw0LjM5LDAsMCwxLTEtLjU4LDMuNCwzLjQsMCwwLDEtLjg0LS45Miw0LjczLDQuNzMsMCwwLDEtLjYtMS4zNEE2Ljg1LDYuODUsMCwwLDEsNTgzLjIsNDU4LjlaIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtMjQwLjc5IC0xNDQuMjcpIi8+PHBvbHlnb24gY2xhc3M9ImNscy0yIiBwb2ludHM9IjE3Ny4zNSAyLjcxIDIzOS4yOCAwIDI3NS43NyA1MC4xMSAzMTYuNTEgOTYuODQgMzAwLjA4IDE1Ni42MiAyODguOTUgMjE3LjYgMjMxLjk2IDI0Mi4wMyAxNzcuMzUgMjcxLjM0IDEyMi43MyAyNDIuMDMgNjUuNzUgMjE3LjYgNTQuNjIgMTU2LjYyIDM4LjE5IDk2Ljg0IDc4LjkyIDUwLjExIDExNS40MiAwIDE3Ny4zNSAyLjcxIi8+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMzU3LjgxLDIwNy4xOXM2LjU4LDcsNi41OCwxNC03LjQxLDEwLjI5LTUuNzYsMTYsMTUuMjIsMTguMSwxNS4yMiwxOC4xLDIuNDctMTguNTEsMi4wNi0yMy44Ni0uNDEtMTcuNjktLjQxLTE3LjY5LTEuNjUtOS40NywwLTEwLjI5LDguNjMsNi4xNyw4LjYzLDYuMTcsOC4yMy0yLjQ3LDExLjk0LTEuNjRhNzcuMzIsNzcuMzIsMCwwLDAsOC4yMywxLjIzbDEwLjI4LTUuMzVzLTEuNjQsMTEuMTEtMy4yOSwxMi43NmMwLDAsMi40NiwxMy4xNiwxLjY1LDE2LjQ1czMuNywxNy42OSw4LjIzLDE5Ljc1YzAsMC03LjQyLDguMjMtMS4yNCw3LjgyczQ0LTYuMTcsNjIuOTQsNS43NmMwLDAsMTEuOTQtMTYtNi41Ny0xNC40cy0xOC45My01LjM1LTE4LjkzLTUuMzUtMjkuMjIsNC4xMS0yOS4yMi0xOC4xLDIxLjQtMTkuMzQsMzIuOTItMTkuMzQsMjQuNjktOC42NCwyNC42OS04LjY0LDguMjIsMy4yOSwzLjcsMTAuMjktMTQuODEsOS40Ni0yOC4zOSw5LjQ2LTIxLjgsMS42NC0yMS4zOSw3LjgyLDExLjExLDksMjQuNjksNy44MiwyMS44LDAsMjcuNTYsNS4zNCwxOC45MywyNC4yOC0uODIsMzUuMzhjMCwwLTEuNjUsMTYuNDYuNDEsMTkuNzVzMTAuNywyLjg4LDEwLjcsMi44OHYyOC4zOXMtNS4zNS44Mi01Ljc2LDQuMTItMy43MSw5LjA1LTkuNDcsNS43Ni01LjM1LDEuMjQtMTEuNTIsMS42NC04LjY0LTkuNDYtNi4xNy0xMy41NywxMS4xMS0yLjg5LDE0LjQtMi40Nyw3LS40Miw2LjU4LTMuMjktLjgyLTkuODgtNC45NC05LjQ3LTEwLjI4LTEuNjQtMTQtNy44MS01Ljc2LTE0LjgxLTUuNzYtMTQuODEtMTUuMjIsNy0xMy41OCwxMS45MywzLjcsMTEuMSwzLjcsMTEuMS0xMi43NSw3LjQxLTE2LjQ1LDEyLjM1LTIuNDcsMTEuMS01LjM1LDExLjUyLTkuODgtNi4xOC0xNC00Ljk0LTYuNTksNy05Ljg4LDQuOTQtNS43NS02LjU4LTkuODctNy0yLjg4LTcuODEsMi4wNi0xMS41MSwxMS4xLjQsMTQuODEsMiwxMC43LTIsMTMuMTYtNC45NGEyOS43NSwyOS43NSwwLDAsMCwzLjcxLTUuMzRzLTExLjkzLTUuMzUtMTMuMTctNC4xMiwxMy4xNy0xMC43LDEzLjE3LTEwLjcsOS4wNS03LjgxLDExLjExLTkuODdjMCwwLTMuMjktMi40Ny0xMy4xNywxLjIzcy0xOS4zNCwxMy41OC0yMi42MywxNS42NC03LjQxLTIuODgtNy40MS0yLjg4YTM4LjI4LDM4LjI4LDAsMCwxLTkuODcsOS44OGMtNi4xNyw0LjExLTguMjIsOC42NC0xMi4zNCwxNC4zOXMtMTIuNzYsNy44Mi0xNS42NCwzLjctNi41OC0uODItOS44NywxLjY1LTkuMDUtMS4yMy02LjE2LTEwLjI5LDctNS43NiwxMy4xNi02LjU4LDE1LjYzLTMuNywxNS42My0xNi40NWMwLDAtNC45NC0uODMtMTAuMjgsMy4yOHMtMTIuMzUtNS43NS0xNi44Ny01LjM0UzM0MywyODkuOSwzNDMsMjg5LjlzMTcuNjktMTUuNjQsMTQuNC0xNC44MmE5LjE4LDkuMTgsMCwwLDEtNi4xNy0uODJMMzU3LDI2OC41cy0zLjctOS40Ny01LjM1LTE0LjgxLTEuMjQtMTQtNC45NC0xNS42NC00LjExLTQuMTEtLjgxLTguMjMuNC05LjQ2LDEuMjMtMTIuNzVTMzU1Ljc1LDIwNi4zNywzNTcuODEsMjA3LjE5WiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTI0MC43OSAtMTQ0LjI3KSIvPjwvc3ZnPg==") no-repeat bottom;
             width: 100px;
             content: ;
@@ -295,19 +383,21 @@ class WestfrieslandFixtures extends Fixture
         $configuration->setApplication($application);
         $configuration->setConfiguration(
             [
-                'loggedIn' => $this->commonGroundService->cleanUrl(['component' => 'wrc', 'type' => 'menus', 'id' => 'a8496676-767a-4d1e-beab-be39a7b2c870']),
-                'mainMenu' => $this->commonGroundService->cleanUrl(['component' => 'wrc', 'type' => 'menus', 'id' => '0ff074bc-e6db-43ed-93ae-c027ad452f78']),
-                'home'     => $this->commonGroundService->cleanUrl(['component' => 'wrc', 'type' => 'templates', 'id' => '097ea88e-beb6-476e-a978-d07650f03d97']),
-                'footer1'  => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'9e4130de-b2d7-481c-8681-87b2a174c8ae']),
-                'footer2'  => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'e16b153e-de8a-4f24-9886-fd3057ae93de']),
-                'footer3'  => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'f78d6861-783f-4441-82c4-2efcf5af677f']),
-                'footer4'  => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'c62eedef-ba28-4a5d-bdea-2eb9ef250b8e']),
-                'headerimg'=> $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'2c60657d-a728-4e71-897d-ac407c134e10']),
-                //'changeRequest'=> $this->commonGroundService->cleanUrl(['component'=>'ptc', 'type'=>'process_types', 'id'=>'2c60657d-a728-4e71-897d-ac407c134e10']),
-                //'objectionRequest'=> $this->commonGroundService->cleanUrl(['component'=>'ptc', 'type'=>'process_types', 'id'=>'2c60657d-a728-4e71-897d-ac407c134e10']),
-                'login'=> ['eherkening'=>true],
-                'newsGroup'=> ['4'],
-                'userPage' => '/persoonlijk',
+                'loggedIn'          => $this->commonGroundService->cleanUrl(['component' => 'wrc', 'type' => 'menus', 'id' => 'a8496676-767a-4d1e-beab-be39a7b2c870']),
+                'mainMenu'          => $this->commonGroundService->cleanUrl(['component' => 'wrc', 'type' => 'menus', 'id' => '0ff074bc-e6db-43ed-93ae-c027ad452f78']),
+                'home'              => $this->commonGroundService->cleanUrl(['component' => 'wrc', 'type' => 'templates', 'id' => '097ea88e-beb6-476e-a978-d07650f03d97']),
+                'footer1'           => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'9e4130de-b2d7-481c-8681-87b2a174c8ae']),
+                'footer2'           => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'e16b153e-de8a-4f24-9886-fd3057ae93de']),
+                //'footer3'           => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'f78d6861-783f-4441-82c4-2efcf5af677f']),
+                //'footer4'           => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'c62eedef-ba28-4a5d-bdea-2eb9ef250b8e']),
+                'headerimg'         => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'2c60657d-a728-4e71-897d-ac407c134e10']),
+                'changeRequest'     => '7216b69d-e245-488e-af8f-0969241926e7',
+                'objectionRequest'  => '2a95ba3e-a3f9-4fdf-8a6d-005d96aad405',
+                'orderTemplate'     => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'b92c9562-acdc-40ad-9156-9d98b539d885']),
+                'invoiceTemplate'   => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'fc5a7f58-aaf6-4775-bed8-f4ca00c132c0']),
+                'login'             => ['eherkening'=>true],
+                'newsGroup'         => ['4'],
+                'userPage'          => 'persoonlijk',
             ]
         );
         $manager->persist($configuration);
@@ -384,6 +474,14 @@ class WestfrieslandFixtures extends Fixture
         $groupPages->setName('Pages');
         $groupPages->setDescription('Webpages that are presented to visitors');
         $manager->persist($groupPages);
+
+        // Template groups
+        $groupEmails = new TemplateGroup();
+        $groupEmails->setOrganization($westfriesland);
+        $groupEmails->setApplication($application);
+        $groupEmails->setName('E-mails');
+        $groupEmails->setDescription('E-mail messages that are sent by the system');
+        $manager->persist($groupEmails);
 
         // Persoonlijk
         $template = new Template();
@@ -499,6 +597,151 @@ class WestfrieslandFixtures extends Fixture
         $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
         $template->addTemplateGroup($groupPages);
         $manager->persist($template);
+        $manager->flush();
+
+        $id = Uuid::fromString('7a3d7d9a-269f-4699-a622-2ad0114d8e86');
+        $template = new Template();
+        $template->setName('Ontvangst Bevestiging Verzoek');
+        $template->setDescription('Ontvangst Bevestiging Verzoek');
+        $template->setContent('ontvangen');
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
+
+        $id = Uuid::fromString('b92c9562-acdc-40ad-9156-9d98b539d885');
+        $template = new Template();
+        $template->setName('Order');
+        $template->setDescription('Order');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Documents/order.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
+
+        $id = Uuid::fromString('fc5a7f58-aaf6-4775-bed8-f4ca00c132c0');
+        $template = new Template();
+        $template->setName('Factuur');
+        $template->setDescription('Factuur');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Documents/invoice.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupPages);
+        $manager->persist($template);
+        $manager->flush();
+
+        $template = new Template();
+        $template->setName('Ingediend verzoek');
+        $template->setTitle('Uw verzoek is ontvangen');
+        $template->setDescription('Bevestiging dat een verzoek is gewijzigd');
+        $template->setContent('Beste {{ receiver.givenName }},<p>Wij hebben uw ingediende verzoek met referentie {{ resource.reference }} succesvol ontvangen. We nemen uw verzoek zo snel mogelijk in behandeling.</p><p>Met vriendelijke groet,</p>{{ sender.name }}');
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $manager->flush();
+        $template->addTemplateGroup($groupEmails);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('e-mail-bevestiging');
+        $slug->setSlug('e-mail-bevestiging');
+        $manager->persist($slug);
+        $manager->flush();
+
+        $template = new Template();
+        $template->setName('Verzoek in behandeling');
+        $template->setTitle('Uw verzoek is in behandeling genomen');
+        $template->setDescription('Bevestiging dat een verzoek is gewijzigd');
+        $template->setContent('Beste {{ receiver.givenName }},<p>Wij hebben uw ingediende verzoek met referentie {{ resource.reference }} in behandeling genomen. Wij reageren zo spoedig mogelijk.</p><p>Met vriendelijke groet,</p>{{ sender.name }}');
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $manager->flush();
+        $template->addTemplateGroup($groupEmails);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('e-mail-behandeling');
+        $slug->setSlug('e-mail-behandeling');
+        $manager->persist($slug);
+        $manager->flush();
+
+        $template = new Template();
+        $template->setName('Verzoek afgewezen');
+        $template->setTitle('Uw verzoek is afgewezen');
+        $template->setDescription('Bevestiging dat een verzoek is gewijzigd');
+        $template->setContent('Beste {{ receiver.givenName }},<p>Wij hebben uw ingediende verzoek met referentie {{ resource.reference }} helaas moeten afwijzen. U kunt een nieuw verzoek aanmaken, of contact met ons opnemen via</p><p>Met vriendelijke groet,</p>{{ sender.name }}');
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $manager->flush();
+        $template->addTemplateGroup($groupEmails);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('e-mail-afwijzing');
+        $slug->setSlug('e-mail-afwijzing');
+        $manager->persist($slug);
+        $manager->flush();
+
+        $template = new Template();
+        $template->setName('Verzoek afgehandeld');
+        $template->setTitle('Uw verzoek afgehandeld');
+        $template->setDescription('Bevestiging dat een verzoek is gewijzigd');
+        $template->setContent('Beste {{ receiver.givenName }},<p>Wij hebben uw ingediende verzoek met referentie {{ resource.reference }} afgehandeld.</p><p>Met vriendelijke groet,</p>{{ sender.name }}');
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $manager->flush();
+        $template->addTemplateGroup($groupEmails);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('e-mail-afgehandeld');
+        $slug->setSlug('e-mail-afgehandeldg');
+        $manager->persist($slug);
+        $manager->flush();
+
+        $template = new Template();
+        $template->setName('Ontvangen reservering');
+        $template->setTitle('Er is een reservering ontvangen voor uw begraafplaats');
+        $template->setDescription('Bevestiging dat een verzoek is gewijzigd');
+        $template->setContent('{% set cemetery = resource.properties.begraafplaats %}{% set date = resource.properties.datum %}Beste {{ receiver.givenName }},<p>Er is een verzoek met referentie {{ resource.reference }} aangemaakt met een reservering op de aan u toegewezen begraafplaats {{ begraafplaats.name }} op {{ request.properties.datum|date("d-m-Y om H:i", "Europe/Paris") }}.</p><p>Met vriendelijke groet,</p>{{ sender.name }}');
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $manager->flush();
+        $template->addTemplateGroup($groupEmails);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('e-mail-reservering');
+        $slug->setSlug('e-mail-reservering');
+        $manager->persist($slug);
         $manager->flush();
 
         // Dashboard

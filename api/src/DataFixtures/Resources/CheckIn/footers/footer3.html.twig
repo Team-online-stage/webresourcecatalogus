@@ -1,0 +1,16 @@
+<span class="footer__header"><h2>{{ 'newsletter'|trans|capitalize }}</h2></span>
+<form action="https://conduction.us3.list-manage.com/subscribe/post?u=92dbff3b134c8b2356ddc7ed4&amp;id=265fa0c5eb" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+
+    <div class="input">
+        <label class="input__label" for="email">{{ 'e-mail'|trans|capitalize }}</label>
+        <input required type="email" value="" name="EMAIL" class="required email input__control input__control--text input__control--m" id="mce-EMAIL">
+    </div>
+    <div class="input">
+        <button type="submit" class="btn btn--primary">{{ 'subscribe'|trans|capitalize }}</button>
+    </div>
+    {% if application.defaultConfiguration.configuration.newsGroup is defined and application.defaultConfiguration.configuration.newsGroup is not empty %}
+        {% for group in application.defaultConfiguration.configuration.newsGroup %}
+            <input type="hidden" value="{{ group }}" name="group[25353][{{ group }}]">
+        {% endfor %}
+    {% endif %}
+</form>

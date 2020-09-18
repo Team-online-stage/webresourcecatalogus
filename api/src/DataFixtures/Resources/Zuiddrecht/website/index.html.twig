@@ -10,11 +10,11 @@
             <div class="col-md-4 col-md-offset-8" style="height: 500px; position:relative;">
                 <div class="content-background background--secondary" style="position: absolute; bottom:0;">
                     <div class="content">
-                        <h2>Nieuws</h2>
+                        <h2>{{ 'news'|trans|capitalize }}</h2>
                         <ul class="list list--links list--chevrons">
-                            {% if application.defaultConfiguration.configuration.nieuws is defined %}
-                                {% set nieuws = commonground_resource(application.defaultConfiguration.configuration.nieuws) %}
-                                {% set templates = commonground_resource_list({'component': 'wrc', 'type': 'templates'},{'templateGroups.id':nieuws.id,'limit':4,'order[dateCreated]':'desc'})['hydra:member'] %}
+                            {% if application.defaultConfiguration.configuration.news is defined %}
+                                {% set news = commonground_resource(application.defaultConfiguration.configuration.news) %}
+                                {% set templates = commonground_resource_list({'component': 'wrc', 'type': 'templates'},{'templateGroups.id':news.id,'limit':4,'order[dateCreated]':'desc'})['hydra:member'] %}
                                 {% for template in templates %}
                                     <li><a href="/article?id={{ template.id }}" style="text-decoration: none;">{{ template.title }}</a></li>
                                 {% endfor %}
@@ -70,7 +70,7 @@
                             </li>
                             <li class="card background--primary card__hover flex-center">
                                 <a href="{{ path('app_ptc_process_stage',{"id":"993cefcc-de42-46f5-9289-5f24df5dd3c7"}) }}" class="card__content">
-                                    <div class="card__icon flex-center color--primary"><i class="fas fa-exclamation fa-4x"></i> </div>
+                                    <div class="card__icon flex-center color--primary"><i class="fas fa-parking fa-4x"></i> </div>
                                     <div class="card__body flex-center"><span class="card__title color--primary">Parkeervergunning</span></div>
                                 </a>
                             </li>
@@ -144,9 +144,9 @@
         <div class="container">
             <div class="col-md-12 no-padding">
                 <ul class="list list--card">
-                    {% if application.defaultConfiguration.configuration.nieuws is defined %}
-                    {% set nieuws = commonground_resource(application.defaultConfiguration.configuration.about) %}
-                    {% set templates = commonground_resource_list({'component': 'wrc', 'type': 'templates'},{'templateGroups.id':nieuws.id,'limit':4, 'order[dateCreated]':'desc'})['hydra:member'] %}
+                    {% if application.defaultConfiguration.configuration.news is defined %}
+                    {% set about = commonground_resource(application.defaultConfiguration.configuration.about) %}
+                    {% set templates = commonground_resource_list({'component': 'wrc', 'type': 'templates'},{'templateGroups.id':about.id,'limit':4, 'order[dateCreated]':'desc'})['hydra:member'] %}
                     {% for template in templates %}
                     <li class="card">
                         <a href="/article?id={{ template.id }}" class="card__content">
