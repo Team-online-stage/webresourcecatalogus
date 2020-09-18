@@ -193,7 +193,6 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
         $manager->flush();
         $student17 = $manager->getRepository('App:Image')->findOneBy(['id' => $id]);
 
-
         $style = new Style();
         $style->setfavicon($favicon);
         $style->setName('academy');
@@ -234,14 +233,14 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
                 'kladimg'               => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'62685881-e5a2-4f73-b08f-a155b6dab74c']),
                 'raketimg'              => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'cdaad46c-f1b3-11ea-adc1-0242ac120002']),
                 'footer4img'            => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'e49586fb-ec10-4f92-8ad5-f78e323ac104']),
-                'student02'            => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'90a7204b-0e11-4bb9-b6ec-98917a1f4efc']),
-                'student04'            => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'3b79dd04-f7b7-4a07-9916-f7f59e61b20a']),
-                'student06'            => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'e235c391-d735-4aca-bbc4-a6403a185577']),
-                'student08'            => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'726b7a12-584a-476c-b662-c898ec0f1bc3']),
-                'student10'            => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'8398d3d8-0c16-4603-8256-c4c9c85069ea']),
-                'student12'            => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'cda86f0b-079b-41d7-9ed9-8f62b55af998']),
-                'student14'            => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'480dcb31-041c-4dd7-80dc-f7d0e6575ab9']),
-                'student17'            => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'ea236cdd-0147-4c68-9a47-e71c252a2727']),
+                'student02'             => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'90a7204b-0e11-4bb9-b6ec-98917a1f4efc']),
+                'student04'             => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'3b79dd04-f7b7-4a07-9916-f7f59e61b20a']),
+                'student06'             => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'e235c391-d735-4aca-bbc4-a6403a185577']),
+                'student08'             => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'726b7a12-584a-476c-b662-c898ec0f1bc3']),
+                'student10'             => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'8398d3d8-0c16-4603-8256-c4c9c85069ea']),
+                'student12'             => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'cda86f0b-079b-41d7-9ed9-8f62b55af998']),
+                'student14'             => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'480dcb31-041c-4dd7-80dc-f7d0e6575ab9']),
+                'student17'             => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'ea236cdd-0147-4c68-9a47-e71c252a2727']),
                 'googleTagId'           => 'G-2PYCJ13YC4',
                 'userPage'              => 'me',
                 'login'                 => ['facebook'=>true, 'github'=>true],
