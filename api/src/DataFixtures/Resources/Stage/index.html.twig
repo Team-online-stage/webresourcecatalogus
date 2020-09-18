@@ -79,11 +79,4 @@
     <div style="background-color: #222222; height: 400px"></div>
     {# Wit vlak#}
     <div style="background: white; height: 400px"></div>
-
-    {# Raket image aan de rechter kant in de footer #}
-    {% set raketimg = commonground_resource(application.defaultConfiguration.configuration.raketimg) %}
-    <div class="row background--primary background--image"
-         style="float: right; width: 30%; background: url(data:image/file;base64,{{ raketimg['base64'] }})">
-    </div>
-
 {% endblock %}
