@@ -9,7 +9,7 @@
                 Dit is de beschrijving van de <span lang="en-US">modal</span>. De Escape knop annuleert en sluit het venster.
             </div>
             <header class="modal__title">
-                <h1>Heeft u een tip voor ons ?</span></h1>
+                <h1>Heeft u een tip voor ons ?</h1>
                 <button class="modal__close-button">
                     <i class="icon icon-cross"></i>
                     Sluit
@@ -30,17 +30,34 @@
                 Dit is de beschrijving van de <span lang="en-US">modal</span>. De Escape knop annuleert en sluit het venster.
             </div>
             <header class="modal__title">
-                <h1>Neem hier contact met ons op!</span></h1>
+                <h1>Neem hier contact met ons op!</h1>
                 <button class="modal__close-button">
                     <i class="icon icon-cross"></i>
                     Sluit
                 </button>
             </header>
             <div class="modal__body" tabindex="0" lang="en-US">
-                <div class="input input--horizontal">
-                    <textarea required="" id="tip" name="tip" aria-describedby="hint_name" class="input__control input__control--text input__control--l"></textarea>
-                </div>
-                <button class="btn btn--primary">Bevestig</button>
+                <form method="post" action="{{ path('app_user_register') }}" name="thisForm">
+                    <div class="input input--text">
+                        <label class="input__label" for="titel">Titel</label>
+                        <input required="" id="titel" name="titel" type="text" class="input__control input__control--m">
+                    </div>
+                    <div class="input">
+                        <label class="input__label" for="tekst">Tekstveld</label>
+                        <textarea required="" id="tekst" name="tekst" class="input__control input__control--m input__control--text"></textarea>
+                    </div>
+                    <div class="input input--text">
+                        <input hidden="" id="@type" name="@type" value="iets" type="text" class="input__control input__control--m">
+                    </div>
+                    <div class="input input--text">
+                        <input hidden="" id="@component" name="@component" value="iets" type="text" class="input__control input__control--m">
+                    </div>
+                    <div class="input input--text">
+                        <input hidden="" id="request_type" name="request_type" value="iets" type="text" class="input__control input__control--m">
+                    </div>
+
+                    <button type="submit" class="btn btn--primary">Bevestig</button>
+                </form>
             </div>
 
         </section>
