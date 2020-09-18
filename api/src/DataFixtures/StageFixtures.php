@@ -428,7 +428,7 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
         $slug->setTemplate($template);
         $slug->setApplication($application);
         $slug->setName('cursussen');
-        $slug->setSlug('cursessen');
+        $slug->setSlug('cursussen');
         $manager->persist($slug);
         $manager->flush();
 
