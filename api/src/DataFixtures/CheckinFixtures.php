@@ -325,9 +325,18 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $menu = $manager->getRepository('App:Menu')->findOneBy(['id'=> $id]);
 
         $menuItem = new MenuItem();
+        $menuItem->setName('Home');
+        $menuItem->setDescription('Ga terug naar de home page');
+        $menuItem->setOrder(1);
+        $menuItem->setType('slug');
+        $menuItem->setHref('/');
+        $menuItem->setMenu($menu);
+        $manager->persist($menuItem);
+
+        $menuItem = new MenuItem();
         $menuItem->setName('Voor ondernemers');
         $menuItem->setDescription('Registreer uw onderneming');
-        $menuItem->setOrder(1);
+        $menuItem->setOrder(2);
         $menuItem->setType('slug');
         $menuItem->setHref('/ondernemers');
         $menuItem->setMenu($menu);
@@ -336,7 +345,7 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $menuItem = new MenuItem();
         $menuItem->setName('Hoe werkt het');
         $menuItem->setDescription('Hoe werkt checkin');
-        $menuItem->setOrder(2);
+        $menuItem->setOrder(3);
         $menuItem->setType('slug');
         $menuItem->setHref('/about');
         $menuItem->setMenu($menu);
@@ -345,7 +354,7 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $menuItem = new MenuItem();
         $menuItem->setName('Privacy');
         $menuItem->setDescription('Wie zitten achter CheckIn');
-        $menuItem->setOrder(3);
+        $menuItem->setOrder(4);
         $menuItem->setType('slug');
         $menuItem->setHref('/privacy');
         $menuItem->setMenu($menu);
@@ -354,7 +363,7 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $menuItem = new MenuItem();
         $menuItem->setName('Voorwaarden');
         $menuItem->setDescription('Wie zitten achter CheckIn');
-        $menuItem->setOrder(4);
+        $menuItem->setOrder(5);
         $menuItem->setType('slug');
         $menuItem->setHref('/proclaimer');
         $menuItem->setMenu($menu);
