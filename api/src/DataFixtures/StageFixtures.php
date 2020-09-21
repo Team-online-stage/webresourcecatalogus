@@ -195,6 +195,7 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
 
         $style = new Style();
         $style->setName('academy');
+        $style->setFavicon($favicon);
         $style->setDescription('Huistlijl Gemeente Zuid-Drecht');
         $style->setCss('
                :root {
@@ -409,27 +410,27 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
         $manager->persist($slug);
         $manager->flush();
 
-        //cursussen pagina
-        $id = Uuid::fromString('45c5ef6a-7431-4a5a-ab9c-0154ce5fc53b');
-        $template = new Template();
-        $template->setName('Cursussen');
-        $template->setDescription('Cursussen pagina');
-        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Stage/cursussen.html.twig', 'r'));
-        $template->setTemplateEngine('twig');
-        $manager->persist($template);
-        $template->setId($id);
-        $manager->persist($template);
-        $manager->flush();
-        $template = $manager->getRepository('App:Template')->findOneBy(['id' => $id]);
-        $manager->persist($template);
-
-        $slug = new Slug();
-        $slug->setTemplate($template);
-        $slug->setApplication($application);
-        $slug->setName('cursussen');
-        $slug->setSlug('cursussen');
-        $manager->persist($slug);
-        $manager->flush();
+//        //cursussen pagina
+//        $id = Uuid::fromString('45c5ef6a-7431-4a5a-ab9c-0154ce5fc53b');
+//        $template = new Template();
+//        $template->setName('Cursussen');
+//        $template->setDescription('Cursussen pagina');
+//        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Stage/cursussen.html.twig', 'r'));
+//        $template->setTemplateEngine('twig');
+//        $manager->persist($template);
+//        $template->setId($id);
+//        $manager->persist($template);
+//        $manager->flush();
+//        $template = $manager->getRepository('App:Template')->findOneBy(['id' => $id]);
+//        $manager->persist($template);
+//
+//        $slug = new Slug();
+//        $slug->setTemplate($template);
+//        $slug->setApplication($application);
+//        $slug->setName('cursussen');
+//        $slug->setSlug('cursussen');
+//        $manager->persist($slug);
+//        $manager->flush();
 
         //stages pagina
         $id = Uuid::fromString('a2ce01ee-3f41-49a7-8005-35ed033c2127');
