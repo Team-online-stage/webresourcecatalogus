@@ -409,7 +409,7 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
         $slug->setSlug('doelen');
         $manager->persist($slug);
         $manager->flush();
-        
+
         //stages pagina
         $id = Uuid::fromString('a2ce01ee-3f41-49a7-8005-35ed033c2127');
         $template = new Template();
