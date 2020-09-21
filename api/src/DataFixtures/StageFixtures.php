@@ -195,6 +195,7 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
 
         $style = new Style();
         $style->setName('academy');
+        $style->setFavicon($favicon);
         $style->setDescription('Huistlijl Gemeente Zuid-Drecht');
         $style->setCss('
                :root {
