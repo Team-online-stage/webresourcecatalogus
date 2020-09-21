@@ -38,26 +38,26 @@
             </header>
             <div class="modal__body" tabindex="0" lang="en-US">
                 <form method="post">
-                    <div class="input input--text">
+                    <div class="input">
                         <label class="input__label" for="titel">Titel</label>
                         <input required="" id="titel" name="request[properties][titel]" type="text" class="input__control input__control--m">
                     </div>
                     <div class="input">
                         <label class="input__label" for="tekst">Tekstveld</label>
-                        <textarea required="" id="tekst" name="request[properties][tekst]" class="input__control input__control--m input__control--text"></textarea>
+                        <textarea required="" id="tekst" name="request[properties][tekst]" class="input__control input__control--l input__control--text"></textarea>
                     </div>
 
                     {% if app.user.person is defined and app.user.person is not empty %}
                         <div class="input input--text">
-                            <input hidden="" id="@type" name="request[properties][contact]" value="{{ app.user.person }}" type="text" class="input__control input__control--m">
+                            <input id="@type" name="request[properties][contact]" value="{{ app.user.person }}" type="hidden" class="input__control input__control--m">
                         </div>
-                    {% elseif session.person is defined and session.person is not empty %}
+"                    {% elseif session.person is defined and session.person is not empty %}
                         <div class="input input--text">
-                            <input hidden="" id="@type" name="request[properties][contact]" value="{{ session.person }}" type="text" class="input__control input__control--m">
+                            <input id="@type" name="request[properties][contact]" value="{{ session.person }}" type="hidden" class="input__control input__control--m">
                         </div>
                     {% else %}
                         <div>
-                            <span>Uw contact gegevens</span>
+                            <h2>Uw contact gegevens</h2>
                             <div class="row" style="margin-bottom: 40px">
                                 <div class="col-md-4">
                                     <label class="input__label" for="voornaam">Voornaam</label>
@@ -89,13 +89,16 @@
                     {% endif %}
 
                     <div class="input input--text">
-                        <input hidden="" id="@type" name="@type" value="requests" type="text" class="input__control input__control--m">
+                        <input id="@type" name="@type" value="requests" type="hidden" class="input__control input__control--m">
                     </div>
                     <div class="input input--text">
-                        <input hidden="" id="@component" name="@component" value="vrc" type="text" class="input__control input__control--m">
+                        <input id="@component" name="@component" value="vrc" type="hidden" class="input__control input__control--m">
                     </div>
                     <div class="input input--text">
-                        <input hidden="" id="request_type" name="request_type" value="https://vtc.dev.zuid-drecht.nl/request_types/16b09e78-bca7-426d-b035-abfa101a9259" type="text" class="input__control input__control--m">
+                        <input id="requestType" name="request[requestType]" value="https://vtc.dev.zuid-drecht.nl/request_types/16b09e78-bca7-426d-b035-abfa101a9259" type="hidden" class="input__control input__control--m">
+                    </div>
+                    <div class="input input--text">
+                        <input id="processType" name="request[processType]" value="https://ptc.dev.zuid-drecht.nl/request_types/0465a588-b82a-436c-b9a5-2528c3608ec0" type="hidden" class="input__control input__control--m">
                     </div>
 
                     <div class="input">
