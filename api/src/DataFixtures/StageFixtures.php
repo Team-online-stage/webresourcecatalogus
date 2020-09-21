@@ -203,14 +203,19 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
                        --primary-color: white;
                        --secondary: #cce0f1;
                        --secondary-color: #2b2b2b;
-                       --menu: #01689b;
+                       --menu: #406377;
                        --menu-over: #3669A5;
                        --menu-color: white;
                        --menu-height: 100px;
                        --footer: #406377;
                        --footer-color: white;
                 }
-
+                .nav-position {
+                       width: 100%;
+                       display: flex;
+                       justify-content: flex-end;
+                       order: 2;
+                }
                ');
 
         $style->addOrganization($organization);
@@ -409,7 +414,7 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
         $slug->setSlug('doelen');
         $manager->persist($slug);
         $manager->flush();
-        
+
         //stages pagina
         $id = Uuid::fromString('a2ce01ee-3f41-49a7-8005-35ed033c2127');
         $template = new Template();
