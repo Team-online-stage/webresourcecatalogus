@@ -9,7 +9,7 @@
                 Dit is de beschrijving van de <span lang="en-US">modal</span>. De Escape knop annuleert en sluit het venster.
             </div>
             <header class="modal__title">
-                <h1>Heeft u een tip voor ons ?</span></h1>
+                <h1>Heeft u een tip voor ons ?</h1>
                 <button class="modal__close-button">
                     <i class="icon icon-cross"></i>
                     Sluit
@@ -30,17 +30,78 @@
                 Dit is de beschrijving van de <span lang="en-US">modal</span>. De Escape knop annuleert en sluit het venster.
             </div>
             <header class="modal__title">
-                <h1>Neem hier contact met ons op!</span></h1>
+                <h1>Neem hier contact met ons op!</h1>
                 <button class="modal__close-button">
                     <i class="icon icon-cross"></i>
                     Sluit
                 </button>
             </header>
             <div class="modal__body" tabindex="0" lang="en-US">
-                <div class="input input--horizontal">
-                    <textarea required="" id="tip" name="tip" aria-describedby="hint_name" class="input__control input__control--text input__control--l"></textarea>
-                </div>
-                <button class="btn btn--primary">Bevestig</button>
+                <form method="post">
+                    <div class="input input--text">
+                        <label class="input__label" for="titel">Titel</label>
+                        <input required="" id="titel" name="request[properties][titel]" type="text" class="input__control input__control--m">
+                    </div>
+                    <div class="input">
+                        <label class="input__label" for="tekst">Tekstveld</label>
+                        <textarea required="" id="tekst" name="request[properties][tekst]" class="input__control input__control--m input__control--text"></textarea>
+                    </div>
+
+                    {% if app.user.person is defined and app.user.person is not empty %}
+                        <div class="input input--text">
+                            <input hidden="" id="@type" name="request[properties][contact]" value="{{ app.user.person }}" type="text" class="input__control input__control--m">
+                        </div>
+                    {% elseif session.person is defined and session.person is not empty %}
+                        <div class="input input--text">
+                            <input hidden="" id="@type" name="request[properties][contact]" value="{{ session.person }}" type="text" class="input__control input__control--m">
+                        </div>
+                    {% else %}
+                        <div>
+                            <span>Uw contact gegevens</span>
+                            <div class="row" style="margin-bottom: 40px">
+                                <div class="col-md-4">
+                                    <label class="input__label" for="voornaam">Voornaam</label>
+                                    <input class="input__control input__control--text" style="width: 100%" type="text" name="request[properties][contact][givenName]">
+                                </div>
+
+                                <div class="col-md-4">
+                                    <label class="input__label" for="achternaam">Tussenvoegels</label>
+                                    <input class="input__control input__control--text" style="width: 100%" type="text" name="request[properties][contact][additionalName]">
+                                </div>
+
+                                <div class="col-md-4">
+                                    <label class="input__label" for="achternaam">Achternaam</label>
+                                    <input class="input__control input__control--text" style="width: 100%" type="text" name="request[properties][contact][familyName]">
+                                </div>
+                            </div>
+                            <div>
+                                <div class="col-md-6">
+                                    <label class="input__label" for="email">Email</label>
+                                    <input required="" class="input__control input__control--text" style="width: 100%" type="email" name="request[properties][contact][emails][0][email]">
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label class="input__label" for="telephone">Telefoonnummer</label>
+                                    <input class="input__control input__control--text" style="width: 100%" type="tel"  name="request[properties][contact][telephones][0][telephone]">
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+
+                    <div class="input input--text">
+                        <input hidden="" id="@type" name="@type" value="requests" type="text" class="input__control input__control--m">
+                    </div>
+                    <div class="input input--text">
+                        <input hidden="" id="@component" name="@component" value="vrc" type="text" class="input__control input__control--m">
+                    </div>
+                    <div class="input input--text">
+                        <input hidden="" id="request_type" name="request_type" value="https://vtc.dev.zuid-drecht.nl/request_types/16b09e78-bca7-426d-b035-abfa101a9259" type="text" class="input__control input__control--m">
+                    </div>
+
+                    <div class="input">
+                        <button type="submit" class="btn btn--primary">Bevestig</button>
+                    </div>
+                </form>
             </div>
 
         </section>
