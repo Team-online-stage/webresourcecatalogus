@@ -194,8 +194,8 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
         $student17 = $manager->getRepository('App:Image')->findOneBy(['id' => $id]);
 
         $style = new Style();
-        $style->setfavicon($favicon);
         $style->setName('academy');
+        $style->setFavicon($favicon);
         $style->setDescription('Huistlijl Gemeente Zuid-Drecht');
         $style->setCss('
                :root {
@@ -226,7 +226,6 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
                 'mainMenu'              => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'fccb7e65-2b56-49a2-8720-724f823f2b00']),
                 'loggedIn'              => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'58873338-3ef1-4764-a1a8-72a8787625f4']),
                 'home'                  => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'d6127f56-c334-4eb7-bade-c70e97631aec']),
-                'studenten'             => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'a4a9a984-d83e-44ac-b27d-c77cd74b0d21']),
                 'footer1'               => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'afa4c1f6-17b7-40a2-b289-57640bb141d9']),
                 'footer4'               => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'0c663ab8-f9d5-42c5-8866-1a51fcf74a12']),
                 'headerimg'             => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'da8af35b-afca-455e-a722-6d0052f7367d']),
@@ -244,7 +243,7 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
                 'googleTagId'           => 'G-2PYCJ13YC4',
                 'userPage'              => 'me',
                 'login'                 => ['facebook'=>true, 'github'=>true],
-                'header'                => true,
+                'header'                => false,
                 'stickyMenu'            => true,
             ]
         );
@@ -386,6 +385,50 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
         $slug->setApplication($application);
         $slug->setName('studenten');
         $slug->setSlug('studenten');
+        $manager->persist($slug);
+        $manager->flush();
+
+        //doelen pagina
+        $id = Uuid::fromString('a8979821-eb43-4a10-9290-00d832bec5c5');
+        $template = new Template();
+        $template->setName('Doelen');
+        $template->setDescription('Doelen pagina');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Stage/doelen.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id' => $id]);
+        $manager->persist($template);
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('doelen');
+        $slug->setSlug('doelen');
+        $manager->persist($slug);
+        $manager->flush();
+
+        //stages pagina
+        $id = Uuid::fromString('a2ce01ee-3f41-49a7-8005-35ed033c2127');
+        $template = new Template();
+        $template->setName('Stages');
+        $template->setDescription('Stages pagina');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Stage/stages.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id' => $id]);
+        $manager->persist($template);
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('stages');
+        $slug->setSlug('stages');
         $manager->persist($slug);
         $manager->flush();
 
