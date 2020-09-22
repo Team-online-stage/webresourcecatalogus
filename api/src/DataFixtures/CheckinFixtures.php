@@ -137,6 +137,7 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $organization = new Organization();
         $organization->setName('Camping de alpen koe');
         $organization->setDescription('Camping de alpen koe');
+        $organization->setContact($this->commonGroundService->cleanUrl(['component'=>'cc', 'type'=>'organizations', 'id'=>'ff46b373-bcb3-4b9a-9837-c50c15915158']));
         $manager->persist($organization);
         $organization->setId($id);
         $manager->persist($organization);
@@ -164,6 +165,7 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $organization = new Organization();
         $organization->setName('Mc Donalds Zuid-Drecht');
         $organization->setDescription('Mc Donalds Zuid-Drecht');
+        $organization->setContact($this->commonGroundService->cleanUrl(['component'=>'cc', 'type'=>'organizations', 'id'=>'35ca41b8-045d-4e52-a011-124ad37b5f04']));
         $manager->persist($organization);
         $organization->setId($id);
         $manager->persist($organization);
@@ -191,6 +193,7 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $organization = new Organization();
         $organization->setName('Creative Grounds');
         $organization->setDescription('Creative Grounds');
+        $organization->setContact($this->commonGroundService->cleanUrl(['component'=>'cc', 'type'=>'organizations', 'id'=>'e11acb98-1fb3-4ae5-beea-1a33aa381d1a']));
         $manager->persist($organization);
         $organization->setId($id);
         $manager->persist($organization);
