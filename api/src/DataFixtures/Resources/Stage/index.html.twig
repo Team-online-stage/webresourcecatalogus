@@ -5,15 +5,14 @@
     {# Header image #}
     {% set headerimg = commonground_resource(application.defaultConfiguration.configuration.headerimg) %}
     <div class="row background--primary background--image"
-         style=" padding: 20px; height: 500px; !important; background: url(data:image/file;base64,{{ headerimg['base64'] }})">
-
+         style="height: 500px; !important; background: url(data:image/file;base64,{{ headerimg['base64'] }})">
     </div>
     <div style="background-color: #222222">
         <div class="row">
             <div class="container">
                 <div class="content" style="text-align: center; width: 50%;"><br>
-                    <h2 style="color: white; margin-bottom: 20px">Over Conduction Academy</h2>
-                    <p class="paragraph-s" style="color: white">
+                    <h2 style="color: white; margin-bottom: 20px; text-align: justify;">Over Conduction Academy</h2>
+                    <p class="paragraph-s" style="color: white; text-align: justify;">
                         Lorem ipsum dolor sit amet, consectetuer adipiscing elit.Aenean commodo ligula eget dolor.
                         Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus
                         mus.
@@ -74,15 +73,6 @@
     <div class="row background--primary background--image"
          style="padding: 20px; height: 500px; !important; background: url(data:image/file;base64,{{ kladimg['base64'] }})">
     </div>
-    {# Zwart vlak#}
-    <div style="background-color: #222222; height: 400px"></div>
     {# Wit vlak#}
     <div style="background: white; height: 400px"></div>
-
-    {# Raket image aan de rechter kant in de footer #}
-    {% set raketimg = commonground_resource(application.defaultConfiguration.configuration.raketimg) %}
-    <div class="row background--primary background--image"
-         style="float: right; width: 30%; background: url(data:image/file;base64,{{ raketimg['base64'] }})">
-    </div>
-
 {% endblock %}
