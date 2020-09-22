@@ -16,10 +16,11 @@
                     <a class="backlink" href="/">{{ 'back'|trans|capitalize }}</a>
                     <header class="content__header" style="margin-top: 20px">
                         {% if app.user.organization is defined and app.user.organization is not empty %}
-                            {% if commonground_is_resource(app.user.organization) %}
+                            {% if commonground_is_resource(app.user.organization)
+                                dump(app.user.organization) %}
                                 {% set organization = commonground_resource(app.user.organization) %}
-                            {% else %}
-                                {% set organization = commonground_resource({'component':'kvk','type':'companies', 'id': app.user.organization}) %}
+                            {# else %}
+                                {% set organization = commonground_resource({'component':'kvk','type':'companies', 'id': app.user.organization}) #}
                             {% endif %}
                             {% if 'group.admin' in app.user.roles %}
                                 <h1 class="content__header-title">{{ organization.name }}</h1>
