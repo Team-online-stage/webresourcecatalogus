@@ -331,12 +331,13 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $menu = $manager->getRepository('App:Menu')->findOneBy(['id'=> $id]);
 
         $menuItem = new MenuItem();
-        $menuItem->setName('Home');
-        $menuItem->setDescription('Ga terug naar de home page');
         $menuItem->setOrder(1);
         $menuItem->setType('slug');
         $menuItem->setHref('/');
         $menuItem->setMenu($menu);
+        $menuItem->setTranslatableLocale('nl'); // change locale
+        $menuItem->setName('Home');
+        $menuItem->setDescription('Ga terug naar de home page');
         $manager->persist($menuItem);
         $manager->flush();
         $menuItem->setTranslatableLocale('en'); // change locale
@@ -345,12 +346,13 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $manager->persist($menuItem);
 
         $menuItem = new MenuItem();
-        $menuItem->setName('Voor ondernemers');
-        $menuItem->setDescription('Registreer uw onderneming');
         $menuItem->setOrder(2);
         $menuItem->setType('slug');
         $menuItem->setHref('/ondernemers');
         $menuItem->setMenu($menu);
+        $menuItem->setTranslatableLocale('nl'); // change locale
+        $menuItem->setName('Voor ondernemers');
+        $menuItem->setDescription('Registreer uw onderneming');
         $manager->persist($menuItem);
         $manager->flush();
         $menuItem->setTranslatableLocale('en'); // change locale
@@ -359,12 +361,13 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $manager->persist($menuItem);
 
         $menuItem = new MenuItem();
-        $menuItem->setName('Hoe werkt het');
-        $menuItem->setDescription('Hoe werkt checkin');
         $menuItem->setOrder(3);
         $menuItem->setType('slug');
         $menuItem->setHref('/about');
         $menuItem->setMenu($menu);
+        $menuItem->setTranslatableLocale('nl'); // change locale
+        $menuItem->setName('Hoe werkt het');
+        $menuItem->setDescription('Hoe werkt checkin');
         $manager->persist($menuItem);
         $manager->flush();
         $menuItem->setTranslatableLocale('en'); // change locale
@@ -373,12 +376,13 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $manager->persist($menuItem);
 
         $menuItem = new MenuItem();
-        $menuItem->setName('Privacy');
-        $menuItem->setDescription('Wie zitten achter CheckIn');
         $menuItem->setOrder(4);
         $menuItem->setType('slug');
         $menuItem->setHref('/privacy');
         $menuItem->setMenu($menu);
+        $menuItem->setTranslatableLocale('nl'); // change locale
+        $menuItem->setName('Privacy');
+        $menuItem->setDescription('Wie zitten achter CheckIn');
         $manager->persist($menuItem);
         $manager->flush();
         $menuItem->setTranslatableLocale('en'); // change locale
@@ -387,12 +391,13 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $manager->persist($menuItem);
 
         $menuItem = new MenuItem();
-        $menuItem->setName('Voorwaarden');
-        $menuItem->setDescription('Algemeene voorwaarden');
         $menuItem->setOrder(5);
         $menuItem->setType('slug');
         $menuItem->setHref('/proclaimer');
         $menuItem->setMenu($menu);
+        $menuItem->setTranslatableLocale('nl'); // change locale
+        $menuItem->setName('Voorwaarden');
+        $menuItem->setDescription('Algemeene voorwaarden');
         $manager->persist($menuItem);
         $manager->flush();
         $menuItem->setTranslatableLocale('en'); // change locale
