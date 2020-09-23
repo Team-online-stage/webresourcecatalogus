@@ -85,114 +85,6 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
         $manager->flush();
         $kladimg = $manager->getRepository('App:Image')->findOneBy(['id' => $id]);
 
-        $id = Uuid::fromString('cdaad46c-f1b3-11ea-adc1-0242ac120002');
-        $raketimg = new Image();
-        $raketimg->setName('raket image');
-        $raketimg->setBase64(base64_encode(file_get_contents(dirname(__FILE__).'/Resources/Stage/afbeeldingen/Raket-rechts-onder.png', 'r')));
-        $raketimg->setDescription('stageplatform raket voor rechts onder ');
-        $raketimg->setOrganization($organization);
-        $manager->persist($raketimg);
-        $raketimg->setId($id);
-        $manager->persist($raketimg);
-        $manager->flush();
-        $raketimg = $manager->getRepository('App:Image')->findOneBy(['id' => $id]);
-
-        $id = Uuid::fromString('90a7204b-0e11-4bb9-b6ec-98917a1f4efc');
-        $student02 = new Image();
-        $student02->setName('student02');
-        $student02->setBase64(base64_encode(file_get_contents(dirname(__FILE__).'/Resources/Stage/afbeeldingen/Studenten-los_02.png', 'r')));
-        $student02->setDescription('stageplatform student02');
-        $student02->setOrganization($organization);
-        $manager->persist($student02);
-        $student02->setId($id);
-        $manager->persist($student02);
-        $manager->flush();
-        $student02 = $manager->getRepository('App:Image')->findOneBy(['id' => $id]);
-
-        $id = Uuid::fromString('3b79dd04-f7b7-4a07-9916-f7f59e61b20a');
-        $student04 = new Image();
-        $student04->setName('student04');
-        $student04->setBase64(base64_encode(file_get_contents(dirname(__FILE__).'/Resources/Stage/afbeeldingen/Studenten-los_04.png', 'r')));
-        $student04->setDescription('stageplatform student04');
-        $student04->setOrganization($organization);
-        $manager->persist($student04);
-        $student04->setId($id);
-        $manager->persist($student04);
-        $manager->flush();
-        $student04 = $manager->getRepository('App:Image')->findOneBy(['id' => $id]);
-
-        $id = Uuid::fromString('e235c391-d735-4aca-bbc4-a6403a185577');
-        $student06 = new Image();
-        $student06->setName('student06');
-        $student06->setBase64(base64_encode(file_get_contents(dirname(__FILE__).'/Resources/Stage/afbeeldingen/Studenten-los_06.png', 'r')));
-        $student06->setDescription('stageplatform student06');
-        $student06->setOrganization($organization);
-        $manager->persist($student06);
-        $student06->setId($id);
-        $manager->persist($student06);
-        $manager->flush();
-        $student06 = $manager->getRepository('App:Image')->findOneBy(['id' => $id]);
-
-        $id = Uuid::fromString('726b7a12-584a-476c-b662-c898ec0f1bc3');
-        $student08 = new Image();
-        $student08->setName('student08');
-        $student08->setBase64(base64_encode(file_get_contents(dirname(__FILE__).'/Resources/Stage/afbeeldingen/Studenten-los_08.png', 'r')));
-        $student08->setDescription('stageplatform student08');
-        $student08->setOrganization($organization);
-        $manager->persist($student08);
-        $student08->setId($id);
-        $manager->persist($student08);
-        $manager->flush();
-        $student08 = $manager->getRepository('App:Image')->findOneBy(['id' => $id]);
-
-        $id = Uuid::fromString('8398d3d8-0c16-4603-8256-c4c9c85069ea');
-        $student10 = new Image();
-        $student10->setName('student10');
-        $student10->setBase64(base64_encode(file_get_contents(dirname(__FILE__).'/Resources/Stage/afbeeldingen/Studenten-los_10.png', 'r')));
-        $student10->setDescription('stageplatform student10');
-        $student10->setOrganization($organization);
-        $manager->persist($student10);
-        $student10->setId($id);
-        $manager->persist($student10);
-        $manager->flush();
-        $student10 = $manager->getRepository('App:Image')->findOneBy(['id' => $id]);
-
-        $id = Uuid::fromString('cda86f0b-079b-41d7-9ed9-8f62b55af998');
-        $student12 = new Image();
-        $student12->setName('student12');
-        $student12->setBase64(base64_encode(file_get_contents(dirname(__FILE__).'/Resources/Stage/afbeeldingen/Studenten-los_12.png', 'r')));
-        $student12->setDescription('stageplatform student12');
-        $student12->setOrganization($organization);
-        $manager->persist($student12);
-        $student12->setId($id);
-        $manager->persist($student12);
-        $manager->flush();
-        $student12 = $manager->getRepository('App:Image')->findOneBy(['id' => $id]);
-
-        $id = Uuid::fromString('480dcb31-041c-4dd7-80dc-f7d0e6575ab9');
-        $student14 = new Image();
-        $student14->setName('student14');
-        $student14->setBase64(base64_encode(file_get_contents(dirname(__FILE__).'/Resources/Stage/afbeeldingen/Studenten-los_14.png', 'r')));
-        $student14->setDescription('stageplatform student14');
-        $student14->setOrganization($organization);
-        $manager->persist($student14);
-        $student14->setId($id);
-        $manager->persist($student14);
-        $manager->flush();
-        $student14 = $manager->getRepository('App:Image')->findOneBy(['id' => $id]);
-
-        $id = Uuid::fromString('ea236cdd-0147-4c68-9a47-e71c252a2727');
-        $student17 = new Image();
-        $student17->setName('student17');
-        $student17->setBase64(base64_encode(file_get_contents(dirname(__FILE__).'/Resources/Stage/afbeeldingen/Studenten-los_17.png', 'r')));
-        $student17->setDescription('stageplatform student17');
-        $student17->setOrganization($organization);
-        $manager->persist($student17);
-        $student17->setId($id);
-        $manager->persist($student17);
-        $manager->flush();
-        $student17 = $manager->getRepository('App:Image')->findOneBy(['id' => $id]);
-
         $style = new Style();
         $style->setName('academy');
         $style->setFavicon($favicon);
@@ -203,14 +95,19 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
                        --primary-color: white;
                        --secondary: #cce0f1;
                        --secondary-color: #2b2b2b;
-                       --menu: #01689b;
+                       --menu: #406377;
                        --menu-over: #3669A5;
                        --menu-color: white;
                        --menu-height: 100px;
                        --footer: #406377;
                        --footer-color: white;
                 }
-
+                .nav-position {
+                       width: 100%;
+                       display: flex;
+                       justify-content: flex-end;
+                       order: 2;
+                }
                ');
 
         $style->addOrganization($organization);
@@ -230,16 +127,6 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
                 'footer4'               => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'0c663ab8-f9d5-42c5-8866-1a51fcf74a12']),
                 'headerimg'             => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'da8af35b-afca-455e-a722-6d0052f7367d']),
                 'kladimg'               => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'62685881-e5a2-4f73-b08f-a155b6dab74c']),
-                'raketimg'              => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'cdaad46c-f1b3-11ea-adc1-0242ac120002']),
-                'footer4img'            => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'e49586fb-ec10-4f92-8ad5-f78e323ac104']),
-                'student02'             => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'90a7204b-0e11-4bb9-b6ec-98917a1f4efc']),
-                'student04'             => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'3b79dd04-f7b7-4a07-9916-f7f59e61b20a']),
-                'student06'             => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'e235c391-d735-4aca-bbc4-a6403a185577']),
-                'student08'             => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'726b7a12-584a-476c-b662-c898ec0f1bc3']),
-                'student10'             => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'8398d3d8-0c16-4603-8256-c4c9c85069ea']),
-                'student12'             => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'cda86f0b-079b-41d7-9ed9-8f62b55af998']),
-                'student14'             => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'480dcb31-041c-4dd7-80dc-f7d0e6575ab9']),
-                'student17'             => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'ea236cdd-0147-4c68-9a47-e71c252a2727']),
                 'googleTagId'           => 'G-2PYCJ13YC4',
                 'userPage'              => 'me',
                 'login'                 => ['facebook'=>true, 'github'=>true],
@@ -409,7 +296,7 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
         $slug->setSlug('doelen');
         $manager->persist($slug);
         $manager->flush();
-        
+
         //stages pagina
         $id = Uuid::fromString('a2ce01ee-3f41-49a7-8005-35ed033c2127');
         $template = new Template();
