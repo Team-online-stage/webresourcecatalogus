@@ -202,6 +202,14 @@ class Template implements Translatable
     private $templateGroups;
 
     /**
+     * @Gedmo\Locale
+     * Used locale to override Translation listener`s locale
+     * this is not a mapped field of entity metadata, just a simple property
+     * and it is not necessary because globally locale can be set in listener
+     */
+    private $locale;
+
+    /**
      * @var Datetime The moment this request was created
      *
      * @Groups({"read"})
@@ -389,6 +397,11 @@ class Template implements Translatable
         }
 
         return $this;
+    }
+
+    public function setTranslatableLocale($locale)
+    {
+        $this->locale = $locale;
     }
 
     public function getDateCreated(): ?\DateTimeInterface
