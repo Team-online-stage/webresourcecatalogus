@@ -91,7 +91,7 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
         $style->setDescription('Huistlijl Gemeente Zuid-Drecht');
         $style->setCss('
                :root {
-                       --primary: #406377;
+                       --primary: #263846;
                        --primary-color: white;
                        --secondary: #cce0f1;
                        --secondary-color: #2b2b2b;
@@ -107,6 +107,9 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
                        display: flex;
                        justify-content: flex-end;
                        order: 2;
+                }
+                .main {
+                       padding-top: 0px;
                 }
                ');
 
