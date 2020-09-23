@@ -1,6 +1,6 @@
 <?php
 
-namespace App\EventSubscriber;
+namespace App\Subscriber;
 
 use Gedmo\Blameable\BlameableListener;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
