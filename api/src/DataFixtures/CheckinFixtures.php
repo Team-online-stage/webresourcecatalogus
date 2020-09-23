@@ -338,6 +338,11 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $menuItem->setHref('/');
         $menuItem->setMenu($menu);
         $manager->persist($menuItem);
+        $manager->flush();
+        $menuItem->setTranslatableLocale('en'); // change locale
+        $menuItem->setName('Home');
+        $menuItem->setDescription('Go back to the main page');
+        $manager->persist($menuItem);
 
         $menuItem = new MenuItem();
         $menuItem->setName('Voor ondernemers');
@@ -346,6 +351,11 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $menuItem->setType('slug');
         $menuItem->setHref('/ondernemers');
         $menuItem->setMenu($menu);
+        $manager->persist($menuItem);
+        $manager->flush();
+        $menuItem->setTranslatableLocale('en'); // change locale
+        $menuItem->setName('For organizations');
+        $menuItem->setDescription('Register your organization');
         $manager->persist($menuItem);
 
         $menuItem = new MenuItem();
@@ -356,6 +366,11 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $menuItem->setHref('/about');
         $menuItem->setMenu($menu);
         $manager->persist($menuItem);
+        $manager->flush();
+        $menuItem->setTranslatableLocale('en'); // change locale
+        $menuItem->setName('How does it work?');
+        $menuItem->setDescription('Register your organization');
+        $manager->persist($menuItem);
 
         $menuItem = new MenuItem();
         $menuItem->setName('Privacy');
@@ -365,14 +380,24 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $menuItem->setHref('/privacy');
         $menuItem->setMenu($menu);
         $manager->persist($menuItem);
+        $manager->flush();
+        $menuItem->setTranslatableLocale('en'); // change locale
+        $menuItem->setName('Privacy');
+        $menuItem->setDescription('Who are behind checking');
+        $manager->persist($menuItem);
 
         $menuItem = new MenuItem();
         $menuItem->setName('Voorwaarden');
-        $menuItem->setDescription('Wie zitten achter CheckIn');
+        $menuItem->setDescription('Algemeene voorwaarden');
         $menuItem->setOrder(5);
         $menuItem->setType('slug');
         $menuItem->setHref('/proclaimer');
         $menuItem->setMenu($menu);
+        $manager->persist($menuItem);
+        $manager->flush();
+        $menuItem->setTranslatableLocale('en'); // change locale
+        $menuItem->setName('Terms and conditions');
+        $menuItem->setDescription('Terms and conditions');
         $manager->persist($menuItem);
 
         // Template groups
@@ -381,6 +406,11 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $groupEmails->setOrganization($organization);
         $groupEmails->setApplication($application);
         $groupEmails->setName('E-mails');
+        $groupEmails->setDescription('E-mails die verstuurd worden');
+        $manager->persist($groupEmails);
+        $manager->flush();
+        $groupEmails->setTranslatableLocale('en'); // change locale
+        $groupEmails->setName('E-mails');
         $groupEmails->setDescription('E-mails that are send out');
         $manager->persist($groupEmails);
 
@@ -388,9 +418,15 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $groupInvoices = new TemplateGroup();
         $groupInvoices->setOrganization($organization);
         $groupInvoices->setApplication($application);
+        $groupInvoices->setName('Facturen');
+        $groupInvoices->setDescription('Factuur templates die worden ingevuld aan de hand van facturen');
+        $manager->persist($groupInvoices);
+        $manager->flush();
+        $groupInvoices->setTranslatableLocale('en'); // change locale
         $groupInvoices->setName('Invoices');
         $groupInvoices->setDescription('Invoice templates that are filled in using invoices');
         $manager->persist($groupInvoices);
+
 
         // E-mail templates
         $id = Uuid::fromString('2ca5b662-e941-46c9-ae87-ae0c68d0aa5d');
