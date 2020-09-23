@@ -85,36 +85,29 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
         $manager->flush();
         $kladimg = $manager->getRepository('App:Image')->findOneBy(['id' => $id]);
 
-        $id = Uuid::fromString('cdaad46c-f1b3-11ea-adc1-0242ac120002');
-        $raketimg = new Image();
-        $raketimg->setName('raket image');
-        $raketimg->setBase64(base64_encode(file_get_contents(dirname(__FILE__).'/Resources/Stage/afbeeldingen/Raket-rechts-onder.png', 'r')));
-        $raketimg->setDescription('stageplatform raket voor rechts onder ');
-        $raketimg->setOrganization($organization);
-        $manager->persist($raketimg);
-        $raketimg->setId($id);
-        $manager->persist($raketimg);
-        $manager->flush();
-        $raketimg = $manager->getRepository('App:Image')->findOneBy(['id' => $id]);
-
         $style = new Style();
-        $style->setfavicon($favicon);
         $style->setName('academy');
+        $style->setFavicon($favicon);
         $style->setDescription('Huistlijl Gemeente Zuid-Drecht');
         $style->setCss('
                :root {
-                       --primary: #01689b;
+                       --primary: #406377;
                        --primary-color: white;
                        --secondary: #cce0f1;
                        --secondary-color: #2b2b2b;
-                       --menu: #01689b;
+                       --menu: #406377;
                        --menu-over: #3669A5;
                        --menu-color: white;
                        --menu-height: 100px;
-                       --footer: #01689b;
+                       --footer: #406377;
                        --footer-color: white;
                 }
-
+                .nav-position {
+                       width: 100%;
+                       display: flex;
+                       justify-content: flex-end;
+                       order: 2;
+                }
                ');
 
         $style->addOrganization($organization);
@@ -130,16 +123,14 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
                 'mainMenu'              => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'fccb7e65-2b56-49a2-8720-724f823f2b00']),
                 'loggedIn'              => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'58873338-3ef1-4764-a1a8-72a8787625f4']),
                 'home'                  => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'d6127f56-c334-4eb7-bade-c70e97631aec']),
-                'studenten'             => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'a4a9a984-d83e-44ac-b27d-c77cd74b0d21']),
                 'footer1'               => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'afa4c1f6-17b7-40a2-b289-57640bb141d9']),
+                'footer4'               => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'0c663ab8-f9d5-42c5-8866-1a51fcf74a12']),
                 'headerimg'             => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'da8af35b-afca-455e-a722-6d0052f7367d']),
                 'kladimg'               => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'62685881-e5a2-4f73-b08f-a155b6dab74c']),
-                'raketimg'              => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'cdaad46c-f1b3-11ea-adc1-0242ac120002']),
-                'footer4img'            => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'images', 'id'=>'e49586fb-ec10-4f92-8ad5-f78e323ac104']),
                 'googleTagId'           => 'G-2PYCJ13YC4',
                 'userPage'              => 'me',
                 'login'                 => ['facebook'=>true, 'github'=>true],
-                'header'                => true,
+                'header'                => false,
                 'stickyMenu'            => true,
             ]
         );
@@ -202,7 +193,7 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
         $manager->persist($menuItem);
 
         $menuItem = new MenuItem();
-        $menuItem->setName('Bedrijven');
+        $menuItem->setName('Bedrijven/Organisaties');
         $menuItem->setDescription('Bedrijven pagina');
         $menuItem->setOrder(2);
         $menuItem->setType('slug');
@@ -222,7 +213,7 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
         $id = Uuid::fromString('d6127f56-c334-4eb7-bade-c70e97631aec');
         $template = new Template();
         $template->setName('Academy Home');
-        $template->setDescription('Homepage voor CheckIn.nu');
+        $template->setDescription('Homepage voor Conduction Academy');
         $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Stage/index.html.twig', 'r'));
         $template->setTemplateEngine('twig');
         $manager->persist($template);
@@ -243,7 +234,7 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
         //bedrijfs pagina
         $id = Uuid::fromString('9243d64e-ee93-11ea-adc1-0242ac120002');
         $template = new Template();
-        $template->setName('bedrijfspagina');
+        $template->setName('bedrijvenpagina');
         $template->setDescription('stage pagina voor bedrijven');
         $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Stage/bedrijf.html.twig', 'r'));
         $template->setTemplateEngine('twig');
@@ -257,7 +248,7 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
         $slug = new Slug();
         $slug->setTemplate($template);
         $slug->setApplication($application);
-        $slug->setName('bedrijf');
+        $slug->setName('bedrijven');
         $slug->setSlug('bedrijven');
         $manager->persist($slug);
         $manager->flush();
@@ -281,6 +272,50 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
         $slug->setApplication($application);
         $slug->setName('studenten');
         $slug->setSlug('studenten');
+        $manager->persist($slug);
+        $manager->flush();
+
+        //doelen pagina
+        $id = Uuid::fromString('a8979821-eb43-4a10-9290-00d832bec5c5');
+        $template = new Template();
+        $template->setName('Doelen');
+        $template->setDescription('Doelen pagina');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Stage/doelen.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id' => $id]);
+        $manager->persist($template);
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('doelen');
+        $slug->setSlug('doelen');
+        $manager->persist($slug);
+        $manager->flush();
+
+        //stages pagina
+        $id = Uuid::fromString('a2ce01ee-3f41-49a7-8005-35ed033c2127');
+        $template = new Template();
+        $template->setName('Stages');
+        $template->setDescription('Stages pagina');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Stage/stages.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id' => $id]);
+        $manager->persist($template);
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('stages');
+        $slug->setSlug('stages');
         $manager->persist($slug);
         $manager->flush();
 
@@ -314,6 +349,28 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
         $template = $manager->getRepository('App:Template')->findOneBy(['id' => $id]);
         $template->addTemplateGroup($groupPages);
         $manager->persist($template);
+        $manager->flush();
+
+        //profiel aanmaaken
+        $id = Uuid::fromString('c71569c8-7f11-4e18-a85d-823bc207125b');
+        $template = new Template();
+        $template->setName('AcademyProfile');
+        $template->setDescription('pagina voor aanmaken van profielen');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/Stage/signUp.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $manager->persist($template);
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('aanmelden');
+        $slug->setSlug('aanmelden');
+        $manager->persist($slug);
         $manager->flush();
     }
 }

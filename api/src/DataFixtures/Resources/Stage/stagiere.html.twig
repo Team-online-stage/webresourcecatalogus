@@ -1,0 +1,89 @@
+{% extends 'base.html.twig' %}
+{% block container %}
+
+    <div style="display: flex; justify-content: center; margin-top: 5%">
+        <div id="zoekbalk" style="background-color: #406377; display: inline-block; padding: 20px; width: 600px"><h2
+                style="color: white">Ik zoek een stageplek in de sector :</h2><input type="text" id="Input"
+                                                                                     onkeyup="stagefilter()"
+                                                                                     placeholder="ICT"></div>
+    </div>
+
+    <div style="display: flex; justify-content: center; margin-top: 2%">
+        <div id="zoekbalk" style="background-color: #406377; display: inline-block; padding: 20px; width: 600px"><h2
+                style="color: white">    Ik zoek een stageplek in de buurt :</h2><input type="text" id="Input"
+                                                                                        onkeyup="stagefilter()"
+                                                                                        placeholder="Plaats/postcode"></div>
+    </div>
+
+    <div style="display: flex; justify-content: center; margin-top: 2%">
+        <div id="zoekbalk" style="background-color: #406377; display: inline-block; padding: 20px; width: 600px"><h2
+                style="color: white">Ik zoek een stageplek met als functie :</h2><input type="text" id="Input"
+                                                                                        onkeyup="stagefilter()"
+                                                                                        placeholder="Javascript developer"></div>
+    </div>
+
+    <div style="display: flex; justify-content: center; margin-top: 2%">
+        <div id="zoekbalk" style="background-color: #406377; display: inline-block; padding: 20px; width: 600px"><h2
+                style="color: white">Selecteer jou opleidings niveau</h2>
+            <select id="niveau">
+                <option value="MBO">MBO</option>
+                <option value="HBO">HBO</option>
+                <option value="Havo">Havo</option>
+                <option value="VWO">VWO</option>
+            </select>
+        </div>
+    </div>
+
+
+
+    </div>
+    <div class="container" style="margin-top: 20px">
+        <div class="row">
+            <div class="col-md-8" style="float: none;margin: auto">
+                <div class="row">
+                    <div class="col-md-12">
+                        <ul class="list list--card">
+                            <li class="card background--primary card__hover">
+                                <a href="#" class="card__content">
+                                    <div class="card__icon flex-center color--primary"><i
+                                            class="fas fa-user-check fa-5x"></i></div>
+                                    <div class="card__body flex-center"><span
+                                            class="card__title color--primary flex-center">Functie</span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="card background--primary card__hover">
+                                <a href="#" class="card__content">
+                                    <div class="card__icon flex-center color--primary"><i
+                                            class="fas fa-building fa-5x"></i></div>
+                                    <div class="card__body flex-center"><span
+                                            class="card__title color--primary flex-center">Regio</span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="card background--primary card__hover">
+                                <a href="#" class="card__content">
+                                    <div style="background-color: #0000cc"></div>
+                                    <div class="card__icon flex-center color--primary"><i
+                                            class="fas fa-stopwatch fa-5x"></i></div>
+                                    <div class="card__body flex-center"><span
+                                            class="card__title color--primary flex-center">Beschikbaar</span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="card background--primary card__hover">
+                                <a href="#" class="card__content">
+                                    <div class="card__icon flex-center color--primary"><i
+                                            class="fas fa-chalkboard-teacher fa-5x"></i></div>
+                                    <div class="card__body flex-center"><span
+                                            class="card__title color--primary flex-center">Opleiding</span>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </div>
+        </div>
+    </div>
+{% endblock %}

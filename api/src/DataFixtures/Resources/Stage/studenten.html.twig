@@ -1,6 +1,8 @@
 {# templates/home/index.html.twig #}
+
 {% extends 'base.html.twig' %}
 {% block container %}
+
     <div class="container" style="margin-top: 20px">
         <div class="row">
             <div class="col-md-8" style="float: none;margin: auto">
@@ -17,9 +19,9 @@
                                 </a>
                             </li>
                             <li class="card background--primary card__hover">
-                                <a href="#" class="card__content">
+                                <a href="/aanmelden" class="card__content">
                                     <div class="card__icon flex-center color--primary"><i
-                                            class="fas fa-stopwatch fa-5x"></i></div>
+                                            class="fas fa-user-circle fa-5x"></i></div>
                                     <div class="card__body flex-center"><span
                                             class="card__title color--primary flex-center">Profiel aanmaken</span>
                                     </div>
@@ -49,4 +51,5 @@
             </div>
         </div>
     </div>
+
 {% endblock %}
