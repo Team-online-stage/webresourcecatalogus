@@ -782,6 +782,30 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $manager->flush();
         $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
 
+        $id = Uuid::fromString('d177a32e-3b7e-412e-b68e-a117769e5dcc');
+        $template = new Template();
+        $template->setName('contact modal');
+        $template->setDescription('contact modal');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/CheckIn/modals/contact.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+
+        $id = Uuid::fromString('4d2dcaec-a714-4b05-8935-35ec431e9629');
+        $template = new Template();
+        $template->setName('feedback modal');
+        $template->setDescription('feedback modal');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/CheckIn/modals/feedback.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+
         /*
          * Then we need some example organizations
          */

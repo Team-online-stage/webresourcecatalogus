@@ -175,6 +175,7 @@
                                 </div>
                             </a>
                         </li>
+                    </ul>
                         <!--
                         <li class="card background--primary card__hover">
                             <a href="{{ path('app_ptc_process',{"id":"7f5bd18e-e3dd-4864-a2fb-24d118462396"}) }}" class="card__content">
@@ -187,7 +188,16 @@
                         </li>
                     </ul>
                     -->
-            <ul class="list list--card">
+                    <ul class="list list--card">
+                        <li class="card background--primary card__hover">
+                            <a href="#" class="card__content" onclick="openModalFeedback()">
+                                <div class="card__icon flex-center color--primary"><i class="fas fa-bullhorn fa-4x"></i>
+                                </div>
+                                <div class="card__body flex-center"><span
+                                        class="card__title color--primary flex-center">{{ 'feedback'|trans|capitalize }}</span>
+                                </div>
+                            </a>
+                        </li>
                         <li class="card background--primary card__hover">
                             <a href="{{ path('app_user_logout') }}" class="card__content">
                                 <div class="card__icon flex-center color--primary"><i class="fas fa-unlock fa-4x"></i>
@@ -197,8 +207,8 @@
                                 </div>
                             </a>
                         </li>
-                        {% endif %}
                     </ul>
+                    {% endif %}
                 </div>
             {% else %}
                 <div class="col-md-8">
@@ -220,31 +230,5 @@
                 </div>
             {% endif %}
     </div><!-- /.row -->
-
-    {% if checkins is defined and checkins is not empty and checkins|length > 0 %}
-        {% include 'chin/modals/checkin_modal.html.twig' with { 'item':checkins[0] } %}
-        <script>
-            let checkingModal;
-            // Load modal component
-            System.import('/uno/components/modal/modal.js').then(function (module) {
-                checkingModal = new module.Modal(document.getElementById('checkin-{{ checkins[0].id }}'));
-            });
-
-            // Called when the user clicks the button
-            function openCheckinModal() {
-                checkingModal.open();
-            }
-
-            {% if app.session.get('newcheckin') is defined and  app.session.get('newcheckin') %}
-            // Lets always show the last login
-            $(window).on('load', function () {
-                setTimeout(
-                    function () {
-                        openCheckinModal();
-                    }, 100);
-            });
-            {% endif %}
-
-        </script>
-    {% endif %}
+    {{ include(template_from_string(commonground_resource({'component':'wrc','type':'templates','id':'4d2dcaec-a714-4b05-8935-35ec431e9629'})|raw)) }}
 {% endblock %}
