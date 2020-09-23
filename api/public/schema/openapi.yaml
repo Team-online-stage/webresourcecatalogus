@@ -12,7 +12,7 @@ info:
     - Docker Image: [online](https://hub.docker.com/repository/docker/conduction/wrc-php) 
     - Datamodel: [postman](/schema/wrc.postman_collection.json) / [oas](/schema/openapi.yaml) / [pdf](/schema/datamodel.pdf) / [modelio (zip)](/schema/Datamodel_Modelio.zip) 
     
-    'Naast deze JSON rest API is er ook een [graphql](/graphql) interface beschikbaar.'         
+    Naast deze JSON rest API is er ook een [graphql](/graphql) interface beschikbaar.         
     
 paths:
   '/adresses/{id}/audit_trail':
@@ -12989,7 +12989,7 @@ components:
           format: date-time
           nullable: true
         contact:
-          description: 'The contact for this organization'
+          description: 'The contact information for this organization'
           externalDocs:
             url: 'http://schema.org/url'
           type: string
@@ -13028,7 +13028,7 @@ components:
             -
               $ref: '#/components/schemas/Style-write'
         contact:
-          description: 'The contact for this organization'
+          description: 'The contact information for this organization'
           externalDocs:
             url: 'http://schema.org/url'
           type: string
@@ -13083,7 +13083,7 @@ components:
           format: date-time
           nullable: true
         contact:
-          description: 'The contact for this organization'
+          description: 'The contact information for this organization'
           externalDocs:
             url: 'http://schema.org/url'
           type: string
@@ -13131,7 +13131,7 @@ components:
             -
               $ref: '#/components/schemas/Style:jsonld-write'
         contact:
-          description: 'The contact for this organization'
+          description: 'The contact information for this organization'
           externalDocs:
             url: 'http://schema.org/url'
           type: string
@@ -14130,7 +14130,7 @@ definitions:
         description: 'The moment this request last Modified'
         type: \Datetime
       contact:
-        description: 'The contact for this organization'
+        description: 'The contact information for this organization'
         type: string
         format: url
         maxLength: 255
@@ -14163,7 +14163,7 @@ definitions:
         example: 'This is the manucipality of Utrecht'
         maxLength: 255
       contact:
-        description: 'The contact for this organization'
+        description: 'The contact information for this organization'
         type: string
         format: url
         maxLength: 255
@@ -14492,12 +14492,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-09-21 13:20:27'
+        example: '2020-09-23 05:18:38'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-09-21 13:20:27'
+        example: '2020-09-23 05:18:38'
     required: []
   AuditTrail-write:
     properties:
@@ -14545,12 +14545,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-09-21 13:20:27'
+        example: '2020-09-23 05:18:38'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-09-21 13:20:27'
+        example: '2020-09-23 05:18:38'
     required: []
   ChangeLog-write:
     properties:

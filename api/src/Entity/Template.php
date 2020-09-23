@@ -13,6 +13,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Gedmo\Translatable\Translatable;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
@@ -73,7 +74,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *     "templateGroups.name": "partial",
  *     "templateGroups.id": "exact"})
  */
-class Template
+class Template implements Translatable
 {
     /**
      * @var UuidInterface The UUID identifier of this resource
@@ -94,6 +95,7 @@ class Template
      *
      * @example webshop menu
      *
+     * @Gedmo\Translatable
      * @Gedmo\Versioned
      * @Assert\NotNull
      * @Assert\Length(
@@ -109,6 +111,7 @@ class Template
      *
      * @example webshop menu
      *
+     * @Gedmo\Translatable
      * @Gedmo\Versioned
      * @Assert\Length(
      *      max = 255
@@ -123,6 +126,7 @@ class Template
      *
      * @example This page holds info about this application
      *
+     * @Gedmo\Translatable
      * @Gedmo\Versioned
      * @Assert\NotNull
      * @Assert\Length(
@@ -147,6 +151,7 @@ class Template
      *
      * @example A lot of random info over any topic
      *
+     * @Gedmo\Translatable
      * @Gedmo\Versioned
      * @Assert\NotNull
      * @Groups({"read","write"})

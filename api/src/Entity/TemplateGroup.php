@@ -12,6 +12,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Gedmo\Translatable\Translatable;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
@@ -55,7 +56,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ApiFilter(DateFilter::class, strategy=DateFilter::EXCLUDE_NULL)
  * @ApiFilter(SearchFilter::class, properties={"application.id": "exact", "organization.id": "exact", "name": "partial", "description": "partial"})
  */
-class TemplateGroup
+class TemplateGroup implements Translatable
 {
     /**
      * @var UuidInterface The UUID identifier of this resource
@@ -76,6 +77,7 @@ class TemplateGroup
      *
      * @example webshop menu
      *
+     * @Gedmo\Translatable
      * @Gedmo\Versioned
      * @Assert\NotNull
      * @Assert\Length(
@@ -91,6 +93,7 @@ class TemplateGroup
      *
      * @example This page holds info about this application
      *
+     * @Gedmo\Translatable
      * @Gedmo\Versioned
      * @Assert\NotNull
      * @Assert\Length(

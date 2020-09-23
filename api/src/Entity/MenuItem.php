@@ -10,6 +10,7 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\OrderFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Gedmo\Translatable\Translatable;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
@@ -54,7 +55,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ApiFilter(DateFilter::class, strategy=DateFilter::EXCLUDE_NULL)
  * @ApiFilter(SearchFilter::class)
  */
-class MenuItem
+class MenuItem implements Translatable
 {
     /**
      * @var UuidInterface The UUID identifier of this resource
@@ -75,6 +76,7 @@ class MenuItem
      *
      * @example about-menu-link
      *
+     * @Gedmo\Translatable
      * @Gedmo\Versioned
      * @Assert\NotNull
      * @Assert\Length(
@@ -90,6 +92,7 @@ class MenuItem
      *
      * @example This MenuItem links to the about page
      *
+     * @Gedmo\Translatable
      * @Gedmo\Versioned
      * @Assert\Length(
      *      max = 2555

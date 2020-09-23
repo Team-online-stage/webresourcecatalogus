@@ -339,10 +339,12 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $menuItem->setMenu($menu);
         $manager->persist($menuItem);
         $manager->flush();
+        /*
         $menuItem->setTranslatableLocale('en'); // change locale
         $menuItem->setName('Home');
         $menuItem->setDescription('Go back to the main page');
         $manager->persist($menuItem);
+        */
 
         $menuItem = new MenuItem();
         $menuItem->setName('Voor ondernemers');
@@ -353,10 +355,12 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $menuItem->setMenu($menu);
         $manager->persist($menuItem);
         $manager->flush();
+        /*
         $menuItem->setTranslatableLocale('en'); // change locale
         $menuItem->setName('For organizations');
         $menuItem->setDescription('Register your organization');
         $manager->persist($menuItem);
+        */
 
         $menuItem = new MenuItem();
         $menuItem->setName('Hoe werkt het');
@@ -367,10 +371,12 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $menuItem->setMenu($menu);
         $manager->persist($menuItem);
         $manager->flush();
+        /*
         $menuItem->setTranslatableLocale('en'); // change locale
         $menuItem->setName('How does it work?');
         $menuItem->setDescription('Register your organization');
         $manager->persist($menuItem);
+        */
 
         $menuItem = new MenuItem();
         $menuItem->setName('Privacy');
@@ -381,10 +387,12 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $menuItem->setMenu($menu);
         $manager->persist($menuItem);
         $manager->flush();
+        /*
         $menuItem->setTranslatableLocale('en'); // change locale
         $menuItem->setName('Privacy');
         $menuItem->setDescription('Who are behind checking');
         $manager->persist($menuItem);
+        */
 
         $menuItem = new MenuItem();
         $menuItem->setName('Voorwaarden');
@@ -395,10 +403,12 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $menuItem->setMenu($menu);
         $manager->persist($menuItem);
         $manager->flush();
+        /*
         $menuItem->setTranslatableLocale('en'); // change locale
         $menuItem->setName('Terms and conditions');
         $menuItem->setDescription('Terms and conditions');
         $manager->persist($menuItem);
+        */
 
         // Template groups
         // E-mails
@@ -409,10 +419,12 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $groupEmails->setDescription('E-mails die verstuurd worden');
         $manager->persist($groupEmails);
         $manager->flush();
+        /*
         $groupEmails->setTranslatableLocale('en'); // change locale
         $groupEmails->setName('E-mails');
         $groupEmails->setDescription('E-mails that are send out');
         $manager->persist($groupEmails);
+        */
 
         // Invoices
         $groupInvoices = new TemplateGroup();
@@ -422,10 +434,12 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $groupInvoices->setDescription('Factuur templates die worden ingevuld aan de hand van facturen');
         $manager->persist($groupInvoices);
         $manager->flush();
+        /*
         $groupInvoices->setTranslatableLocale('en'); // change locale
         $groupInvoices->setName('Invoices');
         $groupInvoices->setDescription('Invoice templates that are filled in using invoices');
         $manager->persist($groupInvoices);
+        */
 
 
         // E-mail templates
