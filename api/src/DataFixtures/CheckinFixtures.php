@@ -56,6 +56,7 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $organization = new Organization();
         $organization->setName('Cafe de zotte raaf');
         $organization->setDescription('Cafe de zotte raaf');
+        $organization->setContact($this->commonGroundService->cleanUrl(['component'=>'cc', 'type'=>'organizations', 'id'=>'0265628a-1b0e-4505-bba9-370e5ca88671']));
         $manager->persist($organization);
         $organization->setId($id);
         $manager->persist($organization);
@@ -83,6 +84,7 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $organization = new Organization();
         $organization->setName('Restautant Goudlust');
         $organization->setDescription('Restautant Goudlust');
+        $organization->setContact($this->commonGroundService->cleanUrl(['component'=>'cc', 'type'=>'organizations', 'id'=>'0550d019-502d-480a-ab46-6ed75bc8551a']));
         $manager->persist($organization);
         $organization->setId($id);
         $manager->persist($organization);
@@ -110,6 +112,7 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $organization = new Organization();
         $organization->setName('Hotel Dijkzicht');
         $organization->setDescription('Hotel Dijkzicht');
+        $organization->setContact($this->commonGroundService->cleanUrl(['component'=>'cc', 'type'=>'organizations', 'id'=>'0265628a-1b0e-4505-bba9-370e5ca88671']));
         $manager->persist($organization);
         $organization->setId($id);
         $manager->persist($organization);
@@ -137,6 +140,7 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $organization = new Organization();
         $organization->setName('Camping de alpen koe');
         $organization->setDescription('Camping de alpen koe');
+        $organization->setContact($this->commonGroundService->cleanUrl(['component'=>'cc', 'type'=>'organizations', 'id'=>'ff46b373-bcb3-4b9a-9837-c50c15915158']));
         $manager->persist($organization);
         $organization->setId($id);
         $manager->persist($organization);
@@ -164,6 +168,7 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $organization = new Organization();
         $organization->setName('Mc Donalds Zuid-Drecht');
         $organization->setDescription('Mc Donalds Zuid-Drecht');
+        $organization->setContact($this->commonGroundService->cleanUrl(['component'=>'cc', 'type'=>'organizations', 'id'=>'35ca41b8-045d-4e52-a011-124ad37b5f04']));
         $manager->persist($organization);
         $organization->setId($id);
         $manager->persist($organization);
@@ -189,8 +194,9 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
 
         $id = Uuid::fromString('62bff497-cb91-443e-9da9-21a0b38cd536');
         $organization = new Organization();
-        $organization->setName('Creative Ground');
-        $organization->setDescription('Creative Ground');
+        $organization->setName('Creative Grounds');
+        $organization->setDescription('Creative Grounds');
+        $organization->setContact($this->commonGroundService->cleanUrl(['component'=>'cc', 'type'=>'organizations', 'id'=>'e11acb98-1fb3-4ae5-beea-1a33aa381d1a']));
         $manager->persist($organization);
         $organization->setId($id);
         $manager->persist($organization);
@@ -198,7 +204,7 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $organization = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
 
         $favicon = new Image();
-        $favicon->setName('Creative Ground favicon');
+        $favicon->setName('Creative Groundf favicon');
         $favicon->setDescription('favicon');
         $favicon->setBase64('data:image/svg+xml;base64,PHN2ZyBpZD0iTGFhZ18xIiBkYXRhLW5hbWU9IkxhYWcgMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2aWV3Qm94PSIwIDAgMzkwLjAxIDQ2Ljg3Ij48ZGVmcz48c3R5bGU+LmNscy0xe2ZpbGw6I2ZmZjt9PC9zdHlsZT48L2RlZnM+PGcgaWQ9IkxheWVyXzIiIGRhdGEtbmFtZT0iTGF5ZXIgMiI+PGcgaWQ9Im1lbnUiPjxwYXRoIGlkPSJQYXRoXzEiIGRhdGEtbmFtZT0iUGF0aCAxIiBjbGFzcz0iY2xzLTEiIGQ9Ik03Ni42NiwzNC43MWExMi4yNCwxMi4yNCwwLDAsMS00LjI4Ljc0QTEyLjQ3LDEyLjQ3LDAsMCwxLDY2LDMzLjg0YTEwLjkxLDEwLjkxLDAsMCwxLTQuMTktNC4zMywxMi41MywxMi41MywwLDAsMS0xLjQ0LTYsMTMuNzksMTMuNzksMCwwLDEsMS40NC02LjM3LDEwLjczLDEwLjczLDAsMCwxLDQuMDYtNC4zNiwxMS41LDExLjUsMCwwLDEsNi0xLjU2LDEzLjE3LDEzLjE3LDAsMCwxLDQsLjU4QTEzLjgxLDEzLjgxLDAsMCwxLDc5LDEzLjI4bC0xLjgsNC40MUE4LjU4LDguNTgsMCwwLDAsNzIsMTUuNzZhNi4yMyw2LjIzLDAsMCwwLTMuMzcsMSw3LjM3LDcuMzcsMCwwLDAtMi41MSwyLjcyLDcuODMsNy44MywwLDAsMC0uOTQsMy44Miw4LjgsOC44LDAsMCwwLC44Nyw0QTYuNTQsNi41NCwwLDAsMCw2OC41MiwzMGE3LjIxLDcuMjEsMCwwLDAsMy43NiwxLDguMSw4LjEsMCwwLDAsMy4xMi0uNTZBNi42Nyw2LjY3LDAsMCwwLDc3LjU5LDI5bDEuOTMsNC4xOUExMC42MiwxMC42MiwwLDAsMSw3Ni42NiwzNC43MVoiLz48cGF0aCBpZD0iUGF0aF8yIiBkYXRhLW5hbWU9IlBhdGggMiIgY2xhc3M9ImNscy0xIiBkPSJNOTcsMzUuMTlsLTUtNy41M0g4OC44NXY3LjUzSDg0LjE5VjExLjUxaDcuMTdhMTAsMTAsMCwwLDEsNi44NCwyLjE0LDcuMzYsNy4zNiwwLDAsMSwyLjQzLDUuODQsOS4yNCw5LjI0LDAsMCwxLS45Miw0LjEsNi43NCw2Ljc0LDAsMCwxLTIuODEsM2w1LjUsOC41OVptLTguMTEtMTJoMy4zMkEzLjI4LDMuMjgsMCwwLDAsOTUsMjIuMDhhMy43NiwzLjc2LDAsMCwwLC44Ny0yLjQsNC40OSw0LjQ5LDAsMCwwLS43NC0yLjQ2QTMuMTMsMy4xMywwLDAsMCw5Mi4yLDE2SDg4Ljg1WiIvPjxwYXRoIGlkPSJQYXRoXzMiIGRhdGEtbmFtZT0iUGF0aCAzIiBjbGFzcz0iY2xzLTEiIGQ9Ik0xMjIuNDEsMTEuNTFWMTZIMTEwLjkydjUuMDZoMTAuMTd2NC41SDExMC45MnY1LjExaDExLjk0djQuNTFoLTE2LjZWMTEuNTFaIi8+PHBhdGggaWQ9IlBhdGhfNCIgZGF0YS1uYW1lPSJQYXRoIDQiIGNsYXNzPSJjbHMtMSIgZD0iTTEzOS4zOSwzMC41NmgtNy44NWwtMS45Myw0LjYzSDEyNUwxMzUuNywxMC41OEgxMzZsMTAuNjgsMjQuNjFoLTUuNFptLTEuNTQtMy45My0yLjI4LTUuNzYtMi4zOCw1Ljc2WiIvPjxwYXRoIGlkPSJQYXRoXzUiIGRhdGEtbmFtZT0iUGF0aCA1IiBjbGFzcz0iY2xzLTEiIGQ9Ik0xNjIuNDksMTEuNTFWMTZoLTUuNzVWMzUuMTloLTQuNjdWMTZoLTUuNTNWMTEuNVoiLz48cGF0aCBpZD0iUGF0aF82IiBkYXRhLW5hbWU9IlBhdGggNiIgY2xhc3M9ImNscy0xIiBkPSJNMTcxLjY2LDExLjUxVjM1LjE5SDE2N1YxMS41MVoiLz48cGF0aCBpZD0iUGF0aF83IiBkYXRhLW5hbWU9IlBhdGggNyIgY2xhc3M9ImNscy0xIiBkPSJNMTk3LjM3LDExLjUxLDE4Ni41NiwzNi4yOCwxNzUuNzUsMTEuNTFoNS42bDUuNCwxMy4zNSw1LjA5LTEzLjM1WiIvPjxwYXRoIGlkPSJQYXRoXzgiIGRhdGEtbmFtZT0iUGF0aCA4IiBjbGFzcz0iY2xzLTEiIGQ9Ik0yMTcuNjEsMTEuNTFWMTZIMjA2LjEydjUuMDZoMTAuMTd2NC41SDIwNi4xMnY1LjExaDExLjk0djQuNTFoLTE2LjZWMTEuNTFaIi8+PHBhdGggaWQ9IlBhdGhfOSIgZGF0YS1uYW1lPSJQYXRoIDkiIGNsYXNzPSJjbHMtMSIgZD0iTTI0My4xLDMzLjI3YTE3LjY4LDE3LjY4LDAsMCwxLTMuMDksMSwxMy4zNCwxMy4zNCwwLDAsMS0zLjA4LjQsMTQuMjksMTQuMjksMCwwLDEtNi42MS0xLjQ2LDEwLjc0LDEwLjc0LDAsMCwxLTQuMzktNC4wNiwxMS4zMiwxMS4zMiwwLDAsMS0xLjU0LTUuOSwxNCwxNCwwLDAsMSwxLjY0LTcsMTAuNjUsMTAuNjUsMCwwLDEsNC40MS00LjMxLDEzLDEzLDAsMCwxLDYuMTEtMS40MywxNi4yLDE2LjIsMCwwLDEsNCwuNDhBMTQuODYsMTQuODYsMCwwLDEsMjQ0LDEyLjI0bC0xLjUxLDQuMzVhMTEuMSwxMS4xLDAsMCwwLTIuNTYtLjk1LDEwLjg4LDEwLjg4LDAsMCwwLTIuNzItLjQ0LDguMzQsOC4zNCwwLDAsMC01LjksMS45Myw3LjUsNy41LDAsMCwwLTIsNS43Myw3LjE3LDcuMTcsMCwwLDAsMSwzLjgxLDYuNDYsNi40NiwwLDAsMCwyLjc4LDIuNSw5LjI1LDkuMjUsMCwwLDAsNC4wNy44Niw2LjcyLDYuNzIsMCwwLDAsMy4yNS0uNjFWMjYuNTZoLTQuMDh2LTQuNUgyNDV2MTBBNiw2LDAsMCwxLDI0My4xLDMzLjI3WiIvPjxwYXRoIGlkPSJQYXRoXzEwIiBkYXRhLW5hbWU9IlBhdGggMTAiIGNsYXNzPSJjbHMtMSIgZD0iTTI2My4xMiwzNC40NGwtNS03LjUzSDI1NXY3LjUzaC00LjY2VjEwLjc2aDcuMTdhMTAsMTAsMCwwLDEsNi44NCwyLjE0LDcuMzYsNy4zNiwwLDAsMSwyLjQzLDUuODQsOS4yNCw5LjI0LDAsMCwxLS45Miw0LjEsNi43NCw2Ljc0LDAsMCwxLTIuODEsM2w1LjUsOC41OVptLTguMTEtMTJoMy4zMmEzLjMsMy4zLDAsMCwwLDIuNzctMS4xMSwzLjgzLDMuODMsMCwwLDAsLjg2LTIuNCw0LjQ5LDQuNDksMCwwLDAtLjc0LTIuNDYsMy4xMSwzLjExLDAsMCwwLTIuODYtMS4xN0gyNTVaIi8+PHBhdGggaWQ9IlBhdGhfMTEiIGRhdGEtbmFtZT0iUGF0aCAxMSIgY2xhc3M9ImNscy0xIiBkPSJNMjcxLjc5LDE2LjYyYTEyLjMyLDEyLjMyLDAsMCwxLDQuNDEtNC40NiwxMS44NiwxMS44NiwwLDAsMSwxMi4wNywwLDEyLjU0LDEyLjU0LDAsMCwxLDQuNDMsNC40NiwxMS43NSwxMS43NSwwLDAsMSwwLDEyLjA2LDEyLjI2LDEyLjI2LDAsMCwxLTQuNDMsNC4zOSwxMiwxMiwwLDAsMS0xMi4wOSwwLDEyLjE2LDEyLjE2LDAsMCwxLTQuMzktNC4zOUExMiwxMiwwLDAsMSwyNzEuNzksMTYuNjJaTTI3NiwyNi40M2E3LjI3LDcuMjcsMCwwLDAsMi42NywyLjc1LDcuMTQsNy4xNCwwLDAsMCwzLjc0LDEsNi43NSw2Ljc1LDAsMCwwLDMuNjQtMSw3LjE3LDcuMTcsMCwwLDAsMi41Ny0yLjczLDguMjIsOC4yMiwwLDAsMCwwLTcuNjhBNy40Miw3LjQyLDAsMCwwLDI4NiwxNmE3LjIxLDcuMjEsMCwwLDAtNy4zNywwQTcuNTEsNy41MSwwLDAsMCwyNzYsMTguNzdhNy45LDcuOSwwLDAsMC0xLDMuODZBNy41OCw3LjU4LDAsMCwwLDI3NiwyNi40M1oiLz48cGF0aCBpZD0iUGF0aF8xMiIgZGF0YS1uYW1lPSJQYXRoIDEyIiBjbGFzcz0iY2xzLTEiIGQ9Ik0zMDMuODgsMjcuODVhNS40Niw1LjQ2LDAsMCwwLDEuODEsMS42Nyw0Ljc1LDQuNzUsMCwwLDAsMi40MS42NCw1LjEzLDUuMTMsMCwwLDAsMi41NC0uNjQsNSw1LDAsMCwwLDEuODItMS42Nyw0LDQsMCwwLDAsLjY2LTIuMTZWMTAuNzZoNC42djE1YTguNDIsOC40MiwwLDAsMS0xLjI5LDQuNTgsOC44Niw4Ljg2LDAsMCwxLTMuNDksMy4xOSwxMC44MiwxMC44MiwwLDAsMS05LjY3LDAsOC43OCw4Ljc4LDAsMCwxLTMuNDYtMy4xOSw4LjUxLDguNTEsMCwwLDEtMS4yNy00LjU4di0xNWg0LjY3VjI1LjY5QTQsNCwwLDAsMCwzMDMuODgsMjcuODVaIi8+PHBhdGggaWQ9IlBhdGhfMTMiIGRhdGEtbmFtZT0iUGF0aCAxMyIgY2xhc3M9ImNscy0xIiBkPSJNMzQ0LjY4LDEwLjc2VjM1LjQxaC0uMTNMMzI4LDIwLjQ1bC4xLDE0aC00LjczVjkuODNoLjE5TDM0MC4wOCwyNSwzNDAsMTAuNzZaIi8+PHBhdGggaWQ9IlBhdGhfMTQiIGRhdGEtbmFtZT0iUGF0aCAxNCIgY2xhc3M9ImNscy0xIiBkPSJNMzUwLjc5LDEwLjc2aDcuMDhhMTQuMzgsMTQuMzgsMCwwLDEsNy40NiwxLjc2LDEwLjYxLDEwLjYxLDAsMCwxLDQuMjcsNC41MywxMy41MiwxMy41MiwwLDAsMSwxLjMzLDYsMTEuMjIsMTEuMjIsMCwwLDEtMS42MSw2QTEwLjc5LDEwLjc5LDAsMCwxLDM2NSwzM2ExMi43MywxMi43MywwLDAsMS02LDEuNGgtOC4yNFptNy40MywxOS4xOEE4LjMzLDguMzMsMCwwLDAsMzY0LDI4LjA3YTYuNzUsNi43NSwwLDAsMCwyLjEzLTUuMzdBNy42Nyw3LjY3LDAsMCwwLDM2NSwxOC4yYTYuMjMsNi4yMywwLDAsMC0yLjczLTIuMzIsNy42Niw3LjY2LDAsMCwwLTMtLjY0aC0zLjc5djE0LjdaIi8+PHBhdGggaWQ9IlBhdGhfMTUiIGRhdGEtbmFtZT0iUGF0aCAxNSIgY2xhc3M9ImNscy0xIiBkPSJNMzgyLjg3LDE0Ljc4YTQuMDgsNC4wOCwwLDAsMC0yLjQuNjIsMi4wOCwyLjA4LDAsMCwwLS44NSwxLjgzLDIuNDIsMi40MiwwLDAsMCwxLjI0LDIsMTUsMTUsMCwwLDAsMy4yOSwxLjYyLDE0LjM5LDE0LjM5LDAsMCwxLDIuODcsMS40LDYuNCw2LjQsMCwwLDEsMiwyLjE3LDcsNywwLDAsMSwuNzgsMy41MSw2LjM2LDYuMzYsMCwwLDEtLjk0LDMuNEE2LjU5LDYuNTksMCwwLDEsMzg2LDMzLjc4YTkuNjgsOS42OCwwLDAsMS00LjM3LjkyLDE0LjM4LDE0LjM4LDAsMCwxLTQuMjItLjYzLDEzLjE3LDEzLjE3LDAsMCwxLTMuODktMS45MWwyLjA2LTMuNjRhMTEuMDUsMTEuMDUsMCwwLDAsMi44LDEuNDgsOC4wOCw4LjA4LDAsMCwwLDIuODMuNTgsNSw1LDAsMCwwLDIuNTctLjYzLDIuMTQsMi4xNCwwLDAsMCwxLjEtMnEwLTEuODMtMy40NS0zLjE4YTMwLjE1LDMwLjE1LDAsMCwxLTMuMzctMS41NSw3LDcsMCwwLDEtMi4zNC0yLjEyLDUuOSw1LjksMCwwLDEtMS0zLjQ4LDYuNDUsNi40NSwwLDAsMSwyLTQuOTIsOC4xOCw4LjE4LDAsMCwxLDUuMzYtMiwxMy43NCwxMy43NCwwLDAsMSw0LjQxLjZBMTQuOTIsMTQuOTIsMCwwLDEsMzkwLDEyLjkybC0xLjc3LDMuNTdhMTEuNDksMTEuNDksMCwwLDAtNS4zNy0xLjcxWiIvPjxwYXRoIGlkPSJQYXRoXzE2IiBkYXRhLW5hbWU9IlBhdGggMTYiIGNsYXNzPSJjbHMtMSIgZD0iTTIxLjU3LDM5LjYxYTE2LjI5LDE2LjI5LDAsMCwxLDAtMzIuMzVWMGEyMy41MSwyMy41MSwwLDAsMCwwLDQ2Ljg2WiIvPjxwYXRoIGlkPSJQYXRoXzE3IiBkYXRhLW5hbWU9IlBhdGggMTciIGNsYXNzPSJjbHMtMSIgZD0iTTI1LjM3LDBWNy4yNkExNi4yNywxNi4yNywwLDAsMSwzMi43LDM2LjdWMjYuMDdIMjUuMzd2MjAuOEEyMy41MiwyMy41MiwwLDAsMCwyNS4zNywwWiIvPjwvZz48L2c+PC9zdmc+');
         $favicon->setOrganization($organization);
@@ -206,8 +212,8 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $manager->flush();
 
         $style = new Style();
-        $style->setName('Creative Ground');
-        $style->setDescription('Huistlijl Creative Ground');
+        $style->setName('Creative Grounds');
+        $style->setDescription('Huistlijl Creative Grounds');
         $style->setCss('
 
         .checkinFont {
@@ -325,39 +331,78 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $menu = $manager->getRepository('App:Menu')->findOneBy(['id'=> $id]);
 
         $menuItem = new MenuItem();
-        $menuItem->setName('Voor ondernemers');
-        $menuItem->setDescription('Registreer uw onderneming');
         $menuItem->setOrder(1);
+        $menuItem->setType('slug');
+        $menuItem->setHref('/');
+        $menuItem->setMenu($menu);
+        $menuItem->setTranslatableLocale('nl'); // change locale
+        $menuItem->setName('Home');
+        $menuItem->setDescription('Ga terug naar de home page');
+        $manager->persist($menuItem);
+        $manager->flush();
+        $menuItem->setTranslatableLocale('en'); // change locale
+        $menuItem->setName('Home');
+        $menuItem->setDescription('Go back to the main page');
+        $manager->persist($menuItem);
+
+        $menuItem = new MenuItem();
+        $menuItem->setOrder(2);
         $menuItem->setType('slug');
         $menuItem->setHref('/ondernemers');
         $menuItem->setMenu($menu);
+        $menuItem->setTranslatableLocale('nl'); // change locale
+        $menuItem->setName('Voor ondernemers');
+        $menuItem->setDescription('Registreer uw onderneming');
+        $manager->persist($menuItem);
+        $manager->flush();
+        $menuItem->setTranslatableLocale('en'); // change locale
+        $menuItem->setName('For organizations');
+        $menuItem->setDescription('Register your organization');
         $manager->persist($menuItem);
 
         $menuItem = new MenuItem();
-        $menuItem->setName('Hoe werkt het');
-        $menuItem->setDescription('Hoe werkt checkin');
-        $menuItem->setOrder(2);
+        $menuItem->setOrder(3);
         $menuItem->setType('slug');
         $menuItem->setHref('/about');
         $menuItem->setMenu($menu);
+        $menuItem->setTranslatableLocale('nl'); // change locale
+        $menuItem->setName('Hoe werkt het');
+        $menuItem->setDescription('Hoe werkt checkin');
+        $manager->persist($menuItem);
+        $manager->flush();
+        $menuItem->setTranslatableLocale('en'); // change locale
+        $menuItem->setName('How does it work?');
+        $menuItem->setDescription('Register your organization');
         $manager->persist($menuItem);
 
         $menuItem = new MenuItem();
-        $menuItem->setName('Privacy');
-        $menuItem->setDescription('Wie zitten achter CheckIn');
-        $menuItem->setOrder(3);
+        $menuItem->setOrder(4);
         $menuItem->setType('slug');
         $menuItem->setHref('/privacy');
         $menuItem->setMenu($menu);
+        $menuItem->setTranslatableLocale('nl'); // change locale
+        $menuItem->setName('Privacy');
+        $menuItem->setDescription('Wie zitten achter CheckIn');
+        $manager->persist($menuItem);
+        $manager->flush();
+        $menuItem->setTranslatableLocale('en'); // change locale
+        $menuItem->setName('Privacy');
+        $menuItem->setDescription('Who are behind checking');
         $manager->persist($menuItem);
 
         $menuItem = new MenuItem();
-        $menuItem->setName('Voorwaarden');
-        $menuItem->setDescription('Wie zitten achter CheckIn');
-        $menuItem->setOrder(4);
+        $menuItem->setOrder(5);
         $menuItem->setType('slug');
         $menuItem->setHref('/proclaimer');
         $menuItem->setMenu($menu);
+        $menuItem->setTranslatableLocale('nl'); // change locale
+        $menuItem->setName('Voorwaarden');
+        $menuItem->setDescription('Algemeene voorwaarden');
+        $manager->persist($menuItem);
+        $manager->flush();
+        $menuItem->setTranslatableLocale('en'); // change locale
+        $menuItem->setName('Terms and conditions');
+        $menuItem->setDescription('Terms and conditions');
         $manager->persist($menuItem);
 
         // Template groups
@@ -366,6 +411,11 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $groupEmails->setOrganization($organization);
         $groupEmails->setApplication($application);
         $groupEmails->setName('E-mails');
+        $groupEmails->setDescription('E-mails die verstuurd worden');
+        $manager->persist($groupEmails);
+        $manager->flush();
+        $groupEmails->setTranslatableLocale('en'); // change locale
+        $groupEmails->setName('E-mails');
         $groupEmails->setDescription('E-mails that are send out');
         $manager->persist($groupEmails);
 
@@ -373,6 +423,11 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $groupInvoices = new TemplateGroup();
         $groupInvoices->setOrganization($organization);
         $groupInvoices->setApplication($application);
+        $groupInvoices->setName('Facturen');
+        $groupInvoices->setDescription('Factuur templates die worden ingevuld aan de hand van facturen');
+        $manager->persist($groupInvoices);
+        $manager->flush();
+        $groupInvoices->setTranslatableLocale('en'); // change locale
         $groupInvoices->setName('Invoices');
         $groupInvoices->setDescription('Invoice templates that are filled in using invoices');
         $manager->persist($groupInvoices);
@@ -383,7 +438,9 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $template->setName('Welkom');
         $template->setTitle('Welkom bij checkin!');
         $template->setDescription('Bevestiging dat u een verzoek heeft ingediend');
-        $template->setContent('Beste {{ receiver.givenName }},<p>Welkom bij checkin!</p><p>Uw verzoek tot deelname van checkin met referentie {{ resource.reference }} is met succes ingediend.</p>{% set organization = commonground_resource(resource.properties[\'horeca_onderneming_contact\']) %}<p>De door u opgegeven gegevens van uw organisatie: <br>Naam: {{organization.name}}<br>Kvk: {% if organization.kvk is defined and organization.kvk is not empty %}{{organization.kvk}}{% else %}{{resource.properties[\'kvk\']}}{% endif %}</p>{% set nodes =  commonground_resource_list({\'component\': \'chin\', \'type\': \'nodes\'},{\'organization\':organization[\'@id\']})[\'hydra:member\'] %}{% if nodes|length > 0 %}{% set node = nodes[0] %}<p>Hierbij hebben wij alvast een voorbeeld QR-code voor u: <br><img src="{{ qr_code_data_uri( absolute_url(path(\'https://dev.checking.nu/chin/checkin\',{\'code\':node.reference})) , { writer: \'svg\', size: 150 }) }}" /></p>{% endif %}<p>Algemene voorwaarden.</p><p>Verwerkings overeenkomst.</p><p>Met vriendelijke groet,</p>{{ sender.name }}');
+        $template->setContent('Beste {{ receiver.givenName }},<p>Welkom bij checkin!</p><p>Uw verzoek tot deelname van checkin met referentie {{ resource.reference }} is met succes ingediend.</p>{% set organization = commonground_resource(resource.properties[\'horeca_onderneming_contact\']) %}<p>De door u opgegeven gegevens van uw organisatie: <br>Naam: {{organization.name}}<br>Kvk: {% if organization.kvk is defined and organization.kvk is not empty %}{{organization.kvk}}{% elseif resource.properties[\'kvk\'] is defined and resource.properties[\'kvk\'] is not empty %}{{resource.properties[\'kvk\']}}{% endif %}</p><p>Voorbeeld QR-Code</p><p>Algemene voorwaarden.</p><p>Verwerkings overeenkomst.</p><p>Met vriendelijke groet,</p>{{ sender.name }}');
+        // Voorbeeld QR-code in email content meesturen: (gaat nog iets niet helemaal goed)
+        // {% set nodes =  commonground_resource_list({'component': 'chin', 'type': 'nodes'},{'organization':organization['@id']})['hydra:member'] %}{% if nodes|length > 0 %}{% set node = nodes[0] %}<p>Hierbij hebben wij alvast een voorbeeld QR-code voor u: <br><img src="{{ qr_code_data_uri( absolute_url(path('https://dev.checking.nu/chin/checkin',{'code':node.reference})) , { writer: 'svg', size: 150 }) }}" /></p>{% endif %}
         $template->setTemplateEngine('twig');
         $manager->persist($template);
         $template->setId($id);
@@ -407,7 +464,7 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $template->setName('Uw accountgegevens');
         $template->setTitle('Uw inlognaam voor checkin');
         $template->setDescription('Uw inlognaam voor uw account op checking.nu');
-        $template->setContent('Beste {{ receiver.givenName }},<p><p>U kunt nu inloggen op https://dev.checking.nu/ met de volgende inlognaam: {% if receiver.emails|length >0 %}{% set receiverEmail = receiver.emails[0] %}{% endif %}{% if receiverEmail is defined and receiverEmail is not empty %}{{ receiverEmail.email }}{% endif %}</p><p>Met vriendelijke groet,</p>{{ sender.name }}');
+        $template->setContent('Beste {{ receiver.givenName }},<p>U kunt nu inloggen op https://dev.checking.nu/ met de volgende inlognaam: {% if receiver.emails|length >0 %}{% set receiverEmail = receiver.emails[0] %}{% endif %}{% if receiverEmail is defined and receiverEmail is not empty %}{{ receiverEmail.email }}{% endif %}</p><p>Met vriendelijke groet,</p>{{ sender.name }}');
         $template->setTemplateEngine('twig');
         $manager->persist($template);
         $template->setId($id);
@@ -758,6 +815,30 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $template->setName('verwerkersOvereenkomst');
         $template->setDescription('verwerkersOvereenkomst');
         $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/CheckIn/verwerkersOvereenkomst.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+
+        $id = Uuid::fromString('d177a32e-3b7e-412e-b68e-a117769e5dcc');
+        $template = new Template();
+        $template->setName('contact modal');
+        $template->setDescription('contact modal');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/CheckIn/modals/contact.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+
+        $id = Uuid::fromString('4d2dcaec-a714-4b05-8935-35ec431e9629');
+        $template = new Template();
+        $template->setName('feedback modal');
+        $template->setDescription('feedback modal');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/CheckIn/modals/feedback.html.twig', 'r'));
         $template->setTemplateEngine('twig');
         $manager->persist($template);
         $template->setId($id);
