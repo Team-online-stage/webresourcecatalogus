@@ -667,7 +667,7 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $template->setName('About');
         $template->setDescription('About CheckIng.nu');
         $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/CheckIn/about.html.twig', 'r'));
-        manager->persist($template);
+        $manager->persist($template);
         $template->setId($id);
         $manager->persist($template);
         $manager->flush();
