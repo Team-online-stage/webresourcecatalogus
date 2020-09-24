@@ -601,13 +601,13 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $template = new Template();
         $template->setTemplateEngine('twig');
         $template->setTranslatableLocale('nl'); // change locale
-        $template->setName('CheckIn.nu Home');
+        $template->setName('CheckIng.nu Home');
         $template->setDescription('Homepage voor CheckIn.nu');
         $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/CheckIn/index.html.twig', 'r'));
         $manager->persist($template);
         $manager->flush();
         $template->setTranslatableLocale('en'); // change locale
-        $template->setName('CheckIn.nu Home');
+        $template->setName('CheckIng.nu Home');
         $template->setDescription('Homepage voor CheckIn.nu');
         $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/CheckIn/index.html.twig', 'r'));
         $manager->persist($template);
@@ -633,13 +633,13 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $template->setDescription('Informatie voor organisaties');
         $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/CheckIn/ondernemers.html.twig', 'r'));
         $manager->persist($template);
+        $template->setId($id);
         $manager->flush();
         $template->setTranslatableLocale('en'); // change locale
         $template->setName('Organization');
         $template->setDescription('Information for organizations');
         $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/CheckIn/ondernemers.html.twig', 'r'));
         $manager->persist($template);
-        $template->setId($id);
         $manager->persist($template);
         $manager->flush();
         $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
