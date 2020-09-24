@@ -861,6 +861,7 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
          */
 
         // Zuid-Drecht
+        /*
         $id = Uuid::fromString('2106575d-50f3-4f2b-8f0f-a2d6bc188222');
         $organization = new Organization();
         $organization->setName('Cafe de zotte raaf');
@@ -895,5 +896,6 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $manager->persist($organization);
         $manager->flush();
         $organization = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
+        */
     }
 }
