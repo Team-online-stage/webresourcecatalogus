@@ -43,8 +43,8 @@ class DoctrineExtensionSubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return [
-            KernelEvents::REQUEST => 'onKernelRequest',
-            KernelEvents::FINISH_REQUEST => 'onLateKernelRequest'
+            KernelEvents::REQUEST        => 'onKernelRequest',
+            KernelEvents::FINISH_REQUEST => 'onLateKernelRequest',
         ];
     }
     public function onKernelRequest(): void
