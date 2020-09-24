@@ -342,6 +342,7 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
 
         $menuItem = new MenuItem();
         $menuItem->setOrder(1);
+        $menuItem->setIcon('fas fa-home');
         $menuItem->setType('slug');
         $menuItem->setHref('/');
         $menuItem->setMenu($menu);
@@ -441,6 +442,33 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $groupInvoices->setName('Invoices');
         $groupInvoices->setDescription('Invoice templates that are filled in using invoices');
         $manager->persist($groupInvoices);
+
+        // E-mail templates
+        $id = Uuid::fromString('60314e20-3760-4c17-9b18-3a99a11cbc5f');
+        $template = new Template();
+        $template->setName('Reset');
+        $template->setTitle('Wachtwoord resetten');
+        $template->setDescription('Mail voor het resetten van je wachtwoord');
+        $template->setContent('Beste {{ receiver.givenName }},<p>U kunt <a href="{{ resource }}">hier</a> klikken om uw wachtwoord te resetten.</p><p>Met vriendelijke groet,</p>{{ sender.name }}');
+        // Voorbeeld QR-code in email content meesturen: (gaat nog iets niet helemaal goed)
+        // {% set nodes =  commonground_resource_list({'component': 'chin', 'type': 'nodes'},{'organization':organization['@id']})['hydra:member'] %}{% if nodes|length > 0 %}{% set node = nodes[0] %}<p>Hierbij hebben wij alvast een voorbeeld QR-code voor u: <br><img src="{{ qr_code_data_uri( absolute_url(path('https://dev.checking.nu/chin/checkin',{'code':node.reference})) , { writer: 'svg', size: 150 }) }}" /></p>{% endif %}
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupEmails);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('e-mail-reset');
+        $slug->setSlug('e-mail-reset');
+        $manager->persist($slug);
+        $manager->flush();
 
         // E-mail templates
         $id = Uuid::fromString('2ca5b662-e941-46c9-ae87-ae0c68d0aa5d');
@@ -831,6 +859,8 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $manager->persist($template);
         $manager->flush();
         $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $manager->persist($template);
+        $manager->flush();
 
         $id = Uuid::fromString('d177a32e-3b7e-412e-b68e-a117769e5dcc');
         $template = new Template();
@@ -843,6 +873,8 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $manager->persist($template);
         $manager->flush();
         $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $manager->persist($template);
+        $manager->flush();
 
         $id = Uuid::fromString('4d2dcaec-a714-4b05-8935-35ec431e9629');
         $template = new Template();
@@ -855,6 +887,8 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $manager->persist($template);
         $manager->flush();
         $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $manager->persist($template);
+        $manager->flush();
 
         /*
          * Then we need some example organizations
