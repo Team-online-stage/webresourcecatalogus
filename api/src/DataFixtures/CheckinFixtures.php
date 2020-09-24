@@ -231,7 +231,17 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $manager->flush();
 
         // Dan zuidrecht secifieke dingen
-        $organization = $this->getReference(ZuiddrechtFixtures::ORGANIZATION_ZUIDDRECHT);
+        $id = Uuid::fromString('c571bdad-f34c-4e24-94e7-74629cfaccc9');
+        $organization = new Organization();
+        $organization->setName('Checking platform');
+        $organization->setDescription('Checking platform');
+        $organization->setRsin('');
+        $organization->setContact($this->commonGroundService->cleanUrl(['component'=>'cc', 'type'=>'organizations', 'id'=>'55247f46-77d4-438e-90f1-524595767c42']));
+        $manager->persist($organization);
+        $organization->setId($id);
+        $manager->persist($organization);
+        $manager->flush();
+        $organization = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
 
         $favicon = new Image();
         $favicon->setName('CheckIN Favicon');
