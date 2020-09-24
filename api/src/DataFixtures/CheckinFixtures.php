@@ -332,6 +332,7 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
 
         $menuItem = new MenuItem();
         $menuItem->setOrder(1);
+        $menuItem->setIcon('fas fa-home');
         $menuItem->setType('slug');
         $menuItem->setHref('/');
         $menuItem->setMenu($menu);
