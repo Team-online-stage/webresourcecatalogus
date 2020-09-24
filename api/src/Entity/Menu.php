@@ -12,6 +12,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Gedmo\Translatable\Translatable;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
@@ -56,7 +57,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ApiFilter(SearchFilter::class)
  * @ApiFilter(SearchFilter::class, properties={"id": "exact", "application.id": "exact", "name": "partial", "description": "partial"})
  */
-class Menu
+class Menu implements Translatable
 {
     /**
      * @var UuidInterface The UUID identifier of this resource
@@ -77,6 +78,7 @@ class Menu
      *
      * @example webshop menu
      *
+     * @Gedmo\Translatable
      * @Gedmo\Versioned
      * @Assert\NotNull
      * @Assert\Length(
@@ -92,6 +94,7 @@ class Menu
      *
      * @example This menuItems links to the about page
      *
+     * @Gedmo\Translatable
      * @Gedmo\Versioned
      * @Assert\Length(
      *      max = 2555
@@ -116,6 +119,15 @@ class Menu
      * @MaxDepth(1)
      */
     private $application;
+
+    /**
+     * @Groups({"read"})
+     * @Gedmo\Locale
+     * Used locale to override Translation listener`s locale
+     * this is not a mapped field of entity metadata, just a simple property
+     * and it is not necessary because globally locale can be set in listener
+     */
+    private $locale;
 
     /**
      * @var Datetime The moment this request was created
@@ -217,6 +229,11 @@ class Menu
         $this->application = $application;
 
         return $this;
+    }
+
+    public function setTranslatableLocale($locale)
+    {
+        $this->locale = $locale;
     }
 
     public function getDateCreated(): ?\DateTimeInterface

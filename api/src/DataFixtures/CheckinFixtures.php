@@ -56,6 +56,7 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $organization = new Organization();
         $organization->setName('Cafe de zotte raaf');
         $organization->setDescription('Cafe de zotte raaf');
+        $organization->setContact($this->commonGroundService->cleanUrl(['component'=>'cc', 'type'=>'organizations', 'id'=>'0265628a-1b0e-4505-bba9-370e5ca88671']));
         $manager->persist($organization);
         $organization->setId($id);
         $manager->persist($organization);
@@ -83,6 +84,7 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $organization = new Organization();
         $organization->setName('Restautant Goudlust');
         $organization->setDescription('Restautant Goudlust');
+        $organization->setContact($this->commonGroundService->cleanUrl(['component'=>'cc', 'type'=>'organizations', 'id'=>'0550d019-502d-480a-ab46-6ed75bc8551a']));
         $manager->persist($organization);
         $organization->setId($id);
         $manager->persist($organization);
@@ -110,6 +112,7 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $organization = new Organization();
         $organization->setName('Hotel Dijkzicht');
         $organization->setDescription('Hotel Dijkzicht');
+        $organization->setContact($this->commonGroundService->cleanUrl(['component'=>'cc', 'type'=>'organizations', 'id'=>'0265628a-1b0e-4505-bba9-370e5ca88671']));
         $manager->persist($organization);
         $organization->setId($id);
         $manager->persist($organization);
@@ -137,6 +140,7 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $organization = new Organization();
         $organization->setName('Camping de alpen koe');
         $organization->setDescription('Camping de alpen koe');
+        $organization->setContact($this->commonGroundService->cleanUrl(['component'=>'cc', 'type'=>'organizations', 'id'=>'ff46b373-bcb3-4b9a-9837-c50c15915158']));
         $manager->persist($organization);
         $organization->setId($id);
         $manager->persist($organization);
@@ -164,6 +168,7 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $organization = new Organization();
         $organization->setName('Mc Donalds Zuid-Drecht');
         $organization->setDescription('Mc Donalds Zuid-Drecht');
+        $organization->setContact($this->commonGroundService->cleanUrl(['component'=>'cc', 'type'=>'organizations', 'id'=>'35ca41b8-045d-4e52-a011-124ad37b5f04']));
         $manager->persist($organization);
         $organization->setId($id);
         $manager->persist($organization);
@@ -191,6 +196,7 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $organization = new Organization();
         $organization->setName('Creative Grounds');
         $organization->setDescription('Creative Grounds');
+        $organization->setContact($this->commonGroundService->cleanUrl(['component'=>'cc', 'type'=>'organizations', 'id'=>'e11acb98-1fb3-4ae5-beea-1a33aa381d1a']));
         $manager->persist($organization);
         $organization->setId($id);
         $manager->persist($organization);
@@ -325,48 +331,78 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $menu = $manager->getRepository('App:Menu')->findOneBy(['id'=> $id]);
 
         $menuItem = new MenuItem();
-        $menuItem->setName('Home');
-        $menuItem->setDescription('Ga terug naar de home page');
         $menuItem->setOrder(1);
         $menuItem->setType('slug');
         $menuItem->setHref('/');
         $menuItem->setMenu($menu);
+        $menuItem->setTranslatableLocale('nl'); // change locale
+        $menuItem->setName('Home');
+        $menuItem->setDescription('Ga terug naar de home page');
+        $manager->persist($menuItem);
+        $manager->flush();
+        $menuItem->setTranslatableLocale('en'); // change locale
+        $menuItem->setName('Home');
+        $menuItem->setDescription('Go back to the main page');
         $manager->persist($menuItem);
 
         $menuItem = new MenuItem();
-        $menuItem->setName('Voor ondernemers');
-        $menuItem->setDescription('Registreer uw onderneming');
         $menuItem->setOrder(2);
         $menuItem->setType('slug');
         $menuItem->setHref('/ondernemers');
         $menuItem->setMenu($menu);
+        $menuItem->setTranslatableLocale('nl'); // change locale
+        $menuItem->setName('Voor ondernemers');
+        $menuItem->setDescription('Registreer uw onderneming');
+        $manager->persist($menuItem);
+        $manager->flush();
+        $menuItem->setTranslatableLocale('en'); // change locale
+        $menuItem->setName('For organizations');
+        $menuItem->setDescription('Register your organization');
         $manager->persist($menuItem);
 
         $menuItem = new MenuItem();
-        $menuItem->setName('Hoe werkt het');
-        $menuItem->setDescription('Hoe werkt checkin');
         $menuItem->setOrder(3);
         $menuItem->setType('slug');
         $menuItem->setHref('/about');
         $menuItem->setMenu($menu);
+        $menuItem->setTranslatableLocale('nl'); // change locale
+        $menuItem->setName('Hoe werkt het');
+        $menuItem->setDescription('Hoe werkt checkin');
+        $manager->persist($menuItem);
+        $manager->flush();
+        $menuItem->setTranslatableLocale('en'); // change locale
+        $menuItem->setName('How does it work?');
+        $menuItem->setDescription('Register your organization');
         $manager->persist($menuItem);
 
         $menuItem = new MenuItem();
-        $menuItem->setName('Privacy');
-        $menuItem->setDescription('Wie zitten achter CheckIn');
         $menuItem->setOrder(4);
         $menuItem->setType('slug');
         $menuItem->setHref('/privacy');
         $menuItem->setMenu($menu);
+        $menuItem->setTranslatableLocale('nl'); // change locale
+        $menuItem->setName('Privacy');
+        $menuItem->setDescription('Wie zitten achter CheckIn');
+        $manager->persist($menuItem);
+        $manager->flush();
+        $menuItem->setTranslatableLocale('en'); // change locale
+        $menuItem->setName('Privacy');
+        $menuItem->setDescription('Who are behind checking');
         $manager->persist($menuItem);
 
         $menuItem = new MenuItem();
-        $menuItem->setName('Voorwaarden');
-        $menuItem->setDescription('Wie zitten achter CheckIn');
         $menuItem->setOrder(5);
         $menuItem->setType('slug');
         $menuItem->setHref('/proclaimer');
         $menuItem->setMenu($menu);
+        $menuItem->setTranslatableLocale('nl'); // change locale
+        $menuItem->setName('Voorwaarden');
+        $menuItem->setDescription('Algemeene voorwaarden');
+        $manager->persist($menuItem);
+        $manager->flush();
+        $menuItem->setTranslatableLocale('en'); // change locale
+        $menuItem->setName('Terms and conditions');
+        $menuItem->setDescription('Terms and conditions');
         $manager->persist($menuItem);
 
         // Template groups
@@ -375,6 +411,11 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $groupEmails->setOrganization($organization);
         $groupEmails->setApplication($application);
         $groupEmails->setName('E-mails');
+        $groupEmails->setDescription('E-mails die verstuurd worden');
+        $manager->persist($groupEmails);
+        $manager->flush();
+        $groupEmails->setTranslatableLocale('en'); // change locale
+        $groupEmails->setName('E-mails');
         $groupEmails->setDescription('E-mails that are send out');
         $manager->persist($groupEmails);
 
@@ -382,6 +423,11 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $groupInvoices = new TemplateGroup();
         $groupInvoices->setOrganization($organization);
         $groupInvoices->setApplication($application);
+        $groupInvoices->setName('Facturen');
+        $groupInvoices->setDescription('Factuur templates die worden ingevuld aan de hand van facturen');
+        $manager->persist($groupInvoices);
+        $manager->flush();
+        $groupInvoices->setTranslatableLocale('en'); // change locale
         $groupInvoices->setName('Invoices');
         $groupInvoices->setDescription('Invoice templates that are filled in using invoices');
         $manager->persist($groupInvoices);
@@ -769,6 +815,30 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $template->setName('verwerkersOvereenkomst');
         $template->setDescription('verwerkersOvereenkomst');
         $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/CheckIn/verwerkersOvereenkomst.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+
+        $id = Uuid::fromString('d177a32e-3b7e-412e-b68e-a117769e5dcc');
+        $template = new Template();
+        $template->setName('contact modal');
+        $template->setDescription('contact modal');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/CheckIn/modals/contact.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+
+        $id = Uuid::fromString('4d2dcaec-a714-4b05-8935-35ec431e9629');
+        $template = new Template();
+        $template->setName('feedback modal');
+        $template->setDescription('feedback modal');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/CheckIn/modals/feedback.html.twig', 'r'));
         $template->setTemplateEngine('twig');
         $manager->persist($template);
         $template->setId($id);

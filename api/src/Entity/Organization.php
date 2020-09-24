@@ -188,7 +188,7 @@ class Organization
     private $dateModified;
 
     /**
-     * @var string The contact for this organization
+     * @var string The contact information for this organization
      *
      * @Groups({"read", "write"})
      * @Assert\Url
