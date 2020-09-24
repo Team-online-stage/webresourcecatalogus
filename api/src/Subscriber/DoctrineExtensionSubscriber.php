@@ -45,6 +45,7 @@ class DoctrineExtensionSubscriber implements EventSubscriberInterface
             KernelEvents::FINISH_REQUEST => 'onLateKernelRequest',
         ];
     }
+
     public function onKernelRequest(): void
     {
         if ($this->tokenStorage !== null &&
