@@ -26,7 +26,6 @@ class DoctrineExtensionSubscriber implements EventSubscriberInterface
      */
     private $loggableListener;
 
-
     public function __construct(
         BlameableListener $blameableListener,
         TokenStorageInterface $tokenStorage,
@@ -39,14 +38,14 @@ class DoctrineExtensionSubscriber implements EventSubscriberInterface
         $this->loggableListener = $loggableListener;
     }
 
-
     public static function getSubscribedEvents()
     {
         return [
-            KernelEvents::REQUEST => 'onKernelRequest',
-            KernelEvents::FINISH_REQUEST => 'onLateKernelRequest'
+            KernelEvents::REQUEST        => 'onKernelRequest',
+            KernelEvents::FINISH_REQUEST => 'onLateKernelRequest',
         ];
     }
+
     public function onKernelRequest(): void
     {
         if ($this->tokenStorage !== null &&
@@ -61,5 +60,4 @@ class DoctrineExtensionSubscriber implements EventSubscriberInterface
     {
         $this->translatableListener->setTranslatableLocale($event->getRequest()->getLocale());
     }
-
 }
