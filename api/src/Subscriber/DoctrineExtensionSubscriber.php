@@ -26,7 +26,6 @@ class DoctrineExtensionSubscriber implements EventSubscriberInterface
      */
     private $loggableListener;
 
-
     public function __construct(
         BlameableListener $blameableListener,
         TokenStorageInterface $tokenStorage,
@@ -38,7 +37,6 @@ class DoctrineExtensionSubscriber implements EventSubscriberInterface
         $this->translatableListener = $translatableListener;
         $this->loggableListener = $loggableListener;
     }
-
 
     public static function getSubscribedEvents()
     {
@@ -61,5 +59,4 @@ class DoctrineExtensionSubscriber implements EventSubscriberInterface
     {
         $this->translatableListener->setTranslatableLocale($event->getRequest()->getLocale());
     }
-
 }
