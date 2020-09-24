@@ -1,4 +1,4 @@
-<div class="modal modal--backdrop" role="dialog" id="tipModal" tabindex="-1" aria-describedby="modal-description3">
+<div class="modal modal--backdrop" role="dialog" id="feedbackModal" tabindex="-1" aria-describedby="modal-description3">
     <section class="modal__content" role="document">
         <div id="modal-description3" class="screenreader-only">
             Dit is de beschrijving van de <span lang="en-US">modal</span>. De Escape knop annuleert en sluit het venster.
@@ -91,14 +91,14 @@
 </div>
 
 <script>
-    var feedback;
+    var feedbackModal;
     // Load modal component
     System.import('/uno/components/modal/modal.js').then(function (module) {
-        feedback = new module.Modal(document.getElementById('feedback'));
+        feedbackModal = new module.Modal(document.getElementById('feedbackModal'));
     });
 
     // Called when the user clicks the button
     function openModalFeedback() {
-        feedback.open();
+        feedbackModal.open();
     }
 </script>
