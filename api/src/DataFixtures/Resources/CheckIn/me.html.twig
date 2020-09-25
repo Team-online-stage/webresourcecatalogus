@@ -19,7 +19,7 @@
                             {% if commonground_is_resource(app.user.organization) %}
                                 {% set organization = commonground_resource(app.user.organization) %}
                             {% endif %}
-                            {% if 'group.admin' in app.user.roles %}
+                            {% if 'group.admin' in app.user.roles and organization.name is defined  %}
                                 <h1 class="content__header-title">{{ organization.name }}</h1>
                             {% else %}
                                 <h1 class="content__header-title">{{ 'personal'|trans|capitalize }}</h1>
