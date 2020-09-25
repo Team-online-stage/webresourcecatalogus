@@ -82,7 +82,6 @@ class ApplicationSubscriber implements EventSubscriberInterface
         }
         $result = $slug->getTemplate();
 
-
         // now we need to overide the normal subscriber
         $json = $this->serializer->serialize(
             $result,
