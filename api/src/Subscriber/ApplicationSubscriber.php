@@ -74,7 +74,6 @@ class ApplicationSubscriber implements EventSubscriberInterface
             $locale = 'en';
         }
 
-
         $application = $this->em->getRepository(Application::class)->findOneBy(['id' => $id]);
         $slug = $this->em->getRepository(Slug::class)->findOneBy(['application' => $application, 'slug'=>$slug]);
         if ($slug == null) {
