@@ -73,7 +73,7 @@ class ApplicationSubscriber implements EventSubscriberInterface
         } else {
             $locale = 'en';
         }
-        
+
 
         $application = $this->em->getRepository(Application::class)->findOneBy(['id' => $id]);
         $slug = $this->em->getRepository(Slug::class)->findOneBy(['application' => $application, 'slug'=>$slug]);
@@ -81,8 +81,6 @@ class ApplicationSubscriber implements EventSubscriberInterface
             throw new NotFoundHttpException('Page not found');
         }
         $result = $slug->getTemplate();
-
-
 
         // now we need to overide the normal subscriber
         $json = $this->serializer->serialize(
