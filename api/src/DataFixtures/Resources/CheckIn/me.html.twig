@@ -19,7 +19,7 @@
                             {% if commonground_is_resource(app.user.organization) %}
                                 {% set organization = commonground_resource(app.user.organization) %}
                             {% endif %}
-                            {% if 'group.admin' in app.user.roles %}
+                            {% if 'group.admin' in app.user.roles and organization.name is defined  %}
                                 <h1 class="content__header-title">{{ organization.name }}</h1>
                             {% else %}
                                 <h1 class="content__header-title">{{ 'personal'|trans|capitalize }}</h1>
@@ -211,7 +211,7 @@
             {% else %}
                 <div class="col-md-8">
                     <ul class="list list--card">
-                        {% if if checkins is defined and checkins is not empty and checkins|length > 0 %}
+                        {% if checkins is defined and checkins is not empty and checkins|length > 0 %}
                             <li class="card background--primary card__hover col-md-3">
                                 <a href="#" class="card__content" href="#" data-toggle="modal"
                                    data-target="#myModal{{ checkins[0].id }}" onclick="openCheckinModal()">
