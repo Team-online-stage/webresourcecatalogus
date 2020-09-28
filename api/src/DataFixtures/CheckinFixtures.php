@@ -480,7 +480,7 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $template->setName('Welkom');
         $template->setTitle('Welkom bij checkin!');
         $template->setDescription('Bevestiging dat u een verzoek heeft ingediend');
-        $template->setContent('Beste {{ receiver.givenName }},<p>Welkom bij checkin!</p><p>Uw verzoek tot deelname van checkin met referentie {{ resource.reference }} is met succes ingediend.</p>{% set organization = commonground_resource(resource.properties[\'horeca_onderneming_contact\']) %}<p>De door u opgegeven gegevens van uw organisatie: <br>Naam: {{organization.name}}<br>Kvk: {% if organization.kvk is defined and organization.kvk is not empty %}{{organization.kvk}}{% elseif resource.properties[\'kvk\'] is defined and resource.properties[\'kvk\'] is not empty %}{{resource.properties[\'kvk\']}}{% endif %}</p><p>Voorbeeld QR-Code</p><p>Algemene voorwaarden.</p><p>Verwerkings overeenkomst.</p><p>Met vriendelijke groet,</p>{{ sender.name }}');
+        $template->setContent('Beste {{ receiver.givenName }},<p>Welkom bij checkin!</p><p>Uw verzoek tot deelname van checkin met referentie {{ resource.reference }} is met succes ingediend.</p>{% set organization = commonground_resource(resource.properties[\'organization\']) %}<p>De door u opgegeven gegevens van uw organisatie: <br>Naam: {{organization.name}}<br>Kvk: {% if organization.kvk is defined and organization.kvk is not empty %}{{organization.kvk}}{% endif %}</p><p>Voorbeeld QR-Code</p><p>Algemene voorwaarden.</p><p>Verwerkings overeenkomst.</p><p>Met vriendelijke groet,</p>{{ sender.name }}');
         // Voorbeeld QR-code in email content meesturen: (gaat nog iets niet helemaal goed)
         // {% set nodes =  commonground_resource_list({'component': 'chin', 'type': 'nodes'},{'organization':organization['@id']})['hydra:member'] %}{% if nodes|length > 0 %}{% set node = nodes[0] %}<p>Hierbij hebben wij alvast een voorbeeld QR-code voor u: <br><img src="{{ qr_code_data_uri( absolute_url(path('https://dev.checking.nu/chin/checkin',{'code':node.reference})) , { writer: 'svg', size: 150 }) }}" /></p>{% endif %}
         $template->setTemplateEngine('twig');
@@ -650,6 +650,34 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $slug->setApplication($application);
         $slug->setName('ondernemers');
         $slug->setSlug('ondernemers');
+        $manager->persist($slug);
+        $manager->flush();
+
+        $id = Uuid::fromString('8c0d7c28-a4bc-4d9e-b18b-ae3fc933c311');
+        $template = new Template();
+        $template->setTemplateEngine('twig');
+        $template->setTranslatableLocale('nl'); // change locale
+        $template->setName('Horeca');
+        $template->setDescription('Informatie voor horeca');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/CheckIn/horeca.html.twig', 'r'));
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->flush();
+        $template->setTranslatableLocale('en'); // change locale
+        $template->setName('Horeca');
+        $template->setDescription('Information for organizations');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/CheckIn/horeca.html.twig', 'r'));
+        $manager->persist($template);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $manager->persist($template);
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('horeca');
+        $slug->setSlug('horeca');
         $manager->persist($slug);
         $manager->flush();
 
