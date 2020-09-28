@@ -1,4 +1,4 @@
-<div class="modal modal--backdrop" role="dialog" id="tipModal" tabindex="-1" aria-describedby="modal-description3">
+<div class="modal modal--backdrop" role="dialog" id="feedbackModal" tabindex="-1" aria-describedby="modal-description3">
     <section class="modal__content" role="document">
         <div id="modal-description3" class="screenreader-only">
             Dit is de beschrijving van de <span lang="en-US">modal</span>. De Escape knop annuleert en sluit het venster.
@@ -37,28 +37,28 @@
                     <div>
                         <h2>Uw contact gegevens</h2>
                         <div class="row" style="margin-bottom: 40px">
-                            <div class="col-md-4">
+                            <div class="input col-md-4">
                                 <label class="input__label" for="voornaam">Voornaam</label>
                                 <input class="input__control input__control--text" style="width: 100%" type="text" name="properties[contact][givenName]">
                             </div>
 
-                            <div class="col-md-4">
+                            <div class="input col-md-4">
                                 <label class="input__label" for="achternaam">Tussenvoegels</label>
                                 <input class="input__control input__control--text" style="width: 100%" type="text" name="properties[contact][additionalName]">
                             </div>
 
-                            <div class="col-md-4">
+                            <div class="input col-md-4">
                                 <label class="input__label" for="achternaam">Achternaam</label>
                                 <input class="input__control input__control--text" style="width: 100%" type="text" name="properties[contact][familyName]">
                             </div>
                         </div>
                         <div class="row" style="margin-bottom: 40px">
-                            <div class="col-md-6">
+                            <div class="input col-md-6">
                                 <label class="input__label" for="email">Email</label>
                                 <input required="" class="input__control input__control--text" style="width: 100%" type="email" name="properties[contact][emails][0][email]">
                             </div>
 
-                            <div class="col-md-6">
+                            <div class="input col-md-6">
                                 <label class="input__label" for="telephone">Telefoonnummer</label>
                                 <input class="input__control input__control--text" style="width: 100%" type="tel"  name="properties[contact][telephones][0][telephone]">
                             </div>
@@ -91,14 +91,14 @@
 </div>
 
 <script>
-    var feedback;
+    var feedbackModal;
     // Load modal component
     System.import('/uno/components/modal/modal.js').then(function (module) {
-        feedback = new module.Modal(document.getElementById('feedback'));
+        feedbackModal = new module.Modal(document.getElementById('feedbackModal'));
     });
 
     // Called when the user clicks the button
     function openModalFeedback() {
-        feedback.open();
+        feedbackModal.open();
     }
 </script>
