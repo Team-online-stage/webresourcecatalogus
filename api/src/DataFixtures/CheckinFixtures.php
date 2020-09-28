@@ -653,6 +653,34 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $manager->persist($slug);
         $manager->flush();
 
+        $id = Uuid::fromString('8c0d7c28-a4bc-4d9e-b18b-ae3fc933c311');
+        $template = new Template();
+        $template->setTemplateEngine('twig');
+        $template->setTranslatableLocale('nl'); // change locale
+        $template->setName('Horeca');
+        $template->setDescription('Informatie voor horeca');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/CheckIn/horeca.html.twig', 'r'));
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->flush();
+        $template->setTranslatableLocale('en'); // change locale
+        $template->setName('Horeca');
+        $template->setDescription('Information for organizations');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/CheckIn/horeca.html.twig', 'r'));
+        $manager->persist($template);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $manager->persist($template);
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('horeca');
+        $slug->setSlug('horeca');
+        $manager->persist($slug);
+        $manager->flush();
+
         $id = Uuid::fromString('567f97d8-89dd-4ef3-8119-179ea4001a4f');
         $template = new Template();
         $template->setTemplateEngine('twig');
