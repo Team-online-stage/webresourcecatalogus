@@ -216,9 +216,6 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
                        justify-content: flex-end;
                        order: 2;
                 }
-                .main {
-                       padding-top: 0px;
-                }
                ');
 
         $style->addOrganization($organization);
