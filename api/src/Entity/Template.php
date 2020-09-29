@@ -160,6 +160,13 @@ class Template implements Translatable
     private $content;
 
     /**
+     * @var array Optional variables ussed during rendering
+     *
+     * @Groups({"read","write"})
+     */
+    private $variables;
+
+    /**
      * @var string The template engine used to render this template. Schould be either twig (Twig), md (Markdown) or rst (reStructuredText)
      *
      * @example twig
@@ -303,6 +310,19 @@ class Template implements Translatable
     public function setContent(string $content): self
     {
         $this->content = $content;
+
+        return $this;
+    }
+
+
+    public function getVariables(): ?string
+    {
+        return $this->variables;
+    }
+
+    public function setVariables(string $variables): self
+    {
+        $this->variables = $variables;
 
         return $this;
     }
