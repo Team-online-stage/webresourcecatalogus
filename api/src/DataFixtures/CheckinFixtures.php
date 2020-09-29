@@ -556,6 +556,140 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $manager->persist($template);
         $manager->flush();
 
+        //legal templates
+
+        $id = Uuid::fromString('4cf7ead1-18b5-40a8-8560-dbfc6368872a');
+        $template = new Template();
+        $template->setTemplateEngine('twig');
+        $template->setTranslatableLocale('nl'); // change locale
+        $template->setName('terms_nl no container');
+        $template->setTitle('terms_nl no container');
+        $template->setDescription('terms_nl no container');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/CheckIn/legal/terms_nl.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupEmails);
+        $manager->persist($template);
+        $manager->flush();
+
+        $id = Uuid::fromString('29d316fe-0577-4f34-98ed-a93714dcb314');
+        $template = new Template();
+        $template->setTemplateEngine('twig');
+        $template->setTranslatableLocale('nl'); // change locale
+        $template->setName('terms_nl');
+        $template->setTitle('terms_nl');
+        $template->setDescription('terms_nl');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/CheckIn/legal/terms_nl_container.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupEmails);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('terms-nl');
+        $slug->setSlug('terms-nl');
+        $manager->persist($slug);
+        $manager->flush();
+
+        $id = Uuid::fromString('c7f92ce6-8fca-4cb0-957b-6282375fa3de');
+        $template = new Template();
+        $template->setTemplateEngine('twig');
+        $template->setTranslatableLocale('nl'); // change locale
+        $template->setName('gdrp_nl no container');
+        $template->setTitle('gdrp_nl no container');
+        $template->setDescription('gdrp_nl no container');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/CheckIn/legal/gdrp_nl.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupEmails);
+        $manager->persist($template);
+        $manager->flush();
+
+        $id = Uuid::fromString('a3c728a8-b160-4ba3-a973-32c981be0dfd');
+        $template = new Template();
+        $template->setTemplateEngine('twig');
+        $template->setTranslatableLocale('nl'); // change locale
+        $template->setName('gdrp_nl');
+        $template->setTitle('gdrp_nl');
+        $template->setDescription('gdrp_nl');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/CheckIn/legal/gdrp_nl_container.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupEmails);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('gdrp-nl');
+        $slug->setSlug('gdrp-nl');
+        $manager->persist($slug);
+        $manager->flush();
+
+        $id = Uuid::fromString('e583d7bc-3774-4bb1-a413-b0f25e6facc4');
+        $template = new Template();
+        $template->setTemplateEngine('twig');
+        $template->setTranslatableLocale('nl'); // change locale
+        $template->setName('privacy-nl no container');
+        $template->setTitle('privacy-nl no container');
+        $template->setDescription('privacy-nl no container');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/CheckIn/legal/privacy_nl.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupEmails);
+        $manager->persist($template);
+        $manager->flush();
+
+        $id = Uuid::fromString('57c7100d-dce7-4b99-b950-d16fcb017a84');
+        $template = new Template();
+        $template->setTemplateEngine('twig');
+        $template->setTranslatableLocale('nl'); // change locale
+        $template->setName('privacy-nl');
+        $template->setTitle('privacy-nl');
+        $template->setDescription('privacy-nl');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/CheckIn/legal/privacy_nl_container.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupEmails);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('privacy-nl');
+        $slug->setSlug('privacy-nl');
+        $manager->persist($slug);
+        $manager->flush();
+
         // Pages
         $id = Uuid::fromString('513ee2e3-cf32-4f1e-a85e-ccbe5743c418');
         $template = new Template();
