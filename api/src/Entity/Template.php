@@ -164,7 +164,7 @@ class Template implements Translatable
      *
      * @Groups({"read","write"})
      */
-    private $variables;
+    private $variables = [];
 
     /**
      * @var string The template engine used to render this template. Schould be either twig (Twig), md (Markdown) or rst (reStructuredText)
@@ -315,12 +315,12 @@ class Template implements Translatable
     }
 
 
-    public function getVariables(): ?string
+    public function getVariables(): ?array
     {
         return $this->variables;
     }
 
-    public function setVariables(string $variables): self
+    public function setVariables(array $variables): self
     {
         $this->variables = $variables;
 
