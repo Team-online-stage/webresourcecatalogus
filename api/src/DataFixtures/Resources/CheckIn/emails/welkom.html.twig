@@ -13,7 +13,7 @@ Beste {% if receiver.givenName is defined  %}{{ receiver.givenName }}{% endif %}
 <p>De door u opgegeven gegevens van uw organisatie:
     <br>Naam: {% if resource.givenName is defined  %}{{organization.name}}{% endif %}
     <br>Kvk: {% if organization.kvk is defined and organization.kvk is not empty %}{{organization.kvk}}{% else %}Niet opgegeven{% endif %}
-    <br><img src="{{ qr_code_data_uri('https://www.google.nl', { writer: 'svg', size: 150 }) }}" />
+    <br>QR Code {% if node.code is defined  %}<img src="{{ qr_code_data_uri('https://checking.nu/chin/checkin/' ~ node.reference, { writer: 'svg', size: 150 }) }}" />{% endif %}
 </p>
 
 <p>Voorbeeld QR-Code</p>
