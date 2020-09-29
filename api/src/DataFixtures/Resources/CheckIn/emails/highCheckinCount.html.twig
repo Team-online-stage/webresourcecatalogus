@@ -1,6 +1,6 @@
-Beste {{ receiver.givenName }},
+Beste {% if receiver.givenName is defined  %}{{ receiver.givenName }}{% endif %},
 
 <p>Het maximum aantal checkins voor accommodatie X is bijna bereikt.</p>
 
 <p>Met vriendelijke groet,</p>
-{{ sender.name }}
+{% if sender.name is defined  %}{{ sender.name }}{% endif %}
