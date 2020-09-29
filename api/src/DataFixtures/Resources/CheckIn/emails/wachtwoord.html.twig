@@ -1,1 +1,7 @@
-Beste {{ receiver.givenName }},<p>U kunt nu inloggen op https://dev.checking.nu/ met het volgende wachtwoord: test1234</p><p>Klik <a href="https://dev.checking.nu/me">hier</a> om uw wachtwoord te wijzigen.</p><p>Met vriendelijke groet,</p>{{ sender.name }}
+Beste {{ receiver.givenName }},
+
+<p>U kunt nu inloggen op https://www.checking.nu/ met het volgende wachtwoord: {{ user.password }}</p>
+<p>Klik <a href="https://dev.checking.nu/me">hier</a> om uw wachtwoord te wijzigen.</p>
+
+<p>Met vriendelijke groet,</p>
+{{ sender.name }}
