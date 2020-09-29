@@ -14600,6 +14600,11 @@ components:
         content:
           description: 'The Content of this template.'
           type: string
+        variables:
+          description: 'Optional variables ussed during rendering'
+          type: array
+          items:
+            type: string
         templateEngine:
           description: 'The template engine used to render this template. Schould be either twig (Twig), md (Markdown) or rst (reStructuredText)'
           type: string
@@ -14657,6 +14662,11 @@ components:
         content:
           description: 'The Content of this template.'
           type: string
+        variables:
+          description: 'Optional variables ussed during rendering'
+          type: array
+          items:
+            type: string
         templateEngine:
           description: 'The template engine used to render this template. Schould be either twig (Twig), md (Markdown) or rst (reStructuredText)'
           type: string
@@ -14707,6 +14717,11 @@ components:
         content:
           description: 'The Content of this template.'
           type: string
+        variables:
+          description: 'Optional variables ussed during rendering'
+          type: array
+          items:
+            type: string
         templateEngine:
           description: 'The template engine used to render this template. Schould be either twig (Twig), md (Markdown) or rst (reStructuredText)'
           type: string
@@ -14773,6 +14788,11 @@ components:
         content:
           description: 'The Content of this template.'
           type: string
+        variables:
+          description: 'Optional variables ussed during rendering'
+          type: array
+          items:
+            type: string
         templateEngine:
           description: 'The template engine used to render this template. Schould be either twig (Twig), md (Markdown) or rst (reStructuredText)'
           type: string
@@ -15649,12 +15669,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-09-29 12:28:18'
+        example: '2020-09-29 13:56:20'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-09-29 12:28:18'
+        example: '2020-09-29 13:56:20'
     required: []
   AuditTrail-write:
     properties:
@@ -15702,12 +15722,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-09-29 12:28:18'
+        example: '2020-09-29 13:56:20'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-09-29 12:28:18'
+        example: '2020-09-29 13:56:20'
     required: []
   ChangeLog-write:
     properties:
