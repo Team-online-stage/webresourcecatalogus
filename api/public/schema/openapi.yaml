@@ -14132,6 +14132,7 @@ components:
         description:
           description: 'The description of this organisation.'
           type: string
+          nullable: true
         style:
           nullable: true
           anyOf:
@@ -14157,7 +14158,6 @@ components:
         - rsin
         - chamberOfComerce
         - name
-        - description
     Organization-write:
       type: object
       description: 'An organization as active on commonground.'
@@ -14165,7 +14165,6 @@ components:
         - rsin
         - chamberOfComerce
         - name
-        - description
       properties:
         rsin:
           description: 'The rsin of this organisations.'
@@ -14181,6 +14180,7 @@ components:
         description:
           description: 'The description of this organisation.'
           type: string
+          nullable: true
         style:
           nullable: true
           anyOf:
@@ -14226,6 +14226,7 @@ components:
         description:
           description: 'The description of this organisation.'
           type: string
+          nullable: true
         style:
           nullable: true
           anyOf:
@@ -14251,7 +14252,6 @@ components:
         - rsin
         - chamberOfComerce
         - name
-        - description
     'Organization:jsonld-write':
       type: object
       description: 'An organization as active on commonground.'
@@ -14259,7 +14259,6 @@ components:
         - rsin
         - chamberOfComerce
         - name
-        - description
       properties:
         '@context':
           readOnly: true
@@ -14284,6 +14283,7 @@ components:
         description:
           description: 'The description of this organisation.'
           type: string
+          nullable: true
         style:
           nullable: true
           anyOf:
@@ -15298,7 +15298,6 @@ definitions:
       - rsin
       - chamberOfComerce
       - name
-      - description
   Organization-write:
     properties:
       rsin:
@@ -15331,7 +15330,6 @@ definitions:
       - rsin
       - chamberOfComerce
       - name
-      - description
   Slug-read:
     properties:
       id:
@@ -15651,12 +15649,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-09-28 14:03:33'
+        example: '2020-09-29 12:28:18'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-09-28 14:03:33'
+        example: '2020-09-29 12:28:18'
     required: []
   AuditTrail-write:
     properties:
@@ -15704,12 +15702,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-09-28 14:03:33'
+        example: '2020-09-29 12:28:18'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-09-28 14:03:33'
+        example: '2020-09-29 12:28:18'
     required: []
   ChangeLog-write:
     properties:
