@@ -1,4 +1,8 @@
-<div class="container">
+{% extends 'base.html.twig' %}
+
+{% block container %}
+
+    <div class="container" style="padding: 20px; background-color: white">
     <div class="row">
         <div class="col-md-12">
             {% set template = commonground_resource({'component': 'wrc', 'type': 'templates', 'id': 'c7f92ce6-8fca-4cb0-957b-6282375fa3de'}) %}
@@ -6,3 +10,5 @@
         </div>
     </div>
 </div>
+
+{% endblock %}
