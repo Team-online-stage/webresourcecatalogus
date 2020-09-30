@@ -1,15 +1,19 @@
-Beste {{ receiver.givenName }},
+Beste {% if receiver.givenName is defined  %}{{ receiver.givenName }}{% endif %},
 
 <p>Welkom bij checkin!</p>
 
-<p>Uw verzoek tot deelname van checkin met referentie {{ resource.reference }} is met succes ingediend.</p>
+<p>Uw verzoek tot deelname van checkin met referentie {% if resource.reference is defined  %}{{ resource.reference }} is met succes ingediend{% endif %}.</p>
 
-<p>U kunt nu inloggen op https://www.checking.nu/ met de volgende inlognaam: {% if receiver.emails|length >0 %}{% set receiverEmail = receiver.emails[0] %}{% endif %}{% if receiverEmail is defined and receiverEmail is not empty %}{{ receiverEmail.email }}{% endif %}, vanuit veiligheids overwegingen ontvangt u uw wachtwoord in een seperate email</p>
+<p>U kunt nu inloggen op https://www.checking.nu/ met de volgende inlognaam:
+    {% if receiver.emails is defined and receiver.emails|length >0 %}{% set receiverEmail = receiver.emails[0] %}{% endif %}
+    {% if receiverEmail is defined and receiverEmail is not empty %}{{ receiverEmail.email }}{% endif %}
+    , vanuit veiligheids overwegingen ontvangt u uw wachtwoord in een seperate email</p>
 
-{% set organization = commonground_resource(resource.properties['organization']) %}
+{% if resource.givenName is defined  %}{% set organization = commonground_resource(resource.properties['organization']) %}{% endif %}
 <p>De door u opgegeven gegevens van uw organisatie:
-    <br>Naam: {{organization.name}}
+    <br>Naam: {% if resource.givenName is defined  %}{{organization.name}}{% endif %}
     <br>Kvk: {% if organization.kvk is defined and organization.kvk is not empty %}{{organization.kvk}}{% else %}Niet opgegeven{% endif %}
+    <br>QR Code {% if node.code is defined  %}<img src="{{ qr_code_data_uri('https://checking.nu/chin/checkin/' ~ node.reference, { writer: 'svg', size: 150 }) }}" />{% endif %}
 </p>
 
 <p>Voorbeeld QR-Code</p>
@@ -17,4 +21,4 @@ Beste {{ receiver.givenName }},
 <p>Verwerkings overeenkomst.</p>
 
 <p>Met vriendelijke groet,</p>
-{{ sender.name }}
+{% if sender.name is defined  %}{{ sender.name }}{% endif %}

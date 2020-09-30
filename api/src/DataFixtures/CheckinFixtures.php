@@ -294,7 +294,7 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $configuration->setOrganization($organization);
         $configuration->setConfiguration(
             [
-                'mainMenu'                         => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'f0faccbd-3067-45fb-9ab7-2938fbbbf492']),
+                'mainMenu'                         => 'f0faccbd-3067-45fb-9ab7-2938fbbbf492',
                 'home'                             => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'513ee2e3-cf32-4f1e-a85e-ccbe5743c418']),
                 'footer1'                          => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'3895915c-a992-462e-848d-3be73a954d51']),
                 'footer2'                          => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'93477f57-c092-4609-b9ae-8767495fead1']),
@@ -509,6 +509,32 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $slug->setApplication($application);
         $slug->setName('e-mail-wachtwoord');
         $slug->setSlug('e-mail-wachtwoord');
+        $manager->persist($slug);
+        $manager->flush();
+
+        $id = Uuid::fromString('6f4dbb62-5101-4863-9802-d08e0f0096d2');
+        $template = new Template();
+        $template->setTemplateEngine('twig');
+        $template->setTranslatableLocale('nl'); // change locale
+        $template->setName('Verzoek tot deelname');
+        $template->setTitle('Verzoek tot deelname van checkin met uw email adres');
+        $template->setDescription('Er is zojuist een poging gedaan om deel te nemen aan checkin met uw email adres');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/CheckIn/emails/usernameExists.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupEmails);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('e-mail-usernameExists');
+        $slug->setSlug('e-mail-usernameExists');
         $manager->persist($slug);
         $manager->flush();
 
