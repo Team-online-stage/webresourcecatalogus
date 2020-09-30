@@ -85,10 +85,6 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
                        order: 2;
                }
 
-               main {
-                       background-color: white;
-               }
-
                 .studentenimg {
                        position: absolute;
                        float: left;
@@ -157,30 +153,31 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
 
                 @media only screen and (max-width: 768px) {
                     .studenthome{
-                        display: none;
+                           display: none;
+                    }   
+    
+                    .about {
+                           text-align: initial;
+                           width: 200%;
+                    }
+    
+                    .description {
+                           width: initial;
+                           text-align: initial;
+                    }
+    
+                    #headtext {
+                           position: absolute;
+                           top: -6%;
+                           right: 7%;
+                           font-size: 20px;
+                    }
                 }
-
-                .about {
-                       text-align: initial;
-                       width: 200%;
-                }
-
-                .description {
-                       width: initial;
-                       text-align: initial;
-                }
-
-                #headtext {
-                       position: absolute;
-                       top: -6%;
-                       right: 7%;
-                       font-size: 20px;
-                }
-
-                footer4 {
-                       position: absolute;
-                       margin-top: -170px;
-                }
+    
+                    .footer4 {
+                           position: absolute;
+                           margin-top: -170px;
+                    }
                ');
 
         $style->addOrganization($organization);
