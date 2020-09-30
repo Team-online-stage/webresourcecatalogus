@@ -5,7 +5,7 @@
 {% block content %}
 
     {% if app.user.person is defined and app.user.person is not empty %}
-        {% set checkins =  commonground_resource_list({'component': 'chin', 'type': 'checkins'},{'user':app.user.person,'limit':1,'order[dateCreated]':'desc'})['hydra:member'] %}
+        {% set checkins =  commonground_resource_list({'component': 'chin', 'type': 'checkins'},{'person':app.user.person,'limit':1,'order[dateCreated]':'desc'})['hydra:member'] %}
     {% elseif session.person is defined and session.person is not empty %}
         {% set checkins =  commonground_resource_list({'component': 'chin', 'type': 'checkins'},{'person':session.person['@id'],'limit':1,'order[dateCreated]':'desc'})['hydra:member'] %}
     {% endif %}
