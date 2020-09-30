@@ -93,7 +93,6 @@ class ZuiddrechtFixtures extends Fixture
         $logo->setDescription('Zuid-Drecht VNG');
         $logo->setOrganization($organization);
 
-
         $style = new Style();
         $style->setName('Zuid-Drecht');
         $style->setDescription('Huistlijl Gemeente Zuid-Drecht');
@@ -141,7 +140,7 @@ class ZuiddrechtFixtures extends Fixture
         $configuration->setConfiguration(
             [
                 'sideMenu'          => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'915d5b04-c050-4b18-8f72-a068c2708883']),
-                'userPage'          => '/ud/applications',
+                'userPage'          => '/dashboard/ud/applications',
             ]
         );
         $manager->persist($configuration);
@@ -153,7 +152,7 @@ class ZuiddrechtFixtures extends Fixture
         $application->setDescription('het Dashboard van de gemeente Zuid-Drecht');
         $application->setDomain('db.zuid-drecht.nl');
         $application->setOrganization($organization);
-        $application->getDefaultConfiguration($configuration);
+        $application->setDefaultConfiguration($configuration);
         $application->setStyle($styleDashboard);
         $manager->persist($application);
         $application->setId($id);
