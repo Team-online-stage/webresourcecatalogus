@@ -154,18 +154,18 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
                 @media only screen and (max-width: 768px) {
                     .studenthome{
                            display: none;
-                    }   
-    
+                    }
+
                     .about {
                            text-align: initial;
                            width: 200%;
                     }
-    
+
                     .description {
                            width: initial;
                            text-align: initial;
                     }
-    
+
                     #headtext {
                            position: absolute;
                            top: -6%;
@@ -173,11 +173,6 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
                            font-size: 20px;
                     }
                 }
-    
-                    .footer4 {
-                           position: absolute;
-                           margin-top: -170px;
-                    }
                ');
 
         $style->addOrganization($organization);
