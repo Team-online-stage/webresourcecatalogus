@@ -93,7 +93,6 @@ class ZuiddrechtFixtures extends Fixture
         $logo->setDescription('Zuid-Drecht VNG');
         $logo->setOrganization($organization);
 
-
         $style = new Style();
         $style->setName('Zuid-Drecht');
         $style->setDescription('Huistlijl Gemeente Zuid-Drecht');
