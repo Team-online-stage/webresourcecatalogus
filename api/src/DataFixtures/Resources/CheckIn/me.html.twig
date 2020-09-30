@@ -230,7 +230,7 @@
     </div><!-- /.row -->
 
     {% if checkins is defined and checkins is not empty and checkins|length > 0 %}
-        {% include ' chin/modals/checkin_modal.html.twig' with { 'item': checkins[0] } %}
+        {% include 'chin/modals/checkin_modal.html.twig' with { 'item': checkins[0] } %}
 
         <script>
             let checkingModal;
