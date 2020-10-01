@@ -1,6 +1,10 @@
 Beste {% if receiver.givenName is defined  %}{{ receiver.givenName }}{% endif %},
 
-<p>Het maximum aantal checkins voor accommodatie X is bijna bereikt.</p>
+<p>Het maximum aantal checkins voor accommodatie {{ accommodation.name }} van {{ accommodation.place.name }} is bijna bereikt.</p>
+<p>Checkin gegevens:
+    Totaal aantal checkins voor deze accommodatie: {{ numberOfCheckins }}<br>
+    Maximum aantal deelnemers voor deze accommodatie: {{ accommodation.maximumAttendeeCapacity }}<br>
+</p>
 
 <p>Met vriendelijke groet,</p>
 {% if sender.name is defined  %}{{ sender.name }}{% endif %}
