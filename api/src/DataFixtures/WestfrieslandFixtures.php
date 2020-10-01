@@ -744,6 +744,30 @@ class WestfrieslandFixtures extends Fixture
         $manager->persist($slug);
         $manager->flush();
 
+        $id = Uuid::fromString('0ae6c667-b8a6-4938-b32e-a06ed1691557');
+        $template = new Template();
+        $template->setName('E-mail instemming');
+        $template->setTitle('Instemming voor een huwelijk');
+        $template->setDescription('');
+        $template->setContent("Beste {{ contact.givenName }},<br><br>Uw instemming is gevraagd bij een instemmingsverzoek.<br><br><a href=''>Klik hier</a> om op dit verzoek te reageren.<br><br>Met vriendelijke groet,<br><br>Gemeente Utrecht");
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupEmails);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('e-mail-instemming');
+        $slug->setSlug('e-mail-instemming');
+        $manager->persist($slug);
+        $manager->flush();
+
         // Dashboard
         $style = new Style();
         $style->setName('Dashboard');
