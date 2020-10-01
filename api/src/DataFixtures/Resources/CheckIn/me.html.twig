@@ -19,7 +19,7 @@
                             {% if commonground_is_resource(app.user.organization) %}
                                 {% set organization = commonground_resource(app.user.organization) %}
                             {% endif %}
-                            {% if 'group.admin' in app.user.roles and organization.name is defined  %}
+                            {% if 'group.admin' in app.user.roles and organization is defined  %}
                                 <h1 class="content__header-title">{{ organization.name }}</h1>
                             {% else %}
                                 <h1 class="content__header-title">{{ 'personal'|trans|capitalize }}</h1>
@@ -36,7 +36,7 @@
 
     <aside class="col-md-4 col-sm-modal">
         <nav class="sidenav">
-            {% if app.user.type is defined and app.user.type == 'user' %}
+            {% if 'group.admin' in app.user.roles %}
                 {% include 'uc/widgets/organizationMenu.html.twig' %}
             {% elseif app.user is defined and app.user is not empty %}
                 {% include 'uc/widgets/menu.html.twig' %}
@@ -91,7 +91,7 @@
                 <li class="card background--primary card__hover">
                     <a href="{{ path('app_chin_checkinstatistics') }}"  class="card__content">
                         {% set yesterday = 'now' | date_modify('-1 days') %}
-                        {% set checkinslast24hours = commonground_resource({'component': 'chin', 'type': 'checkins'},{'organization':organization, 'dateCreated[after]':yesterday})['hydra:member']|length %}
+                        {% set checkinslast24hours = commonground_resource({'component': 'chin', 'type': 'checkins'},{'organization':app.user.organization, 'dateCreated[after]':yesterday})['hydra:member']|length %}
                         <div class="card__icon flex-center color--primary">{{ checkinslast24hours }}</div>
                         <div class="card__body flex-center"><span
                                 class="card__title color--primary flex-center">{{ 'checkins'|trans|capitalize }}</span>
