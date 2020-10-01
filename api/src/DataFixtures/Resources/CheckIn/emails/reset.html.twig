@@ -1,4 +1,4 @@
-Beste gebruiker,
+Beste {% if receiver.givenName is defined  %}{{ receiver.givenName }}{% endif %},
 
 <p>U kunt <a href="{% if variables.resource is defined %}{{ variables.resource }}{% endif %}">hier</a> klikken om uw wachtwoord te resetten.</p>
 

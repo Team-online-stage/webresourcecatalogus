@@ -4,7 +4,7 @@ Beste {% if receiver.givenName is defined  %}{{ receiver.givenName }}{% endif %}
 
 <p>Uw verzoek tot deelname van checkin met referentie {% if resource.reference is defined  %}{{ resource.reference }} is met succes ingediend{% endif %}.</p>
 
-<p>U kunt nu inloggen op https://www.checking.nu/ met de volgende inlognaam:
+<p>U kunt nu inloggen op https://{% if app_env == 'dev' %}dev.{% endif %}checking.nu met de volgende inlognaam:
     {% if receiver.emails is defined and receiver.emails|length >0 %}{% set receiverEmail = receiver.emails[0] %}{% endif %}
     {% if receiverEmail is defined and receiverEmail is not empty %}{{ receiverEmail.email }}{% endif %}
     , vanuit veiligheids overwegingen ontvangt u uw wachtwoord in een seperate email</p>
