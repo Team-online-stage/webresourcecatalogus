@@ -749,7 +749,7 @@ class WestfrieslandFixtures extends Fixture
         $template->setName('E-mail instemming');
         $template->setTitle('Instemming voor een huwelijk');
         $template->setDescription('');
-        $template->setContent("Beste {{ contact.givenName }},<br><br>Uw instemming is gevraagd bij een instemmingsverzoek.<br><br><a href=''>Klik hier</a> om op dit verzoek te reageren.<br><br>Met vriendelijke groet,<br><br>Gemeente Utrecht");
+        $template->setContent("Beste {{ receiver.givenName }},<br><br>Uw instemming is gevraagd bij een instemmingsverzoek:<p><h2>{{ resource.name }}</h2>{{ resource.description }}</p><a href=''>Klik hier</a> om op dit verzoek te reageren.<br><br>Met vriendelijke groet,<br><br>{{ sender.name }}");
         $template->setTemplateEngine('twig');
         $manager->persist($template);
         $template->setId($id);
