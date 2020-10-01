@@ -1,0 +1,6 @@
+Beste gebruiker,
+
+<p>U kunt <a href="{% if variables.resource is defined %}{{ variables.resource }}{% endif %}">hier</a> klikken om uw wachtwoord te resetten.</p>
+
+<p>Met vriendelijke groet,</p>
+{% if variables.sender is defined  %}{{ variables.sender }}{% endif %}

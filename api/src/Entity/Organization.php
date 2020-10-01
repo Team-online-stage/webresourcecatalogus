@@ -122,12 +122,11 @@ class Organization
      * @example This is the manucipality of Utrecht
      *
      * @Gedmo\Versioned
-     * @Assert\NotNull
      * @Assert\Length(
      *     max = 255
      * )
      * @Groups({"read","write"})
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $description;
 
@@ -188,7 +187,7 @@ class Organization
     private $dateModified;
 
     /**
-     * @var string The contact for this organization
+     * @var string The contact information for this organization
      *
      * @Groups({"read", "write"})
      * @Assert\Url
