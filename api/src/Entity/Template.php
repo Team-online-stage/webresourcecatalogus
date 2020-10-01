@@ -314,7 +314,6 @@ class Template implements Translatable
         return $this;
     }
 
-
     public function getVariables(): ?array
     {
         return $this->variables;
