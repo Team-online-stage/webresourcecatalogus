@@ -538,6 +538,58 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $manager->persist($slug);
         $manager->flush();
 
+        $id = Uuid::fromString('cdad2591-c288-4f54-8fe5-727f67e65949');
+        $template = new Template();
+        $template->setTemplateEngine('twig');
+        $template->setTranslatableLocale('nl'); // change locale
+        $template->setName('Hoog aantal checkins');
+        $template->setTitle('Een accommodatie heeft een hoog aantal checkins');
+        $template->setDescription('Een van uw accommodaties heeft een hoog aantal checkins bereikt!');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/CheckIn/emails/highCheckinCount.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupEmails);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('e-mail-highCheckinCount');
+        $slug->setSlug('e-mail-highCheckinCount');
+        $manager->persist($slug);
+        $manager->flush();
+
+        $id = Uuid::fromString('f073f5b5-2853-4cca-8de4-9889f21aa6a2');
+        $template = new Template();
+        $template->setTemplateEngine('twig');
+        $template->setTranslatableLocale('nl'); // change locale
+        $template->setName('Maximum aantal checkins');
+        $template->setTitle('Een accommodatie heeft het maximum aantal checkins bereikt');
+        $template->setDescription('Een van uw accommodaties heeft het maximum aantal checkins bereikt!');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/CheckIn/emails/maxCheckinCount.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupEmails);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('e-mail-maxCheckinCount');
+        $slug->setSlug('e-mail-maxCheckinCount');
+        $manager->persist($slug);
+        $manager->flush();
+
         $id = Uuid::fromString('4016c529-cf9e-415e-abb1-2aba8bfa539e');
         $template = new Template();
         $template->setTemplateEngine('twig');
