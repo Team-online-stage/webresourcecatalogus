@@ -1,74 +1,11 @@
 <span class="footer__header"><h2>Contact</h2></span>
 <ul class="list list--links list--chevrons footer__nav">
     <li><a href="#" data-toggle="modal" data-target="#contactModal" onclick="openModalContact()">Contactformulier</a></li>
-    <li><a href="#" data-toggle="modal" data-target="#tipModal" onclick="openModalTip()">Ik heb een tip!</a></li>
-
-    <div class="modal modal--backdrop" role="dialog" id="tipModal" tabindex="-1" aria-describedby="modal-description3">
-        <section class="modal__content" role="document">
-            <div id="modal-description3" class="screenreader-only">
-                Dit is de beschrijving van de <span lang="en-US">modal</span>. De Escape knop annuleert en sluit het venster.
-            </div>
-            <header class="modal__title">
-                <h1>Heeft u een tip voor ons ?</span></h1>
-                <button class="modal__close-button">
-                    <i class="icon icon-cross"></i>
-                    Sluit
-                </button>
-            </header>
-            <div class="modal__body" tabindex="0" lang="en-US">
-                <div class="input input--horizontal">
-                    <textarea required="" id="tip" name="tip" aria-describedby="hint_name" class="input__control input__control--text input__control--l"></textarea>
-                </div>
-                <button class="btn btn--primary">Bevestig</button>
-            </div>
-        </section>
-    </div>
-
-    <div class="modal modal--backdrop" role="dialog" id="contactModal" tabindex="-1" aria-describedby="modal-description3">
-        <section class="modal__content" role="document">
-            <div id="modal-description3" class="screenreader-only">
-                Dit is de beschrijving van de <span lang="en-US">modal</span>. De Escape knop annuleert en sluit het venster.
-            </div>
-            <header class="modal__title">
-                <h1>Neem hier contact met ons op!</span></h1>
-                <button class="modal__close-button">
-                    <i class="icon icon-cross"></i>
-                    Sluit
-                </button>
-            </header>
-            <div class="modal__body" tabindex="0" lang="en-US">
-                <div class="input input--horizontal">
-                    <textarea required="" id="tip" name="tip" aria-describedby="hint_name" class="input__control input__control--text input__control--l"></textarea>
-                </div>
-                <button class="btn btn--primary">Bevestig</button>
-            </div>
-
-        </section>
-    </div>
-
-    <script>
-        var tipModal;
-        // Load modal component
-        System.import('/uno/components/modal/modal.js').then(function (module) {
-            tipModal = new module.Modal(document.getElementById('tipModal'));
-        });
-
-        // Called when the user clicks the button
-        function openModalTip() {
-            tipModal.open();
-        }
-    </script>
-
-    <script>
-        var contactModal;
-        // Load modal component
-        System.import('/uno/components/modal/modal.js').then(function (module) {
-            contactModal = new module.Modal(document.getElementById('contactModal'));
-        });
-
-        // Called when the user clicks the button
-        function openModalContact() {
-            contactModal.open();
-        }
-    </script>
+    <li><a href="#" data-toggle="modal" data-target="#feedbackModal" onclick="openModalFeedback()">Ik heb een tip!</a></li>
 </ul>
+
+{{ include(template_from_string(commonground_resource({'component':'wrc','type':'templates','id':'d177a32e-3b7e-412e-b68e-a117769e5dcc'}).content|raw)) }}
+{{ include(template_from_string(commonground_resource({'component':'wrc','type':'templates','id':'4d2dcaec-a714-4b05-8935-35ec431e9629'}).content|raw)) }}
+
+
+

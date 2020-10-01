@@ -13,6 +13,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Gedmo\Translatable\Translatable;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
@@ -73,7 +74,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *     "templateGroups.name": "partial",
  *     "templateGroups.id": "exact"})
  */
-class Template
+class Template implements Translatable
 {
     /**
      * @var UuidInterface The UUID identifier of this resource
@@ -94,6 +95,7 @@ class Template
      *
      * @example webshop menu
      *
+     * @Gedmo\Translatable
      * @Gedmo\Versioned
      * @Assert\NotNull
      * @Assert\Length(
@@ -109,6 +111,7 @@ class Template
      *
      * @example webshop menu
      *
+     * @Gedmo\Translatable
      * @Gedmo\Versioned
      * @Assert\Length(
      *      max = 255
@@ -123,6 +126,7 @@ class Template
      *
      * @example This page holds info about this application
      *
+     * @Gedmo\Translatable
      * @Gedmo\Versioned
      * @Assert\NotNull
      * @Assert\Length(
@@ -147,12 +151,20 @@ class Template
      *
      * @example A lot of random info over any topic
      *
+     * @Gedmo\Translatable
      * @Gedmo\Versioned
      * @Assert\NotNull
      * @Groups({"read","write"})
      * @ORM\Column(type="text")
      */
     private $content;
+
+    /**
+     * @var array Optional variables ussed during rendering
+     *
+     * @Groups({"read","write"})
+     */
+    private $variables = [];
 
     /**
      * @var string The template engine used to render this template. Schould be either twig (Twig), md (Markdown) or rst (reStructuredText)
@@ -195,6 +207,15 @@ class Template
      * @ORM\ManyToMany(targetEntity="App\Entity\TemplateGroup", inversedBy="templates")
      */
     private $templateGroups;
+
+    /**
+     * @Groups({"read"})
+     * @Gedmo\Locale
+     * Used locale to override Translation listener`s locale
+     * this is not a mapped field of entity metadata, just a simple property
+     * and it is not necessary because globally locale can be set in listener
+     */
+    private $locale;
 
     /**
      * @var Datetime The moment this request was created
@@ -293,6 +314,18 @@ class Template
         return $this;
     }
 
+    public function getVariables(): ?array
+    {
+        return $this->variables;
+    }
+
+    public function setVariables(array $variables): self
+    {
+        $this->variables = $variables;
+
+        return $this;
+    }
+
     public function getTemplateEngine(): ?string
     {
         return $this->templateEngine;
@@ -384,6 +417,11 @@ class Template
         }
 
         return $this;
+    }
+
+    public function setTranslatableLocale($locale)
+    {
+        $this->locale = $locale;
     }
 
     public function getDateCreated(): ?\DateTimeInterface

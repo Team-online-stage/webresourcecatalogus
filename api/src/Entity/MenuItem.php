@@ -10,6 +10,7 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\OrderFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Gedmo\Translatable\Translatable;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
@@ -52,9 +53,9 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ApiFilter(BooleanFilter::class)
  * @ApiFilter(OrderFilter::class)
  * @ApiFilter(DateFilter::class, strategy=DateFilter::EXCLUDE_NULL)
- * @ApiFilter(SearchFilter::class)
+ * @ApiFilter(SearchFilter::class, properties={"id": "exact", "menu.id": "exact", "name": "partial", "description": "partial"})
  */
-class MenuItem
+class MenuItem implements Translatable
 {
     /**
      * @var UuidInterface The UUID identifier of this resource
@@ -75,6 +76,7 @@ class MenuItem
      *
      * @example about-menu-link
      *
+     * @Gedmo\Translatable
      * @Gedmo\Versioned
      * @Assert\NotNull
      * @Assert\Length(
@@ -90,6 +92,7 @@ class MenuItem
      *
      * @example This MenuItem links to the about page
      *
+     * @Gedmo\Translatable
      * @Gedmo\Versioned
      * @Assert\Length(
      *      max = 2555
@@ -166,6 +169,15 @@ class MenuItem
      * @MaxDepth(1)
      */
     private $menu;
+
+    /**
+     * @Groups({"read"})
+     * @Gedmo\Locale
+     * Used locale to override Translation listener`s locale
+     * this is not a mapped field of entity metadata, just a simple property
+     * and it is not necessary because globally locale can be set in listener
+     */
+    private $locale;
 
     /**
      * @var Datetime The moment this request was created
@@ -279,6 +291,11 @@ class MenuItem
         $this->menu = $menu;
 
         return $this;
+    }
+
+    public function setTranslatableLocale($locale)
+    {
+        $this->locale = $locale;
     }
 
     public function getDateCreated(): ?\DateTimeInterface
