@@ -6520,121 +6520,29 @@ paths:
           style: form
           explode: true
         -
+          name: menu.id
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'menu.id[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+        -
           name: name
           in: query
           required: false
           schema:
             type: string
         -
-          name: 'name[]'
-          in: query
-          required: false
-          schema:
-            type: array
-            items:
-              type: string
-          style: form
-          explode: true
-        -
           name: description
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'description[]'
-          in: query
-          required: false
-          schema:
-            type: array
-            items:
-              type: string
-          style: form
-          explode: true
-        -
-          name: order
-          in: query
-          required: false
-          schema:
-            type: integer
-        -
-          name: 'order[]'
-          in: query
-          required: false
-          schema:
-            type: array
-            items:
-              type: integer
-          style: form
-          explode: true
-        -
-          name: icon
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'icon[]'
-          in: query
-          required: false
-          schema:
-            type: array
-            items:
-              type: string
-          style: form
-          explode: true
-        -
-          name: type
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'type[]'
-          in: query
-          required: false
-          schema:
-            type: array
-            items:
-              type: string
-          style: form
-          explode: true
-        -
-          name: href
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'href[]'
-          in: query
-          required: false
-          schema:
-            type: array
-            items:
-              type: string
-          style: form
-          explode: true
-        -
-          name: dateCreated
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'dateCreated[]'
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: dateModified
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'dateModified[]'
           in: query
           required: false
           schema:
@@ -14132,6 +14040,7 @@ components:
         description:
           description: 'The description of this organisation.'
           type: string
+          nullable: true
         style:
           nullable: true
           anyOf:
@@ -14157,7 +14066,6 @@ components:
         - rsin
         - chamberOfComerce
         - name
-        - description
     Organization-write:
       type: object
       description: 'An organization as active on commonground.'
@@ -14165,7 +14073,6 @@ components:
         - rsin
         - chamberOfComerce
         - name
-        - description
       properties:
         rsin:
           description: 'The rsin of this organisations.'
@@ -14181,6 +14088,7 @@ components:
         description:
           description: 'The description of this organisation.'
           type: string
+          nullable: true
         style:
           nullable: true
           anyOf:
@@ -14226,6 +14134,7 @@ components:
         description:
           description: 'The description of this organisation.'
           type: string
+          nullable: true
         style:
           nullable: true
           anyOf:
@@ -14251,7 +14160,6 @@ components:
         - rsin
         - chamberOfComerce
         - name
-        - description
     'Organization:jsonld-write':
       type: object
       description: 'An organization as active on commonground.'
@@ -14259,7 +14167,6 @@ components:
         - rsin
         - chamberOfComerce
         - name
-        - description
       properties:
         '@context':
           readOnly: true
@@ -14284,6 +14191,7 @@ components:
         description:
           description: 'The description of this organisation.'
           type: string
+          nullable: true
         style:
           nullable: true
           anyOf:
@@ -14600,6 +14508,11 @@ components:
         content:
           description: 'The Content of this template.'
           type: string
+        variables:
+          description: 'Optional variables ussed during rendering'
+          type: array
+          items:
+            type: string
         templateEngine:
           description: 'The template engine used to render this template. Schould be either twig (Twig), md (Markdown) or rst (reStructuredText)'
           type: string
@@ -14657,6 +14570,11 @@ components:
         content:
           description: 'The Content of this template.'
           type: string
+        variables:
+          description: 'Optional variables ussed during rendering'
+          type: array
+          items:
+            type: string
         templateEngine:
           description: 'The template engine used to render this template. Schould be either twig (Twig), md (Markdown) or rst (reStructuredText)'
           type: string
@@ -14707,6 +14625,11 @@ components:
         content:
           description: 'The Content of this template.'
           type: string
+        variables:
+          description: 'Optional variables ussed during rendering'
+          type: array
+          items:
+            type: string
         templateEngine:
           description: 'The template engine used to render this template. Schould be either twig (Twig), md (Markdown) or rst (reStructuredText)'
           type: string
@@ -14773,6 +14696,11 @@ components:
         content:
           description: 'The Content of this template.'
           type: string
+        variables:
+          description: 'Optional variables ussed during rendering'
+          type: array
+          items:
+            type: string
         templateEngine:
           description: 'The template engine used to render this template. Schould be either twig (Twig), md (Markdown) or rst (reStructuredText)'
           type: string
@@ -15056,7 +14984,6 @@ definitions:
       - rsin
       - chamberOfComerce
       - name
-      - description
   Organization-write:
     properties:
       rsin:
@@ -15089,7 +15016,6 @@ definitions:
       - rsin
       - chamberOfComerce
       - name
-      - description
   Style-read:
     properties:
       id:
@@ -15585,12 +15511,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-09-25 08:26:22'
+        example: '2020-10-01 15:16:56'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-09-25 08:26:22'
+        example: '2020-10-01 15:16:56'
     required: []
   ChangeLog-write:
     properties:
@@ -15704,12 +15630,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-09-25 08:26:22'
+        example: '2020-10-01 15:16:56'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-09-25 08:26:22'
+        example: '2020-10-01 15:16:56'
     required: []
   AuditTrail-write:
     properties:

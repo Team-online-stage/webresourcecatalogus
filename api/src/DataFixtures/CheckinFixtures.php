@@ -46,6 +46,7 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         if (
             !$this->params->get('app_build_all_fixtures') &&
             $this->params->get('app_domain') != 'checking.nu' && strpos($this->params->get('app_domain'), 'checking.nu') == false &&
+            $this->params->get('app_domain') != 'zuiddrecht.nl' && strpos($this->params->get('app_domain'), 'zuiddrecht.nl') == false &&
             $this->params->get('app_domain') != 'zuid-drecht.nl' && strpos($this->params->get('app_domain'), 'zuid-drecht.nl') == false
         ) {
             return false;
@@ -293,7 +294,7 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $configuration->setOrganization($organization);
         $configuration->setConfiguration(
             [
-                'mainMenu'                         => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'menus', 'id'=>'f0faccbd-3067-45fb-9ab7-2938fbbbf492']),
+                'mainMenu'                         => 'f0faccbd-3067-45fb-9ab7-2938fbbbf492',
                 'home'                             => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'513ee2e3-cf32-4f1e-a85e-ccbe5743c418']),
                 'footer1'                          => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'3895915c-a992-462e-848d-3be73a954d51']),
                 'footer2'                          => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'93477f57-c092-4609-b9ae-8767495fead1']),
@@ -451,7 +452,7 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $template->setName('Reset');
         $template->setTitle('Wachtwoord resetten');
         $template->setDescription('Mail voor het resetten van je wachtwoord');
-        $template->setContent('Beste {{ receiver.givenName }},<p>U kunt <a href="{{ resource }}">hier</a> klikken om uw wachtwoord te resetten.</p><p>Met vriendelijke groet,</p>{{ sender.name }}');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/CheckIn/emails/reset.html.twig', 'r'));
         // Voorbeeld QR-code in email content meesturen: (gaat nog iets niet helemaal goed)
         // {% set nodes =  commonground_resource_list({'component': 'chin', 'type': 'nodes'},{'organization':organization['@id']})['hydra:member'] %}{% if nodes|length > 0 %}{% set node = nodes[0] %}<p>Hierbij hebben wij alvast een voorbeeld QR-code voor u: <br><img src="{{ qr_code_data_uri( absolute_url(path('https://dev.checking.nu/chin/checkin',{'code':node.reference})) , { writer: 'svg', size: 150 }) }}" /></p>{% endif %}
         $template->setTemplateEngine('twig');
@@ -462,14 +463,6 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
         $template->addTemplateGroup($groupEmails);
         $manager->persist($template);
-        $manager->flush();
-
-        $slug = new Slug();
-        $slug->setTemplate($template);
-        $slug->setApplication($application);
-        $slug->setName('e-mail-reset');
-        $slug->setSlug('e-mail-reset');
-        $manager->persist($slug);
         $manager->flush();
 
         // E-mail templates
@@ -480,7 +473,7 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $template->setName('Welkom');
         $template->setTitle('Welkom bij checkin!');
         $template->setDescription('Bevestiging dat u een verzoek heeft ingediend');
-        $template->setContent('Beste {{ receiver.givenName }},<p>Welkom bij checkin!</p><p>Uw verzoek tot deelname van checkin met referentie {{ resource.reference }} is met succes ingediend.</p>{% set organization = commonground_resource(resource.properties[\'horeca_onderneming_contact\']) %}<p>De door u opgegeven gegevens van uw organisatie: <br>Naam: {{organization.name}}<br>Kvk: {% if organization.kvk is defined and organization.kvk is not empty %}{{organization.kvk}}{% elseif resource.properties[\'kvk\'] is defined and resource.properties[\'kvk\'] is not empty %}{{resource.properties[\'kvk\']}}{% endif %}</p><p>Voorbeeld QR-Code</p><p>Algemene voorwaarden.</p><p>Verwerkings overeenkomst.</p><p>Met vriendelijke groet,</p>{{ sender.name }}');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/CheckIn/emails/welkom.html.twig', 'r'));
         // Voorbeeld QR-code in email content meesturen: (gaat nog iets niet helemaal goed)
         // {% set nodes =  commonground_resource_list({'component': 'chin', 'type': 'nodes'},{'organization':organization['@id']})['hydra:member'] %}{% if nodes|length > 0 %}{% set node = nodes[0] %}<p>Hierbij hebben wij alvast een voorbeeld QR-code voor u: <br><img src="{{ qr_code_data_uri( absolute_url(path('https://dev.checking.nu/chin/checkin',{'code':node.reference})) , { writer: 'svg', size: 150 }) }}" /></p>{% endif %}
         $template->setTemplateEngine('twig');
@@ -493,39 +486,6 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $manager->persist($template);
         $manager->flush();
 
-        $slug = new Slug();
-        $slug->setTemplate($template);
-        $slug->setApplication($application);
-        $slug->setName('e-mail-welkom');
-        $slug->setSlug('e-mail-welkom');
-        $manager->persist($slug);
-        $manager->flush();
-
-        $id = Uuid::fromString('f19ef1f8-a031-412f-9894-67d54e1147dd');
-        $template = new Template();
-        $template->setTranslatableLocale('nl'); // change locale
-        $template->setName('Uw accountgegevens');
-        $template->setTitle('Uw inlognaam voor checkin');
-        $template->setDescription('Uw inlognaam voor uw account op checking.nu');
-        $template->setContent('Beste {{ receiver.givenName }},<p>U kunt nu inloggen op https://dev.checking.nu/ met de volgende inlognaam: {% if receiver.emails|length >0 %}{% set receiverEmail = receiver.emails[0] %}{% endif %}{% if receiverEmail is defined and receiverEmail is not empty %}{{ receiverEmail.email }}{% endif %}</p><p>Met vriendelijke groet,</p>{{ sender.name }}');
-        $template->setTemplateEngine('twig');
-        $manager->persist($template);
-        $template->setId($id);
-        $manager->persist($template);
-        $manager->flush();
-        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
-        $template->addTemplateGroup($groupEmails);
-        $manager->persist($template);
-        $manager->flush();
-
-        $slug = new Slug();
-        $slug->setTemplate($template);
-        $slug->setApplication($application);
-        $slug->setName('e-mail-inlognaam');
-        $slug->setSlug('e-mail-inlognaam');
-        $manager->persist($slug);
-        $manager->flush();
-
         $id = Uuid::fromString('07075add-89c7-4911-b255-9392bae724b3');
         $template = new Template();
         $template->setTemplateEngine('twig');
@@ -533,7 +493,7 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $template->setName('Uw accountgegevens');
         $template->setTitle('Uw wachtwoord voor checkin');
         $template->setDescription('Uw wachtwoord voor uw account op checking.nu');
-        $template->setContent('Beste {{ receiver.givenName }},<p>U kunt nu inloggen op https://dev.checking.nu/ met het volgende wachtwoord: test1234</p><p>Klik <a href="https://dev.checking.nu/me">hier</a> om uw wachtwoord te wijzigen.</p><p>Met vriendelijke groet,</p>{{ sender.name }}');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/CheckIn/emails/wachtwoord.html.twig', 'r'));
         $template->setTemplateEngine('twig');
         $manager->persist($template);
         $template->setId($id);
@@ -552,6 +512,84 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $manager->persist($slug);
         $manager->flush();
 
+        $id = Uuid::fromString('6f4dbb62-5101-4863-9802-d08e0f0096d2');
+        $template = new Template();
+        $template->setTemplateEngine('twig');
+        $template->setTranslatableLocale('nl'); // change locale
+        $template->setName('Verzoek tot deelname');
+        $template->setTitle('Verzoek tot deelname van checkin met uw email adres');
+        $template->setDescription('Er is zojuist een poging gedaan om deel te nemen aan checkin met uw email adres');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/CheckIn/emails/usernameExists.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupEmails);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('e-mail-usernameExists');
+        $slug->setSlug('e-mail-usernameExists');
+        $manager->persist($slug);
+        $manager->flush();
+
+        $id = Uuid::fromString('cdad2591-c288-4f54-8fe5-727f67e65949');
+        $template = new Template();
+        $template->setTemplateEngine('twig');
+        $template->setTranslatableLocale('nl'); // change locale
+        $template->setName('Hoog aantal checkins');
+        $template->setTitle('Een accommodatie heeft een hoog aantal checkins');
+        $template->setDescription('Een van uw accommodaties heeft een hoog aantal checkins bereikt!');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/CheckIn/emails/highCheckinCount.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupEmails);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('e-mail-highCheckinCount');
+        $slug->setSlug('e-mail-highCheckinCount');
+        $manager->persist($slug);
+        $manager->flush();
+
+        $id = Uuid::fromString('f073f5b5-2853-4cca-8de4-9889f21aa6a2');
+        $template = new Template();
+        $template->setTemplateEngine('twig');
+        $template->setTranslatableLocale('nl'); // change locale
+        $template->setName('Maximum aantal checkins');
+        $template->setTitle('Een accommodatie heeft het maximum aantal checkins bereikt');
+        $template->setDescription('Een van uw accommodaties heeft het maximum aantal checkins bereikt!');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/CheckIn/emails/maxCheckinCount.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupEmails);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('e-mail-maxCheckinCount');
+        $slug->setSlug('e-mail-maxCheckinCount');
+        $manager->persist($slug);
+        $manager->flush();
+
         $id = Uuid::fromString('4016c529-cf9e-415e-abb1-2aba8bfa539e');
         $template = new Template();
         $template->setTemplateEngine('twig');
@@ -559,8 +597,8 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $template->setName('Verzoek geannuleerd');
         $template->setTitle('U heeft uw verzoek geannuleerd');
         $template->setDescription('Bevestiging dat u een verzoek heeft geannuleerd');
-        $template->setContent('Beste {{ receiver.givenName }},<p>Uw verzoek met referentie {{ resource.reference }} is geannuleerd.</p><p>Met vriendelijke groet,</p>{{ sender.name }}');
-
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/CheckIn/emails/annulering.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
         $manager->persist($template);
         $template->setId($id);
         $manager->persist($template);
@@ -594,6 +632,140 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
         $template->addTemplateGroup($groupInvoices);
         $manager->persist($template);
+        $manager->flush();
+
+        //legal templates
+
+        $id = Uuid::fromString('4cf7ead1-18b5-40a8-8560-dbfc6368872a');
+        $template = new Template();
+        $template->setTemplateEngine('twig');
+        $template->setTranslatableLocale('nl'); // change locale
+        $template->setName('terms_nl no container');
+        $template->setTitle('terms_nl no container');
+        $template->setDescription('terms_nl no container');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/CheckIn/legal/terms_nl.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupEmails);
+        $manager->persist($template);
+        $manager->flush();
+
+        $id = Uuid::fromString('29d316fe-0577-4f34-98ed-a93714dcb314');
+        $template = new Template();
+        $template->setTemplateEngine('twig');
+        $template->setTranslatableLocale('nl'); // change locale
+        $template->setName('terms_nl');
+        $template->setTitle('terms_nl');
+        $template->setDescription('terms_nl');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/CheckIn/legal/terms_nl_container.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupEmails);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('terms-nl');
+        $slug->setSlug('terms-nl');
+        $manager->persist($slug);
+        $manager->flush();
+
+        $id = Uuid::fromString('c7f92ce6-8fca-4cb0-957b-6282375fa3de');
+        $template = new Template();
+        $template->setTemplateEngine('twig');
+        $template->setTranslatableLocale('nl'); // change locale
+        $template->setName('gdrp_nl no container');
+        $template->setTitle('gdrp_nl no container');
+        $template->setDescription('gdrp_nl no container');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/CheckIn/legal/gdrp_nl.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupEmails);
+        $manager->persist($template);
+        $manager->flush();
+
+        $id = Uuid::fromString('a3c728a8-b160-4ba3-a973-32c981be0dfd');
+        $template = new Template();
+        $template->setTemplateEngine('twig');
+        $template->setTranslatableLocale('nl'); // change locale
+        $template->setName('gdrp_nl');
+        $template->setTitle('gdrp_nl');
+        $template->setDescription('gdrp_nl');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/CheckIn/legal/gdrp_nl_container.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupEmails);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('gdrp-nl');
+        $slug->setSlug('gdrp-nl');
+        $manager->persist($slug);
+        $manager->flush();
+
+        $id = Uuid::fromString('e583d7bc-3774-4bb1-a413-b0f25e6facc4');
+        $template = new Template();
+        $template->setTemplateEngine('twig');
+        $template->setTranslatableLocale('nl'); // change locale
+        $template->setName('privacy-nl no container');
+        $template->setTitle('privacy-nl no container');
+        $template->setDescription('privacy-nl no container');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/CheckIn/legal/privacy_nl.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupEmails);
+        $manager->persist($template);
+        $manager->flush();
+
+        $id = Uuid::fromString('57c7100d-dce7-4b99-b950-d16fcb017a84');
+        $template = new Template();
+        $template->setTemplateEngine('twig');
+        $template->setTranslatableLocale('nl'); // change locale
+        $template->setName('privacy-nl');
+        $template->setTitle('privacy-nl');
+        $template->setDescription('privacy-nl');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/CheckIn/legal/privacy_nl_container.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupEmails);
+        $manager->persist($template);
+        $manager->flush();
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('privacy-nl');
+        $slug->setSlug('privacy-nl');
+        $manager->persist($slug);
         $manager->flush();
 
         // Pages
@@ -650,6 +822,34 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $slug->setApplication($application);
         $slug->setName('ondernemers');
         $slug->setSlug('ondernemers');
+        $manager->persist($slug);
+        $manager->flush();
+
+        $id = Uuid::fromString('8c0d7c28-a4bc-4d9e-b18b-ae3fc933c311');
+        $template = new Template();
+        $template->setTemplateEngine('twig');
+        $template->setTranslatableLocale('nl'); // change locale
+        $template->setName('Horeca');
+        $template->setDescription('Informatie voor horeca');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/CheckIn/horeca.html.twig', 'r'));
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->flush();
+        $template->setTranslatableLocale('en'); // change locale
+        $template->setName('Horeca');
+        $template->setDescription('Information for organizations');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/CheckIn/horeca.html.twig', 'r'));
+        $manager->persist($template);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $manager->persist($template);
+
+        $slug = new Slug();
+        $slug->setTemplate($template);
+        $slug->setApplication($application);
+        $slug->setName('horeca');
+        $slug->setSlug('horeca');
         $manager->persist($slug);
         $manager->flush();
 

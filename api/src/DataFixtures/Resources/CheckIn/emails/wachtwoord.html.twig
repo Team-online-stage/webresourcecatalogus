@@ -1,0 +1,7 @@
+Beste {% if receiver.givenName is defined  %}{{ receiver.givenName }}{% endif %},
+
+<p>U kunt nu inloggen op https://{% if app_env == 'dev' %}dev.{% endif %}checking.nu met het volgende wachtwoord: {% if user.password is defined  %}{{ user.password }}{% endif %}</p>
+<p>Klik <a href="https://{% if app_env == 'dev' %}dev.{% endif %}checking.nu/me">hier</a> om uw wachtwoord te wijzigen.</p>
+
+<p>Met vriendelijke groet,</p>
+{% if sender.name is defined  %}{{ sender.name }}{% endif %}

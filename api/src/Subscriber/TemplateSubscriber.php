@@ -58,7 +58,7 @@ class TemplateSubscriber implements EventSubscriberInterface
         $query = $request->query->all();
         $body = json_decode($request->getContent(), true); /*@todo hier zouden we eigenlijk ook xml moeten ondersteunen */
 
-        $variables = array_merge($query, $body);
+        $variables = array_merge($query, $result->getVariables());
 
         switch ($result->getTemplateEngine()) {
             case 'twig':
