@@ -157,8 +157,7 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
                     }
 
                     .about {
-                           text-align: initial;
-                           width: 200%;
+                           text-align: left;
                     }
 
                     .description {
