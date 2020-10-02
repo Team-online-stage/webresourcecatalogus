@@ -1,33 +1,21 @@
 {# templates/home/index.html.twig #}
 
 {% extends 'base.html.twig' %}
+
 {% block container %}
-    <form method="post" action="{{ path('app_chin_checkin') }}" class="form">
-        <div style="background-color: #FFFFFF" class="row">
-            <div class="container">
-                {% include 'chin/widgets/checkin_widget.html.twig' %}
-            </div><!-- /.container -->
-        </div><!-- /.row -->
-    </form>
-
-    <!-- Page Break -->
-    <div style="height: 20px"></div>
-
-    <div class="container background--wit">
+    <div class="container background--primary">
         <div class="row">
-            <div class="col-md-6 col-sm-12">
-                <div class="content">
-                    <h2>De techniek achter CheckIn</h2>
-                    <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,
-                        totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae
-                        dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut
-                        fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque
-                        porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia
-                        non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat
-                        voluptatem.</p>
-                </div>
-            </div><!-- /.col -->
-        </div><!-- /.row -->
-    </div><!-- /.container -->
+            <div class="col-md-12">
+                <h1>Deze pagina word nog aan gewerkt!</h1>
+                <p class="content__header-paragraph">Op deze pagina komt een proclaimer tekst.</p>
+            </div>
+        </div>
 
+        <div class="row">
+            <div class="col-md-12">
+                <h2>De techniek achter CheckIn</h2>
+                <p>Checking is een open source project gebaseerd op een set aan standaard componenten die ontwikkeld zijn voor de Nederlandse overheid en in het bijzonder de Vereniging van Nederlandse Gemeente vanuit het Common Ground project. Voor het uitwisselen van contactgegeven en het vaststellen (inloggen) van gebruikers kan gebruik worden gemaakt van het iDIN netwerk..</p>
+            </div>
+        </div>
+    </div>
 {% endblock %}
