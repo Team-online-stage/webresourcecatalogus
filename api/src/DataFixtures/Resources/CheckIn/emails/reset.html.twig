@@ -1,6 +1,6 @@
 Beste {% if receiver.givenName is defined  %}{{ receiver.givenName }}{% endif %},
 
-<p>U kunt <a href="{% if resource  %}{{ user.password }}{% endif %}{{ resource }}{% endif %}">hier</a> klikken om uw wachtwoord te resetten.</p>
-
+<p>U kunt uw wachtwoord resetten door op de volgende link te drukken:</p>
+<p>{% if resource is defined %}{{ resource }}{% endif %}</p>
 <p>Met vriendelijke groet,</p>
-{% if sender.name is defined  %}{{ sender.name }}{% endif %}
+{% if sender is defined  %}{{ sender }}{% endif %}
