@@ -453,8 +453,6 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $template->setTitle('Wachtwoord resetten');
         $template->setDescription('Mail voor het resetten van je wachtwoord');
         $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/CheckIn/emails/reset.html.twig', 'r'));
-        // Voorbeeld QR-code in email content meesturen: (gaat nog iets niet helemaal goed)
-        // {% set nodes =  commonground_resource_list({'component': 'chin', 'type': 'nodes'},{'organization':organization['@id']})['hydra:member'] %}{% if nodes|length > 0 %}{% set node = nodes[0] %}<p>Hierbij hebben wij alvast een voorbeeld QR-code voor u: <br><img src="{{ qr_code_data_uri( absolute_url(path('https://dev.checking.nu/chin/checkin',{'code':node.reference})) , { writer: 'svg', size: 150 }) }}" /></p>{% endif %}
         $template->setTemplateEngine('twig');
         $manager->persist($template);
         $template->setId($id);
@@ -474,8 +472,6 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $template->setTitle('Welkom bij checkin!');
         $template->setDescription('Bevestiging dat u een verzoek heeft ingediend');
         $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/CheckIn/emails/welkom.html.twig', 'r'));
-        // Voorbeeld QR-code in email content meesturen: (gaat nog iets niet helemaal goed)
-        // {% set nodes =  commonground_resource_list({'component': 'chin', 'type': 'nodes'},{'organization':organization['@id']})['hydra:member'] %}{% if nodes|length > 0 %}{% set node = nodes[0] %}<p>Hierbij hebben wij alvast een voorbeeld QR-code voor u: <br><img src="{{ qr_code_data_uri( absolute_url(path('https://dev.checking.nu/chin/checkin',{'code':node.reference})) , { writer: 'svg', size: 150 }) }}" /></p>{% endif %}
         $template->setTemplateEngine('twig');
         $manager->persist($template);
         $template->setId($id);
@@ -597,8 +593,8 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $template->setName('Verzoek geannuleerd');
         $template->setTitle('U heeft uw verzoek geannuleerd');
         $template->setDescription('Bevestiging dat u een verzoek heeft geannuleerd');
-        $template->setContent('Beste {{ receiver.givenName }},<p>Uw verzoek met referentie {{ resource.reference }} is geannuleerd.</p><p>Met vriendelijke groet,</p>{{ sender.name }}');
-
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/CheckIn/emails/annulering.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
         $manager->persist($template);
         $template->setId($id);
         $manager->persist($template);
