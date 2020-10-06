@@ -84,7 +84,7 @@ class WestfrieslandFixtures extends Fixture
         $opmeer = new Organization();
         $opmeer->setName('Opmeer');
         $opmeer->setDescription('Gemeente Opmeer');
-        $opmeer->setRsin('1234');
+        $opmeer->setRsin('999991413');
         $opmeer->setContact($this->commonGroundService->cleanUrl(['component' => 'cc', 'type' => 'organizations', 'id' => '26dee7a2-0fb6-4cc8-b5f6-0b5e2f8aa789']));
         $manager->persist($opmeer);
         $opmeer->setId($id);
@@ -112,7 +112,7 @@ class WestfrieslandFixtures extends Fixture
         $medemblik = new Organization();
         $medemblik->setName('Medemblik');
         $medemblik->setDescription('Gemeente Medemblik');
-        $medemblik->setRsin('1234');
+        $medemblik->setRsin('999993562');
         $medemblik->setContact($this->commonGroundService->cleanUrl(['component' => 'cc', 'type' => 'organizations', 'id' => '47c8c694-62bb-4dec-b054-556537e896fe']));
         $manager->persist($medemblik);
         $medemblik->setId($id);
@@ -140,7 +140,7 @@ class WestfrieslandFixtures extends Fixture
         $enkhuizen = new Organization();
         $enkhuizen->setName('Enkhuizen');
         $enkhuizen->setDescription('Gemeenten Enkhuizen');
-        $enkhuizen->setRsin('1234');
+        $enkhuizen->setRsin('999993859');
         $enkhuizen->setContact($this->commonGroundService->cleanUrl(['component' => 'cc', 'type' => 'organizations', 'id' => '0012428b-dc06-444a-af20-17d3ee06a916']));
         $manager->persist($enkhuizen);
         $enkhuizen->setId($id);
@@ -168,7 +168,7 @@ class WestfrieslandFixtures extends Fixture
         $drechterland = new Organization();
         $drechterland->setName('Drechterland');
         $drechterland->setDescription('Gemeenten Drechterland');
-        $drechterland->setRsin('1234');
+        $drechterland->setRsin('999992181');
         $drechterland->setContact($this->commonGroundService->cleanUrl(['component' => 'cc', 'type' => 'organizations', 'id' => '756e50b8-4fd7-44d4-99d6-7f8ef47c3678']));
         $manager->persist($drechterland);
         $drechterland->setId($id);
@@ -196,7 +196,7 @@ class WestfrieslandFixtures extends Fixture
         $stedebroec = new Organization();
         $stedebroec->setName('Stedebroec');
         $stedebroec->setDescription('Gemeenten Stedebroec');
-        $stedebroec->setRsin('1234');
+        $stedebroec->setRsin('999991450');
         $stedebroec->setContact($this->commonGroundService->cleanUrl(['component' => 'cc', 'type' => 'organizations', 'id' => '93a892a9-d164-4d37-bfa5-a37c52ab3840']));
         $manager->persist($stedebroec);
         $stedebroec->setId($id);
@@ -224,7 +224,7 @@ class WestfrieslandFixtures extends Fixture
         $hoorn = new Organization();
         $hoorn->setName('Hoorn');
         $hoorn->setDescription('Gemeente Hoorn');
-        $hoorn->setRsin('1234');
+        $hoorn->setRsin('999995121');
         $hoorn->setContact($this->commonGroundService->cleanUrl(['component' => 'cc', 'type' => 'organizations', 'id' => '816395fc-4ba4-4fa5-90e9-780bb14a50c2']));
         $manager->persist($hoorn);
         $hoorn->setId($id);
@@ -252,7 +252,7 @@ class WestfrieslandFixtures extends Fixture
         $koggenland = new Organization();
         $koggenland->setName('Koggenland');
         $koggenland->setDescription('Gemeente Koggenland');
-        $koggenland->setRsin('1234');
+        $koggenland->setRsin('999994141');
         $koggenland->setContact($this->commonGroundService->cleanUrl(['component' => 'cc', 'type' => 'organizations', 'id' => '5792b63d-afb5-4689-990b-51eec52b663b']));
         $manager->persist($koggenland);
         $koggenland->setId($id);
@@ -749,7 +749,7 @@ class WestfrieslandFixtures extends Fixture
         $template->setName('E-mail instemming');
         $template->setTitle('Instemming voor een huwelijk');
         $template->setDescription('');
-        $template->setContent("{% set receiver = commonground_resource(receiver) %}{% set sender = commonground_resource(sender) %}Beste {{ receiver.givenName }},<br><br>Uw instemming is gevraagd bij een instemmingsverzoek:<p><h2>{{ resource.name }}</h2>{{ resource.description }}</p><a href=''>Klik hier</a> om op dit verzoek te reageren.<br><br>Met vriendelijke groet,<br><br>{{ sender.name }}");
+        $template->setContent("{% set receiver = commonground_resource(receiver) %}{% set sender = commonground_resource(sender) %}Beste {{ receiver.givenName }},<br><br>Uw instemming is gevraagd bij een instemmingsverzoek:<p><h2>{{ resource.name }}</h2>{{ resource.description }}</p><a href='{{ resource.forwardUrl }}'>Klik hier</a> om op dit verzoek te reageren.<br><br>Met vriendelijke groet,<br><br>{{ sender.name }}");
         $template->setTemplateEngine('twig');
         $manager->persist($template);
         $template->setId($id);
