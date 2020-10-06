@@ -3,7 +3,7 @@ entries:
   wrc:
   - apiVersion: v1
     appVersion: V1.0
-    created: "2020-10-06T11:08:38.3522585Z"
+    created: "2020-10-06T12:50:09.5647624Z"
     description: Naast deze JSON rest API is er ook een [graphql](/graphql) interface
       beschikbaar.
     digest: 4cf6e4cf3b9ef41b8823cbaccb9518875c6c0a85a1be69909feb21e74fd93c9a
@@ -13,4 +13,4 @@ entries:
     urls:
     - wrc-0.1.0.tgz
     version: 0.1.0
-generated: "2020-10-06T11:08:38.3436391Z"
+generated: "2020-10-06T12:50:09.5478051Z"
