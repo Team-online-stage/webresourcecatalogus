@@ -34,7 +34,7 @@
                     <li>{{ organization.persons.0.name }}</li>
                 {% endif %}
                 {% if organization.telephones.0 is defined or organization.emails.0 is defined %}
-                    <li>{% if organization.emails.0.email is defined and organization.emails.0.email is not empty%}{{ organization.emails.email }}{% endif%} {% if organization.telephones.0.telephone is defined and organization.telephones.0.telephone is not empty %}{{ organization.telephones.0.telephone }}{% endif %}</li>
+                    <li>{% if organization.emails.0.email is defined and organization.emails.0.email is not empty%}{{ organization.emails.0.email }}{% endif%} {% if organization.telephones.0.telephone is defined and organization.telephones.0.telephone is not empty %}{{ organization.telephones.0.telephone }}{% endif %}</li>
                 {% endif %}
                 {% if resource.properties['iban'].iban is defined and resource.properties['iban'].iban is not empty %}
                     <li>{{ resource.properties['iban'].iban }}</li>
