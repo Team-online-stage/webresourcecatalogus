@@ -190,8 +190,6 @@ class WestfrieslandFixtures extends Fixture
         $manager->persist($style);
         $manager->flush();
 
-
-
         $id = Uuid::fromString('fa93bb61-4a3b-4f5f-a8a9-c53c3e922a3b');
         $bgOpperdoes = new Organization();
         $bgOpperdoes->setName('Opperdoes');
@@ -378,7 +376,6 @@ class WestfrieslandFixtures extends Fixture
         $manager->persist($bgMedemblikZorgvliet);
         $manager->flush();
         $bgMedemblikZorgvliet = $manager->getRepository('App:Organization')->findOneBy(['id' => $id]);
-
 
         // Enkhuizen
         $id = Uuid::fromString('7033eeb4-5c77-4d88-9f40-303b538f176f');
