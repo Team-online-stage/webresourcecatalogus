@@ -199,6 +199,7 @@ class WestfrieslandFixtures extends Fixture
         $bgOpperdoes = new Organization();
         $bgOpperdoes->setName('Opperdoes');
         $bgOpperdoes->setDescription('Begraafplaats Opperdoes');
+        $bgOpperdoes->setContact($this->commonGroundService->cleanUrl(['component' => 'cc', 'type' => 'organizations', 'id' => 'b294b0ae-fce4-48d3-bf50-eab1f82ddd7f']));
         $bgOpperdoes->setRsin('1234');
         $manager->persist($bgOpperdoes);
         $bgOpperdoes->setId($id);
