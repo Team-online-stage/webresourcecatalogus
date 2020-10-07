@@ -1,6 +1,16 @@
-Beste {% if receiver.givenName is defined  %}{{ receiver.givenName }}{% endif %},
+<div style="background-color: #F5F5F5; width: 100%; padding: 5px">
+    <div class="container" style="width: 80%; background-color: white; margin-left: auto; margin-right: auto;">
+        <div style="width: 100%; background-color: #01689B; height: fit-content">
+            <h1 style="color: white; font-family: Verdana,serif; margin-left: 30px; padding-top: 15px; padding-bottom: 15px; ">Checking</h1>
+        </div>
+        <div style="margin-left: 30px; margin-right: 30px;">
+            <p>Beste {% if receiver.givenName is defined  %}{{ receiver.givenName }}{% endif %},</p>
 
-<p>U kunt uw wachtwoord resetten door op de volgende link te drukken:</p>
-<p>{% if resource is defined %}{{ resource }}{% endif %}</p>
-<p>Met vriendelijke groet,</p>
-{% if sender is defined  %}{{ sender }}{% endif %}
+            <p>U kunt uw wachtwoord resetten door op de volgende link te drukken:</p>
+            <p>{% if resource is defined %}{{ resource }}{% endif %}</p>
+            <p>Met vriendelijke groet,</p>
+            {% if sender is defined  %}{{ sender }}{% endif %}
+            <br>
+        </div>
+    </div>
+</div>
