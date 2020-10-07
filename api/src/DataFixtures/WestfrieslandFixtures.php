@@ -107,6 +107,61 @@ class WestfrieslandFixtures extends Fixture
         $manager->persist($style);
         $manager->flush();
 
+        $id = Uuid::fromString('434d3b10-13ec-4ad8-a62a-c9c4185d717d');
+        $bgAartswoud = new Organization();
+        $bgAartswoud->setName('Aartswoud');
+        $bgAartswoud->setDescription('Begraafplaats Aartswoud');
+        $bgAartswoud->setRsin('1234');
+        $manager->persist($bgAartswoud);
+        $bgAartswoud->setId($id);
+        $manager->persist($bgAartswoud);
+        $manager->flush();
+        $bgAartswoud = $manager->getRepository('App:Organization')->findOneBy(['id' => $id]);
+
+        $id = Uuid::fromString('f53aa9a3-c1d6-42d2-9162-c09e859fee41');
+        $bgOpmeer = new Organization();
+        $bgOpmeer->setName('Opmeer');
+        $bgOpmeer->setDescription('Begraafplaats Opmeer');
+        $bgOpmeer->setRsin('1234');
+        $manager->persist($bgOpmeer);
+        $bgOpmeer->setId($id);
+        $manager->persist($bgOpmeer);
+        $manager->flush();
+        $bgOpmeer = $manager->getRepository('App:Organization')->findOneBy(['id' => $id]);
+
+        $id = Uuid::fromString('470af19c-7398-4060-899b-4c3502609555');
+        $bgSpanbroek = new Organization();
+        $bgSpanbroek->setName('Spanbroek');
+        $bgSpanbroek->setDescription('Begraafplaats Spanbroek');
+        $bgSpanbroek->setRsin('1234');
+        $manager->persist($bgSpanbroek);
+        $bgSpanbroek->setId($id);
+        $manager->persist($bgSpanbroek);
+        $manager->flush();
+        $bgSpanbroek = $manager->getRepository('App:Organization')->findOneBy(['id' => $id]);
+
+        $id = Uuid::fromString('0b6a30d3-561f-426c-aab7-9ae47f5da832');
+        $bgHoogwoud = new Organization();
+        $bgHoogwoud->setName('Hoogwoud');
+        $bgHoogwoud->setDescription('Begraafplaats Hoogwoud');
+        $bgHoogwoud->setRsin('1234');
+        $manager->persist($bgHoogwoud);
+        $bgHoogwoud->setId($id);
+        $manager->persist($bgHoogwoud);
+        $manager->flush();
+        $bgHoogwoud = $manager->getRepository('App:Organization')->findOneBy(['id' => $id]);
+
+        $id = Uuid::fromString('573bec0c-996b-4ddd-b522-8dcb26573e69');
+        $bgDeWeere = new Organization();
+        $bgDeWeere->setName('De Weere');
+        $bgDeWeere->setDescription('Begraafplaats De Weere');
+        $bgDeWeere->setRsin('1234');
+        $manager->persist($bgDeWeere);
+        $bgDeWeere->setId($id);
+        $manager->persist($bgDeWeere);
+        $manager->flush();
+        $bgDeWeere = $manager->getRepository('App:Organization')->findOneBy(['id' => $id]);
+
         // Medemblik
         $id = Uuid::fromString('429e66ef-4411-4ddb-8b83-c637b37e88b5');
         $medemblik = new Organization();
@@ -134,6 +189,196 @@ class WestfrieslandFixtures extends Fixture
         $manager->persist($favicon);
         $manager->persist($style);
         $manager->flush();
+
+
+
+        $id = Uuid::fromString('fa93bb61-4a3b-4f5f-a8a9-c53c3e922a3b');
+        $bgOpperdoes = new Organization();
+        $bgOpperdoes->setName('Opperdoes');
+        $bgOpperdoes->setDescription('Begraafplaats Opperdoes');
+        $bgOpperdoes->setRsin('1234');
+        $manager->persist($bgOpperdoes);
+        $bgOpperdoes->setId($id);
+        $manager->persist($bgOpperdoes);
+        $manager->flush();
+        $bgOpperdoes = $manager->getRepository('App:Organization')->findOneBy(['id' => $id]);
+
+        $id = Uuid::fromString('07a13576-8455-4cf5-9543-5c55b894a817');
+        $bgSijbekarspel = new Organization();
+        $bgSijbekarspel->setName('Sijbekarspel (oud)');
+        $bgSijbekarspel->setDescription('Begraafplaats Sijbekarspel (oud)');
+        $bgSijbekarspel->setRsin('1234');
+        $manager->persist($bgSijbekarspel);
+        $bgSijbekarspel->setId($id);
+        $manager->persist($bgSijbekarspel);
+        $manager->flush();
+        $bgSijbekarspel = $manager->getRepository('App:Organization')->findOneBy(['id' => $id]);
+
+        $id = Uuid::fromString('97d5aa85-1729-4099-bc63-e26f4660f8ef');
+        $bgBenningbroekOud = new Organization();
+        $bgBenningbroekOud->setName('Benningbroek (Oud)');
+        $bgBenningbroekOud->setDescription('Begraafplaats Benningbroek (Oud)');
+        $bgBenningbroekOud->setRsin('1234');
+        $manager->persist($bgBenningbroekOud);
+        $bgBenningbroekOud->setId($id);
+        $manager->persist($bgBenningbroekOud);
+        $manager->flush();
+        $bgBenningbroekOud = $manager->getRepository('App:Organization')->findOneBy(['id' => $id]);
+
+        $id = Uuid::fromString('bd40d684-dccd-43a5-b1e9-cc365d6445f8');
+        $bgBenningbroekNieuw = new Organization();
+        $bgBenningbroekNieuw->setName('Benningbroek (Nieuw)');
+        $bgBenningbroekNieuw->setDescription('Begraafplaats Benningbroek (Nieuw)');
+        $bgBenningbroekNieuw->setRsin('1234');
+        $manager->persist($bgBenningbroekNieuw);
+        $bgBenningbroekNieuw->setId($id);
+        $manager->persist($bgBenningbroekNieuw);
+        $manager->flush();
+        $bgBenningbroekNieuw = $manager->getRepository('App:Organization')->findOneBy(['id' => $id]);
+
+        $id = Uuid::fromString('b11e25d3-a3a5-46f4-9323-462bd170ad3a');
+        $bgAndijkOosterbegraafplaats = new Organization();
+        $bgAndijkOosterbegraafplaats->setName('Andijk (oosterbegraafplaats)');
+        $bgAndijkOosterbegraafplaats->setDescription('Begraafplaats Andijk (oosterbegraafplaats)');
+        $bgAndijkOosterbegraafplaats->setRsin('1234');
+        $manager->persist($bgAndijkOosterbegraafplaats);
+        $bgAndijkOosterbegraafplaats->setId($id);
+        $manager->persist($bgAndijkOosterbegraafplaats);
+        $manager->flush();
+        $bgAndijkOosterbegraafplaats = $manager->getRepository('App:Organization')->findOneBy(['id' => $id]);
+
+        $id = Uuid::fromString('d05edd61-8f43-41f7-b3bb-b10959135033');
+        $bgWognumKreekland = new Organization();
+        $bgWognumKreekland->setName('Wognum (kreekland)');
+        $bgWognumKreekland->setDescription('Begraafplaats Wognum (kreekland)');
+        $bgWognumKreekland->setRsin('1234');
+        $manager->persist($bgWognumKreekland);
+        $bgWognumKreekland->setId($id);
+        $manager->persist($bgWognumKreekland);
+        $manager->flush();
+        $bgWognumKreekland = $manager->getRepository('App:Organization')->findOneBy(['id' => $id]);
+
+        $id = Uuid::fromString('d3f51790-9ffd-4c10-b8ad-c0c5d2bb8b29');
+        $bgOostwoud = new Organization();
+        $bgOostwoud->setName('Oostwoud');
+        $bgOostwoud->setDescription('Begraafplaats Oostwoud (nieuw)');
+        $bgOostwoud->setRsin('1234');
+        $manager->persist($bgOostwoud);
+        $bgOostwoud->setId($id);
+        $manager->persist($bgOostwoud);
+        $manager->flush();
+        $bgOostwoud = $manager->getRepository('App:Organization')->findOneBy(['id' => $id]);
+
+        $id = Uuid::fromString('9246649e-2bb4-4f59-b6b1-37df88f37086');
+        $bgMidwoud = new Organization();
+        $bgMidwoud->setName('Midwoud');
+        $bgMidwoud->setDescription('Begraafplaats Midwoud (nieuw)');
+        $bgMidwoud->setRsin('1234');
+        $manager->persist($bgMidwoud);
+        $bgMidwoud->setId($id);
+        $manager->persist($bgMidwoud);
+        $manager->flush();
+        $bgMidwoud = $manager->getRepository('App:Organization')->findOneBy(['id' => $id]);
+
+        $id = Uuid::fromString('6d5798e1-e14b-4b9d-81f4-282e44f06903');
+        $bgLambertschaag = new Organization();
+        $bgLambertschaag->setName('Lambertschaag');
+        $bgLambertschaag->setDescription('Begraafplaats Lambertschaag');
+        $bgLambertschaag->setRsin('1234');
+        $manager->persist($bgLambertschaag);
+        $bgLambertschaag->setId($id);
+        $manager->persist($bgLambertschaag);
+        $manager->flush();
+        $bgLambertschaag = $manager->getRepository('App:Organization')->findOneBy(['id' => $id]);
+
+        $id = Uuid::fromString('16758322-693b-4406-ae42-8f6877daa8c4');
+        $bgAbbekerk = new Organization();
+        $bgAbbekerk->setName('Abbekerk');
+        $bgAbbekerk->setDescription('Begraafplaats Abbekerk (nieuw)');
+        $bgAbbekerk->setRsin('1234');
+        $manager->persist($bgAbbekerk);
+        $bgAbbekerk->setId($id);
+        $manager->persist($bgAbbekerk);
+        $manager->flush();
+        $bgAbbekerk = $manager->getRepository('App:Organization')->findOneBy(['id' => $id]);
+
+        $id = Uuid::fromString('bcdb1f69-7187-4ebe-b42a-afd2dfd8e959');
+        $bgOpperdoesOud = new Organization();
+        $bgOpperdoesOud->setName('Opperdoes (oud)');
+        $bgOpperdoesOud->setDescription('Begraafplaats Opperdoes (oud)');
+        $bgOpperdoesOud->setRsin('1234');
+        $manager->persist($bgOpperdoesOud);
+        $bgOpperdoesOud->setId($id);
+        $manager->persist($bgOpperdoesOud);
+        $manager->flush();
+        $bgOpperdoesOud = $manager->getRepository('App:Organization')->findOneBy(['id' => $id]);
+
+        $id = Uuid::fromString('32846a42-556c-4d58-aaba-7cbfcd7b4c0f');
+        $bgWognum = new Organization();
+        $bgWognum->setName('Wognum');
+        $bgWognum->setDescription('Begraafplaats Wognum');
+        $bgWognum->setRsin('1234');
+        $manager->persist($bgWognum);
+        $bgWognum->setId($id);
+        $manager->persist($bgWognum);
+        $manager->flush();
+        $bgWognum = $manager->getRepository('App:Organization')->findOneBy(['id' => $id]);
+
+        $id = Uuid::fromString('a122c7cf-7398-4a06-9d01-230641ad3e14');
+        $bgNibbixwoud = new Organization();
+        $bgNibbixwoud->setName('Nibbixwoud');
+        $bgNibbixwoud->setDescription('Begraafplaats Nibbixwoud');
+        $bgNibbixwoud->setRsin('1234');
+        $manager->persist($bgNibbixwoud);
+        $bgNibbixwoud->setId($id);
+        $manager->persist($bgNibbixwoud);
+        $manager->flush();
+        $bgNibbixwoud = $manager->getRepository('App:Organization')->findOneBy(['id' => $id]);
+
+        $id = Uuid::fromString('60afc15c-b45f-4d42-bc3d-546575e1eb36');
+        $bgMidwoudOud = new Organization();
+        $bgMidwoudOud->setName('Midwoud (oud)');
+        $bgMidwoudOud->setDescription('Begraafplaats Midwoud (oud)');
+        $bgMidwoudOud->setRsin('1234');
+        $manager->persist($bgMidwoudOud);
+        $bgMidwoudOud->setId($id);
+        $manager->persist($bgMidwoudOud);
+        $manager->flush();
+        $bgMidwoudOud = $manager->getRepository('App:Organization')->findOneBy(['id' => $id]);
+
+        $id = Uuid::fromString('ddb4d97d-370a-4972-bbb2-82f6dd92fab8');
+        $bgAndijkWesterbegraafplaats = new Organization();
+        $bgAndijkWesterbegraafplaats->setName('Andijk (Westerbegraafplaats)');
+        $bgAndijkWesterbegraafplaats->setDescription('Begraafplaats Andijk (Westerbegraafplaats)');
+        $bgAndijkWesterbegraafplaats->setRsin('1234');
+        $manager->persist($bgAndijkWesterbegraafplaats);
+        $bgAndijkWesterbegraafplaats->setId($id);
+        $manager->persist($bgAndijkWesterbegraafplaats);
+        $manager->flush();
+        $bgAndijkWesterbegraafplaats = $manager->getRepository('App:Organization')->findOneBy(['id' => $id]);
+
+        $id = Uuid::fromString('7914b4c4-e227-4fbd-8ed6-7e87ced0115b');
+        $bgTwisk = new Organization();
+        $bgTwisk->setName('Twisk');
+        $bgTwisk->setDescription('Begraafplaats Twisk (nieuw)');
+        $bgTwisk->setRsin('1234');
+        $manager->persist($bgTwisk);
+        $bgTwisk->setId($id);
+        $manager->persist($bgTwisk);
+        $manager->flush();
+        $bgTwisk = $manager->getRepository('App:Organization')->findOneBy(['id' => $id]);
+
+        $id = Uuid::fromString('a5911a24-30d2-4a2d-afd3-a4d4e1d0e814');
+        $bgMedemblikZorgvliet = new Organization();
+        $bgMedemblikZorgvliet->setName('Medemblik (zorgvliet)');
+        $bgMedemblikZorgvliet->setDescription('Begraafplaats Wognum (Zorgvliet)');
+        $bgMedemblikZorgvliet->setRsin('1234');
+        $manager->persist($bgMedemblikZorgvliet);
+        $bgMedemblikZorgvliet->setId($id);
+        $manager->persist($bgMedemblikZorgvliet);
+        $manager->flush();
+        $bgMedemblikZorgvliet = $manager->getRepository('App:Organization')->findOneBy(['id' => $id]);
+
 
         // Enkhuizen
         $id = Uuid::fromString('7033eeb4-5c77-4d88-9f40-303b538f176f');
@@ -163,6 +408,17 @@ class WestfrieslandFixtures extends Fixture
         $manager->persist($style);
         $manager->flush();
 
+        $id = Uuid::fromString('d90be6c6-7b1e-4b75-879b-6445cc56aecb');
+        $bgGemeentelijkeBegraafplaats = new Organization();
+        $bgGemeentelijkeBegraafplaats->setName('Gemeentelijke Begraafplaats');
+        $bgGemeentelijkeBegraafplaats->setDescription('Gemeentelijke Begraafplaats');
+        $bgGemeentelijkeBegraafplaats->setRsin('1234');
+        $manager->persist($bgGemeentelijkeBegraafplaats);
+        $bgGemeentelijkeBegraafplaats->setId($id);
+        $manager->persist($bgGemeentelijkeBegraafplaats);
+        $manager->flush();
+        $bgGemeentelijkeBegraafplaats = $manager->getRepository('App:Organization')->findOneBy(['id' => $id]);
+
         // Drechterland
         $id = Uuid::fromString('e7d5368d-4d95-454d-9c0e-d4466889e2bd');
         $drechterland = new Organization();
@@ -190,6 +446,94 @@ class WestfrieslandFixtures extends Fixture
         $manager->persist($favicon);
         $manager->persist($style);
         $manager->flush();
+
+        $id = Uuid::fromString('bcf1f7b9-84b6-46d1-a998-16fa042e1326');
+        $bgStreekwegHoogkarspel = new Organization();
+        $bgStreekwegHoogkarspel->setName('Streekweg in Hoogkarspel');
+        $bgStreekwegHoogkarspel->setDescription('Begraafplaats Streekweg in Hoogkarspel');
+        $bgStreekwegHoogkarspel->setRsin('1234');
+        $manager->persist($bgStreekwegHoogkarspel);
+        $bgStreekwegHoogkarspel->setId($id);
+        $manager->persist($bgStreekwegHoogkarspel);
+        $manager->flush();
+        $bgStreekwegHoogkarspel = $manager->getRepository('App:Organization')->findOneBy(['id' => $id]);
+
+        $id = Uuid::fromString('18b08193-797e-4583-b431-7870364d2949');
+        $bgKerkbuurtWijdenes = new Organization();
+        $bgKerkbuurtWijdenes->setName('Kerkbuurt in Wijdenes');
+        $bgKerkbuurtWijdenes->setDescription('Begraafplaats Kerkbuurt in Wijdenes');
+        $bgKerkbuurtWijdenes->setRsin('1234');
+        $manager->persist($bgKerkbuurtWijdenes);
+        $bgKerkbuurtWijdenes->setId($id);
+        $manager->persist($bgKerkbuurtWijdenes);
+        $manager->flush();
+        $bgKerkbuurtWijdenes = $manager->getRepository('App:Organization')->findOneBy(['id' => $id]);
+
+        $id = Uuid::fromString('4d6e1e59-2190-4b45-bb1e-025cd5ab0a0d');
+        $bgWesterkerkwegVenhuizen = new Organization();
+        $bgWesterkerkwegVenhuizen->setName('Westerkerkweg in Venhuizen');
+        $bgWesterkerkwegVenhuizen->setDescription('Begraafplaats Westerkerkweg in Venhuizen');
+        $bgWesterkerkwegVenhuizen->setRsin('1234');
+        $manager->persist($bgWesterkerkwegVenhuizen);
+        $bgWesterkerkwegVenhuizen->setId($id);
+        $manager->persist($bgWesterkerkwegVenhuizen);
+        $manager->flush();
+        $bgWesterkerkwegVenhuizen = $manager->getRepository('App:Organization')->findOneBy(['id' => $id]);
+
+        $id = Uuid::fromString('fde402af-09bc-4163-b3a8-1bddf9a51e26');
+        $bgRaadhuispleinHoogkarspel = new Organization();
+        $bgRaadhuispleinHoogkarspel->setName('Raadhuisplein in Hoogkarspel');
+        $bgRaadhuispleinHoogkarspel->setDescription('Begraafplaats Raadhuisplein in Hoogkarspel');
+        $bgRaadhuispleinHoogkarspel->setRsin('1234');
+        $manager->persist($bgRaadhuispleinHoogkarspel);
+        $bgRaadhuispleinHoogkarspel->setId($id);
+        $manager->persist($bgRaadhuispleinHoogkarspel);
+        $manager->flush();
+        $bgRaadhuispleinHoogkarspel = $manager->getRepository('App:Organization')->findOneBy(['id' => $id]);
+
+        $id = Uuid::fromString('02ccf2d0-0ba0-4a62-b0fd-5e11cf102814');
+        $bgMolenweiHoogkarspel = new Organization();
+        $bgMolenweiHoogkarspel->setName('Molenwei in Hoogkarspel');
+        $bgMolenweiHoogkarspel->setDescription('Begraafplaats Molenwei in Hoogkarspel');
+        $bgMolenweiHoogkarspel->setRsin('1234');
+        $manager->persist($bgMolenweiHoogkarspel);
+        $bgMolenweiHoogkarspel->setId($id);
+        $manager->persist($bgMolenweiHoogkarspel);
+        $manager->flush();
+        $bgMolenweiHoogkarspel = $manager->getRepository('App:Organization')->findOneBy(['id' => $id]);
+
+        $id = Uuid::fromString('e2653b9a-15f9-4a17-8f95-3a8379a699df');
+        $bgDorpswegSchellinkhout = new Organization();
+        $bgDorpswegSchellinkhout->setName('Dorpsweg in Schellinkhout');
+        $bgDorpswegSchellinkhout->setDescription('Begraafplaats Dorpsweg in Schellinkhout');
+        $bgDorpswegSchellinkhout->setRsin('1234');
+        $manager->persist($bgDorpswegSchellinkhout);
+        $bgDorpswegSchellinkhout->setId($id);
+        $manager->persist($bgDorpswegSchellinkhout);
+        $manager->flush();
+        $bgDorpswegSchellinkhout = $manager->getRepository('App:Organization')->findOneBy(['id' => $id]);
+
+        $id = Uuid::fromString('132151ef-afd0-4e82-a71d-a77aed4cb88f');
+        $bgOosterleek = new Organization();
+        $bgOosterleek->setName('Oosterleek');
+        $bgOosterleek->setDescription('Begraafplaats in Oosterleek');
+        $bgOosterleek->setRsin('1234');
+        $manager->persist($bgOosterleek);
+        $bgOosterleek->setId($id);
+        $manager->persist($bgOosterleek);
+        $manager->flush();
+        $bgOosterleek = $manager->getRepository('App:Organization')->findOneBy(['id' => $id]);
+
+        $id = Uuid::fromString('2bb53f5f-657b-4387-ac1f-3a599e3f3b67');
+        $bgSchoollaanHem = new Organization();
+        $bgSchoollaanHem->setName('Schoollaan in Hem');
+        $bgSchoollaanHem->setDescription('Begraafplaats Schoollaan in Hem');
+        $bgSchoollaanHem->setRsin('1234');
+        $manager->persist($bgSchoollaanHem);
+        $bgSchoollaanHem->setId($id);
+        $manager->persist($bgSchoollaanHem);
+        $manager->flush();
+        $bgSchoollaanHem = $manager->getRepository('App:Organization')->findOneBy(['id' => $id]);
 
         // stedebroec
         $id = Uuid::fromString('a5567d87-ca05-45e9-a888-184494a3c79c');
@@ -219,6 +563,17 @@ class WestfrieslandFixtures extends Fixture
         $manager->persist($style);
         $manager->flush();
 
+        $id = Uuid::fromString('79dfbe93-e26d-426e-80ec-eb33310359ee');
+        $bgRustoord = new Organization();
+        $bgRustoord->setName('Rustoord');
+        $bgRustoord->setDescription('Algemene Begraafplaats "Rustoord"');
+        $bgRustoord->setRsin('1234');
+        $manager->persist($bgRustoord);
+        $bgRustoord->setId($id);
+        $manager->persist($bgRustoord);
+        $manager->flush();
+        $bgRustoord = $manager->getRepository('App:Organization')->findOneBy(['id' => $id]);
+
         // Hoorn
         $id = Uuid::fromString('d736013f-ad6d-4885-b816-ce72ac3e1384');
         $hoorn = new Organization();
@@ -247,6 +602,50 @@ class WestfrieslandFixtures extends Fixture
         $manager->persist($style);
         $manager->flush();
 
+        $id = Uuid::fromString('d503eddf-0641-489d-a390-560b767d501b');
+        $bgZwaag = new Organization();
+        $bgZwaag->setName('Zwaag');
+        $bgZwaag->setDescription('Begraafplaats Zwaag');
+        $bgZwaag->setRsin('1234');
+        $manager->persist($bgZwaag);
+        $bgZwaag->setId($id);
+        $manager->persist($bgZwaag);
+        $manager->flush();
+        $bgZwaag = $manager->getRepository('App:Organization')->findOneBy(['id' => $id]);
+
+        $id = Uuid::fromString('71dd5b37-1001-45ff-be29-a0a3d0dfa130');
+        $bgBerkhouterweg = new Organization();
+        $bgBerkhouterweg->setName('Berkhouterweg');
+        $bgBerkhouterweg->setDescription('Begraafplaats Berkhouterweg');
+        $bgBerkhouterweg->setRsin('1234');
+        $manager->persist($bgBerkhouterweg);
+        $bgBerkhouterweg->setId($id);
+        $manager->persist($bgBerkhouterweg);
+        $manager->flush();
+        $bgBerkhouterweg = $manager->getRepository('App:Organization')->findOneBy(['id' => $id]);
+
+        $id = Uuid::fromString('b1e723e5-39b6-4680-92ba-1a5082767acc');
+        $bgKeern = new Organization();
+        $bgKeern->setName('Keern');
+        $bgKeern->setDescription('Begraafplaats Keern');
+        $bgKeern->setRsin('1234');
+        $manager->persist($bgKeern);
+        $bgKeern->setId($id);
+        $manager->persist($bgKeern);
+        $manager->flush();
+        $bgKeern = $manager->getRepository('App:Organization')->findOneBy(['id' => $id]);
+
+        $id = Uuid::fromString('7aad8969-2085-43cf-b27c-a83c036b137f');
+        $bgZuiderveld = new Organization();
+        $bgZuiderveld->setName('Zuiderveld');
+        $bgZuiderveld->setDescription('Begraafplaats Zuiderveld');
+        $bgZuiderveld->setRsin('1234');
+        $manager->persist($bgZuiderveld);
+        $bgZuiderveld->setId($id);
+        $manager->persist($bgZuiderveld);
+        $manager->flush();
+        $bgZuiderveld = $manager->getRepository('App:Organization')->findOneBy(['id' => $id]);
+
         // Koggenland
         $id = Uuid::fromString('f050292c-973d-46ab-97ae-9d8830a59d15');
         $koggenland = new Organization();
@@ -274,6 +673,83 @@ class WestfrieslandFixtures extends Fixture
         $manager->persist($favicon);
         $manager->persist($style);
         $manager->flush();
+
+        $id = Uuid::fromString('f2f309ac-f9d2-44ed-a522-42db5b437a01');
+        $bgObdam = new Organization();
+        $bgObdam->setName('Obdam');
+        $bgObdam->setDescription('Begraafplaats Obdam');
+        $bgObdam->setRsin('1234');
+        $manager->persist($bgObdam);
+        $bgObdam->setId($id);
+        $manager->persist($bgObdam);
+        $manager->flush();
+        $bgObdam = $manager->getRepository('App:Organization')->findOneBy(['id' => $id]);
+
+        $id = Uuid::fromString('2341e79f-5ef0-4a41-8e4c-d602ca5c8597');
+        $bgUrsem = new Organization();
+        $bgUrsem->setName('Ursem');
+        $bgUrsem->setDescription('Begraafplaats Ursem');
+        $bgUrsem->setRsin('1234');
+        $manager->persist($bgUrsem);
+        $bgUrsem->setId($id);
+        $manager->persist($bgUrsem);
+        $manager->flush();
+        $bgUrsem = $manager->getRepository('App:Organization')->findOneBy(['id' => $id]);
+
+        $id = Uuid::fromString('f3f7b361-1556-4680-9217-c8c1ffdb6a48');
+        $bgAvenhorn = new Organization();
+        $bgAvenhorn->setName('Avenhorn');
+        $bgAvenhorn->setDescription('Begraafplaats Avenhorn');
+        $bgAvenhorn->setRsin('1234');
+        $manager->persist($bgAvenhorn);
+        $bgAvenhorn->setId($id);
+        $manager->persist($bgAvenhorn);
+        $manager->flush();
+        $bgAvenhorn = $manager->getRepository('App:Organization')->findOneBy(['id' => $id]);
+
+        $id = Uuid::fromString('058ac88e-48a4-4240-93bf-9a94d877f83d');
+        $bgOudendijk = new Organization();
+        $bgOudendijk->setName('Oudendijk');
+        $bgOudendijk->setDescription('Begraafplaats Oudendijk');
+        $bgOudendijk->setRsin('1234');
+        $manager->persist($bgOudendijk);
+        $bgOudendijk->setId($id);
+        $manager->persist($bgOudendijk);
+        $manager->flush();
+        $bgOudendijk = $manager->getRepository('App:Organization')->findOneBy(['id' => $id]);
+
+        $id = Uuid::fromString('6904d10e-eb6d-4c1e-83b2-3d5aacf46b86');
+        $bgBerkhout = new Organization();
+        $bgBerkhout->setName('Berkhout');
+        $bgBerkhout->setDescription('Begraafplaats Berkhout');
+        $bgBerkhout->setRsin('1234');
+        $manager->persist($bgBerkhout);
+        $bgBerkhout->setId($id);
+        $manager->persist($bgBerkhout);
+        $manager->flush();
+        $bgBerkhout = $manager->getRepository('App:Organization')->findOneBy(['id' => $id]);
+
+        $id = Uuid::fromString('7b8a014a-ee43-4bf2-a21d-12d0ee3c1e8c');
+        $bgGrosthuizen = new Organization();
+        $bgGrosthuizen->setName('Grosthuizen');
+        $bgGrosthuizen->setDescription('Begraafplaats Grosthuizen');
+        $bgGrosthuizen->setRsin('1234');
+        $manager->persist($bgGrosthuizen);
+        $bgGrosthuizen->setId($id);
+        $manager->persist($bgGrosthuizen);
+        $manager->flush();
+        $bgGrosthuizen = $manager->getRepository('App:Organization')->findOneBy(['id' => $id]);
+
+        $id = Uuid::fromString('3233126a-a9c1-4772-9f86-73a2f79c7675');
+        $bgHensbroek = new Organization();
+        $bgHensbroek->setName('Hensbroek');
+        $bgHensbroek->setDescription('Begraafplaats Hensbroek');
+        $bgHensbroek->setRsin('1234');
+        $manager->persist($bgHensbroek);
+        $bgHensbroek->setId($id);
+        $manager->persist($bgHensbroek);
+        $manager->flush();
+        $bgHensbroek = $manager->getRepository('App:Organization')->findOneBy(['id' => $id]);
 
         // Hogeland
         /*
