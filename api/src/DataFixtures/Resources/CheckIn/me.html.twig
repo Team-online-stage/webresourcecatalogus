@@ -91,7 +91,7 @@
                 <li class="card background--primary card__hover">
                     <a href="#"  class="card__content">
                         {% set yesterday = 'now' | date_modify('-1 days') %}
-                        {% set checkinslast24hours = commonground_resource({'component': 'chin', 'type': 'checkins'},{'node.organization':app.user.organization, 'dateCreated[after]':yesterday})['hydra:member']|length %}
+                        {% set checkinslast24hours = commonground_resource_list({'component': 'chin', 'type': 'checkins'},{'node.organization':app.user.organization, 'dateCreated[after]':yesterday|date("Y-m-d H:i:s")})['hydra:member']|length %}
                         <div class="card__icon flex-center color--primary">{{ checkinslast24hours }}</div>
                         <div class="card__body flex-center"><span
                                 class="card__title color--primary flex-center">{{ 'checkins'|trans|capitalize }}</span>
