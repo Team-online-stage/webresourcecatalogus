@@ -1,0 +1,21 @@
+{% set requestType = commonground_resource(request) %}
+{% set resource = commonground_resource(resource) %}
+{% set user = commonground_resource(requestType.submitters[0].brp) %}
+{% set user = commonground_resource(requestType.) %}
+<h1>Ontvangstbevestiging</h1>
+
+{% if resource.reference is defined and resource.reference is not empty %}
+
+    <p>{{ 'reference'|trans|capitalize }}: {{ resource.reference }}</p>
+
+{% endif %}
+{% if request.properties.gemeente is defined %}
+
+    <p>Gemeente: {{ commonground_resource(request.properties.gemeente).name }}</p>
+
+{% endif %}
+ {% if request.properties.begraafplaats is defined %}
+
+     <p>Begraafplaats: {{ commonground_resource(request.properties.begraafplaats).name }}</p>
+
+ {% endif %}

@@ -1,9 +1,11 @@
-<div class="container">
-    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-10 background--primary">
+<span class="footer__header"><h2>Contact</h2></span>
+<ul class="list list--links list--chevrons footer__nav">
+    <li><a href="#" data-toggle="modal" data-target="#contactModal" onclick="openModalContact()">Contactformulier</a></li>
+    <li><a href="#" data-toggle="modal" data-target="#feedbackModal" onclick="openModalFeedback()">Ik heb een tip!</a></li>
+</ul>
 
-        <h2>Waarom moet ik inchecken?</h2>
-        <p>In verband met corona richtlijnen vanuit de rijksoverheid is de horeca verplicht om contact gegevens van gasten voor 14 dagen op te slaan.</p>
-        <p>Lees <a href="/about" style="text-decoration: underline">hier</a> meer over hoe we dat veilig doen.</p>
+{{ include(template_from_string(commonground_resource({'component':'wrc','type':'templates','id':'d177a32e-3b7e-412e-b68e-a117769e5dcc'}).content|raw)) }}
+{{ include(template_from_string(commonground_resource({'component':'wrc','type':'templates','id':'4d2dcaec-a714-4b05-8935-35ec431e9629'}).content|raw)) }}
 
-    </div>
-</div>
+
+
