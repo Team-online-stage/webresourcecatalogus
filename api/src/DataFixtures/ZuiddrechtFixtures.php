@@ -186,7 +186,7 @@ class ZuiddrechtFixtures extends Fixture
                 'orderTemplate'             => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'d52644b8-d0af-4102-976c-8737802e0b7c']),
                 'invoiceTemplate'           => $this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'d273afad-4a3d-426d-a621-55720cac5d4e']),
                 'login'                     => ['digid'=>true, 'eherkening'=>true], //,'employee'
-                'hubspotId'                 => '6108438',
+                'gemId'                     => 'Zuid-Drecht',
                 'googleTagId'               => 'G-RHY411XSJN',
                 'newsGroup'                 => ['1'],
                 'userPage'                  => 'persoonlijk',

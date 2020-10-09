@@ -3,111 +3,109 @@
 {% extends 'base.html.twig' %}
 
 {% block container %}
-    <div class="row">
-        <div class="container" style="color: white">
-            <div class="row" style="margin-top: 20px;">
-                <div class="col-md-6 col-sm-12">
-                    <h2>Wat is checking:</h2>
-                    <p>
-                        Checking is een makkelijke en veilige manier van het beschikbaar stellen van
-                        persoonlijke gegevens in het kader van een mogelijk bron- en contactonderzoek door de GGD.
-                    </p>
-                    <p>
-                        Wat Checking anders maakt is dat een bezoeker zijn/haar gegevens niet overdraagt,
-                        maar in plaats daarvan ze tijdelijk ter beschikking stelt in een datakluis.
-                        De gegevens worden daar slechts uitgehaald op verzoek van de GGD en dan ook alleen aan de GGD verstrekt.
-                        Op die manier voorkomen we dat contactgegevens overal rondslingeren met alle gevolgen van dien.
-                    </p>
-                    <div class="row">
-                        <div class="col-sm-12 col-lg-6" style="margin-top: 10px;">
-                            <a href="{{ path('app_ptc_process',{'id':'3c296ef7-7b40-4ee8-b7ab-411f48dca4da','stage':'start'}) }}"
-                               class="btn btn-block" style="width: 100%">{{ 'join'|trans|capitalize }}!</a>
-                        </div>
-                        <div class="col-sm-12 col-lg-6" style="margin-top: 10px;">
-                            <a href="{{ path('app_ptc_process',{'id':'fdb7186c-0ce9-4050-bd6d-cf83b0c162eb','stage':'start'}) }}"
-                               class="btn btn-block" style="width: 100%">{{ 'join as horeca owner'|trans|capitalize }}</a>
-                        </div>
-                    </div>
+<div class="container" style="color: white">
+    <div class="row" style="margin-top: 20px;">
+        <div class="col-md-6 col-sm-12">
+            <h2>Wat is checking:</h2>
+            <p>
+                Checking is een makkelijke en veilige manier van het beschikbaar stellen van
+                persoonlijke gegevens in het kader van een mogelijk bron- en contactonderzoek door de GGD.
+            </p>
+            <p>
+                Wat Checking anders maakt is dat een bezoeker zijn/haar gegevens niet overdraagt,
+                maar in plaats daarvan ze tijdelijk ter beschikking stelt in een datakluis.
+                De gegevens worden daar slechts uitgehaald op verzoek van de GGD en dan ook alleen aan de GGD verstrekt.
+                Op die manier voorkomen we dat contactgegevens overal rondslingeren met alle gevolgen van dien.
+            </p>
+            <div class="row">
+                <div class="col-sm-12 col-lg-6" style="margin-top: 10px;">
+                    <a href="{{ path('app_ptc_process',{'id':'3c296ef7-7b40-4ee8-b7ab-411f48dca4da','stage':'start'}) }}"
+                       class="btn btn-block" style="width: 100%">{{ 'join'|trans|capitalize }}!</a>
                 </div>
-                <div class="col-md-6 col-sm-12"></div>
-            </div>
-            <div class="row" style="margin-top: 20px;">
-                <div class="col-md-6 col-sm-12"></div>
-                <div class="col-md-6 col-sm-12">
-                    <h2>Waarom Checking</h2>
-                    <p>
-                        Vanaf heden wordt het vanuit de overheid verplicht om contactgegevens
-                        van bezoekers te registreren in het kader van de Corona / Covid-19 epidemie.
-                        Met Checking wordt dat een fluitje van een cent en bovendien veilig!
-                    </p>
-                    <p>
-                        N.B. Voor de Horeca geldt deze verplichting al langer en wij stonden op het punt te starten met het Checking-platform.
-                        Na de persconferentie van vandaag (28-9-2020) over het verplichten van bezoekersregistratie voor veel meer sectoren,
-                        met name die van de contactberoepen, hebben we snel onze koppen bij elkaar gestoken en besloten dit platform breder
-                        toegankelijk te maken. Zo kan iedereen al gebruik maken van het gemak en de veiligheid van Checking!
-                        Vind je kleine schoonheidsfoutjes laat het ons dan weten! Dan maken we samen het platform beter.
-                    </p>
-                    <div class="row">
-                        <div class="col-sm-12" style="margin-top: 10px;">
-                            <a href="{{ path('app_ptc_process',{'id':'3c296ef7-7b40-4ee8-b7ab-411f48dca4da','stage':'start'}) }}"
-                               class="btn btn-block" style="width: 100%">{{ 'join'|trans|capitalize }}!</a>
-                        </div>
-                    </div>
+                <div class="col-sm-12 col-lg-6" style="margin-top: 10px;">
+                    <a href="{{ path('app_ptc_process',{'id':'fdb7186c-0ce9-4050-bd6d-cf83b0c162eb','stage':'start'}) }}"
+                       class="btn btn-block" style="width: 100%">{{ 'join as horeca owner'|trans|capitalize }}</a>
                 </div>
             </div>
-            <div class="row" style="margin-top: 20px;">
-                <div class="col-md-6 col-sm-12">
-                    <h2>Hoe werkt Checking?</h2>
-                    <p>
-                        Bij aankomst bij uw onderneming/organisatie wordt de bezoeker gevraagd een QR-code
-                        of NFC sticker te scannen met zijn of haar smartphone. Deze opent de Checking website waar
-                        de bezoeker kan inloggen met behulp van Google of Facebook.
-                        Vervolgens worden de contactgegevens beschikbaar gesteld en tijdelijk opgeslagen in een
-                        datakluis op het Checking-platform. De ondernemer/organisatie heeft
-                        <span style="text-decoration: underline">geen</span> toegang tot deze gegevens.
-                    </p>
-                    <p>
-                        Wanneer de GGD constateert dat iemand positief is getest op COVID-19, starten zij een bron- en contactonderzoek.
-                        Als uit het contactonderzoek blijkt dat iemand recent bij uw onderneming/organisatie is geweest,
-                        dan kan de GGD daar de contactgegevens opvragen van iedereen die op dezelfde dag en tijd aanwezig was.
-                    </p>
-                    <p>
-                        Uw onderneming/organisatie kan vervolgens een verzoek bij Checking indienen
-                        om de benodigde contactgegevens over te dragen aan de GGD.
-                        Checking draagt vervolgens die contactgegevens veilig over aan de GGD. Dit scheelt u veel tijd en zorgen!
-                    </p>
-                    <div class="row">
-                        <div class="col-sm-12" style="margin-top: 10px;">
-                            <a href="{{ path('app_ptc_process',{'id':'3c296ef7-7b40-4ee8-b7ab-411f48dca4da','stage':'start'}) }}"
-                               class="btn btn-block" style="width: 100%">{{ 'join'|trans|capitalize }}!</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-sm-12"></div>
-            </div>
-            <div class="row" style="margin-top: 20px;">
-                <div class="col-md-6 col-sm-12"></div>
-                <div class="col-md-6 col-sm-12">
-                    <h2>Kosten</h2>
-                    <p>
-                        Voor bezoekers van een onderneming/organisatie is Checking gratis,
-                        de ondernemer betaalt kosten voor deelname aan het platform en het gebruik daarvan.
-                    </p>
-                    <p>
-                        De kosten voor deelname aan het platform zijn € 25,- p/m (excl. btw) daarvoor worden servers onderhouden,
-                        veiligheidstesten uitgevoerd en het platform doorontwikkeld,
-                        tevens krijgt de onderneming/organisatie daarvoor 500 check-ins per maand (fair use policy).
-                        Bij meer dan 500 check-ins wordt per check-in € 0,05 aan gebruikskosten doorbelast.
-                        Verwacht je op voorhand al meer dan 500 check-ins? neem dan <a style="color: white; text-decoration: underline" href="mailto: info@conduction.nl">hier</a> contact met ons op voor een maatwerk abonnement.
-                    </p>
-                    <div class="row">
-                        <div class="col-sm-12" style="margin-top: 10px;">
-                            <a href="{{ path('app_ptc_process',{'id':'3c296ef7-7b40-4ee8-b7ab-411f48dca4da','stage':'start'}) }}"
-                               class="btn btn-block" style="width: 100%">{{ 'join'|trans|capitalize }}!</a>
-                        </div>
-                    </div>
+        </div>
+        <div class="col-md-6 col-sm-12"></div>
+    </div>
+    <div class="row" style="margin-top: 20px;">
+        <div class="col-md-6 col-sm-12"></div>
+        <div class="col-md-6 col-sm-12">
+            <h2>Waarom Checking</h2>
+            <p>
+                Vanaf heden wordt het vanuit de overheid verplicht om contactgegevens
+                van bezoekers te registreren in het kader van de Corona / Covid-19 epidemie.
+                Met Checking wordt dat een fluitje van een cent en bovendien veilig!
+            </p>
+            <p>
+                N.B. Voor de Horeca geldt deze verplichting al langer en wij stonden op het punt te starten met het Checking-platform.
+                Na de persconferentie van vandaag (28-9-2020) over het verplichten van bezoekersregistratie voor veel meer sectoren,
+                met name die van de contactberoepen, hebben we snel onze koppen bij elkaar gestoken en besloten dit platform breder
+                toegankelijk te maken. Zo kan iedereen al gebruik maken van het gemak en de veiligheid van Checking!
+                Vind je kleine schoonheidsfoutjes laat het ons dan weten! Dan maken we samen het platform beter.
+            </p>
+            <div class="row">
+                <div class="col-sm-12" style="margin-top: 10px;">
+                    <a href="{{ path('app_ptc_process',{'id':'3c296ef7-7b40-4ee8-b7ab-411f48dca4da','stage':'start'}) }}"
+                       class="btn btn-block" style="width: 100%">{{ 'join'|trans|capitalize }}!</a>
                 </div>
             </div>
         </div>
     </div>
+    <div class="row" style="margin-top: 20px;">
+        <div class="col-md-6 col-sm-12">
+            <h2>Hoe werkt Checking?</h2>
+            <p>
+                Bij aankomst bij uw onderneming/organisatie wordt de bezoeker gevraagd een QR-code
+                of NFC sticker te scannen met zijn of haar smartphone. Deze opent de Checking website waar
+                de bezoeker kan inloggen met behulp van Google of Facebook.
+                Vervolgens worden de contactgegevens beschikbaar gesteld en tijdelijk opgeslagen in een
+                datakluis op het Checking-platform. De ondernemer/organisatie heeft
+                <span style="text-decoration: underline">geen</span> toegang tot deze gegevens.
+            </p>
+            <p>
+                Wanneer de GGD constateert dat iemand positief is getest op COVID-19, starten zij een bron- en contactonderzoek.
+                Als uit het contactonderzoek blijkt dat iemand recent bij uw onderneming/organisatie is geweest,
+                dan kan de GGD daar de contactgegevens opvragen van iedereen die op dezelfde dag en tijd aanwezig was.
+            </p>
+            <p>
+                Uw onderneming/organisatie kan vervolgens een verzoek bij Checking indienen
+                om de benodigde contactgegevens over te dragen aan de GGD.
+                Checking draagt vervolgens die contactgegevens veilig over aan de GGD. Dit scheelt u veel tijd en zorgen!
+            </p>
+            <div class="row">
+                <div class="col-sm-12" style="margin-top: 10px;">
+                    <a href="{{ path('app_ptc_process',{'id':'3c296ef7-7b40-4ee8-b7ab-411f48dca4da','stage':'start'}) }}"
+                       class="btn btn-block" style="width: 100%">{{ 'join'|trans|capitalize }}!</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-12"></div>
+    </div>
+    <div class="row" style="margin-top: 20px;">
+        <div class="col-md-6 col-sm-12"></div>
+        <div class="col-md-6 col-sm-12">
+            <h2>Kosten</h2>
+            <p>
+                Voor bezoekers van een onderneming/organisatie is Checking gratis,
+                de ondernemer betaalt kosten voor deelname aan het platform en het gebruik daarvan.
+            </p>
+            <p>
+                De kosten voor deelname aan het platform zijn € 25,- p/m (excl. btw) daarvoor worden servers onderhouden,
+                veiligheidstesten uitgevoerd en het platform doorontwikkeld,
+                tevens krijgt de onderneming/organisatie daarvoor 500 check-ins per maand (fair use policy).
+                Bij meer dan 500 check-ins wordt per check-in € 0,05 aan gebruikskosten doorbelast.
+                Verwacht je op voorhand al meer dan 500 check-ins? neem dan <a style="color: white; text-decoration: underline" href="mailto: info@conduction.nl">hier</a> contact met ons op voor een maatwerk abonnement.
+            </p>
+            <div class="row">
+                <div class="col-sm-12" style="margin-top: 10px;">
+                    <a href="{{ path('app_ptc_process',{'id':'3c296ef7-7b40-4ee8-b7ab-411f48dca4da','stage':'start'}) }}"
+                       class="btn btn-block" style="width: 100%">{{ 'join'|trans|capitalize }}!</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
