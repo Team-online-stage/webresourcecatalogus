@@ -89,9 +89,9 @@
                     </a>
                 </li>
                 <li class="card background--primary card__hover">
-                    <a href="{{ path('app_chin_checkinstatistics') }}"  class="card__content">
+                    <a href="#"  class="card__content">
                         {% set yesterday = 'now' | date_modify('-1 days') %}
-                        {% set checkinslast24hours = commonground_resource({'component': 'chin', 'type': 'checkins'},{'organization':app.user.organization, 'dateCreated[after]':yesterday})['hydra:member']|length %}
+                        {% set checkinslast24hours = commonground_resource_list({'component': 'chin', 'type': 'checkins'},{'node.organization':app.user.organization, 'dateCreated[after]':yesterday|date("Y-m-d H:i:s")})['hydra:member']|length %}
                         <div class="card__icon flex-center color--primary">{{ checkinslast24hours }}</div>
                         <div class="card__body flex-center"><span
                                 class="card__title color--primary flex-center">{{ 'checkins'|trans|capitalize }}</span>
@@ -112,7 +112,7 @@
             </ul>
             <ul class="list list--card" style="margin-bottom: 0;">
                 <li class="card background--primary card__hover">
-                    <a href="{{ path('app_wrc_organization') }}" class="card__content">
+                    <a href="{{ path('app_chin_organization') }}" class="card__content">
                         <div class="card__icon flex-center color--primary"><i
                                 class="fas fa-building fa-4x"></i></div>
                         <div class="card__body flex-center"><span
