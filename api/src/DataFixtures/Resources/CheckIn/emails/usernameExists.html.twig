@@ -1,8 +1,26 @@
-Beste {% if receiver.givenName is defined  %}{{ receiver.givenName }}{% endif %},
+<table align="center"  style="background-color: #F5F5F5; width: 100%; padding: 5px; max-width: 1200px;">
+    <tr>
+        <td align="center" style="text-align: -webkit-center">
+            <table style="width: 80%; background-color: white;">
+                <tr>
+                    <td style="width: 100%; height: fit-content; background-color: #01689B">
+                        <h1 style=" margin: 15px 0 15px 30px; color: white; font-family: Verdana,serif; ">Checking</h1>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p style="margin: 15px 30px 0 30px">Beste {% if receiver.givenName is defined  %}{{ receiver.givenName }}{% endif %},</p>
 
-<p>Er is zojuist een poging gedaan om deel te nemen aan checkin met uw email adres</p>
-<p>Bent u uw wachtwoord vergeten? Klik dan <a href="https://dev.checking.nu/me">hier</a> om uw wachtwoord te wijzigen.</p>
-<p>Heeft u deze aanvraag niet zelf opgestart neem dan contact op met <a href="mailto:security@conduction.nl"></a>security@conduction.nl</p>
+                        <p style="margin: 15px 30px 0 30px">Er is zojuist een poging gedaan om deel te nemen aan checkin met uw email adres</p>
+                        <p style="margin: 15px 30px 0 30px">Bent u uw wachtwoord vergeten? Klik dan <a href="https://{% if app_env == 'dev' %}dev.{% endif %}checking.nu/chin/reset">hier</a> om uw wachtwoord te wijzigen.</p>
+                        <p style="margin: 15px 30px 0 30px">Heeft u deze aanvraag niet zelf opgestart neem dan contact op met <a href="mailto:security@conduction.nl"></a>security@conduction.nl</p>
 
-<p>Met vriendelijke groet,</p>
-{% if sender.name is defined  %}{{ sender.name }}{% endif %}
+                        <p style="margin: 15px 30px 0 30px">Met vriendelijke groet,</p>
+                        <p style="margin: 15px 30px 0 30px">{% if sender.name is defined  %}{{ sender.name }}{% endif %}</p>
+                        <p></p>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>

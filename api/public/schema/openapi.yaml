@@ -6520,121 +6520,29 @@ paths:
           style: form
           explode: true
         -
+          name: menu.id
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'menu.id[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+        -
           name: name
           in: query
           required: false
           schema:
             type: string
         -
-          name: 'name[]'
-          in: query
-          required: false
-          schema:
-            type: array
-            items:
-              type: string
-          style: form
-          explode: true
-        -
           name: description
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'description[]'
-          in: query
-          required: false
-          schema:
-            type: array
-            items:
-              type: string
-          style: form
-          explode: true
-        -
-          name: order
-          in: query
-          required: false
-          schema:
-            type: integer
-        -
-          name: 'order[]'
-          in: query
-          required: false
-          schema:
-            type: array
-            items:
-              type: integer
-          style: form
-          explode: true
-        -
-          name: icon
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'icon[]'
-          in: query
-          required: false
-          schema:
-            type: array
-            items:
-              type: string
-          style: form
-          explode: true
-        -
-          name: type
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'type[]'
-          in: query
-          required: false
-          schema:
-            type: array
-            items:
-              type: string
-          style: form
-          explode: true
-        -
-          name: href
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'href[]'
-          in: query
-          required: false
-          schema:
-            type: array
-            items:
-              type: string
-          style: form
-          explode: true
-        -
-          name: dateCreated
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'dateCreated[]'
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: dateModified
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'dateModified[]'
           in: query
           required: false
           schema:
@@ -15603,12 +15511,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-09-29 15:22:14'
+        example: '2020-10-09 10:21:05'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-09-29 15:22:14'
+        example: '2020-10-09 10:21:05'
     required: []
   ChangeLog-write:
     properties:
@@ -15722,12 +15630,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-09-29 15:22:14'
+        example: '2020-10-09 10:21:05'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-09-29 15:22:14'
+        example: '2020-10-09 10:21:05'
     required: []
   AuditTrail-write:
     properties:
