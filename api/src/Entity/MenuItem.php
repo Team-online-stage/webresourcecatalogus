@@ -53,7 +53,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ApiFilter(BooleanFilter::class)
  * @ApiFilter(OrderFilter::class)
  * @ApiFilter(DateFilter::class, strategy=DateFilter::EXCLUDE_NULL)
- * @ApiFilter(SearchFilter::class)
+ * @ApiFilter(SearchFilter::class, properties={"id": "exact", "menu.id": "exact", "name": "partial", "description": "partial"})
  */
 class MenuItem implements Translatable
 {
@@ -171,6 +171,7 @@ class MenuItem implements Translatable
     private $menu;
 
     /**
+     * @Groups({"read"})
      * @Gedmo\Locale
      * Used locale to override Translation listener`s locale
      * this is not a mapped field of entity metadata, just a simple property

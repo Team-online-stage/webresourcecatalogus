@@ -2,249 +2,122 @@
 
 {% extends 'base.html.twig' %}
 {% block container %}
-
-    <div id="myModal" class="modal">
-
-
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <p>naam stagair</p>
-            <p>telefoon nummer</p>
-            <p>E-mailadres</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent et orci et turpis fermentum aliquam et
-                id nulla. Etiam dignissim quam eget molestie semper. Ut id venenatis enim, eu dapibus augue. In interdum
-                metus sed venenatis accumsan. Vestibulum ullamcorper condimentum pretium. Aliquam dictum lobortis metus,
-                id mattis magna rhoncus in. Praesent pretium nec neque sit amet hendrerit. Mauris viverra neque congue,
-                faucibus neque quis, hendrerit diam. Integer mattis, diam in suscipit molestie, nulla nibh sodales leo,
-                sit amet consectetur lorem enim in risus. Duis vestibulum, elit vel ultrices elementum, sem lectus
-                interdum lectus, a pellentesque massa arcu a est. Nunc eu nulla bibendum, ullamcorper massa sed,
-                elementum elit. Aenean luctus semper ante, nec lacinia orci scelerisque at. Phasellus accumsan mattis
-                tortor, a bibendum leo suscipit in. In eleifend est at massa dictum fermentum. </p>
-            <div class="container" style="margin-top: 20px">
-                <div class="row">
-                    <div class="col-md-8" style="float: none;margin: auto">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <ul class="list list--card">
-                                    <li class="card background--primary card__hover">
-                                        <a href="#" class="card__content">
-                                            <div class="card__icon flex-center color--primary"><i
-                                                    class="fas fa-user-check fa-5x"></i></div>
-                                            <div class="card__body flex-center"><span
-                                                    class="card__title color--primary flex-center">verstuur een contact verzoek</span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div><!-- /.col -->
-                        </div><!-- /.row -->
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </div>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&amp;display=swap" rel="stylesheet">
     <style>
-
-
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgb(0, 0, 0);
-            background-color: rgba(0, 0, 0, 0.4);
+        main {
+            background-color: white;
+        }
+        .titlestyle{
+            font-family: 'Lobster', cursive
+        }
+        .textcolor{
+            color: white;
+        }
+        .bluebox{
+            background-color: #263846;
+            height:300px;
+        }
+        .greycards {
+            background-color: #406377;
+            margin-top: -50px;
+            margin-left: 100px;
+            height: 120px;
+            width: 60%;
+            text-align: center;
+            border-style: solid;
+            border-color: black;
+            position: relative
+        }
+        .list--card-small {
+            margin-left: 0px;
+            margin-top: 0px;
         }
 
-        /* Modal Content/Box */
-        .modal-content {
-            background-color: #fefefe;
-            margin: 15% auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%;
-        }
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
-
-        .close:hover,
-        .close:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
-        }
 
     </style>
-
-    <main class="skiplink-target main" id="content" tabindex="-1">
-        <div id="filters">
-            <div style="display: flex; justify-content: center; margin-top: 5px">
-                <div id="zoekbalk" style="background-color: #01689b; display: inline-block; padding: 20px"><h2
-                        style="color: white">ik zoek een stagiair in de sector:</h2><input type="text" id="Input"
-                                                                                           onkeyup="zoekfilter()"
-                                                                                           placeholder="ICT"></div>
+    <div class="container">
+        <h2 class="titlestyle">Stage filter</h2>
+        <div class="row">
+            <div class="col-xs-12 col-lg-4">
+                <div class="bluebox"></div>
             </div>
-            <div id="kaarten">
-                <ul class="list list--card list--card-small" id="stages" style="display: flex; flex-wrap: wrap;justify-content: center;
-  align-items: center">
-                    <li class="card card--small"
-                        style="width: 30%; margin: 5px; border-radius: 25px; background-color: #01689b">
-                        <a href="#" class="card__content">
-                            <div class="card__thumb" style="border: #0d5aa7"></div>
-                            <div class="card__body"><span class="card__title" style="color: white">naam</span>
-                                <p class="card__content" style="color: white">opleiding</p>
-                                <p class="card__content" style="color: white">ICT</p>
-                                <p class="card__content" style="color: white">leeftijd</p>
-                                <p class="card__content" style="color: white">leerjaar</p>
-                            </div>
-                        </a>
+            <div class="col-xs-12 col-lg-8">
+                <ul class="list list--card list--card-small">
+                    <li class="greycards">
+                        <div class="card__body flex-center">
+                            <h2 class="textcolor"> Ik zoek een stageplek in de buurt :</h2>
+                            <input type="text" id="Input2" onkeyup="stagefilter()" placeholder="Plaats/postcode">
+                        </div>
                     </li>
-                    <li class="card card--small"
-                        style="width: 30%; margin: 5px; border-radius: 25px; background-color: #01689b ">
-                        <a href="#" class="card__content" id="kaartje">
-                            <div class="card__thumb" style="border: #0d5aa7"></div>
-                            <div class="card__body"><span class="card__title" style="color: white">peter</span>
-                                <p class="card__content" style="color: white">opleiding</p>
-                                <p class="card__content" style="color: white">Zorg</p>
-                                <p class="card__content" style="color: white">leeftijd</p>
-                                <p class="card__content" style="color: white">leerjaar</p>
-                            </div>
-                        </a>
+                    <br>
+                    <li class="greycards">
+                        <div class="card__body flex-center">
+                            <h2 class="textcolor"> Ik zoek een stageplek in de buurt :</h2>
+                            <input type="text" id="Input2" onkeyup="stagefilter()" placeholder="Plaats/postcode">
+                        </div>
                     </li>
-                    <li class="card card--small"
-                        style="width: 30%; margin: 5px; border-radius: 25px; background-color: #01689b ">
-                        <a href="#" class="card__content">
-                            <div class="card__thumb" style="border: #0d5aa7"></div>
-                            <div class="card__body"><span class="card__title" style="color: white">naam</span>
-                                <p class="card__content" style="color: white">opleiding</p>
-                                <p class="card__content" style="color: white">Horeca</p>
-                                <p class="card__content" style="color: white">leeftijd</p>
-                                <p class="card__content" style="color: white">leerjaar</p>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="card card--small"
-                        style="width: 30%; margin: 5px; border-radius: 25px; background-color: #01689b ">
-                        <a href="#" class="card__content">
-                            <div class="card__thumb" style="border: #0d5aa7"></div>
-                            <div class="card__body"><span class="card__title" style="color: white">naam</span>
-                                <p class="card__content" style="color: white">opleiding</p>
-                                <p class="card__content" style="color: white">ICT</p>
-                                <p class="card__content" style="color: white">leeftijd</p>
-                                <p class="card__content" style="color: white">leerjaar</p>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="card card--small"
-                        style="width: 30%; margin: 5px; border-radius: 25px; background-color: #01689b ">
-                        <a href="#" class="card__content">
-                            <div class="card__thumb" style="border: #0d5aa7"></div>
-                            <div class="card__body"><span class="card__title" style="color: white">naam</span>
-                                <p class="card__content" style="color: white">opleiding</p>
-                                <p class="card__content" style="color: white">Bouw</p>
-                                <p class="card__content" style="color: white">leeftijd</p>
-                                <p class="card__content" style="color: white">leerjaar</p>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="card card--small"
-                        style="width: 30%; margin: 5px; border-radius: 25px; background-color: #01689b ">
-                        <a href="#" class="card__content">
-                            <div class="card__thumb" style="border: #0d5aa7"></div>
-                            <div class="card__body"><span class="card__title" style="color: white">naam</span>
-                                <p class="card__content" style="color: white">opleiding</p>
-                                <p class="card__content" style="color: white">Bouw</p>
-                                <p class="card__content" style="color: white">leeftijd</p>
-                                <p class="card__content" style="color: white">leerjaar</p>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="card card--small"
-                        style="width: 30%; margin: 5px; border-radius: 25px; background-color: #01689b ">
-                        <a href="#" class="card__content">
-                            <div class="card__thumb" style="border: #0d5aa7"></div>
-                            <div class="card__body"><span class="card__title" style="color: white">naam</span>
-                                <p class="card__content" style="color: white">opleiding</p>
-                                <p class="card__content" style="color: white">Sport</p>
-                                <p class="card__content" style="color: white">leeftijd</p>
-                                <p class="card__content" style="color: white">leerjaar</p>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="card card--small"
-                        style="width: 30%; margin: 5px; border-radius: 25px; background-color: #01689b ">
-                        <a href="#" class="card__content">
-                            <div class="card__thumb" style="border: #0d5aa7"></div>
-                            <div class="card__body"><span class="card__title" style="color: white">naam</span>
-                                <p class="card__content" style="color: white">opleiding</p>
-                                <p class="card__content" style="color: white">Geneeskunde</p>
-                                <p class="card__content" style="color: white">leeftijd</p>
-                                <p class="card__content" style="color: white">leerjaar</p>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="card card--small"
-                        style="width: 30%; margin: 5px; border-radius: 25px; background-color: #01689b ">
-                        <a href="#" class="card__content">
-                            <div class="card__thumb" style="border: #0d5aa7"></div>
-                            <div class="card__body"><span class="card__title" style="color: white">naam</span>
-                                <p class="card__content" style="color: white">opleiding</p>
-                                <p class="card__content" style="color: white">Geneeskunde</p>
-                                <p class="card__content" style="color: white">leeftijd</p>
-                                <p class="card__content" style="color: white">leerjaar</p>
-                            </div>
-                        </a>
+                    <br>
+                    <li class="greycards">
+                        <div class="card__body flex-center">
+                            <h2 class="textcolor"> Ik zoek een stageplek in de buurt :</h2>
+                            <input type="text" id="Input2" onkeyup="stagefilter()" placeholder="Plaats/postcode">
+                        </div>
                     </li>
                 </ul>
             </div>
         </div>
-    </main>
-
-    <script>
-
-        function zoekfilter() {
-            var input, filter, ul, li, a, i, txtValue;
-            input = document.getElementById('Input');
-            filter = input.value.toUpperCase();
-            ul = document.getElementById("filters");
-            li = ul.getElementsByTagName('li');
-
-            for (i = 0; i < li.length; i++) {
-                a = li[i].getElementsByTagName("a")[0];
-                txtValue = a.textContent || a.innerText;
-                if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                    li[i].style.display = "";
-                } else {
-                    li[i].style.display = "none";
-                }
-            }
-        }
+    </div>
 
 
 
-        var modal = document.getElementById("myModal");
-        var btn = document.getElementById('kaartje');
-        var span = document.getElementsByClassName("close")[0];
 
 
-        btn.onclick = function () {
-            modal.style.display = "block";
-        }
-        span.onclick = function () {
-            modal.style.display = "none";
-        }
-        window.onclick = function (event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
-        }
-    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div style="display: flex; margin-bottom: 100px">
+        <div style="background-color: #406377;
+margin-top: -50px;margin-left: 100px;height: 120px;width: 60%;text-align: center;border-style: solid;
+border-color: black;position: relative">
+            <h2 style="color: white">    Ik zoek een stageplek in de buurt :</h2>
+            <input type="text" id="Input2" onkeyup="stagefilter()" placeholder="Plaats/postcode"></div>
+
+        <img src="afbeeldingen/Studenten-los_10.png" height="190" width="60"
+             style="margin-top: -85px;margin-left: 70px;position: absolute"/>
+    </div>
+
+
+
+    <div style="display: flex; margin-bottom: 100px">
+        <div style="background-color: #406377;margin-top: -50px;margin-left: 100px;height: 120px;width: 60%;
+text-align: center;border-style: solid;border-color: black;position: relative">
+            <h2 style="color: white">    Ik zoek een stageplek in de buurt :</h2>
+            <input type="text" id="Input3" onkeyup="stagefilter()" placeholder="Plaats/postcode"></div>
+
+        <img src="afbeeldingen/Studenten-los_08.png" height="190" width="60"
+             style="margin-top: -85px;margin-left: 70px;position: absolute"/>
+    </div>
+
+
+    <div style="display: flex; margin-bottom: 100px">
+        <div style="background-color: #406377;
+margin-top: -50px;margin-left: 100px;height: 120px;width: 60%;text-align: center;border-style: solid;
+border-color: black;position: relative">
+            <h2 style="color: white">    Ik zoek een stageplek in de buurt :</h2>
+            <input type="text" id="Input4" onkeyup="stagefilter()" placeholder="Plaats/postcode"></div>
+
+        <img src="afbeeldingen/Studenten-los_12.png" height="190" width="60"
+             style="margin-top: -85px;margin-left: 70px;position: absolute"/></div>
+
 {% endblock %}

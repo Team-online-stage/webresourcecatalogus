@@ -160,6 +160,13 @@ class Template implements Translatable
     private $content;
 
     /**
+     * @var array Optional variables ussed during rendering
+     *
+     * @Groups({"read","write"})
+     */
+    private $variables = [];
+
+    /**
      * @var string The template engine used to render this template. Schould be either twig (Twig), md (Markdown) or rst (reStructuredText)
      *
      * @example twig
@@ -202,6 +209,7 @@ class Template implements Translatable
     private $templateGroups;
 
     /**
+     * @Groups({"read"})
      * @Gedmo\Locale
      * Used locale to override Translation listener`s locale
      * this is not a mapped field of entity metadata, just a simple property
@@ -302,6 +310,18 @@ class Template implements Translatable
     public function setContent(string $content): self
     {
         $this->content = $content;
+
+        return $this;
+    }
+
+    public function getVariables(): ?array
+    {
+        return $this->variables;
+    }
+
+    public function setVariables(array $variables): self
+    {
+        $this->variables = $variables;
 
         return $this;
     }
