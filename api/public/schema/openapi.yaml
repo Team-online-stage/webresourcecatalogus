@@ -12,7 +12,7 @@ info:
     - Docker Image: [online](https://hub.docker.com/repository/docker/conduction/wrc-php) 
     - Datamodel: [postman](/schema/wrc.postman_collection.json) / [oas](/schema/openapi.yaml) / [pdf](/schema/datamodel.pdf) / [modelio (zip)](/schema/Datamodel_Modelio.zip) 
     
-    Naast deze JSON rest API is er ook een [graphql](/graphql) interface beschikbaar.         
+    'Naast deze JSON rest API is er ook een [graphql](/graphql) interface beschikbaar.'         
     
 paths:
   '/adresses/{id}/audit_trail':
@@ -14062,6 +14062,15 @@ components:
             url: 'http://schema.org/url'
           type: string
           nullable: true
+        parentOrganization:
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Organization-read'
+        childOrganizations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Organization-read'
       required:
         - rsin
         - chamberOfComerce
@@ -14100,6 +14109,11 @@ components:
             url: 'http://schema.org/url'
           type: string
           nullable: true
+        parentOrganization:
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Organization-write'
     'Organization:jsonld-read':
       type: object
       description: 'An organization as active on commonground.'
@@ -14156,6 +14170,15 @@ components:
             url: 'http://schema.org/url'
           type: string
           nullable: true
+        parentOrganization:
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Organization:jsonld-read'
+        childOrganizations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Organization:jsonld-read'
       required:
         - rsin
         - chamberOfComerce
@@ -14203,6 +14226,11 @@ components:
             url: 'http://schema.org/url'
           type: string
           nullable: true
+        parentOrganization:
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Organization:jsonld-write'
     Slug-read:
       type: object
       description: 'Your slug connects your application with your pages.'
@@ -14980,6 +15008,8 @@ definitions:
         format: url
         maxLength: 255
       style: []
+      parentOrganization: []
+      childOrganizations: []
     required:
       - rsin
       - chamberOfComerce
@@ -15012,6 +15042,7 @@ definitions:
         format: url
         maxLength: 255
       style: []
+      parentOrganization: []
     required:
       - rsin
       - chamberOfComerce
@@ -15511,12 +15542,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-10-09 10:21:05'
+        example: '2020-10-12 13:44:24'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-10-09 10:21:05'
+        example: '2020-10-12 13:44:24'
     required: []
   ChangeLog-write:
     properties:
@@ -15630,12 +15661,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-10-09 10:21:05'
+        example: '2020-10-12 13:44:24'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-10-09 10:21:05'
+        example: '2020-10-12 13:44:24'
     required: []
   AuditTrail-write:
     properties:
