@@ -76,7 +76,6 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $manager->flush();
         $favicon = $manager->getRepository('App:Image')->findOneBy(['id'=> $id]);
 
-
         $style = new Style();
         $style->setName('Cafe de zotte raaf');
         $style->setDescription('Huistlijl Cafe de zotte raaf');
