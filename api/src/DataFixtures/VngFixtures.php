@@ -47,10 +47,16 @@ class VngFixtures extends Fixture
         $manager->flush();
         $organisation = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
 
+        $id = Uuid::fromString('f816f810-2206-4108-99d9-fe4f467a093f');
         $favicon = new Image();
         $favicon->setName('VNG Favicon');
         $favicon->setDescription('Favicon VNG');
         $favicon->setOrganization($organisation);
+        $manager->persist($favicon);
+        $favicon->setId($id);
+        $manager->persist($favicon);
+        $manager->flush();
+        $favicon = $manager->getRepository('App:Image')->findOneBy(['id'=> $id]);
 
         $logo = new Image();
         $logo->setName('VNG Logo');
@@ -69,7 +75,6 @@ class VngFixtures extends Fixture
         $organisation->setLogo($logo);
 
         $manager->persist($organisation);
-        $manager->persist($favicon);
         $manager->persist($logo);
         $manager->persist($style);
 

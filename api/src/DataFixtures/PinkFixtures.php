@@ -54,10 +54,16 @@ class PinkFixtures extends Fixture
         $manager->flush();
         $organisation = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
 
+        $id = Uuid::fromString('6635f156-9d88-46c2-976e-0bc31043c4b2');
         $favicon = new Image();
         $favicon->setName('Pink Roccade');
         $favicon->setDescription('Pink Roccade');
         $favicon->setOrganization($organisation);
+        $manager->persist($favicon);
+        $favicon->setId($id);
+        $manager->persist($favicon);
+        $manager->flush();
+        $favicon = $manager->getRepository('App:Image')->findOneBy(['id'=> $id]);
 
         $logo = new Image();
         $logo->setName('Pink Roccade Logo');
@@ -93,7 +99,6 @@ class PinkFixtures extends Fixture
         $style->addOrganization($organisation);
 
         $manager->persist($organisation);
-        $manager->persist($favicon);
         $manager->persist($logo);
         $manager->persist($style);
 
