@@ -975,29 +975,6 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $manager->persist($slug);
         $manager->flush();
 
-        $id = Uuid::fromString('05ddfa08-9467-4f02-a235-67b9c280bdc1');
-        $template = new Template();
-        $template->setTemplateEngine('twig');
-        $template->setTranslatableLocale('nl'); // change locale
-        $template->setName('CheckIn.nu Cookies');
-        $template->setDescription('Cookies page voor CheckIn.nu');
-        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/CheckIn/cookies.html.twig', 'r'));
-        $template->setTemplateEngine('twig');
-        $manager->persist($template);
-        $template->setId($id);
-        $manager->persist($template);
-        $manager->flush();
-        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
-        $manager->persist($template);
-
-        $slug = new Slug();
-        $slug->setTemplate($template);
-        $slug->setApplication($application);
-        $slug->setName('cookies');
-        $slug->setSlug('cookies');
-        $manager->persist($slug);
-        $manager->flush();
-
         $id = Uuid::fromString('d1e07882-e130-45da-b2ae-617c09cf0ad3');
         $template = new Template();
         $template->setTemplateEngine('twig');
