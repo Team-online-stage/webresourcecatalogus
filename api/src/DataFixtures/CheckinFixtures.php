@@ -945,27 +945,6 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $slug->setName('techniek');
         $slug->setSlug('techniek');
         $manager->persist($slug);
-        $manager->flush();        $id = Uuid::fromString('39c9ed21-a1b7-4610-8190-f99ccd179f0f');
-        $template = new Template();
-        $template->setTemplateEngine('twig');
-        $template->setTranslatableLocale('nl'); // change locale
-        $template->setName('CheckIn.nu Techniek');
-        $template->setDescription('Techniek page voor CheckIn.nu');
-        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/CheckIn/techniek.html.twig', 'r'));
-        $template->setTemplateEngine('twig');
-        $manager->persist($template);
-        $template->setId($id);
-        $manager->persist($template);
-        $manager->flush();
-        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
-        $manager->persist($template);
-
-        $slug = new Slug();
-        $slug->setTemplate($template);
-        $slug->setApplication($application);
-        $slug->setName('techniek');
-        $slug->setSlug('techniek');
-        $manager->persist($slug);
         $manager->flush();
 
         $id = Uuid::fromString('05ddfa08-9467-4f02-a235-67b9c280bdc1');
