@@ -113,7 +113,8 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
 
                 .blueboxxl{
                        background-color: #263846;
-                       height:465px;
+                       margin-top: 5%;
+                       margin-bottom 5%;
                 }
 
                 .studenthome {
@@ -158,12 +159,10 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
                     }
 
                     .about {
-                           text-align: initial;
-                           width: 200%;
+                           text-align: left;
                     }
 
                     .description {
-                           width: initial;
                            text-align: initial;
                     }
 
