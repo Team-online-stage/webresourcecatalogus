@@ -138,7 +138,7 @@ class Organization
     /**
      * @Groups({"read", "write"})
      * @MaxDepth(1)
-     * @ORM\ManyToOne(targetEntity="App\Entity\Style", inversedBy="organizations")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Style", inversedBy="organizations", cascade={"persist"})
      * @ORM\JoinColumn(nullable=true)
      */
     private $style;
