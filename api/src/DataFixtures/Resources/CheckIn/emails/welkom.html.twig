@@ -64,9 +64,9 @@
                             mocht je meer QR-codes nodig hebben (bijvoorbeeld omdat je meerdere locaties hebt)
                             dan kan je ze zelf gemakkelijk via de website aanmaken. <br>
                             {% if app.environment == 'prod' %}
-                                {% if node.id is defined  %}<a style="width: 200px" href="https://checking.nu/chin/download/{{ node.id }}">QR-code</a><br>{% endif %}
+                                {% if node.id is defined  %}<a style="width: 200px" href="https://checking.nu/chin/download/{{ node.id }}.png">QR-code</a><br>{% endif %}
                             {% else %}
-                                {% if node.id is defined  %}<a style="width: 200px" href="https://dev.checking.nu/chin/download/{{ node.id }}">QR-code</a><br>{% endif %}
+                                {% if node.id is defined  %}<a style="width: 200px" href="https://dev.checking.nu/chin/download/{{ node.id }}.png">QR-code</a><br>{% endif %}
                             {% endif %}
                             {% if app.environment == 'prod' %}
                                 {% if node.id is defined  %}<img style="width: 200px" src="https://checking.nu/chin/render/{{ node.id }}" />{% endif %}
