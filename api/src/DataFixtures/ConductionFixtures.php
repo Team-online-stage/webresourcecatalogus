@@ -59,10 +59,16 @@ class ConductionFixtures extends Fixture
 
         $this->addReference(self::ORGANIZATION_CONDUCTION, $conduction);
 
+        $id = Uuid::fromString('fa84e88f-dc1e-4d6a-aa0f-e35b5001e017');
         $favicon = new Image();
         $favicon->setName('Conduction Favicon');
         $favicon->setDescription('Favicon Conduction');
         $favicon->setOrganization($conduction);
+        $manager->persist($favicon);
+        $favicon->setId($id);
+        $manager->persist($favicon);
+        $manager->flush();
+        $favicon = $manager->getRepository('App:Image')->findOneBy(['id'=> $id]);
 
         $logo = new Image();
         $logo->setName('Conduction Logo');
@@ -79,7 +85,6 @@ class ConductionFixtures extends Fixture
         $conduction->setLogo($logo);
 
         $manager->persist($conduction);
-        $manager->persist($favicon);
         $manager->persist($logo);
         $manager->persist($style);
 
@@ -1337,10 +1342,16 @@ class ConductionFixtures extends Fixture
          * ZaakOnline
          */
 
+        $id = Uuid::fromString('204a2de1-3cdd-4e50-8aa6-23fa9e96d97a');
         $favicon = new Image();
         $favicon->setName('Zaakonline Favicon');
         $favicon->setDescription('Favicon ZaakOnline');
         $favicon->setOrganization($conduction);
+        $manager->persist($favicon);
+        $favicon->setId($id);
+        $manager->persist($favicon);
+        $manager->flush();
+        $favicon = $manager->getRepository('App:Image')->findOneBy(['id'=> $id]);
 
         $logo = new Image();
         $logo->setName('Zaakonline Logo');
@@ -1355,7 +1366,6 @@ class ConductionFixtures extends Fixture
         $style->addOrganization($conduction);
 
         $manager->persist($conduction);
-        $manager->persist($favicon);
         $manager->persist($logo);
         $manager->persist($style);
 
@@ -1471,10 +1481,16 @@ class ConductionFixtures extends Fixture
          * Commonground.nu
          */
 
+        $id = Uuid::fromString('ec489213-7f3f-4d31-84be-4dff639cdcb2');
         $favicon = new Image();
         $favicon->setName('Commonground.nu Favicon');
         $favicon->setDescription('Favicon Commonground.nu');
         $favicon->setOrganization($conduction);
+        $manager->persist($favicon);
+        $favicon->setId($id);
+        $manager->persist($favicon);
+        $manager->flush();
+        $favicon = $manager->getRepository('App:Image')->findOneBy(['id'=> $id]);
 
         $logo = new Image();
         $logo->setName('Commonground.nu Logo');
@@ -1500,7 +1516,6 @@ class ConductionFixtures extends Fixture
         $style->addOrganization($conduction);
 
         $manager->persist($conduction);
-        $manager->persist($favicon);
         $manager->persist($logo);
         $manager->persist($style);
 
@@ -1621,10 +1636,16 @@ class ConductionFixtures extends Fixture
          * Common-ground.dev
          */
 
+        $id = Uuid::fromString('c063a188-f328-49a8-845a-8795d03fdc6c');
         $favicon = new Image();
         $favicon->setName('Common-ground.dev Favicon');
         $favicon->setDescription('Favicon Common-ground.dev');
         $favicon->setOrganization($conduction);
+        $manager->persist($favicon);
+        $favicon->setId($id);
+        $manager->persist($favicon);
+        $manager->flush();
+        $favicon = $manager->getRepository('App:Image')->findOneBy(['id'=> $id]);
 
         $logo = new Image();
         $logo->setName('Common-ground.dev Logo');
@@ -1639,7 +1660,6 @@ class ConductionFixtures extends Fixture
         $style->addOrganization($conduction);
 
         $manager->persist($conduction);
-        $manager->persist($favicon);
         $manager->persist($logo);
         $manager->persist($style);
 
@@ -1798,11 +1818,17 @@ class ConductionFixtures extends Fixture
         $manager->flush();
         $rocflevoland = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
 
+        $id = Uuid::fromString('9a44efa2-af9b-4019-a128-e697e12f15b9');
         $favicon = new Image();
         $favicon->setName('stage Favicon');
         $favicon->setBase64('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjxzdmcKICAgeG1sbnM6ZGM9Imh0dHA6Ly9wdXJsLm9yZy9kYy9lbGVtZW50cy8xLjEvIgogICB4bWxuczpjYz0iaHR0cDovL2NyZWF0aXZlY29tbW9ucy5vcmcvbnMjIgogICB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiCiAgIHhtbG5zOnN2Zz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciCiAgIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICAgdmlld0JveD0iMCAwIDcwLjY2NjY2NCA2OS45NTQ5MzMiCiAgIGhlaWdodD0iNjkuOTU0OTMzIgogICB3aWR0aD0iNzAuNjY2NjY0IgogICB4bWw6c3BhY2U9InByZXNlcnZlIgogICBpZD0ic3ZnMiIKICAgdmVyc2lvbj0iMS4xIj48bWV0YWRhdGEKICAgICBpZD0ibWV0YWRhdGE4Ij48cmRmOlJERj48Y2M6V29yawogICAgICAgICByZGY6YWJvdXQ9IiI+PGRjOmZvcm1hdD5pbWFnZS9zdmcreG1sPC9kYzpmb3JtYXQ+PGRjOnR5cGUKICAgICAgICAgICByZGY6cmVzb3VyY2U9Imh0dHA6Ly9wdXJsLm9yZy9kYy9kY21pdHlwZS9TdGlsbEltYWdlIiAvPjwvY2M6V29yaz48L3JkZjpSREY+PC9tZXRhZGF0YT48ZGVmcwogICAgIGlkPSJkZWZzNiIgLz48ZwogICAgIHRyYW5zZm9ybT0ibWF0cml4KDEuMzMzMzMzMywwLDAsLTEuMzMzMzMzMywwLDY5Ljk1NDkzMykiCiAgICAgaWQ9ImcxMCI+PHBhdGgKICAgICAgIGlkPSJwYXRoMTIiCiAgICAgICBzdHlsZT0iZmlsbDojZmZmZmZmO2ZpbGwtb3BhY2l0eToxO2ZpbGwtcnVsZTpub256ZXJvO3N0cm9rZTpub25lIgogICAgICAgZD0iTSAwLDAgSCA1MyBWIDUyLjQ2NiBIIDAgWiIgLz48ZwogICAgICAgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNDIuMjI3NSwxNy4xNTMyKSIKICAgICAgIGlkPSJnMTQiPjxwYXRoCiAgICAgICAgIGlkPSJwYXRoMTYiCiAgICAgICAgIHN0eWxlPSJmaWxsOiM0Mzc2ZmM7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIGQ9Ik0gMCwwIC0xNS43MjgsLTkuMDgxIC0zMS40NTUsMCBWIDE4LjE2IEwgLTE1LjcyOCwyNy4yNDEgMCwxOC4xNiBaIE0gLTE1LjcyOCwzMy40NTIgLTM2LjgzNCwyMS4yNjYgViAtMy4xMDYgbCAyMS4xMDYsLTEyLjE4NiAyMS4xMDcsMTIuMTg2IHYgMjQuMzcyIHoiIC8+PC9nPjxnCiAgICAgICB0cmFuc2Zvcm09InRyYW5zbGF0ZSgyNi40NDgyLDMyLjM3KSIKICAgICAgIGlkPSJnMTgiPjxwYXRoCiAgICAgICAgIGlkPSJwYXRoMjAiCiAgICAgICAgIHN0eWxlPSJmaWxsOiM0Mzc2ZmM7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIGQ9Ik0gMCwwIDQuOTQzLC0yLjg1NCAxMC42OTUsMC40NjcgMCw2LjY0MiAtMTEuMDY3LDAuMjUzIHYgLTEyLjc4IEwgMCwtMTguOTE2IDEwLjY5NSwtMTIuNzQxIDQuOTQzLC05LjQyIDAsLTEyLjI3NCAtNS4zMTQsLTkuMjA1IHYgNi4xMzYgeiIgLz48L2c+PC9nPjwvc3ZnPg==');
         $favicon->setDescription('Favicon stage');
         $favicon->setOrganization($conduction);
+        $manager->persist($favicon);
+        $favicon->setId($id);
+        $manager->persist($favicon);
+        $manager->flush();
+        $favicon = $manager->getRepository('App:Image')->findOneBy(['id'=> $id]);
 
         $id = Uuid::fromString('b0e3e803-2cb6-41ed-ab32-d6e5451c119d');
         $newsimg = new Image();
@@ -2162,7 +2188,6 @@ class ConductionFixtures extends Fixture
         $style->addOrganization($conduction);
 
         $manager->persist($conduction);
-        $manager->persist($favicon);
         $manager->persist($logo);
         $manager->persist($style);
 

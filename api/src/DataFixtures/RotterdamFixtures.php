@@ -47,10 +47,16 @@ class RotterdamFixtures extends Fixture
         $manager->flush();
         $rotterdam = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
 
+        $id = Uuid::fromString('4310693a-5d68-426f-8150-67c6d856697b');
         $favicon = new Image();
         $favicon->setName('Rotterdam Favicon');
         $favicon->setDescription('Favicon VNG');
         $favicon->setOrganization($rotterdam);
+        $manager->persist($favicon);
+        $favicon->setId($id);
+        $manager->persist($favicon);
+        $manager->flush();
+        $favicon = $manager->getRepository('App:Image')->findOneBy(['id'=> $id]);
 
         $logo = new Image();
         $logo->setName('Rotterdam Logo');
@@ -67,7 +73,6 @@ class RotterdamFixtures extends Fixture
         $rotterdam->setLogo($logo);
 
         $manager->persist($rotterdam);
-        $manager->persist($favicon);
         $manager->persist($logo);
         $manager->persist($style);
 

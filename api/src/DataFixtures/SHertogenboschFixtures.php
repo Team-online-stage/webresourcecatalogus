@@ -51,10 +51,16 @@ class SHertogenboschFixtures extends Fixture
         $manager->flush();
         $sHertogenbosch = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
 
+        $id = Uuid::fromString('abb989de-414b-44ef-b899-5a0daa87a5d7');
         $favicon = new Image();
         $favicon->setName('\'s-Hertogenbosch Favicon');
         $favicon->setDescription('\'s-Hertogenbosch VNG');
         $favicon->setOrganization($sHertogenbosch);
+        $manager->persist($favicon);
+        $favicon->setId($id);
+        $manager->persist($favicon);
+        $manager->flush();
+        $favicon = $manager->getRepository('App:Image')->findOneBy(['id'=> $id]);
 
         $logo = new Image();
         $logo->setName('\'s-Hertogenbosch Logo');
@@ -70,7 +76,6 @@ class SHertogenboschFixtures extends Fixture
         $style->setfavicon($favicon);
         $style->addOrganization($sHertogenbosch);
 
-        $manager->persist($favicon);
         $manager->persist($logo);
         $manager->persist($style);
         $manager->flush();
