@@ -492,6 +492,25 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $manager->flush();
 
         // E-mail templates
+        $id = Uuid::fromString('4125221c-74e0-46f9-97c9-3825a2011012');
+        $template = new Template();
+        $template->setTranslatableLocale('nl'); // change locale
+        $template->setTemplateEngine('twig');
+        $template->setName('password changed');
+        $template->setTitle('password changed');
+        $template->setDescription('mail send when password has changed');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/CheckIn/emails/passwordChanged.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupEmails);
+        $manager->persist($template);
+        $manager->flush();
+
+        // E-mail templates
         $id = Uuid::fromString('2ca5b662-e941-46c9-ae87-ae0c68d0aa5d');
         $template = new Template();
         $template->setTranslatableLocale('nl'); // change locale
