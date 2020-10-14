@@ -8,8 +8,9 @@
             <div class="col-md-6 col-sm-12">
                 <h2>Welkom horecaondernemer!</h2>
                 <p>Leuk dat je interesse hebt in deelname aan de pilot van Checking. Samen met Koninklijke Horeca Nederland en de Rabobank hebben wij (Conduction) het Checking platform gemaakt. De aanleiding is de groeiende zorg van gasten over hoe er wordt omgegaan met hun data en de zorg van de GGD over de kwaliteit van de data (foute emailadressen en telefoonnummers). Met dit platform proberen wij jou als horecaondernemer volledig te ontzorgen, de gast het vertrouwen te geven dat er netjes omgegaan wordt met zijn data en de zorgen over de kwaliteit van de data weg nemen bij de GGD.</p>
-                <a href="{{ path('app_ptc_process',{'id':'fdb7186c-0ce9-4050-bd6d-cf83b0c162eb','stage':'start'}) }}"
-                   class="btn btn-block" style="width: 100%">{{ 'join'|trans|capitalize }}!</a>
+                {% if app.user.organization is not defined or app.user.organization is empty %}
+                    <a href="{{ path('app_ptc_process',{'id':'fdb7186c-0ce9-4050-bd6d-cf83b0c162eb','stage':'start'}) }}" class="btn btn-block" style="width: 100%">{{ 'join'|trans|capitalize }}!</a>
+                {% endif %}
             </div>
             <div class="col-md-6 col-sm-12"></div>
         </div>
@@ -18,8 +19,8 @@
             <div class="col-md-6 col-sm-12">
                 <h2>Hoe werkt Checking?</h2>
                 <p>Checking is een makkelijke en veilige manier van het beschikbaar stellen van persoonlijke gegevens voor mogelijk bron- en contactonderzoek door de GGD. Wat Checking anders maakt is dat een gast zijn/haar gegevens niet overdraagt, maar in plaats daarvan ze tijdelijk ter beschikking stelt in een datakluis. De gegevens worden slechts uit de datakluis gehaald op verzoek van de GGD en dan ook alleen aan de GGD verstrekt. Om de veiligheid en correctheid van de data te garanderen, maken we gebruik van iDIN. Op die manier voorkomen we dat contactgegevens overal rondslingeren met alle gevolgen van dien.</p>
-                <a href="{{ path('app_ptc_process',{'id':'fdb7186c-0ce9-4050-bd6d-cf83b0c162eb','stage':'start'}) }}"
-                   class="btn btn-block" style="width: 100%">{{ 'join'|trans|capitalize }}!</a>
+                {% if app.user.organization is not defined or app.user.organization is empty %}<a href="{{ path('app_ptc_process',{'id':'fdb7186c-0ce9-4050-bd6d-cf83b0c162eb','stage':'start'}) }}"
+                                                                                                  class="btn btn-block" style="width: 100%">{{ 'join'|trans|capitalize }}!</a>{% endif %}
             </div>
         </div>
         <div class="row" style="margin-top: 20px;">
@@ -39,8 +40,9 @@
                 <p>Wanneer de GGD constateert dat iemand positief is getest op COVID-19, starten zij een bron- en contactonderzoek. Als uit het contactonderzoek blijkt dat iemand recent bij jouw zaak is geweest, dan kan de GGD bij jou de contactgegevens opvragen van iedereen die op dezelfde dag en tijd aanwezig was.</p>
 
                 <p>Jij kunt vervolgens een verzoek bij Checking indienen om de benodigde contactgegevens over te dragen aan de GGD. Checking draagt vervolgens die contactgegevens veilig over aan de GGD. Dit scheelt jou veel tijd en zorgen!</p>
-                <a href="{{ path('app_ptc_process',{'id':'fdb7186c-0ce9-4050-bd6d-cf83b0c162eb','stage':'start'}) }}"
-                   class="btn btn-block" style="width: 100%">{{ 'join'|trans|capitalize }}!</a>
+                {% if app.user.organization is not defined or app.user.organization is empty %}
+                    <a href="{{ path('app_ptc_process',{'id':'fdb7186c-0ce9-4050-bd6d-cf83b0c162eb','stage':'start'}) }}" ="btn btn-block" style="width: 100%">{{ 'join'|trans|capitalize }}!</a>
+                {% endif %}
             </div>
         </div>
         <div class="row" style="margin-top: 20px;">
