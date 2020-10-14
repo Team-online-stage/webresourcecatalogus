@@ -169,84 +169,95 @@
                     </li>
                 </ul>
                     {% else %}
-                    <ul class="list list--card" style="margin-bottom: 0;">
+                        <ul class="list list--card" style="margin-bottom: 0;">
 
-                        {% if checkins is defined and checkins is not empty and checkins|length > 0 %}
-                            {% set difference = date(checkins[0].dateCreated|date('Y/m/d')).diff(date('now'|date('Y/m/d'))) %}
-                            {% set days = difference.days %}
-                            {% if days < 14 %}
-                                <li class="card background--primary card__hover">
-                                    <a href="{{ path('app_chin_confirmation', {id: checkins[0].id}) }}" class="card__content">
-                                        <div class="card__icon flex-center color--primary"><i
-                                                class="fas fa-qrcode fa-4x"></i>
-                                        </div>
-                                        <div class="card__body flex-center"><span
-                                                class="card__title color--primary flex-center">{{ 'last checkin'|trans|capitalize }}</span>
-                                        </div>
-                                    </a>
-                                </li>
+                            {% if checkins is defined and checkins is not empty and checkins|length > 0 %}
+                                {% set difference = date(checkins[0].dateCreated|date('Y/m/d')).diff(date('now'|date('Y/m/d'))) %}
+                                {% set days = difference.days %}
+                                {% if days < 14 %}
+                                    <li class="card background--primary card__hover">
+                                        <a href="{{ path('app_chin_confirmation', {id: checkins[0].id}) }}" class="card__content">
+                                            <div class="card__icon flex-center color--primary"><i
+                                                    class="fas fa-qrcode fa-4x"></i>
+                                            </div>
+                                            <div class="card__body flex-center"><span
+                                                    class="card__title color--primary flex-center">{{ 'last checkin'|trans|capitalize }}</span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                {% endif %}
                             {% endif %}
-                        {% endif %}
-                        <li class="card background--primary card__hover">
-                            <a href="#" data-toggle="modal" data-target="#contactModal" onclick="openModalContact()" class="card__content">
-                                <div class="card__icon flex-center color--primary"><i
-                                        class="far fa-file-alt fa-4x"></i></div>
-                                <div class="card__body flex-center"><span
-                                        class="card__title color--primary flex-center">{{ 'contact'|trans|capitalize }}</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="card background--primary card__hover">
-                            <a href="{{ path('app_chin_checkinuser') }}" class="card__content">
-                                <div class="card__icon flex-center color--primary"><i
-                                        class="fas fa-map-marker-alt fa-4x"></i></div>
-                                <div class="card__body flex-center"><span
-                                        class="card__title color--primary flex-center">{{ 'all checkins'|trans|capitalize }}</span>
-                                </div>
-                            </a>
-                        </li>
-                    </ul>
-                        <!--
-                        <li class="card background--primary card__hover">
-                            <a href="{{ path('app_ptc_process',{"id":"7f5bd18e-e3dd-4864-a2fb-24d118462396"}) }}" class="card__content">
-                                <div class="card__icon flex-center color--primary"><i
-                                        class="fas fa-map-marker-alt fa-4x"></i></div>
-                                <div class="card__body flex-center"><span
-                                        class="card__title color--primary flex-center">{{ 'request data'|trans|capitalize }}</span>
-                                </div>
-                            </a>
-                        </li>
-                    </ul>
-                    -->
-                    <ul class="list list--card">
-                        <li class="card background--primary card__hover">
-                            <a href="{{ path('app_chin_checkinreservations') }}"  class="card__content">
-                                <div class="card__icon flex-center color--primary"><i
-                                        class="fas fa-clipboard-list fa-4x"></i></div>
-                                <div class="card__body flex-center"><span
-                                        class="card__title color--primary flex-center">{{ 'reservations'|trans|capitalize }}</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="card background--primary card__hover">
-                            <a href="#" class="card__content" onclick="openModalFeedback()">
-                                <div class="card__icon flex-center color--primary"><i class="fas fa-bullhorn fa-4x"></i>
-                                </div>
-                                <div class="card__body flex-center"><span
-                                        class="card__title color--primary flex-center">{{ 'feedback'|trans|capitalize }}</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="card background--primary card__hover">
-                            <a href="{{ path('app_user_logout') }}" class="card__content">
-                                <div class="card__icon flex-center color--primary"><i class="fas fa-unlock fa-4x"></i>
-                                </div>
-                                <div class="card__body flex-center"><span
-                                        class="card__title color--primary flex-center">{{ 'logout'|trans|capitalize }}</span>
-                                </div>
-                            </a>
-                        </li>
-                    </ul>
+                            <li class="card background--primary card__hover">
+                                <a href="#" data-toggle="modal" data-target="#contactModal" onclick="openModalContact()" class="card__content">
+                                    <div class="card__icon flex-center color--primary"><i
+                                            class="far fa-file-alt fa-4x"></i></div>
+                                    <div class="card__body flex-center"><span
+                                            class="card__title color--primary flex-center">{{ 'contact'|trans|capitalize }}</span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="card background--primary card__hover">
+                                <a href="{{ path('app_chin_checkinuser') }}" class="card__content">
+                                    <div class="card__icon flex-center color--primary"><i
+                                            class="fas fa-map-marker-alt fa-4x"></i></div>
+                                    <div class="card__body flex-center"><span
+                                            class="card__title color--primary flex-center">{{ 'all checkins'|trans|capitalize }}</span>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                            <!--
+                            <li class="card background--primary card__hover">
+                                <a href="{{ path('app_ptc_process',{"id":"7f5bd18e-e3dd-4864-a2fb-24d118462396"}) }}" class="card__content">
+                                    <div class="card__icon flex-center color--primary"><i
+                                            class="fas fa-map-marker-alt fa-4x"></i></div>
+                                    <div class="card__body flex-center"><span
+                                            class="card__title color--primary flex-center">{{ 'request data'|trans|capitalize }}</span>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                        -->
+                        <ul class="list list--card" style="margin-bottom: 0;">
+                            <li class="card background--primary card__hover">
+                                <a href="{{ path('app_chin_checkinreservations') }}"  class="card__content">
+                                    <div class="card__icon flex-center color--primary"><i
+                                            class="fas fa-clipboard-list fa-4x"></i></div>
+                                    <div class="card__body flex-center"><span
+                                            class="card__title color--primary flex-center">{{ 'reservations'|trans|capitalize }}</span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="card background--primary card__hover">
+                                <a href="#" class="card__content" onclick="openModalFeedback()">
+                                    <div class="card__icon flex-center color--primary"><i class="fas fa-bullhorn fa-4x"></i>
+                                    </div>
+                                    <div class="card__body flex-center"><span
+                                            class="card__title color--primary flex-center">{{ 'feedback'|trans|capitalize }}</span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="card background--primary card__hover">
+                                <a href="{{ path('app_user_userinfo') }}" class="card__content">
+                                    <div class="card__icon flex-center color--primary"><i class="fas fa-id-card fa-4x"></i>
+                                    </div>
+                                    <div class="card__body flex-center"><span
+                                            class="card__title color--primary flex-center">{{ 'personal info'|trans|capitalize }}</span>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                        <ul>
+                            <li class="card background--primary card__hover">
+                                <a href="{{ path('app_user_logout') }}" class="card__content">
+                                    <div class="card__icon flex-center color--primary"><i class="fas fa-unlock fa-4x"></i>
+                                    </div>
+                                    <div class="card__body flex-center"><span
+                                            class="card__title color--primary flex-center">{{ 'logout'|trans|capitalize }}</span>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
                     {% endif %}
                 </div>
             {% else %}
