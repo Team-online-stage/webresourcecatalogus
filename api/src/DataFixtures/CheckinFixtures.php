@@ -64,13 +64,17 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $manager->flush();
         $organization = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
 
+        $id = Uuid::fromString('dea53810-4aca-4232-ae8a-a61b14ff707a');
         $favicon = new Image();
         $favicon->setName('favicon');
         $favicon->setDescription('favicon');
         $favicon->setBase64('');
         $favicon->setOrganization($organization);
         $manager->persist($favicon);
+        $favicon->setId($id);
+        $manager->persist($favicon);
         $manager->flush();
+        $favicon = $manager->getRepository('App:Image')->findOneBy(['id'=> $id]);
 
         $style = new Style();
         $style->setName('Cafe de zotte raaf');
@@ -92,13 +96,17 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $manager->flush();
         $organization = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
 
+        $id = Uuid::fromString('bf517480-2f59-4a68-836d-dc8aca30a23f');
         $favicon = new Image();
         $favicon->setName('favicon');
         $favicon->setDescription('favicon');
         $favicon->setBase64('');
         $favicon->setOrganization($organization);
         $manager->persist($favicon);
+        $favicon->setId($id);
+        $manager->persist($favicon);
         $manager->flush();
+        $favicon = $manager->getRepository('App:Image')->findOneBy(['id'=> $id]);
 
         $style = new Style();
         $style->setName('Restautant Goudlust');
@@ -120,13 +128,17 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $manager->flush();
         $organization = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
 
+        $id = Uuid::fromString('7cf8771e-ecfd-4cf6-a8a5-6d6d8209c275');
         $favicon = new Image();
         $favicon->setName('favicon');
         $favicon->setDescription('favicon');
         $favicon->setBase64('');
         $favicon->setOrganization($organization);
         $manager->persist($favicon);
+        $favicon->setId($id);
+        $manager->persist($favicon);
         $manager->flush();
+        $favicon = $manager->getRepository('App:Image')->findOneBy(['id'=> $id]);
 
         $style = new Style();
         $style->setName('Hotel Dijkzicht');
@@ -148,13 +160,17 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $manager->flush();
         $organization = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
 
+        $id = Uuid::fromString('98173658-5153-403b-b9ae-92fded24eb4a');
         $favicon = new Image();
         $favicon->setName('favicon');
         $favicon->setDescription('favicon');
         $favicon->setBase64('');
         $favicon->setOrganization($organization);
         $manager->persist($favicon);
+        $favicon->setId($id);
+        $manager->persist($favicon);
         $manager->flush();
+        $favicon = $manager->getRepository('App:Image')->findOneBy(['id'=> $id]);
 
         $style = new Style();
         $style->setName('Camping de alpen koe');
@@ -176,13 +192,17 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $manager->flush();
         $organization = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
 
+        $id = Uuid::fromString('9a6a9e8a-b07d-4021-9f4e-74e1e0d581d9');
         $favicon = new Image();
         $favicon->setName('favicon');
         $favicon->setDescription('favicon');
         $favicon->setBase64('');
         $favicon->setOrganization($organization);
         $manager->persist($favicon);
+        $favicon->setId($id);
+        $manager->persist($favicon);
         $manager->flush();
+        $favicon = $manager->getRepository('App:Image')->findOneBy(['id'=> $id]);
 
         $style = new Style();
         $style->setName('Mc Donalds Zuid-Drecht');
@@ -204,13 +224,17 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $manager->flush();
         $organization = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
 
+        $id = Uuid::fromString('5fdbff8f-9702-4bf9-acb2-0dda5e482e1f');
         $favicon = new Image();
         $favicon->setName('Creative Groundf favicon');
         $favicon->setDescription('favicon');
         $favicon->setBase64('data:image/svg+xml;base64,PHN2ZyBpZD0iTGFhZ18xIiBkYXRhLW5hbWU9IkxhYWcgMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2aWV3Qm94PSIwIDAgMzkwLjAxIDQ2Ljg3Ij48ZGVmcz48c3R5bGU+LmNscy0xe2ZpbGw6I2ZmZjt9PC9zdHlsZT48L2RlZnM+PGcgaWQ9IkxheWVyXzIiIGRhdGEtbmFtZT0iTGF5ZXIgMiI+PGcgaWQ9Im1lbnUiPjxwYXRoIGlkPSJQYXRoXzEiIGRhdGEtbmFtZT0iUGF0aCAxIiBjbGFzcz0iY2xzLTEiIGQ9Ik03Ni42NiwzNC43MWExMi4yNCwxMi4yNCwwLDAsMS00LjI4Ljc0QTEyLjQ3LDEyLjQ3LDAsMCwxLDY2LDMzLjg0YTEwLjkxLDEwLjkxLDAsMCwxLTQuMTktNC4zMywxMi41MywxMi41MywwLDAsMS0xLjQ0LTYsMTMuNzksMTMuNzksMCwwLDEsMS40NC02LjM3LDEwLjczLDEwLjczLDAsMCwxLDQuMDYtNC4zNiwxMS41LDExLjUsMCwwLDEsNi0xLjU2LDEzLjE3LDEzLjE3LDAsMCwxLDQsLjU4QTEzLjgxLDEzLjgxLDAsMCwxLDc5LDEzLjI4bC0xLjgsNC40MUE4LjU4LDguNTgsMCwwLDAsNzIsMTUuNzZhNi4yMyw2LjIzLDAsMCwwLTMuMzcsMSw3LjM3LDcuMzcsMCwwLDAtMi41MSwyLjcyLDcuODMsNy44MywwLDAsMC0uOTQsMy44Miw4LjgsOC44LDAsMCwwLC44Nyw0QTYuNTQsNi41NCwwLDAsMCw2OC41MiwzMGE3LjIxLDcuMjEsMCwwLDAsMy43NiwxLDguMSw4LjEsMCwwLDAsMy4xMi0uNTZBNi42Nyw2LjY3LDAsMCwwLDc3LjU5LDI5bDEuOTMsNC4xOUExMC42MiwxMC42MiwwLDAsMSw3Ni42NiwzNC43MVoiLz48cGF0aCBpZD0iUGF0aF8yIiBkYXRhLW5hbWU9IlBhdGggMiIgY2xhc3M9ImNscy0xIiBkPSJNOTcsMzUuMTlsLTUtNy41M0g4OC44NXY3LjUzSDg0LjE5VjExLjUxaDcuMTdhMTAsMTAsMCwwLDEsNi44NCwyLjE0LDcuMzYsNy4zNiwwLDAsMSwyLjQzLDUuODQsOS4yNCw5LjI0LDAsMCwxLS45Miw0LjEsNi43NCw2Ljc0LDAsMCwxLTIuODEsM2w1LjUsOC41OVptLTguMTEtMTJoMy4zMkEzLjI4LDMuMjgsMCwwLDAsOTUsMjIuMDhhMy43NiwzLjc2LDAsMCwwLC44Ny0yLjQsNC40OSw0LjQ5LDAsMCwwLS43NC0yLjQ2QTMuMTMsMy4xMywwLDAsMCw5Mi4yLDE2SDg4Ljg1WiIvPjxwYXRoIGlkPSJQYXRoXzMiIGRhdGEtbmFtZT0iUGF0aCAzIiBjbGFzcz0iY2xzLTEiIGQ9Ik0xMjIuNDEsMTEuNTFWMTZIMTEwLjkydjUuMDZoMTAuMTd2NC41SDExMC45MnY1LjExaDExLjk0djQuNTFoLTE2LjZWMTEuNTFaIi8+PHBhdGggaWQ9IlBhdGhfNCIgZGF0YS1uYW1lPSJQYXRoIDQiIGNsYXNzPSJjbHMtMSIgZD0iTTEzOS4zOSwzMC41NmgtNy44NWwtMS45Myw0LjYzSDEyNUwxMzUuNywxMC41OEgxMzZsMTAuNjgsMjQuNjFoLTUuNFptLTEuNTQtMy45My0yLjI4LTUuNzYtMi4zOCw1Ljc2WiIvPjxwYXRoIGlkPSJQYXRoXzUiIGRhdGEtbmFtZT0iUGF0aCA1IiBjbGFzcz0iY2xzLTEiIGQ9Ik0xNjIuNDksMTEuNTFWMTZoLTUuNzVWMzUuMTloLTQuNjdWMTZoLTUuNTNWMTEuNVoiLz48cGF0aCBpZD0iUGF0aF82IiBkYXRhLW5hbWU9IlBhdGggNiIgY2xhc3M9ImNscy0xIiBkPSJNMTcxLjY2LDExLjUxVjM1LjE5SDE2N1YxMS41MVoiLz48cGF0aCBpZD0iUGF0aF83IiBkYXRhLW5hbWU9IlBhdGggNyIgY2xhc3M9ImNscy0xIiBkPSJNMTk3LjM3LDExLjUxLDE4Ni41NiwzNi4yOCwxNzUuNzUsMTEuNTFoNS42bDUuNCwxMy4zNSw1LjA5LTEzLjM1WiIvPjxwYXRoIGlkPSJQYXRoXzgiIGRhdGEtbmFtZT0iUGF0aCA4IiBjbGFzcz0iY2xzLTEiIGQ9Ik0yMTcuNjEsMTEuNTFWMTZIMjA2LjEydjUuMDZoMTAuMTd2NC41SDIwNi4xMnY1LjExaDExLjk0djQuNTFoLTE2LjZWMTEuNTFaIi8+PHBhdGggaWQ9IlBhdGhfOSIgZGF0YS1uYW1lPSJQYXRoIDkiIGNsYXNzPSJjbHMtMSIgZD0iTTI0My4xLDMzLjI3YTE3LjY4LDE3LjY4LDAsMCwxLTMuMDksMSwxMy4zNCwxMy4zNCwwLDAsMS0zLjA4LjQsMTQuMjksMTQuMjksMCwwLDEtNi42MS0xLjQ2LDEwLjc0LDEwLjc0LDAsMCwxLTQuMzktNC4wNiwxMS4zMiwxMS4zMiwwLDAsMS0xLjU0LTUuOSwxNCwxNCwwLDAsMSwxLjY0LTcsMTAuNjUsMTAuNjUsMCwwLDEsNC40MS00LjMxLDEzLDEzLDAsMCwxLDYuMTEtMS40MywxNi4yLDE2LjIsMCwwLDEsNCwuNDhBMTQuODYsMTQuODYsMCwwLDEsMjQ0LDEyLjI0bC0xLjUxLDQuMzVhMTEuMSwxMS4xLDAsMCwwLTIuNTYtLjk1LDEwLjg4LDEwLjg4LDAsMCwwLTIuNzItLjQ0LDguMzQsOC4zNCwwLDAsMC01LjksMS45Myw3LjUsNy41LDAsMCwwLTIsNS43Myw3LjE3LDcuMTcsMCwwLDAsMSwzLjgxLDYuNDYsNi40NiwwLDAsMCwyLjc4LDIuNSw5LjI1LDkuMjUsMCwwLDAsNC4wNy44Niw2LjcyLDYuNzIsMCwwLDAsMy4yNS0uNjFWMjYuNTZoLTQuMDh2LTQuNUgyNDV2MTBBNiw2LDAsMCwxLDI0My4xLDMzLjI3WiIvPjxwYXRoIGlkPSJQYXRoXzEwIiBkYXRhLW5hbWU9IlBhdGggMTAiIGNsYXNzPSJjbHMtMSIgZD0iTTI2My4xMiwzNC40NGwtNS03LjUzSDI1NXY3LjUzaC00LjY2VjEwLjc2aDcuMTdhMTAsMTAsMCwwLDEsNi44NCwyLjE0LDcuMzYsNy4zNiwwLDAsMSwyLjQzLDUuODQsOS4yNCw5LjI0LDAsMCwxLS45Miw0LjEsNi43NCw2Ljc0LDAsMCwxLTIuODEsM2w1LjUsOC41OVptLTguMTEtMTJoMy4zMmEzLjMsMy4zLDAsMCwwLDIuNzctMS4xMSwzLjgzLDMuODMsMCwwLDAsLjg2LTIuNCw0LjQ5LDQuNDksMCwwLDAtLjc0LTIuNDYsMy4xMSwzLjExLDAsMCwwLTIuODYtMS4xN0gyNTVaIi8+PHBhdGggaWQ9IlBhdGhfMTEiIGRhdGEtbmFtZT0iUGF0aCAxMSIgY2xhc3M9ImNscy0xIiBkPSJNMjcxLjc5LDE2LjYyYTEyLjMyLDEyLjMyLDAsMCwxLDQuNDEtNC40NiwxMS44NiwxMS44NiwwLDAsMSwxMi4wNywwLDEyLjU0LDEyLjU0LDAsMCwxLDQuNDMsNC40NiwxMS43NSwxMS43NSwwLDAsMSwwLDEyLjA2LDEyLjI2LDEyLjI2LDAsMCwxLTQuNDMsNC4zOSwxMiwxMiwwLDAsMS0xMi4wOSwwLDEyLjE2LDEyLjE2LDAsMCwxLTQuMzktNC4zOUExMiwxMiwwLDAsMSwyNzEuNzksMTYuNjJaTTI3NiwyNi40M2E3LjI3LDcuMjcsMCwwLDAsMi42NywyLjc1LDcuMTQsNy4xNCwwLDAsMCwzLjc0LDEsNi43NSw2Ljc1LDAsMCwwLDMuNjQtMSw3LjE3LDcuMTcsMCwwLDAsMi41Ny0yLjczLDguMjIsOC4yMiwwLDAsMCwwLTcuNjhBNy40Miw3LjQyLDAsMCwwLDI4NiwxNmE3LjIxLDcuMjEsMCwwLDAtNy4zNywwQTcuNTEsNy41MSwwLDAsMCwyNzYsMTguNzdhNy45LDcuOSwwLDAsMC0xLDMuODZBNy41OCw3LjU4LDAsMCwwLDI3NiwyNi40M1oiLz48cGF0aCBpZD0iUGF0aF8xMiIgZGF0YS1uYW1lPSJQYXRoIDEyIiBjbGFzcz0iY2xzLTEiIGQ9Ik0zMDMuODgsMjcuODVhNS40Niw1LjQ2LDAsMCwwLDEuODEsMS42Nyw0Ljc1LDQuNzUsMCwwLDAsMi40MS42NCw1LjEzLDUuMTMsMCwwLDAsMi41NC0uNjQsNSw1LDAsMCwwLDEuODItMS42Nyw0LDQsMCwwLDAsLjY2LTIuMTZWMTAuNzZoNC42djE1YTguNDIsOC40MiwwLDAsMS0xLjI5LDQuNTgsOC44Niw4Ljg2LDAsMCwxLTMuNDksMy4xOSwxMC44MiwxMC44MiwwLDAsMS05LjY3LDAsOC43OCw4Ljc4LDAsMCwxLTMuNDYtMy4xOSw4LjUxLDguNTEsMCwwLDEtMS4yNy00LjU4di0xNWg0LjY3VjI1LjY5QTQsNCwwLDAsMCwzMDMuODgsMjcuODVaIi8+PHBhdGggaWQ9IlBhdGhfMTMiIGRhdGEtbmFtZT0iUGF0aCAxMyIgY2xhc3M9ImNscy0xIiBkPSJNMzQ0LjY4LDEwLjc2VjM1LjQxaC0uMTNMMzI4LDIwLjQ1bC4xLDE0aC00LjczVjkuODNoLjE5TDM0MC4wOCwyNSwzNDAsMTAuNzZaIi8+PHBhdGggaWQ9IlBhdGhfMTQiIGRhdGEtbmFtZT0iUGF0aCAxNCIgY2xhc3M9ImNscy0xIiBkPSJNMzUwLjc5LDEwLjc2aDcuMDhhMTQuMzgsMTQuMzgsMCwwLDEsNy40NiwxLjc2LDEwLjYxLDEwLjYxLDAsMCwxLDQuMjcsNC41MywxMy41MiwxMy41MiwwLDAsMSwxLjMzLDYsMTEuMjIsMTEuMjIsMCwwLDEtMS42MSw2QTEwLjc5LDEwLjc5LDAsMCwxLDM2NSwzM2ExMi43MywxMi43MywwLDAsMS02LDEuNGgtOC4yNFptNy40MywxOS4xOEE4LjMzLDguMzMsMCwwLDAsMzY0LDI4LjA3YTYuNzUsNi43NSwwLDAsMCwyLjEzLTUuMzdBNy42Nyw3LjY3LDAsMCwwLDM2NSwxOC4yYTYuMjMsNi4yMywwLDAsMC0yLjczLTIuMzIsNy42Niw3LjY2LDAsMCwwLTMtLjY0aC0zLjc5djE0LjdaIi8+PHBhdGggaWQ9IlBhdGhfMTUiIGRhdGEtbmFtZT0iUGF0aCAxNSIgY2xhc3M9ImNscy0xIiBkPSJNMzgyLjg3LDE0Ljc4YTQuMDgsNC4wOCwwLDAsMC0yLjQuNjIsMi4wOCwyLjA4LDAsMCwwLS44NSwxLjgzLDIuNDIsMi40MiwwLDAsMCwxLjI0LDIsMTUsMTUsMCwwLDAsMy4yOSwxLjYyLDE0LjM5LDE0LjM5LDAsMCwxLDIuODcsMS40LDYuNCw2LjQsMCwwLDEsMiwyLjE3LDcsNywwLDAsMSwuNzgsMy41MSw2LjM2LDYuMzYsMCwwLDEtLjk0LDMuNEE2LjU5LDYuNTksMCwwLDEsMzg2LDMzLjc4YTkuNjgsOS42OCwwLDAsMS00LjM3LjkyLDE0LjM4LDE0LjM4LDAsMCwxLTQuMjItLjYzLDEzLjE3LDEzLjE3LDAsMCwxLTMuODktMS45MWwyLjA2LTMuNjRhMTEuMDUsMTEuMDUsMCwwLDAsMi44LDEuNDgsOC4wOCw4LjA4LDAsMCwwLDIuODMuNTgsNSw1LDAsMCwwLDIuNTctLjYzLDIuMTQsMi4xNCwwLDAsMCwxLjEtMnEwLTEuODMtMy40NS0zLjE4YTMwLjE1LDMwLjE1LDAsMCwxLTMuMzctMS41NSw3LDcsMCwwLDEtMi4zNC0yLjEyLDUuOSw1LjksMCwwLDEtMS0zLjQ4LDYuNDUsNi40NSwwLDAsMSwyLTQuOTIsOC4xOCw4LjE4LDAsMCwxLDUuMzYtMiwxMy43NCwxMy43NCwwLDAsMSw0LjQxLjZBMTQuOTIsMTQuOTIsMCwwLDEsMzkwLDEyLjkybC0xLjc3LDMuNTdhMTEuNDksMTEuNDksMCwwLDAtNS4zNy0xLjcxWiIvPjxwYXRoIGlkPSJQYXRoXzE2IiBkYXRhLW5hbWU9IlBhdGggMTYiIGNsYXNzPSJjbHMtMSIgZD0iTTIxLjU3LDM5LjYxYTE2LjI5LDE2LjI5LDAsMCwxLDAtMzIuMzVWMGEyMy41MSwyMy41MSwwLDAsMCwwLDQ2Ljg2WiIvPjxwYXRoIGlkPSJQYXRoXzE3IiBkYXRhLW5hbWU9IlBhdGggMTciIGNsYXNzPSJjbHMtMSIgZD0iTTI1LjM3LDBWNy4yNkExNi4yNywxNi4yNywwLDAsMSwzMi43LDM2LjdWMjYuMDdIMjUuMzd2MjAuOEEyMy41MiwyMy41MiwwLDAsMCwyNS4zNywwWiIvPjwvZz48L2c+PC9zdmc+');
         $favicon->setOrganization($organization);
         $manager->persist($favicon);
+        $favicon->setId($id);
+        $manager->persist($favicon);
         $manager->flush();
+        $favicon = $manager->getRepository('App:Image')->findOneBy(['id'=> $id]);
 
         $style = new Style();
         $style->setName('Creative Grounds');
@@ -244,13 +268,17 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $manager->flush();
         $organization = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
 
+        $id = Uuid::fromString('1d49efd7-7f37-4ea9-bca7-dd098408c0b9');
         $favicon = new Image();
         $favicon->setName('CheckIN Favicon');
         $favicon->setDescription('CheckIN Favicon');
         $favicon->setBase64('data:image/gif;base64,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');
         $favicon->setOrganization($organization);
         $manager->persist($favicon);
+        $favicon->setId($id);
+        $manager->persist($favicon);
         $manager->flush();
+        $favicon = $manager->getRepository('App:Image')->findOneBy(['id'=> $id]);
 
         $style = new Style();
         $style->setName('CheckIn');
@@ -453,6 +481,25 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $template->setTitle('Wachtwoord resetten');
         $template->setDescription('Mail voor het resetten van je wachtwoord');
         $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/CheckIn/emails/reset.html.twig', 'r'));
+        $template->setTemplateEngine('twig');
+        $manager->persist($template);
+        $template->setId($id);
+        $manager->persist($template);
+        $manager->flush();
+        $template = $manager->getRepository('App:Template')->findOneBy(['id'=> $id]);
+        $template->addTemplateGroup($groupEmails);
+        $manager->persist($template);
+        $manager->flush();
+
+        // E-mail templates
+        $id = Uuid::fromString('4125221c-74e0-46f9-97c9-3825a2011012');
+        $template = new Template();
+        $template->setTranslatableLocale('nl'); // change locale
+        $template->setTemplateEngine('twig');
+        $template->setName('password changed');
+        $template->setTitle('password changed');
+        $template->setDescription('mail send when password has changed');
+        $template->setContent(file_get_contents(dirname(__FILE__).'/Resources/CheckIn/emails/passwordChanged.html.twig', 'r'));
         $template->setTemplateEngine('twig');
         $manager->persist($template);
         $template->setId($id);
