@@ -67,6 +67,13 @@ class ApplicationSubscriber implements EventSubscriberInterface
                 $renderType = 'json';
         }
 
+        // Fallback options of establishing
+        if ($locale = $event->getRequest()->query->get('_locale')) {
+        } elseif ($locale = $event->getRequest()->request->get('_locale')) {
+        } else {
+            $locale = 'en';
+        }
+
         $application = $this->em->getRepository(Application::class)->findOneBy(['id' => $id]);
         $slug = $this->em->getRepository(Slug::class)->findOneBy(['application' => $application, 'slug'=>$slug]);
         if ($slug == null) {

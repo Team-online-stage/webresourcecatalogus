@@ -52,10 +52,16 @@ class HuwelijksplannerFixtures extends Fixture
         $manager->flush();
         $utrecht = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
 
+        $id = Uuid::fromString('208107a0-fc94-40e1-9258-d548f8818989');
         $favicon = new Image();
         $favicon->setName('VNG Favicon');
         $favicon->setDescription('Favicon VNG');
         $favicon->setOrganization($utrecht);
+        $manager->persist($favicon);
+        $favicon->setId($id);
+        $manager->persist($favicon);
+        $manager->flush();
+        $favicon = $manager->getRepository('App:Image')->findOneBy(['id'=> $id]);
 
         $logo = new Image();
         $logo->setName('VNG Logo');
@@ -76,7 +82,6 @@ class HuwelijksplannerFixtures extends Fixture
         $utrecht->setLogo($logo);
 
         $manager->persist($utrecht);
-        $manager->persist($favicon);
         $manager->persist($logo);
         $manager->persist($utrechtStyle);
 

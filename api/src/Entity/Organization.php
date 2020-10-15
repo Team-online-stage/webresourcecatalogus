@@ -122,12 +122,11 @@ class Organization
      * @example This is the manucipality of Utrecht
      *
      * @Gedmo\Versioned
-     * @Assert\NotNull
      * @Assert\Length(
      *     max = 255
      * )
      * @Groups({"read","write"})
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $description;
 
@@ -139,7 +138,7 @@ class Organization
     /**
      * @Groups({"read", "write"})
      * @MaxDepth(1)
-     * @ORM\ManyToOne(targetEntity="App\Entity\Style", inversedBy="organizations")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Style", inversedBy="organizations", cascade={"persist"})
      * @ORM\JoinColumn(nullable=true)
      */
     private $style;
@@ -188,7 +187,7 @@ class Organization
     private $dateModified;
 
     /**
-     * @var string The contact for this organization
+     * @var string The contact information for this organization
      *
      * @Groups({"read", "write"})
      * @Assert\Url
@@ -199,12 +198,25 @@ class Organization
      */
     private $contact;
 
+    /**
+     * @Groups({"read", "write"})
+     * @ORM\ManyToOne(targetEntity=Organization::class, inversedBy="childOrganizations")
+     */
+    private $parentOrganization;
+
+    /**
+     * @Groups({"read"})
+     * @ORM\OneToMany(targetEntity=Organization::class, mappedBy="parentOrganization")
+     */
+    private $childOrganizations;
+
     public function __construct()
     {
         $this->applications = new ArrayCollection();
         $this->images = new ArrayCollection();
         $this->configurations = new ArrayCollection();
         $this->templates = new ArrayCollection();
+        $this->childOrganizations = new ArrayCollection();
     }
 
     public function getId(): ?Uuid
@@ -444,6 +456,49 @@ class Organization
     public function setContact(?string $contact): self
     {
         $this->contact = $contact;
+
+        return $this;
+    }
+
+    public function getParentOrganization(): ?self
+    {
+        return $this->parentOrganization;
+    }
+
+    public function setParentOrganization(?self $parentOrganization): self
+    {
+        $this->parentOrganization = $parentOrganization;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|self[]
+     */
+    public function getChildOrganizations(): Collection
+    {
+        return $this->childOrganizations;
+    }
+
+    public function addChildOrganization(self $childOrganization): self
+    {
+        if (!$this->childOrganizations->contains($childOrganization)) {
+            $this->childOrganizations[] = $childOrganization;
+            $childOrganization->setParentOrganization($this);
+        }
+
+        return $this;
+    }
+
+    public function removeChildOrganization(self $childOrganization): self
+    {
+        if ($this->childOrganizations->contains($childOrganization)) {
+            $this->childOrganizations->removeElement($childOrganization);
+            // set the owning side to null (unless already changed)
+            if ($childOrganization->getParentOrganization() === $this) {
+                $childOrganization->setParentOrganization(null);
+            }
+        }
 
         return $this;
     }

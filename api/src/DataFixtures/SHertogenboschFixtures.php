@@ -31,7 +31,7 @@ class SHertogenboschFixtures extends Fixture
             !$this->params->get('app_build_all_fixtures') &&
             $this->params->get('app_domain') != 'shertogenbosch.commonground.nu' && strpos($this->params->get('app_domain'), 'shertogenbosch.commonground.nu') == false &&
             $this->params->get('app_domain') != 'verhuizen.accp.s-hertogenbosch.nl' && strpos($this->params->get('app_domain'), 'verhuizen.accp.s-hertogenbosch.nl') == false &&
-            $this->params->get('app_domain') != 'verhuizen=.s-hertogenbosch.nl' && strpos($this->params->get('app_domain'), 'verhuizen.s-hertogenbosch.nl') == false &&
+            $this->params->get('app_domain') != 'verhuizen.s-hertogenbosch.nl' && strpos($this->params->get('app_domain'), 'verhuizen.s-hertogenbosch.nl') == false &&
             $this->params->get('app_domain') != 's-hertogenbosch.commonground.nu' && strpos($this->params->get('app_domain'), 's-hertogenbosch.commonground.nu') == false
         ) {
             return false;
@@ -51,10 +51,16 @@ class SHertogenboschFixtures extends Fixture
         $manager->flush();
         $sHertogenbosch = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
 
+        $id = Uuid::fromString('abb989de-414b-44ef-b899-5a0daa87a5d7');
         $favicon = new Image();
         $favicon->setName('\'s-Hertogenbosch Favicon');
         $favicon->setDescription('\'s-Hertogenbosch VNG');
         $favicon->setOrganization($sHertogenbosch);
+        $manager->persist($favicon);
+        $favicon->setId($id);
+        $manager->persist($favicon);
+        $manager->flush();
+        $favicon = $manager->getRepository('App:Image')->findOneBy(['id'=> $id]);
 
         $logo = new Image();
         $logo->setName('\'s-Hertogenbosch Logo');
@@ -70,7 +76,6 @@ class SHertogenboschFixtures extends Fixture
         $style->setfavicon($favicon);
         $style->addOrganization($sHertogenbosch);
 
-        $manager->persist($favicon);
         $manager->persist($logo);
         $manager->persist($style);
         $manager->flush();
