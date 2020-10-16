@@ -254,7 +254,7 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
         $manager->persist($menuItem);
 
         $menuItem = new MenuItem();
-        $menuItem->setName('Studenten');
+        $menuItem->setName('Voor studenten');
         $menuItem->setDescription('Studenten pagina');
         $menuItem->setOrder(1);
         $menuItem->setType('slug');
@@ -263,7 +263,7 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
         $manager->persist($menuItem);
 
         $menuItem = new MenuItem();
-        $menuItem->setName('Bedrijven/Organisaties');
+        $menuItem->setName('Voor bedrijven');
         $menuItem->setDescription('Bedrijven pagina');
         $menuItem->setOrder(2);
         $menuItem->setType('slug');
