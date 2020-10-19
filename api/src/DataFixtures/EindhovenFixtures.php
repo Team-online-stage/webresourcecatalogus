@@ -49,10 +49,16 @@ class EindhovenFixtures extends Fixture
         $manager->flush();
         $eindhoven = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
 
+        $id = Uuid::fromString('a698233d-3503-4b9e-b398-c0d4447d1012');
         $favicon = new Image();
         $favicon->setName('Gemeente Eindhoven Favicon');
         $favicon->setDescription('Favicon Gemeente Eindhoven');
         $favicon->setOrganization($eindhoven);
+        $manager->persist($favicon);
+        $favicon->setId($id);
+        $manager->persist($favicon);
+        $manager->flush();
+        $favicon = $manager->getRepository('App:Image')->findOneBy(['id'=> $id]);
 
         $logo = new Image();
         $logo->setName('Gemeente Eindhoven Logo');
@@ -70,7 +76,6 @@ class EindhovenFixtures extends Fixture
         $eindhoven->setLogo($logo);
 
         $manager->persist($eindhoven);
-        $manager->persist($favicon);
         $manager->persist($logo);
         $manager->persist($style);
 

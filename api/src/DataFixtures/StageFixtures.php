@@ -7,6 +7,7 @@ use App\Entity\Configuration;
 use App\Entity\Image;
 use App\Entity\Menu;
 use App\Entity\MenuItem;
+use App\Entity\Organization;
 use App\Entity\Slug;
 use App\Entity\Style;
 use App\Entity\Template;
@@ -53,13 +54,17 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
 
         $organization = $this->getReference(ZuiddrechtFixtures::ORGANIZATION_ZUIDDRECHT);
 
+        $id = Uuid::fromString('567ef850-2709-4855-860d-557a0cee7df3');
         $favicon = new Image();
         $favicon->setName('CheckIN Favicon');
         $favicon->setDescription('CheckIN Favicon');
         $favicon->setBase64('data:image/svg+xml;base64,PHN2ZyBpZD0iw5HDq8Ouw6lfMSIgZGF0YS1uYW1lPSLDkcOrw67DqSAxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA5MzkuNTcgMTA5OC44OSI+PGRlZnM+PHN0eWxlPi5jbHMtMXtmaWxsOiNjMDA7fS5jbHMtMntmaWxsOiMzNjY5YTU7fTwvc3R5bGU+PC9kZWZzPjx0aXRsZT56dWlkIERyZWNodCBOb3BheW9mZjwvdGl0bGU+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNNTc2LDk2Ny4xMWMtNTYsNDEuMzktMTAxLjQzLDY2LjA1LTExMSw3MS4xMWE0LDQsMCwwLDEtMy43MiwwYy0yNS41Ny0xMy41LTMwNy40OC0xNjctMzYxLjM3LTQwNmE0LDQsMCwwLDEsNy4zOC0yLjgxYzM4LjU0LDY4LjkzLDEyNS4zNywxMTkuMjYsMTg3LjUxLDE1Mi42OSw1Mi41LDI4LjIzLDExMy42Miw1MC4yMSwxNjguMzQsODAuMzZDNTA4LjIyLDg4Ny4yOSw1NDksOTE3LjY5LDU3Nyw5NjEuNzVBNCw0LDAsMCwxLDU3Niw5NjcuMTFaIi8+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNODM0LjcxLDIxNS44NFYxMDEuNjVhOC45LDguOSwwLDAsMC04LjktOC45MWgtMjczQTE0LjU5LDE0LjU5LDAsMCwwLDUzOS40MywxMDNsLTE5LDcwLjI4YTE0LjU4LDE0LjU4LDAsMCwxLTEzLjM1LDEwLjIxSDM4M1YxNDcuMTJjMzYuODQtMS4zNCw2Mi40Mi03LjQ1LDgwLjE2LTE1LjEsMjkuNDktMTIuNzQsMzcuMzUtMjkuNzgsMzkuMzYtMzYuNDRhMi4yMiwyLjIyLDAsMCwwLTIuMTMtMi44NEgzMzQuNjFjLTMzLjg4LDAtNjcuOTEsOS4yLTg2LjA4LDQwLjEtMTkuMzgsMzIuOTQtMTguMjQsNzguMDctMTYuNDksMTE0Ljg5LDAsMC01MC02Ni4yMi00MC43Ni0xNDguODdhNS41MSw1LjUxLDAsMCwwLTUuNDgtNi4xMkgxMDAuMzJhOC43OSw4Ljc5LDAsMCwwLTguNzgsOC43OVYxMjRjNC44Niw3OS4yNiw0OS4xNCwyODguNTcsMzcxLjU4LDM4NS40QzczNSw1OTEuMDYsNzc1LjQyLDcxNi4zLDc4My4zMiw3MzguMjRhMS4zOCwxLjM4LDAsMCwwLDIuNTMuMTdjNzUuMy0xNDMuOS04MS40OS0yNDcuNTItODEuNDktMjQ3LjUyLDMxLjMzLDAsNzkuMjMsMTcuOTQsMTE4LDM5Ljc5YTguMjgsOC4yOCwwLDAsMCwxMi4zNy03LjIxVjM2My44M2ExNC42LDE0LjYsMCwwLDAtMTguMTUtMTQuMTdjLTEzLjUsMy4zOS0zMCw2LjY4LTMyLjg3LDcuMjMtMzkuNDYsNy43Ny04NC43NSwxMS4xNS0xMjItOC43M3MtNDcuMjYtNjYuMjctMTguMzMtOTguMjNjMjUuMy0yOCw2NS41My0zNy41LDEwMi4yOS0zNSwyMy41NiwxLjYyLDU1LjE4LDcuNTksNzMuNzEsMTIuNjNBMTIuMTYsMTIuMTYsMCwwLDAsODM0LjcxLDIxNS44NFoiLz48cGF0aCBjbGFzcz0iY2xzLTIiIGQ9Ik02NTQuODcsOTAxLjVhNCw0LDAsMCwxLTYtLjExYy0xMy41Ni0xNi4yNS03NS40Ni04Ni0xODUuNzMtMTQ2LjQyQTc1Ni40NCw3NTYuNDQsMCwwLDAsMzgzLDcxN2MtMTczLjUzLTcwLjE3LTI4Mi42OS0xNDMuMy0yOTEuNDItMzM4LjF2LTYuMjJhNCw0LDAsMCwxLDcuMjEtMi4zNGM2My42MSw4NywxNDQuNjksMTM3LjksMjQzLjE2LDE4Ni43Nyw0MC4yOCwyMCw4MS4xNywzNi4zMiwxMjEuMjEsNTMuMjUsNjYuMTUsMjgsMTMwLDU3LjU0LDE4NC43MywxMDcuOCwxNi4xOCwxNC44NSwyOS4wOSwyOS4xNSwzNi44MSw1MEM2OTUuNzUsNzk4LjEzLDcwMi41NSw4NDkuMTcsNjU0Ljg3LDkwMS41WiIvPjwvc3ZnPg==');
         $favicon->setOrganization($organization);
         $manager->persist($favicon);
+        $favicon->setId($id);
+        $manager->persist($favicon);
         $manager->flush();
+        $favicon = $manager->getRepository('App:Image')->findOneBy(['id'=> $id]);
 
         $style = new Style();
         $style->setName('academy');
@@ -192,7 +197,8 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
                 'footer3'     => $this->commonGroundService->cleanUrl(['component' => 'wrc', 'type' => 'templates', 'id' => 'f668379b-0b93-4cf7-b243-7035e7728466']),
                 'footer4'     => $this->commonGroundService->cleanUrl(['component' => 'wrc', 'type' => 'templates', 'id' => '0c663ab8-f9d5-42c5-8866-1a51fcf74a12']),
                 'googleTagId' => 'G-2PYCJ13YC4',
-                'userPage'    => 'me',
+                'studentenPage'    => 'studenten',
+                'bedrijvenPage'    => 'bedrijven',
                 'login'       => ['facebook' => true, 'github' => true],
                 'header'      => false,
                 'stickyMenu'  => true,
@@ -490,5 +496,60 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
         $slug->setSlug('aanmelden');
         $manager->persist($slug);
         $manager->flush();
+
+        //organizations
+        //Partners
+        //Conduction
+        $id = Uuid::fromString('ff0662b1-8393-467d-bddb-8a3d4ae521a5');
+        $conduction = new Organization();
+        $conduction->setName('Conduction');
+        $conduction->setDescription('Conduction');
+        $conduction->setRsin('');
+        $conduction->setContact($this->commonGroundService->cleanUrl(['component'=>'cc', 'type'=>'organizations', 'id'=>'9650a44d-d7d1-454a-ab4f-2338c90e8c2f']));
+        $manager->persist($conduction);
+        $conduction->setId($id);
+        $manager->persist($conduction);
+        $manager->flush();
+        $conduction = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
+
+        //VNG
+        $id = Uuid::fromString('32df58b2-546e-469b-9b2a-e7a14dddddc4');
+        $rocflevoland = new Organization();
+        $rocflevoland->setName('VNG');
+        $rocflevoland->setDescription('Vereniging van Nederlandse Gemeenten');
+        $rocflevoland->setRsin('');
+        $rocflevoland->setContact($this->commonGroundService->cleanUrl(['component'=>'cc', 'type'=>'organizations', 'id'=>'80a987a0-a5e0-4aa0-bd90-a931871d9283']));
+        $manager->persist($rocflevoland);
+        $rocflevoland->setId($id);
+        $manager->persist($rocflevoland);
+        $manager->flush();
+        $rocflevoland = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
+
+        //SIDN
+        $id = Uuid::fromString('d71621e0-ba1c-4e8b-8348-49c506abdce3');
+        $rocflevoland = new Organization();
+        $rocflevoland->setName('SIDN');
+        $rocflevoland->setDescription('SIDN');
+        $rocflevoland->setRsin('');
+        $rocflevoland->setContact($this->commonGroundService->cleanUrl(['component'=>'cc', 'type'=>'organizations', 'id'=>'a30454f9-7e97-4e25-9094-245bab73cf9b']));
+        $manager->persist($rocflevoland);
+        $rocflevoland->setId($id);
+        $manager->persist($rocflevoland);
+        $manager->flush();
+        $rocflevoland = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
+
+        //Participanten
+        //ROC Flevoland
+        $id = Uuid::fromString('f7a4d704-187b-4f8a-a161-6fcb345771f2');
+        $rocflevoland = new Organization();
+        $rocflevoland->setName('ROC Flevoland');
+        $rocflevoland->setDescription('ROC van Flevoland');
+        $rocflevoland->setRsin('');
+        $rocflevoland->setContact($this->commonGroundService->cleanUrl(['component'=>'cc', 'type'=>'organizations', 'id'=>'35e3862b-d446-4541-9780-7bfb19c40e01']));
+        $manager->persist($rocflevoland);
+        $rocflevoland->setId($id);
+        $manager->persist($rocflevoland);
+        $manager->flush();
+        $rocflevoland = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
     }
 }

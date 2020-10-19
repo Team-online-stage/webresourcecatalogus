@@ -111,6 +111,7 @@ class WestfrieslandFixtures extends Fixture
         $bgAartswoud = new Organization();
         $bgAartswoud->setName('Aartswoud');
         $bgAartswoud->setDescription('Begraafplaats Aartswoud');
+        $bgAartswoud->setParentOrganization($opmeer);
         $bgAartswoud->setContact($this->commonGroundService->cleanUrl(['component' => 'cc', 'type' => 'organizations', 'id' => 'b294b0ae-fce4-48d3-bf50-eab1f82ddd7f']));
         $bgAartswoud->setRsin('1234');
         $manager->persist($bgAartswoud);
@@ -123,6 +124,7 @@ class WestfrieslandFixtures extends Fixture
         $bgOpmeer = new Organization();
         $bgOpmeer->setName('Opmeer');
         $bgOpmeer->setDescription('Begraafplaats Opmeer');
+        $bgOpmeer->setParentOrganization($opmeer);
         $bgOpmeer->setContact($this->commonGroundService->cleanUrl(['component' => 'cc', 'type' => 'organizations', 'id' => 'b294b0ae-fce4-48d3-bf50-eab1f82ddd7f']));
         $bgOpmeer->setRsin('1234');
         $manager->persist($bgOpmeer);
@@ -135,6 +137,7 @@ class WestfrieslandFixtures extends Fixture
         $bgSpanbroek = new Organization();
         $bgSpanbroek->setName('Spanbroek');
         $bgSpanbroek->setDescription('Begraafplaats Spanbroek');
+        $bgSpanbroek->setParentOrganization($opmeer);
         $bgSpanbroek->setContact($this->commonGroundService->cleanUrl(['component' => 'cc', 'type' => 'organizations', 'id' => 'b294b0ae-fce4-48d3-bf50-eab1f82ddd7f']));
         $bgSpanbroek->setRsin('1234');
         $manager->persist($bgSpanbroek);
@@ -147,6 +150,7 @@ class WestfrieslandFixtures extends Fixture
         $bgHoogwoud = new Organization();
         $bgHoogwoud->setName('Hoogwoud');
         $bgHoogwoud->setDescription('Begraafplaats Hoogwoud');
+        $bgHoogwoud->setParentOrganization($opmeer);
         $bgHoogwoud->setContact($this->commonGroundService->cleanUrl(['component' => 'cc', 'type' => 'organizations', 'id' => 'b294b0ae-fce4-48d3-bf50-eab1f82ddd7f']));
         $bgHoogwoud->setRsin('1234');
         $manager->persist($bgHoogwoud);
@@ -159,6 +163,7 @@ class WestfrieslandFixtures extends Fixture
         $bgDeWeere = new Organization();
         $bgDeWeere->setName('De Weere');
         $bgDeWeere->setDescription('Begraafplaats De Weere');
+        $bgDeWeere->setParentOrganization($opmeer);
         $bgDeWeere->setContact($this->commonGroundService->cleanUrl(['component' => 'cc', 'type' => 'organizations', 'id' => 'b294b0ae-fce4-48d3-bf50-eab1f82ddd7f']));
         $bgDeWeere->setRsin('1234');
         $manager->persist($bgDeWeere);
@@ -199,6 +204,7 @@ class WestfrieslandFixtures extends Fixture
         $bgOpperdoes = new Organization();
         $bgOpperdoes->setName('Opperdoes');
         $bgOpperdoes->setDescription('Begraafplaats Opperdoes');
+        $bgOpperdoes->setParentOrganization($medemblik);
         $bgOpperdoes->setContact($this->commonGroundService->cleanUrl(['component' => 'cc', 'type' => 'organizations', 'id' => 'b294b0ae-fce4-48d3-bf50-eab1f82ddd7f']));
         $bgOpperdoes->setRsin('1234');
         $manager->persist($bgOpperdoes);
@@ -211,6 +217,7 @@ class WestfrieslandFixtures extends Fixture
         $bgSijbekarspel = new Organization();
         $bgSijbekarspel->setName('Sijbekarspel (oud)');
         $bgSijbekarspel->setDescription('Begraafplaats Sijbekarspel (oud)');
+        $bgSijbekarspel->setParentOrganization($medemblik);
         $bgSijbekarspel->setContact($this->commonGroundService->cleanUrl(['component' => 'cc', 'type' => 'organizations', 'id' => 'b294b0ae-fce4-48d3-bf50-eab1f82ddd7f']));
         $bgSijbekarspel->setRsin('1234');
         $manager->persist($bgSijbekarspel);
@@ -223,6 +230,7 @@ class WestfrieslandFixtures extends Fixture
         $bgBenningbroekOud = new Organization();
         $bgBenningbroekOud->setName('Benningbroek (Oud)');
         $bgBenningbroekOud->setDescription('Begraafplaats Benningbroek (Oud)');
+        $bgBenningbroekOud->setParentOrganization($medemblik);
         $bgBenningbroekOud->setContact($this->commonGroundService->cleanUrl(['component' => 'cc', 'type' => 'organizations', 'id' => 'b294b0ae-fce4-48d3-bf50-eab1f82ddd7f']));
         $bgBenningbroekOud->setRsin('1234');
         $manager->persist($bgBenningbroekOud);
@@ -235,6 +243,7 @@ class WestfrieslandFixtures extends Fixture
         $bgBenningbroekNieuw = new Organization();
         $bgBenningbroekNieuw->setName('Benningbroek (Nieuw)');
         $bgBenningbroekNieuw->setDescription('Begraafplaats Benningbroek (Nieuw)');
+        $bgBenningbroekNieuw->setParentOrganization($medemblik);
         $bgBenningbroekNieuw->setContact($this->commonGroundService->cleanUrl(['component' => 'cc', 'type' => 'organizations', 'id' => 'b294b0ae-fce4-48d3-bf50-eab1f82ddd7f']));
         $bgBenningbroekNieuw->setRsin('1234');
         $manager->persist($bgBenningbroekNieuw);
@@ -247,6 +256,7 @@ class WestfrieslandFixtures extends Fixture
         $bgAndijkOosterbegraafplaats = new Organization();
         $bgAndijkOosterbegraafplaats->setName('Andijk (oosterbegraafplaats)');
         $bgAndijkOosterbegraafplaats->setDescription('Begraafplaats Andijk (oosterbegraafplaats)');
+        $bgAndijkOosterbegraafplaats->setParentOrganization($medemblik);
         $bgAndijkOosterbegraafplaats->setContact($this->commonGroundService->cleanUrl(['component' => 'cc', 'type' => 'organizations', 'id' => 'b294b0ae-fce4-48d3-bf50-eab1f82ddd7f']));
         $bgAndijkOosterbegraafplaats->setRsin('1234');
         $manager->persist($bgAndijkOosterbegraafplaats);
@@ -259,6 +269,7 @@ class WestfrieslandFixtures extends Fixture
         $bgWognumKreekland = new Organization();
         $bgWognumKreekland->setName('Wognum (kreekland)');
         $bgWognumKreekland->setDescription('Begraafplaats Wognum (kreekland)');
+        $bgWognumKreekland->setParentOrganization($medemblik);
         $bgWognumKreekland->setContact($this->commonGroundService->cleanUrl(['component' => 'cc', 'type' => 'organizations', 'id' => 'b294b0ae-fce4-48d3-bf50-eab1f82ddd7f']));
         $bgWognumKreekland->setRsin('1234');
         $manager->persist($bgWognumKreekland);
@@ -271,6 +282,7 @@ class WestfrieslandFixtures extends Fixture
         $bgOostwoud = new Organization();
         $bgOostwoud->setName('Oostwoud');
         $bgOostwoud->setDescription('Begraafplaats Oostwoud (nieuw)');
+        $bgOostwoud->setParentOrganization($medemblik);
         $bgOostwoud->setContact($this->commonGroundService->cleanUrl(['component' => 'cc', 'type' => 'organizations', 'id' => 'b294b0ae-fce4-48d3-bf50-eab1f82ddd7f']));
         $bgOostwoud->setRsin('1234');
         $manager->persist($bgOostwoud);
@@ -283,6 +295,7 @@ class WestfrieslandFixtures extends Fixture
         $bgMidwoud = new Organization();
         $bgMidwoud->setName('Midwoud');
         $bgMidwoud->setDescription('Begraafplaats Midwoud (nieuw)');
+        $bgMidwoud->setParentOrganization($medemblik);
         $bgMidwoud->setContact($this->commonGroundService->cleanUrl(['component' => 'cc', 'type' => 'organizations', 'id' => 'b294b0ae-fce4-48d3-bf50-eab1f82ddd7f']));
         $bgMidwoud->setRsin('1234');
         $manager->persist($bgMidwoud);
@@ -295,6 +308,7 @@ class WestfrieslandFixtures extends Fixture
         $bgLambertschaag = new Organization();
         $bgLambertschaag->setName('Lambertschaag');
         $bgLambertschaag->setDescription('Begraafplaats Lambertschaag');
+        $bgLambertschaag->setParentOrganization($medemblik);
         $bgLambertschaag->setContact($this->commonGroundService->cleanUrl(['component' => 'cc', 'type' => 'organizations', 'id' => 'b294b0ae-fce4-48d3-bf50-eab1f82ddd7f']));
         $bgLambertschaag->setRsin('1234');
         $manager->persist($bgLambertschaag);
@@ -307,6 +321,7 @@ class WestfrieslandFixtures extends Fixture
         $bgAbbekerk = new Organization();
         $bgAbbekerk->setName('Abbekerk');
         $bgAbbekerk->setDescription('Begraafplaats Abbekerk (nieuw)');
+        $bgAbbekerk->setParentOrganization($medemblik);
         $bgAbbekerk->setContact($this->commonGroundService->cleanUrl(['component' => 'cc', 'type' => 'organizations', 'id' => 'b294b0ae-fce4-48d3-bf50-eab1f82ddd7f']));
         $bgAbbekerk->setRsin('1234');
         $manager->persist($bgAbbekerk);
@@ -319,6 +334,7 @@ class WestfrieslandFixtures extends Fixture
         $bgOpperdoesOud = new Organization();
         $bgOpperdoesOud->setName('Opperdoes (oud)');
         $bgOpperdoesOud->setDescription('Begraafplaats Opperdoes (oud)');
+        $bgOpperdoesOud->setParentOrganization($medemblik);
         $bgOpperdoesOud->setContact($this->commonGroundService->cleanUrl(['component' => 'cc', 'type' => 'organizations', 'id' => 'b294b0ae-fce4-48d3-bf50-eab1f82ddd7f']));
         $bgOpperdoesOud->setRsin('1234');
         $manager->persist($bgOpperdoesOud);
@@ -331,6 +347,7 @@ class WestfrieslandFixtures extends Fixture
         $bgWognum = new Organization();
         $bgWognum->setName('Wognum');
         $bgWognum->setDescription('Begraafplaats Wognum');
+        $bgWognum->setParentOrganization($medemblik);
         $bgWognum->setContact($this->commonGroundService->cleanUrl(['component' => 'cc', 'type' => 'organizations', 'id' => 'b294b0ae-fce4-48d3-bf50-eab1f82ddd7f']));
         $bgWognum->setRsin('1234');
         $manager->persist($bgWognum);
@@ -343,6 +360,7 @@ class WestfrieslandFixtures extends Fixture
         $bgNibbixwoud = new Organization();
         $bgNibbixwoud->setName('Nibbixwoud');
         $bgNibbixwoud->setDescription('Begraafplaats Nibbixwoud');
+        $bgNibbixwoud->setParentOrganization($medemblik);
         $bgNibbixwoud->setContact($this->commonGroundService->cleanUrl(['component' => 'cc', 'type' => 'organizations', 'id' => 'b294b0ae-fce4-48d3-bf50-eab1f82ddd7f']));
         $bgNibbixwoud->setRsin('1234');
         $manager->persist($bgNibbixwoud);
@@ -355,6 +373,7 @@ class WestfrieslandFixtures extends Fixture
         $bgMidwoudOud = new Organization();
         $bgMidwoudOud->setName('Midwoud (oud)');
         $bgMidwoudOud->setDescription('Begraafplaats Midwoud (oud)');
+        $bgMidwoudOud->setParentOrganization($medemblik);
         $bgMidwoudOud->setContact($this->commonGroundService->cleanUrl(['component' => 'cc', 'type' => 'organizations', 'id' => 'b294b0ae-fce4-48d3-bf50-eab1f82ddd7f']));
         $bgMidwoudOud->setRsin('1234');
         $manager->persist($bgMidwoudOud);
@@ -367,6 +386,7 @@ class WestfrieslandFixtures extends Fixture
         $bgAndijkWesterbegraafplaats = new Organization();
         $bgAndijkWesterbegraafplaats->setName('Andijk (Westerbegraafplaats)');
         $bgAndijkWesterbegraafplaats->setDescription('Begraafplaats Andijk (Westerbegraafplaats)');
+        $bgAndijkWesterbegraafplaats->setParentOrganization($medemblik);
         $bgAndijkWesterbegraafplaats->setContact($this->commonGroundService->cleanUrl(['component' => 'cc', 'type' => 'organizations', 'id' => 'b294b0ae-fce4-48d3-bf50-eab1f82ddd7f']));
         $bgAndijkWesterbegraafplaats->setRsin('1234');
         $manager->persist($bgAndijkWesterbegraafplaats);
@@ -379,6 +399,7 @@ class WestfrieslandFixtures extends Fixture
         $bgTwisk = new Organization();
         $bgTwisk->setName('Twisk');
         $bgTwisk->setDescription('Begraafplaats Twisk (nieuw)');
+        $bgTwisk->setParentOrganization($medemblik);
         $bgTwisk->setContact($this->commonGroundService->cleanUrl(['component' => 'cc', 'type' => 'organizations', 'id' => 'b294b0ae-fce4-48d3-bf50-eab1f82ddd7f']));
         $bgTwisk->setRsin('1234');
         $manager->persist($bgTwisk);
@@ -391,6 +412,7 @@ class WestfrieslandFixtures extends Fixture
         $bgMedemblikZorgvliet = new Organization();
         $bgMedemblikZorgvliet->setName('Medemblik (zorgvliet)');
         $bgMedemblikZorgvliet->setDescription('Begraafplaats Wognum (Zorgvliet)');
+        $bgMedemblikZorgvliet->setParentOrganization($medemblik);
         $bgMedemblikZorgvliet->setContact($this->commonGroundService->cleanUrl(['component' => 'cc', 'type' => 'organizations', 'id' => 'b294b0ae-fce4-48d3-bf50-eab1f82ddd7f']));
         $bgMedemblikZorgvliet->setRsin('1234');
         $manager->persist($bgMedemblikZorgvliet);
@@ -431,6 +453,7 @@ class WestfrieslandFixtures extends Fixture
         $bgGemeentelijkeBegraafplaats = new Organization();
         $bgGemeentelijkeBegraafplaats->setName('Gemeentelijke Begraafplaats');
         $bgGemeentelijkeBegraafplaats->setDescription('Gemeentelijke Begraafplaats');
+        $bgGemeentelijkeBegraafplaats->setParentOrganization($enkhuizen);
         $bgGemeentelijkeBegraafplaats->setContact($this->commonGroundService->cleanUrl(['component' => 'cc', 'type' => 'organizations', 'id' => 'b294b0ae-fce4-48d3-bf50-eab1f82ddd7f']));
         $bgGemeentelijkeBegraafplaats->setRsin('1234');
         $manager->persist($bgGemeentelijkeBegraafplaats);
@@ -471,6 +494,7 @@ class WestfrieslandFixtures extends Fixture
         $bgStreekwegHoogkarspel = new Organization();
         $bgStreekwegHoogkarspel->setName('Streekweg in Hoogkarspel');
         $bgStreekwegHoogkarspel->setDescription('Begraafplaats Streekweg in Hoogkarspel');
+        $bgStreekwegHoogkarspel->setParentOrganization($drechterland);
         $bgStreekwegHoogkarspel->setContact($this->commonGroundService->cleanUrl(['component' => 'cc', 'type' => 'organizations', 'id' => 'b294b0ae-fce4-48d3-bf50-eab1f82ddd7f']));
         $bgStreekwegHoogkarspel->setRsin('1234');
         $manager->persist($bgStreekwegHoogkarspel);
@@ -483,6 +507,7 @@ class WestfrieslandFixtures extends Fixture
         $bgKerkbuurtWijdenes = new Organization();
         $bgKerkbuurtWijdenes->setName('Kerkbuurt in Wijdenes');
         $bgKerkbuurtWijdenes->setDescription('Begraafplaats Kerkbuurt in Wijdenes');
+        $bgKerkbuurtWijdenes->setParentOrganization($drechterland);
         $bgKerkbuurtWijdenes->setContact($this->commonGroundService->cleanUrl(['component' => 'cc', 'type' => 'organizations', 'id' => 'b294b0ae-fce4-48d3-bf50-eab1f82ddd7f']));
         $bgKerkbuurtWijdenes->setRsin('1234');
         $manager->persist($bgKerkbuurtWijdenes);
@@ -495,6 +520,7 @@ class WestfrieslandFixtures extends Fixture
         $bgWesterkerkwegVenhuizen = new Organization();
         $bgWesterkerkwegVenhuizen->setName('Westerkerkweg in Venhuizen');
         $bgWesterkerkwegVenhuizen->setDescription('Begraafplaats Westerkerkweg in Venhuizen');
+        $bgWesterkerkwegVenhuizen->setParentOrganization($drechterland);
         $bgWesterkerkwegVenhuizen->setContact($this->commonGroundService->cleanUrl(['component' => 'cc', 'type' => 'organizations', 'id' => 'b294b0ae-fce4-48d3-bf50-eab1f82ddd7f']));
         $bgWesterkerkwegVenhuizen->setRsin('1234');
         $manager->persist($bgWesterkerkwegVenhuizen);
@@ -507,6 +533,7 @@ class WestfrieslandFixtures extends Fixture
         $bgRaadhuispleinHoogkarspel = new Organization();
         $bgRaadhuispleinHoogkarspel->setName('Raadhuisplein in Hoogkarspel');
         $bgRaadhuispleinHoogkarspel->setDescription('Begraafplaats Raadhuisplein in Hoogkarspel');
+        $bgRaadhuispleinHoogkarspel->setParentOrganization($drechterland);
         $bgRaadhuispleinHoogkarspel->setContact($this->commonGroundService->cleanUrl(['component' => 'cc', 'type' => 'organizations', 'id' => 'b294b0ae-fce4-48d3-bf50-eab1f82ddd7f']));
         $bgRaadhuispleinHoogkarspel->setRsin('1234');
         $manager->persist($bgRaadhuispleinHoogkarspel);
@@ -519,6 +546,7 @@ class WestfrieslandFixtures extends Fixture
         $bgMolenweiHoogkarspel = new Organization();
         $bgMolenweiHoogkarspel->setName('Molenwei in Hoogkarspel');
         $bgMolenweiHoogkarspel->setDescription('Begraafplaats Molenwei in Hoogkarspel');
+        $bgMolenweiHoogkarspel->setParentOrganization($drechterland);
         $bgMolenweiHoogkarspel->setContact($this->commonGroundService->cleanUrl(['component' => 'cc', 'type' => 'organizations', 'id' => 'b294b0ae-fce4-48d3-bf50-eab1f82ddd7f']));
         $bgMolenweiHoogkarspel->setRsin('1234');
         $manager->persist($bgMolenweiHoogkarspel);
@@ -531,6 +559,7 @@ class WestfrieslandFixtures extends Fixture
         $bgDorpswegSchellinkhout = new Organization();
         $bgDorpswegSchellinkhout->setName('Dorpsweg in Schellinkhout');
         $bgDorpswegSchellinkhout->setDescription('Begraafplaats Dorpsweg in Schellinkhout');
+        $bgDorpswegSchellinkhout->setParentOrganization($drechterland);
         $bgDorpswegSchellinkhout->setContact($this->commonGroundService->cleanUrl(['component' => 'cc', 'type' => 'organizations', 'id' => 'b294b0ae-fce4-48d3-bf50-eab1f82ddd7f']));
         $bgDorpswegSchellinkhout->setRsin('1234');
         $manager->persist($bgDorpswegSchellinkhout);
@@ -543,6 +572,7 @@ class WestfrieslandFixtures extends Fixture
         $bgOosterleek = new Organization();
         $bgOosterleek->setName('Oosterleek');
         $bgOosterleek->setDescription('Begraafplaats in Oosterleek');
+        $bgOosterleek->setParentOrganization($drechterland);
         $bgOosterleek->setContact($this->commonGroundService->cleanUrl(['component' => 'cc', 'type' => 'organizations', 'id' => 'b294b0ae-fce4-48d3-bf50-eab1f82ddd7f']));
         $bgOosterleek->setRsin('1234');
         $manager->persist($bgOosterleek);
@@ -555,6 +585,7 @@ class WestfrieslandFixtures extends Fixture
         $bgSchoollaanHem = new Organization();
         $bgSchoollaanHem->setName('Schoollaan in Hem');
         $bgSchoollaanHem->setDescription('Begraafplaats Schoollaan in Hem');
+        $bgSchoollaanHem->setParentOrganization($drechterland);
         $bgSchoollaanHem->setContact($this->commonGroundService->cleanUrl(['component' => 'cc', 'type' => 'organizations', 'id' => 'b294b0ae-fce4-48d3-bf50-eab1f82ddd7f']));
         $bgSchoollaanHem->setRsin('1234');
         $manager->persist($bgSchoollaanHem);
@@ -595,6 +626,7 @@ class WestfrieslandFixtures extends Fixture
         $bgRustoord = new Organization();
         $bgRustoord->setName('Rustoord');
         $bgRustoord->setDescription('Algemene Begraafplaats "Rustoord"');
+        $bgRustoord->setParentOrganization($stedebroec);
         $bgRustoord->setContact($this->commonGroundService->cleanUrl(['component' => 'cc', 'type' => 'organizations', 'id' => 'b294b0ae-fce4-48d3-bf50-eab1f82ddd7f']));
         $bgRustoord->setRsin('1234');
         $manager->persist($bgRustoord);
@@ -635,6 +667,7 @@ class WestfrieslandFixtures extends Fixture
         $bgZwaag = new Organization();
         $bgZwaag->setName('Zwaag');
         $bgZwaag->setDescription('Begraafplaats Zwaag');
+        $bgZwaag->setParentOrganization($hoorn);
         $bgZwaag->setContact($this->commonGroundService->cleanUrl(['component' => 'cc', 'type' => 'organizations', 'id' => 'b294b0ae-fce4-48d3-bf50-eab1f82ddd7f']));
         $bgZwaag->setRsin('1234');
         $manager->persist($bgZwaag);
@@ -647,6 +680,7 @@ class WestfrieslandFixtures extends Fixture
         $bgBerkhouterweg = new Organization();
         $bgBerkhouterweg->setName('Berkhouterweg');
         $bgBerkhouterweg->setDescription('Begraafplaats Berkhouterweg');
+        $bgBerkhouterweg->setParentOrganization($hoorn);
         $bgBerkhouterweg->setContact($this->commonGroundService->cleanUrl(['component' => 'cc', 'type' => 'organizations', 'id' => 'b294b0ae-fce4-48d3-bf50-eab1f82ddd7f']));
         $bgBerkhouterweg->setRsin('1234');
         $manager->persist($bgBerkhouterweg);
@@ -659,6 +693,7 @@ class WestfrieslandFixtures extends Fixture
         $bgKeern = new Organization();
         $bgKeern->setName('Keern');
         $bgKeern->setDescription('Begraafplaats Keern');
+        $bgKeern->setParentOrganization($hoorn);
         $bgKeern->setContact($this->commonGroundService->cleanUrl(['component' => 'cc', 'type' => 'organizations', 'id' => 'b294b0ae-fce4-48d3-bf50-eab1f82ddd7f']));
         $bgKeern->setRsin('1234');
         $manager->persist($bgKeern);
@@ -671,6 +706,7 @@ class WestfrieslandFixtures extends Fixture
         $bgZuiderveld = new Organization();
         $bgZuiderveld->setName('Zuiderveld');
         $bgZuiderveld->setDescription('Begraafplaats Zuiderveld');
+        $bgZuiderveld->setParentOrganization($hoorn);
         $bgZuiderveld->setContact($this->commonGroundService->cleanUrl(['component' => 'cc', 'type' => 'organizations', 'id' => 'b294b0ae-fce4-48d3-bf50-eab1f82ddd7f']));
         $bgZuiderveld->setRsin('1234');
         $manager->persist($bgZuiderveld);
@@ -711,6 +747,7 @@ class WestfrieslandFixtures extends Fixture
         $bgObdam = new Organization();
         $bgObdam->setName('Obdam');
         $bgObdam->setDescription('Begraafplaats Obdam');
+        $bgObdam->setParentOrganization($koggenland);
         $bgObdam->setContact($this->commonGroundService->cleanUrl(['component' => 'cc', 'type' => 'organizations', 'id' => 'b294b0ae-fce4-48d3-bf50-eab1f82ddd7f']));
         $bgObdam->setRsin('1234');
         $manager->persist($bgObdam);
@@ -723,6 +760,7 @@ class WestfrieslandFixtures extends Fixture
         $bgUrsem = new Organization();
         $bgUrsem->setName('Ursem');
         $bgUrsem->setDescription('Begraafplaats Ursem');
+        $bgUrsem->setParentOrganization($koggenland);
         $bgUrsem->setContact($this->commonGroundService->cleanUrl(['component' => 'cc', 'type' => 'organizations', 'id' => 'b294b0ae-fce4-48d3-bf50-eab1f82ddd7f']));
         $bgUrsem->setRsin('1234');
         $manager->persist($bgUrsem);
@@ -735,6 +773,7 @@ class WestfrieslandFixtures extends Fixture
         $bgAvenhorn = new Organization();
         $bgAvenhorn->setName('Avenhorn');
         $bgAvenhorn->setDescription('Begraafplaats Avenhorn');
+        $bgAvenhorn->setParentOrganization($koggenland);
         $bgAvenhorn->setContact($this->commonGroundService->cleanUrl(['component' => 'cc', 'type' => 'organizations', 'id' => 'b294b0ae-fce4-48d3-bf50-eab1f82ddd7f']));
         $bgAvenhorn->setRsin('1234');
         $manager->persist($bgAvenhorn);
@@ -747,6 +786,7 @@ class WestfrieslandFixtures extends Fixture
         $bgOudendijk = new Organization();
         $bgOudendijk->setName('Oudendijk');
         $bgOudendijk->setDescription('Begraafplaats Oudendijk');
+        $bgOudendijk->setParentOrganization($koggenland);
         $bgOudendijk->setContact($this->commonGroundService->cleanUrl(['component' => 'cc', 'type' => 'organizations', 'id' => 'b294b0ae-fce4-48d3-bf50-eab1f82ddd7f']));
         $bgOudendijk->setRsin('1234');
         $manager->persist($bgOudendijk);
@@ -759,6 +799,7 @@ class WestfrieslandFixtures extends Fixture
         $bgBerkhout = new Organization();
         $bgBerkhout->setName('Berkhout');
         $bgBerkhout->setDescription('Begraafplaats Berkhout');
+        $bgBerkhout->setParentOrganization($koggenland);
         $bgBerkhout->setContact($this->commonGroundService->cleanUrl(['component' => 'cc', 'type' => 'organizations', 'id' => 'b294b0ae-fce4-48d3-bf50-eab1f82ddd7f']));
         $bgBerkhout->setRsin('1234');
         $manager->persist($bgBerkhout);
@@ -771,6 +812,7 @@ class WestfrieslandFixtures extends Fixture
         $bgGrosthuizen = new Organization();
         $bgGrosthuizen->setName('Grosthuizen');
         $bgGrosthuizen->setDescription('Begraafplaats Grosthuizen');
+        $bgGrosthuizen->setParentOrganization($koggenland);
         $bgGrosthuizen->setContact($this->commonGroundService->cleanUrl(['component' => 'cc', 'type' => 'organizations', 'id' => 'b294b0ae-fce4-48d3-bf50-eab1f82ddd7f']));
         $bgGrosthuizen->setRsin('1234');
         $manager->persist($bgGrosthuizen);
@@ -783,6 +825,7 @@ class WestfrieslandFixtures extends Fixture
         $bgHensbroek = new Organization();
         $bgHensbroek->setName('Hensbroek');
         $bgHensbroek->setDescription('Begraafplaats Hensbroek');
+        $bgHensbroek->setParentOrganization($koggenland);
         $bgHensbroek->setContact($this->commonGroundService->cleanUrl(['component' => 'cc', 'type' => 'organizations', 'id' => 'b294b0ae-fce4-48d3-bf50-eab1f82ddd7f']));
         $bgHensbroek->setRsin('1234');
         $manager->persist($bgHensbroek);

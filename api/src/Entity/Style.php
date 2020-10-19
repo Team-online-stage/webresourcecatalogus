@@ -111,7 +111,7 @@ class Style
     /**
      * @Groups({"read","write"})
      * @MaxDepth(1)
-     * @ORM\ManyToOne(targetEntity="App\Entity\Image")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Image", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $favicon;
