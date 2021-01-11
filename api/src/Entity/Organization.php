@@ -210,6 +210,19 @@ class Organization
      */
     private $childOrganizations;
 
+    /**
+     * @var string The terms and conditions of this organization
+     *
+     *  @Gedmo\Versioned
+     * @Assert\Length(
+     *     max = 255
+     * )
+     * 
+     * @Groups({"read", "write"})
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $termsAndConditions;
+
     public function __construct()
     {
         $this->applications = new ArrayCollection();
@@ -499,6 +512,18 @@ class Organization
                 $childOrganization->setParentOrganization(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getTermsAndConditions(): ?string
+    {
+        return $this->termsAndConditions;
+    }
+
+    public function setTermsAndConditions(?string $termsAndConditions): self
+    {
+        $this->termsAndConditions = $termsAndConditions;
 
         return $this;
     }
